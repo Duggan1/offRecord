@@ -211,6 +211,8 @@ class PickResource(Resource):
 
 # Add the PickResource to the API with the '/picks' endpoint
 api.add_resource(PickResource, '/picks')
+
+
 if __name__ == '__main__':
     app.run(port=5556, debug=True)
 
