@@ -57,6 +57,7 @@ function App() {
   return (
     <BrowserRouter>
      <div className="blackBB">
+     <h1 style={{color:'purple',textAlign:'center', marginTop:'0%'}}> Off Record Picks!</h1>
      <div style={{ display: 'flex', justifyContent: 'flex-end', textAlign: 'end', fontSize: '8px', width: '100%' }}>
   {user ? (
     <>

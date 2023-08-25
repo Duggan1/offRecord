@@ -9,7 +9,7 @@ function Home() {
     return (
         < div className="App App-header" >
             {/* <p style={{ color: 'yellow' }}>Welcome to</p> */}
-            <h1 style={{color:'purple'}}> Off Record Picks!</h1>
+            <h1 style={{color:'purple',marginBottom:'0%',paddingBottom:'50%'}}> Off Record Picks!</h1>
         
         
         
