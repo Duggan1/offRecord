@@ -36,7 +36,7 @@ function App() {
   
 
   useEffect(() => {
-    fetch("/check_session").then((response) => {
+    fetch("https://off-therecordpicks.onrender.com/check_session").then((response) => {
       if (response.ok) {
         response.json().then((user) => setUser(user));
       }

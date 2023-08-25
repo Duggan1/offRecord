@@ -72,7 +72,7 @@ function Tommy({ user }) {
           user_id: user.id || 99
         };
 
-        fetch('http://127.0.0.1:5556/submit-predictions', {
+        fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

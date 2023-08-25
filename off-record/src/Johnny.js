@@ -50,7 +50,7 @@ function Johnny({ onLogin }) {
                 Email,
                 
             };
-            fetch('http://127.0.0.1:5556/signup', {
+            fetch('https://off-therecordpicks.onrender.com/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newStudent),
@@ -92,7 +92,7 @@ function Johnny({ onLogin }) {
     }
     function handleSubmit2(e) {
         e.preventDefault();
-        fetch("http://127.0.0.1:5556/login", {
+        fetch("https://off-therecordpicks.onrender.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
