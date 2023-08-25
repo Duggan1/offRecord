@@ -5,7 +5,7 @@ import Home from './Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Elijah from './Elijah';
 import Johnny from './Johnny';
-import Joey from './Joey';
+// import Joey from './Joey';
 import Tommy from './Tommy';
 import Payment from './Payment';
 
