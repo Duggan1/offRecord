@@ -83,6 +83,7 @@ function Tommy({ user }) {
         .then(data => {
           console.log('Predictions submitted successfully:', data);
           // Perform any further actions here
+          setPredictions([]);
         })
         .catch(error => {
           console.error('Error submitting predictions:', error);
