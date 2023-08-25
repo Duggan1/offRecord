@@ -3,7 +3,7 @@ import NavBar from './NavBar';
 import './App.css';
 import Home from './Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Elijah from './Elijah';
+// import Elijah from './Elijah';
 import Johnny from './Johnny';
 // import Joey from './Joey';
 import Tommy from './Tommy';
@@ -78,9 +78,9 @@ function App() {
       <Route path="/" element={<Home/>} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
-      <Route path="/section2" element={<Joey />} />
+      {/* <Route path="/section2" element={<Joey />} /> */}
       <Route path="/section3" element={<Tommy user={user} />}/>
-      <Route path="/section4" element={<Elijah/>}/>
+      {/* <Route path="/section4" element={<Elijah/>}/> */}
       <Route path="/payment" element={<Payment/>}/>
       
        
