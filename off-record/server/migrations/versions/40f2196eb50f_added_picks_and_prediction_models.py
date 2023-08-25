@@ -1,8 +1,8 @@
 """Added Picks and Prediction models
 
-Revision ID: 2c221d0d7a6a
+Revision ID: 40f2196eb50f
 Revises: 
-Create Date: 2023-08-25 13:39:34.663398
+Create Date: 2023-08-25 18:00:56.366020
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2c221d0d7a6a'
+revision = '40f2196eb50f'
 down_revision = None
 branch_labels = None
 depends_on = None
