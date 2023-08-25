@@ -101,7 +101,7 @@ function Tommy({ user }) {
     <div>
       {user ? (
     <div className="tommy">
-      <h1>UFC Fight Predictions</h1>
+      <h1 >UFC Fight Predictions</h1>
       <h3>{location}</h3>
       <h2 className="color-white" >{mainEvent}</h2>
       
