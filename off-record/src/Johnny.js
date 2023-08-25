@@ -50,7 +50,7 @@ function Johnny({ onLogin }) {
                 Email,
                 
             };
-            fetch('/signup', {
+            fetch('http://127.0.0.1:5556/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newStudent),
@@ -92,7 +92,7 @@ function Johnny({ onLogin }) {
     }
     function handleSubmit2(e) {
         e.preventDefault();
-        fetch("/login", {
+        fetch("http://127.0.0.1:5556/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -157,7 +157,7 @@ function Johnny({ onLogin }) {
                 <label>Full Name:</label>
                 <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required /><br></br>
                 
-                <label className="schead">Parents' Email:</label>
+                <label >Email:</label>
                 <input type="email" value={Email} onChange={(e) => setEmail(e.target.value)} required /><br></br>
                 
                 <button style={{marginRight:'17%',minWidth:'10%'}} type="submit">Submit</button>

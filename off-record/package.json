@@ -13,7 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "client": "^0.0.1",
     "formi": "^0.4.0",
-    "formik": "^2.2.9",
+    "formik": "^2.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
@@ -21,7 +21,7 @@
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
-    "yup": "^1.1.1"
+    "yup": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

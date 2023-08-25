@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import './App.css';
+import * as yup from 'yup';
+
 import { useNavigate } from 'react-router-dom';
+import Dnd from './Dnd';
 
 function Tommy({ user }) {
   const navigate = useNavigate();
@@ -21,8 +24,10 @@ function Tommy({ user }) {
     { match: "Women's Flyweight", fighters: ["Liang Na", "JJ Aldrich"] },
     { match: "Featherweight", fighters: ["Choi Seung-woo", "Jarno Errens"] },
   ];
-  
+  const mainEvent = ufcCard[0].fighters.join(' vs ');
+  const location = 'Singapore'
   const [predictions, setPredictions] = useState([]);
+
 
   const handlePredictionChange = (index, winnerIndex) => {
     const updatedPredictions = [...predictions];
@@ -35,46 +40,71 @@ function Tommy({ user }) {
     setPredictions(updatedPredictions);
   };
 
-  const handleSubmit = (e, username) => {
+
+
+  const validationSchema = yup.object().shape({
+    // userName: yup.string().required('Username is required'),
+    // password: yup.string().required('Password is required'),
+    predictions: yup.array().of(
+      yup.object().shape({
+        winner: yup.number().oneOf([0, 1], 'Invalid winner selection'),
+        method: yup.string().required('Method of victory is required'),
+      })
+    ).required('At least one prediction is required'),
+  });
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle submission of predictions
-    const predictionData = ufcCard.map((fight, index) => ({
-      fighters: fight.fighters,
-      winner: predictions[index]?.winner,
-      method: predictions[index]?.method,
-    }));
-    
-    // Create an object that includes the prediction data and the user's username
-    const dataToSend = {
-      owner: user.username,
-      predictions: predictionData,
-    };
-  
-    // Now you can send the dataToSend to your backend using fetch or any other method
-    // For example:
-    console.log(dataToSend)
-    fetch('/submit-predictions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(dataToSend),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Predictions submitted successfully:', data);
-      // You can perform any further actions here
-    })
-    .catch(error => {
-      console.error('Error submitting predictions:', error);
-      // Handle error as needed
-    });
+
+    validationSchema.validate({  predictions })
+      .then(() => {
+        const predictionData = ufcCard.map((fight, index) => ({
+          fighters: fight.fighters,
+          winner: predictions[index]?.winner || null,
+          method: predictions[index]?.method || null,
+        }));
+
+        const dataToSend = {
+          owner: user.username || user.userName,
+          location: location,
+          mainEvent: mainEvent,
+          predictions: predictionData,
+          user_id: user.id || 99
+        };
+
+        fetch('http://127.0.0.1:5556/submit-predictions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSend),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Predictions submitted successfully:', data);
+          // Perform any further actions here
+        })
+        .catch(error => {
+          console.error('Error submitting predictions:', error);
+          // Handle error as needed
+        });
+      })
+      .catch(error => {
+        console.error('Validation error:', error.message);
+        // Handle validation error messages, setErrors, etc.
+      });
   };
   
+  
 
-  return (
+  return  (
+    <div>
+      {user ? (
     <div className="tommy">
       <h1>UFC Fight Predictions</h1>
+      <h3>{location}</h3>
+      <h2 className="color-white" >{mainEvent}</h2>
+      
       <form onSubmit={handleSubmit}>
         {ufcCard.map((fight, index) => (
           <div key={index} className="fight">
@@ -107,9 +137,11 @@ function Tommy({ user }) {
         ))}
         <button type="submit">Submit Predictions</button>
       </form>
-    </div>
-  );
-}
-
+    </div> ) : (
+      <Dnd />
+    )}
+  </div>
+);
+    }
 export default Tommy;
 
