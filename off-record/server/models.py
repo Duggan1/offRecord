@@ -5,7 +5,7 @@ from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
-
+from datetime import datetime
 
 from config import db, bcrypt
 # metadata = MetaData(naming_convention={
@@ -31,7 +31,7 @@ class User(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default = db.func.now())
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
-    sessions = db.relationship('Session', backref = 'user', cascade = 'all, delete-orphan')
+    picks = db.relationship('Pick', backref = 'user', cascade = 'all, delete-orphan')
     # gyms = association_proxy('memberships', 'gym')
 
   
@@ -73,17 +73,37 @@ class User(db.Model, SerializerMixin):
     
 # ////nullable fo gym&user idbefore the push
 
-class Session(db.Model, SerializerMixin):
-    __tablename__ = 'Sessions'
-    serialize_rules= ( "created_at","-updated_at", "-user_id","-user._password_hash", "-user.id")
+class Pick(db.Model):
+    __tablename__ = 'picks'
 
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
-   
-    created_at = db.Column(db.DateTime, server_default = db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate = db.func.now())
+    owner = db.Column(db.String(120), nullable=False)
+    location = db.Column(db.String(120), nullable=False)
+    main_event = db.Column(db.String(120), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    # Here we define a one-to-many relationship with the Prediction model
+    predictions = db.relationship('Prediction', backref='picks', lazy=True)
 
-   
+class Prediction(db.Model):
+    __tablename__ = 'predictions'
+
+    id = db.Column(db.Integer, primary_key=True)
+    picks_id = db.Column(db.Integer, db.ForeignKey('picks.id'), nullable=False)
+    fighters = db.Column(db.JSON, nullable=False)
+    winner = db.Column(db.Integer)  # Index of the winning fighter
+    method = db.Column(db.String(50))
+
+    # You can add other fields as needed
+
+    def as_dict(self):
+        return {
+            "fighters": self.fighters,
+            "winner": self.winner,
+            "method": self.method
+            # Add other fields here
+        }
    
 
 

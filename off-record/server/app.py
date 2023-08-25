@@ -3,7 +3,7 @@ from config import app, api,db, bcrypt
 from flask import make_response, redirect, request, session, jsonify
 from flask_restful import Resource, Api
 
-from models import User, Session 
+from models import User, Pick, Prediction
 # app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'  # Your database URI
 # db = SQLAlchemy(app)
@@ -165,9 +165,52 @@ api.add_resource(Logout, '/logout', endpoint='logout')
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 
 
+class PicksResource(Resource):
+    def post(self):
+        data = request.json
 
+        owner = data['owner']
+        location = data['location']
+        main_event = data['mainEvent']
+        predictions = data['predictions']
+        user_id = data['user_id']
 
+        # Create a new Picks object
+        new_picks = Pick(user_id=user_id, owner=owner, location=location, main_event=main_event)
 
+        # Create Prediction objects and associate them with the Picks
+        for pred in predictions:
+            fighters = pred['fighters']
+            winner = pred['winner']
+            method = pred['method']
+            
+
+            prediction = Prediction(fighters=fighters, winner=winner, method=method,)
+            new_picks.predictions.append(prediction)
+
+        # Add and commit the new Picks and associated Predictions to the database
+        db.session.add(new_picks)
+        db.session.commit()
+
+        return {'message': 'Picks submitted successfully'}, 201
+
+api.add_resource(PicksResource, '/submit-predictions')
+
+class PickResource(Resource):
+    def get(self):
+        picks = Pick.query.all() 
+        picks_data = [{
+            "owner": pick.owner,
+            "location": pick.location,
+            "main_event": pick.main_event,
+            "predictions": [prediction.as_dict() for prediction in pick.predictions]
+        } for pick in picks]
+        return make_response(
+            {'picks': picks_data},
+            200)
+
+# Add the PickResource to the API with the '/picks' endpoint
+api.add_resource(PickResource, '/picks')
 if __name__ == '__main__':
     app.run(port=5556, debug=True)
 
