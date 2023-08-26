@@ -53,48 +53,55 @@ function Tommy({ user }) {
     ).required('At least one prediction is required'),
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    validationSchema.validate({  predictions })
-      .then(() => {
+    try {
+        // Validate the form data using Yup
+        await validationSchema.validate({ predictions });
+
         const predictionData = ufcCard.map((fight, index) => ({
-          fighters: fight.fighters,
-          winner: predictions[index]?.winner || null,
-          method: predictions[index]?.method || null,
+            fighters: fight.fighters,
+            winner: predictions[index]?.winner || null,
+            method: predictions[index]?.method || null,
         }));
 
         const dataToSend = {
-          owner: user.username || user.userName,
-          location: location,
-          mainEvent: mainEvent,
-          predictions: predictionData,
-          user_id: user.id || 99
+            owner: user.username || user.userName,
+            location: location,
+            mainEvent: mainEvent,
+            predictions: predictionData,
+            user_id: user.id || 99,
         };
 
         fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(dataToSend),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataToSend),
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
-          console.log('Predictions submitted successfully:', data);
-          // Perform any further actions here
-          setPredictions([]);
+            console.log('Predictions submitted successfully:', data);
+            // Perform any further actions here
+            setPredictions([]);
         })
         .catch(error => {
-          console.error('Error submitting predictions:', error);
-          // Handle error as needed
+            console.error('Error submitting predictions:', error);
+            // Handle error as needed
         });
-      })
-      .catch(error => {
+    } catch (error) {
         console.error('Validation error:', error.message);
         // Handle validation error messages, setErrors, etc.
-      });
-  };
+    }
+};
+
   
   
 
