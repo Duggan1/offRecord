@@ -9,23 +9,25 @@ function Tommy({ user }) {
   const navigate = useNavigate();
 
   // UFC card information
+
   const ufcCard = [
-    { match: "Featherweight", fighters: ["Max Holloway", "Jung Chan-sung"] },
-    { match: "Light Heavyweight", fighters: ["Anthony Smith", "Ryan Spann"] },
-    { match: "Featherweight", fighters: ["Giga Chikadze", "Alex Caceres"] },
-    { match: "Bantamweight", fighters: ["Rinya Nakamura", "Fernie Garcia"] },
-    { match: "Women's Flyweight", fighters: ["Erin Blanchfield", "Taila Santos"] },
-    { match: "Heavyweight", fighters: ["Junior Tafa", "Parker Porter"] },
-    { match: "Heavyweight", fighters: ["Waldo Cortes-Acosta", "Łukasz Brzeski"] },
-    { match: "Bantamweight", fighters: ["Toshiomi Kazama", "Garrett Armfield"] },
-    { match: "Middleweight", fighters: ["Chidi Njokuani", "Michał Oleksiejczuk"] },
-    { match: "Welterweight", fighters: ["Song Kenan", "Rolando Bedoya"] },
-    { match: "Welterweight", fighters: ["Billy Goff", "Yusaku Kinoshita"] },
-    { match: "Women's Flyweight", fighters: ["Liang Na", "JJ Aldrich"] },
-    { match: "Featherweight", fighters: ["Choi Seung-woo", "Jarno Errens"] },
+    { match: "Heavyweight", fighters: ["Ciryl Gane", "Serghei Spivac"], records: ["11-2", "16-3"] },
+    { match: "Flyweight", fighters: ["Manon Fiorot", "Rose Namajunas"], records: ["11-5", "12-2"] },
+    { match: "Featherweight", fighters: ["Lucas Almeida", "Benoit Saint-Denis"], records: ["14-2", "11-1"] },
+    { match: "Lightweight", fighters: ["Thiago Moisés", "Yanis Ghemmouri"], records: ["17-6", "12-1"] },
+    { match: "Bantamweight", fighters: ["Caolan Loughran", "Volkan Oezdemir"], records: ["8-0", "18-7"] },
+    { match: "Light Heavyweight", fighters: ["Bogdan Guskov", "Nora Cornolle"], records: ["14-2", "6-1"] },
+    { match: "Bantamweight", fighters: ["Joselyne Edwards", "Ange Loosa"], records: ["13-4", "9-3"] },
+    { match: "Welterweight", fighters: ["Rhys McKee", "Taylor Lapilus"], records: ["13-4-1", "18-3"] },
+    { match: "Bantamweight", fighters: ["Muin Gafurov", "Morgan Charriere"], records: ["18-5", "18-9-1"] },
+    { match: "Featherweight", fighters: ["Manolo Zecchini", "Farid Basharat"], records: ["11-3", "10-0"] },
+    { match: "Flyweight", fighters: ["Kleydson Rodrigues", "Zarah Fairn"], records: ["8-2", "6-5"] },
+    { match: "Flyweight", fighters: ["Jacqueline Cavalcanti", "Unknown Fighter"], records: ["5-1", "-"] },
   ];
+  
+  
   const mainEvent = ufcCard[0].fighters.join(' vs ');
-  const location = 'Singapore'
+  const location = 'France'
   const [predictions, setPredictions] = useState([]);
 
 
@@ -53,7 +55,7 @@ function Tommy({ user }) {
     ).required('At least one prediction is required'),
   });
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -62,8 +64,8 @@ function Tommy({ user }) {
 
         const predictionData = ufcCard.map((fight, index) => ({
             fighters: fight.fighters,
-            winner: predictions[index]?.winner || null,
-            method: predictions[index]?.method || null,
+            winner: predictions[index]?.winner ,
+            method: predictions[index]?.method ,
         }));
 
         const dataToSend = {
@@ -116,12 +118,20 @@ function Tommy({ user }) {
       <form onSubmit={handleSubmit}>
         {ufcCard.map((fight, index) => (
           <div key={index} className="fight">
-            <p>{fight.fighters[0]} vs. {fight.fighters[1]}</p>
+             <p key={index} style={{ fontSize: '1rem', whiteSpace: 'nowrap' }}>
+          <span style={{fontSize: '1.7rem', fontWeight: 'bold' }}>
+            {fight.fighters[0]} 
+          </span> {fight.records[0]} vs.{' '}
+          <span style={{fontSize: '1.7rem', fontWeight: 'bold' }}>
+            {fight.fighters[1]} 
+          </span> {fight.records[1]}
+        </p>
             <div className="prediction">
               <button
                 className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
                 onClick={() => handlePredictionChange(index, 0)}
               >
+                
                 {fight.fighters[0]}
               </button>
               <button
@@ -129,6 +139,7 @@ function Tommy({ user }) {
                 onClick={() => handlePredictionChange(index, 1)}
               >
                 {fight.fighters[1]}
+                
               </button>
             </div>
             <div className="prediction">

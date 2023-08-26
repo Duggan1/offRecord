@@ -5,7 +5,7 @@ import Home from './Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Elijah from './Elijah';
 import Johnny from './Johnny';
-// import Joey from './Joey';
+import Results from './Results';
 import Tommy from './Tommy';
 import Payment from './Payment';
 
@@ -81,6 +81,7 @@ function App() {
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
       <Route path="/section3" element={<Tommy user={user} />}/>
+      <Route path="/results" element={<Results user={user}/>}/>
       
       <Route path="/payment" element={<Payment/>}/>
       
