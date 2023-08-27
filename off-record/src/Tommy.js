@@ -9,7 +9,7 @@ function Tommy({ user }) {
   const navigate = useNavigate();
 
   // UFC card information
-
+  const location = 'France'
   const ufcCard = [
     { match: "Heavyweight", fighters: ["Ciryl Gane", "Serghei Spivac"], records: ["11-2", "16-3"], flags: ["France", "Romania"] },
     { match: "Flyweight", fighters: ["Manon Fiorot", "Rose Namajunas"], records: ["11-5", "12-2"], flags: ["France", "United States"] },
@@ -37,7 +37,7 @@ function Tommy({ user }) {
   
   
   const mainEvent = ufcCard[0].fighters.join(' vs ');
-  const location = 'France'
+ 
   const [predictions, setPredictions] = useState([]);
 
 
@@ -101,6 +101,8 @@ const handleSubmit = async (e) => {
             console.log('Predictions submitted successfully:', data);
             // Perform any further actions here
             setPredictions([]);
+            navigate('/results');
+
         })
         .catch(error => {
             console.error('Error submitting predictions:', error);
@@ -390,16 +392,13 @@ console.log(`The abbreviation for ${inputCountry} is ${abbreviation}`);
       <form onSubmit={handleSubmit}>
         {ufcCard.map((fight, index) => (
           <div key={index} className="fight">
-             <p key={index} style={{ fontSize: '1rem', whiteSpace: 'nowrap' }}>
-          <span style={{fontSize: '1.7rem', fontWeight: 'bold' }}>
+             <p key={index} style={{ fontSize: '1rem', whiteSpace: 'nowrap',color:'whitesmoke' }}>
+          <span style={{fontSize: '1.7rem', fontWeight: 'bold',color:'black' }}>
             {fight.fighters[0]} 
-          </span> {fight.records[0]}<img style={{height:'30px',}} src={`https://flagsapi.com/${getFighterCountryAbbreviation(index, 0)}/flat/64.png`}
-          alt={`Flag of ${fight.fighters[1]}`} ></img> vs.{' '}
-          <span style={{fontSize: '1.7rem', fontWeight: 'bold' }}>
+          </span> {fight.records[0]}
+          <span style={{fontSize: '1.7rem', fontWeight: 'bold',color:'black'  }}> vs.{' '}
             {fight.fighters[1]} 
-          </span> {fight.records[1]} <img style={{height:'30px',}} src={`https://flagsapi.com/${getFighterCountryAbbreviation(index, 1)}/flat/64.png`}
-          alt={`Flag of ${fight.fighters[1]}`} >
-</img>
+          </span> {fight.records[1]} 
         </p>
             <div className="prediction">
               <button
@@ -439,7 +438,7 @@ console.log(`The abbreviation for ${inputCountry} is ${abbreviation}`);
             </div>
           </div>
         ))}
-        <button type="submit">Submit Predictions</button>
+        <button className="submitb" type="submit">Submit Predictions</button>
       </form>
     </div> ) : (
       <Dnd />

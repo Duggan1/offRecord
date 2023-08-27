@@ -144,10 +144,24 @@ code {
   min-width: 10%;
   
 }
+.submitb{
+  background-color: rgb(80, 10, 80);
+  color: whitesmoke;
+  border: 5px  solid black;
+  padding: 4% 3% ;
+  margin-top: 10%;
+  border-radius: 10%;
+  font-weight: 700;
+  cursor: pointer;
+  min-width: 15%;
+
+}
 
 .fighter-button.selected {
   background-color: green;
-  color: white;
+  color: darkgreen;
+  border: 5px  solid green;
+
 }
 
 .fighter-button:not(.selected):hover {
