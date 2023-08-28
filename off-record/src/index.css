@@ -156,12 +156,40 @@ code {
   min-width: 15%;
 
 }
+.ownpicksdiv {
+  background-color: rgb(255, 255, 255);
+  color: rgb(80, 10, 80);
+}
+.ownpicksdiv h2 {
+  background-color: rgb(80, 10, 80);
+  margin-top: 2%;
+  padding-bottom: 2%;
+  color: white;
+}
+.selectO {
+  
+  color: black;
+  border: 1px  solid black;
+  
+
+}
 
 .fighter-button.selected {
   background-color: green;
   color: darkgreen;
   border: 5px  solid green;
 
+}
+.winnerCircle {
+  border: green solid 4px;
+}
+.rightgreen {
+  background-color: green;
+  color:white;
+  /* margin-top: 500px; */
+  border-radius: 50%;
+  padding:2%;
+  text-align: center;
 }
 
 .fighter-button:not(.selected):hover {
@@ -359,8 +387,19 @@ input[type='checkbox'] {
   border-color: blue;
   outline: 0;
 }
-
-
+.color-black {
+  color: black
+}
+.mobile-fight-info {
+  font-size: 1rem;
+  color: blue;
+  white-space: nowrap;
+}
+.mobile-fighter-name {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: black;
+}
 
 
 
@@ -370,9 +409,23 @@ input[type='checkbox'] {
   }
   .schead {
     font-size: 9px;
-    font-weight: 600;
+    font-weight: 600
+    ;
+  }
+  .mobile-fight-info {
+    font-size: .9rem;
+    color: white;
+    white-space: nowrap;
   }
 
+  .mobile-fighter-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: black;
+  }
+  .color-black {
+    color: black
+  }
 
 
 

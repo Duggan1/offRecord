@@ -21,6 +21,34 @@ function App() {
   const handleAppleClick = () => {
     setShowDropdown(!showDropdown);
   };
+  const ufcCard = [
+    { match: "Heavyweight", fighters: ["Ciryl Gane", "Serghei Spivac"], records: ["11-2", "16-3"], flags: ["France", "Romania"] },
+    { match: "Flyweight", fighters: ["Manon Fiorot", "Rose Namajunas"], records: ["11-5", "12-2"], flags: ["France", "United States"] },
+    { match: "Featherweight", fighters: ["Lucas Almeida", "Benoit Saint-Denis"], records: ["14-2", "11-1"], flags: ["Brazil", "Canada"] },
+    { match: "Lightweight", fighters: ["Thiago Moisés", "Yanis Ghemmouri"], records: ["17-6", "12-1"], flags: ["Brazil", "France"] },
+    { match: "Bantamweight", fighters: ["Caolan Loughran", "Volkan Oezdemir"], records: ["8-0", "18-7"], flags: ["United Kingdom", "Switzerland"] },
+    { match: "Light Heavyweight", fighters: ["Bogdan Guskov", "Nora Cornolle"], records: ["14-2", "6-1"], flags: ["Russia", "France"] },
+    { match: "Bantamweight", fighters: ["Joselyne Edwards", "Ange Loosa"], records: ["13-4", "9-3"], flags: ["Panama", "France"] },
+    { match: "Welterweight", fighters: ["Rhys McKee", "Taylor Lapilus"], records: ["13-4-1", "18-3"], flags: ["Ireland", "France"] },
+    { match: "Bantamweight", fighters: ["Muin Gafurov", "Morgan Charriere"], records: ["18-5", "18-9-1"], flags: ["Russia", "France"] },
+    { match: "Featherweight", fighters: ["Manolo Zecchini", "Farid Basharat"], records: ["11-3", "10-0"], flags: ["Italy", "Afghanistan"] },
+    { match: "Flyweight", fighters: ["Kleydson Rodrigues", "Zarah Fairn"], records: ["8-2", "6-5"], flags: ["Brazil", "Germany"] },
+    { match: "Flyweight", fighters: ["Jacqueline Cavalcanti", "Unknown Fighter"], records: ["5-1", "-"], flags: ["Brazil", "Unknown"] },
+  ];
+  const ufcResults = [
+    { match: "Heavyweight", fighters: ["Ciryl Gane", "Serghei Spivac"], winner: 'Serghei Spivac', method:'Submission' },
+    { match: "Flyweight", fighters: ["Manon Fiorot", "Rose Namajunas"], winner: null, method:null },
+    { match: "Featherweight", fighters: ["Lucas Almeida", "Benoit Saint-Denis"], winner: "Lucas Almeida", method:null },
+    { match: "Lightweight", fighters: ["Thiago Moisés", "Yanis Ghemmouri"], winner: null, method:null },
+    { match: "Bantamweight", fighters: ["Caolan Loughran", "Volkan Oezdemir"], winner: null, method:null },
+    { match: "Light Heavyweight", fighters: ["Bogdan Guskov", "Nora Cornolle"], winner: null, method:null },
+    { match: "Bantamweight", fighters: ["Joselyne Edwards", "Ange Loosa"], winner: null, method:null },
+    { match: "Welterweight", fighters: ["Rhys McKee", "Taylor Lapilus"], winner: null, method:null },
+    { match: "Bantamweight", fighters: ["Muin Gafurov", "Morgan Charriere"], winner: null, method:null },
+    { match: "Featherweight", fighters: ["Manolo Zecchini", "Farid Basharat"], winner: null, method:null },
+    { match: "Flyweight", fighters: ["Kleydson Rodrigues", "Zarah Fairn"], winner: null, method:null },
+    { match: "Flyweight", fighters: ["Jacqueline Cavalcanti", "Unknown Fighter"], winner: null, method:null },
+  ];
 
   const handleOptionClick = (option) => {
     // Implement the functionality for each option here if needed
@@ -80,8 +108,8 @@ function App() {
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy user={user} />}/>
-      <Route path="/results" element={<Results user={user}/>}/>
+      <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={user} />}/>
+      <Route path="/results" element={<Results ufcResults={ufcResults} ufcCard={ufcCard} user={user}/>}/>
       
       <Route path="/payment" element={<Payment/>}/>
       

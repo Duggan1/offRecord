@@ -24,6 +24,7 @@ function Tommy({ user }) {
     { match: "Flyweight", fighters: ["Kleydson Rodrigues", "Zarah Fairn"], records: ["8-2", "6-5"], flags: ["Brazil", "Germany"] },
     { match: "Flyweight", fighters: ["Jacqueline Cavalcanti", "Unknown Fighter"], records: ["5-1", "-"], flags: ["Brazil", "Unknown"] },
   ];
+ 
   
   function getFighterCountry(matchIndex, fighterIndex) {
     return ufcCard[matchIndex].flags[fighterIndex];
@@ -392,11 +393,11 @@ console.log(`The abbreviation for ${inputCountry} is ${abbreviation}`);
       <form onSubmit={handleSubmit}>
         {ufcCard.map((fight, index) => (
           <div key={index} className="fight">
-             <p key={index} style={{ fontSize: '1rem', whiteSpace: 'nowrap',color:'whitesmoke' }}>
-          <span style={{fontSize: '1.7rem', fontWeight: 'bold',color:'black' }}>
+             <p key={index} className="mobile-fight-info" >
+          <span className="mobile-fighter-name" >
             {fight.fighters[0]} 
           </span> {fight.records[0]}
-          <span style={{fontSize: '1.7rem', fontWeight: 'bold',color:'black'  }}> vs.{' '}
+          <span className="mobile-fighter-name" ><span className="mobile-fight-info color-black"  > vs.{' '}</span>
             {fight.fighters[1]} 
           </span> {fight.records[1]} 
         </p>
@@ -428,7 +429,7 @@ console.log(`The abbreviation for ${inputCountry} is ${abbreviation}`);
             </div>
             <div className="prediction">
               <label>Method of Victory:</label>
-              <select onChange={(e) => handleMethodChange(index, e.target.value)}>
+              <select className='selectO'onChange={(e) => handleMethodChange(index, e.target.value)}>
                 <option value="">Select Method</option>
                 <option value="TKO/KO">TKO/KO</option>
                 <option value="Submission">Submission</option>
