@@ -365,16 +365,24 @@ console.log(results)
                 : prediction.winner === 1
                 ? prediction.fighters[1]
                 : "None"}
+              
+              <br />
+              
+              <strong>Method:</strong> {prediction.method}
+              <br />
+
+             
               {prediction.winner !== undefined && (
-                <img
+                <center><img
                   style={{ height: '30px', marginBottom: '-4%', marginLeft: '3%' }}
                   src={`https://flagsapi.com/${getFighterCountryAbbreviation(predIndex, prediction.winner)}/flat/64.png`}
                   alt={`Flag of ${prediction.fighters[prediction.winner]}`}
-                />
-              )}
-              <br />
+                /></center>
+              )} <br />
               
-              <strong>Method:</strong> {prediction.method}<strong className={calculatePoints(prediction, ufcResults[predIndex]) > 1 ? "rightgreen" : ""}>
+              
+              
+              <strong className={calculatePoints(prediction, ufcResults[predIndex]) > 1 ? "rightgreen" : ""}>
   {calculatePoints(prediction, ufcResults[predIndex]) > 1
     ? ` + ${calculatePoints(prediction, ufcResults[predIndex])} `
     : null}
@@ -387,16 +395,25 @@ console.log(results)
           ))}
         </div>
       </td>
-      <td>
+      
+    
+      <td>  <div className="pickresultsdiv">
+          <center>
+            <strong>2 picks</strong>
+            <br />
+            <strong>{result.main_event}</strong>
+            <h2>{calculateTotalPoints(result)} Points  </h2>
+          </center>
+        </div>
         <div>
           {ufcResults.map((match, matchIndex) => (
-            <p key={matchIndex}>
+            <p style={{marginBottom:'22.5%'}} key={matchIndex}>
               <strong>{match.fighters.join(' vs ')}</strong>
               <br />
               <strong>Winner:</strong>{" "}
               {match.winner !== null ? `${match.winner}` : "Results Pending"}
               <br />
-              <strong>Method:</strong> {match.method !== null ? match.method : "Results Pending"}
+              <strong >Method:</strong> {match.method !== null ? match.method : "Results Pending"}
               <br />
             </p>
           ))}
