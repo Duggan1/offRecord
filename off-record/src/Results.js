@@ -5,11 +5,105 @@ import Dnd from './Dnd';
 
 function Results({ user, ufcCard, ufcResults }) {
   const [results, setResults] = useState([]);
+  const [updatedResults, setUpdatedResults] =useState([ufcResults])
 
+  
 ////////put in app soon 
 console.log(results)
+console.log(ufcResults)
+console.log(updatedResults)
+// if (updatedResults!== null){
+//     ufcResults
+// }
+// const [ufcResults, setUfcResults] = useState([ufcResults])
 
-    
+// (12) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+// 0
+// : 
+// {match: 'Heavyweight', fighters: Array(2), winner: 1, method: 'Submission'}
+// 1
+// : 
+// {match: 'Flyweight', fighters: Array(2), winner: null, method: null}
+// 2
+// : 
+// {match: 'Featherweight', fighters: Array(2), winner: 0, method: null}
+// 3
+// : 
+// {match: 'Lightweight', fighters: Array(2), winner: null, method: null}
+// 4
+// : 
+// {match: 'Bantamweight', fighters: Array(2), winner: null, method: null}
+// 5
+// : 
+// {match: 'Light Heavyweight', fighters: Array(2), winner: null, method: null}
+// 6
+// : 
+// {match: 'Bantamweight', fighters: Array(2), winner: null, method: null}
+// 7
+// : 
+// {match: 'Welterweight', fighters: Array(2), winner: null, method: null}
+// 8
+// : 
+// {match: 'Bantamweight', fighters: Array(2), winner: null, method: null}
+// 9
+// : 
+// {match: 'Featherweight', fighters: Array(2), winner: null, method: null}
+// 10
+// : 
+// {match: 'Flyweight', fighters: Array(2), winner: null, method: null}
+// 11
+// : 
+// {match: 'Flyweight', fighters: Array(2), winner: null, method: null}
+// length
+// : 
+// 12
+// [[Prototype]]
+// : 
+// Array(0)
+// Results.js:14 
+// (12) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+// 0
+// : 
+// {fighters: Array(2), method: 'TKO/KO', winner: 0}
+// 1
+// : 
+// {fighters: Array(2), method: 'TKO/KO', winner: 1}
+// 2
+// : 
+// {fighters: Array(2), method: 'Submission', winner: 0}
+// 3
+// : 
+// {fighters: Array(2), method: 'Decision', winner: 0}
+// 4
+// : 
+// {fighters: Array(2), method: 'TKO/KO', winner: 1}
+// 5
+// : 
+// {fighters: Array(2), method: 'TKO/KO', winner: 0}
+// 6
+// : 
+// {fighters: Array(2), method: 'TKO/KO', winner: 0}
+// 7
+// : 
+// {fighters: Array(2), method: 'Submission', winner: 0}
+// 8
+// : 
+// {fighters: Array(2), method: 'TKO/KO', winner: 1}
+// 9
+// : 
+// {fighters: Array(2), method: 'Submission', winner: 1}
+// 10
+// : 
+// {fighters: Array(2), method: 'TKO/KO', winner: 1}
+// 11
+// : 
+// {fighters: Array(2), method: 'TKO/KO', winner: 0}
+// length
+// : 
+
+
+
+
 
 
 
@@ -295,7 +389,7 @@ console.log(results)
     let totalPoints = 0;
   
     result.predictions.forEach((prediction, predIndex) => {
-      const points = calculatePoints(prediction, ufcResults[predIndex]); // Change to ufcResults[predIndex]
+      const points = calculatePoints(prediction, updatedResults[predIndex]); // Change to ufcResults[predIndex]
       totalPoints += points;
     });
   
@@ -317,7 +411,12 @@ console.log(results)
       .then(data => {
         console.log(data); // Log the data received from the API
         if (Array.isArray(data.picks)) {
-          setResults(data.picks); // Extract the array from the 'picks' property
+          setResults(data.picks);
+          const adminKevResults = data.picks.filter(result => result.owner === 'AdminKev');
+          if (adminKevResults !== null) {
+            setUpdatedResults(adminKevResults[0].predictions);
+          }
+          // Extract the array from the 'picks' property
         } else {
           console.error('API response does not have an array in the "picks" property:', data);
           // Handle the unexpected response as needed
@@ -357,7 +456,7 @@ console.log(results)
         </div>
         <div  >
           {result.predictions.map((prediction, predIndex) => (
-            <p className={calculatePoints(prediction, ufcResults[predIndex]) > 0 ? "winnerCircle" : "results-container"}key={predIndex}>
+            <p className={calculatePoints(prediction, updatedResults[predIndex]) > 0 ? "winnerCircle" : "results-container"}key={predIndex}>
               <strong>{prediction.fighters.join(' vs ')}</strong>
               <br />
               <strong>Winner:</strong>{" "}
@@ -383,9 +482,9 @@ console.log(results)
               
               
               
-               <strong className={calculatePoints(prediction, ufcResults[predIndex]) > 1 ? "rightgreen" : ""}>
-  {calculatePoints(prediction, ufcResults[predIndex]) > 1
-    ? ` + ${calculatePoints(prediction, ufcResults[predIndex])} `
+               <strong className={calculatePoints(prediction, updatedResults[predIndex]) > 1 ? "rightgreen" : ""}>
+  {calculatePoints(prediction, updatedResults[predIndex]) > 1
+    ? ` + ${calculatePoints(prediction, updatedResults[predIndex])} `
     : null}
 </strong></center>
               <br />
@@ -407,7 +506,7 @@ console.log(results)
           </center>
         </div>
         <div className="">
-  {ufcResults.map((match, matchIndex) => (
+  {updatedResults.map((match, matchIndex) => (
     <div className=" real-results-container" key={matchIndex}>
       <strong>{match.fighters.join(' vs ')}</strong>
       <br />

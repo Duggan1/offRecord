@@ -164,6 +164,7 @@ code {
 .pickresultsdiv {
   background-color:black ;
   color: white;
+  border-left: black 3px solid;
   
   
 }
@@ -176,6 +177,7 @@ code {
 .ownpicksdiv {
   background-color: rgb(255, 255, 255);
   color: rgb(80, 10, 80);
+  border-right: black 3px solid ;
 }
 .ownpicksdiv h2 {
   background-color: rgb(80, 10, 80);

@@ -50,12 +50,53 @@ function App() {
     { match: "Flyweight", fighters: ["Jacqueline Cavalcanti", "Unknown Fighter"], winner: null, method:null },
   ];
 
-  const handleOptionClick = (option) => {
-    // Implement the functionality for each option here if needed
-    console.log(`Option "${option}" clicked.`);
-    setShowDropdown(false);
-  };
-  console.log(showDropdown)
+  const [results, setResults] = useState([]);
+
+  ////////put in app soon 
+  console.log(results)
+  console.log(ufcResults)
+  
+
+   
+  // useEffect(() => {
+  //   // Fetch results from the API
+  //   fetch('https://off-therecordpicks.onrender.com/picks')
+  //     .then(response => {
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       return response.json();
+  //     })
+  //     .then(data => {
+  //       console.log(data); // Log the data received from the API
+  //       if (Array.isArray(data.picks)) {
+  //         // Filter results for the owner "AdminKev"
+  //         const adminKevResults = data.picks.filter(result => result.owner === 'AdminKev');
+  //         setResults(adminKevResults.predictions); // Set filtered results in state
+  //       } else {
+  //         console.error('API response does not have an array in the "picks" property:', data);
+  //         // Handle the unexpected response as needed
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching results:', error);
+  //       // Handle error as needed
+  //     });
+  // }, []);
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  // console.log(showDropdown)
   const [user, setUser] = useState(null);
   const [signUp, setSignUp] = useState(false)
   const handleSignupClick=() =>{

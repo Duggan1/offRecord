@@ -385,7 +385,7 @@ console.log(`The abbreviation for ${inputCountry} is ${abbreviation}`);
     <div>
       {user ? (
     <div className="tommy">
-      <h2 >UFC {location} <img style={{height:'20px',}} src={`https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png`}
+      <h2 >UFC {location} <img style={{height:'20px', backgroundColor:'black', padding:'0px 2px'}} src={`https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png`}
           alt={`Flag of ${location}`} ></img> Fight Predictions</h2><h1></h1>
         
       <h2 className="bay" >{mainEvent}</h2>
