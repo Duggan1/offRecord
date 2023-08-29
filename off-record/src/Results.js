@@ -5,7 +5,7 @@ import Dnd from './Dnd';
 
 function Results({ user, ufcCard, ufcResults }) {
   const [results, setResults] = useState([]);
-  const [updatedResults, setUpdatedResults] =useState([ufcResults])
+  const [updatedResults, setUpdatedResults] = useState(ufcResults)
 
   
 ////////put in app soon 
@@ -14,93 +14,6 @@ console.log(ufcResults)
 console.log(updatedResults)
 // if (updatedResults!== null){
 //     ufcResults
-// }
-// const [ufcResults, setUfcResults] = useState([ufcResults])
-
-// (12) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// 0
-// : 
-// {match: 'Heavyweight', fighters: Array(2), winner: 1, method: 'Submission'}
-// 1
-// : 
-// {match: 'Flyweight', fighters: Array(2), winner: null, method: null}
-// 2
-// : 
-// {match: 'Featherweight', fighters: Array(2), winner: 0, method: null}
-// 3
-// : 
-// {match: 'Lightweight', fighters: Array(2), winner: null, method: null}
-// 4
-// : 
-// {match: 'Bantamweight', fighters: Array(2), winner: null, method: null}
-// 5
-// : 
-// {match: 'Light Heavyweight', fighters: Array(2), winner: null, method: null}
-// 6
-// : 
-// {match: 'Bantamweight', fighters: Array(2), winner: null, method: null}
-// 7
-// : 
-// {match: 'Welterweight', fighters: Array(2), winner: null, method: null}
-// 8
-// : 
-// {match: 'Bantamweight', fighters: Array(2), winner: null, method: null}
-// 9
-// : 
-// {match: 'Featherweight', fighters: Array(2), winner: null, method: null}
-// 10
-// : 
-// {match: 'Flyweight', fighters: Array(2), winner: null, method: null}
-// 11
-// : 
-// {match: 'Flyweight', fighters: Array(2), winner: null, method: null}
-// length
-// : 
-// 12
-// [[Prototype]]
-// : 
-// Array(0)
-// Results.js:14 
-// (12) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// 0
-// : 
-// {fighters: Array(2), method: 'TKO/KO', winner: 0}
-// 1
-// : 
-// {fighters: Array(2), method: 'TKO/KO', winner: 1}
-// 2
-// : 
-// {fighters: Array(2), method: 'Submission', winner: 0}
-// 3
-// : 
-// {fighters: Array(2), method: 'Decision', winner: 0}
-// 4
-// : 
-// {fighters: Array(2), method: 'TKO/KO', winner: 1}
-// 5
-// : 
-// {fighters: Array(2), method: 'TKO/KO', winner: 0}
-// 6
-// : 
-// {fighters: Array(2), method: 'TKO/KO', winner: 0}
-// 7
-// : 
-// {fighters: Array(2), method: 'Submission', winner: 0}
-// 8
-// : 
-// {fighters: Array(2), method: 'TKO/KO', winner: 1}
-// 9
-// : 
-// {fighters: Array(2), method: 'Submission', winner: 1}
-// 10
-// : 
-// {fighters: Array(2), method: 'TKO/KO', winner: 1}
-// 11
-// : 
-// {fighters: Array(2), method: 'TKO/KO', winner: 0}
-// length
-// : 
-
 
 
 
@@ -412,9 +325,11 @@ console.log(updatedResults)
         console.log(data); // Log the data received from the API
         if (Array.isArray(data.picks)) {
           setResults(data.picks);
-          const adminKevResults = data.picks.filter(result => result.owner === 'AdminKev');
-          if (adminKevResults !== null) {
-            setUpdatedResults(adminKevResults[0].predictions);
+          const adminKevResults = data.picks.find(result => result.owner === 'AdminKev');
+  
+  // Update updatedResults only if adminKevResults exists and is not empty
+         if (adminKevResults && adminKevResults.predictions.length > 0) {
+            setUpdatedResults(adminKevResults.predictions);
           }
           // Extract the array from the 'picks' property
         } else {
