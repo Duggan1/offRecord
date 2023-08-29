@@ -162,24 +162,20 @@ code {
 
 }
 .pickresultsdiv {
-  background-color: white;
-  color: black;
+  background-color:black ;
+  color: white;
   
   
 }
 .pickresultsdiv h2 {
-  background-color: gold;
+  background-color: rgb(145, 124, 0);
   margin-top: 2%;
-  
+  padding-bottom: 2%;
   color: black;
 }
 .ownpicksdiv {
   background-color: rgb(255, 255, 255);
   color: rgb(80, 10, 80);
-}
-.equador{
-  padding-bottom: 30px;
-  
 }
 .ownpicksdiv h2 {
   background-color: rgb(80, 10, 80);
@@ -187,6 +183,20 @@ code {
   padding-bottom: 2%;
   color: white;
 }
+.equador{
+  padding-bottom: 30px;
+  
+}
+
+.loading {
+  background-image: url('./zzZZ.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  min-height: '30px';
+  /* margin-left: '3%'; */
+  text-align: right;
+}
+
 .selectO {
   
   color: black;
@@ -201,8 +211,25 @@ code {
   border: 5px  solid green;
 
 }
+.results-container {
+  border: black 2px solid;
+  max-height: 200px;
+  min-height: 200px;
+  margin: 5% 0%;
+
+}
+.real-results-container {
+  border: grey 2px solid;
+  max-height: 200px;
+  min-height: 200px;
+  margin: 5% 0%;
+
+}
 .winnerCircle {
-  border: green solid 4px;
+  border: green solid 2px;
+  max-height: 200px;
+  min-height: 200px;
+  margin: 5% 0%;
 }
 .rightgreen {
   background-color: green;
@@ -211,7 +238,7 @@ code {
   border-radius: 50%;
   padding:2%;
   text-align: center;
-  margin-top: 5px;
+  /* margin-left: 5%; */
 }
 .record-circles-container {
   display: flex;
@@ -220,10 +247,10 @@ code {
 }
 
 .recordwcir {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white ;
   border-radius: 50%;
-  border: rgb(80, 10, 80) 2px solid;
+  font-weight: bold;
   padding: 1%;
   align-items: center;
   text-align: center;

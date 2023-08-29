@@ -355,9 +355,9 @@ console.log(results)
             <h2>{calculateTotalPoints(result)} Points  </h2>
           </center>
         </div>
-        <div >
+        <div  >
           {result.predictions.map((prediction, predIndex) => (
-            <p className={calculatePoints(prediction, ufcResults[predIndex]) > 0 ? "winnerCircle" : ""}key={predIndex}>
+            <p className={calculatePoints(prediction, ufcResults[predIndex]) > 0 ? "winnerCircle" : "results-container"}key={predIndex}>
               <strong>{prediction.fighters.join(' vs ')}</strong>
               <br />
               <strong>Winner:</strong>{" "}
@@ -372,25 +372,25 @@ console.log(results)
               <strong>Method:</strong> {prediction.method}
               <br />
 
-             
+             <center>
               {prediction.winner !== undefined && (
-                <center><img
-                  style={{ height: '30px', marginBottom: '-4%', marginLeft: '3%' }}
+                <img
+                  style={{ height: '30px', marginBottom: '-4%', }}
                   src={`https://flagsapi.com/${getFighterCountryAbbreviation(predIndex, prediction.winner)}/flat/64.png`}
                   alt={`Flag of ${prediction.fighters[prediction.winner]}`}
-                /></center>
-              )} <br />
+                />
+              )} 
               
               
               
-              <strong className={calculatePoints(prediction, ufcResults[predIndex]) > 1 ? "rightgreen" : ""}>
+               <strong className={calculatePoints(prediction, ufcResults[predIndex]) > 1 ? "rightgreen" : ""}>
   {calculatePoints(prediction, ufcResults[predIndex]) > 1
     ? ` + ${calculatePoints(prediction, ufcResults[predIndex])} `
     : null}
-</strong>
+</strong></center>
               <br />
-              <center>
-              </center>
+             
+              
 
             </p>
           ))}
@@ -403,29 +403,30 @@ console.log(results)
             <strong>Ufc Results</strong>
             <br />
             <strong>{result.main_event}</strong>
-            <h2>{ufcCard.length * 2} Possible Points  </h2>
+            <h2>{ufcCard.length * 2} Possible </h2>
           </center>
         </div>
-        <div className="results-container">
+        <div className="">
   {ufcResults.map((match, matchIndex) => (
-    <div className="match-result" key={matchIndex}>
+    <div className=" real-results-container" key={matchIndex}>
       <strong>{match.fighters.join(' vs ')}</strong>
       <br />
       <strong>Winner:</strong>{" "}
-      {match.winner !== null ? `${match.winner}` : "Results Pending"}
+      {match.winner !== null ? `${match.fighters[match.winner]}` : "Results Pending"}
       <br />
       <strong>Method:</strong> {match.method !== null ? match.method : "Results Pending"}
       <br />
-      {match.winner !== undefined && (
-        <div className="flag-image">
-          <img
-            src={`https://flagsapi.com/${getFighterCountryAbbreviation(matchIndex, match.winner)}/flat/64.png`}
-            alt={`Flag of ${match.winner}`}
-            style={{ height: '30px',  marginLeft: '3%' }}
+      {match.winner !== null ? (
+  <div className="flag-image">
+    <img
+      src={`https://flagsapi.com/${getFighterCountryAbbreviation(matchIndex, match.winner)}/flat/64.png`}
+      alt={`Flag of ${[match.winner]}`}
+      style={{ height: '30px', marginLeft: '40%',  }}
+    />
+    
+  </div>
+) : <div className="loading" style={{ height: '30px',marginLeft: '40%',  }}></div>}
 
-          />
-        </div>
-      )}
     </div>
   ))}
 </div>

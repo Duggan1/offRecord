@@ -85,7 +85,21 @@ function App() {
   return (
     <BrowserRouter>
      <div className="blackBB">
-     <h1 style={{color:'purple',textAlign:'center', marginTop:'0%'}}> Off Record Picks!</h1>
+     <h1 style={{
+  textAlign: 'center',
+  marginTop: '0%',
+  color: 'purple',
+  textShadow: '0 0 5px yellow',
+  fontSize:'55px',
+  maxWidth: '90%'
+   // Adjust this value as needed
+}}>
+  Off Record Picks!
+</h1>
+
+
+
+
      <div style={{ display: 'flex', justifyContent: 'flex-end', textAlign: 'end', fontSize: '8px', width: '100%' }}>
   {user ? (
     <>
