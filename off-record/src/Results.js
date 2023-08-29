@@ -399,7 +399,7 @@ console.log(results)
     
       <td>  <div className="pickresultsdiv">
           <center>
-            <strong>2 picks</strong>
+            <strong>Ufc Results</strong>
             <br />
             <strong>{result.main_event}</strong>
             <h2>{calculateTotalPoints(result)} Points  </h2>

@@ -61,6 +61,11 @@ code {
   
   
 }
+.bay{
+  background-color: black;
+  color:yellow;
+  text-decoration: wavy;
+}
 .color-blue {
   color:blue;
   text-decoration: wavy;
@@ -202,7 +207,24 @@ code {
   text-align: center;
   margin-top: 5px;
 }
+.record-circles-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
+.recordwcir {
+  background-color: white;
+  color: black;
+  border-radius: 50%;
+  border: rgb(80, 10, 80) 2px solid;
+  padding: 1%;
+  align-items: center;
+  text-align: center;
+  width: fit-content;
+  margin: auto; /* Move circles to the left */
+  margin-top: -10px; /* Add some spacing from buttons */
+}
 .fighter-button:not(.selected):hover {
   background-color: blue;
   color: white;
@@ -403,16 +425,18 @@ input[type='checkbox'] {
 }
 .mobile-fight-info {
   font-size: 1rem;
-  color: blue;
+  color: white;
   white-space: nowrap;
 }
 .mobile-fighter-name {
   font-size: 1.7rem;
   font-weight: bold;
-  color: black;
+  color: white;
 }
 
-
+.color-black {
+  color: black
+}
 
 @media (max-width: 767px) {
   #basement{
@@ -432,10 +456,14 @@ input[type='checkbox'] {
   .mobile-fighter-name {
     font-size: 1.3rem;
     font-weight: bold;
-    color: black;
+    color: white;
   }
   .color-black {
     color: black
+  }
+  .recordwcir {
+    
+    margin-left: 22%;
   }
 
 

@@ -388,7 +388,7 @@ console.log(`The abbreviation for ${inputCountry} is ${abbreviation}`);
       <h2 >UFC {location} <img style={{height:'20px',}} src={`https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png`}
           alt={`Flag of ${location}`} ></img> Fight Predictions</h2><h1></h1>
         
-      <h2 className="color-white" >{mainEvent}</h2>
+      <h2 className="bay" >{mainEvent}</h2>
       
       <form onSubmit={handleSubmit}>
         {ufcCard.map((fight, index) => (
@@ -396,12 +396,18 @@ console.log(`The abbreviation for ${inputCountry} is ${abbreviation}`);
              <p key={index} className="mobile-fight-info" >
           <span className="mobile-fighter-name" >
             {fight.fighters[0]} 
-          </span> {fight.records[0]}
-          <span className="mobile-fighter-name" ><span className="mobile-fight-info color-black"  > vs.{' '}</span>
+          </span> 
+          <span className="mobile-fighter-name" ><span className="mobile-fight-info color-black "  > vs.{' '}</span>
             {fight.fighters[1]} 
-          </span> {fight.records[1]} 
-        </p>
-            <div className="prediction">
+          </span> 
+        </p> <div className="record-circles-container">
+            <div className="recordwcir" >{fight.records[0]}</div>
+            <div className="recordwcir">{fight.records[1]}</div>
+          </div>
+        
+        
+       
+<div className="prediction">
               <button
                 className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
                 onClick={() => handlePredictionChange(index, 0)}
@@ -426,9 +432,10 @@ console.log(`The abbreviation for ${inputCountry} is ${abbreviation}`);
                 {fight.fighters[1]}
                 
               </button>
+             
             </div>
             <div className="prediction">
-              <label>Method of Victory:</label>
+              <label className="color-yellow">Method of Victory:</label>
               <select className='selectO'onChange={(e) => handleMethodChange(index, e.target.value)}>
                 <option value="">Select Method</option>
                 <option value="TKO/KO">TKO/KO</option>
