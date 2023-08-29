@@ -277,7 +277,7 @@ console.log(results)
   function calculatePoints(pick, result) {
     let points = 0;
     // Check if the winner matches
-    if (pick.fighters[pick.winner] !== null && result.winner !== null && pick.fighters[pick.winner] === result.winner) {
+    if (pick.winner !== null && result.winner !== null && pick.winner === result.winner) {
       points += 1;
   
       // Check if the method also matches, only if the winner is correct
@@ -295,12 +295,13 @@ console.log(results)
     let totalPoints = 0;
   
     result.predictions.forEach((prediction, predIndex) => {
-      const points = calculatePoints(prediction, ufcResults[predIndex]);
+      const points = calculatePoints(prediction, ufcResults[predIndex]); // Change to ufcResults[predIndex]
       totalPoints += points;
     });
   
     return totalPoints;
   }
+  
   
 
   // Fetch results when the component mounts
@@ -402,22 +403,33 @@ console.log(results)
             <strong>Ufc Results</strong>
             <br />
             <strong>{result.main_event}</strong>
-            <h2>{calculateTotalPoints(result)} Points  </h2>
+            <h2>{ufcCard.length * 2} Possible Points  </h2>
           </center>
         </div>
-        <div>
-          {ufcResults.map((match, matchIndex) => (
-            <p style={{marginBottom:'22.5%'}} key={matchIndex}>
-              <strong>{match.fighters.join(' vs ')}</strong>
-              <br />
-              <strong>Winner:</strong>{" "}
-              {match.winner !== null ? `${match.winner}` : "Results Pending"}
-              <br />
-              <strong >Method:</strong> {match.method !== null ? match.method : "Results Pending"}
-              <br />
-            </p>
-          ))}
+        <div className="results-container">
+  {ufcResults.map((match, matchIndex) => (
+    <div className="match-result" key={matchIndex}>
+      <strong>{match.fighters.join(' vs ')}</strong>
+      <br />
+      <strong>Winner:</strong>{" "}
+      {match.winner !== null ? `${match.winner}` : "Results Pending"}
+      <br />
+      <strong>Method:</strong> {match.method !== null ? match.method : "Results Pending"}
+      <br />
+      {match.winner !== undefined && (
+        <div className="flag-image">
+          <img
+            src={`https://flagsapi.com/${getFighterCountryAbbreviation(matchIndex, match.winner)}/flat/64.png`}
+            alt={`Flag of ${match.winner}`}
+            style={{ height: '30px',  marginLeft: '3%' }}
+
+          />
         </div>
+      )}
+    </div>
+  ))}
+</div>
+
       </td>
     </tr>
   ))}

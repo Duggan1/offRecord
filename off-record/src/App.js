@@ -36,9 +36,9 @@ function App() {
     { match: "Flyweight", fighters: ["Jacqueline Cavalcanti", "Unknown Fighter"], records: ["5-1", "-"], flags: ["Brazil", "Unknown"] },
   ];
   const ufcResults = [
-    { match: "Heavyweight", fighters: ["Ciryl Gane", "Serghei Spivac"], winner: 'Serghei Spivac', method:'Submission' },
+    { match: "Heavyweight", fighters: ["Ciryl Gane", "Serghei Spivac"], winner: 1, method:'Submission' },
     { match: "Flyweight", fighters: ["Manon Fiorot", "Rose Namajunas"], winner: null, method:null },
-    { match: "Featherweight", fighters: ["Lucas Almeida", "Benoit Saint-Denis"], winner: "Lucas Almeida", method:null },
+    { match: "Featherweight", fighters: ["Lucas Almeida", "Benoit Saint-Denis"], winner: 0, method:null },
     { match: "Lightweight", fighters: ["Thiago Moisés", "Yanis Ghemmouri"], winner: null, method:null },
     { match: "Bantamweight", fighters: ["Caolan Loughran", "Volkan Oezdemir"], winner: null, method:null },
     { match: "Light Heavyweight", fighters: ["Bogdan Guskov", "Nora Cornolle"], winner: null, method:null },

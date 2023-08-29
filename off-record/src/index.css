@@ -164,16 +164,22 @@ code {
 .pickresultsdiv {
   background-color: white;
   color: black;
+  
+  
 }
 .pickresultsdiv h2 {
   background-color: gold;
   margin-top: 2%;
-  padding-bottom: 2%;
+  
   color: black;
 }
 .ownpicksdiv {
   background-color: rgb(255, 255, 255);
   color: rgb(80, 10, 80);
+}
+.equador{
+  padding-bottom: 30px;
+  
 }
 .ownpicksdiv h2 {
   background-color: rgb(80, 10, 80);
