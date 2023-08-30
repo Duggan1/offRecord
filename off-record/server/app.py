@@ -7,6 +7,16 @@ from models import User, Pick, Prediction
 # app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'  # Your database URI
 # db = SQLAlchemy(app)
+import signal
+
+
+# Define a signal handler that does nothing
+def ignore_sigterm(signum, frame):
+    pass
+
+# Register the signal handler to ignore SIGTERM
+signal.signal(signal.SIGTERM, ignore_sigterm)
+
 
 
 
