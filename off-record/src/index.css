@@ -40,6 +40,7 @@ code {
 }
 .pupCirc {
   border: purple solid 3px;
+  background-color: gold;
   
   
   
@@ -116,13 +117,7 @@ code {
     transform: rotate(360deg);
   }
 }
-.eli{
-  text-align: center;
-  background-color: purple;
-  margin-bottom: 0%;
-  padding-bottom: 15%;
 
-}
 .small {
   font-size: smaller;
 }
@@ -152,7 +147,7 @@ code {
 .submitb{
   background-color: rgb(80, 10, 80);
   color: whitesmoke;
-  border: 5px  solid black;
+  border: 3px  solid gold;
   padding: 4% 3% ;
   margin-top: 10%;
   border-radius: 10%;
@@ -198,7 +193,12 @@ code {
   /* margin-left: '3%'; */
   text-align: right;
 }
+.loginsu{
+  text-align:right;
+  color: white;
+   margin-right:35%;
 
+}
 .selectO {
   
   color: black;
@@ -268,8 +268,8 @@ code {
 
 .johnny {
   text-align: center;
-  background-color: rgb(187, 187, 187);
-  color: black;
+  background-color: rgba(55, 0, 59, 0.439);
+  color: gold;
   margin-top: 0%;
   margin-bottom: 0%;
   padding-bottom: 15%;
@@ -278,13 +278,13 @@ code {
 #basement{
   padding: 20px;
 }
-.joey {
+/* .johnny {
   text-align: center;
   background-color: grey;
   margin-bottom: 0%;
   padding-bottom: 15%;
 
-}
+} */
 .errors {
   color: red;
   font-weight: bolder;
@@ -499,6 +499,11 @@ input[type='checkbox'] {
   .recordwcir {
     
     margin-left: 22%;
+  }
+  .loginsu{
+    
+     margin-right:25%;
+  
   }
 
 

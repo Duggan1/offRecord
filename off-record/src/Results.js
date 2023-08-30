@@ -345,13 +345,23 @@ console.log(updatedResults)
 
   return (
 <div>
-  {user ? (
+  (
     <div className="results">
-      <h1 className="color-white">Results</h1>
+    <h1 style={{
+            textAlign: 'center',
+            marginTop: '0%',
+            color: 'black',
+            textShadow: '0 0 5px yellow',
+            fontSize:'35px',
+            maxWidth: '100%'
+            // Adjust this value as needed
+            }}>
+            Results
+            </h1>
       <table>
         <thead>
           <tr>
-            <th>Your  Picks</th>
+            <th>Picks</th>
             
             <th> Fight Results</th>
             {/* Add more table headers as needed */}
@@ -414,9 +424,9 @@ console.log(updatedResults)
     
       <td>  <div className="pickresultsdiv">
           <center>
-            <strong>Ufc Results</strong>
-            <br />
             <strong>{result.main_event}</strong>
+            <br />
+            <strong>Ufc Results</strong>
             <h2>{ufcCard.length * 2} Possible </h2>
           </center>
         </div>
@@ -452,9 +462,7 @@ console.log(updatedResults)
 
       </table>
     </div>
-  ) : (
-    <Dnd />
-  )}
+  ) 
 </div>
 
   );

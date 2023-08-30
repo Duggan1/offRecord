@@ -148,7 +148,7 @@ function Johnny({ onLogin }) {
         </div>
 
         { showVideo ? 
-            <form style={{textAlign:'right',color:'white', marginRight:'35%'}} onSubmit={handleSubmit}>
+            <form className="loginsu" onSubmit={handleSubmit}>
                 <label>Username:</label>
                 <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} required /><br></br>
                 <label>Password:</label>

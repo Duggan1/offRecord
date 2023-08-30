@@ -132,10 +132,10 @@ function App() {
   color: 'purple',
   textShadow: '0 0 5px yellow',
   fontSize:'55px',
-  maxWidth: '90%'
+  maxWidth: '100%'
    // Adjust this value as needed
 }}>
-  Off Record Picks!
+  Off Record Picks
 </h1>
 
 
