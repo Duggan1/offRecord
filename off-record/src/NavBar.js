@@ -38,9 +38,9 @@ function NavBar({ user }) {
         {showDropdown && (
           <div style={{backgroundColor:'black',padding:'2%',minWidth:'100%'}} className="dropdown-menu">
             
-            <div className='swm'  onClick={() => handleOptionClick('/')}><NavLink className='color-purple' exact to="/">Home</NavLink></div>
-            <div className='swm'  onClick={() => handleOptionClick('/section3')}><NavLink className='color-purple' exact to="/section3">UFC Pick 'ems</NavLink></div>
-            <div className='swm'  onClick={() => handleOptionClick('/results')}><NavLink className='color-purple' exact to="/results">Your results</NavLink></div>
+            <div className='swm'  onClick={() => handleOptionClick('/')}><NavLink className='snowwhite' exact to="/">Home</NavLink></div>
+            <div className='swm'  onClick={() => handleOptionClick('/section3')}><NavLink className='snowwhite' exact to="/section3">UFC Pick 'ems</NavLink></div>
+            <div className='swm'  onClick={() => handleOptionClick('/results')}><NavLink className='snowwhite' exact to="/results">Your results</NavLink></div>
             {/* <div className='swm'  onClick={() => handleOptionClick('/payment')}><NavLink className='color-purple' exact to="/payment">Predictions</NavLink></div> */}
             
           </div>

@@ -19,7 +19,9 @@ signal.signal(signal.SIGTERM, ignore_sigterm)
 
 
 
-
+def run(host='0.0.0.0', port=5000, debug=False):
+    signal.signal(signal.SIGTERM, ignore_sigterm)
+    app.run(host=host, port=port, debug=debug)
 
 
 
@@ -117,18 +119,11 @@ class Logout(Resource):
 
    
 
-    def delete(self): # just add this line!
+    def delete(self): 
         session['user_id'] = None
         return {'message': '204: No Content'}, 204
 
-class Sessions(Resource):
-    def get(self):
-        Sessions = Session.query.all()
-        return make_response(
-            [Session.to_dict() for Session in Sessions],
-            200
-        )
-api.add_resource(Sessions, '/sessions')
+
 
 
 
@@ -172,7 +167,7 @@ api.add_resource(UserById, "/user/<int:id>")
 api.add_resource(SignUp, '/signup', endpoint='signup')
 api.add_resource(Login, '/login', endpoint='login')
 api.add_resource(Logout, '/logout', endpoint='logout')
-api.add_resource(CheckSession, '/check_session', endpoint='check_session')
+
 
 
 class PicksResource(Resource):

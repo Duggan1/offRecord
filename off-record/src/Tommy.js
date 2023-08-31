@@ -394,15 +394,15 @@ console.log(`The abbreviation for ${inputCountry} is ${abbreviation}`);
         {ufcCard.map((fight, index) => (
           <div key={index} className="fight">
              <p key={index} className="mobile-fight-info" >
-          <span className="mobile-fighter-name" >
+          <span className={`mobile-fighter-name  ${predictions[index]?.winner === 0 ? 'selected' : ''}`} >
             {fight.fighters[0]} 
           </span> 
-          <span className="mobile-fighter-name" ><span className="mobile-fight-info color-black "  > vs.{' '}</span>
+          <span className={`mobile-fighter-name  ${predictions[index]?.winner === 1 ? 'selected' : ''}`} ><span className="mobile-fight-info snowwhite "  > vs.{' '}</span>
             {fight.fighters[1]} 
           </span> 
         </p> <div className="record-circles-container">
-            <div className="recordwcir" >{fight.records[0]}</div>
-            <div className="recordwcir">{fight.records[1]}</div>
+            <div className="recordwcir redcorner" >{fight.records[0]}</div>
+            <div className="recordwcir bluecorner">{fight.records[1]}</div>
           </div>
         
         
@@ -435,8 +435,13 @@ console.log(`The abbreviation for ${inputCountry} is ${abbreviation}`);
              
             </div>
             <div className="prediction">
-              <label className="color-yellow">Method of Victory:</label>
-              <select className='selectO'onChange={(e) => handleMethodChange(index, e.target.value)}>
+              <label 
+              
+              className={`method ${predictions[index]?.method === 'TKO/KO' ||predictions[index]?.method === 'Decision' ||predictions[index]?.method === 'Draw/No-Contest' || predictions[index]?.method === 'Submission' ? 'selected' : ''}`}
+
+
+              >Method of Victory:</label>
+              <select className={`methodbar ${predictions[index]?.method === 'TKO/KO' ||predictions[index]?.method === 'Decision' ||predictions[index]?.method === 'Draw/No-Contest' || predictions[index]?.method === 'Submission' ? 'selected' : ''}`}onChange={(e) => handleMethodChange(index, e.target.value)}>
                 <option value="">Select Method</option>
                 <option value="TKO/KO">TKO/KO</option>
                 <option value="Submission">Submission</option>

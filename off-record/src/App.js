@@ -131,7 +131,7 @@ function App() {
   textAlign: 'center',
   marginTop: '0%',
   color: 'purple',
-  textShadow: '0 0 5px yellow',
+  textShadow: '0px 0px 10px yellow',
   fontSize:'55px',
   maxWidth: '100%'
    // Adjust this value as needed
@@ -145,8 +145,8 @@ function App() {
      <div style={{ display: 'flex', justifyContent: 'flex-end', textAlign: 'end', fontSize: '8px', width: '100%' }}>
   {user ? (
     <>
-      <h1>Hello {user.fullname}{user.fullName}</h1>
-      <button onClick={handleLogout} style={{ marginLeft: '10px', minWidth: '10%' }} type="submit">
+      <h1 className='color-gold'>Hello {user.fullname}{user.fullName}</h1>
+      <button onClick={handleLogout} className="submitb" style={{ marginLeft: '10px', minWidth: '10%', padding:'2%',marginTop:'0%' }} type="submit">
         Log out
       </button>
     </>

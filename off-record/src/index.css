@@ -14,19 +14,57 @@ code {
 }
 
 .swm {
-  background-color: rgb(255, 255, 176);
+  background-color: rgb(58, 0, 58) ;
   /* color: green; */
   /* border: 7px solid black; */
   cursor: pointer;
   margin: 5%;
   padding: 3% 100px;
   text-align: center;
-  border: purple 5px solid;
+  border: gold 5px solid;
   /* border-radius:5%; */
   font-weight: 800;
   
   
   
+}
+.method {
+  color:gold;
+
+}
+.methodbar {
+  background-color: purple;
+  border: gold 3px solid;
+  padding: 1%;
+  color: white;
+  font-weight: bold;
+  margin-top: 1%;
+  border-radius: 10%;
+
+}
+.methodbar.selected {
+  background-color: black;
+  border: green 3px solid;
+  padding: 1%;
+  color: white;
+  font-weight: bold;
+  margin-top: 1%;
+  border-radius: 15%;
+}
+.method.selected {
+  /* Change background color and border color for selected method */
+  
+  color: black;
+  
+}
+
+
+
+
+.snowwhite{ 
+  color: white;
+  text-decoration: wavy;
+
 }
 .color-white{
   color:white;
@@ -71,7 +109,9 @@ code {
 }
 .bay{
   background-color: black;
-  color:yellow;
+  color: white;
+  text-shadow: 0px 0px 5px purple;
+  border-bottom: 5px purple solid;
   text-decoration: wavy;
 }
 .color-blue {
@@ -269,7 +309,14 @@ code {
   text-align: center;
   width: fit-content;
   margin: auto; /* Move circles to the left */
-  margin-top: -10px; /* Add some spacing from buttons */
+  margin-top: -10px; 
+/* Add some spacing from buttons */
+}
+.bluecorner{
+  border: blue 1px solid;
+}
+.redcorner{
+  border: red 1px solid;
 }
 .fighter-button:not(.selected):hover {
   background-color: blue;
@@ -479,7 +526,13 @@ input[type='checkbox'] {
 .mobile-fighter-name {
   font-size: 1.7rem;
   font-weight: bold;
-  color: white;
+  color: black;
+}
+.mobile-fighter-name.selected {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: green;
+  text-shadow: 0px 0px 10px #fff;
 }
 
 .color-black {
