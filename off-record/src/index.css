@@ -14,16 +14,17 @@ code {
 }
 
 .swm {
-  background-color: white;
+  background-color: rgb(255, 255, 176);
   /* color: green; */
   /* border: 7px solid black; */
   cursor: pointer;
   margin: 5%;
   padding: 3% 100px;
   text-align: center;
-  border: #282c34 5px solid;
+  border: purple 5px solid;
   /* border-radius:5%; */
-  font-weight: 700;
+  font-weight: 800;
+  
   
   
 }
@@ -46,7 +47,13 @@ code {
   
   
 }
-
+.ltypediv {
+  background-color: lightyellow;
+  border: purple 2px solid;
+  padding: 2%;
+  margin-bottom: 1%;
+  border-radius: 10%;
+}
 .swm2 {
   background-color: white;
   /* color: green; */
@@ -59,7 +66,7 @@ code {
   border: #282c34 5px solid;
   /* border-radius:5%; */
   font-weight: 700;
-  
+    
   
 }
 .bay{
@@ -89,6 +96,10 @@ code {
 }
 .color-orange {
   color: orange;
+  text-decoration: wavy;
+}
+.color-gold {
+  color: gold;
   text-decoration: wavy;
 }
 .payment {
@@ -357,8 +368,9 @@ input[type='checkbox'] {
   width: 100%;
   height: 100%;
   position: relative;
-  background-color: grey;
-  color: white;
+  background-color: rgba(255, 217, 0, 0.668);
+  color: purple;
+  font-weight: bold;
   transition: all 0.5s ease;
   padding: 3px;
   border-radius: 3px;
@@ -374,8 +386,8 @@ input[type='checkbox'] {
   transition: all 0.3s ease;
 }
 .custom-checkbox input#status + label > .status-switch:before {
-  background-color: white;
-  color: purple;
+  background-color: black;
+  color: gold;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
   left: 3px;
   z-index: 10;
@@ -387,13 +399,14 @@ input[type='checkbox'] {
 }
 .custom-checkbox input#status:checked + label > .status-switch {
   background-color: purple;
+  color:gold
 }
 .custom-checkbox input#status:checked + label > .status-switch:after {
   left: 0;
   content: attr(data-unchecked);
 }
 .custom-checkbox input#status:checked + label > .status-switch:before {
-  color: black;
+  color: gold;
   left: 50%;
   content: attr(data-checked);
 }

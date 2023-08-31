@@ -149,18 +149,18 @@ function Johnny({ onLogin }) {
 
         { showVideo ? 
             <form className="loginsu" onSubmit={handleSubmit}>
-                <label>Username:</label>
-                <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} required /><br></br>
-                <label>Password:</label>
-                <input type="text" value={password} onChange={(e) => setPassword(e.target.value)} required /><br></br>
+                <label className="color-gold">Username:</label>
+                <input className="ltypediv" type="text" value={userName} onChange={(e) => setUserName(e.target.value)} required /><br></br>
+                <label className="color-gold">Password:</label>
+                <input className="ltypediv" type="text" value={password} onChange={(e) => setPassword(e.target.value)} required /><br></br>
 
-                <label>Full Name:</label>
-                <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required /><br></br>
+                <label className="color-gold">Full Name:</label>
+                <input className="ltypediv" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required /><br></br>
                 
-                <label >Email:</label>
-                <input type="email" value={Email} onChange={(e) => setEmail(e.target.value)} required /><br></br>
+                <label className="color-gold" >Email:</label>
+                <input className="ltypediv" type="email" value={Email} onChange={(e) => setEmail(e.target.value)} required /><br></br>
                 
-                <button style={{marginRight:'17%',minWidth:'10%'}} type="submit">Submit</button>
+                <button style={{marginRight:'17%',minWidth:'10%', marginTop:'3%'}} className="submitb" type="submit">Submit</button>
                 
                 {errors && (<p className="errors" style={{ border: errors.length > 1 ? '2px solid darkred' : 'none' }}>{errors} </p>)}
 
@@ -170,23 +170,25 @@ function Johnny({ onLogin }) {
 
             </form> : 
             // <form >
-            <form style={{textAlign:'right',color:'white', marginRight:'35%',paddingBottom: '15%'}} onSubmit={handleSubmit2}>
-            <label >Username:</label>
+            <form  className="loginsu" onSubmit={handleSubmit2}>
+            <label className="  color-gold" >Username:</label>
             <input
+            className="ltypediv"
               type="text"
               value={username}
               placeholder=""
               onChange={(e) => setUsername(e.target.value)}
             />
             <br></br>
-            <label >Password:</label>
+            <label className="color-gold" >Password:</label>
             <input
+            className="ltypediv"
             type="password"
             value={_password}
             placeholder=""
             onChange={(e) => set_password(e.target.value)}
           /><br></br>
-            <button style={{marginRight:'17%',minWidth:'10%'}}  type="submit">Login</button>
+            <button style={{marginRight:'17%',minWidth:'10%', marginTop:'3%'}} className="submitb"  type="submit">Login</button>
             {isIncorrect ? <div>
                 <h2>Username or Password Invalid, Please Try Again!</h2>
             </div>: null}
