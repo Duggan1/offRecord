@@ -1,8 +1,8 @@
-"""Added Picks and Prediction models
+"""Initial migration
 
-Revision ID: 40f2196eb50f
+Revision ID: 11ebb0826d09
 Revises: 
-Create Date: 2023-08-25 18:00:56.366020
+Create Date: 2023-09-01 13:34:05.826236
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '40f2196eb50f'
+revision = '11ebb0826d09'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -43,8 +43,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('picks_id', sa.Integer(), nullable=False),
     sa.Column('fighters', sa.JSON(), nullable=False),
-    sa.Column('winner', sa.Integer(), nullable=True),
-    sa.Column('method', sa.String(length=50), nullable=True),
+    sa.Column('winner', sa.Integer(), nullable=False),
+    sa.Column('method', sa.String(length=50), nullable=False),
     sa.ForeignKeyConstraint(['picks_id'], ['picks.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

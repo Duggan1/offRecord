@@ -5,26 +5,18 @@ import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import Dnd from './Dnd';
 
-function Tommy({ user }) {
+function Tommy({ user, ufcCard }) {
   const navigate = useNavigate();
 
   // UFC card information
   const location = 'France'
-  const ufcCard = [
-    { match: "Heavyweight", fighters: ["Ciryl Gane", "Serghei Spivac"], records: ["11-2", "16-3"], flags: ["France", "Romania"] },
-    { match: "Flyweight", fighters: ["Manon Fiorot", "Rose Namajunas"], records: ["11-5", "12-2"], flags: ["France", "United States"] },
-    { match: "Featherweight", fighters: ["Lucas Almeida", "Benoit Saint-Denis"], records: ["14-2", "11-1"], flags: ["Brazil", "Canada"] },
-    { match: "Lightweight", fighters: ["Thiago Moisés", "Yanis Ghemmouri"], records: ["17-6", "12-1"], flags: ["Brazil", "France"] },
-    { match: "Bantamweight", fighters: ["Caolan Loughran", "Volkan Oezdemir"], records: ["8-0", "18-7"], flags: ["United Kingdom", "Switzerland"] },
-    { match: "Light Heavyweight", fighters: ["Bogdan Guskov", "Nora Cornolle"], records: ["14-2", "6-1"], flags: ["Russia", "France"] },
-    { match: "Bantamweight", fighters: ["Joselyne Edwards", "Ange Loosa"], records: ["13-4", "9-3"], flags: ["Panama", "France"] },
-    { match: "Welterweight", fighters: ["Rhys McKee", "Taylor Lapilus"], records: ["13-4-1", "18-3"], flags: ["Ireland", "France"] },
-    { match: "Bantamweight", fighters: ["Muin Gafurov", "Morgan Charriere"], records: ["18-5", "18-9-1"], flags: ["Russia", "France"] },
-    { match: "Featherweight", fighters: ["Manolo Zecchini", "Farid Basharat"], records: ["11-3", "10-0"], flags: ["Italy", "Afghanistan"] },
-    { match: "Flyweight", fighters: ["Kleydson Rodrigues", "Zarah Fairn"], records: ["8-2", "6-5"], flags: ["Brazil", "Germany"] },
-    { match: "Flyweight", fighters: ["Jacqueline Cavalcanti", "Unknown Fighter"], records: ["5-1", "-"], flags: ["Brazil", "Unknown"] },
-  ];
- 
+  
+//   const fighterNamesFormatted = ufcCard.map(({ fighters }) => {
+//     const [firstName, lastName] = fighters.map(name => name.split(' '));
+//     return `${firstName[0]}_${lastName[0]}`;
+// });
+
+// console.log(fighterNamesFormatted);
   
   function getFighterCountry(matchIndex, fighterIndex) {
     return ufcCard[matchIndex].flags[fighterIndex];
@@ -34,7 +26,6 @@ function Tommy({ user }) {
   const matchIndex = 0;
   const fighterIndex = 0;
   const country = getFighterCountry(matchIndex, fighterIndex);
-  console.log(`The country of fighter ${fighterIndex + 1} in match ${matchIndex + 1} is ${country}`);
   
   
   const mainEvent = ufcCard[0].fighters.join(' vs ');
@@ -58,7 +49,9 @@ function Tommy({ user }) {
     // password: yup.string().required('Password is required'),
     predictions: yup.array().of(
       yup.object().shape({
-        winner: yup.number().oneOf([0, 1], 'Invalid winner selection'),
+        winner: yup.number()
+                .oneOf([0, 1], 'Invalid winner selection')
+                .required('Winner is required'),
         method: yup.string().required('Method of victory is required'),
       })
     ).required('At least one prediction is required'),
@@ -377,7 +370,6 @@ function getFighterCountryAbbreviation(matchIndex, fighterIndex) {
 // Example usage
 const inputCountry = "United States";
 const abbreviation = getCountryAbbreviation(inputCountry);
-console.log(`The abbreviation for ${inputCountry} is ${abbreviation}`);
   
   
 
@@ -408,6 +400,12 @@ console.log(`The abbreviation for ${inputCountry} is ${abbreviation}`);
         
        
 <div className="prediction">
+              {/* <div style={{
+                  backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/${fighterNamesFormatted(index, 0)}_L_09-02.png?itok=WD5cHhTq")`,
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  height: '30px',
+                }}></div> */}
               <button
                 className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
                 onClick={() => handlePredictionChange(index, 0)}

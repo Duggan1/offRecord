@@ -19,10 +19,6 @@ signal.signal(signal.SIGTERM, ignore_sigterm)
 
 
 
-def run(host='0.0.0.0', port=5000, debug=False):
-    signal.signal(signal.SIGTERM, ignore_sigterm)
-    app.run(host=host, port=port, debug=debug)
-
 
 
 
@@ -125,45 +121,6 @@ class Logout(Resource):
 
 
 
-
-
-class UserById(Resource):
-
-
-
-
-    def get(self, id):
-        user = User.query.filter_by(id = id).first()
-        if user == None:
-            return make_response({"error":"user not found"}, 404)
-        return make_response(user.to_dict(), 200)
-    
-    def delete(self, id):
-        if not session['user_id']:
-            return {'error': 'Unauthorized'}, 401
-        
-        user = User.query.filter_by(id = id).first()
-        if user == None:
-            return make_response({"error":"user not found"}, 404)
-        db.session.delete(user)
-        db.session.commit()
-        return make_response({"deleted": "she gone"}, 204)
-    
-    def patch(self, id):
-        if not session['user_id']:
-            return {'error': 'Unauthorized'}, 401
-        user = User.query.filter_by(id = id).first()
-        data = request.get_json()
-        for attr in data:
-            setattr(user, attr, data[attr])
-        db.session.add(user)
-        db.session.commit()
-        return make_response(user.to_dict(), 201)
-    
-api.add_resource(UserById, "/user/<int:id>")
-
-
-
 api.add_resource(SignUp, '/signup', endpoint='signup')
 api.add_resource(Login, '/login', endpoint='login')
 api.add_resource(Logout, '/logout', endpoint='logout')
@@ -186,8 +143,8 @@ class PicksResource(Resource):
         # Create Prediction objects and associate them with the Picks
         for pred in predictions:
             fighters = pred['fighters']
-            winner = pred['winner']
-            method = pred['method']
+            winner = pred.get('winner', 0) 
+            method = pred.get['method', 'Draw/No-Contest']
             
 
             prediction = Prediction(fighters=fighters, winner=winner, method=method,)
@@ -220,4 +177,8 @@ api.add_resource(PickResource, '/picks')
 
 if __name__ == '__main__':
     app.run(port=5556, debug=True)
+
+def run(host='0.0.0.0', port=5556, debug=False):
+    signal.signal(signal.SIGTERM, ignore_sigterm)
+    app.run(host=host, port=port, debug=debug)
 

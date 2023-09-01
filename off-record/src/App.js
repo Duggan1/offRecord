@@ -22,34 +22,49 @@ function App() {
   const handleAppleClick = () => {
     setShowDropdown(!showDropdown);
   };
+  // const ufcCard = [
+  //   { match: "Heavyweight", fighters: ["Ciryl Gane", "Serghei Spivac"], records: ["11-2", "16-3"], flags: ["France", "Romania"] },
+  //   { match: "Flyweight", fighters: ["Manon Fiorot", "Rose Namajunas"], records: ["11-5", "12-2"], flags: ["France", "United States"] },
+  //   { match: "Featherweight", fighters: ["Lucas Almeida", "Benoit Saint-Denis"], records: ["14-2", "11-1"], flags: ["Brazil", "Canada"] },
+  //   { match: "Lightweight", fighters: ["Thiago Moisés", "Yanis Ghemmouri"], records: ["17-6", "12-1"], flags: ["Brazil", "France"] },
+  //   { match: "Bantamweight", fighters: ["Bogdan Guskov", "Volkan Oezdemir"], records: ["8-0", "18-7"], flags: ["United Kingdom", "Switzerland"] },
+  //   { match: "Light Heavyweight", fighters: ["Bogdan Guskov", "Nora Cornolle"], records: ["14-2", "6-1"], flags: ["Russia", "France"] },
+  //   { match: "Bantamweight", fighters: ["Joselyne Edwards", "Ange Loosa"], records: ["13-4", "9-3"], flags: ["Panama", "France"] },
+  //   { match: "Welterweight", fighters: ["Rhys McKee", "Taylor Lapilus"], records: ["13-4-1", "18-3"], flags: ["Ireland", "France"] },
+  //   { match: "Bantamweight", fighters: ["Muin Gafurov", "Morgan Charriere"], records: ["18-5", "18-9-1"], flags: ["Russia", "France"] },
+  //   { match: "Featherweight", fighters: ["Manolo Zecchini", "Farid Basharat"], records: ["11-3", "10-0"], flags: ["Italy", "Afghanistan"] },
+  //   { match: "Flyweight", fighters: ["Kleydson Rodrigues", "Zarah Fairn"], records: ["8-2", "6-5"], flags: ["Brazil", "Germany"] },
+  //   { match: "Flyweight", fighters: ["Jacqueline Cavalcanti", "Unknown Fighter"], records: ["5-1", "-"], flags: ["Brazil", "Unknown"] },
+  // ];
+
+
   const ufcCard = [
-    { match: "Heavyweight", fighters: ["Ciryl Gane", "Serghei Spivac"], records: ["11-2", "16-3"], flags: ["France", "Romania"] },
-    { match: "Flyweight", fighters: ["Manon Fiorot", "Rose Namajunas"], records: ["11-5", "12-2"], flags: ["France", "United States"] },
-    { match: "Featherweight", fighters: ["Lucas Almeida", "Benoit Saint-Denis"], records: ["14-2", "11-1"], flags: ["Brazil", "Canada"] },
-    { match: "Lightweight", fighters: ["Thiago Moisés", "Yanis Ghemmouri"], records: ["17-6", "12-1"], flags: ["Brazil", "France"] },
-    { match: "Bantamweight", fighters: ["Caolan Loughran", "Volkan Oezdemir"], records: ["8-0", "18-7"], flags: ["United Kingdom", "Switzerland"] },
-    { match: "Light Heavyweight", fighters: ["Bogdan Guskov", "Nora Cornolle"], records: ["14-2", "6-1"], flags: ["Russia", "France"] },
-    { match: "Bantamweight", fighters: ["Joselyne Edwards", "Ange Loosa"], records: ["13-4", "9-3"], flags: ["Panama", "France"] },
-    { match: "Welterweight", fighters: ["Rhys McKee", "Taylor Lapilus"], records: ["13-4-1", "18-3"], flags: ["Ireland", "France"] },
-    { match: "Bantamweight", fighters: ["Muin Gafurov", "Morgan Charriere"], records: ["18-5", "18-9-1"], flags: ["Russia", "France"] },
-    { match: "Featherweight", fighters: ["Manolo Zecchini", "Farid Basharat"], records: ["11-3", "10-0"], flags: ["Italy", "Afghanistan"] },
-    { match: "Flyweight", fighters: ["Kleydson Rodrigues", "Zarah Fairn"], records: ["8-2", "6-5"], flags: ["Brazil", "Germany"] },
-    { match: "Flyweight", fighters: ["Jacqueline Cavalcanti", "Unknown Fighter"], records: ["5-1", "-"], flags: ["Brazil", "Unknown"] },
-  ];
-  const ufcResults = [
-    { match: "Heavyweight", fighters: ["Ciryl Gane", "Serghei Spivac"], winner: null, method: null },
-    { match: "Flyweight", fighters: ["Manon Fiorot", "Rose Namajunas"], winner: null, method:null },
-    { match: "Featherweight", fighters: ["Lucas Almeida", "Benoit Saint-Denis"], winner: null, method:null },
-    { match: "Lightweight", fighters: ["Thiago Moisés", "Yanis Ghemmouri"], winner: null, method:null },
-    { match: "Bantamweight", fighters: ["Caolan Loughran", "Volkan Oezdemir"], winner: null, method:null },
-    { match: "Light Heavyweight", fighters: ["Bogdan Guskov", "Nora Cornolle"], winner: null, method:null },
-    { match: "Bantamweight", fighters: ["Joselyne Edwards", "Ange Loosa"], winner: null, method:null },
-    { match: "Welterweight", fighters: ["Rhys McKee", "Taylor Lapilus"], winner: null, method:null },
-    { match: "Bantamweight", fighters: ["Muin Gafurov", "Morgan Charriere"], winner: null, method:null },
-    { match: "Featherweight", fighters: ["Manolo Zecchini", "Farid Basharat"], winner: null, method:null },
-    { match: "Flyweight", fighters: ["Kleydson Rodrigues", "Zarah Fairn"], winner: null, method:null },
-    { match: "Flyweight", fighters: ["Jacqueline Cavalcanti", "Unknown Fighter"], winner: null, method:null },
-  ];
+    { fighters: ["Ciryl Gane", "Serghei Spivac"], match: "Heavyweight", records: ["11-2", "16-3"], flags: ["France", "Romania"] },
+    { fighters: ["Manon Fiorot", "Rose Namajunas"], match: "125 lbs", records: ["11-5", "12-2"], flags: ["France", "United States"] },
+    { fighters: ["Benoit Saint-Denis", "Thiago Moisés"], match: "155 lbs", records: ["11-1", "17-6"], flags: ["France", "Brazil"] },
+    { fighters: ["Volkan Oezdemir", "Bogdan Guskov"], match: "205 lbs", records: ["18-7", "14-2"], flags: ["Switzerland", "Russia"] },
+    { fighters: ["William Gomis", "Yanis Ghemmouri"], match: "145 lbs", records: ["12-2", "12-1"], flags: ["France", "France"] },
+    { fighters: ["Morgan Charriere", "Manolo Zecchini"], match: "145 lbs", records: ["18-9-1", "11-3"], flags: ["France", "Italy"] },
+    { fighters: ["Taylor Lapilus", "Caolán Loughran"], match: "135 lbs", records: ["18-3", "8-0"], flags: ["France", "Ireland"] },
+    { fighters: ["Ange Loosa", "Rhys McKee"], match: "170 lbs", records: ["9-3", "13-4-1"], flags: ["Switzerland", "Ireland"] },
+    { fighters: ["Nora Cornolle", "Joselyne Edwards"], match: "135 lbs", records: ["6-1", "13-4"], flags: ["France", "Panama"] },
+    { fighters: ["Farid Basharat", "Kleydson Rodrigues"], match: "135 lbs", records: ["10-0", "8-2"], flags: ["Afghanistan", "Brazil"] },
+    { fighters: ["Zarah Fairn", "Jacqueline Cavalcanti"], match: "140 lbs", records: ["6-5", "5-1"], flags: ["France", "Portugal"] },
+];
+const ufcResults = [
+  { fighters: ["Ciryl Gane", "Serghei Spivac"], match: "Heavyweight", winner: null, method: null },
+  { fighters: ["Manon Fiorot", "Rose Namajunas"], match: "125 lbs", winner: null, method: null },
+  { fighters: ["Benoit Saint-Denis", "Thiago Moisés"], match: "155 lbs", winner: null, method: null },
+  { fighters: ["Volkan Oezdemir", "Bogdan Guskov"], match: "205 lbs", winner: null, method: null },
+  { fighters: ["William Gomis", "Yanis Ghemmouri"], match: "145 lbs", winner: null, method: null },
+  { fighters: ["Morgan Charriere", "Manolo Zecchini"], match: "145 lbs", winner: null, method: null },
+  { fighters: ["Taylor Lapilus", "Caolán Loughran"], match: "135 lbs", winner: null, method: null },
+  { fighters: ["Ange Loosa", "Rhys McKee"], match: "170 lbs", winner: null, method: null },
+  { fighters: ["Nora Cornolle", "Joselyne Edwards"], match: "135 lbs", winner: null, method: null },
+  { fighters: ["Farid Basharat", "Kleydson Rodrigues"], match: "135 lbs", winner: null, method: null },
+  { fighters: ["Zarah Fairn", "Jacqueline Cavalcanti"], match: "140 lbs", winner: null, method: null },
+];
+
 
   const [results, setResults] = useState([]);
 
@@ -105,13 +120,13 @@ function App() {
     }
   
 
-  useEffect(() => {
-    fetch("https://off-therecordpicks.onrender.com/check_session").then((response) => {
-      if (response.ok) {
-        response.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://off-therecordpicks.onrender.com/check_session").then((response) => {
+  //     if (response.ok) {
+  //       response.json().then((user) => setUser(user));
+  //     }
+  //   });
+  // }, []);
 
   function handleLogin(user) {
     setUser(user);
@@ -130,8 +145,8 @@ function App() {
      <h1 style={{
   textAlign: 'center',
   marginTop: '0%',
-  color: 'purple',
-  textShadow: '0px 0px 10px yellow',
+  color: 'lightyellow',
+  textShadow: '0px 0px 15px purple',
   fontSize:'55px',
   maxWidth: '100%'
    // Adjust this value as needed
