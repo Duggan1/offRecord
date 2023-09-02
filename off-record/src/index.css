@@ -109,9 +109,9 @@ code {
 }
 .bay{
   background-color: black;
-  color: white;
-  text-shadow: 0px 0px 5px purple;
-  border-bottom: 5px purple solid;
+  color: gold;
+  /* text-shadow: 0px 0px 5px white; */
+  border-bottom: 5px gold solid;
   text-decoration: wavy;
 }
 .color-blue {
@@ -187,12 +187,12 @@ code {
   background-color: black;
   color: black;
   border: 5px  solid black;
-  padding: 4% 3% ;
+  padding: 14% 3% ;
   margin-right: 10px;
   border-radius: 10%;
   font-weight: 700;
   cursor: pointer;
-  min-width: 10%;
+  min-width: 50%;
   
 }
 .submitb{
@@ -518,22 +518,66 @@ input[type='checkbox'] {
 .color-black {
   color: black
 }
+
 .mobile-fight-info {
   font-size: 1rem;
   color: white;
   white-space: nowrap;
+  min-height: fit-content;
 }
 .mobile-fighter-name {
   font-size: 1.7rem;
   font-weight: bold;
   color: black;
 }
+.fighterready{
+  background-color: black;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-top: 3px purple solid;
+}
 .mobile-fighter-name.selected {
   font-size: 1.7rem;
   font-weight: bold;
   color: green;
-  text-shadow: 0px 0px 10px #fff;
+  
   max-width: 50%;
+}
+.fighter-container {
+  display: flex; /* Display children in a row (horizontal) */
+  align-items: center; /* Vertically align children */
+  margin-bottom: 20px; /* Add margin between fighter containers */
+  min-width: 50%;
+}
+
+.fighter-image {
+  flex: 1; /* Grow to fill available space */
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* height: 60vh; */
+  min-height:600px;
+  overflow: hidden;
+}
+.nice{
+  margin-top: 0px;
+  /* margin-bottom: 50px; */
+}
+.sireal {
+  margin-top: 90%;
+  min-width: 100%;
+
+}
+.fighter-info {
+  flex: 1; /* Grow to fill available space */
+  text-align: center;
+  padding: 0px; /* Add padding to fighter info */
+  width: 100%;
+}
+
+.selected {
+  /* Add styles for the selected fighter */
+  /* border: 5px solid green; Example border style for selected fighter */
+  /* Add other selected fighter styles as needed */
 }
 
 .color-black {
@@ -564,7 +608,7 @@ input[type='checkbox'] {
     font-size: 1.2rem;
     font-weight: bold;
     color: green;
-    text-shadow: 0px 0px 10px #fff;
+    
   }
   .color-black {
     color: black

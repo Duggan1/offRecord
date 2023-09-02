@@ -390,73 +390,23 @@ const abbreviation = getCountryAbbreviation(inputCountry);
       
       <form onSubmit={handleSubmit}>
         {ufcCard.map((fight, index) => (
-          <div key={index} className="fight">
-             <p key={index} className="mobile-fight-info" >
-          <span className={`mobile-fighter-name  ${predictions[index]?.winner === 0 ? 'selected' : ''}`} style={{
-                backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/${fighterNamesFormatted[index][0]}_L_09-02.png?itok=WD5cHhTq")`,
-                backgroundSize: 'contain',  // Use 'cover' to make the image cover the container
-                backgroundRepeat: 'no-repeat',
-                height: '40vh', /* 60% of viewport height */
-                overflow: 'hidden',
-                width: '100%',
-            }} >
-            {fight.fighters[0]} 
-          </span> 
-          <span className={`mobile-fighter-name  ${predictions[index]?.winner === 1 ? 'selected' : ''}`} ><span className="mobile-fight-info snowwhite "  > vs.{' '}</span>
-            {fight.fighters[1]} 
-          </span> 
-        </p> <div style={{
-                backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/${fighterNamesFormatted[index][1]}_R_09-02.png?itok=WD5cHhTq")`,
-                backgroundSize: 'contain',  // Use 'cover' to make the image cover the container
-                backgroundRepeat: 'no-repeat',
-                height: '40vh', /* 60% of viewport height */
-                overflow: 'hidden',
-                width: '100%',
-            }}></div>
-            
-            
-            
-            <div className="record-circles-container">
-            <div className="recordwcir redcorner" >{fight.records[0]}</div>
-            
-            <div className="recordwcir bluecorner">{fight.records[1]}</div>
-          </div>
-          
-        
-        
-       
-<div className="prediction">
-           
+    <div key={index} className="fight">
+      <div key={index} className="fighterready">
+  <p key={index} className="mobile-fight-info">
+    <div className="mobile-fighter-name">
+      <span className={`mobile-fighter-name ${predictions[index]?.winner === 0 ? 'selected' : ''}`}>
+        {fight.fighters[0]}
+      </span>
+      <span className="mobile-fight-info color-black"> vs. </span>
+      <span className={`mobile-fighter-name ${predictions[index]?.winner === 1 ? 'selected' : ''}`}>
+        {fight.fighters[1]}
+      </span>
+    </div>
+  </p>
 
-              <button
-                className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
-                onClick={() => handlePredictionChange(index, 0)}
-                style={{
-                  backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, 0)}/shiny/64.png")`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center center',
-                }}
-              >
-                
-                {fight.fighters[0]}
-              </button>
-              
-              <button
-                className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
-                onClick={() => handlePredictionChange(index, 1)}
-                style={{
-                  backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, 1)}/shiny/64.png")`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center center',
-                }}
-              >
-                {fight.fighters[1]}
-                
-              </button>
-              
-             
-            </div>
-            <div className="prediction">
+
+
+<div className="nice">
               <label 
               
               className={`method ${predictions[index]?.method === 'TKO/KO' ||predictions[index]?.method === 'Decision' ||predictions[index]?.method === 'Draw/No-Contest' || predictions[index]?.method === 'Submission' ? 'selected' : ''}`}
@@ -470,7 +420,84 @@ const abbreviation = getCountryAbbreviation(inputCountry);
                 <option value="Decision">Decision</option>
                 <option value="Draw/No-Contest">Draw/No-Contest</option>
               </select>
-            </div>
+            </div></div>
+
+
+    <div className="fighter-container">
+      <div
+        className={`fighter-image ${
+          predictions[index]?.winner === 0 ? 'selected' : ''
+        }`}
+        style={{
+          backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/${fighterNamesFormatted[index][0]}_L_09-02.png?itok=WD5cHhTq")`,
+          
+          
+          
+          width: '50%',
+        }}
+      ><div className="sireal" ><div className="recordwcir redcorner">{fight.records[0]}</div>  <button
+      className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
+      onClick={() => handlePredictionChange(index, 0)}
+      style={{
+        backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, 0)}/shiny/64.png")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+      }}
+    >
+      
+      {fight.fighters[0]}
+    </button>
+    
+    </div>
+      </div>
+      <div
+        className={`fighter-info ${
+          predictions[index]?.winner === 0 ? 'selected' : ''
+        }`}
+        style={{
+          width: '50%',
+          textAlign: 'center',
+        }}
+      ><div
+        className={`fighter-image ${
+          predictions[index]?.winner === 1 ? 'selected' : ''
+        }`}
+        style={{
+          backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/${fighterNamesFormatted[index][1]}_R_09-02.png?itok=WD5cHhTq")`,
+          
+          // height: '60vh',
+          overflow: 'hidden',
+          // width: '100%',
+        }}
+      ><div className="sireal" ><div className="recordwcir bluecorner">{fight.records[1]}</div>  <button
+      className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
+      onClick={() => handlePredictionChange(index, 1)}
+      style={{
+        backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, 1)}/shiny/64.png")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+      }}
+    >
+      
+      {fight.fighters[1]}
+    </button>
+    
+    </div>
+        
+        {/* Add other fighter information here */}
+      </div>
+    </div>
+   
+     
+    </div>
+   
+
+
+
+
+    
+            
+            
           </div>
         ))}
         <button className="submitb" type="submit">Submit Predictions</button>
