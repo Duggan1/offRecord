@@ -143,7 +143,7 @@ class PicksResource(Resource):
         # Create Prediction objects and associate them with the Picks
         for pred in predictions:
             fighters = pred['fighters']
-            winner = pred('winner') 
+            winner = pred['winner']
             method = pred['method']
             
 

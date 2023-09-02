@@ -11,10 +11,16 @@ function Tommy({ user, ufcCard }) {
   // UFC card information
   const location = 'France'
   
-//   const fighterNamesFormatted = ufcCard.map(({ fighters }) => {
-//     const [firstName, lastName] = fighters.map(name => name.split(' '));
-//     return `${firstName[0]}_${lastName[0]}`;
-// });
+  const fighterNamesFormatted = ufcCard.map(({ fighters }) => {
+    const formattedFighters = fighters.map(name => {
+        const [firstName, lastName] = name.split(' ');
+        return `${lastName.toUpperCase()}_${firstName.toUpperCase()}`;
+    });
+    return formattedFighters;
+});
+
+console.log(fighterNamesFormatted[0][0]);
+
 
 // console.log(fighterNamesFormatted);
   
@@ -386,26 +392,42 @@ const abbreviation = getCountryAbbreviation(inputCountry);
         {ufcCard.map((fight, index) => (
           <div key={index} className="fight">
              <p key={index} className="mobile-fight-info" >
-          <span className={`mobile-fighter-name  ${predictions[index]?.winner === 0 ? 'selected' : ''}`} >
+          <span className={`mobile-fighter-name  ${predictions[index]?.winner === 0 ? 'selected' : ''}`} style={{
+                backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/${fighterNamesFormatted[index][0]}_L_09-02.png?itok=WD5cHhTq")`,
+                backgroundSize: 'contain',  // Use 'cover' to make the image cover the container
+                backgroundRepeat: 'no-repeat',
+                height: '40vh', /* 60% of viewport height */
+                overflow: 'hidden',
+                width: '100%',
+            }} >
             {fight.fighters[0]} 
           </span> 
           <span className={`mobile-fighter-name  ${predictions[index]?.winner === 1 ? 'selected' : ''}`} ><span className="mobile-fight-info snowwhite "  > vs.{' '}</span>
             {fight.fighters[1]} 
           </span> 
-        </p> <div className="record-circles-container">
+        </p> <div style={{
+                backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/${fighterNamesFormatted[index][1]}_R_09-02.png?itok=WD5cHhTq")`,
+                backgroundSize: 'contain',  // Use 'cover' to make the image cover the container
+                backgroundRepeat: 'no-repeat',
+                height: '40vh', /* 60% of viewport height */
+                overflow: 'hidden',
+                width: '100%',
+            }}></div>
+            
+            
+            
+            <div className="record-circles-container">
             <div className="recordwcir redcorner" >{fight.records[0]}</div>
+            
             <div className="recordwcir bluecorner">{fight.records[1]}</div>
           </div>
+          
         
         
        
 <div className="prediction">
-              {/* <div style={{
-                  backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/${fighterNamesFormatted(index, 0)}_L_09-02.png?itok=WD5cHhTq")`,
-                  backgroundSize: 'contain',
-                  backgroundRepeat: 'no-repeat',
-                  height: '30px',
-                }}></div> */}
+           
+
               <button
                 className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
                 onClick={() => handlePredictionChange(index, 0)}
@@ -418,6 +440,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
                 
                 {fight.fighters[0]}
               </button>
+              
               <button
                 className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
                 onClick={() => handlePredictionChange(index, 1)}
@@ -430,6 +453,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
                 {fight.fighters[1]}
                 
               </button>
+              
              
             </div>
             <div className="prediction">
