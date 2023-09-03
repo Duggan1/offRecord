@@ -39,31 +39,35 @@ function App() {
 
 
   const ufcCard = [
-    { fighters: ["Ciryl Gane", "Serghei Spivac"], match: "Heavyweight", records: ["11-2", "16-3"], flags: ["France", "Romania"] },
-    { fighters: ["Manon Fiorot", "Rose Namajunas"], match: "125 lbs", records: ["11-5", "12-2"], flags: ["France", "United States"] },
-    { fighters: ["Benoit Saint-Denis", "Thiago Moisés"], match: "155 lbs", records: ["11-1", "17-6"], flags: ["France", "Brazil"] },
-    { fighters: ["Volkan Oezdemir", "Bogdan Guskov"], match: "205 lbs", records: ["18-7", "14-2"], flags: ["Switzerland", "Russia"] },
-    { fighters: ["William Gomis", "Yanis Ghemmouri"], match: "145 lbs", records: ["12-2", "12-1"], flags: ["France", "France"] },
-    { fighters: ["Morgan Charriere", "Manolo Zecchini"], match: "145 lbs", records: ["18-9-1", "11-3"], flags: ["France", "Italy"] },
-    { fighters: ["Taylor Lapilus", "Caolán Loughran"], match: "135 lbs", records: ["18-3", "8-0"], flags: ["France", "Ireland"] },
-    { fighters: ["Ange Loosa", "Rhys McKee"], match: "170 lbs", records: ["9-3", "13-4-1"], flags: ["Switzerland", "Ireland"] },
-    { fighters: ["Nora Cornolle", "Joselyne Edwards"], match: "135 lbs", records: ["6-1", "13-4"], flags: ["France", "Panama"] },
-    { fighters: ["Farid Basharat", "Kleydson Rodrigues"], match: "135 lbs", records: ["10-0", "8-2"], flags: ["Afghanistan", "Brazil"] },
-    { fighters: ["Zarah Fairn", "Jacqueline Cavalcanti"], match: "140 lbs", records: ["6-5", "5-1"], flags: ["France", "Portugal"] },
-];
-const ufcResults = [
-  { fighters: ["Ciryl Gane", "Serghei Spivac"], match: "Heavyweight", winner: null, method: null },
-  { fighters: ["Manon Fiorot", "Rose Namajunas"], match: "125 lbs", winner: null, method: null },
-  { fighters: ["Benoit Saint-Denis", "Thiago Moisés"], match: "155 lbs", winner: null, method: null },
-  { fighters: ["Volkan Oezdemir", "Bogdan Guskov"], match: "205 lbs", winner: null, method: null },
-  { fighters: ["William Gomis", "Yanis Ghemmouri"], match: "145 lbs", winner: null, method: null },
-  { fighters: ["Morgan Charriere", "Manolo Zecchini"], match: "145 lbs", winner: null, method: null },
-  { fighters: ["Taylor Lapilus", "Caolán Loughran"], match: "135 lbs", winner: null, method: null },
-  { fighters: ["Ange Loosa", "Rhys McKee"], match: "170 lbs", winner: null, method: null },
-  { fighters: ["Nora Cornolle", "Joselyne Edwards"], match: "135 lbs", winner: null, method: null },
-  { fighters: ["Farid Basharat", "Kleydson Rodrigues"], match: "135 lbs", winner: null, method: null },
-  { fighters: ["Zarah Fairn", "Jacqueline Cavalcanti"], match: "140 lbs", winner: null, method: null },
-];
+    { fighters: ["Israel Adesanya", "Sean Strickland"], match: "185 lbs", records: ["24-2-0", "27-5-0"], flags: ["Nigeria", "United States"] },
+    { fighters: ["Tai Tuivasa", "Alexander Volkov"], match: "265 lbs", records: ["15-5-0", "36-10-0"], flags: ["Australia", "Russia"] },
+    { fighters: ["Manel Kape", "Felipe dos Santos"], match: "125 lbs", records: ["18-6-0", "7-0-0"], flags: ["Portugal", "Brazil"] },
+    { fighters: ["Justin Tafa", "Austen Lane"], match: "265 lbs", records: ["6-3-0", "12-3-0"], flags: ["Australia", "United States"] },
+    { fighters: ["Tyson Pedro", "Anton Turkalj"], match: "205 lbs", records: ["9-4-0", "8-2-0"], flags: ["Australia", "Sweden"] },
+    { fighters: ["Carlos Ulberg", "Da Un Jung"], match: "205 lbs", records: ["8-1-0", "15-4-1"], flags: ["New Zealand", "North Korea"] },
+    { fighters: ["Jack Jenkins", "Chepe Mariscal"], match: "145 lbs", records: ["12-2-0", "14-6-0"], flags: ["Australia", "United States"] },
+    { fighters: ["Jamie Mullarkey", "John Makdessi"], match: "155 lbs", records: ["16-6-0", "18-8-0"], flags: ["Australia", "Canada"] },
+    { fighters: ["Nasrat Haqparast", "Landon Quiñones"], match: "155 lbs", records: ["14-5-0", "7-1-1"], flags: ["Afghanistan", "United States"] },
+    { fighters: ["Blood Diamond", "Charlie Radtke"], match: "170 lbs", records: ["3-2-0", "7-3-0"], flags: ["Zimbabwe", "United States"] },
+    { fighters: ["Shane Young", "Gabriel Miranda"], match: "145 lbs", records: ["13-7-0", "16-6-0"], flags: ["New Zealand", "Brazil"] },
+    { fighters: ["Kevin Jousset", "Kiefer Crosbie"], match: "170 lbs", records: ["8-2-0", "10-3-0"], flags: ["France", "Ireland"] }
+  ];
+  
+  const ufcResults = [
+    { fighters: ["Israel Adesanya", "Sean Strickland"], match: "185 lbs", winner: null, method: null },
+    { fighters: ["Tai Tuivasa", "Alexander Volkov"], match: "265 lbs", winner: null, method: null },
+    { fighters: ["Manel Kape", "Felipe dos Santos"], match: "125 lbs", winner: null, method: null },
+    { fighters: ["Justin Tafa", "Austen Lane"], match: "265 lbs", winner: null, method: null },
+    { fighters: ["Tyson Pedro", "Anton Turkalj"], match: "205 lbs", winner: null, method: null },
+    { fighters: ["Carlos Ulberg", "Da Un Jung"], match: "205 lbs", winner: null, method: null },
+    { fighters: ["Jack Jenkins", "Chepe Mariscal"], match: "145 lbs", winner: null, method: null },
+    { fighters: ["Jamie Mullarkey", "John Makdessi"], match: "155 lbs", winner: null, method: null },
+    { fighters: ["Nasrat Haqparast", "Landon Quiñones"], match: "155 lbs", winner: null, method: null },
+    { fighters: ["Blood Diamond", "Charlie Radtke"], match: "170 lbs", winner: null, method: null },
+    { fighters: ["Shane Young", "Gabriel Miranda"], match: "145 lbs", winner: null, method: null },
+    { fighters: ["Kevin Jousset", "Kiefer Crosbie"], match: "170 lbs", winner: null, method: null },
+  ];
+  
 
 
   const [results, setResults] = useState([]);
@@ -179,7 +183,7 @@ const ufcResults = [
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={user} />}/>
+      <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={true} />}/>
       <Route path="/results" element={<Results ufcResults={ufcResults} ufcCard={ufcCard} user={user}/>}/>
       
       <Route path="/payment" element={<Payment/>}/>

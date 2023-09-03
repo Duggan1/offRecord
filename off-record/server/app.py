@@ -176,6 +176,7 @@ api.add_resource(PickResource, '/picks')
 
 
 if __name__ == '__main__':
+    
     app.run(port=5556, debug=True)
 
 def run(host='0.0.0.0', port=5556, debug=False):

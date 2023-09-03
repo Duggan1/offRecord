@@ -20,3 +20,4 @@ SQLAlchemy
 typing_extensions 
 Werkzeug         
 wheel            
+psycopg2-binary==2.9.1

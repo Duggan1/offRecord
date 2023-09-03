@@ -9,7 +9,7 @@ function Tommy({ user, ufcCard }) {
   const navigate = useNavigate();
 
   // UFC card information
-  const location = 'France'
+  const location = 'Australia'
   
   const fighterNamesFormatted = ufcCard.map(({ fighters }) => {
     const formattedFighters = fighters.map(name => {
@@ -429,7 +429,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
           predictions[index]?.winner === 0 ? 'selected' : ''
         }`}
         style={{
-          backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/${fighterNamesFormatted[index][0]}_L_09-02.png?itok=WD5cHhTq")`,
+          backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2023-04/ADESANYA_ISRAEL_L_BELT_07-02.png?itok=8iGqw0Sg")`,
           
           
           
@@ -463,7 +463,8 @@ const abbreviation = getCountryAbbreviation(inputCountry);
           predictions[index]?.winner === 1 ? 'selected' : ''
         }`}
         style={{
-          backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/${fighterNamesFormatted[index][1]}_R_09-02.png?itok=WD5cHhTq")`,
+          backgroundImage: `url(https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-12/${fighterNamesFormatted[index][1]}_R_12-17.png?itok=Pi__aMly)`,
+          
           
           // height: '60vh',
           overflow: 'hidden',
