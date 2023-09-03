@@ -1,6 +1,7 @@
 Flask             
 Flask-Migrate    
 Flask-SQLAlchemy  
+flask_sqlalchemy
 flask_cors
 flask_restful
 flask_bcrypt
@@ -10,7 +11,8 @@ greenlet
 gunicorn 
 secret         
 itsdangerous      
-Jinja2            
+Jinja2   
+os         
 Mako              
 MarkupSafe       
 packaging         
