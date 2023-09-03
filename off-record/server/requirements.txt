@@ -12,7 +12,7 @@ gunicorn
 secret         
 itsdangerous      
 Jinja2   
-os         
+   
 Mako              
 MarkupSafe       
 packaging         
