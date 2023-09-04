@@ -144,7 +144,7 @@ console.log(updatedResults)
     "Comoros": "KM",
     "Saint Kitts And Nevis": "KN",
     "Korea, Democratic People's Republic Of": "KP",
-    "Korea, Republic of": "KR",
+    "South Korea": "KR",
     "Kuwait": "KW",
     "Cayman Islands": "KY",
     "Kazakhstan": "KZ",

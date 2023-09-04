@@ -236,7 +236,7 @@ const countryData = {
   "Comoros": "KM",
   "Saint Kitts And Nevis": "KN",
   "Korea, Democratic People's Republic Of": "KP",
-  "Korea, Republic of": "KR",
+  "South Korea": "KR",
   "Kuwait": "KW",
   "Cayman Islands": "KY",
   "Kazakhstan": "KZ",
@@ -429,7 +429,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
           predictions[index]?.winner === 0 ? 'selected' : ''
         }`}
         style={{
-          backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2023-04/ADESANYA_ISRAEL_L_BELT_07-02.png?itok=8iGqw0Sg")`,
+          backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/3db4f260-1bc8-4496-b77f-51e6a5c30329%252F${fighterNamesFormatted[index][0]}_L_06-11.png?itok=UKxYTojf)`,
           
           
           
@@ -463,7 +463,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
           predictions[index]?.winner === 1 ? 'selected' : ''
         }`}
         style={{
-          backgroundImage: `url(https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-12/${fighterNamesFormatted[index][1]}_R_12-17.png?itok=Pi__aMly)`,
+          backgroundImage: `url(https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-07/${fighterNamesFormatted[index][1]}_R_06-24.png?itok=Pi__aMly)`,
           
           
           // height: '60vh',

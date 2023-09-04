@@ -1,0 +1,3 @@
+# Ignore config.py and secret.py
+config.py
+secret.py

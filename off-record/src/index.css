@@ -313,10 +313,10 @@ code {
 /* Add some spacing from buttons */
 }
 .bluecorner{
-  border: blue 1px solid;
+  border: blue 2px solid;
 }
 .redcorner{
-  border: red 1px solid;
+  border: red 2px solid;
 }
 .fighter-button:not(.selected):hover {
   background-color: blue;
@@ -528,7 +528,7 @@ input[type='checkbox'] {
 .mobile-fighter-name {
   font-size: 1.7rem;
   font-weight: bold;
-  color: black;
+  color: white;
 }
 .fighterready{
   background-color: black;
