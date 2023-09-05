@@ -111,8 +111,18 @@ code {
   background-color: black;
   color: gold;
   /* text-shadow: 0px 0px 5px white; */
-  border-bottom: 5px gold solid;
+  border-bottom: 10px gold solid;
   text-decoration: wavy;
+  margin-bottom: 0%;
+}
+
+.bayLoc{
+  background-color: black;
+  color: whitesmoke;
+  /* text-shadow: 0px 0px 5px white; */
+  
+  text-decoration: wavy;
+  /* margin-bottom: -3%; */
 }
 .color-blue {
   color:blue;

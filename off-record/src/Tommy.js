@@ -383,10 +383,12 @@ const abbreviation = getCountryAbbreviation(inputCountry);
     <div>
       {user ? (
     <div className="tommy">
-      <h2 >UFC {location} <img style={{height:'20px', backgroundColor:'black', padding:'0px 2px'}} src={`https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png`}
-          alt={`Flag of ${location}`} ></img> Fight Predictions</h2><h1></h1>
-        
+      <div className="bayLoc" > 
+      <h1 >UFC {location} <img style={{height:'40px', backgroundColor:'black', padding:'0px 2px'}} src={`https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png`}
+          alt={`Flag of ${location}`} ></img> Fight Predictions</h1>
       <h2 className="bay" >{mainEvent}</h2>
+      
+      </div> <p>Fighter Images will be available once UFC's Offical fight week photoshoot occurs  </p>
       
       <form onSubmit={handleSubmit}>
         {ufcCard.map((fight, index) => (
@@ -429,12 +431,13 @@ const abbreviation = getCountryAbbreviation(inputCountry);
           predictions[index]?.winner === 0 ? 'selected' : ''
         }`}
         style={{
-          backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/3db4f260-1bc8-4496-b77f-51e6a5c30329%252F${fighterNamesFormatted[index][0]}_L_06-11.png?itok=UKxYTojf)`,
-          
-          
+          // url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/3db4f260-1bc8-4496-b77f-51e6a5c30329%252F${fighterNamesFormatted[index][0]}_L_06-11.png?itok=UKxYTojf"),
+          backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")`,
           
           width: '50%',
         }}
+
+
       ><div className="sireal" ><div className="recordwcir redcorner">{fight.records[0]}</div>  <button
       className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 0)}
@@ -443,6 +446,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
       }}
+      
     >
       
       {fight.fighters[0]}
@@ -463,9 +467,8 @@ const abbreviation = getCountryAbbreviation(inputCountry);
           predictions[index]?.winner === 1 ? 'selected' : ''
         }`}
         style={{
-          backgroundImage: `url(https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-07/${fighterNamesFormatted[index][1]}_R_06-24.png?itok=Pi__aMly)`,
-          
-          
+          backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/3db4f260-1bc8-4496-b77f-51e6a5c30329%252F${fighterNamesFormatted[index][1]}_L_06-11.png?itok=UKxYTojf"),
+           url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")`,
           // height: '60vh',
           overflow: 'hidden',
           // width: '100%',
