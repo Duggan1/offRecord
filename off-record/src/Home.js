@@ -1,7 +1,14 @@
 import React from "react";
 import './App.css';
+import { NavLink } from "react-router-dom";
+import {useNavigate} from 'react-router-dom'
 
 function Home() {
+    const navigate = useNavigate()
+    const handleOptionClick = (option) => {
+        navigate(`${option}`);
+      };
+    
 
 
 
@@ -20,6 +27,7 @@ function Home() {
                 }}>
                 Off Record Picks!
                 </h1>
+                <div className='crdiv'  onClick={() => handleOptionClick('/results')}><NavLink className='snow' exact to="/results">Check Results</NavLink></div>
 
         
         

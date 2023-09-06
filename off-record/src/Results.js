@@ -6,15 +6,26 @@ import Dnd from './Dnd';
 function Results({ user, ufcCard, ufcResults }) {
   const [results, setResults] = useState([]);
   const [updatedResults, setUpdatedResults] = useState(ufcResults)
+  const [selectedEvent, setSelectedEvent] = useState(""); // Step 1: Add state for selected event
+//   const [mainEventFilter, setMainEventFilter] = useState("");
+
+  
+  
+//   const handleUpdate = e => updateSort(e.target.value)
+
+  const byMainEvent = (results) => {
+    return !selectedEvent || results.main_event === selectedEvent;
+  }
+
+  const filteredByMainEvent = selectedEvent ? results.filter(byMainEvent) : [...results];
 
   
 ////////put in app soon 
-console.log(results)
+console.log(results) 
 console.log(ufcResults)
 console.log(updatedResults)
-// if (updatedResults!== null){
-//     ufcResults
-
+console.log(selectedEvent)
+console.log(filteredByMainEvent)
 
 
 
@@ -324,6 +335,7 @@ console.log(updatedResults)
       .then(data => {
         console.log(data); // Log the data received from the API
         if (Array.isArray(data.picks)) {
+            console.log(data)
           setResults(data.picks);
           const adminKevResults = data.picks.find(result => result.owner === 'AdminKev');
   
@@ -358,6 +370,18 @@ console.log(updatedResults)
             }}>
             Results
             </h1>
+            {/* ///////I want to filter the cards and only show the results if the main_event matches these  */}
+            <center><label>Filter Results</label>
+      <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
+        <option value="">All</option>
+        <option value="Israel Adesanya vs Sean Strickland">Israel Adesanya vs Sean Strickland</option>
+        <option value="Grasso VS Shevchenko 2">Grasso vs Shevchenko 2</option>
+        <option value="Fiziev vs Gamrot">Fiziev vs Gamrot</option>
+        <option value="Makhachev vs Oliveira 2">Makhachev vs Oliveira 2</option>
+        <option value="Blaydes vs Almeida">Blaydes vs Almeida</option>
+        <option value="Jones vs Miocic">Jones vs Miocic</option>
+
+      </select></center>
       <table>
         <thead>
           <tr>
@@ -368,7 +392,7 @@ console.log(updatedResults)
           </tr>
         </thead>
         <tbody>
-  {results.map((result, index) => (
+  {filteredByMainEvent.map((result, index) => (
     <tr key={index}>
       <td>
         <div className="ownpicksdiv">
