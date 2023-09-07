@@ -431,7 +431,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
           predictions[index]?.winner === 0 ? 'selected' : ''
         }`}
         style={{
-          width: '50%',
+          width: '100%',
           backgroundImage: `
             url("https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2023-04/${fighterNamesFormatted[index][0]}_L_BELT_07-02.png?itok=jCqTwe9H"),
             url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/${fighterNamesFormatted[index][0]}_L_09-03.png?itok=6SElOz8Y"),
