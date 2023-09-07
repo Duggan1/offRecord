@@ -431,11 +431,23 @@ const abbreviation = getCountryAbbreviation(inputCountry);
           predictions[index]?.winner === 0 ? 'selected' : ''
         }`}
         style={{
-          // url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/3db4f260-1bc8-4496-b77f-51e6a5c30329%252F${fighterNamesFormatted[index][0]}_L_06-11.png?itok=UKxYTojf"),
-          backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")`,
-          
           width: '50%',
+          backgroundImage: `
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2023-04/${fighterNamesFormatted[index][0]}_L_BELT_07-02.png?itok=jCqTwe9H"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/${fighterNamesFormatted[index][0]}_L_09-03.png?itok=6SElOz8Y"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/3db4f260-1bc8-4496-b77f-51e6a5c30329%252F${fighterNamesFormatted[index][0]}_L_06-11.png?itok=UKxYTojf"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][0]}_L_02-11.png?itok=J8Ul-fHx"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][0]}_L_02-11.png?itok=WievseKk"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][0]}_L_05-13.png?itok=xJR2ep61"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][0]}_L_02-11.png?itok=FOuiy7sy"),
+            
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-02/dc2ac255-0040-46a9-b739-02e518a2fa8f%252F${fighterNamesFormatted[index][0]}_L_02-12.png?itok=qvPsE88b"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-06/${fighterNamesFormatted[index][0]}_L_02-12.png?itok=oHOTlFYD"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][0]}_L_02-11.png?itok=aq15s4jG"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")
+          `,
         }}
+        
 
 
       ><div className="sireal" ><div className="recordwcir redcorner">{fight.records[0]}</div>  <button
@@ -467,12 +479,23 @@ const abbreviation = getCountryAbbreviation(inputCountry);
           predictions[index]?.winner === 1 ? 'selected' : ''
         }`}
         style={{
-          backgroundImage: `url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/3db4f260-1bc8-4496-b77f-51e6a5c30329%252F${fighterNamesFormatted[index][1]}_L_06-11.png?itok=UKxYTojf"),
-           url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")`,
-          // height: '60vh',
-          overflow: 'hidden',
-          // width: '100%',
+          width: '100%',
+          backgroundImage: `
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2022-12/${fighterNamesFormatted[index][1]}_R_12-17.png?itok=rUw30t2y"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/d9d8b16e-8631-4e5a-a961-5e382f175f71%252F${fighterNamesFormatted[index][1]}_R_06-04.png?itok=y_O52fWg"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-07/${fighterNamesFormatted[index][1]}_R_06-24.png?itok=317Rz9Ul"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-03/${fighterNamesFormatted[index][1]}_R_03-11.png?itok=DVydAsr7"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/${fighterNamesFormatted[index][1]}_R_07-16.png?itok=t9tBsPlc"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_06-24.png?itok=SHjTM3dm"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/${fighterNamesFormatted[index][1]}_R_09-03.png?itok=tHXhKDzG"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-11/71727%252Fprofile-galery%252Ffullbodyright-picture%252F${fighterNamesFormatted[index][1]}_R.png?itok=h8L1uGew"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/${fighterNamesFormatted[index][1]}_R_09-03.png?itok=8pDCm5PQ"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-11/71727%252Fprofile-galery%252Ffullbodyright-picture%252F${fighterNamesFormatted[index][1]}_R.png?itok=h8L1uGew"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")
+          `,
+          
         }}
+        
       ><div className="sireal" ><div className="recordwcir bluecorner">{fight.records[1]}</div>  <button
       className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 1)}

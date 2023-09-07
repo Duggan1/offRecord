@@ -44,7 +44,7 @@ function App() {
     { fighters: ["Manel Kape", "Felipe dos Santos"], match: "125 lbs", records: ["18-6-0", "7-0-0"], flags: ["Portugal", "Brazil"] },
     { fighters: ["Justin Tafa", "Austen Lane"], match: "265 lbs", records: ["6-3-0", "12-3-0"], flags: ["Australia", "United States"] },
     { fighters: ["Tyson Pedro", "Anton Turkalj"], match: "205 lbs", records: ["9-4-0", "8-2-0"], flags: ["Australia", "Sweden"] },
-    { fighters: ["Carlos Ulberg", "Da Un Jung"], match: "205 lbs", records: ["8-1-0", "15-4-1"], flags: ["New Zealand", "South Korea"] },
+    { fighters: ["Carlos Ulberg", "Da-Un Jung"], match: "205 lbs", records: ["8-1-0", "15-4-1"], flags: ["New Zealand", "South Korea"] },
     { fighters: ["Jack Jenkins", "Chepe Mariscal"], match: "145 lbs", records: ["12-2-0", "14-6-0"], flags: ["Australia", "United States"] },
     { fighters: ["Jamie Mullarkey", "John Makdessi"], match: "155 lbs", records: ["16-6-0", "18-8-0"], flags: ["Australia", "Canada"] },
     { fighters: ["Nasrat Haqparast", "Landon Quiñones"], match: "155 lbs", records: ["14-5-0", "7-1-1"], flags: ["Afghanistan", "United States"] },
@@ -183,7 +183,7 @@ function App() {
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={user} />}/>
+      <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={true} />}/>
       <Route path="/results" element={<Results ufcResults={ufcResults} ufcCard={ufcCard} user={user}/>}/>
       
       <Route path="/payment" element={<Payment/>}/>
