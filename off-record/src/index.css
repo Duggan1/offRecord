@@ -43,6 +43,73 @@ code {
   text-decoration: wavy;
 
 }
+.about {
+  color:rgb(255, 255, 255);
+  text-align: center;
+  justify-content: center;
+  
+}
+.about p{
+  margin-right: 20%;
+  margin-left: 20%;
+}
+.about h1{
+  color:gold;
+  text-align: center;
+}
+.about h4{
+  color:rgb(255, 255, 255);
+  text-align: center;
+  line-height: 2.5em;
+  margin-right: 20%;
+  margin-left: 20%;
+}
+.about img {
+  background-color: gold;
+  height: 100px;
+  padding: 5%;
+  border: solid purple 10px;
+  border-radius: 30%;
+
+  
+}
+.smallR {
+  background-color: ;
+}
+.backB {
+  background-color: white;
+  color:black;
+  width:min-content;
+  padding: 1%;
+  border: solid purple 10px;
+  border-radius: 30%;
+  font-size: x-large;
+  font-weight: bolder;
+  margin-bottom: 2%;
+  cursor: pointer;
+  justify-content: end;
+  margin-left: 80%;
+
+}
+.donateB {
+  background-color: purple;
+  margin-right: 10%;
+  margin-left: 10%;
+  color:gold;
+  width: 15%;
+  padding: 2%;
+  border: solid gold 10px;
+  border-radius: 30%;
+  font-size: x-large;
+  font-weight: bolder;
+  margin-bottom: 15%;
+  cursor: pointer;
+}
+
+
+
+
+
 .filterbutton {
   margin-bottom: 2.5%;
 }

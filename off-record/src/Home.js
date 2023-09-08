@@ -28,6 +28,7 @@ function Home() {
                 Off Record Picks!
                 </h1>
                 <div className='crdiv'  onClick={() => handleOptionClick('/results')}><NavLink className='snow' exact to="/results">Check Results</NavLink></div>
+                <div className='crdiv'  onClick={() => handleOptionClick('/about')}><NavLink className='snow' exact to="/about">About Us</NavLink></div>
 
         
         
