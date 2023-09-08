@@ -36,8 +36,9 @@ function About() {
        
        <h4>What sets us apart is that we operate entirely without monetary transactions. Instead, we rely on the support of our community through donations to secure our domain name and maintain the site's functionality.</h4>
       <p style={{color:'gold',marginTop:'5%',fontWeight:'Bold'}}>Donate Below</p>
-      <button className="donateB" onclick="openPaymentWindow('https://donate.stripe.com/4gw8xEdNP0ypfqo6ot', 5)">$5</button>
-      <button  className="donateB" onclick="openPaymentWindow('https://donate.stripe.com/6oE4ho113ch73HGfZ4', 10)">$10</button>
+      <button className="donateB" onClick={() => window.open('https://donate.stripe.com/4gw8xEdNP0ypfqo6ot')}>$5</button>
+      <button className="donateB" onClick={() => window.open('https://donate.stripe.com/6oE4ho113ch73HGfZ4')}>$10</button>
+
       <br></br>
       
 
