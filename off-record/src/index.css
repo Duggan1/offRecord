@@ -67,7 +67,7 @@ code {
 .about img {
   background-color: gold;
   height: 100px;
-  padding: 5%;
+  padding: 10%;
   border: solid purple 10px;
   border-radius: 30%;
 
@@ -77,8 +77,8 @@ code {
   background-color: ;
 }
 .backB {
-  background-color: white;
-  color:black;
+  background-color: gold;
+  color:rgb(58, 0, 58) ;
   width:min-content;
   padding: 1%;
   border: solid purple 10px;
@@ -97,6 +97,7 @@ code {
   margin-left: 10%;
   color:gold;
   width: 15%;
+  min-width: min-content;
   padding: 2%;
   border: solid gold 10px;
   border-radius: 30%;

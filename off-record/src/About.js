@@ -23,12 +23,14 @@ function About() {
     }
   return (
     <div className="about">
-      <h1>Off-Record-Picks' Story</h1>
-      <img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} style={{cursor:'pointer'}}/> {/* Use the imported image */}
+      <button className="backB" onClick={() => handleOptionClick('/')} >Home </button>
+      <h1>Off-Record-Picks' Story</h1><img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} style={{cursor:'pointer'}}/> {/* Use the imported image */}
+      
       <h4>Our platform provides UFC enthusiasts with a unique opportunity to demonstrate their predictive skills for UFC events. The results will be updated after the enitre event is complete</h4>
+      <div style={{border:'gold 5px dotted',marginRight: '20%',marginLeft: '20%'}}>
       <p style={{color:'purple',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Winner </p><br></br>
       <p style={{color:'purple',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Method if you chose the correct fighter</p><br></br>
-      <p style={{color:'purple',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 points</span> for picking for Draw/No-Contest</p>
+      <p style={{color:'purple',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 points</span> for picking for Draw/No-Contest</p></div>
        <br></br>
        
        
@@ -36,7 +38,7 @@ function About() {
       <p style={{color:'gold',marginTop:'5%',fontWeight:'Bold'}}>Donate Below</p>
       <button className="donateB" onclick="openPaymentWindow('https://donate.stripe.com/4gw8xEdNP0ypfqo6ot', 5)">$5</button>
       <button  className="donateB" onclick="openPaymentWindow('https://donate.stripe.com/6oE4ho113ch73HGfZ4', 10)">$10</button>
-      <br></br><button className="backB" onClick={() => handleOptionClick('/')} >Home </button>
+      <br></br>
       
 
       
