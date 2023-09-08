@@ -26,7 +26,7 @@ function About() {
       {/* <button className="backB" onClick={() => handleOptionClick('/')} >Home </button> */}
       <h1>Off-Record-Picks' Story</h1><p style={{color:'purple',fontWeight:'Bold'}}>Click Logo to go to Home Page</p><img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} style={{cursor:'pointer'}}/> {/* Use the imported image */}
       
-      <h4>Our platform provides UFC enthusiasts with a unique opportunity to demonstrate their predictive skills for UFC events. The results will be updated after the enitre event is complete</h4>
+      <h4>Our platform provides UFC enthusiasts with a unique opportunity to demonstrate their fight prediction skills for UFC events. The results will be updated after the enitre event is complete</h4>
       <div style={{border:'gold 5px dotted',marginRight: '20%',marginLeft: '20%'}}>
       <p style={{color:'purple',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Winner </p><br></br>
       <p style={{color:'purple',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Method if you chose the correct fighter</p><br></br>
