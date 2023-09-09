@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
+import {useNavigate} from 'react-router-dom';
+import logo from './logo.png';
 
 import Dnd from './Dnd';
 
@@ -8,7 +10,10 @@ function Results({ user, ufcCard, ufcResults }) {
   const [updatedResults, setUpdatedResults] = useState(ufcResults)
   const [selectedEvent, setSelectedEvent] = useState(""); // Step 1: Add state for selected event
 //   const [mainEventFilter, setMainEventFilter] = useState("");
-
+  const navigate = useNavigate()
+  const handleOptionClick = (option) => {
+      navigate(`${option}`);
+    };
   
   
 //   const handleUpdate = e => updateSort(e.target.value)
@@ -486,7 +491,9 @@ console.log(filteredByMainEvent)
 
       </table>
     </div>
-  ) 
+  )<img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} className='resultsimg' style={{cursor:'pointer'}}/> <p style={{color:'purple',fontWeight:'Bold',textAlign:'center'}}>Click Logo to go to Home Page</p>
+       
+            
 </div>
 
   );

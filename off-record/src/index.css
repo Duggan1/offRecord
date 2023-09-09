@@ -73,6 +73,20 @@ code {
 
   
 }
+.resultsimg {
+  background-color: gold;
+  height: 50px;
+  padding: 5%;
+  border: solid purple 10px;
+  border-radius: 30%;
+  justify-content: center;
+  text-align: center;
+  margin-left: 40%;
+  margin-right: 40%;
+  width: 10%
+
+  
+}
 .smallR {
   background-color: ;
 }

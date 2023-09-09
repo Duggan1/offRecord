@@ -41,7 +41,7 @@ function NavBar({ user }) {
             <div className='swm'  onClick={() => handleOptionClick('/')}><NavLink className='snowwhite' exact to="/">Home</NavLink></div>
             <div className='swm'  onClick={() => handleOptionClick('/section3')}><NavLink className='snowwhite' exact to="/section3">UFC Pick 'ems</NavLink></div>
             <div className='swm'  onClick={() => handleOptionClick('/results')}><NavLink className='snowwhite' exact to="/results">Your results</NavLink></div>
-            <div className='swm'  onClick={() => handleOptionClick('/about')}><NavLink className='color-purple' exact to="/about">About O-R-P</NavLink></div>
+            <div className='swm'  onClick={() => handleOptionClick('/about')}><NavLink className='snowwhite' exact to="/about">About O-R-P</NavLink></div>
             
           </div>
         )}
