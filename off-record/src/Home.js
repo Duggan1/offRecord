@@ -53,7 +53,7 @@ function Home() {
                 
                 <div className='crdiv'  onClick={() => handleOptionClick('/results')}><NavLink className='snow' exact to="/results">Check Results</NavLink></div>
                 <div className='crdiv'  onClick={() => handleOptionClick('/about')}><NavLink className='snow' exact to="/about">About Us</NavLink></div>
-                <h2>Total Picks - {countPick} - </h2>
+                <h2>Off-The-Record-Picks - {countPick} - </h2>
         
         
         

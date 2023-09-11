@@ -9,7 +9,8 @@ function Tommy({ user, ufcCard }) {
   const navigate = useNavigate();
 
   // UFC card information
-  const location = 'Australia'
+  const locationCity = 'Las Vegas'
+  const location = 'United States'
   
   const fighterNamesFormatted = ufcCard.map(({ fighters }) => {
     const formattedFighters = fighters.map(name => {
@@ -384,11 +385,13 @@ const abbreviation = getCountryAbbreviation(inputCountry);
       {user ? (
     <div className="tommy">
       <div className="bayLoc" > 
-      <h1 >UFC {location} <img style={{height:'40px', backgroundColor:'black', padding:'0px 2px'}} src={`https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png`}
+      <h1 >UFC {locationCity} <img style={{height:'40px', backgroundColor:'black', padding:'0px 2px'}} src={`https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png`}
           alt={`Flag of ${location}`} ></img> Fight Predictions</h1>
       <h2 className="bay" >{mainEvent}</h2>
       
+      
       </div> 
+      <p>Fighter's images will be availabe on Friday after UFC photoshoot occurs </p>
       <form onSubmit={handleSubmit}>
         {ufcCard.map((fight, index) => (
     <div key={index} className="fight">
@@ -433,17 +436,9 @@ const abbreviation = getCountryAbbreviation(inputCountry);
           width: '100%',
           backgroundImage: `
             url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_BELT_09-09.png?itok=TiMjZd8f"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_09-09.png?itok=sq4zfwfK"),
-            
-            
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][0]}_L_05-13.png?itok=xJR2ep61"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][0]}_L_02-11.png?itok=FOuiy7sy"),
-            
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-02/dc2ac255-0040-46a9-b739-02e518a2fa8f%252F${fighterNamesFormatted[index][0]}_L_02-12.png?itok=qvPsE88b"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-06/${fighterNamesFormatted[index][0]}_L_02-12.png?itok=oHOTlFYD"),
-            
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_09-09.png?itok=9OLVyveq")
-          `,
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")
+       
+            `,
         }}
         
 
@@ -479,12 +474,8 @@ const abbreviation = getCountryAbbreviation(inputCountry);
         style={{
           width: '100%',
           backgroundImage: `
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][1]}_R_09-09.png?itok=iGm7nuOQ"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-07/${fighterNamesFormatted[index][1]}_R_06-24.png?itok=317Rz9Ul"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-03/${fighterNamesFormatted[index][1]}_R_03-11.png?itok=DVydAsr7"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/${fighterNamesFormatted[index][1]}_R_07-16.png?itok=t9tBsPlc"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_06-24.png?itok=SHjTM3dm"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/${fighterNamesFormatted[index][1]}_R_09-03.png?itok=tHXhKDzG")`,
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")
+            `,
           
         }}
         

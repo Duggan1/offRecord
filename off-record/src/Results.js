@@ -292,10 +292,10 @@ console.log(filteredByMainEvent)
   function getCountryAbbreviation(countryName) {
     return countryData[countryName] || "Not Found";
   }
-  function getFighterCountryAbbreviation(matchIndex, fighterIndex) {
-    const countryName = ufcCard[matchIndex].flags[fighterIndex];
-    return getCountryAbbreviation(countryName);
-  }
+  // function getFighterCountryAbbreviation(matchIndex, fighterIndex) {
+  //   const countryName = ufcCard[matchIndex].flags[fighterIndex];
+  //   return getCountryAbbreviation(countryName);
+  // }
  
   function calculatePoints(pick, result) {
     let points = 0;
@@ -342,6 +342,8 @@ console.log(filteredByMainEvent)
         if (Array.isArray(data.picks)) {
             console.log(data)
           setResults(data.picks);
+          const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
+          setResults(filteredResults);
           const adminKevResults = data.picks.find(result => result.owner === 'AdminKev');
   
   // Update updatedResults only if adminKevResults exists and is not empty
@@ -380,9 +382,9 @@ console.log(filteredByMainEvent)
       <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
         <option value="">All</option>
         <option value="Israel Adesanya vs Sean Strickland">Israel Adesanya vs Sean Strickland</option>
-        <option value="Grasso VS Shevchenko 2">Grasso vs Shevchenko 2</option>
+        <option value="Grasso VS Shevchenko">Grasso vs Shevchenko 2</option>
         <option value="Fiziev vs Gamrot">Fiziev vs Gamrot</option>
-        <option value="Makhachev vs Oliveira 2">Makhachev vs Oliveira 2</option>
+        <option value="Makhachev vs Oliveira">Makhachev vs Oliveira 2</option>
         <option value="Blaydes vs Almeida">Blaydes vs Almeida</option>
         <option value="Jones vs Miocic">Jones vs Miocic</option>
 
@@ -426,13 +428,13 @@ console.log(filteredByMainEvent)
               <br />
 
              <center>
-              {prediction.winner !== undefined && (
+              {/* {prediction.winner !== undefined && (
                 <img
                   style={{ height: '30px', marginBottom: '-4%', }}
                   src={`https://flagsapi.com/${getFighterCountryAbbreviation(predIndex, prediction.winner)}/flat/64.png`}
                   alt={`Flag of ${prediction.fighters[prediction.winner]}`}
                 />
-              )} 
+              )}  */}
               
               
               
@@ -471,11 +473,11 @@ console.log(filteredByMainEvent)
       <br />
       {match.winner !== null ? (
   <div className="flag-image">
-    <img
+    {/* <img
       src={`https://flagsapi.com/${getFighterCountryAbbreviation(matchIndex, match.winner)}/flat/64.png`}
       alt={`Flag of ${[match.winner]}`}
       style={{ height: '30px', marginLeft: '40%',  }}
-    />
+    /> */}
     
   </div>
 ) : <div className="loading" style={{ height: '30px',marginLeft: '40%',  }}></div>}

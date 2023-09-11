@@ -41,33 +41,39 @@ function App() {
 
 
   const ufcCard = [
-    { fighters: ["Israel Adesanya", "Sean Strickland"], match: "185 lbs", records: ["24-2-0", "27-5-0"], flags: ["Nigeria", "United States"] },
-    { fighters: ["Tai Tuivasa", "Alexander Volkov"], match: "265 lbs", records: ["15-5-0", "36-10-0"], flags: ["Australia", "Russia"] },
-    { fighters: ["Manel Kape", "Felipe Dos_Santos"], match: "125 lbs", records: ["18-6-0", "7-0-0"], flags: ["Portugal", "Brazil"] },
-    { fighters: ["Justin Tafa", "Austen Lane"], match: "265 lbs", records: ["6-3-0", "12-3-0"], flags: ["Australia", "United States"] },
-    { fighters: ["Tyson Pedro", "Anton Turkalj"], match: "205 lbs", records: ["9-4-0", "8-2-0"], flags: ["Australia", "Sweden"] },
-    { fighters: ["Carlos Ulberg", "Da-Un Jung"], match: "205 lbs", records: ["8-1-0", "15-4-1"], flags: ["New Zealand", "South Korea"] },
-    { fighters: ["Jack Jenkins", "Chepe Mariscal"], match: "145 lbs", records: ["12-2-0", "14-6-0"], flags: ["Australia", "United States"] },
-    { fighters: ["Jamie Mullarkey", "John Makdessi"], match: "155 lbs", records: ["16-6-0", "18-8-0"], flags: ["Australia", "Canada"] },
-    { fighters: ["Nasrat Haqparast", "Landon Quinones"], match: "155 lbs", records: ["14-5-0", "7-1-1"], flags: ["Afghanistan", "United States"] },
-    { fighters: ["Blood Diamond", "Charles Radtke"], match: "170 lbs", records: ["3-2-0", "7-3-0"], flags: ["Zimbabwe", "United States"] },
-    { fighters: ["Shane Young", "Gabriel Miranda"], match: "145 lbs", records: ["13-7-0", "16-6-0"], flags: ["New Zealand", "Brazil"] },
-    { fighters: ["Kevin Jousett", "Kiefer Crosbie"], match: "170 lbs", records: ["8-2-0", "10-3-0"], flags: ["France", "Ireland"] }
+    { fighters: ["Valentina Shevchenko", "Alexa Grasso"], match: "125 lbs", records: ["23-4", "16-3"], flags: ["Kyrgyzstan", "Mexico"] },
+    { fighters: ["Kevin Holland", "Jack Della Maddalena"], match: "170 lbs", records: ["25-9", "15-2"], flags: ["United States", "Australia"] },
+    { fighters: ["Raul Rosas Jr.", "Terrence Mitchell"], match: "135 lbs", records: ["7-1", "14-3"], flags: ["United States", "United States"] },
+    { fighters: ["Daniel Zellhuber", "Christos Giagos"], match: "155 lbs", records: ["13-1", "20-10"], flags: ["Brazil", "United States"] },
+    { fighters: ["Fernando Padilla", "Kyle Nelson"], match: "145 lbs", records: ["15-4", "14-5-1"], flags: ["United States", "Canada"] },
+    { fighters: ["Lupita Godinez", "Elise Reed"], match: "115 lbs", records: ["10-3", "7-3"], flags: ["Mexico", "United States"] },
+    { fighters: ["Roman Kopylov", "Josh Fremd"], match: "185 lbs", records: ["11-2", "11-4"], flags: ["Russia", "United States"] },
+    { fighters: ["Edgar Cháirez", "Daniel Lacerda"], match: "125 lbs", records: ["10-5", "11-5"], flags: ["Mexico", "Brazil"] },
+    { fighters: ["Tracy Cortez", "Jasmine Jasudavicius"], match: "125 lbs", records: ["10-1", "9-2"], flags: ["United States", "Canada"] },
+    { fighters: ["Charlie Campbell", "Alex Reyes"], match: "155 lbs", records: ["7-2", "13-3"], flags: ["United States", "United States"] },
+    { fighters: ["Josefine Knutsson", "Marnic Mann"], match: "115 lbs", records: ["6-0", "6-1"], flags: ["Sweden", "United States"] },
   ];
   
+  
+
+
+
+
+
+
+  
   const ufcResults = [
-    { fighters: ["Israel Adesanya", "Sean Strickland"], match: "185 lbs", winner: null, method: null },
-    { fighters: ["Tai Tuivasa", "Alexander Volkov"], match: "265 lbs", winner: null, method: null },
-    { fighters: ["Manel Kape", "Felipe dos Santos"], match: "125 lbs", winner: null, method: null },
-    { fighters: ["Justin Tafa", "Austen Lane"], match: "265 lbs", winner: null, method: null },
-    { fighters: ["Tyson Pedro", "Anton Turkalj"], match: "205 lbs", winner: null, method: null },
-    { fighters: ["Carlos Ulberg", "Da Un Jung"], match: "205 lbs", winner: null, method: null },
-    { fighters: ["Jack Jenkins", "Chepe Mariscal"], match: "145 lbs", winner: null, method: null },
-    { fighters: ["Jamie Mullarkey", "John Makdessi"], match: "155 lbs", winner: null, method: null },
-    { fighters: ["Nasrat Haqparast", "Landon Quiñones"], match: "155 lbs", winner: null, method: null },
-    { fighters: ["Blood Diamond", "Charlie Radtke"], match: "170 lbs", winner: null, method: null },
-    { fighters: ["Shane Young", "Gabriel Miranda"], match: "145 lbs", winner: null, method: null },
-    { fighters: ["Kevin Jousset", "Kiefer Crosbie"], match: "170 lbs", winner: null, method: null },
+    { fighters: ["Valentina Shevchenko", "Alexa Grasso"], match: "125 lbs", winner: null, method: null },
+    { fighters: ["Kevin Holland", "Jack Della Maddalena"], match: "170 lbs", winner: null, method: null },
+    { fighters: ["Raul Rosas Jr.", "Terrence Mitchell"], match: "135 lbs", winner: null, method: null },
+    { fighters: ["Daniel Zellhuber", "Christos Giagos"], match: "155 lbs", winner: null, method: null },
+    { fighters: ["Fernando Padilla", "Kyle Nelson"], match: "145 lbs", winner: null, method: null },
+    { fighters: ["Lupita Godinez", "Elise Reed"], match: "115 lbs", winner: null, method: null },
+    { fighters: ["Roman Kopylov", "Josh Fremd"], match: "185 lbs", winner: null, method: null },
+    { fighters: ["Edgar Cháirez", "Daniel Lacerda"], match: "125 lbs", winner: null, method: null },
+    { fighters: ["Tracy Cortez", "Jasmine Jasudavicius"], match: "125 lbs", winner: null, method: null },
+    { fighters: ["Charlie Campbell", "Alex Reyes"], match: "155 lbs", winner: null, method: null },
+    { fighters: ["Josefine Knutsson", "Marnic Mann"], match: "115 lbs", winner: null, method: null },
   ];
   
 
@@ -77,45 +83,6 @@ function App() {
   ////////put in app soon 
   console.log(results)
   console.log(ufcResults)
-  
-
-   
-  // useEffect(() => {
-  //   // Fetch results from the API
-  //   fetch('https://off-therecordpicks.onrender.com/picks')
-  //     .then(response => {
-  //       if (!response.ok) {
-  //         throw new Error('Network response was not ok');
-  //       }
-  //       return response.json();
-  //     })
-  //     .then(data => {
-  //       console.log(data); // Log the data received from the API
-  //       if (Array.isArray(data.picks)) {
-  //         // Filter results for the owner "AdminKev"
-  //         const adminKevResults = data.picks.filter(result => result.owner === 'AdminKev');
-  //         setResults(adminKevResults.predictions); // Set filtered results in state
-  //       } else {
-  //         console.error('API response does not have an array in the "picks" property:', data);
-  //         // Handle the unexpected response as needed
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching results:', error);
-  //       // Handle error as needed
-  //     });
-  // }, []);
-  
-
-
-
-
-
-
-
-
-
-
 
 
   // console.log(showDropdown)
@@ -124,15 +91,7 @@ function App() {
   const handleSignupClick=() =>{
         setSignUp(!signUp)
     }
-  
 
-  // useEffect(() => {
-  //   fetch("https://off-therecordpicks.onrender.com/check_session").then((response) => {
-  //     if (response.ok) {
-  //       response.json().then((user) => setUser(user));
-  //     }
-  //   });
-  // }, []);
 
   function handleLogin(user) {
     setUser(user);
@@ -140,8 +99,7 @@ function App() {
   function handleLogout(){
     setUser(null);
   }
-  // console.log(user.fullName)
-  // console.log(user.fullname)
+
   console.log(user)
 
 
@@ -185,7 +143,7 @@ function App() {
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={user} />}/>
+      <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={true} />}/>
       <Route path="/results" element={<Results ufcResults={ufcResults} ufcCard={ufcCard} user={user}/>}/>
       
       <Route path="/about" element={<About/>}/>
