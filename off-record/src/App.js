@@ -143,7 +143,7 @@ function App() {
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={true} />}/>
+      <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={user} />}/>
       <Route path="/results" element={<Results ufcResults={ufcResults} ufcCard={ufcCard} user={user}/>}/>
       
       <Route path="/about" element={<About/>}/>
