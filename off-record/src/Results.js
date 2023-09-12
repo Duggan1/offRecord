@@ -8,6 +8,9 @@ import Dnd from './Dnd';
 function Results({ user, ufcCard, ufcResults }) {
   const [results, setResults] = useState([]);
   const [updatedResults, setUpdatedResults] = useState(ufcResults)
+
+  const [adminKevPicks, setAdminKevPicks] = useState({});
+
   const [selectedEvent, setSelectedEvent] = useState(""); // Step 1: Add state for selected event
 //   const [mainEventFilter, setMainEventFilter] = useState("");
   const navigate = useNavigate()
@@ -24,306 +27,54 @@ function Results({ user, ufcCard, ufcResults }) {
 
   const filteredByMainEvent = selectedEvent ? results.filter(byMainEvent) : [...results];
 
-  
+    const getAdminKevPicksForEvent = (event) => {
+    return adminKevPicks[event] || ufcResults; // Use ufcResults if AdminKev's picks are not available
+  };
 ////////put in app soon 
 console.log(results) 
 console.log(ufcResults)
 console.log(updatedResults)
-console.log(selectedEvent)
 console.log(filteredByMainEvent)
+console.log(user.username)
 
 
-
-
-
-
-  const countryData = {
-    "Andorra": "AD",
-    "United Arab Emirates": "AE",
-    "Afghanistan": "AF",
-    "Antigua and Barbuda": "AG",
-    "Anguilla": "AI",
-    "Albania": "AL",
-    "Armenia": "AM",
-    "Netherlands Antilles": "AN",
-    "Angola": "AO",
-    "Antarctica": "AQ",
-    "Argentina": "AR",
-    "American Samoa": "AS",
-    "Austria": "AT",
-    "Australia": "AU",
-    "Aruba": "AW",
-    "Åland Islands": "AX",
-    "Azerbaijan": "AZ",
-    "Bosnia and Herzegovina": "BA",
-    "Barbados": "BB",
-    "Bangladesh": "BD",
-    "Belgium": "BE",
-    "Burkina Faso": "BF",
-    "Bulgaria": "BG",
-    "Bahrain": "BH",
-    "Burundi": "BI",
-    "Benin": "BJ",
-    "Saint Barthélemy": "BL",
-    "Bermuda": "BM",
-    "Brunei Darussalam": "BN",
-    "Bolivia": "BO",
-    "Bonaire, Sint Eustatius and Saba": "BQ",
-    "Brazil": "BR",
-    "Bahamas": "BS",
-    "Bhutan": "BT",
-    "Bouvet Island": "BV",
-    "Botswana": "BW",
-    "Belarus": "BY",
-    "Belize": "BZ",
-    "Canada": "CA",
-    "Cocos (Keeling) Islands": "CC",
-    "Congo, The Democratic Republic Of The": "CD",
-    "Central African Republic": "CF",
-    "Congo": "CG",
-    "Switzerland": "CH",
-    "Côte D'Ivoire": "CI",
-    "Cook Islands": "CK",
-    "Chile": "CL",
-    "Cameroon": "CM",
-    "China": "CN",
-    "Colombia": "CO",
-    "Costa Rica": "CR",
-    "Cuba": "CU",
-    "Cape Verde": "CV",
-    "Curaçao": "CW",
-    "Christmas Island": "CX",
-    "Cyprus": "CY",
-    "Czech Republic": "CZ",
-    "Germany": "DE",
-    "Djibouti": "DJ",
-    "Denmark": "DK",
-    "Dominica": "DM",
-    "Dominican Republic": "DO",
-    "Algeria": "DZ",
-    "Ecuador": "EC",
-    "Estonia": "EE",
-    "Egypt": "EG",
-    "Western Sahara": "EH",
-    "Eritrea": "ER",
-    "Spain": "ES",
-    "Ethiopia": "ET",
-    "Finland": "FI",
-    "Fiji": "FJ",
-    "Falkland Islands (Malvinas)": "FK",
-    "Micronesia, Federated States Of": "FM",
-    "Faroe Islands": "FO",
-    "France": "FR",
-    "Gabon": "GA",
-    "United Kingdom": "GB",
-    "Grenada": "GD",
-    "Georgia": "GE",
-    "French Guiana": "GF",
-    "Guernsey": "GG",
-    "Ghana": "GH",
-    "Gibraltar": "GI",
-    "Greenland": "GL",
-    "Gambia": "GM",
-    "Guinea": "GN",
-    "Guadeloupe": "GP",
-    "Equatorial Guinea": "GQ",
-    "Greece": "GR",
-    "South Georgia and the South Sandwich Islands": "GS",
-    "Guatemala": "GT",
-    "Guam": "GU",
-    "Guinea-Bissau": "GW",
-    "Guyana": "GY",
-    "Hong Kong": "HK",
-    "Heard and McDonald Islands": "HM",
-    "Honduras": "HN",
-    "Croatia": "HR",
-    "Haiti": "HT",
-    "Hungary": "HU",
-    "Indonesia": "ID",
-    "Ireland": "IE",
-    "Israel": "IL",
-    "Isle of Man": "IM",
-    "India": "IN",
-    "British Indian Ocean Territory": "IO",
-    "Iraq": "IQ",
-    "Iran, Islamic Republic Of": "IR",
-    "Iceland": "IS",
-    "Italy": "IT",
-    "Jersey": "JE",
-    "Jamaica": "JM",
-    "Jordan": "JO",
-    "Japan": "JP",
-    "Kenya": "KE",
-    "Kyrgyzstan": "KG",
-    "Cambodia": "KH",
-    "Kiribati": "KI",
-    "Comoros": "KM",
-    "Saint Kitts And Nevis": "KN",
-    "Korea, Democratic People's Republic Of": "KP",
-    "South Korea": "KR",
-    "Kuwait": "KW",
-    "Cayman Islands": "KY",
-    "Kazakhstan": "KZ",
-    "Lao People's Democratic Republic": "LA",
-    "Lebanon": "LB",
-    "Saint Lucia": "LC",
-    "Liechtenstein": "LI",
-    "Sri Lanka": "LK",
-    "Liberia": "LR",
-    "Lesotho": "LS",
-    "Lithuania": "LT",
-    "Luxembourg": "LU",
-    "Latvia": "LV",
-    "Libya": "LY",
-    "Morocco": "MA",
-    "Monaco": "MC",
-    "Moldova, Republic of": "MD",
-    "Montenegro": "ME",
-    "Saint Martin": "MF",
-    "Madagascar": "MG",
-    "Marshall Islands": "MH",
-    "Macedonia, the Former Yugoslav Republic Of": "MK",
-    "Mali": "ML",
-    "Myanmar": "MM",
-    "Mongolia": "MN",
-    "Macao": "MO",
-    "Northern Mariana Islands": "MP",
-    "Martinique": "MQ",
-    "Mauritania": "MR",
-    "Montserrat": "MS",
-    "Malta": "MT",
-    "Mauritius": "MU",
-    "Maldives": "MV",
-    "Malawi": "MW",
-    "Mexico": "MX",
-    "Malaysia": "MY",
-    "Mozambique": "MZ",
-    "Namibia": "NA",
-    "New Caledonia": "NC",
-    "Niger": "NE",
-    "Norfolk Island": "NF",
-    "Nigeria": "NG",
-    "Nicaragua": "NI",
-    "Netherlands": "NL",
-    "Norway": "NO",
-    "Nepal": "NP",
-    "Nauru": "NR",
-    "Niue": "NU",
-    "New Zealand": "NZ",
-    "Oman": "OM",
-    "Panama": "PA",
-    "Peru": "PE",
-    "French Polynesia": "PF",
-    "Papua New Guinea": "PG",
-    "Philippines": "PH",
-    "Pakistan": "PK",
-    "Poland": "PL",
-    "Saint Pierre And Miquelon": "PM",
-    "Pitcairn": "PN",
-    "Puerto Rico": "PR",
-    "Palestine, State of": "PS",
-    "Portugal": "PT",
-    "Palau": "PW",
-    "Paraguay": "PY",
-    "Qatar": "QA",
-    "Réunion": "RE",
-    "Romania": "RO",
-    "Serbia": "RS",
-    "Russia": "RU",
-    "Rwanda": "RW",
-    "Saudi Arabia": "SA",
-    "Solomon Islands": "SB",
-    "Seychelles": "SC",
-    "Sudan": "SD",
-    "Sweden": "SE",
-    "Singapore": "SG",
-    "Saint Helena": "SH",
-    "Slovenia": "SI",
-    "Svalbard And Jan Mayen": "SJ",
-    "Slovakia": "SK",
-    "Sierra Leone": "SL",
-    "San Marino": "SM",
-    "Senegal": "SN",
-    "Somalia": "SO",
-    "Suriname": "SR",
-    "South Sudan": "SS",
-    "Sao Tome and Principe": "ST",
-    "El Salvador": "SV",
-    "Sint Maarten": "SX",
-    "Syrian Arab Republic": "SY",
-    "Swaziland": "SZ",
-    "Turks and Caicos Islands": "TC",
-    "Chad": "TD",
-    "French Southern Territories": "TF",
-    "Togo": "TG",
-    "Thailand": "TH",
-    "Tajikistan": "TJ",
-    "Tokelau": "TK",
-    "Timor-Leste": "TL",
-    "Turkmenistan": "TM",
-    "Tunisia": "TN",
-    "Tonga": "TO",
-    "Turkey": "TR",
-    "Trinidad and Tobago": "TT",
-    "Tuvalu": "TV",
-    "Taiwan, Republic Of China": "TW",
-    "Tanzania, United Republic of": "TZ",
-    "Ukraine": "UA",
-    "Uganda": "UG",
-    "United States Minor Outlying Islands": "UM",
-    "United States": "US",
-    "Uruguay": "UY",
-    "Uzbekistan": "UZ",
-    "Holy See (Vatican City State)": "VA",
-    "Saint Vincent And The Grenadines": "VC",
-    "Venezuela, Bolivarian Republic of": "VE",
-    "Virgin Islands, British": "VG",
-    "Virgin Islands, U.S.": "VI",
-    "Vietnam": "VN",
-    "Vanuatu": "VU",
-    "Wallis and Futuna": "WF",
-    "Samoa": "WS",
-    "Yemen": "YE",
-    "Mayotte": "YT",
-    "South Africa": "ZA",
-    "Zambia": "ZM",
-    "Zimbabwe": "ZW"
-  };
-  function getCountryAbbreviation(countryName) {
-    return countryData[countryName] || "Not Found";
-  }
-  // function getFighterCountryAbbreviation(matchIndex, fighterIndex) {
-  //   const countryName = ufcCard[matchIndex].flags[fighterIndex];
-  //   return getCountryAbbreviation(countryName);
-  // }
  
-  function calculatePoints(pick, result) {
-    let points = 0;
+function calculatePoints(pick, result) {
+  let points = 0;
+
+  // Check if both pick and result are valid objects
+  if (pick && result) {
     // Check if the winner matches
     if (pick.winner !== null && result.winner !== null && pick.winner === result.winner) {
       points += 1;
-  
+
       // Check if the method also matches, only if the winner is correct
       if (pick.method !== null && result.method !== null && pick.method === result.method) {
         points += 1;
       }
     }
-  
-    return points;
   }
-  
-  
-  
-  function calculateTotalPoints(result) {
-    let totalPoints = 0;
-  
-    result.predictions.forEach((prediction, predIndex) => {
-      const points = calculatePoints(prediction, updatedResults[predIndex]); // Change to ufcResults[predIndex]
-      totalPoints += points;
-    });
-  
-    return totalPoints;
-  }
+
+  return points;
+}
+
+
+function calculateTotalPoints(result, mainEvent) {
+  let totalPoints = 0;
+
+  result.predictions.forEach((prediction, predIndex) => {
+    const adminKevPicksForEvent = getAdminKevPicksForEvent(mainEvent);
+    const adminKevPick = adminKevPicksForEvent[predIndex];
+    const ufcResult = ufcResults[predIndex];
+
+    const points = calculatePoints(prediction, adminKevPick || ufcResult);
+    totalPoints += points;
+  });
+
+  return totalPoints;
+}
+
+
   
   
 
@@ -340,21 +91,23 @@ console.log(filteredByMainEvent)
       .then(data => {
         console.log(data); // Log the data received from the API
         if (Array.isArray(data.picks)) {
-            console.log(data)
+            
           setResults(data.picks);
           const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
           setResults(filteredResults);
-          const adminKevResults = data.picks.find(result => result.owner === 'AdminKev');
-  
-  // Update updatedResults only if adminKevResults exists and is not empty
-         if (adminKevResults && adminKevResults.predictions.length > 0) {
-            setUpdatedResults(adminKevResults.predictions);
-          }
-          // Extract the array from the 'picks' property
+          console.log(filteredResults)
+          data.picks.forEach(result => {
+            if (result.owner === 'AdminKev' && result.predictions.length > 0) {
+              setAdminKevPicks(picks => ({
+                ...picks,
+                [result.main_event]: result.predictions
+              }));
+            }
+          });
         } else {
           console.error('API response does not have an array in the "picks" property:', data);
-          // Handle the unexpected response as needed
         }
+      
       })
       .catch(error => {
         console.error('Error fetching results:', error);
@@ -377,12 +130,14 @@ console.log(filteredByMainEvent)
             }}>
             Results
             </h1>
+            <center>
+            <button style={{border:'gold 5px solid', backgroundColor:'purple', color:'gold',cursor:'pointer'}}>Only {user.username} Picks</button></center>
             {/* ///////I want to filter the cards and only show the results if the main_event matches these  */}
             <center><label>Filter Results</label>
       <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
         <option value="">All</option>
         <option value="Israel Adesanya vs Sean Strickland">Israel Adesanya vs Sean Strickland</option>
-        <option value="Grasso VS Shevchenko">Grasso vs Shevchenko 2</option>
+        <option value="Valentina Shevchenko vs Alexa Grasso">Grasso vs Shevchenko 2</option>
         <option value="Fiziev vs Gamrot">Fiziev vs Gamrot</option>
         <option value="Makhachev vs Oliveira">Makhachev vs Oliveira 2</option>
         <option value="Blaydes vs Almeida">Blaydes vs Almeida</option>
@@ -399,20 +154,27 @@ console.log(filteredByMainEvent)
           </tr>
         </thead>
         <tbody>
-  {filteredByMainEvent.map((result, index) => (
-    <tr key={index}>
-      <td>
-        <div className="ownpicksdiv">
-          <center>
-            <strong>{result.owner}'s picks</strong>
-            <br />
-            <strong>{result.main_event}</strong>
-            <h2>{calculateTotalPoints(result)} Points  </h2>
-          </center>
-        </div>
-        <div  >
-          {result.predictions.map((prediction, predIndex) => (
-            <p className={calculatePoints(prediction, updatedResults[predIndex]) > 0 ? "winnerCircle" : "results-container"}key={predIndex}>
+        {filteredByMainEvent.map((result, index) => (
+  <tr key={index}>
+    <td>
+      <div className="ownpicksdiv">
+        <center>
+          <strong><span className="small">{result.owner}'s</span> picks</strong>
+          <br />
+          <strong>{result.main_event}</strong>
+          <h2>{calculateTotalPoints(result, result.main_event, adminKevPicks)} Points</h2>
+        </center>
+      </div>
+      <div>
+        {result.predictions.map((prediction, predIndex) => {
+          // Check if adminKevPicks contains the main event as a key
+          const adminKevPicksForEvent = adminKevPicks[result.main_event] || {};
+
+          return (
+            <p
+              className={calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 0 ? "winnerCircle" : "results-container"}
+              key={predIndex}
+            >
               <strong>{prediction.fighters.join(' vs ')}</strong>
               <br />
               <strong>Winner:</strong>{" "}
@@ -421,34 +183,21 @@ console.log(filteredByMainEvent)
                 : prediction.winner === 1
                 ? prediction.fighters[1]
                 : "None"}
-              
               <br />
-              
               <strong>Method:</strong> {prediction.method}
               <br />
-
-             <center>
-              {/* {prediction.winner !== undefined && (
-                <img
-                  style={{ height: '30px', marginBottom: '-4%', }}
-                  src={`https://flagsapi.com/${getFighterCountryAbbreviation(predIndex, prediction.winner)}/flat/64.png`}
-                  alt={`Flag of ${prediction.fighters[prediction.winner]}`}
-                />
-              )}  */}
+              <center>
+                {/* Your additional code */}
               
-              
-              
-               <strong className={calculatePoints(prediction, updatedResults[predIndex]) > 1 ? "rightgreen" : ""}>
-  {calculatePoints(prediction, updatedResults[predIndex]) > 1
-    ? ` + ${calculatePoints(prediction, updatedResults[predIndex])} `
-    : null}
-</strong></center>
+              <strong className={calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 1 ? "rightgreen" : ""}>
+                {calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 1
+                  ? ` + ${calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex])} `
+                  : null}
+              </strong></center>
               <br />
-             
-              
-
             </p>
-          ))}
+          );
+        })}
         </div>
       </td>
       
@@ -462,28 +211,25 @@ console.log(filteredByMainEvent)
           </center>
         </div>
         <div className="">
-  {updatedResults.map((match, matchIndex) => (
-    <div className=" real-results-container" key={matchIndex}>
-      <strong>{match.fighters.join(' vs ')}</strong>
-      <br />
-      <strong>Winner:</strong>{" "}
-      {match.winner !== null ? `${match.fighters[match.winner]}` : "Results Pending"}
-      <br />
-      <strong>Method:</strong> {match.method !== null ? match.method : "Results Pending"}
-      <br />
-      {match.winner !== null ? (
-  <div className="flag-image">
-    {/* <img
-      src={`https://flagsapi.com/${getFighterCountryAbbreviation(matchIndex, match.winner)}/flat/64.png`}
-      alt={`Flag of ${[match.winner]}`}
-      style={{ height: '30px', marginLeft: '40%',  }}
-    /> */}
-    
+        {getAdminKevPicksForEvent(result.main_event).map((adminKevMatch, matchIndex) => (
+  <div className="real-results-container" key={matchIndex}>
+    <strong>{adminKevMatch.fighters.join(' vs ')}</strong>
+    <br />
+    <strong>Winner:</strong>{" "}
+    {adminKevMatch.winner !== null ? `${adminKevMatch.fighters[adminKevMatch.winner]}` : "Results Pending"}
+    <br />
+    <strong>Method:</strong> {adminKevMatch.method !== null ? adminKevMatch.method : "Results Pending"}
+    <br />
+    {adminKevMatch.winner !== null ? (
+      <div className="flag-image">
+        {/* ... Flag image code ... */}
+      </div>
+    ) : (
+      <div className="loading" style={{ height: '30px', marginLeft: '40%' }}></div>
+    )}
   </div>
-) : <div className="loading" style={{ height: '30px',marginLeft: '40%',  }}></div>}
+))}
 
-    </div>
-  ))}
 </div>
 
       </td>

@@ -375,22 +375,22 @@ code {
 }
 .results-container {
   border: black 2px solid;
-  max-height: 100px;
-  min-height: 100px;
+  max-height: 150px;
+  min-height: 150px;
   margin: 5% 0%;
 
 }
 .real-results-container {
   border: grey 2px solid;
-  max-height: 100px;
-  min-height: 100px;
+  max-height: 150px;
+  min-height: 150px;
   margin: 5% 0%;
 
 }
 .winnerCircle {
   border: green solid 2px;
-  max-height: 100px;
-  min-height: 100px;
+  max-height: 150px;
+  min-height: 150px;
   margin: 5% 0%;
 }
 .rightgreen {
