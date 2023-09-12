@@ -3,7 +3,7 @@ import './App.css';
 import { NavLink } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 
-function Home() {
+function Home({user}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
@@ -37,7 +37,7 @@ function Home() {
 
 
     return (
-        < div className="App App-header" >
+        < div className="home" >
             {/* <p style={{ color: 'yellow' }}>Welcome to</p> */}
             <h1 style={{
                 textAlign: 'center',
@@ -49,10 +49,13 @@ function Home() {
                 // Adjust this value as needed
                 }}>
                 Off Record Picks!
-                </h1>
+                </h1><div className='crdiv'  onClick={() => handleOptionClick('/about')}><NavLink className='snow' exact to="/about">About Us</NavLink></div>
+                { user ? <div className='crdiv'  onClick={() => handleOptionClick('/section3')}><NavLink className='snow' exact to="/section3">UFC Pick 'ems</NavLink></div> : null }
+               
                 
                 <div className='crdiv'  onClick={() => handleOptionClick('/results')}><NavLink className='snow' exact to="/results">Check Results</NavLink></div>
-                <div className='crdiv'  onClick={() => handleOptionClick('/about')}><NavLink className='snow' exact to="/about">About Us</NavLink></div>
+                
+               
                 <h2>Off-The-Record-Picks - {countPick} - </h2>
         
         

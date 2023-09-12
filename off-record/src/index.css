@@ -25,6 +25,18 @@ code {
   /* border-radius:5%; */
   font-weight: 800;
 }
+.home{
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  background-image: url('https://t3.ftcdn.net/jpg/00/92/80/64/360_F_92806458_cuy3wFTL9h8FqisKPbd9yGoihsNjy8xQ.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .crdiv {
   background-color: gold ;
@@ -37,8 +49,11 @@ code {
   border: purple 5px solid;
   /* border-radius:5%; */
   font-weight: 800;
+  width: 30%;
+
 
 }
+
 .snow {
   text-decoration: wavy;
 
@@ -47,7 +62,9 @@ code {
   color:rgb(255, 255, 255);
   text-align: center;
   justify-content: center;
-  
+  background-image: url('https://t3.ftcdn.net/jpg/00/92/80/64/360_F_92806458_cuy3wFTL9h8FqisKPbd9yGoihsNjy8xQ.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .about p{
   margin-right: 20%;
@@ -87,9 +104,7 @@ code {
 
   
 }
-.smallR {
-  background-color: ;
-}
+
 .backB {
   background-color: gold;
   color:rgb(58, 0, 58) ;
@@ -287,7 +302,10 @@ code {
   color:black;
   margin-bottom: 0%;
   padding-bottom: 15%;
-}
+  /* background-image: url('https://t3.ftcdn.net/jpg/00/92/80/64/360_F_92806458_cuy3wFTL9h8FqisKPbd9yGoihsNjy8xQ.jpg');
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+} 
 .results {
   background-color: #282c34;
   color:white;
@@ -309,12 +327,39 @@ code {
   color: whitesmoke;
   border: 3px  solid gold;
   padding: 4% 3% ;
-  margin-top: 10%;
+  margin-top: 5%;
   border-radius: 10%;
+  font-size: larger;
   font-weight: 700;
   cursor: pointer;
-  min-width: 15%;
+  min-width: 45%;
+  
 
+}
+.bold {
+  font-weight: bold;
+}
+.errortime{
+  background-color: white;
+  border: red 3px solid;
+  margin-left: 25%;
+  margin-right: 25%;
+  font-weight: bolder;
+  color:darkred
+}
+.pointEX {
+  border: purple 5px solid;
+  
+  
+  background-color: #333;
+  
+}
+.pointEXB {
+  border: gold 10px dotted;
+  margin-right: 20%;
+  margin-left: 20%;
+  
+  
 }
 .pickresultsdiv {
   background-color:black ;
@@ -657,6 +702,9 @@ input[type='checkbox'] {
   align-items: center; /* Vertically align children */
   margin-bottom: 20px; /* Add margin between fighter containers */
   min-width: 50%;
+  background-image: url('https://t3.ftcdn.net/jpg/00/92/80/64/360_F_92806458_cuy3wFTL9h8FqisKPbd9yGoihsNjy8xQ.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .fighter-image {

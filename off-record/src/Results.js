@@ -8,34 +8,34 @@ import Dnd from './Dnd';
 function Results({ user, ufcCard, ufcResults }) {
   const [results, setResults] = useState([]);
   const [updatedResults, setUpdatedResults] = useState(ufcResults)
-
+  const [showOnlyUserPicks, setShowOnlyUserPicks] = useState(false);
   const [adminKevPicks, setAdminKevPicks] = useState({});
-
-  const [selectedEvent, setSelectedEvent] = useState(""); // Step 1: Add state for selected event
-//   const [mainEventFilter, setMainEventFilter] = useState("");
+  const [selectedEvent, setSelectedEvent] = useState(""); 
   const navigate = useNavigate()
   const handleOptionClick = (option) => {
       navigate(`${option}`);
     };
-  
-  
-//   const handleUpdate = e => updateSort(e.target.value)
 
   const byMainEvent = (results) => {
     return !selectedEvent || results.main_event === selectedEvent;
   }
 
-  const filteredByMainEvent = selectedEvent ? results.filter(byMainEvent) : [...results];
+  const filteredByMainEvent = results.filter((result) => {
+    return (
+      (!selectedEvent || result.main_event === selectedEvent) &&
+      (!showOnlyUserPicks || result.owner === user.username)
+    );
+  });
+  
 
     const getAdminKevPicksForEvent = (event) => {
-    return adminKevPicks[event] || ufcResults; // Use ufcResults if AdminKev's picks are not available
-  };
-////////put in app soon 
+    return adminKevPicks[event] || ufcResults; };
+
 console.log(results) 
 console.log(ufcResults)
 console.log(updatedResults)
 console.log(filteredByMainEvent)
-console.log(user.username)
+// console.log(user.username)
 
 
  
@@ -78,9 +78,8 @@ function calculateTotalPoints(result, mainEvent) {
   
   
 
-  // Fetch results when the component mounts
+  
   useEffect(() => {
-    // Fetch results from the API
     fetch('https://off-therecordpicks.onrender.com/picks')
       .then(response => {
         if (!response.ok) {
@@ -91,7 +90,8 @@ function calculateTotalPoints(result, mainEvent) {
       .then(data => {
         console.log(data); // Log the data received from the API
         if (Array.isArray(data.picks)) {
-            
+
+          console.log(data)  
           setResults(data.picks);
           const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
           setResults(filteredResults);
@@ -113,12 +113,13 @@ function calculateTotalPoints(result, mainEvent) {
         console.error('Error fetching results:', error);
         // Handle error as needed
       });
-  }, []); // Empty dependency array means this effect runs once after the component mounts
+  }, []); 
 
   return (
 <div>
   (
     <div className="results">
+
     <h1 style={{
             textAlign: 'center',
             marginTop: '0%',
@@ -130,10 +131,8 @@ function calculateTotalPoints(result, mainEvent) {
             }}>
             Results
             </h1>
-            <center>
-            <button style={{border:'gold 5px solid', backgroundColor:'purple', color:'gold',cursor:'pointer'}}>Only {user.username} Picks</button></center>
-            {/* ///////I want to filter the cards and only show the results if the main_event matches these  */}
-            <center><label>Filter Results</label>
+
+            <center><label>Filter Results</label><br></br>
       <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
         <option value="">All</option>
         <option value="Israel Adesanya vs Sean Strickland">Israel Adesanya vs Sean Strickland</option>
@@ -144,6 +143,17 @@ function calculateTotalPoints(result, mainEvent) {
         <option value="Jones vs Miocic">Jones vs Miocic</option>
 
       </select></center>
+      {user && user.username ? (
+                  <center>
+                    <button
+                  style={{ border: 'gold 3px solid', backgroundColor: 'rgb(80, 10, 80)', color: 'white', cursor: 'pointer', marginBottom: '5%',fontWeight:'bold' }}
+                  onClick={() => setShowOnlyUserPicks(!showOnlyUserPicks)}
+                >
+                  {showOnlyUserPicks ? "Show All Picks" : `Only My Picks`}
+                </button>
+
+                  </center>
+                ) : null}
       <table>
         <thead>
           <tr>

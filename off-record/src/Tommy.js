@@ -7,6 +7,12 @@ import Dnd from './Dnd';
 
 function Tommy({ user, ufcCard }) {
   const navigate = useNavigate();
+  const [errors, setErrors] = useState([]);
+  const [error, setError] = useState(null);
+  console.log(error);
+  console.log(errors)
+
+
 
   // UFC card information
   const locationCity = 'Las Vegas'
@@ -42,14 +48,39 @@ console.log(fighterNamesFormatted);
 
   const handlePredictionChange = (index, winnerIndex) => {
     const updatedPredictions = [...predictions];
-    updatedPredictions[index] = { ...updatedPredictions[index], winner: winnerIndex };
+    updatedPredictions[index] = {
+      ...updatedPredictions[index],
+      winner: winnerIndex,
+    };
     setPredictions(updatedPredictions);
+  
+    // Validate the updated predictions
+    validationSchema
+      .validate({ predictions: updatedPredictions })
+      .then(() => {
+        setErrors([]); // No errors, clear errors
+      })
+      .catch((validationError) => {
+        setErrors(validationError.errors || []);
+      });
   };
+  
   const handleMethodChange = (index, method) => {
     const updatedPredictions = [...predictions];
     updatedPredictions[index] = { ...updatedPredictions[index], method };
     setPredictions(updatedPredictions);
+  
+    // Validate the updated predictions
+    validationSchema
+      .validate({ predictions: updatedPredictions })
+      .then(() => {
+        setErrors([]); // No errors, clear errors
+      })
+      .catch((validationError) => {
+        setErrors(validationError.errors || []);
+      });
   };
+  
 
   const validationSchema = yup.object().shape({
     // userName: yup.string().required('Username is required'),
@@ -63,6 +94,22 @@ console.log(fighterNamesFormatted);
       })
     ).required('At least one prediction is required'),
   });
+
+
+  // useEffect(() => {
+  //   try {
+  //     validationSchema.validate({ predictions: predictions });
+  //     const validationError = validationSchema.validateSync({ predictions: predictions });
+  //     if (validationError.errors.length === 0) {
+  //       setErrors([]); // Set errors to 0 if there are no errors
+  //     } else {
+  //       setErrors(validationError.errors);
+  //     }
+  //   } catch (validationError) {
+  //     setErrors(validationError.errors || []);
+  //   }
+  // }, [predictions]);
+  
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,10 +154,12 @@ const handleSubmit = async (e) => {
         })
         .catch(error => {
             console.error('Error submitting predictions:', error);
+            setError(error.message);
             // Handle error as needed
         });
     } catch (error) {
         console.error('Validation error:', error.message);
+        setErrors(error.message || []);
         // Handle validation error messages, setErrors, etc.
     }
 };
@@ -391,8 +440,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
       
       
       </div> 
-      <p>Fighter's images will be availabe on Friday after UFC photoshoot occurs </p>
-      <form onSubmit={handleSubmit}>
+      <form style={{marginBottom: '0px'}} onSubmit={handleSubmit}>
         {ufcCard.map((fight, index) => (
     <div key={index} className="fight">
       <div key={index} className="fighterready">
@@ -500,7 +548,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
    
      
     </div>
-   
+    
 
 
 
@@ -510,7 +558,21 @@ const abbreviation = getCountryAbbreviation(inputCountry);
             
           </div>
         ))}
-        <button className="submitb" type="submit">Submit Predictions</button>
+        <p className="color-black bold ">Fighter's images will be availabe on Friday after UFC photoshoot occurs </p>
+     <center>
+        {errors && (<p className="errortime" style={{ border: errors.length > 0 ? '5px solid red' : 'none' }}>{errors} </p>)}
+</center>
+ <button className="submitb" type="submit">Submit Predictions</button>
+
+        
+
+        
+    
+        
+    
+
+
+        
       </form>
     </div> ) : (
       <Dnd />
