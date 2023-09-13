@@ -162,6 +162,7 @@ class PickResource(Resource):
     def get(self):
         picks = Pick.query.all() 
         picks_data = [{
+            "id": pick.id, 
             "owner": pick.owner,
             "location": pick.location,
             "main_event": pick.main_event,
@@ -173,6 +174,26 @@ class PickResource(Resource):
 
 # Add the PickResource to the API with the '/picks' endpoint
 api.add_resource(PickResource, '/picks')
+
+
+
+class DeletePick(Resource):
+    def delete(self, pick_id):
+        # Find the pick by ID
+        pick = Pick.query.get(pick_id)
+
+        if not pick:
+            return {'message': 'Pick not found'}, 404
+
+        # Delete the pick and associated predictions
+        db.session.delete(pick)
+        db.session.commit()
+
+        return {'message': 'Pick deleted successfully'}, 200
+
+api.add_resource(DeletePick, '/picks/<int:pick_id>/delete')
+
+
 
 
 if __name__ == '__main__':

@@ -322,6 +322,7 @@ code {
   min-width: 75%;
   
 }
+
 .submitb{
   background-color: rgb(80, 10, 80);
   color: whitesmoke;
@@ -374,6 +375,14 @@ code {
   padding-bottom: 2%;
   color: black;
 }
+.delete-button {
+  background-color: gold;
+  border : 3px solid red;
+  margin-top: 0%;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .ownpicksdiv {
   background-color: rgb(255, 255, 255);
   color: rgb(80, 10, 80);

@@ -115,6 +115,62 @@ function calculateTotalPoints(result, mainEvent) {
       });
   }, []); 
 
+
+  const fetchPicks = () => {
+    fetch('https://off-therecordpicks.onrender.com/picks')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Update the list of picks with the newly fetched data
+        setResults(data.picks);
+      })
+      .catch((error) => {
+        console.error('Error fetching results:', error);
+        // Handle error as needed
+      });
+  };
+  
+
+
+
+
+  const handleDeletePick = (pickId) => {
+    // Send a DELETE request to your server to delete the pick
+    console.log(pickId)
+    // fetch(`https://off-therecordpicks.onrender.com/picks/${pickId}`, {
+    //   method: 'DELETE',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // })
+    //   .then((response) => {
+    //     if (!response.ok) {
+    //       throw new Error('Failed to delete pick');
+    //     }
+    //     // Refresh the list of picks after successful deletion
+    //     return fetchPicks();
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error deleting pick:', error);
+    //     // Handle error as needed
+    //   });
+  };
+  
+
+
+
+const [deletePicks, setDeletePicks] = useState(false)
+
+
+
+
+
+
+
   return (
 <div>
   (
@@ -132,15 +188,20 @@ function calculateTotalPoints(result, mainEvent) {
             Results
             </h1>
 
+            
+
+
+
             <center><label>Filter Results</label><br></br>
       <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
         <option value="">All</option>
         <option value="Israel Adesanya vs Sean Strickland">Israel Adesanya vs Sean Strickland</option>
         <option value="Valentina Shevchenko vs Alexa Grasso">Grasso vs Shevchenko 2</option>
-        <option value="Fiziev vs Gamrot">Fiziev vs Gamrot</option>
-        <option value="Makhachev vs Oliveira">Makhachev vs Oliveira 2</option>
-        <option value="Blaydes vs Almeida">Blaydes vs Almeida</option>
-        <option value="Jones vs Miocic">Jones vs Miocic</option>
+        <option value="Rafael Fiziev vs Mateusz Gamrot">Fiziev vs Gamrot</option>
+        <option value="Sodiq Yusuff vs Edson Barboza">Yusuff vs Barboza</option>
+        <option value="Islam Makhachev vs Charles Oliveira">Makhachev vs Oliveira 2</option>
+        <option value="Curtis Blaydes vs Jailton Almeida">Blaydes vs Almeida</option>
+        <option value="Jon Jones vs Stipe Miocic">Jones vs Miocic</option>
 
       </select></center>
       {user && user.username ? (
@@ -159,6 +220,7 @@ function calculateTotalPoints(result, mainEvent) {
           <tr>
             <th>Picks</th>
             
+            
             <th> Fight Results</th>
             {/* Add more table headers as needed */}
           </tr>
@@ -171,8 +233,17 @@ function calculateTotalPoints(result, mainEvent) {
         <center>
           <strong><span className="small">{result.owner}'s</span> picks</strong>
           <br />
-          <strong>{result.main_event}</strong>
+          <strong>{result.main_event}</strong><br></br>
+          {deletePicks && user && (user.username === result.owner || user.username === 'AdminKev') ? (
+    <button
+      className="delete-button"
+      onClick={() => handleDeletePick(result.id)}
+    >
+      Delete Pick
+    </button>
+  ) : null }
           <h2>{calculateTotalPoints(result, result.main_event, adminKevPicks)} Points</h2>
+         
         </center>
       </div>
       <div>
@@ -210,6 +281,10 @@ function calculateTotalPoints(result, mainEvent) {
         })}
         </div>
       </td>
+
+
+      
+
       
     
       <td>  <div className="pickresultsdiv">
@@ -249,6 +324,17 @@ function calculateTotalPoints(result, mainEvent) {
 
       </table>
     </div>
+    {user && user.username ? (
+                  
+                  <button
+                style={{ border: 'gold 3px solid', backgroundColor: 'rgb(80, 10, 80)', color: 'white', cursor: 'pointer', marginBottom: '5%',fontWeight:'bold' }}
+                onClick={() => setDeletePicks(!deletePicks)}
+              >
+                {deletePicks ? "Hide Delete" : `Delete My Picks `}
+              </button>
+
+                
+              ) : null}
   )<img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} className='resultsimg' style={{cursor:'pointer'}}/> <p style={{color:'purple',fontWeight:'Bold',textAlign:'center'}}>Click Logo to go to Home Page</p>
        
             
