@@ -141,7 +141,7 @@ function calculateTotalPoints(result, mainEvent) {
   const handleDeletePick = (pickId) => {
     
     console.log(pickId)
-    fetch(`https://off-therecordpicks.onrender.com/picks/${pickId}/delete`, {
+    fetch(`https://off-therecordpicks.onrender.com/picks/delete`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -149,6 +149,8 @@ function calculateTotalPoints(result, mainEvent) {
     })
       .then((response) => {
         if (!response.ok) {
+          console.log(response)
+
           throw new Error('Failed to delete pick');
         }
         // Refresh the list of picks after successful deletion

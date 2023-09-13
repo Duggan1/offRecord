@@ -191,7 +191,7 @@ class DeletePick(Resource):
 
         return {'message': 'Pick deleted successfully'}, 200
 
-api.add_resource(DeletePick, '/picks/<int:pick_id>/delete')
+api.add_resource(DeletePick, '/picks/delete')
 
 
 
