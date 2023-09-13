@@ -139,25 +139,25 @@ function calculateTotalPoints(result, mainEvent) {
 
 
   const handleDeletePick = (pickId) => {
-    // Send a DELETE request to your server to delete the pick
+    
     console.log(pickId)
-    // fetch(`https://off-therecordpicks.onrender.com/picks/${pickId}`, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    //   .then((response) => {
-    //     if (!response.ok) {
-    //       throw new Error('Failed to delete pick');
-    //     }
-    //     // Refresh the list of picks after successful deletion
-    //     return fetchPicks();
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error deleting pick:', error);
-    //     // Handle error as needed
-    //   });
+    fetch(`https://off-therecordpicks.onrender.com/picks/${pickId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to delete pick');
+        }
+        // Refresh the list of picks after successful deletion
+        return fetchPicks();
+      })
+      .catch((error) => {
+        console.error('Error deleting pick:', error);
+        // Handle error as needed
+      });
   };
   
 
