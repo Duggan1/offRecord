@@ -141,7 +141,7 @@ function calculateTotalPoints(result, mainEvent) {
   const handleDeletePick = (pickId) => {
     
     console.log(pickId)
-    fetch(`https://off-therecordpicks.onrender.com/picks/${pickId}/delete`, {
+    fetch(`https://off-therecordpicks.onrender.com/picks`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

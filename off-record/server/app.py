@@ -171,13 +171,8 @@ class PickResource(Resource):
         return make_response(
             {'picks': picks_data},
             200)
+    
 
-# Add the PickResource to the API with the '/picks' endpoint
-api.add_resource(PickResource, '/picks')
-
-
-
-class DeletePick(Resource):
     def delete(self, pick_id):
         # Find the pick by ID
         pick = Pick.query.get(pick_id)
@@ -191,7 +186,15 @@ class DeletePick(Resource):
 
         return {'message': 'Pick deleted successfully'}, 200
 
-api.add_resource(DeletePick, '/picks/<int:pick_id>/delete')
+# Add the PickResource to the API with the '/picks' endpoint
+api.add_resource(PickResource, '/picks')
+
+
+
+# class DeletePick(Resource):
+    
+
+# api.add_resource(DeletePick, '/picks/<int:pick_id>/delete')
 
 
 
