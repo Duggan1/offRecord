@@ -188,9 +188,9 @@ class PickByID(Resource):
         return make_response(pick.to_dict(), 200)
  
 
-def delete(self, pick_id): 
-    
-    pick = Pick.query.filter_by(id=pick_id).first()
+def delete(self, id): 
+
+    pick = Pick.query.filter_by(id=id).first()
     if pick is None:
         return make_response({"error": "pick not found"}, 404)
 
@@ -201,7 +201,7 @@ def delete(self, pick_id):
 
     
 
-api.add_resource(PickByID, '/picks/<int:pick_id>')
+api.add_resource(PickByID, '/picks/<int:id>')
 
 
 
