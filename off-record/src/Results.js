@@ -142,10 +142,8 @@ function calculateTotalPoints(result, mainEvent) {
     
     console.log(`https://off-therecordpicks.onrender.com/picks/${pickId}`)
     fetch(`https://off-therecordpicks.onrender.com/picks/${pickId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      method: "DELETE",
+      
     })
       .then((response) => {
         if (!response.ok) {
