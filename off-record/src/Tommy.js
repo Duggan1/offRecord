@@ -20,11 +20,19 @@ function Tommy({ user, ufcCard }) {
   
   const fighterNamesFormatted = ufcCard.map(({ fighters }) => {
     const formattedFighters = fighters.map(name => {
-        const [firstName, lastName] = name.split(' ');
-        return `${lastName.toUpperCase()}_${firstName.toUpperCase()}`;
+      const matches = name.match(/^(.*?)\s(.*)$/);
+      if (matches && matches.length === 3) {
+        const [_, firstName, lastName] = matches;
+        return `${lastName.replace(/\s/g, '_').toUpperCase()}_${firstName.toUpperCase()}`;
+      } else {
+        return name.toUpperCase();
+      }
     });
     return formattedFighters;
-});
+  });
+  
+  
+
 
 console.log(fighterNamesFormatted);
 
@@ -483,9 +491,10 @@ const abbreviation = getCountryAbbreviation(inputCountry);
         style={{
           width: '100%',
           backgroundImage: `
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_BELT_09-09.png?itok=TiMjZd8f"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")
-       
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_BELT_09-16.png?itok=EaYvjfXL"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_09-16.png?itok=DmMQBKH2"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/${fighterNamesFormatted[index][0]}_L_09-17.png?itok=Xol_9UmI"),
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][0]}_L_04-29.png?itok=eCm0SzfE")
             `,
         }}
         
@@ -522,7 +531,8 @@ const abbreviation = getCountryAbbreviation(inputCountry);
         style={{
           width: '100%',
           backgroundImage: `
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][1]}_R_09-16.png?itok=cPvbIO-E")
+            
             `,
           
         }}
@@ -558,7 +568,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
             
           </div>
         ))}
-        <p className="color-black bold ">Fighter's images will be availabe on Friday after UFC photoshoot occurs </p>
+        {/* <p className="color-black bold ">Fighter's images will be availabe on Friday after UFC photoshoot occurs </p> */}
      <center>
         {errors && (<p className="errortime" style={{ border: errors.length > 0 ? '5px solid red' : 'none' }}>{errors} </p>)}
 </center>

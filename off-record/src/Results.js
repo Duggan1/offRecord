@@ -45,7 +45,11 @@ function calculatePoints(pick, result) {
   // Check if both pick and result are valid objects
   if (pick && result) {
     // Check if the winner matches
-    if (pick.winner !== null && result.winner !== null && pick.winner === result.winner) {
+    if (pick.method !== null && result.method !== null && pick.method === "Draw/No-Contest" && result.method === "Draw/No-Contest") {
+      points += 2;
+    }
+
+    else if (pick.winner !== null && result.winner !== null && pick.winner === result.winner) {
       points += 1;
 
       // Check if the method also matches, only if the winner is correct
@@ -127,6 +131,17 @@ function calculateTotalPoints(result, mainEvent) {
       .then((data) => {
         // Update the list of picks with the newly fetched data
         setResults(data.picks);
+        const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
+          setResults(filteredResults);
+          console.log(filteredResults)
+          data.picks.forEach(result => {
+            if (result.owner === 'AdminKev' && result.predictions.length > 0) {
+              setAdminKevPicks(picks => ({
+                ...picks,
+                [result.main_event]: result.predictions
+              }));
+            }
+          });
       })
       .catch((error) => {
         console.error('Error fetching results:', error);
@@ -196,8 +211,9 @@ const [deletePicks, setDeletePicks] = useState(false)
       <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
         <option value="">All</option>
         <option value="Israel Adesanya vs Sean Strickland">Israel Adesanya vs Sean Strickland</option>
-        <option value="Valentina Shevchenko vs Alexa Grasso">Grasso vs Shevchenko 2</option>
+        <option value="Alexa Grasso vs Valentina Shevchenko">Grasso vs Shevchenko 2</option>
         <option value="Rafael Fiziev vs Mateusz Gamrot">Fiziev vs Gamrot</option>
+        <option value="Grant Dawson vs Bobby Green">Dawson vs Green</option>
         <option value="Sodiq Yusuff vs Edson Barboza">Yusuff vs Barboza</option>
         <option value="Islam Makhachev vs Charles Oliveira">Makhachev vs Oliveira 2</option>
         <option value="Curtis Blaydes vs Jailton Almeida">Blaydes vs Almeida</option>

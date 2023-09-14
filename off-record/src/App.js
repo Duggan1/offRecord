@@ -41,16 +41,16 @@ function App() {
 
 
   const ufcCard = [
-    { fighters: ["Valentina Shevchenko", "Alexa Grasso"], match: "125 lbs", records: ["23-4", "16-3"], flags: ["Kyrgyzstan", "Mexico"] },
+    { fighters: ["Alexa Grasso","Valentina Shevchenko"], match: "125 lbs", records: ["23-4", "16-3"], flags: ["Mexico", "Kyrgyzstan"] },
     { fighters: ["Kevin Holland", "Jack Della Maddalena"], match: "170 lbs", records: ["25-9", "15-2"], flags: ["United States", "Australia"] },
-    { fighters: ["Raul Rosas Jr.", "Terrence Mitchell"], match: "135 lbs", records: ["7-1", "14-3"], flags: ["Mexico", "United States"] },
+    { fighters: ["Raul Rosas Jr", "Terrence Mitchell"], match: "135 lbs", records: ["7-1", "14-3"], flags: ["Mexico", "United States"] },
     { fighters: ["Daniel Zellhuber", "Christos Giagos"], match: "155 lbs", records: ["13-1", "20-10"], flags: ["Mexico", "United States"] },
     { fighters: ["Fernando Padilla", "Kyle Nelson"], match: "145 lbs", records: ["15-4", "14-5-1"], flags: ["Mexico", "Canada"] },
-    { fighters: ["Lupita Godinez", "Elise Reed"], match: "115 lbs", records: ["10-3", "7-3"], flags: ["Mexico", "United States"] },
+    { fighters: ["Loopy Godinez", "Elise Reed"], match: "115 lbs", records: ["10-3", "7-3"], flags: ["Mexico", "United States"] },
     { fighters: ["Roman Kopylov", "Josh Fremd"], match: "185 lbs", records: ["11-2", "11-4"], flags: ["Russia", "United States"] },
-    { fighters: ["Edgar Cháirez", "Daniel Lacerda"], match: "125 lbs", records: ["10-5", "11-5"], flags: ["Mexico", "Brazil"] },
+    { fighters: ["Edgar Chairez", "Daniel Lacerda"], match: "125 lbs", records: ["10-5", "11-5"], flags: ["Mexico", "Brazil"] },
     { fighters: ["Tracy Cortez", "Jasmine Jasudavicius"], match: "125 lbs", records: ["10-1", "9-2"], flags: ["United States", "Canada"] },
-    { fighters: ["Charlie Campbell", "Alex Reyes"], match: "155 lbs", records: ["7-2", "13-3"], flags: ["United States", "United States"] },
+    { fighters: ["Alex Reyes", "Charlie Campbell"], match: "155 lbs", records: ["7-2", "13-3"], flags: ["United States", "United States"] },
     { fighters: ["Josefine Knutsson", "Marnic Mann"], match: "115 lbs", records: ["6-0", "6-1"], flags: ["Sweden", "United States"] },
   ];
   
@@ -63,7 +63,7 @@ function App() {
 
   
   const ufcResults = [
-    { fighters: ["Valentina Shevchenko", "Alexa Grasso"], match: "125 lbs", winner: null, method: null },
+    { fighters: ["Alexa Grasso","Valentina Shevchenko" ], match: "125 lbs", winner: null, method: null },
     { fighters: ["Kevin Holland", "Jack Della Maddalena"], match: "170 lbs", winner: null, method: null },
     { fighters: ["Raul Rosas Jr.", "Terrence Mitchell"], match: "135 lbs", winner: null, method: null },
     { fighters: ["Daniel Zellhuber", "Christos Giagos"], match: "155 lbs", winner: null, method: null },
