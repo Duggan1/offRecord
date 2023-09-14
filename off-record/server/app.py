@@ -197,9 +197,10 @@ class PickByID(Resource):
         return make_response(pick_dict, 200)
 
 
-def delete(self, id): 
+def delete(self, pick_id):  # Change 'id' to 'pick_id'
+    print(f"DELETE request received for pick_id {pick_id}")
 
-    pick = Pick.query.filter_by(id=id).first()
+    pick = Pick.query.filter_by(id=pick_id).first()
     if pick is None:
         return make_response({"error": "pick not found"}, 404)
 
