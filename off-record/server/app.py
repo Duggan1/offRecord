@@ -180,21 +180,21 @@ api.add_resource(PickResource, '/picks')
 
 
 class PickByID(Resource):
-    # def get(self, id):
-    #     pick = Pick.query.filter_by(id=id).first()
-    #     if pick is None:
-    #         return make_response({"error": "pick not found"}, 404)
+    def get(self, id):
+        pick = Pick.query.filter_by(id=id).first()
+        if pick is None:
+            return make_response({"error": "pick not found"}, 404)
         
-    #     # Define a dictionary representation of the pick object
-    #     pick_dict = {
-    #         "id": pick.id,
-    #         "owner": pick.owner,
-    #         "location": pick.location,
-    #         "main_event": pick.main_event,
-    #         # Add other fields as needed
-    #     }
+        # Define a dictionary representation of the pick object
+        pick_dict = {
+            "id": pick.id,
+            "owner": pick.owner,
+            "location": pick.location,
+            "main_event": pick.main_event,
+            # Add other fields as needed
+        }
 
-    #     return make_response(pick_dict, 200)
+        return make_response(pick_dict, 200)
     
 
 
@@ -204,6 +204,10 @@ class PickByID(Resource):
         pick = Pick.query.filter_by(id=pick_id).first()
         if pick is None:
             return make_response({"error": "pick not found"}, 404)
+
+        for prediction in pick.predictions:
+            db.session.delete(prediction)
+
 
         db.session.delete(pick)
         db.session.commit()
