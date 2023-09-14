@@ -173,28 +173,35 @@ class PickResource(Resource):
             200)
     
 
-    def delete(self, pick_id):
-        # Find the pick by ID
-        pick = Pick.query.get(pick_id)
-
-        if not pick:
-            return {'message': 'Pick not found'}, 404
-
-        # Delete the pick and associated predictions
-        db.session.delete(pick)
-        db.session.commit()
-
-        return {'message': 'Pick deleted successfully'}, 200
-
+   
 # Add the PickResource to the API with the '/picks' endpoint
 api.add_resource(PickResource, '/picks')
 
 
 
-# class DeletePick(Resource):
+class PickByID(Resource):
+ 
+ def get(self, id):
+        pick = Pick.query.filter_by(id = id).first()
+        if pick == None:
+            return make_response({"error":"pick not found"}, 404)
+        return make_response(pick.to_dict(), 200)
+ 
+
+def delete(self, pick_id): 
+    
+    pick = Pick.query.filter_by(id=pick_id).first()
+    if pick is None:
+        return make_response({"error": "pick not found"}, 404)
+
+    db.session.delete(pick)
+    db.session.commit()
+    
+    return make_response({"deleted": "she gone"}, 204)
+
     
 
-# api.add_resource(DeletePick, '/picks/<int:pick_id>/delete')
+api.add_resource(PickByID, '/picks/<int:pick_id>')
 
 
 
