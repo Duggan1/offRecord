@@ -11,6 +11,8 @@ function Results({ user, ufcCard, ufcResults }) {
   const [showOnlyUserPicks, setShowOnlyUserPicks] = useState(false);
   const [adminKevPicks, setAdminKevPicks] = useState({});
   const [selectedEvent, setSelectedEvent] = useState(""); 
+  const [explainPoints, setExplainPointst] = useState(false); 
+  const [showLeaderBoard, setshowLeaderBoard] = useState(false); 
   const navigate = useNavigate()
   const handleOptionClick = (option) => {
       navigate(`${option}`);
@@ -36,6 +38,48 @@ console.log(ufcResults)
 console.log(updatedResults)
 console.log(filteredByMainEvent)
 // console.log(user.username)
+
+const [leaderboard, setLeaderboard] = useState([]);
+  // Other state variables...
+
+  useEffect(() => {
+    // Fetch and set results data as you are currently doing...
+
+    // Calculate and set the leaderboard based on results and user data
+    calculateLeaderboard(results, ufcResults);
+  }, [results, ufcResults]);
+
+const calculateLeaderboard = (results, ufcResults) => {
+  const userPointsMap = new Map();
+
+  results.forEach(result => {
+    // Calculate total points for each result
+    const totalPoints = calculateTotalPoints(result, result.main_event, ufcResults);
+    
+    // Update the user's total points in the map
+    if (!userPointsMap.has(result.owner)) {
+      userPointsMap.set(result.owner, 0);
+    }
+    userPointsMap.set(result.owner, userPointsMap.get(result.owner) + totalPoints);
+  });
+
+  // Convert the map to an array of objects for easier sorting
+  const leaderboardArray = Array.from(userPointsMap, ([username, totalPoints]) => ({ username, totalPoints }));
+
+  // Sort the leaderboard by totalPoints in descending order
+  leaderboardArray.sort((a, b) => b.totalPoints - a.totalPoints);
+
+  // Set the leaderboard state
+  setLeaderboard(leaderboardArray);
+};
+
+
+
+
+
+
+
+
 
 
  
@@ -191,23 +235,64 @@ const [deletePicks, setDeletePicks] = useState(false)
   (
     <div className="results">
 
-    <h1 style={{
-            textAlign: 'center',
-            marginTop: '0%',
-            color: 'black',
-            textShadow: '0 0 5px yellow',
-            fontSize:'35px',
-            maxWidth: '100%'
-            // Adjust this value as needed
-            }}>
-            Results
-            </h1>
-
-            
+  
+    
 
 
 
-            <center><label>Filter Results</label><br></br>
+            {showLeaderBoard ? <div className="lboard">
+            <h2 className="tac">Leaderboard</h2>
+      <center><table ><thead><tr>
+            <th className="downUnder">Username</th><th className="downUnder">Points</th></tr></thead>
+        <tbody>{leaderboard.map((user, index) => (
+            <tr key={index}>
+              <td>{user.username}</td><td className="tac" >{user.totalPoints}</td></tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button></center></div>
+               : <center><button className="expoint" onClick={() => setshowLeaderBoard(!showLeaderBoard)} >View Leaderboard</button></center> }
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {explainPoints ?    <div className="pointEXB2"><div className="pointEX">
+      <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Winner </p><br></br>
+      <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Method if you chose the correct fighter</p><br></br>
+      <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 points</span> for picking Draw/No-Contest correctly</p><center><button className="expoint" onClick={() => setExplainPointst(!explainPoints)} >Hide Point System</button></center></div></div>
+       : <center><button className="expoint" onClick={() => setExplainPointst(!explainPoints)} >Explain Point System</button></center> }
+
+
+
+      <h1 style={{
+                  textAlign: 'center',
+                  marginTop: '0%',
+                  color: 'black',
+                  textShadow: '0 0 5px gold',
+                  fontSize:'55px',
+                  maxWidth: '100%'
+                  // Adjust this value as needed
+                  }}>
+                  Results
+                  </h1>
+
+
+
+            <center><label>Filter Results by Fight Card</label><br></br>
       <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
         <option value="">All</option>
         <option value="Israel Adesanya vs Sean Strickland">Israel Adesanya vs Sean Strickland</option>
@@ -223,15 +308,16 @@ const [deletePicks, setDeletePicks] = useState(false)
       {user && user.username ? (
                   <center>
                     <button
-                  style={{ border: 'gold 3px solid', backgroundColor: 'rgb(80, 10, 80)', color: 'white', cursor: 'pointer', marginBottom: '5%',fontWeight:'bold' }}
+                  className="urpicksB"
                   onClick={() => setShowOnlyUserPicks(!showOnlyUserPicks)}
                 >
-                  {showOnlyUserPicks ? "Show All Picks" : `Only My Picks`}
+                  {showOnlyUserPicks ? "Show All Picks" : `Show Only My Picks`}
                 </button>
 
                   </center>
                 ) : null}
-      <table>
+     
+      <table className="wholeOne" >
         <thead>
           <tr>
             <th>Picks</th>
@@ -241,10 +327,10 @@ const [deletePicks, setDeletePicks] = useState(false)
             {/* Add more table headers as needed */}
           </tr>
         </thead>
-        <tbody>
+        <tbody >
         {filteredByMainEvent.map((result, index) => (
-  <tr key={index}>
-    <td>
+  <tr key={index} >
+    <td className="LeftOne">
       <div className="ownpicksdiv">
         <center>
           <strong><span className="small">{result.owner}'s</span> picks</strong>
@@ -303,7 +389,8 @@ const [deletePicks, setDeletePicks] = useState(false)
 
       
     
-      <td>  <div className="pickresultsdiv">
+      <td className="RightOne">  
+        <div className="pickresultsdiv">
           <center>
             <strong>{result.main_event}</strong>
             <br />

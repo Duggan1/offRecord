@@ -362,12 +362,60 @@ code {
   
   
 }
+.pointEXB2 {
+  border: gold 10px dotted;
+  margin-right: 20%;
+  margin-left: 20%;
+  margin-bottom: 5%;
+
+}
+.expoint {
+  border: gold 3px solid;
+  background-color: rgb(80, 10, 80); 
+  color: white;
+  cursor: pointer;
+  margin-bottom: 5%;
+  font-weight: bold;
+}
+.urpicksB {
+  border: purple 3px solid;
+  background-color: snow; 
+  color: purple;
+  cursor: pointer;
+  margin-bottom: 5%;
+  font-weight: bold;
+
+}
+.b2fight {
+  border: black 3px solid;
+  background-color: gold; 
+  color: rgb(80, 10, 80);
+  cursor: pointer;
+  margin-bottom: 5%;
+  font-weight: bold;
+
+}
+.tac {
+  text-align: center;
+  color: gold;
+  font-weight: bold;
+}
+.lboard {
+  text-align: center;
+  background-color: rgba(55, 0, 59, 0.439);
+  color:white;
+  border: 5px black solid;
+  margin-bottom: 5%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.downUnder {
+  text-decoration: underline;
+}
 .pickresultsdiv {
   background-color:black ;
   color: white;
   border-left: black 3px solid;
-  
-  
 }
 .pickresultsdiv h2 {
   background-color: rgb(145, 124, 0);
@@ -382,7 +430,19 @@ code {
   cursor: pointer;
   font-weight: bold;
 }
+.LeftOne {
+  /* background-color: pink; */
+  width: 50%;
+}
 
+.RightOne {
+  /* background-color: navy; */
+  width: 50%;
+}
+.wholeOne{
+  min-width: 100%;
+
+}
 .ownpicksdiv {
   background-color: rgb(255, 255, 255);
   color: rgb(80, 10, 80);
