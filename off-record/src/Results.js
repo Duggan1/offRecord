@@ -281,11 +281,11 @@ const [deletePicks, setDeletePicks] = useState(false)
       <h1 style={{
                   textAlign: 'center',
                   marginTop: '0%',
-                  color: 'black',
+                  color: 'rgb(80, 10, 80)',
                   textShadow: '0 0 5px gold',
                   fontSize:'55px',
-                  maxWidth: '100%'
-                  // Adjust this value as needed
+                  maxWidth: '100%',
+                  letterSpacing: '4px',
                   }}>
                   Results
                   </h1>
