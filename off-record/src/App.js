@@ -107,18 +107,7 @@ function App() {
   return (
     <BrowserRouter>
      <div >
-     <h1  style={{
-  textAlign: 'center',
-  marginTop: '0%',
-  color: 'purple',
-  textShadow: '0 0 5px yellow',
-  fontSize:'35px',
-  maxWidth: '100%'
-   // Adjust this value as needed
-}}>
-  Off Record Picks
-</h1>
-
+ 
 
 
 

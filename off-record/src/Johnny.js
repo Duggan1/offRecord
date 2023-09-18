@@ -3,6 +3,7 @@ import './App.css';
 import * as yup from 'yup';
 // import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
+import Header from "./Header";
 
 
 
@@ -128,6 +129,7 @@ function Johnny({ onLogin }) {
 
     return (
         <div className="johnny">
+          <Header/>
             <h1 style={{marginTop:'0%'}}>Sign Up / Login</h1>
             <div style={{ display: 'inline-block',marginBottom:'5%'}}className="custom-checkbox">
           <input

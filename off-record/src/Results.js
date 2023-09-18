@@ -12,7 +12,7 @@ function Results({ user, ufcCard, ufcResults }) {
   const [adminKevPicks, setAdminKevPicks] = useState({});
   const [selectedEvent, setSelectedEvent] = useState(""); 
   const [explainPoints, setExplainPointst] = useState(false); 
-  const [showLeaderBoard, setshowLeaderBoard] = useState(true); 
+  const [showLeaderBoard, setshowLeaderBoard] = useState(false); 
   const [showCardWins, setShowCardWins] = useState(false); 
 
   const navigate = useNavigate()
@@ -336,7 +336,7 @@ function countWinsForUsername(leaderboardwinners, username) {
 
             {showLeaderBoard ? <div className="lboard">
             
-            <h2 className="tac" style={{letterSpacing: '2px',}}>Leaderboard</h2>
+            <h2 className="tac" style={{letterSpacing: '2xcpx',}}>Leaderboard</h2>
       <center><table ><thead><tr>
             <th className="downUnder">Username</th><th  className="downUnder">Total Points</th><th className="downUnder Left5">Wins</th></tr></thead>
         <tbody>{leaderboard.map((user, index) => (
@@ -384,9 +384,11 @@ function countWinsForUsername(leaderboardwinners, username) {
                      
                   
                   ) : (
+                    <div>
+                      
                       <p>
-                        Winner: {eventData.winner} - {eventData.points} Points
-                      </p>
+                         {eventData.winner} - {eventData.points} Points
+                      </p></div>
                     )}
                   </div>
                 </div>
