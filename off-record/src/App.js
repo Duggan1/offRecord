@@ -106,13 +106,13 @@ function App() {
 
   return (
     <BrowserRouter>
-     <div className="blackBB">
+     <div >
      <h1  style={{
   textAlign: 'center',
   marginTop: '0%',
-  color: 'lightyellow',
-  textShadow: '0px 0px 15px purple',
-  fontSize:'55px',
+  color: 'purple',
+  textShadow: '0 0 5px yellow',
+  fontSize:'35px',
   maxWidth: '100%'
    // Adjust this value as needed
 }}>
