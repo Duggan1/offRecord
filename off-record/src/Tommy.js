@@ -448,6 +448,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
       
       
       </div> 
+      <p className="color-black bold ">Fighter's images will be availabe on Friday after UFC photoshoot occurs </p>
       <form style={{marginBottom: '0px'}} onSubmit={handleSubmit}>
         {ufcCard.map((fight, index) => (
     <div key={index} className="fight">
@@ -491,14 +492,13 @@ const abbreviation = getCountryAbbreviation(inputCountry);
         style={{
           width: '100%',
           backgroundImage: `
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_BELT_09-16.png?itok=EaYvjfXL"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_09-16.png?itok=DmMQBKH2"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/${fighterNamesFormatted[index][0]}_L_09-17.png?itok=Xol_9UmI"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][0]}_L_04-29.png?itok=eCm0SzfE")
-            `,
+            
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")
+           `,
         }}
         
-
+        // url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_BELT_09-16.png?itok=EaYvjfXL"),
+        // https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc
 
       ><div className="sireal" ><div className="recordwcir redcorner">{fight.records[0]}</div>  <button
       className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
@@ -531,7 +531,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
         style={{
           width: '100%',
           backgroundImage: `
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][1]}_R_09-16.png?itok=cPvbIO-E")
+            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")
             
             `,
           
@@ -568,7 +568,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
             
           </div>
         ))}
-        {/* <p className="color-black bold ">Fighter's images will be availabe on Friday after UFC photoshoot occurs </p> */}
+       
      <center>
         {errors && (<p className="errortime" style={{ border: errors.length > 0 ? '5px solid red' : 'none' }}>{errors} </p>)}
 </center>

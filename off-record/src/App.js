@@ -40,41 +40,42 @@ function App() {
   // ];
 
 
+  // const ufcCard = [
+  //   { fighters: ["Alexa Grasso","Valentina Shevchenko"], match: "125 lbs", records: ["23-4", "16-3"], flags: ["Mexico", "Kyrgyzstan"] },
+  //   { fighters: ["Kevin Holland", "Jack Della Maddalena"], match: "170 lbs", records: ["25-9", "15-2"], flags: ["United States", "Australia"] },
+  //   { fighters: ["Raul Rosas Jr", "Terrence Mitchell"], match: "135 lbs", records: ["7-1", "14-3"], flags: ["Mexico", "United States"] },
+  //   { fighters: ["Daniel Zellhuber", "Christos Giagos"], match: "155 lbs", records: ["13-1", "20-10"], flags: ["Mexico", "United States"] },
+  //   { fighters: ["Fernando Padilla", "Kyle Nelson"], match: "145 lbs", records: ["15-4", "14-5-1"], flags: ["Mexico", "Canada"] },
+  //   { fighters: ["Loopy Godinez", "Elise Reed"], match: "115 lbs", records: ["10-3", "7-3"], flags: ["Mexico", "United States"] },
+  //   { fighters: ["Roman Kopylov", "Josh Fremd"], match: "185 lbs", records: ["11-2", "11-4"], flags: ["Russia", "United States"] },
+  //   { fighters: ["Edgar Chairez", "Daniel Lacerda"], match: "125 lbs", records: ["10-5", "11-5"], flags: ["Mexico", "Brazil"] },
+  //   { fighters: ["Tracy Cortez", "Jasmine Jasudavicius"], match: "125 lbs", records: ["10-1", "9-2"], flags: ["United States", "Canada"] },
+  //   { fighters: ["Alex Reyes", "Charlie Campbell"], match: "155 lbs", records: ["7-2", "13-3"], flags: ["United States", "United States"] },
+  //   { fighters: ["Josefine Knutsson", "Marnic Mann"], match: "115 lbs", records: ["6-0", "6-1"], flags: ["Sweden", "United States"] },
+  // ];
   const ufcCard = [
-    { fighters: ["Alexa Grasso","Valentina Shevchenko"], match: "125 lbs", records: ["23-4", "16-3"], flags: ["Mexico", "Kyrgyzstan"] },
-    { fighters: ["Kevin Holland", "Jack Della Maddalena"], match: "170 lbs", records: ["25-9", "15-2"], flags: ["United States", "Australia"] },
-    { fighters: ["Raul Rosas Jr", "Terrence Mitchell"], match: "135 lbs", records: ["7-1", "14-3"], flags: ["Mexico", "United States"] },
-    { fighters: ["Daniel Zellhuber", "Christos Giagos"], match: "155 lbs", records: ["13-1", "20-10"], flags: ["Mexico", "United States"] },
-    { fighters: ["Fernando Padilla", "Kyle Nelson"], match: "145 lbs", records: ["15-4", "14-5-1"], flags: ["Mexico", "Canada"] },
-    { fighters: ["Loopy Godinez", "Elise Reed"], match: "115 lbs", records: ["10-3", "7-3"], flags: ["Mexico", "United States"] },
-    { fighters: ["Roman Kopylov", "Josh Fremd"], match: "185 lbs", records: ["11-2", "11-4"], flags: ["Russia", "United States"] },
-    { fighters: ["Edgar Chairez", "Daniel Lacerda"], match: "125 lbs", records: ["10-5", "11-5"], flags: ["Mexico", "Brazil"] },
-    { fighters: ["Tracy Cortez", "Jasmine Jasudavicius"], match: "125 lbs", records: ["10-1", "9-2"], flags: ["United States", "Canada"] },
-    { fighters: ["Alex Reyes", "Charlie Campbell"], match: "155 lbs", records: ["7-2", "13-3"], flags: ["United States", "United States"] },
-    { fighters: ["Josefine Knutsson", "Marnic Mann"], match: "115 lbs", records: ["6-0", "6-1"], flags: ["Sweden", "United States"] },
+    { fighters: ["Rafael Fiziev", "Mateusz Gamrot"], match: "155 lbs", records: ["12-2", "22-2"], flags: ["Azerbaijan", "Poland"] },
+    { fighters: ["Bryce Mitchell", "Dan Ige"], match: "145 lbs", records: ["15-1", "17-6"], flags: ["United States", "United States"] },
+    { fighters: ["Marina Rodriguez", "Michelle Waterson-Gomez"], match: "115 lbs", records: ["16-3-2", "18-11"], flags: ["Brazil", "United States"] },
+    { fighters: ["Bryan Battle", "AJ Fletcher"], match: "170 lbs", records: ["9-2", "10-2"], flags: ["United States", "United States"] },
+    { fighters: ["Charles Jourdain", "Ricardo Ramos"], match: "145 lbs", records: ["14-6-1", "16-4"], flags: ["Canada", "Brazil"] },
+    { fighters: ["Dan Argueta", "Miles Johns"], match: "135 lbs", records: ["9-1", "13-2"], flags: ["United States", "United States"] },
+    { fighters: ["Tim Means", "Andre Fialho"], match: "170 lbs", records: ["32-15-1", "16-7"], flags: ["United States", "Portugal"] },
+    { fighters: ["Jacob Malkoun", "Cody Brundage"], match: "185 lbs", records: ["7-2", "8-5"], flags: ["Australia", "United States"] },
+    { fighters: ["Jake Collier", "Mohammed Usman"], match: "265 lbs", records: ["13-9", "9-2"], flags: ["United States", "Nigeria"] },
+    { fighters: ["Mizuki Inoue", "Hannah Goldy"], match: "115 lbs", records: ["14-6-0", "6-3-0"], flags: ["Japan", "United States"] },
+    { fighters: ["Montserrat Rendon", "Tamires Vidal"], match: "135 lbs", records: ["5-0-0", "7-1-0"], flags: ["Mexico", "Brazil"] },
   ];
   
   
 
-
-
-
-
-
   
-  const ufcResults = [
-    { fighters: ["Alexa Grasso","Valentina Shevchenko" ], match: "125 lbs", winner: null, method: null },
-    { fighters: ["Kevin Holland", "Jack Della Maddalena"], match: "170 lbs", winner: null, method: null },
-    { fighters: ["Raul Rosas Jr.", "Terrence Mitchell"], match: "135 lbs", winner: null, method: null },
-    { fighters: ["Daniel Zellhuber", "Christos Giagos"], match: "155 lbs", winner: null, method: null },
-    { fighters: ["Fernando Padilla", "Kyle Nelson"], match: "145 lbs", winner: null, method: null },
-    { fighters: ["Lupita Godinez", "Elise Reed"], match: "115 lbs", winner: null, method: null },
-    { fighters: ["Roman Kopylov", "Josh Fremd"], match: "185 lbs", winner: null, method: null },
-    { fighters: ["Edgar Cháirez", "Daniel Lacerda"], match: "125 lbs", winner: null, method: null },
-    { fighters: ["Tracy Cortez", "Jasmine Jasudavicius"], match: "125 lbs", winner: null, method: null },
-    { fighters: ["Charlie Campbell", "Alex Reyes"], match: "155 lbs", winner: null, method: null },
-    { fighters: ["Josefine Knutsson", "Marnic Mann"], match: "115 lbs", winner: null, method: null },
-  ];
+  const ufcResults = ufcCard.map((match) => ({
+    fighters: match.fighters,
+    match: match.match,
+    winner: null,
+    method: null,
+  }));
   
 
 

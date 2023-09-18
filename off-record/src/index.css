@@ -306,10 +306,7 @@ code {
   /* background-repeat: no-repeat; */
   /* background-size: cover; */
 } 
-.results {
-  background-color: #282c34;
-  color:white;
-}
+
 .fighter-button {
   background-color: black;
   color: black;
@@ -352,21 +349,43 @@ code {
   border: purple 5px solid;
   
   
-  background-color: #333;
+  background-color: rgba(55, 0, 59, 0.439);
+  
+}
+.pointEXCard {
+  border: purple 5px solid;
+  margin-right: 20%;
+  margin-left: 20%;
+  text-align: center;
+  margin-top: 0%;
+  
+  
+  background-color: rgba(55, 0, 59, 0.439);
   
 }
 .pointEXB {
   border: gold 10px dotted;
   margin-right: 20%;
   margin-left: 20%;
+  background-color: rgba(55, 0, 59, 0.439);
+
+}
+.tight {
+  margin: 0%;
+  padding: 0%;
   
-  
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .pointEXB2 {
   border: gold 10px dotted;
   margin-right: 20%;
   margin-left: 20%;
-  margin-bottom: 5%;
+  margin-bottom: 2%;
+  text-align: center;
 
 }
 .expoint {
@@ -435,12 +454,23 @@ code {
   padding-bottom: 2%;
   color: black;
 }
+.filterbutton {
+  border : 3px solid gold;
+  font-weight: bold;
+}
 .delete-button {
   background-color: gold;
   border : 3px solid red;
   margin-top: 0%;
   cursor: pointer;
   font-weight: bold;
+}
+.results {
+  background-image: url('https://c4.wallpaperflare.com/wallpaper/121/402/526/anderson-silva-boxing-fight-fitness-wallpaper-preview.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  color:white;
+  
 }
 .LeftOne {
   /* background-color: pink; */
@@ -453,6 +483,7 @@ code {
 }
 .wholeOne{
   min-width: 100%;
+  background-color: #282c34;
 
 }
 .ownpicksdiv {
@@ -478,6 +509,16 @@ code {
   min-height: '30px';
   /* margin-left: '3%'; */
   text-align: right;
+}
+.loading2 {
+  background-image: url('./zzZZ.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+  min-height: '30px';
+  margin-right: 35%;
+  margin-left: 30%;
+  padding-top: 2%;
 }
 .loginsu{
   text-align:right;
@@ -872,7 +913,16 @@ input[type='checkbox'] {
     margin-left: 5%;
     margin-right: 5%;
   }
-
+  .loading2 {
+    background-image: url('./zzZZ.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    min-height: '30px';
+    margin-right: 15%;
+    margin-left: 10%;
+    padding-top: 2%;
+  }
 
 
 

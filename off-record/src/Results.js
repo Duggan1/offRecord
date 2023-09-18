@@ -12,7 +12,9 @@ function Results({ user, ufcCard, ufcResults }) {
   const [adminKevPicks, setAdminKevPicks] = useState({});
   const [selectedEvent, setSelectedEvent] = useState(""); 
   const [explainPoints, setExplainPointst] = useState(false); 
-  const [showLeaderBoard, setshowLeaderBoard] = useState(false); 
+  const [showLeaderBoard, setshowLeaderBoard] = useState(true); 
+  const [showCardWins, setShowCardWins] = useState(false); 
+
   const navigate = useNavigate()
   const handleOptionClick = (option) => {
       navigate(`${option}`);
@@ -53,63 +55,64 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
     calculateLeaderboard(results, ufcResults);
   }, [results, ufcResults]);
 
-const calculateLeaderboard = (results, ufcResults) => {
-  const userPointsMap = new Map();
-  const eventWinners = {};
-
-  results.forEach(result => {
-    // Calculate total points for each result
-    const totalPoints = calculateTotalPoints(result, result.main_event, ufcResults);
-    
-    // Update the user's total points in the map
-    if (!userPointsMap.has(result.owner)) {
-      userPointsMap.set(result.owner, 0);
-    }
-    userPointsMap.set(result.owner, userPointsMap.get(result.owner) + totalPoints);
-
-
-
-///////////////////////////
-
-    const userPoints = calculateTotalPoints(result, result.main_event);
-
-    if (!eventWinners.hasOwnProperty(result.main_event)) {
-      eventWinners[result.main_event] = { winner: null, points: -1 };
-    }
-
-    if (userPoints > eventWinners[result.main_event].points) {
-      eventWinners[result.main_event] = { winner: result.owner, points: userPoints };
-    } else if (userPoints === eventWinners[result.main_event].points) {
-      eventWinners[result.main_event].winner = null; // Set winner to null if points are the same
-    }
-
-
-
+  const calculateLeaderboard = (results, ufcResults) => {
+    const userPointsMap = new Map();
+    const eventWinners = {};
+  
+    results.forEach(result => {
+      // Calculate total points for each result
+      const totalPoints = calculateTotalPoints(result, result.main_event, ufcResults);
+      
+      // Update the user's total points in the map
+      if (!userPointsMap.has(result.owner)) {
+        userPointsMap.set(result.owner, 0);
+      }
+      userPointsMap.set(result.owner, userPointsMap.get(result.owner) + totalPoints);
+  
+      const userPoints = calculateTotalPoints(result, result.main_event);
+  
+      if (!eventWinners.hasOwnProperty(result.main_event)) {
+        eventWinners[result.main_event] = { winner: null, points: -1 };
+      }
+  
+      if (userPoints > eventWinners[result.main_event].points) {
+        eventWinners[result.main_event] = { winner: result.owner, points: userPoints };
+      } else if (userPoints === eventWinners[result.main_event].points) {
+        eventWinners[result.main_event].winner = null; // Set winner to null if points are the same
+      }
   });
-
-  const allWinners = [];
-
+  
+  // Set the winner to "Pending" for events with no points
   for (const event in eventWinners) {
-    allWinners[event] = eventWinners[event].winner;
+    if (eventWinners[event].points === 0) {
+      eventWinners[event].winner = "Pending";
+    }
   }
+  
+  // Set winner to "Pending" for events with no winners and a main event
+ 
+  
+  
+  
+    const allWinners = [];
+  
+    for (const event in eventWinners) {
+      allWinners[event] = eventWinners[event].winner;
+    }
+  
+    // Convert the map to an array of objects for easier sorting
+    const leaderboardArray = Array.from(userPointsMap, ([username, totalPoints]) => ({ username, totalPoints }));
+  
+    // Sort the leaderboard by totalPoints in descending order
+    leaderboardArray.sort((a, b) => b.totalPoints - a.totalPoints);
 
-  // Convert the map to an array of objects for easier sorting
-  const leaderboardArray = Array.from(userPointsMap, ([username, totalPoints]) => ({ username, totalPoints }));
-
-  // Sort the leaderboard by totalPoints in descending order
-  leaderboardArray.sort((a, b) => b.totalPoints - a.totalPoints);
-
-
-
-
-
-
-
-
-  // Set the leaderboard state
-  setLeaderboard(leaderboardArray);
-  setLeaderboardwinners(eventWinners)
-};
+    
+  
+    // Set the leaderboard state
+    setLeaderboard(leaderboardArray);
+    setLeaderboardwinners(eventWinners)
+  };
+  
 
 console.log(leaderboardwinners)
 
@@ -316,19 +319,29 @@ function countWinsForUsername(leaderboardwinners, username) {
   (
     <div className="results">
 
-  
-    
-
+    <h1 style={{
+                  textAlign: 'center',
+                  marginTop: '0%',
+                  marginBottom: '0%',
+                  color: 'rgb(80, 10, 80)',
+                  textShadow: '0 0 5px gold',
+                  fontSize:'65px',
+                  maxWidth: '100%',
+                  letterSpacing: '4px',
+                  
+                  }}>
+                  Results
+                  </h1>
 
 
             {showLeaderBoard ? <div className="lboard">
             
-            <h2 className="tac">Leaderboard</h2>
+            <h2 className="tac" style={{letterSpacing: '2px',}}>Leaderboard</h2>
       <center><table ><thead><tr>
             <th className="downUnder">Username</th><th  className="downUnder">Total Points</th><th className="downUnder Left5">Wins</th></tr></thead>
         <tbody>{leaderboard.map((user, index) => (
             <tr key={index}>
-              <td>{user.username}</td><td className="tac" >{user.totalPoints}</td><td className="tac Left6"  >{countWinsForUsername(leaderboardwinners, user.username)}</td></tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button></center></div>
+              <td style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}}>{user.username}</td><td className="tac" style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}} >{user.totalPoints}</td><td className="tac Left6" style={{backgroundColor:'rgba(55, 0, 59, 0.650)'}}  >{countWinsForUsername(leaderboardwinners, user.username)}</td></tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button></center></div>
                : <center><button className="expoint" onClick={() => setshowLeaderBoard(!showLeaderBoard)} >View Leaderboard</button></center> }
 
  
@@ -352,29 +365,42 @@ function countWinsForUsername(leaderboardwinners, username) {
 
 
 
-            {explainPoints ?    <div className="pointEXB2"><div className="pointEX">
+            {explainPoints ?    <div className="pointEXB2"><div className="pointEX" >
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Winner </p><br></br>
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Method if you chose the correct fighter</p><br></br>
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 points</span> for picking Draw/No-Contest correctly</p><center><button className="expoint" onClick={() => setExplainPointst(!explainPoints)} >Hide Point System</button></center></div></div>
        : <center><button className="expoint" onClick={() => setExplainPointst(!explainPoints)} >Explain Point System</button></center> }
 
 
+{showCardWins ?   <div className="pointEXCard" >
+      
+              {Object.entries(leaderboardwinners).map(([event, eventData]) => (
+                <div key={event}>
+                  <h3 className="tight color-yellow">{event}</h3>
+                  <div className="tight">
+                    {eventData.winner === "Pending" ? (
+                    
+                    <div className="loading2 tight" style={{  minHeight: '25px',textAlign:'left'}}>Results Pending</div>
+                     
+                  
+                  ) : (
+                      <p>
+                        Winner: {eventData.winner} - {eventData.points} Points
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
 
-      <h1 style={{
-                  textAlign: 'center',
-                  marginTop: '0%',
-                  color: 'rgb(80, 10, 80)',
-                  textShadow: '0 0 5px gold',
-                  fontSize:'55px',
-                  maxWidth: '100%',
-                  letterSpacing: '4px',
-                  }}>
-                  Results
-                  </h1>
+
+
+      <center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Hide Card Winners</button></center></div>
+       : <center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Show Card Winners</button></center> }
+     
 
 
 
-            <center><label>Filter Results by Fight Card</label><br></br>
+            <center><label style={{color:'gold',backgroundColor:'black',fontWeight:'bold'}}>Filter Results by Fight Card</label><br></br>
       <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
         <option value="">All</option>
         <option value="Israel Adesanya vs Sean Strickland">Israel Adesanya vs Sean Strickland</option>
@@ -398,6 +424,11 @@ function countWinsForUsername(leaderboardwinners, username) {
 
                   </center>
                 ) : null}
+
+
+
+
+
      
       <table className="wholeOne" >
         <thead>
