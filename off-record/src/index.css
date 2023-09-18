@@ -399,7 +399,19 @@ code {
   text-align: center;
   color: gold;
   font-weight: bold;
+ 
 }
+.Left5 {
+  
+  padding-left: 5%;
+ 
+}
+.Left6 {
+  
+  padding-left: 6%;
+ 
+}
+
 .lboard {
   text-align: center;
   background-color: rgba(55, 0, 59, 0.439);
@@ -847,6 +859,18 @@ input[type='checkbox'] {
     
      margin-right:25%;
   
+  }
+  .Left5 {
+    padding-left: 1%;
+
+  }
+  .Left6 {
+    padding-left: 1%;
+
+  }
+  .lboard{
+    margin-left: 5%;
+    margin-right: 5%;
   }
 
 

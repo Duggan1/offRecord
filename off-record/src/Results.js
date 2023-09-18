@@ -40,6 +40,10 @@ console.log(filteredByMainEvent)
 // console.log(user.username)
 
 const [leaderboard, setLeaderboard] = useState([]);
+const [leaderboardwinners, setLeaderboardwinners] = useState([]);
+
+
+
   // Other state variables...
 
   useEffect(() => {
@@ -51,6 +55,7 @@ const [leaderboard, setLeaderboard] = useState([]);
 
 const calculateLeaderboard = (results, ufcResults) => {
   const userPointsMap = new Map();
+  const eventWinners = {};
 
   results.forEach(result => {
     // Calculate total points for each result
@@ -61,7 +66,32 @@ const calculateLeaderboard = (results, ufcResults) => {
       userPointsMap.set(result.owner, 0);
     }
     userPointsMap.set(result.owner, userPointsMap.get(result.owner) + totalPoints);
+
+
+
+///////////////////////////
+
+    const userPoints = calculateTotalPoints(result, result.main_event);
+
+    if (!eventWinners.hasOwnProperty(result.main_event)) {
+      eventWinners[result.main_event] = { winner: null, points: -1 };
+    }
+
+    if (userPoints > eventWinners[result.main_event].points) {
+      eventWinners[result.main_event] = { winner: result.owner, points: userPoints };
+    } else if (userPoints === eventWinners[result.main_event].points) {
+      eventWinners[result.main_event].winner = null; // Set winner to null if points are the same
+    }
+
+
+
   });
+
+  const allWinners = [];
+
+  for (const event in eventWinners) {
+    allWinners[event] = eventWinners[event].winner;
+  }
 
   // Convert the map to an array of objects for easier sorting
   const leaderboardArray = Array.from(userPointsMap, ([username, totalPoints]) => ({ username, totalPoints }));
@@ -69,10 +99,19 @@ const calculateLeaderboard = (results, ufcResults) => {
   // Sort the leaderboard by totalPoints in descending order
   leaderboardArray.sort((a, b) => b.totalPoints - a.totalPoints);
 
+
+
+
+
+
+
+
   // Set the leaderboard state
   setLeaderboard(leaderboardArray);
+  setLeaderboardwinners(eventWinners)
 };
 
+console.log(leaderboardwinners)
 
 
 
@@ -92,20 +131,29 @@ function calculatePoints(pick, result) {
     if (pick.method !== null && result.method !== null && pick.method === "Draw/No-Contest" && result.method === "Draw/No-Contest") {
       points += 2;
     }
-
-    else if (pick.winner !== null && result.winner !== null && pick.winner === result.winner) {
-      points += 1;
-
-      // Check if the method also matches, only if the winner is correct
-      if (pick.method !== null && result.method !== null && pick.method === result.method) {
-        points += 1;
-      }
+    if  (pick.method !== null && result.method !== null && pick.method !== "Draw/No-Contest" && result.method === "Draw/No-Contest") {
+      console.log('working')
     }
+
+    else {
+
+        if (pick.winner !== null && result.winner !== null && pick.winner === result.winner) {
+          points += 1;
+
+          // Check if the method also matches, only if the winner is correct
+          if (pick.method !== null && result.method !== null && pick.method === result.method) {
+            points += 1;
+          }
+        }
+       }
   }
 
   return points;
 }
 
+
+
+const [cardsWon, setCardsWon] = useState({});
 
 function calculateTotalPoints(result, mainEvent) {
   let totalPoints = 0;
@@ -114,13 +162,33 @@ function calculateTotalPoints(result, mainEvent) {
     const adminKevPicksForEvent = getAdminKevPicksForEvent(mainEvent);
     const adminKevPick = adminKevPicksForEvent[predIndex];
     const ufcResult = ufcResults[predIndex];
+    const cardsWonCopy = { ...cardsWon }; 
 
     const points = calculatePoints(prediction, adminKevPick || ufcResult);
     totalPoints += points;
-  });
 
+
+   
+  });
+  
   return totalPoints;
 }
+
+// function findUsersWithMostPointsPerEvent(results) {
+  
+
+//   results.forEach((result) => {
+//   });
+
+  
+
+  
+// }
+
+console.log(results);
+// const winners = findUsersWithMostPointsPerEvent(results);
+// console.log(winners);
+
 
 
   
@@ -225,6 +293,19 @@ function calculateTotalPoints(result, mainEvent) {
 const [deletePicks, setDeletePicks] = useState(false)
 
 
+function countWinsForUsername(leaderboardwinners, username) {
+  let winCount = 0;
+
+  for (const event in leaderboardwinners) {
+    const winner = leaderboardwinners[event].winner;
+
+    if (winner === username) {
+      winCount++;
+    }
+  }
+
+  return winCount;
+}
 
 
 
@@ -241,12 +322,13 @@ const [deletePicks, setDeletePicks] = useState(false)
 
 
             {showLeaderBoard ? <div className="lboard">
+            
             <h2 className="tac">Leaderboard</h2>
       <center><table ><thead><tr>
-            <th className="downUnder">Username</th><th className="downUnder">Points</th></tr></thead>
+            <th className="downUnder">Username</th><th  className="downUnder">Total Points</th><th className="downUnder Left5">Wins</th></tr></thead>
         <tbody>{leaderboard.map((user, index) => (
             <tr key={index}>
-              <td>{user.username}</td><td className="tac" >{user.totalPoints}</td></tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button></center></div>
+              <td>{user.username}</td><td className="tac" >{user.totalPoints}</td><td className="tac Left6"  >{countWinsForUsername(leaderboardwinners, user.username)}</td></tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button></center></div>
                : <center><button className="expoint" onClick={() => setshowLeaderBoard(!showLeaderBoard)} >View Leaderboard</button></center> }
 
  
