@@ -59,10 +59,10 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
     const userPointsMap = new Map();
     const eventWinners = {};
   
-    results.forEach(result => {
+    results.forEach((result) => {
       // Calculate total points for each result
       const totalPoints = calculateTotalPoints(result, result.main_event, ufcResults);
-      
+  
       // Update the user's total points in the map
       if (!userPointsMap.has(result.owner)) {
         userPointsMap.set(result.owner, 0);
@@ -80,24 +80,13 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
       } else if (userPoints === eventWinners[result.main_event].points) {
         eventWinners[result.main_event].winner = null; // Set winner to null if points are the same
       }
-  });
+    });
   
-  // Set the winner to "Pending" for events with no points
-  for (const event in eventWinners) {
-    if (eventWinners[event].points === 0) {
-      eventWinners[event].winner = "Pending";
-    }
-  }
-  
-  // Set winner to "Pending" for events with no winners and a main event
- 
-  
-  
-  
-    const allWinners = [];
-  
+    // Set the winner to "Pending" for events with no points
     for (const event in eventWinners) {
-      allWinners[event] = eventWinners[event].winner;
+      if (eventWinners[event].points === 0) {
+        eventWinners[event].winner = "Pending";
+      }
     }
   
     // Convert the map to an array of objects for easier sorting
@@ -105,13 +94,31 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
   
     // Sort the leaderboard by totalPoints in descending order
     leaderboardArray.sort((a, b) => b.totalPoints - a.totalPoints);
-
-    
+  
+    // Sort eventWinners, putting "Pending" winners first
+    const sortedEventWinners = {};
+    Object.keys(eventWinners)
+      .sort((eventA, eventB) => {
+        const winnerA = eventWinners[eventA].winner;
+        const winnerB = eventWinners[eventB].winner;
+  
+        if (winnerA === "Pending" && winnerB !== "Pending") {
+          return -1;
+        } else if (winnerA !== "Pending" && winnerB === "Pending") {
+          return 1;
+        } else {
+          return 0;
+        }
+      })
+      .forEach((event) => {
+        sortedEventWinners[event] = eventWinners[event];
+      });
   
     // Set the leaderboard state
     setLeaderboard(leaderboardArray);
-    setLeaderboardwinners(eventWinners)
+    setLeaderboardwinners(sortedEventWinners);
   };
+  
   
 
 console.log(leaderboardwinners)
@@ -323,8 +330,8 @@ function countWinsForUsername(leaderboardwinners, username) {
                   textAlign: 'center',
                   marginTop: '0%',
                   marginBottom: '0%',
-                  color: 'rgb(80, 10, 80)',
-                  textShadow: '0 0 5px gold',
+                  color: 'gold',
+                  textShadow: '0 0 5px rgb(80, 10, 80)',
                   fontSize:'65px',
                   maxWidth: '100%',
                   letterSpacing: '4px',
@@ -376,18 +383,18 @@ function countWinsForUsername(leaderboardwinners, username) {
       
               {Object.entries(leaderboardwinners).map(([event, eventData]) => (
                 <div key={event}>
-                  <h3 className="tight color-yellow">{event}</h3>
+                  <h3 className="tight">{event}</h3>
                   <div className="tight">
                     {eventData.winner === "Pending" ? (
                     
-                    <div className="loading2 tight" style={{  minHeight: '25px',textAlign:'left'}}>Results Pending</div>
+                    <div className="loading2 tight color-yellow" style={{  minHeight: '25px',textAlign:'center'}}>Results Pending</div>
                      
                   
                   ) : (
                     <div>
                       
-                      <p>
-                         {eventData.winner} - {eventData.points} Points
+                      <p  className='color-yellow' >
+                         {eventData.winner} + {eventData.points} Points
                       </p></div>
                     )}
                   </div>

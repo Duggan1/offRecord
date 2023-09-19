@@ -24,10 +24,12 @@ function About() {
   return (
     <div className="about">
       {/* <button className="backB" onClick={() => handleOptionClick('/')} >Home </button> */}
-      <h1>Off-Record-Picks' Story</h1>
-      <h4>Our platform provides UFC enthusiasts with a unique opportunity to demonstrate their fight prediction skills for UFC events. The results will be updated after the enitre event is complete</h4>
+      <h1 style={{marginTop:'0px'}}>Off-The-Record-Picks' Story</h1>
+      <h4>Our platform is a hub for UFC enthusiasts, offering a unique opportunity to showcase their fight prediction skills. The goal is simple: win the event by making accurate predictions for each fight on the card.
+
+But we don't just focus on event champions. We also reward consistency through our total points system. Even if you don't win an event, every correct prediction boosts your total points, highlighting your expertise and dedication.</h4>
       
-      <div className="pointEXB"><div className="pointEX" style={{backgroundColor: 'rgba(55, 0, 59, 0.439)'}}>
+      <div className="pointEXB"><div className="pointEX">
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Winner </p><br></br>
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Method if you chose the correct fighter</p><br></br>
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 points</span> for picking Draw/No-Contest correctly</p></div></div>

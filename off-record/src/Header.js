@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from './logo.png';
 
 import {useNavigate} from 'react-router-dom'
 import './App.css';
@@ -20,18 +21,25 @@ function Header({user}) {
             onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
-                marginTop: '0%',
                 color: 'purple',
-                textShadow: '0 0 5px yellow',
+                margin: "0",
                 fontSize:'35px',
                 maxWidth: '100%',
-                cursor:'pointer'
+                cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
 
                 // Adjust this value as needed
                 }}>
-                Off Record Picks
+                Off the Record Picks
                 </h1>
-          
+                <img 
+                height={'50px'}
+                 src={logo} alt='fighting logo' 
+                 onClick={() => handleOptionClick('/')}
+                  style={{cursor:'pointer',backgroundColor:'purple'}}/>
+     
 
 
     
