@@ -11,6 +11,7 @@ function Tommy({ user, ufcCard }) {
   const [error, setError] = useState(null);
   console.log(error);
   console.log(errors)
+  console.log(user)
 
 
 
@@ -137,7 +138,7 @@ const handleSubmit = async (e) => {
             location: location,
             mainEvent: mainEvent,
             predictions: predictionData,
-            user_id: user.id || 99,
+            user_id: user.id || 2,
         };
 
         fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
@@ -449,7 +450,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
       
       </div> 
       {/* <p className="color-black bold ">Fighter's images will be availabe on Friday after UFC photoshoot occurs </p> */}
-      <form style={{marginBottom: '0px'}} onSubmit={handleSubmit}>
+      <form style={{marginBottom: '0px'}} className="blackBG" onSubmit={handleSubmit}>
         {ufcCard.map((fight, index) => (
     <div key={index} className="fight">
       <div key={index} className="fighterready">
@@ -582,8 +583,8 @@ const abbreviation = getCountryAbbreviation(inputCountry);
        
      <center>
         {errors && (<p className="errortime" style={{ border: errors.length > 0 ? '5px solid red' : 'none' }}>{errors} </p>)}
-</center>
- <button className="submitb" type="submit">Submit Predictions</button>
+</center><div style={{ borderTop: '2px solid purple'}} className="blackBG">
+ <button className="submitb" type="submit">Submit Predictions</button></div>
 
         
 
