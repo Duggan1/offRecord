@@ -58,13 +58,13 @@ function App() {
     { fighters: ["Bryce Mitchell", "Dan Ige"], match: "145 lbs", records: ["15-1", "17-6"], flags: ["United States", "United States"] },
     { fighters: ["Marina Rodriguez", "Michelle Waterson-Gomez"], match: "115 lbs", records: ["16-3-2", "18-11"], flags: ["Brazil", "United States"] },
     { fighters: ["Bryan Battle", "AJ Fletcher"], match: "170 lbs", records: ["9-2", "10-2"], flags: ["United States", "United States"] },
-    { fighters: ["Charles Jourdain", "Ricardo Ramos"], match: "145 lbs", records: ["14-6-1", "16-4"], flags: ["Canada", "Brazil"] },
+    { fighters: ["Ricardo Ramos", "Charles Jourdain"], match: "145 lbs", records: ["16-4","14-6-1" ], flags: ["Brazil", "Canada"] },
     { fighters: ["Dan Argueta", "Miles Johns"], match: "135 lbs", records: ["9-1", "13-2"], flags: ["United States", "United States"] },
     { fighters: ["Tim Means", "Andre Fialho"], match: "170 lbs", records: ["32-15-1", "16-7"], flags: ["United States", "Portugal"] },
     { fighters: ["Jacob Malkoun", "Cody Brundage"], match: "185 lbs", records: ["7-2", "8-5"], flags: ["Australia", "United States"] },
-    { fighters: ["Jake Collier", "Mohammed Usman"], match: "265 lbs", records: ["13-9", "9-2"], flags: ["United States", "Nigeria"] },
-    { fighters: ["Mizuki Inoue", "Hannah Goldy"], match: "115 lbs", records: ["14-6-0", "6-3-0"], flags: ["Japan", "United States"] },
-    { fighters: ["Montserrat Rendon", "Tamires Vidal"], match: "135 lbs", records: ["5-0-0", "7-1-0"], flags: ["Mexico", "Brazil"] },
+    { fighters: ["Mohammad Usman","Jake Collier" ], match: "265 lbs", records: ["9-2","13-9" ], flags: ["Nigeria","United States" ] },
+    { fighters: ["Mizuki Inoue", "Hannah Goldy"], match: "115 lbs", records: ["14-6", "6-3"], flags: ["Japan", "United States"] },
+    { fighters: ["Tamires Vidal","Montserrat Rendon" ], match: "135 lbs", records: ["7-1","5-0" ], flags: ["Brazil","Mexico" ] },
   ];
   
   
