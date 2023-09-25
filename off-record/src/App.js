@@ -53,21 +53,36 @@ function App() {
   //   { fighters: ["Alex Reyes", "Charlie Campbell"], match: "155 lbs", records: ["7-2", "13-3"], flags: ["United States", "United States"] },
   //   { fighters: ["Josefine Knutsson", "Marnic Mann"], match: "115 lbs", records: ["6-0", "6-1"], flags: ["Sweden", "United States"] },
   // ];
+  // const ufcCard = [
+  //   { fighters: ["Rafael Fiziev", "Mateusz Gamrot"], match: "155 lbs", records: ["12-2", "22-2"], flags: ["Azerbaijan", "Poland"] },
+  //   { fighters: ["Bryce Mitchell", "Dan Ige"], match: "145 lbs", records: ["15-1", "17-6"], flags: ["United States", "United States"] },
+  //   { fighters: ["Marina Rodriguez", "Michelle Waterson-Gomez"], match: "115 lbs", records: ["16-3-2", "18-11"], flags: ["Brazil", "United States"] },
+  //   { fighters: ["Bryan Battle", "AJ Fletcher"], match: "170 lbs", records: ["9-2", "10-2"], flags: ["United States", "United States"] },
+  //   { fighters: ["Ricardo Ramos", "Charles Jourdain"], match: "145 lbs", records: ["16-4","14-6-1" ], flags: ["Brazil", "Canada"] },
+  //   { fighters: ["Dan Argueta", "Miles Johns"], match: "135 lbs", records: ["9-1", "13-2"], flags: ["United States", "United States"] },
+  //   { fighters: ["Tim Means", "Andre Fialho"], match: "170 lbs", records: ["32-15-1", "16-7"], flags: ["United States", "Portugal"] },
+  //   { fighters: ["Jacob Malkoun", "Cody Brundage"], match: "185 lbs", records: ["7-2", "8-5"], flags: ["Australia", "United States"] },
+  //   { fighters: ["Mohammad Usman","Jake Collier" ], match: "265 lbs", records: ["9-2","13-9" ], flags: ["Nigeria","United States" ] },
+  //   { fighters: ["Mizuki Inoue", "Hannah Goldy"], match: "115 lbs", records: ["14-6", "6-3"], flags: ["Japan", "United States"] },
+  //   { fighters: ["Tamires Vidal","Montserrat Rendon" ], match: "135 lbs", records: ["7-1","5-0" ], flags: ["Brazil","Mexico" ] },
+  // ];
   const ufcCard = [
-    { fighters: ["Rafael Fiziev", "Mateusz Gamrot"], match: "155 lbs", records: ["12-2", "22-2"], flags: ["Azerbaijan", "Poland"] },
-    { fighters: ["Bryce Mitchell", "Dan Ige"], match: "145 lbs", records: ["15-1", "17-6"], flags: ["United States", "United States"] },
-    { fighters: ["Marina Rodriguez", "Michelle Waterson-Gomez"], match: "115 lbs", records: ["16-3-2", "18-11"], flags: ["Brazil", "United States"] },
-    { fighters: ["Bryan Battle", "AJ Fletcher"], match: "170 lbs", records: ["9-2", "10-2"], flags: ["United States", "United States"] },
-    { fighters: ["Ricardo Ramos", "Charles Jourdain"], match: "145 lbs", records: ["16-4","14-6-1" ], flags: ["Brazil", "Canada"] },
-    { fighters: ["Dan Argueta", "Miles Johns"], match: "135 lbs", records: ["9-1", "13-2"], flags: ["United States", "United States"] },
-    { fighters: ["Tim Means", "Andre Fialho"], match: "170 lbs", records: ["32-15-1", "16-7"], flags: ["United States", "Portugal"] },
-    { fighters: ["Jacob Malkoun", "Cody Brundage"], match: "185 lbs", records: ["7-2", "8-5"], flags: ["Australia", "United States"] },
-    { fighters: ["Mohammad Usman","Jake Collier" ], match: "265 lbs", records: ["9-2","13-9" ], flags: ["Nigeria","United States" ] },
-    { fighters: ["Mizuki Inoue", "Hannah Goldy"], match: "115 lbs", records: ["14-6", "6-3"], flags: ["Japan", "United States"] },
-    { fighters: ["Tamires Vidal","Montserrat Rendon" ], match: "135 lbs", records: ["7-1","5-0" ], flags: ["Brazil","Mexico" ] },
-  ];
-  
-  
+    { fighters: ["Grant Dawson", "Bobby Green"], match: "Lightweight Bout", records: ["20-1-1", "30-14-1"], flags: ["United States", "United States"] },
+    { fighters: ["Joe Pyfer", "Abdul Alhassan"], match: "Middleweight Bout", records: ["11-2-0", "12-5"], flags: ["United States", "Ghana"] },
+    { fighters: ["Alex Morono", "Joaquin Buckley"], match: "Welterweight Bout", records: ["26-8", "16-6"], flags: ["United States", "United States"] },
+    { fighters: ["Drew Dober", "Ricky Glenn"], match: "Lightweight Bout", records: ["26-12-0", "22-7-2"], flags: ["United States", "United States"] },
+    { fighters: ["Philipe Lins", "Ion Cutelaba"], match: "Light Heavyweight Bout", records: ["17-5-0", "17-9-1"], flags: ["Brazil", "Moldova"] },
+    { fighters: ["Alexander Hernandez", "Bill Algeo"], match: "Featherweight Bout", records: ["14-6-0", "17-7-2"], flags: ["United States", "United States"] },
+    { fighters: ["Karolina Kowalkiewicz", "Diana Belbita"], match: "Women's Strawweight Bout", records: ["15-7-0", "15-7-0"], flags: ["Poland", "Romania"] },
+    { fighters: ["Chris Gutierrez", "Montel Jackson"], match: "Bantamweight Bout", records: ["19-4-2", "13-2-0"], flags: ["United States", "United States"] },
+    { fighters: ["Aoriqileng", "Johnny Munoz"], match: "Bantamweight Bout", records: ["24-11-0", "12-3-0"], flags: ["China", "United States"] },
+    { fighters: ["Vanessa Demopolous", "Kanako Murata"], match: "Women's Strawweight Bout", records: ["9-5-0", "12-2-0"], flags: ["United States", "Japan"] },
+    { fighters: ["Nate Maness", "Mateus Mendonca"], match: "Flyweight Bout", records: ["14-3-0", "10-1-0"], flags: ["United States", "Brazil"] },
+    { fighters: ["Montana De La Rosa", "Stephanie Egger"], match: "Women's Flyweight Bout", records: ["12-8-1", "8-4"], flags: ["United States", "Switzerland"] }
+];
+
+
+
 
   
   const ufcResults = ufcCard.map((match) => ({
