@@ -9,33 +9,33 @@ import Dnd from './Dnd';
 
 function Tommy({ user, ufcCard }) {
 
-  const [eventInfo, setEventInfo] = useState({});
+  // const [eventInfo, setEventInfo] = useState({});
 
   // Replace the URL with the appropriate endpoint on your server
-const apiUrl = 'http://localhost:3001/scrape-ufc-website';
+// const apiUrl = 'http://localhost:3001/scrape-ufc-website';
   
-useEffect(() => { 
-  async function fetchData() {
-    try {
-      const response = await axios.get(apiUrl);
-      console.log(response.data) 
+// useEffect(() => { 
+//   async function fetchData() {
+//     try {
+//       const response = await axios.get(apiUrl);
+//       console.log(response.data) 
  
-      const { event_name, event_date,fights, records  } = response.data;
+//       const { event_name, event_date,fights, records  } = response.data;
  
 
-      // Update state with the scraped data
-      setEventInfo({ event_name, event_date, fights, records });
-    } catch (error) { 
-      console.error('Error:', error);
-    }
-  } 
+//       // Update state with the scraped data
+//       setEventInfo({ event_name, event_date, fights, records });
+//     } catch (error) { 
+//       console.error('Error:', error);
+//     }
+//   } 
      
-  fetchData();      
-}, []);      
+//   fetchData();      
+// }, []);      
 
       
   
-console.log(eventInfo)        
+// console.log(eventInfo)        
   
 
   const navigate = useNavigate();
@@ -500,7 +500,7 @@ const abbreviation = getCountryAbbreviation(inputCountry);
                 <option value="TKO/KO">TKO/KO</option>
                 <option value="Submission">Submission</option>
                 <option value="Decision">Decision</option>
-                <option value="Draw/No-Contest">Draw/No-Contest</option>
+                <option value="Draw/No-Contest/DQ">Draw/No-Contest</option>
               </select>
             </div></div>
 

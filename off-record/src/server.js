@@ -10,8 +10,12 @@ const port = 3001; // Choose an available port
 // Enable CORS for all routes
 app.use(cors());
 
-const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-october-07-2023';
+// const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-october-07-2023';
+
+const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-september-16-2023';
 const Recurl = 'https://www.tapology.com/fightcenter/events/101866-ufc-fight-night';
+
+
 const fightRecords = [];
 const addedFighters = [];
 app.get('/scrape-ufc-website', async (req, res) => {
@@ -52,11 +56,11 @@ $('.c-listing-fight__content').each((index, element) => {
 
     let winner = 'N/A'; 
     if (winnerElement.length > 0) {
-        winner = 'Red'; 
+        winner = '0'; 
     } else {
     const blueWinnerElement = $(element).find('.c-listing-fight__corner-body--blue .c-listing-fight__outcome--Win');
     if (blueWinnerElement.length > 0) {
-        winner = 'Blue'; 
+        winner = '1'; 
     }
 }
 

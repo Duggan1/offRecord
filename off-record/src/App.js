@@ -50,6 +50,41 @@ function App() {
   //   { match: "Flyweight", fighters: ["Kleydson Rodrigues", "Zarah Fairn"], records: ["8-2", "6-5"], flags: ["Brazil", "Germany"] },
   //   { match: "Flyweight", fighters: ["Jacqueline Cavalcanti", "Unknown Fighter"], records: ["5-1", "-"], flags: ["Brazil", "Unknown"] },
   // ];
+const [ufcCard2, setUfcCard2] = useState([]);
+const [eventInfo, setEventInfo] = useState({});
+const apiUrl = 'http://localhost:3001/scrape-ufc-website';
+
+useEffect(() => { 
+  async function fetchData() {
+    try {
+      const response = await axios.get(apiUrl);
+      console.log(response.data) 
+ 
+      const { event_name, event_date,fights, records  } = response.data;
+
+      const newUfcCard = fights.map((fight, index) => {
+        return {
+            fighters: [fight.redCornerName, fight.blueCornerName],
+            match: fight.weightClass,
+            records: [records[index]?.redCornerRecord, records[index]?.blueCornerRecord],
+            flags: [fight.redCornerCountry, fight.blueCornerCountry],
+        };
+    });
+
+    // Update state with the ufcCard
+    setUfcCard2(newUfcCard);
+ 
+
+      // Update state with the scraped data
+      setEventInfo({ event_name, event_date, fights, records });
+    } catch (error) { 
+      console.error('Error:', error);
+    }
+  }   
+      
+  fetchData();      
+}, []);      
+console.log(eventInfo) 
 
 
   // const ufcCard = [
@@ -93,22 +128,50 @@ function App() {
     { fighters: ["Nate Maness", "Mateus Mendonca"], match: "Flyweight Bout", records: ["14-3-0", "10-1-0"], flags: ["United States", "Brazil"] },
     { fighters: ["Montana De La Rosa", "Stephanie Egger"], match: "Women's Flyweight Bout", records: ["12-8-1", "8-4"], flags: ["United States", "Switzerland"] }
 ];
+console.log(ufcCard2)
 
 
-
-
-
-
-
-
-  
-  const ufcResults = ufcCard.map((match) => ({
+  const ufcResults = ufcCard2.map((match, index) => ({
     fighters: match.fighters,
     match: match.match,
-    winner: null,
-    method: null,
+    winner: eventInfo.fights[0].winner === "" || eventInfo.fights[0].winner === "N/A" ? null : eventInfo.fights[index].winner,
+    method: eventInfo.fights[0].method === "" || eventInfo.fights[0].method === "N/A" ? null : eventInfo.fights[index].method,
+
   }));
-  
+  console.log(ufcResults) 
+  // Define a function to normalize the method values
+// Define a function to normalize the method values
+function normalizeMethod(method, winner) {
+  if (method) {
+    // Normalize the method to your desired format
+    // For example, if you want to change "TKO/KO" to "KO/TKO":
+    if (method === "KO/TKOKO/TKO" || method === "DQDQ") {
+      return "TKO/KO";
+    }
+    if (method === "Decision - UnanimousDecision - Unanimous" || method === "Decision - SplitDecision - Split") {
+      return "Decision";
+    }
+    if (method === "SubmissionSubmission") {
+      return "Submission";
+    }
+    if (method !== null && winner === "N/A") {
+      return "Draw/No-Contest";
+    }
+
+    // Add more conditionals to handle other variations if needed
+  }
+  return method;
+}
+
+// Map over ufcResults and modify the method values
+const modifiedUfcResults = ufcResults.map((result) => ({
+  ...result,
+  method: normalizeMethod(result.method, result.winner),
+}));
+
+
+console.log(modifiedUfcResults);
+
 
 
   const [results, setResults] = useState([]);
