@@ -8,6 +8,8 @@ import Johnny from './Johnny';
 import Results from './Results';
 import Tommy from './Tommy';
 import About from './About';
+import axios from 'axios';
+
 
 
 
@@ -20,6 +22,16 @@ import About from './About';
 
 function App() {
   const [showDropdown, setShowDropdown] = useState(false);
+
+
+  
+
+
+
+
+
+
+
  
   const handleAppleClick = () => {
     setShowDropdown(!showDropdown);
@@ -66,6 +78,7 @@ function App() {
   //   { fighters: ["Mizuki Inoue", "Hannah Goldy"], match: "115 lbs", records: ["14-6", "6-3"], flags: ["Japan", "United States"] },
   //   { fighters: ["Tamires Vidal","Montserrat Rendon" ], match: "135 lbs", records: ["7-1","5-0" ], flags: ["Brazil","Mexico" ] },
   // ];
+  
   const ufcCard = [
     { fighters: ["Grant Dawson", "Bobby Green"], match: "Lightweight Bout", records: ["20-1-1", "30-14-1"], flags: ["United States", "United States"] },
     { fighters: ["Joe Pyfer", "Abdul Alhassan"], match: "Middleweight Bout", records: ["11-2-0", "12-5"], flags: ["United States", "Ghana"] },
@@ -80,6 +93,10 @@ function App() {
     { fighters: ["Nate Maness", "Mateus Mendonca"], match: "Flyweight Bout", records: ["14-3-0", "10-1-0"], flags: ["United States", "Brazil"] },
     { fighters: ["Montana De La Rosa", "Stephanie Egger"], match: "Women's Flyweight Bout", records: ["12-8-1", "8-4"], flags: ["United States", "Switzerland"] }
 ];
+
+
+
+
 
 
 
@@ -148,7 +165,7 @@ function App() {
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={user} />}/>
+      <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={true} />}/>
       <Route path="/results" element={<Results ufcResults={ufcResults} ufcCard={ufcCard} user={user}/>}/>
       
       <Route path="/about" element={<About/>}/>

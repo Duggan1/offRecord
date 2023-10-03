@@ -1,21 +1,47 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from 'react';
+import cheerio from 'cheerio';
 import './App.css';
 import * as yup from 'yup';
+import axios from 'axios';
 
 import { useNavigate } from 'react-router-dom';
 import Dnd from './Dnd';
 
 function Tommy({ user, ufcCard }) {
+
+  const [eventInfo, setEventInfo] = useState({});
+
+  // Replace the URL with the appropriate endpoint on your server
+const apiUrl = 'http://localhost:3001/scrape-ufc-website';
+  
+useEffect(() => { 
+  async function fetchData() {
+    try {
+      const response = await axios.get(apiUrl);
+      console.log(response.data) 
+ 
+      const { event_name, event_date,fights, records  } = response.data;
+ 
+
+      // Update state with the scraped data
+      setEventInfo({ event_name, event_date, fights, records });
+    } catch (error) { 
+      console.error('Error:', error);
+    }
+  } 
+     
+  fetchData();      
+}, []);      
+
+      
+  
+console.log(eventInfo)        
+  
+
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
   const [error, setError] = useState(null);
-  console.log(error);
-  console.log(errors)
-  console.log(user)
-
-
-
-  // UFC card information
+ 
   const locationCity = 'Las Vegas'
   const location = 'United States'
   
@@ -35,7 +61,7 @@ function Tommy({ user, ufcCard }) {
   
 
 
-console.log(fighterNamesFormatted);
+// console.log(fighterNamesFormatted);
 
 
 // console.log(fighterNamesFormatted);
@@ -106,7 +132,13 @@ console.log(fighterNamesFormatted);
 
 
 console.log(user)
-  
+
+
+
+
+
+
+
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -479,34 +511,34 @@ const abbreviation = getCountryAbbreviation(inputCountry);
           predictions[index]?.winner === 0 ? 'selected' : ''
         }`}
         style={{
-          width: '100%',
-          backgroundImage: `
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_09-23.png?itok=eOYVQXty"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][0]}_L_05-13.png?itok=2gvn1YMC"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-03/${fighterNamesFormatted[index][0]}_L_03-11.png?itok=jJ2epRB_"),
-            url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][0]}_L_06-17.png?itok=ahhIaG-t'),
-            url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/45c80094-c7d0-4b95-b71b-17a3b265e8db%252F${fighterNamesFormatted[index][0]}_L_06-11.png?itok=U7GbAtGC'),
-            url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/${fighterNamesFormatted[index][0]}_L_04-22.png?itok=re8DiJyk'),
-            url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-11/${fighterNamesFormatted[index][0]}_L_11-05.png?itok=9s9OuAfx'),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/${fighterNamesFormatted[index][0]}_L_09-17.png?itok=sTEI11bw"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/${fighterNamesFormatted[index][0]}_L_07-30.png?itok=FXlVM6Mi"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_09-23.png?itok=eOYVQXty"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][0]}_L_06-10.png?itok=1SZQGMu9"),
-            url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/${fighterNamesFormatted[index][0]}_L_07-23.png?itok=xniSKAql'),
-            url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/${fighterNamesFormatted[index][0]}_L_04_28.png?itok=a8B12kVI'),
-            url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/e3a138aa-c8fc-4050-b081-3422f240b542%252F${fighterNamesFormatted[index][0]}_L_06-11.png?itok=W-Db4sZy'),
-            url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][0]}_L_11_19.png?itok=_N7qL0uE'),
-            url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][0]}_L_05-06.png?itok=NWHhcwBD'),
-            url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][0]}_L_10-01.png?itok=R-rMgMDj'),
-            URL('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][0]}_L_02-18.png?itok=KWOd1rQf'),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][0]}_L_05-20.png?itok=CF4yl0q6"),
-            url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][0]}_L_04-15.png?itok=Qoocq44E'),
-            url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-08/${fighterNamesFormatted[index][0]}_L_08-20.png?itok=6xs1jFhj'),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][0]}_L_05-20.png?itok=G1aY_sxC"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-09/68367%252Fprofile-galery%252Ffullbodyleft-picture%252F${fighterNamesFormatted[index][0]}_L_09-18.png?itok=1OdKLwa_"),
-            url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][0]}_L_02-25.png?itok=_BJg7gf2")
+          width: '100%'
+        //   ,backgroundImage: `
+        //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_09-23.png?itok=eOYVQXty"),
+        //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][0]}_L_05-13.png?itok=2gvn1YMC"),
+        //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-03/${fighterNamesFormatted[index][0]}_L_03-11.png?itok=jJ2epRB_"),
+        //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][0]}_L_06-17.png?itok=ahhIaG-t'),
+        //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/45c80094-c7d0-4b95-b71b-17a3b265e8db%252F${fighterNamesFormatted[index][0]}_L_06-11.png?itok=U7GbAtGC'),
+        //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/${fighterNamesFormatted[index][0]}_L_04-22.png?itok=re8DiJyk'),
+        //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-11/${fighterNamesFormatted[index][0]}_L_11-05.png?itok=9s9OuAfx'),
+        //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/${fighterNamesFormatted[index][0]}_L_09-17.png?itok=sTEI11bw"),
+        //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/${fighterNamesFormatted[index][0]}_L_07-30.png?itok=FXlVM6Mi"),
+        //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][0]}_L_09-23.png?itok=eOYVQXty"),
+        //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][0]}_L_06-10.png?itok=1SZQGMu9"),
+        //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/${fighterNamesFormatted[index][0]}_L_07-23.png?itok=xniSKAql'),
+        //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/${fighterNamesFormatted[index][0]}_L_04_28.png?itok=a8B12kVI'),
+        //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/e3a138aa-c8fc-4050-b081-3422f240b542%252F${fighterNamesFormatted[index][0]}_L_06-11.png?itok=W-Db4sZy'),
+        //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][0]}_L_11_19.png?itok=_N7qL0uE'),
+        //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][0]}_L_05-06.png?itok=NWHhcwBD'),
+        //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][0]}_L_10-01.png?itok=R-rMgMDj'),
+        //     URL('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][0]}_L_02-18.png?itok=KWOd1rQf'),
+        //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][0]}_L_05-20.png?itok=CF4yl0q6"),
+        //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][0]}_L_04-15.png?itok=Qoocq44E'),
+        //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-08/${fighterNamesFormatted[index][0]}_L_08-20.png?itok=6xs1jFhj'),
+        //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][0]}_L_05-20.png?itok=G1aY_sxC"),
+        //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-09/68367%252Fprofile-galery%252Ffullbodyleft-picture%252F${fighterNamesFormatted[index][0]}_L_09-18.png?itok=1OdKLwa_"),
+        //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][0]}_L_02-25.png?itok=_BJg7gf2")
 
-        `
+        // `
         ,
         }}
         // url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")
@@ -542,39 +574,40 @@ const abbreviation = getCountryAbbreviation(inputCountry);
           predictions[index]?.winner === 1 ? 'selected' : ''
         }`}
         style={{
-          width: '100%',
-          backgroundImage: `
-          url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][1]}_R_09-23.png?itok=eOYVQXty"),
-          url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][1]}_R_05-13.png?itok=2gvn1YMC"),
-          url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-03/${fighterNamesFormatted[index][1]}_R_03-11.png?itok=jJ2epRB_"),
-          url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_06-17.png?itok=ahhIaG-t'),
-          url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/45c80094-c7d0-4b95-b71b-17a3b265e8db%252F${fighterNamesFormatted[index][1]}_R_06-11.png?itok=U7GbAtGC'),
-          url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/${fighterNamesFormatted[index][1]}_R_04-22.png?itok=re8DiJyk'),
-          url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-11/${fighterNamesFormatted[index][1]}_R_11-05.png?itok=9s9OuAfx'),
-          url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/${fighterNamesFormatted[index][1]}_R_09-17.png?itok=sTEI11bw"),
-          url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/${fighterNamesFormatted[index][1]}_R_07-30.png?itok=FXlVM6Mi"),
-          url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][1]}_R_09-23.png?itok=eOYVQXty"),
-          url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_06-10.png?itok=1SZQGMu9"),
-          url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/${fighterNamesFormatted[index][1]}_R_07-23.png?itok=xniSKAql'),
-          url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/${fighterNamesFormatted[index][1]}_R_04_28.png?itok=a8B12kVI'),
-          url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/e3a138aa-c8fc-4050-b081-3422f240b542%252F${fighterNamesFormatted[index][1]}_R_06-11.png?itok=W-Db4sZy'),
-          url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_11_19.png?itok=_N7qL0uE'),
-          url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][1]}_R_05-06.png?itok=NWHhcwBD'),
-          url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][1]}_R_10-01.png?itok=R-rMgMDj'),
-          URL('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][1]}_R_02-18.png?itok=KWOd1rQf'),
-          url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][1]}_R_05-20.png?itok=CF4yl0q6"),
-          url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_04-15.png?itok=Qoocq44E'),
-          url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-08/${fighterNamesFormatted[index][1]}_R_08-20.png?itok=6xs1jFhj'),
-          url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_05-20.png?itok=G1aY_sxC"),
-          url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-09/68367%252Fprofile-galery%252Ffullbodyleft-picture%252F${fighterNamesFormatted[index][1]}_R_09-18.png?itok=1OdKLwa_"),
-          url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][1]}_R_02-25.png?itok=_BJg7gf2"),
-          URL("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_04-22.png?itok=W4D6XKAh"),
-          URL('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-01/${fighterNamesFormatted[index][1]}_R_01-14.png?itok=wV4ATXnj'),
-          URL('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/${fighterNamesFormatted[index][1]}_R_04-15.png?itok=5AVp89dZ'),
-          URL('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-06/71616%252Fprofile-galery%252Ffullbodyright-picture%252F${fighterNamesFormatted[index][1]}_R_06-19.png?itok=oumxjC2V'),
-          url("https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2023-06/${fighterNamesFormatted[index][1]}_R_04-29.png?itok=XRzK3o-n")
+          width: '100%'
+          ,
+      //     backgroundImage: `
+      //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][1]}_R_09-23.png?itok=eOYVQXty"),
+      //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][1]}_R_05-13.png?itok=2gvn1YMC"),
+      //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-03/${fighterNamesFormatted[index][1]}_R_03-11.png?itok=jJ2epRB_"),
+      //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_06-17.png?itok=ahhIaG-t'),
+      //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/45c80094-c7d0-4b95-b71b-17a3b265e8db%252F${fighterNamesFormatted[index][1]}_R_06-11.png?itok=U7GbAtGC'),
+      //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/${fighterNamesFormatted[index][1]}_R_04-22.png?itok=re8DiJyk'),
+      //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-11/${fighterNamesFormatted[index][1]}_R_11-05.png?itok=9s9OuAfx'),
+      //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/${fighterNamesFormatted[index][1]}_R_09-17.png?itok=sTEI11bw"),
+      //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/${fighterNamesFormatted[index][1]}_R_07-30.png?itok=FXlVM6Mi"),
+      //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/${fighterNamesFormatted[index][1]}_R_09-23.png?itok=eOYVQXty"),
+      //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_06-10.png?itok=1SZQGMu9"),
+      //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/${fighterNamesFormatted[index][1]}_R_07-23.png?itok=xniSKAql'),
+      //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/${fighterNamesFormatted[index][1]}_R_04_28.png?itok=a8B12kVI'),
+      //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-07/e3a138aa-c8fc-4050-b081-3422f240b542%252F${fighterNamesFormatted[index][1]}_R_06-11.png?itok=W-Db4sZy'),
+      //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_11_19.png?itok=_N7qL0uE'),
+      //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][1]}_R_05-06.png?itok=NWHhcwBD'),
+      //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][1]}_R_10-01.png?itok=R-rMgMDj'),
+      //     URL('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][1]}_R_02-18.png?itok=KWOd1rQf'),
+      //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/${fighterNamesFormatted[index][1]}_R_05-20.png?itok=CF4yl0q6"),
+      //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_04-15.png?itok=Qoocq44E'),
+      //     url('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-08/${fighterNamesFormatted[index][1]}_R_08-20.png?itok=6xs1jFhj'),
+      //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_05-20.png?itok=G1aY_sxC"),
+      //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-09/68367%252Fprofile-galery%252Ffullbodyleft-picture%252F${fighterNamesFormatted[index][1]}_R_09-18.png?itok=1OdKLwa_"),
+      //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/${fighterNamesFormatted[index][1]}_R_02-25.png?itok=_BJg7gf2"),
+      //     URL("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/${fighterNamesFormatted[index][1]}_R_04-22.png?itok=W4D6XKAh"),
+      //     URL('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-01/${fighterNamesFormatted[index][1]}_R_01-14.png?itok=wV4ATXnj'),
+      //     URL('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/${fighterNamesFormatted[index][1]}_R_04-15.png?itok=5AVp89dZ'),
+      //     URL('https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-06/71616%252Fprofile-galery%252Ffullbodyright-picture%252F${fighterNamesFormatted[index][1]}_R_06-19.png?itok=oumxjC2V'),
+      //     url("https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2023-06/${fighterNamesFormatted[index][1]}_R_04-29.png?itok=XRzK3o-n")
 
-      `,
+      // `,
           
         }}
         
