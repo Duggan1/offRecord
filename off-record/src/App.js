@@ -134,8 +134,8 @@ console.log(ufcCard2)
   const ufcResults = ufcCard2.map((match, index) => ({
     fighters: match.fighters,
     match: match.match,
-    winner: eventInfo.fights[0].winner === "" || eventInfo.fights[0].winner === "N/A" ? null : eventInfo.fights[index].winner,
-    method: eventInfo.fights[0].method === "" || eventInfo.fights[0].method === "N/A" ? null : eventInfo.fights[index].method,
+    winner: eventInfo.fights[0].winner === "" || eventInfo.fights[index].winner === "N/A" ? null : eventInfo.fights[index].winner,
+    method: eventInfo.fights[0].method === "" || eventInfo.fights[index].method === "N/A" ? null : eventInfo.fights[index].method,
 
   }));
   console.log(ufcResults) 
@@ -145,28 +145,44 @@ function normalizeMethod(method, winner) {
   if (method) {
     // Normalize the method to your desired format
     // For example, if you want to change "TKO/KO" to "KO/TKO":
-    if (method === "KO/TKOKO/TKO" || method === "DQDQ") {
+    if (method === "KO/TKOKO/TKO" || method === "DQDQ" && winner !== null) {
       return "TKO/KO";
     }
-    if (method === "Decision - UnanimousDecision - Unanimous" || method === "Decision - SplitDecision - Split") {
+    if (method === "Decision - UnanimousDecision - Unanimous" || method === "Decision - SplitDecision - Split" && winner !== null ) {
       return "Decision";
     }
     if (method === "SubmissionSubmission") {
       return "Submission";
     }
-    if (method !== null && winner === "N/A") {
+    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned" ) && (winner === "N/A" || winner === null)) {
       return "Draw/No-Contest";
     }
+    
 
     // Add more conditionals to handle other variations if needed
   }
-  return method;
+
+
+  return { method, winner };
 }
+
+function checkWinner4drawNocontest(method, winner) {
+  if (!winner) {
+    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned") && (winner === "N/A" || winner === null)) {
+      return "Draw/No-Contest";
+    }
+  }
+  return winner; // Return the original winner if conditions are not met
+}
+
+
 
 // Map over ufcResults and modify the method values
 const modifiedUfcResults = ufcResults.map((result) => ({
   ...result,
   method: normalizeMethod(result.method, result.winner),
+  winner: checkWinner4drawNocontest(result.method, result.winner)
+  
 }));
 
 
@@ -229,7 +245,7 @@ console.log(modifiedUfcResults);
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
       <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={true} />}/>
-      <Route path="/results" element={<Results ufcResults={ufcResults} ufcCard={ufcCard} user={user}/>}/>
+      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard} user={user}/>}/>
       
       <Route path="/about" element={<About/>}/>
       

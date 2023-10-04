@@ -142,7 +142,7 @@ function calculatePoints(pick, result) {
       points += 2;
     }
     if  (pick.method !== null && result.method !== null && pick.method !== "Draw/No-Contest" && result.method === "Draw/No-Contest") {
-      console.log('working')
+      // console.log('working')
     }
 
     else {
@@ -526,7 +526,12 @@ function countWinsForUsername(leaderboardwinners, username) {
     <strong>{adminKevMatch.fighters.join(' vs ')}</strong>
     <br />
     <strong>Winner:</strong>{" "}
-    {adminKevMatch.winner !== null ? `${adminKevMatch.fighters[adminKevMatch.winner]}` : "Results Pending"}
+    {adminKevMatch.winner !== null
+  ? adminKevMatch.winner === 'Draw/No-Contest'
+    ? 'Draw/No-Contest'
+    : adminKevMatch.fighters[adminKevMatch.winner]
+  : "Results Pending"}
+
     <br />
     <strong>Method:</strong> {adminKevMatch.method !== null ? adminKevMatch.method : "Results Pending"}
     <br />
