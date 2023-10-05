@@ -14,7 +14,7 @@ function Results({ user, ufcCard, ufcResults }) {
   const [explainPoints, setExplainPointst] = useState(false); 
   const [showLeaderBoard, setshowLeaderBoard] = useState(false); 
   const [showCardWins, setShowCardWins] = useState(false); 
-
+  console.log(updatedResults)
   const navigate = useNavigate()
   const handleOptionClick = (option) => {
       navigate(`${option}`);
@@ -23,7 +23,7 @@ function Results({ user, ufcCard, ufcResults }) {
   const byMainEvent = (results) => {
     return !selectedEvent || results.main_event === selectedEvent;
   }
-
+ 
   const filteredByMainEvent = results.filter((result) => {
     return (
       (!selectedEvent || result.main_event === selectedEvent) &&
@@ -182,7 +182,7 @@ function calculateTotalPoints(result, mainEvent) {
   });
   
   return totalPoints;
-}
+} 
 
 // function findUsersWithMostPointsPerEvent(results) {
   
@@ -543,7 +543,7 @@ function countWinsForUsername(leaderboardwinners, username) {
       <div className="loading" style={{ height: '30px', marginLeft: '40%' }}></div>
     )}
   </div>
-))}
+))} 
 
 </div>
 

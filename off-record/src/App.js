@@ -68,6 +68,7 @@ useEffect(() => {
             match: fight.weightClass,
             records: [records[index]?.redCornerRecord, records[index]?.blueCornerRecord],
             flags: [fight.redCornerCountry, fight.blueCornerCountry],
+            fighterPics: [fight.redCornerImage, fight.blueCornerImage],
         };
     });
 
@@ -85,8 +86,7 @@ useEffect(() => {
   fetchData();      
 }, []);      
 console.log(eventInfo) 
-
-
+  
   // const ufcCard = [
   //   { fighters: ["Alexa Grasso","Valentina Shevchenko"], match: "125 lbs", records: ["23-4", "16-3"], flags: ["Mexico", "Kyrgyzstan"] },
   //   { fighters: ["Kevin Holland", "Jack Della Maddalena"], match: "170 lbs", records: ["25-9", "15-2"], flags: ["United States", "Australia"] },
@@ -115,19 +115,11 @@ console.log(eventInfo)
   // ];
   
   const ufcCard = [
-    { fighters: ["Grant Dawson", "Bobby Green"], match: "Lightweight Bout", records: ["20-1-1", "30-14-1"], flags: ["United States", "United States"] },
-    { fighters: ["Joe Pyfer", "Abdul Alhassan"], match: "Middleweight Bout", records: ["11-2-0", "12-5"], flags: ["United States", "Ghana"] },
-    { fighters: ["Alex Morono", "Joaquin Buckley"], match: "Welterweight Bout", records: ["26-8", "16-6"], flags: ["United States", "United States"] },
-    { fighters: ["Drew Dober", "Ricky Glenn"], match: "Lightweight Bout", records: ["26-12-0", "22-7-2"], flags: ["United States", "United States"] },
-    { fighters: ["Philipe Lins", "Ion Cutelaba"], match: "Light Heavyweight Bout", records: ["17-5-0", "17-9-1"], flags: ["Brazil", "Moldova"] },
-    { fighters: ["Alexander Hernandez", "Bill Algeo"], match: "Featherweight Bout", records: ["14-6-0", "17-7-2"], flags: ["United States", "United States"] },
-    { fighters: ["Karolina Kowalkiewicz", "Diana Belbita"], match: "Women's Strawweight Bout", records: ["15-7-0", "15-7-0"], flags: ["Poland", "Romania"] },
-    { fighters: ["Chris Gutierrez", "Montel Jackson"], match: "Bantamweight Bout", records: ["19-4-2", "13-2-0"], flags: ["United States", "United States"] },
-    { fighters: ["Aoriqileng", "Johnny Munoz"], match: "Bantamweight Bout", records: ["24-11-0", "12-3-0"], flags: ["China", "United States"] },
+   
     { fighters: ["Vanessa Demopolous", "Kanako Murata"], match: "Women's Strawweight Bout", records: ["9-5-0", "12-2-0"], flags: ["United States", "Japan"] },
-    { fighters: ["Nate Maness", "Mateus Mendonca"], match: "Flyweight Bout", records: ["14-3-0", "10-1-0"], flags: ["United States", "Brazil"] },
-    { fighters: ["Montana De La Rosa", "Stephanie Egger"], match: "Women's Flyweight Bout", records: ["12-8-1", "8-4"], flags: ["United States", "Switzerland"] }
+    
 ];
+console.log(ufcCard)
 console.log(ufcCard2)
 
 
@@ -163,7 +155,7 @@ function normalizeMethod(method, winner) {
   }
 
 
-  return { method, winner };
+  return  method;
 }
 
 function checkWinner4drawNocontest(method, winner) {
@@ -244,7 +236,7 @@ console.log(modifiedUfcResults);
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy ufcCard={ufcCard} user={true} />}/>
+      <Route path="/section3" element={<Tommy ufcCard={ufcCard2} stallUfcCard={ufcCard} user={true} />}/>
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard} user={user}/>}/>
       
       <Route path="/about" element={<About/>}/>

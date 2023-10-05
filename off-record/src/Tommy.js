@@ -4,11 +4,15 @@ import './App.css';
 import * as yup from 'yup';
 import axios from 'axios';
 
+
 import { useNavigate } from 'react-router-dom';
 import Dnd from './Dnd';
 
-function Tommy({ user, ufcCard }) {
+function Tommy({ user, ufcCard, stallUfcCard}) {
 
+  const selectedUfcCard = ufcCard.length > 1 ? ufcCard : stallUfcCard;
+  
+  const [isLoading, setIsLoading] = useState(true);
   // const [eventInfo, setEventInfo] = useState({});
 
   // Replace the URL with the appropriate endpoint on your server
@@ -36,7 +40,12 @@ function Tommy({ user, ufcCard }) {
       
   
 // console.log(eventInfo)        
-  
+  useEffect(() => {
+    if (ufcCard)
+      setIsLoading(false); // Data has loaded
+      
+    
+  }, []);
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
@@ -67,8 +76,13 @@ function Tommy({ user, ufcCard }) {
 // console.log(fighterNamesFormatted);
   
   function getFighterCountry(matchIndex, fighterIndex) {
-    return ufcCard[matchIndex].flags[fighterIndex];
+  if (ufcCard[matchIndex] && ufcCard[matchIndex].flags) {
+    return ufcCard[matchIndex].flags[fighterIndex] || "Country Not Found";
+  } else {
+    return "Data Not Available";
   }
+}
+
   
   // Example usage
   const matchIndex = 0;
@@ -76,7 +90,7 @@ function Tommy({ user, ufcCard }) {
   const country = getFighterCountry(matchIndex, fighterIndex);
   
   
-  const mainEvent = ufcCard[0].fighters.join(' vs ');
+  const mainEvent = selectedUfcCard[0].fighters.join(' vs ');
  
   const [predictions, setPredictions] = useState([]);
 
@@ -456,7 +470,9 @@ function getFighterCountryAbbreviation(matchIndex, fighterIndex) {
 const inputCountry = "United States";
 const abbreviation = getCountryAbbreviation(inputCountry);
   
-  
+if (isLoading) {
+  return <Dnd />; // Render loading indicator
+} 
 
   return  (
     <div>
