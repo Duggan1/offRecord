@@ -52,7 +52,7 @@ function App() {
   // ];
 const [ufcCard2, setUfcCard2] = useState([]);
 const [eventInfo, setEventInfo] = useState({});
-const apiUrl = 'http://localhost:3001/scrape-ufc-website';
+const apiUrl = 'https://offtherecordcards.onrender.com/scrape-ufc-website';
 
 useEffect(() => { 
   async function fetchData() {
