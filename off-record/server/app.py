@@ -137,6 +137,11 @@ class PicksResource(Resource):
         predictions = data['predictions']
         user_id = data['user_id']
 
+        # Check if the user has already submitted a pick for the same main event
+        existing_pick = Pick.query.filter_by(user_id=user_id, main_event=main_event).first()
+        if existing_pick:
+            return {'error': 'You have already submitted a pick for this main event'}, 400
+
         # Create a new Picks object
         new_picks = Pick(user_id=user_id, owner=owner, location=location, main_event=main_event)
 
@@ -145,7 +150,6 @@ class PicksResource(Resource):
             fighters = pred['fighters']
             winner = pred['winner']
             method = pred['method']
-            
 
             prediction = Prediction(fighters=fighters, winner=winner, method=method,)
             new_picks.predictions.append(prediction)
