@@ -92,6 +92,7 @@ function Tommy({ user, ufcCard, stallUfcCard}) {
   
   
   const mainEvent = selectedUfcCard[0].fighters.join(' vs ');
+  // console.log(mainEvent)
  
   const [predictions, setPredictions] = useState([]);
 
@@ -185,6 +186,8 @@ const handleSubmit = async (e) => {
         })
         .then(response => {
             if (!response.ok) {
+                setError(response);
+                console.log(error)
                 throw new Error('Network response was not ok');
             }
             return response.json();

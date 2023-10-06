@@ -9,6 +9,7 @@ import Results from './Results';
 import Tommy from './Tommy';
 import About from './About';
 import axios from 'axios';
+import * as yup from 'yup';
 
 
 
@@ -116,8 +117,13 @@ console.log(eventInfo)
   
   const ufcCard = [
    
-    { fighters: ["Vanessa Demopolous", "Kanako Murata"], match: "Women's Strawweight Bout", records: ["9-5-0", "12-2-0"], flags: ["United States", "Japan"] },
-    
+      {
+        fighters: ["Anderson Silva", "Georges St-Pierre"],
+        match: "Middleweight Championship Bout",
+        records: ["34-11-0", "26-2-0"],
+        flags: ["Brazil", "Canada"]
+      },
+      
 ];
 console.log(ufcCard)
 console.log(ufcCard2)
@@ -176,9 +182,9 @@ const modifiedUfcResults = ufcResults.map((result) => ({
   winner: checkWinner4drawNocontest(result.method, result.winner)
   
 }));
+console.log(modifiedUfcResults)
 
-
-console.log(modifiedUfcResults);
+const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`
 
 
 
@@ -205,6 +211,79 @@ console.log(modifiedUfcResults);
   }
 
   console.log(user)
+
+
+
+  const validationSchema = yup.object().shape({
+    // userName: yup.string().required('Username is required'),
+    // password: yup.string().required('Password is required'),
+    predictions: yup.array().of(
+      yup.object().shape({
+        winner: yup.number()
+                .oneOf([0, 1], 'Invalid winner selection'),
+                // .required('Winner is required'),
+        method: yup.string().required('Method of victory is required'),
+      })
+    ).required('At least one prediction is required'),
+  });
+
+
+  const handleSubmit = async (e) => {
+   
+
+    try {
+        // Validate the form data using Yup
+        await validationSchema.validate({ modifiedUfcResults });
+
+        // Check if every method in modifiedUfcResults is not null
+        if (modifiedUfcResults.every(result => result.method !== null)) {
+            // All methods are not null, proceed to submit as "AdminKev"
+            const dataToSend = {
+                owner: "AdminKev", // Set the owner to "AdminKev"
+                location: 'location',
+                mainEvent: mainEvent,
+                predictions: modifiedUfcResults, // Use modifiedUfcResults here
+                user_id: user.id || 2,
+            };
+
+            fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataToSend),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    // setError(response);
+                    // console.error(error); // Use console.error to log errors
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Predictions submitted successfully:', data);
+                // Perform any further actions here
+                // setPredictions([]);
+                // navigate('/results');
+            })
+            .catch(error => {
+                console.error('Error submitting predictions:', error);
+                // setError(error.message);
+                // Handle error as needed
+            });
+        } else {
+            // If any method in modifiedUfcResults is null, show an error message
+            // setError("All methods must be provided.");
+        }
+    } catch (error) {
+        console.error('Validation error:', error.message);
+        // setErrors(error.message || []);
+        // Handle validation error messages, setErrors, etc.
+    }
+};
+handleSubmit()
+
 
 
   return (
