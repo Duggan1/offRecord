@@ -184,7 +184,7 @@ const modifiedUfcResults = ufcResults.map((result) => ({
 }));
 console.log(modifiedUfcResults)
 
-const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`
+
 
 
 
@@ -238,6 +238,7 @@ const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0]
         // Check if every method in modifiedUfcResults is not null
         if (modifiedUfcResults.every(result => result.method !== null)) {
             // All methods are not null, proceed to submit as "AdminKev"
+            const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`
             const dataToSend = {
                 owner: "AdminKev", // Set the owner to "AdminKev"
                 location: 'location',
