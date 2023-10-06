@@ -517,7 +517,7 @@ function countWinsForUsername(leaderboardwinners, username) {
             <strong>{result.main_event}</strong>
             <br />
             <strong>Ufc Results</strong>
-            <h2>{ufcCard.length * 2} Possible </h2>
+            <h2>{result.predictions.length * 2} Possible </h2>
           </center>
         </div>
         <div className="">
