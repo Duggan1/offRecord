@@ -97,7 +97,7 @@ class Prediction(db.Model):
     __tablename__ = 'predictions'
 
     id = db.Column(db.Integer, primary_key=True)
-    picks_id = db.Column(db.Integer, db.ForeignKey('picks.id'), nullable=False)
+    picks_id = db.Column(db.Integer, db.ForeignKey('picks.id'), nullable=True)
     fighters = db.Column(db.JSON, nullable=False)
     winner = db.Column(db.Integer, nullable=False)  # Index of the winning fighter
     method = db.Column(db.String(50), nullable=False)

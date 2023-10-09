@@ -362,14 +362,16 @@ const handleUpdatePredictions = (pickId, updatedPredictions) => {
 
     // Update the state with the modified updatedPicksCopy
     // setUpdatedPicks(updatedPicksCopy);
-    // console.log(updatedPick)
+    console.log(pickId)
     const dataToSend = {
+      id: pickId.id,
       owner: pickId.owner ,
       location: pickId.location,
-      mainEvent: pickId.mainEvent,
+      mainEvent: pickId.main_event,
       predictions: updatedPredictions,
       user_id: pickId.id || 2,
   };
+  console.log(dataToSend)
 
 
     // Now, you can send a PATCH request to update the pick on the server
@@ -436,9 +438,9 @@ const movePredictionDown = (pickId, predIndex) => {
     updatedPredictions[predIndex + 1] = temp;
 
     // Update the order property of predictions
-    updatedPredictions.forEach((prediction, index) => {
-      prediction.order = index;
-    });
+    // updatedPredictions.forEach((prediction, index) => {
+    //   prediction.order = index;
+    // });
 
     // Update the state with the reordered predictions
     // handlePredictionOrderChange(pickId.id , updatedPredictions);
