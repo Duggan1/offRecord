@@ -199,6 +199,23 @@ class PickByID(Resource):
         }
 
         return make_response(pick_dict, 200)
+
+    
+    def patch(self, pick_id):
+        data = request.get_json()
+
+        pick = Pick.query.filter_by(id=pick_id).first()
+        if pick is None:
+            return make_response({"error": "pick not found"}, 404)
+
+        # Update the predictions of the pick
+        pick.predictions = data.get("predictions", pick.predictions)
+
+        # Commit the changes to the database
+        db.session.commit()
+
+        return make_response({"message": "Pick updated successfully"}, 200)
+    
     
 
 

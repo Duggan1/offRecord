@@ -134,9 +134,12 @@ console.log(leaderboardwinners)
  
 function calculatePoints(pick, result) {
   let points = 0;
+  // console.log(pick)
+  // console.log(result)
 
-  // Check if both pick and result are valid objects
+  
   if (pick && result) {
+    
     // Check if the winner matches
     if (pick.method !== null && result.method !== null && pick.method === "Draw/No-Contest" && result.method === "Draw/No-Contest") {
       points += 2;
@@ -147,7 +150,7 @@ function calculatePoints(pick, result) {
 
     else {
 
-        if (pick.winner !== null && result.winner !== null && pick.winner === result.winner) {
+        if (pick.winner !== null && result.winner !== null && pick.winner == result.winner) {
           points += 1;
 
           // Check if the method also matches, only if the winner is correct
@@ -296,6 +299,8 @@ console.log(results);
         // Handle error as needed
       });
   };
+
+
   
 
 
@@ -318,8 +323,128 @@ function countWinsForUsername(leaderboardwinners, username) {
 }
 
 
+const [updatedPicks, setUpdatedPicks] = useState(filteredByMainEvent);
+
+// Function to handle prediction order change
+// const handlePredictionOrderChange = (pickId, updatedPredictions) => {
+//   console.log(pickId)
+//   console.log(updatedPredictions)
+//   const updatedPicksCopy = [...updatedPredictions];
+//   const updatedPickIndex = updatedPicksCopy.findIndex((pick) => pick.id === pickId);
+//   console.log(updatedPicksCopy)
+//   console.log(updatedPickIndex)
+
+//   if (updatedPickIndex !== -1) {
+//     updatedPicksCopy[updatedPickIndex].predictions = updatedPredictions;
+//     setUpdatedPicks(updatedPicksCopy);
+//   }
+// };
+
+// Function to send a PATCH request to update the pick on the server
+const handleUpdatePredictions = (pickId, updatedPredictions) => {
+  // Find the pick you want to update in updatedPicks
+  console.log(pickId)
+  console.log(updatedPredictions)
+  
+
+  if (pickId !== -1) {
+    // Create a copy of the updatedPick
+    // const updatedPick = { ...updatedPicks[updatedPickIndex] };
+
+    // // Update the predictions property with the new predictions
+    // updatedPick.predictions = updatedPredictions;
+
+    // // Create a copy of updatedPicks
+    // const updatedPicksCopy = [...updatedPicks];
+
+    // // Update the pick in the copied array
+    // updatedPicksCopy[updatedPickIndex] = updatedPick;
+
+    // Update the state with the modified updatedPicksCopy
+    // setUpdatedPicks(updatedPicksCopy);
+    // console.log(updatedPick)
+    const dataToSend = {
+      owner: pickId.owner ,
+      location: pickId.location,
+      mainEvent: pickId.mainEvent,
+      predictions: updatedPredictions,
+      user_id: pickId.id || 2,
+  };
 
 
+    // Now, you can send a PATCH request to update the pick on the server
+    fetch(`https://off-therecordpicks.onrender.com/picks/${pickId.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to update pick");
+        }
+        // Refresh the list of picks after a successful update
+        return fetchPicks();
+      })
+      .catch((error) => {
+        console.error("Error updating pick:", error);
+        // Handle error as needed
+      });
+  }
+};
+
+
+// Function to move a prediction up within a pick
+const movePredictionUp = (pickId, predIndex) => {
+  // Get the updated order of predictions within the pick
+  const updatedPredictions = pickId.predictions;
+  console.log(updatedPredictions)
+
+  // Check if it's possible to move the prediction up
+  if (predIndex > 0) {
+    // Swap the prediction with the one above it
+    const temp = updatedPredictions[predIndex];
+    updatedPredictions[predIndex] = updatedPredictions[predIndex - 1];
+    updatedPredictions[predIndex - 1] = temp;
+
+    // Update the order property of predictions
+    updatedPredictions.forEach((prediction, index) => {
+      prediction.order = index;
+    });
+
+    // Update the state with the reordered predictions
+    // handlePredictionOrderChange(pickId, updatedPredictions);
+    
+    
+  }
+};
+
+// Function to move a prediction down within a pick
+const movePredictionDown = (pickId, predIndex) => {
+  console.log(pickId)
+  console.log(predIndex)
+  // Get the updated order of predictions within the pick
+  const updatedPredictions = pickId.predictions;
+  console.log(updatedPredictions)
+
+  // Check if it's possible to move the prediction down
+  if (predIndex < updatedPredictions.length - 1) {
+    // Swap the prediction with the one below it
+    const temp = updatedPredictions[predIndex];
+    updatedPredictions[predIndex] = updatedPredictions[predIndex + 1];
+    updatedPredictions[predIndex + 1] = temp;
+
+    // Update the order property of predictions
+    updatedPredictions.forEach((prediction, index) => {
+      prediction.order = index;
+    });
+
+    // Update the state with the reordered predictions
+    // handlePredictionOrderChange(pickId.id , updatedPredictions);
+    handleUpdatePredictions(pickId ,updatedPredictions)
+  }
+};
 
   return (
 <div>
@@ -454,6 +579,7 @@ function countWinsForUsername(leaderboardwinners, username) {
   <tr key={index} >
     <td className="LeftOne">
       <div className="ownpicksdiv">
+        
         <center>
           <strong><span className="small">{result.owner}'s</span> picks</strong>
           <br />
@@ -500,6 +626,16 @@ function countWinsForUsername(leaderboardwinners, username) {
                   : null}
               </strong></center>
               <br />
+              <div key={prediction.id}>
+                  {/* Display prediction details */}
+                  {prediction.details}
+
+                  {/* UI for changing prediction order */}
+                  <button onClick={() => movePredictionUp(result, predIndex)}>Move Up </button><br></br>
+                  <button onClick={() => movePredictionDown(result, predIndex)}>Move Down </button>
+                </div>
+                <br></br>
+                
             </p>
           );
         })}
