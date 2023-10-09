@@ -206,16 +206,25 @@ class PickByID(Resource):
 
         pick = Pick.query.filter_by(id=pick_id).first()
         if pick is None:
-            return make_response({"error": "pick not found"}, 404)
+            return make_response({"error": "Pick not found"}, 404)
 
-        # Update the predictions of the pick
-        pick.predictions = data.get("predictions", pick.predictions)
+        # Handle the predictions data from the request
+        predictions_data = data.get("predictions")
+
+        # Update or create predictions based on the data
+        if predictions_data:
+            # Handle the relationship based on your data structure
+            # For example, if predictions is a list of dictionaries:
+            for prediction_data in predictions_data:
+                prediction = Prediction(**prediction_data)
+                pick.predictions.append(prediction)
 
         # Commit the changes to the database
         db.session.commit()
 
         return make_response({"message": "Pick updated successfully"}, 200)
     
+        
     
 
 
