@@ -84,7 +84,7 @@ class Pick(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     # Here we define a one-to-many relationship with the Prediction model
-    predictions = db.relationship('Prediction', backref='picks', lazy=True)
+    predictions = db.relationship('Prediction', backref='pick', lazy='dynamic')
 
     # @validates('owner')
     # def validate_owner(self, key, value):
