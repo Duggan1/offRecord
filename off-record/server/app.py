@@ -218,7 +218,7 @@ class PickByID(Resource):
             # For example, if predictions is a list of dictionaries:
             for prediction_data in predictions_data:
                 prediction = Prediction(**prediction_data)
-                pick.predictions.append(prediction)
+                pick.predictions = prediction
 
         # Commit the changes to the database
         db.session.commit()

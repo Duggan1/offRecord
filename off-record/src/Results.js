@@ -396,6 +396,29 @@ const handleUpdatePredictions = (pickId, updatedPredictions) => {
   }
 };
 
+const movePredictionDown = (pickId, predIndex) => {
+  console.log(pickId);
+  console.log(predIndex);
+
+  // Get the updated order of predictions within the pick
+  const updatedPredictions = pickId.predictions;
+  console.log(updatedPredictions);
+
+  // Check if it's possible to move the prediction down
+  if (predIndex < updatedPredictions.length - 1) {
+    // Create a copy of the updated predictions array
+    const updatedPredictionsCopy = [...updatedPredictions];
+
+    // Swap the prediction with the one below it in the copied array
+    const temp = updatedPredictionsCopy[predIndex];
+    updatedPredictionsCopy[predIndex] = updatedPredictionsCopy[predIndex + 1];
+    updatedPredictionsCopy[predIndex + 1] = temp;
+    console.log(temp);
+
+    // Now, call the function to update the predictions
+    handleUpdatePredictions(pickId, updatedPredictionsCopy);
+  }
+};
 
 // Function to move a prediction up within a pick
 const movePredictionUp = (pickId, predIndex) => {
@@ -423,30 +446,7 @@ const movePredictionUp = (pickId, predIndex) => {
 };
 
 // Function to move a prediction down within a pick
-const movePredictionDown = (pickId, predIndex) => {
-  console.log(pickId)
-  console.log(predIndex)
-  // Get the updated order of predictions within the pick
-  const updatedPredictions = pickId.predictions;
-  console.log(updatedPredictions)
 
-  // Check if it's possible to move the prediction down
-  if (predIndex < updatedPredictions.length - 1) {
-    // Swap the prediction with the one below it
-    const temp = updatedPredictions[predIndex];
-    updatedPredictions[predIndex] = updatedPredictions[predIndex + 1];
-    updatedPredictions[predIndex + 1] = temp;
-
-    // Update the order property of predictions
-    // updatedPredictions.forEach((prediction, index) => {
-    //   prediction.order = index;
-    // });
-
-    // Update the state with the reordered predictions
-    // handlePredictionOrderChange(pickId.id , updatedPredictions);
-    handleUpdatePredictions(pickId ,updatedPredictions)
-  }
-};
 
   return (
 <div>
