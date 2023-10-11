@@ -641,15 +641,19 @@ const deletePrediction = (pickId, predIndex) => {
                   : null}
               </strong></center>
               <br />
-              <div key={prediction.id}>
+              
+
+                  {deletePicks && user && ( user.username === 'AdminKev') ?
+                   (
+                   <div key={prediction.id}>
                   {/* Display prediction details */}
                   {prediction.details}
-
-                  {/* UI for changing prediction order */}
                   <button onClick={() => movePredictionUp(result, predIndex)}>Move Up </button><br></br>
                   <button onClick={() => movePredictionDown(result, predIndex)}>Move Down </button>
                   <button onClick={() => deletePrediction(result, predIndex)}>Delete</button>
-                </div>
+                  </div> ) : null }
+                 
+                
                 <br></br>
                 
             </p>
