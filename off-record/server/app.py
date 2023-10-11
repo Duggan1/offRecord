@@ -184,8 +184,8 @@ api.add_resource(PickResource, '/picks')
 
 
 class PickByID(Resource):
-    def get(self, id):
-        picks = Pick.query.filter_by(id=id).first()
+    def get(self, pick_id):
+        picks = Pick.query.filter_by(id=pick_id).first()
         if picks is None:
             return make_response({"error": "pick not found"}, 404)
         
