@@ -234,7 +234,7 @@ class PickByID(Resource):
                 winner = prediction_data['winner']
                 method = prediction_data['method']
 
-                prediction = Prediction(fighters=fighters, winner=winner, method=method)
+                prediction = Prediction(fighters=fighters, winner=winner, method=method, pick_id=pick.id)
                 pick.predictions.append(prediction)
 
             # Commit the changes to the database
