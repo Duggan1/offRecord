@@ -212,12 +212,15 @@ class PickByID(Resource):
         # Handle the predictions data from the request
         predictions_data = data.get("predictions")
 
-        # Update or create predictions based on the data
         if predictions_data:
-            # Handle the relationship based on your data structure
-            # For example, if predictions is a list of dictionaries:
-            new_predictions = [Prediction(**prediction_data) for prediction_data in predictions_data]
-            pick.predictions = new_predictions  # Assign the list of predictions
+            # Clear existing predictions
+            pick.predictions = []
+
+            # Create or update predictions based on the data
+            # We assume that predictions is a list of dictionaries
+            for prediction_data in predictions_data:
+                prediction = Prediction(**prediction_data)
+                pick.predictions.append(prediction)
 
         # Commit the changes to the database
         db.session.commit()

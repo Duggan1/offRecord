@@ -345,6 +345,7 @@ const handleUpdatePredictions = (pickId, updatedPredictions) => {
   // Find the pick you want to update in updatedPicks
   console.log(pickId)
   console.log(updatedPredictions)
+  updatedPredictions.id = pickId.id
   
 
   if (pickId !== -1) {
@@ -397,8 +398,8 @@ const handleUpdatePredictions = (pickId, updatedPredictions) => {
 };
 
 const movePredictionDown = (pickId, predIndex) => {
-  console.log(pickId);
-  console.log(predIndex);
+  console.log(pickId);/////pickOBJECT
+  console.log(predIndex);/////PREDICTIONINDEX
 
   // Get the updated order of predictions within the pick
   const updatedPredictions = pickId.predictions;
