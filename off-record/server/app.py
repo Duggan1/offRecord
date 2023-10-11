@@ -236,12 +236,13 @@ class PickByID(Resource):
         pick = Pick.query.filter_by(id=pick_id).first()
         if pick is None:
             return make_response({"error": "pick not found"}, 404)
+        
+        pick.predictions.delete()
 
-        # for prediction in pick.predictions:
-        #     db.session.delete(prediction)
+        for prediction in pick.predictions:
+            db.session.delete(prediction)
 
-        db.session.query(Prediction).filter_by(pick_id=pick.id).delete()
-
+        
         db.session.delete(pick)
         db.session.commit()
         
