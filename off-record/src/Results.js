@@ -345,7 +345,7 @@ const handleUpdatePredictions = (pickId, updatedPredictions) => {
   // Find the pick you want to update in updatedPicks
   console.log(pickId)
   console.log(updatedPredictions)
-  updatedPredictions.id = pickId.id
+  updatedPredictions.picks_id = pickId.id
   
 
   if (pickId !== -1) {

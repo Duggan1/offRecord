@@ -209,6 +209,11 @@ class PickByID(Resource):
         if pick is None:
             return make_response({"error": "Pick not found"}, 404)
 
+        # owner = data['owner']
+        # location = data['location']
+        # main_event = data['mainEvent']
+        # user_id = data['user_id']
+
         # Handle the predictions data from the request
         predictions_data = data.get("predictions")
 
@@ -216,16 +221,26 @@ class PickByID(Resource):
             # Clear existing predictions
             pick.predictions = []
 
+            # Update the main attributes of the Pick
+            # pick.owner = owner
+            # pick.location = location
+            # pick.main_event = main_event
+            # pick.user_id = user_id
+
             # Create or update predictions based on the data
             # We assume that predictions is a list of dictionaries
             for prediction_data in predictions_data:
-                prediction = Prediction(**prediction_data)
+                fighters = prediction_data['fighters']
+                winner = prediction_data['winner']
+                method = prediction_data['method']
+
+                prediction = Prediction(fighters=fighters, winner=winner, method=method)
                 pick.predictions.append(prediction)
 
-        # Commit the changes to the database
-        db.session.commit()
+            # Commit the changes to the database
+            db.session.commit()
 
-        return make_response({"message": "Pick updated successfully"}, 200)
+            return make_response({"message": "Pick updated successfully"}, 200)
 
         
     
