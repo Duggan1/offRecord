@@ -447,7 +447,19 @@ const movePredictionUp = (pickId, predIndex) => {
 };
 
 // Function to move a prediction down within a pick
+const deletePrediction = (pickId, predIndex) => {
+  // Get the updated list of predictions
+  const updatedPredictions = pickId.predictions;
 
+  // Check if the specified index is valid
+  if (predIndex >= 0 && predIndex < updatedPredictions.length) {
+    // Remove the prediction at the specified index
+    updatedPredictions.splice(predIndex, 1);
+
+    // Call the function to update the predictions
+    handleUpdatePredictions(pickId, updatedPredictions);
+  }
+};
 
   return (
 <div>
@@ -636,6 +648,7 @@ const movePredictionUp = (pickId, predIndex) => {
                   {/* UI for changing prediction order */}
                   <button onClick={() => movePredictionUp(result, predIndex)}>Move Up </button><br></br>
                   <button onClick={() => movePredictionDown(result, predIndex)}>Move Down </button>
+                  <button onClick={() => deletePrediction(result, predIndex)}>Delete</button>
                 </div>
                 <br></br>
                 
