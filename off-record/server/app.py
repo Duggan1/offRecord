@@ -24,7 +24,7 @@ signal.signal(signal.SIGTERM, ignore_sigterm)
 
 class Root(Resource):
     def get(self):
-        return "Welcome to the Teacher Backend!"
+        return "Welcome to the OFF THE RECORD PICKS Backend!"
 
 api.add_resource(Root, '/')  
 class Users(Resource):
@@ -237,9 +237,10 @@ class PickByID(Resource):
         if pick is None:
             return make_response({"error": "pick not found"}, 404)
 
-        for prediction in pick.predictions:
-            db.session.delete(prediction)
+        # for prediction in pick.predictions:
+        #     db.session.delete(prediction)
 
+        db.session.query(Prediction).filter_by(pick_id=pick.id).delete()
 
         db.session.delete(pick)
         db.session.commit()
