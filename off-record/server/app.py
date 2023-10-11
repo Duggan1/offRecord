@@ -214,18 +214,23 @@ class PickByID(Resource):
 
         # Update or create predictions based on the data
         if predictions_data:
-            # Handle the relationship based on your data structure
+            
+            existing_predictions = list(pick.predictions.all())
+
+            # Then, clear existing predictions
+            for prediction in existing_predictions:
+                db.session.delete(prediction)
+
             # For example, if predictions is a list of dictionaries:
             for prediction_data in predictions_data:
                 prediction = Prediction(**prediction_data)
-                pick.predictions.clear()
                 pick.predictions.append(prediction)
 
-        # Commit the changes to the database
-        db.session.commit()
+            # Commit the changes to the database
+            db.session.commit()
 
-        return make_response({"message": "Pick updated successfully"}, 200)
-    
+            return make_response({"message": "Pick updated successfully"}, 200)
+
         
     
 
