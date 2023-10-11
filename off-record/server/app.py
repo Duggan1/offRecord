@@ -218,6 +218,7 @@ class PickByID(Resource):
             pick.predictions = []
             # For example, if predictions is a list of dictionaries:
             for prediction_data in predictions_data:
+                prediction_data["picks_id"] = pick.id
                 prediction = Prediction(**prediction_data)
                 pick.predictions.append(prediction)
 
