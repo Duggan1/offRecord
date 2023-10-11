@@ -216,15 +216,14 @@ class PickByID(Resource):
         if predictions_data:
             # Handle the relationship based on your data structure
             # For example, if predictions is a list of dictionaries:
-            for prediction_data in predictions_data:
-                prediction = Prediction(**prediction_data)
-                pick.predictions = prediction
+            new_predictions = [Prediction(**prediction_data) for prediction_data in predictions_data]
+            pick.predictions = new_predictions  # Assign the list of predictions
 
         # Commit the changes to the database
         db.session.commit()
 
         return make_response({"message": "Pick updated successfully"}, 200)
-    
+
         
     
 
