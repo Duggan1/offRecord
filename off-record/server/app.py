@@ -215,6 +215,7 @@ class PickByID(Resource):
         # Update or create predictions based on the data
         if predictions_data:
             # Handle the relationship based on your data structure
+            pick.predictions = []
             # For example, if predictions is a list of dictionaries:
             for prediction_data in predictions_data:
                 prediction = Prediction(**prediction_data)
