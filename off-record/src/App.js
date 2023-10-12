@@ -116,15 +116,58 @@ console.log(eventInfo)
   // ];
   
   const ufcCard = [
-   
+
       {
-        fighters: ["Anderson Silva", "Georges St-Pierre"],
-        match: "Middleweight Championship Bout",
-        records: ["34-11-0", "26-2-0"],
-        flags: ["Brazil", "Canada"]
+        fighters: ["Jon Jones", "Fedor Emelianenko"],
+        match: "Heavyweight Championship Bout",
+        records: ["30-1-0", "36-5-0"],
+        flags: ["USA", "Russia"]
       },
-      
-];
+      {
+        fighters: ["Demetrius Johnson", "Brandon Moreno"],
+        match: "Flyweight Championship Bout",
+        records: ["30-3-1", "19-5-2"],
+        flags: ["USA", "Mexico"]
+      },
+      {
+        fighters: ["Jose Aldo", "Sean O'Malley" ],
+        match: "Bantamweight Championship Bout",
+        records: ["23-3-0", "15-1-0"],
+        flags: ["Brazil", "USA"]
+      },
+      {
+        fighters: ["Conor McGregor", "Alexander Volkanovski"],
+        match: "Featherweight Championship Bout",
+        records: ["22-5-0", "24-1-0"],
+        flags: ["Ireland", "Australia"]
+      },
+      {
+        fighters: ["Khabib Nurmagomedov", "BJ Penn"],
+        match: "Lightweight Championship Bout",
+        records: ["29-0-0", "16-14-2"],
+        flags: ["Russia", "USA"]
+      },
+      {
+        fighters: ["Kamaru Usman", "Georges St-Pierre"],
+        match: "Welterweight Championship Bout",
+        records: ["19-1-0", "26-2-0"],
+        flags: ["Nigeria", "Canada"]
+      },
+      {
+        fighters: ["Anderson Silva", "Yoel Romero"],
+        match: "Middleweight Championship Bout",
+        records: ["34-11-0", "13-5-0"],
+        flags: ["Brazil", "Cuba"]
+      },
+      {
+        fighters: ["Daniel Cormier", "Chuck Liddell"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["USA", "USA"]
+      }
+    ];
+    
+  
 console.log(ufcCard)
 console.log(ufcCard2)
 
