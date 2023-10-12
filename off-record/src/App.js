@@ -312,12 +312,12 @@ handleSubmit()
 
     
    <Routes>
-      <Route path="/" element={<Home user={user} />} />
+      <Route path="/"  element={<Home user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard}   />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} />}/>
-      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard} user={user}/>}/>
+      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard2} user={user}/>}/>
       
       <Route path="/about" element={<About/>}/>
       

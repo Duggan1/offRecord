@@ -464,7 +464,7 @@ const countryData = {
 };
 
 function getCountryAbbreviation(countryName) {
-  return countryData[countryName] || "JP";
+  return countryData[countryName] || "Not Found";
 }
 function getFighterCountryAbbreviation(matchIndex, fighterIndex) {
   const countryName = ufcCard[matchIndex].flags[fighterIndex];
