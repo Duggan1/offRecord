@@ -130,7 +130,7 @@ console.log(eventInfo)
         flags: ["USA", "Mexico"]
       },
       {
-        fighters: ["Jose Aldo", "Sean O'Malley" ],
+        fighters: ["Dominick Cruz", "Sean O'Malley" ],
         match: "Bantamweight Championship Bout",
         records: ["23-3-0", "15-1-0"],
         flags: ["Brazil", "USA"]

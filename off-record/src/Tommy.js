@@ -281,6 +281,7 @@ const countryData = {
   "Eritrea": "ER",
   "Spain": "ES",
   "Ethiopia": "ET",
+  "England":"GB",
   "Finland": "FI",
   "Fiji": "FJ",
   "Falkland Islands (Malvinas)": "FK",
