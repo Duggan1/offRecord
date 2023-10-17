@@ -121,49 +121,59 @@ console.log(eventInfo)
         fighters: ["Jon Jones", "Fedor Emelianenko"],
         match: "Heavyweight Championship Bout",
         records: ["30-1-0", "36-5-0"],
-        flags: ["USA", "Russia"]
-      },
+        flags: ["United States", "Russia"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2023-03/JONES_JON_L_BELT_03_04.png?itok=P6J6DQpm', 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/10/fedor-emelianenko-bellator-269-17.jpg?w=800',],
+      }
+      ,
       {
         fighters: ["Demetrius Johnson", "Brandon Moreno"],
         match: "Flyweight Championship Bout",
         records: ["30-3-1", "19-5-2"],
-        flags: ["USA", "Mexico"]
+        flags: ["United States", "Mexico"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2018-10/JOHNSON_DEMETRIOUS_L.png?VersionId=G0_mNHlnlWHbCJpUDDHsX1poESQCIfI2&itok=r_oiMkoC',
+         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-03/9c4e751d-a7bb-45bf-81bb-5c57b661b325%252FMORENO_BRANDON_R_06-12.png?itok=-XuWENTW',],
       },
       {
-        fighters: ["Dominick Cruz", "Sean O'Malley" ],
+        fighters: ["Dominick Cruz","Sean O'Malley"  ],
         match: "Bantamweight Championship Bout",
-        records: ["23-3-0", "15-1-0"],
-        flags: ["Brazil", "USA"]
+        records: ["23-3-0","15-1-0" ],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-03/7a064993-dfca-4c8e-aca4-8268fc6e711b%252FCRUZ_DOMINICK_L_12-11.png?itok=hInQ4zAq','https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/OMALLEY_SEAN_R_08-19.png?itok=eZovmDJG', ],
       },
       {
-        fighters: ["Conor McGregor", "Alexander Volkanovski"],
+        fighters: ["Alexander Volkanovski", "Conor McGregor"],
         match: "Featherweight Championship Bout",
-        records: ["22-5-0", "24-1-0"],
-        flags: ["Ireland", "Australia"]
+        records: ["24-1-0","22-5-0" ],
+        flags: ["Australia", "Ireland"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2023-07/VOLKANOVSKI_ALEXANDER_L_BELT_07-08.png?itok=FewlqaNo', 'https://i.pinimg.com/originals/e4/92/64/e492645b85e6f25f1dfcf742162b6990.png',],
       },
       {
         fighters: ["Khabib Nurmagomedov", "BJ Penn"],
         match: "Lightweight Championship Bout",
         records: ["29-0-0", "16-14-2"],
-        flags: ["Russia", "USA"]
+        flags: ["Russia", "United States"],
+        fighterPics: ['https://pngimg.com/d/khabib_PNG16.png', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-03/PENN_BJ_R.png?VersionId=eV2cIM3YqUYM26MitpCFKJsidC_ZRUmJ&itok=RboQJFln',],
       },
       {
         fighters: ["Kamaru Usman", "Georges St-Pierre"],
         match: "Welterweight Championship Bout",
         records: ["19-1-0", "26-2-0"],
-        flags: ["Nigeria", "Canada"]
+        flags: ["Nigeria", "Canada"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/USMAN_KAMARU_L_03-18.png?itok=Zgf5AByJ', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/ufc-fighter-container/68009/profile-galery/fullbodyleft-picture/Georges-St-Pierre_318_LeftFullBodyImage.png?itok=Hi9sDs23',],
       },
       {
-        fighters: ["Anderson Silva", "Yoel Romero"],
+        fighters: ["Yoel Romero", "Anderson Silva"],
         match: "Middleweight Championship Bout",
-        records: ["34-11-0", "13-5-0"],
-        flags: ["Brazil", "Cuba"]
+        records: ["13-5-0","34-11-0" ],
+        flags: ["Cuba","Brazil" ],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2019-08/ROMERO_YOEL_L.png?VersionId=rMWoCutUaCZ5g3ltk5jLMlEU83wP2ukr&itok=2fdVAvOR', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-10/67302%252Fprofile-galery%252Ffullbodyright-picture%252FSILVA_ANDERSON_R_10-31.png?itok=TlJEp4ti',],
       },
       {
         fighters: ["Daniel Cormier", "Chuck Liddell"],
         match: "Light Heavyweight Championship Bout",
         records: ["22-3-0", "21-9-0"],
-        flags: ["USA", "USA"]
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2020-08/CORMIER_DANIEL_L_08-15.png?VersionId=8c0xGmF.jAN.__8bESM5BDrDOjfgi0MX&itok=-L9HNdVo', 'https://i.pinimg.com/originals/f4/cd/9c/f4cd9c4355c740f3ccb7f5a6bf1e66ef.png',],
       }
     ];
     

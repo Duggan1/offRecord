@@ -10,10 +10,10 @@ const port = 3001; // Choose an available port
 // Enable CORS for all routes
 app.use(cors());
 
-const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-october-14-2023';
+const deatilsUrl = 'https://www.ufc.com/event/ufc-294';
 
 // const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-september-16-2023';
-const Recurl = 'https://www.tapology.com/fightcenter/events/103212-ufc-fight-night';
+const Recurl = 'https://www.tapology.com/fightcenter/events/99416-ufc-294';
 
 
 const fightRecords = [];
@@ -137,7 +137,6 @@ axios.get(Recurl)
   .catch((error) => {
     console.error('Error:', error);
   });
-
 
   
       res.json({ event_name, event_date, fights: fightData, records: fightRecords });

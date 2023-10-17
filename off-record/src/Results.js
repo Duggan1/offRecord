@@ -77,9 +77,27 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
   
       if (userPoints > eventWinners[result.main_event].points) {
         eventWinners[result.main_event] = { winner: result.owner, points: userPoints };
-      } else if (userPoints === eventWinners[result.main_event].points) {
-        eventWinners[result.main_event].winner = null; // Set winner to null if points are the same
       }
+      else if (userPoints === eventWinners[result.main_event].points) {
+        // Check if there's already an array to store tied winners; if not, create one
+        if (!eventWinners[result.main_event].winners) {
+          eventWinners[result.main_event].winners = [eventWinners[result.main_event].winner];
+        }
+        // Add the current user to the array of tied winners
+        eventWinners[result.main_event].winners.push(result.owner);
+      }
+      
+      // if (userPoints === eventWinners[result.main_event].points) {
+      //   if (eventWinners[result.main_event].winner === null) {
+      //     // If the current winner is null, initialize an array to keep track of tied users
+      //     eventWinners[result.main_event].winners = [result.owner];
+      //     eventWinners[result.main_event].points = [userPoints]; // Initialize points to 1
+      //   } else if (eventWinners[result.main_event].winners) {
+      //     // If there are already tied users, add the current user to the list
+      //     eventWinners[result.main_event].winners.append(result.owner);
+      //   }
+      // }
+      
     });
   
     // Set the winner to "Pending" for events with no points
@@ -313,14 +331,20 @@ function countWinsForUsername(leaderboardwinners, username) {
 
   for (const event in leaderboardwinners) {
     const winner = leaderboardwinners[event].winner;
+    const winners = leaderboardwinners[event].winners;
 
-    if (winner === username) {
+    if (winners) {
+      if (winners.includes(username) ) {
+        winCount++;
+      }
+    } else if (winner === username) {
       winCount++;
     }
   }
 
   return winCount;
 }
+
 
 
 const [updatedPicks, setUpdatedPicks] = useState(filteredByMainEvent);
@@ -533,9 +557,24 @@ const deletePrediction = (pickId, predIndex) => {
                   ) : (
                     <div>
                       
-                      <p  className='color-yellow' >
-                         {eventData.winner} + {eventData.points} Points
-                      </p></div>
+                      <p className='color-yellow'>
+  {eventData.winners ? (
+    <span>
+      {eventData.winners.map((winner, index) => (
+        <span key={index}>
+          {winner} +{eventData.points} Points
+          {index < eventData.winners.length - 1 ? <br /> : ' '}
+        </span>
+      ))}
+     
+    </span>
+  ) : (
+    <span>
+      {eventData.winner} +{eventData.points} Points
+    </span>
+  )}
+</p>
+</div>
                     )}
                   </div>
                 </div>
@@ -586,7 +625,7 @@ const deletePrediction = (pickId, predIndex) => {
             
             
             <th> Fight Results</th>
-            {/* Add more table headers as needed */}
+            {/* Add more table headers as needed later*/}
           </tr>
         </thead>
         <tbody >

@@ -11,7 +11,8 @@ import Dnd from './Dnd';
 function Tommy({ user, ufcCard, stallUfcCard}) {
 
   const selectedUfcCard = ufcCard.length > 1 ? ufcCard : stallUfcCard;
-  console.log(selectedUfcCard)
+  console.log(stallUfcCard)
+  console.log(ufcCard)
   
   const [isLoading, setIsLoading] = useState(true);
   // const [eventInfo, setEventInfo] = useState({});
@@ -52,8 +53,8 @@ function Tommy({ user, ufcCard, stallUfcCard}) {
   const [errors, setErrors] = useState([]);
   const [error, setError] = useState(null);
  
-  const locationCity = 'Las Vegas'
-  const location = 'United States'
+  const locationCity = ' 294 Abu Dhabi'
+  const location = 'United Arab Emirates'
   
   const fighterNamesFormatted = ufcCard.map(({ fighters }) => {
     const formattedFighters = fighters.map(name => {
@@ -66,7 +67,7 @@ function Tommy({ user, ufcCard, stallUfcCard}) {
       }
     });
     return formattedFighters;
-  });
+  }); 
   
   
 
@@ -492,7 +493,7 @@ if (isLoading) {
       </div> 
       {/* <p className="color-black bold ">Fighter's images will be availabe on Friday after UFC photoshoot occurs </p> */}
       <form style={{marginBottom: '0px'}} className="blackBG" onSubmit={handleSubmit}>
-        {ufcCard.map((fight, index) => (
+        {selectedUfcCard.map((fight, index) => (
     <div key={index} className="fight">
       <div key={index} className="fighterready">
   <p key={index} className="mobile-fight-info">
