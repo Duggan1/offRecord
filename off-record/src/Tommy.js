@@ -67,7 +67,7 @@ function Tommy({ user, ufcCard, stallUfcCard}) {
       }
     });
     return formattedFighters;
-  }); 
+  });   
   
   
 
