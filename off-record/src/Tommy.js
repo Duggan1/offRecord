@@ -10,9 +10,22 @@ import Dnd from './Dnd';
 
 function Tommy({ user, ufcCard, stallUfcCard}) {
 
-  const selectedUfcCard = ufcCard.length > 1 ? ufcCard : stallUfcCard;
-  console.log(stallUfcCard)
-  console.log(ufcCard)
+  // const selectedUfcCard = ufcCard.length > 1 ? ufcCard : stallUfcCard;
+  // console.log(stallUfcCard)
+  // console.log(ufcCard)
+
+  const [showUfcCard, setShowUfcCard] = useState(true);
+
+  
+  const toggleCard = () => {
+    setShowUfcCard((prevShowUfcCard) => !prevShowUfcCard);
+    setPredictions([])
+
+  };
+
+  // Determine which card to display
+  const selectedUfcCard = showUfcCard ? ufcCard : stallUfcCard;
+
   
   const [isLoading, setIsLoading] = useState(true);
   // const [eventInfo, setEventInfo] = useState({});
@@ -164,7 +177,7 @@ const handleSubmit = async (e) => {
         // Validate the form data using Yup
         await validationSchema.validate({ predictions });
 
-        const predictionData = ufcCard.map((fight, index) => ({
+        const predictionData = selectedUfcCard.map((fight, index) => ({
             fighters: fight.fighters,
             winner: predictions[index]?.winner ,
             method: predictions[index]?.method ,
@@ -469,7 +482,7 @@ function getCountryAbbreviation(countryName) {
   return countryData[countryName] || "Not Found";
 }
 function getFighterCountryAbbreviation(matchIndex, fighterIndex) {
-  const countryName = ufcCard[matchIndex].flags[fighterIndex];
+  const countryName = selectedUfcCard[matchIndex].flags[fighterIndex];
   return getCountryAbbreviation(countryName);
 }
 // Example usage
@@ -484,13 +497,21 @@ if (isLoading) {
     <div>
       {user ? (
     <div className="tommy">
+
+      {showUfcCard?
       <div className="bayLoc" > 
       <h1 >UFC {locationCity} <img style={{height:'40px', backgroundColor:'black', padding:'0px 2px'}} src={`https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png`}
-          alt={`Flag of ${location}`} ></img> Fight Predictions</h1>
+          alt={`Flag of ${location}`} ></img> Fight Predictions</h1></div>: 
+          
+          <div className="bayLoc"><h1 >Dream Card <img style={{height:'40px', backgroundColor:'black', padding:'0px 2px',border:' purple solid 2px'}} src={`https://s.tmimgcdn.com/scr/800x500/294500/crown-concept-logo-design-template2_294549-original.jpg`}
+          alt={`Flag of ${location}`} ></img> Fight Predictions</h1></div>}
+
       <h2 className="bay" >{mainEvent}</h2>
       
       
-      </div> 
+       <button className='dreamcardbutton' onClick={toggleCard}>
+        {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
+      </button>
       {/* <p className="color-black bold ">Fighter's images will be availabe on Friday after UFC photoshoot occurs </p> */}
       <form style={{marginBottom: '0px'}} className="blackBG" onSubmit={handleSubmit}>
         {selectedUfcCard.map((fight, index) => (

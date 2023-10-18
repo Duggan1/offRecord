@@ -20,6 +20,13 @@ function Results({ user, ufcCard, ufcResults }) {
       navigate(`${option}`);
     };
 
+
+
+
+
+
+
+
   const byMainEvent = (results) => {
     return !selectedEvent || results.main_event === selectedEvent;
   }
@@ -30,11 +37,69 @@ function Results({ user, ufcCard, ufcResults }) {
       (!showOnlyUserPicks || result.owner === user.username)
     );
   });
+
+
+
+  const dreamCardResults = results.filter((result) => result.main_event === 'Jon Jones vs Fedor Emelianenko');
+
+  // Initialize an array to store prediction details
+  const predictions = [];
+  
+  dreamCardResults.forEach((result) => {
+    result.predictions.forEach((prediction) => {
+      const winner = prediction.winner;
+      const method = prediction.method;
+      const fighters = prediction.fighters;
+  
+      // Create an object for the current prediction
+      const currentPrediction = {
+        winner0C: winner === 0 ? 1 : 0,
+        winner1C: winner === 1 ? 1 : 0,
+        methodCounts: {
+          [method]: 1
+        },
+        fighters: fighters
+      };
+  
+      // Check if the prediction already exists in the array
+      const existingPrediction = predictions.find((p) => p.fighters[0] === fighters[0] && p.fighters[1] === fighters[1]);
+  
+      if (existingPrediction) {
+        // If the prediction already exists, update the counts
+        existingPrediction.winner0C += currentPrediction.winner0C;
+        existingPrediction.winner1C += currentPrediction.winner1C;
+        existingPrediction.methodCounts[method] = (existingPrediction.methodCounts[method] || 0) + 1;
+      } else {
+        // If the prediction is new, add it to the array
+        predictions.push(currentPrediction);
+      }
+    });
+  });
+  
+  // Display the array of prediction details
+  console.log("Predictions:", predictions);
+  
+  console.log( ufcResults)
+  
+  
+  
+  
   
 
-    const getAdminKevPicksForEvent = (event) => {
-    return adminKevPicks[event] || ufcResults; };
+  
 
+  
+
+  const getAdminKevPicksForEvent = (event) => {
+    if (event === 'Jon Jones vs Fedor Emelianenko') {
+      // Return a separate array for the dream card event
+      return  predictions;
+    } else {
+      // For other events, return adminKevPicks or ufcResults as before
+      return adminKevPicks[event] || ufcResults;
+    }
+  };
+  
 console.log(results) 
 console.log(ufcResults)
 console.log(updatedResults)
@@ -59,7 +124,7 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
     const userPointsMap = new Map();
     const eventWinners = {};
   
-    results.forEach((result) => {
+    results.filter(result => result.main_event !== 'Jon Jones vs Fedor Emelianenko').forEach((result) => {
       // Calculate total points for each result
       const totalPoints = calculateTotalPoints(result, result.main_event, ufcResults);
   
@@ -558,23 +623,23 @@ const deletePrediction = (pickId, predIndex) => {
                     <div>
                       
                       <p className='color-yellow'>
-  {eventData.winners ? (
-    <span>
-      {eventData.winners.map((winner, index) => (
-        <span key={index}>
-          {winner} +{eventData.points} Points
-          {index < eventData.winners.length - 1 ? <br /> : ' '}
-        </span>
-      ))}
-     
-    </span>
-  ) : (
-    <span>
-      {eventData.winner} +{eventData.points} Points
-    </span>
-  )}
-</p>
-</div>
+                        {eventData.winners ? (
+                          <span>
+                            {eventData.winners.map((winner, index) => (
+                              <span key={index}>
+                                {winner} +{eventData.points} Points
+                                {index < eventData.winners.length - 1 ? <br /> : ' '}
+                              </span>
+                            ))}
+                          
+                          </span>
+                        ) : (
+                          <span>
+                            {eventData.winner} +{eventData.points} Points
+                          </span>
+                        )}
+                      </p>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -584,6 +649,7 @@ const deletePrediction = (pickId, predIndex) => {
 
       <center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Hide Card Winners</button></center></div>
        : <center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Show Card Winners</button></center> }
+      
      
 
 
@@ -596,11 +662,13 @@ const deletePrediction = (pickId, predIndex) => {
         <option value="Rafael Fiziev vs Mateusz Gamrot">Fiziev vs Gamrot</option>
         <option value="Grant Dawson vs Bobby Green">Dawson vs Green</option>
         <option value="Sodiq Yusuff vs Edson Barboza">Yusuff vs Barboza</option>
-        <option value="Islam Makhachev vs Charles Oliveira">Makhachev vs Oliveira 2</option>
-        <option value="Curtis Blaydes vs Jailton Almeida">Blaydes vs Almeida</option>
+        <option value="Islam Makhachev vs Alexander Volkanovski">Makhachev vs Volkanovski 2</option>
+        <option value="Derrick Lewis vs Jailton Almeida">Lewis vs Almeida</option>
         <option value="Jon Jones vs Stipe Miocic">Jones vs Miocic</option>
 
       </select></center>
+
+      <center><button className="expoint"  onClick={() => setSelectedEvent('Jon Jones vs Fedor Emelianenko')} >Dream Card Results</button></center>
       {user && user.username ? (
                   <center>
                     <button
@@ -708,28 +776,48 @@ const deletePrediction = (pickId, predIndex) => {
     
       <td className="RightOne">  
         <div className="pickresultsdiv">
+          {result.main_event !== 'Jon Jones vs Fedor Emelianenko' ?
           <center>
-            <strong>{result.main_event}</strong>
-            <br />
             <strong>Ufc Results</strong>
+            <br />
+            <strong>{result.main_event}</strong>
             <h2>{result.predictions.length * 2} Possible </h2>
-          </center>
+          </center> :  <center>
+            <strong>Dream Card Results</strong>
+            <br />
+            <strong>{result.main_event}</strong>
+            <h2>Popularity Vote </h2>
+          </center>}
         </div>
         <div className="">
         {getAdminKevPicksForEvent(result.main_event).map((adminKevMatch, matchIndex) => (
   <div className="real-results-container" key={matchIndex}>
     <strong>{adminKevMatch.fighters.join(' vs ')}</strong>
     <br />
-    <strong>Winner:</strong>{" "}
+    
+    {adminKevMatch.methodCounts ?  null :  <strong>Winner:  </strong> }
     {adminKevMatch.winner !== null
   ? adminKevMatch.winner === 'Draw/No-Contest'
     ? 'Draw/No-Contest'
     : adminKevMatch.fighters[adminKevMatch.winner]
   : "Results Pending"}
+ {adminKevMatch.methodCounts ? <div>{adminKevMatch.fighters[0] } {adminKevMatch.winner0C }<br></br>
+  {adminKevMatch.fighters[1] } {adminKevMatch.winner1C }</div> : null}
+  
 
     <br />
-    <strong>Method:</strong> {adminKevMatch.method !== null ? adminKevMatch.method : "Results Pending"}
+    {adminKevMatch.methodCounts ?  null : <strong>Method:</strong>   }
+    
+     {adminKevMatch.method !== null ? adminKevMatch.method : "Results Pending"}
     <br />
+
+    {adminKevMatch.methodCounts ? 
+    <div>
+    TKO/KO - {adminKevMatch.methodCounts['TKO/KO'] }  |  
+    Submission - {adminKevMatch.methodCounts['Submission'] }<br></br>
+    Decision - {adminKevMatch.methodCounts['Decision'] }  |  
+    Draw/No-Contest - {adminKevMatch.methodCounts['Draw/No-Contest'] }<br></br>
+  </div> : null}
     {adminKevMatch.winner !== null ? (
       <div className="flag-image">
         {/* ... Flag image code ... */}

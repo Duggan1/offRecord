@@ -186,7 +186,15 @@ code {
   font-weight: bold;
   margin-top: 1%;
   border-radius: 10%;
-
+}
+.dreamcardbutton {
+  background-color: gold;
+  border: purple 3px solid;
+  padding: 1%;
+  color: black;
+  font-weight: bold;
+  margin-top: 1%;
+  border-radius: 10%;
 }
 .methodbar.selected {
   background-color: black;
