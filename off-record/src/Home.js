@@ -59,7 +59,7 @@ function Home({user, ufcCard, stallUfcCard}) {
                 <h6 className='color-yellow snow'style={{marginBottom:'0%',paddingBottom:'0%'}}> Login/Signup to make Off the Record Picks </h6><br></br>
                 <h5 className='color-yellow  snow'style={{marginTop:'0%',paddingTop:'0%'}} >{mainEvent}</h5></div>
                 : null }
-                { user  && isUfcCardLoaded ? <div className='crdiv'  onClick={() => handleOptionClick('/section3')}><NavLink className='color-gold hgysnow' exact to="/section3">Off the Record Pick 'ems</NavLink><h5 className='purple2   snow'style={{marginTop:'0%',paddingTop:'0%'}} >{mainEvent}</h5></div> : null }
+                { user  && isUfcCardLoaded ? <div className='crdiv'  onClick={() => handleOptionClick('/section3')}><NavLink className='color-gold hgysnow' exact to="/section3">Off the Record Pick 'ems</NavLink><h5 className='purple2   snow'style={{marginTop:'0%',paddingTop:'0%'}} >{mainEvent}</h5></div> : <p>loading</p> }
                
                 
                 <div className='crdiv' onClick={() => handleOptionClick('/results')}><NavLink className=' purple2 snow' exact to="/results">Check Results</NavLink></div>
