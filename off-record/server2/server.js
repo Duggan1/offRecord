@@ -100,7 +100,10 @@ app.get('/scrape-ufc-website', async (req, res) => {
               blueCornerRecord,
             };
 
-            fightRecords.push(fighter);
+            if (!fightRecords.has(JSON.stringify(fighter))) {
+              fightRecords.add(JSON.stringify(fighter)); // Add a JSON string representation of the fighter to the Set
+              console.log(fighter);
+            }
           }
         });
       }
