@@ -501,17 +501,19 @@ if (isLoading) {
       {showUfcCard?
       <div className="bayLoc" > 
       <h1 >UFC {locationCity} <img style={{height:'40px', backgroundColor:'black', padding:'0px 2px'}} src={`https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png`}
-          alt={`Flag of ${location}`} ></img> Fight Predictions</h1></div>: 
+          alt={`Flag of ${location}`} ></img></h1><br></br><h2 className="bay" >{mainEvent}</h2><button className='dreamcardbutton' onClick={toggleCard}>
+          {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
+        </button><h1> Fight Predictions</h1></div>: 
           
           <div className="bayLoc"><h1 >Dream Card <img style={{height:'40px', backgroundColor:'black', padding:'0px 2px',border:' purple solid 2px'}} src={`https://s.tmimgcdn.com/scr/800x500/294500/crown-concept-logo-design-template2_294549-original.jpg`}
-          alt={`Flag of ${location}`} ></img> Fight Predictions</h1></div>}
+          alt={`Flag of ${location}`} ></img></h1><br></br><h2 className="bay" >{mainEvent}</h2><button className='dreamcardbutton' onClick={toggleCard}>
+          {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
+        </button><h1> Fight Predictions</h1></div>}
 
-      <h2 className="bay" >{mainEvent}</h2>
       
       
-       <button className='dreamcardbutton' onClick={toggleCard}>
-        {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
-      </button>
+      
+       
       {/* <p className="color-black bold ">Fighter's images will be availabe on Friday after UFC photoshoot occurs </p> */}
       <form style={{marginBottom: '0px'}} className="blackBG" onSubmit={handleSubmit}>
         {selectedUfcCard.map((fight, index) => (

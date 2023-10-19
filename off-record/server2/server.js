@@ -87,6 +87,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
           const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
 
+          console.log(redCornerName);
+          console.log(blueCornerName);
           console.log(redCornerRecord);
           console.log(blueCornerRecord);
 

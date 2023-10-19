@@ -39,9 +39,10 @@ function Home({user, ufcCard, stallUfcCard}) {
       const selectedUfcCard = ufcCard.length > 1 ? ufcCard : stallUfcCard;
       console.log(selectedUfcCard)
 
-      const mainEvent = selectedUfcCard[0].fighters.join(' vs ');
-  
-      
+      const isUfcCardLoaded = ufcCard.length > 1;
+
+      const mainEvent = isUfcCardLoaded ? ufcCard[0].fighters.join(' vs ') : '';
+    
 
 
 
@@ -55,10 +56,10 @@ function Home({user, ufcCard, stallUfcCard}) {
                 </h1>
                 { !user ? 
                 <div className='crdiv2' >
-                <h6 className='color-yellow snow'style={{marginBottom:'0%',paddingBottom:'0%'}}> Login/Signup for </h6><br></br>
+                <h6 className='color-yellow snow'style={{marginBottom:'0%',paddingBottom:'0%'}}> Login/Signup to make Off the Record Picks </h6><br></br>
                 <h5 className='color-yellow  snow'style={{marginTop:'0%',paddingTop:'0%'}} >{mainEvent}</h5></div>
                 : null }
-                { user ? <div className='crdiv'  onClick={() => handleOptionClick('/section3')}><NavLink className='color-gold hgysnow' exact to="/section3">UFC Pick 'ems</NavLink><h5 className='purple2   snow'style={{marginTop:'0%',paddingTop:'0%'}} >{mainEvent}</h5></div> : null }
+                { user  && isUfcCardLoaded ? <div className='crdiv'  onClick={() => handleOptionClick('/section3')}><NavLink className='color-gold hgysnow' exact to="/section3">Off the Record Pick 'ems</NavLink><h5 className='purple2   snow'style={{marginTop:'0%',paddingTop:'0%'}} >{mainEvent}</h5></div> : null }
                
                 
                 <div className='crdiv' onClick={() => handleOptionClick('/results')}><NavLink className=' purple2 snow' exact to="/results">Check Results</NavLink></div>

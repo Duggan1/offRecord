@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import './App.css';
 import {useNavigate} from 'react-router-dom';
 import logo from './logo.png';
+import Chart from "chart.js/auto";
 
 import Dnd from './Dnd';
 
@@ -550,6 +551,63 @@ const deletePrediction = (pickId, predIndex) => {
   }
 };
 
+
+if (predictions.methodCounts) {
+  // Data for the chart
+  const data = {
+    labels: ["TKO/KO", "Submission", "Decision", "Draw/No-Contest"],
+    datasets: [
+      {
+        label: "Method Counts",
+        data: [
+          predictions.methodCounts["TKO/KO"],
+          predictions.methodCounts["Submission"],
+          predictions.methodCounts["Decision"],
+          predictions.methodCounts["Draw/No-Contest"],
+        ],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Options for the chart
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
+  // Get the canvas element
+  const chartCanvas = document.getElementById("methodChart");
+
+  if (chartCanvas) {
+    const ctx = chartCanvas.getContext("2d");
+    new Chart(ctx, {
+      type: "bar",
+      data: data,
+      options: options,
+    });
+  }
+}
+
+
+
+
+
   return (
 <div>
   (
@@ -801,11 +859,63 @@ const deletePrediction = (pickId, predIndex) => {
     ? 'Draw/No-Contest'
     : adminKevMatch.fighters[adminKevMatch.winner]
   : "Results Pending"}
- {adminKevMatch.methodCounts ? <div>{adminKevMatch.fighters[0] } {adminKevMatch.winner0C }<br></br>
-  {adminKevMatch.fighters[1] } {adminKevMatch.winner1C }</div> : null}
-  
+{adminKevMatch.methodCounts ? (
+  <div style={{ display: "flex", alignItems: "center" }}>
+    <div
+       style={{
+        backgroundColor: `${
+          adminKevMatch.winner0C > adminKevMatch.winner1C
+            ? 'green'
+            : adminKevMatch.winner0C < adminKevMatch.winner1C
+            ? 'white'
+            : 'grey' // Set white for a tie
+        }`,
+        color: `${
+          adminKevMatch.winner0C > adminKevMatch.winner1C
+            ? 'white'
+            : adminKevMatch.winner0C < adminKevMatch.winner1C
+            ? 'darkred'
+            : 'white' // Set darkred for a tie
+        }`,
+        flex: `${adminKevMatch.winner0C / (adminKevMatch.winner0C + adminKevMatch.winner1C)}`,
+        padding: "5px", // Add padding for spacing
+      }}
+    >
+      {adminKevMatch.fighters[0]}{" "}
+      {((adminKevMatch.winner0C / (adminKevMatch.winner0C + adminKevMatch.winner1C)) * 100)}
+      % {adminKevMatch.winner0C}
+    </div>
+    <div
+     style={{
+      backgroundColor: `${
+        adminKevMatch.winner0C < adminKevMatch.winner1C
+          ? 'green'
+          : adminKevMatch.winner0C > adminKevMatch.winner1C
+          ? 'white'
+          : 'grey' // Set white for a tie
+      }`,
+      color: `${
+        adminKevMatch.winner0C < adminKevMatch.winner1C
+          ? 'white'
+          : adminKevMatch.winner0C > adminKevMatch.winner1C
+          ? 'darkred'
+          : 'white' // Set darkred for a tie
+      }`,
+      flex: `${adminKevMatch.winner1C / (adminKevMatch.winner0C + adminKevMatch.winner1C)}`,
+      padding: "5px", // Add padding for spacing
+    }}
+    >
+      {adminKevMatch.fighters[1]}{" "}
+      {((adminKevMatch.winner1C / (adminKevMatch.winner0C + adminKevMatch.winner1C)) * 100)}
+      % {adminKevMatch.winner1C}
+    </div>
+  </div>
+) : null}
 
-    <br />
+
+
+{adminKevMatch.methodCounts ?  null : <br></br>}
+    
     {adminKevMatch.methodCounts ?  null : <strong>Method:</strong>   }
     
      {adminKevMatch.method !== null ? adminKevMatch.method : "Results Pending"}
@@ -817,6 +927,11 @@ const deletePrediction = (pickId, predIndex) => {
     Submission - {adminKevMatch.methodCounts['Submission'] }<br></br>
     Decision - {adminKevMatch.methodCounts['Decision'] }  |  
     Draw/No-Contest - {adminKevMatch.methodCounts['Draw/No-Contest'] }<br></br>
+    <div>
+  <canvas id="methodChart" style={{height:'300px', width: '400px'}}></canvas>
+      </div>
+
+
   </div> : null}
     {adminKevMatch.winner !== null ? (
       <div className="flag-image">

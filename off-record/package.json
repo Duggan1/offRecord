@@ -12,6 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.1",
+    "chart.js": "^4.4.0",
     "cheerio": "^1.0.0-rc.12",
     "client": "^0.0.1",
     "cors": "^2.8.5",
