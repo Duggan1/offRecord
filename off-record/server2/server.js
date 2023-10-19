@@ -74,21 +74,24 @@ app.get('/scrape-ufc-website', async (req, res) => {
     });
 
     // Use async/await to wait for the Tapology request to complete
-    const fightRecords = new Set(); // Create a Set to store unique fighter data
-
     try {
       const response = await axios.get(Recurl);
-    
+
       if (response.status === 200) {
         const html = response.data;
         const $ = cheerio.load(html);
-    
+
         $('.fightCard').each((index, element) => {
           const redCornerName = $(element).find('.fightCardFighterName').eq(0).text().trim();
           const blueCornerName = $(element).find('.fightCardFighterName').eq(1).text().trim();
           const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
           const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
-    
+
+          console.log(redCornerName);
+          console.log(blueCornerName);
+          console.log(redCornerRecord);
+          console.log(blueCornerRecord);
+
           if (redCornerName && blueCornerName && redCornerRecord && blueCornerRecord) {
             const fighter = {
               redCornerName,
@@ -96,12 +99,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
               blueCornerName,
               blueCornerRecord,
             };
-    
-            // Check if this fighter data is not a repeat
-            if (!fightRecords.has(JSON.stringify(fighter))) {
-              fightRecords.push(JSON.stringify(fighter)); // Add a JSON string representation of the fighter to the Set
-              console.log(fighter);
-            }
+
+           
           }
         });
       }
@@ -110,7 +109,6 @@ app.get('/scrape-ufc-website', async (req, res) => {
       res.status(500).json({ error: 'An error occurred while scraping data.' });
       return;
     }
-    
 
     // Send the response with all the data
     res.json({ event_name, event_date, fights: fightData, records: fightRecords });
