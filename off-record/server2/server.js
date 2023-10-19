@@ -100,7 +100,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
               blueCornerRecord,
             };
 
-           
+            fightRecords.push(fighter);
           }
         });
       }
@@ -121,4 +121,3 @@ app.get('/scrape-ufc-website', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-//  fightRecords.push(fighter);
