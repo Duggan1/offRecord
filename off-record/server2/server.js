@@ -73,6 +73,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       fightData.push(fightInfo);
     });
 
+    // Use async/await to wait for the Tapology request to complete
     const fightRecords = new Set(); // Create a Set to store unique fighter data
 
     try {
@@ -98,7 +99,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
     
             // Check if this fighter data is not a repeat
             if (!fightRecords.has(JSON.stringify(fighter))) {
-              fightRecords.add(JSON.stringify(fighter)); // Add a JSON string representation of the fighter to the Set
+              fightRecords.push(JSON.stringify(fighter)); // Add a JSON string representation of the fighter to the Set
               console.log(fighter);
             }
           }
@@ -122,3 +123,4 @@ app.get('/scrape-ufc-website', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+//  fightRecords.push(fighter);
