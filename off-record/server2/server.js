@@ -99,8 +99,10 @@ app.get('/scrape-ufc-website', async (req, res) => {
               blueCornerName,
               blueCornerRecord,
             };
-
-            fightRecords.push(fighter);
+            if (!fightRecords.some(existingFighter => JSON.stringify(existingFighter) === JSON.stringify(fighter))) {
+              fightRecords.push(fighter);
+            }
+            
           }
         });
       }
