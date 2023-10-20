@@ -928,7 +928,7 @@ if (predictions.methodCounts) {
     Decision - {adminKevMatch.methodCounts['Decision'] }  |  
     Draw/No-Contest - {adminKevMatch.methodCounts['Draw/No-Contest'] }<br></br>
     <div>
-  <canvas id="methodChart" style={{height:'300px', width: '400px'}}></canvas>
+  {/* <canvas id="methodChart" style={{height:'300px', width: '400px'}}></canvas> */}
       </div>
 
 

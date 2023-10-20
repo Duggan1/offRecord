@@ -6,10 +6,10 @@ import Header from './Header';
 
 
 
-function NavBar({ user ,onLogin, onLogout}) {
+function NavBar({ user ,onLogin, onLogout, ufcCard}) {
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate()
-
+  const isUfcCardLoaded = ufcCard.length > 1;
   const handleAppleClick = () => {
     setShowDropdown(!showDropdown);
   };
@@ -41,7 +41,12 @@ function NavBar({ user ,onLogin, onLogout}) {
           <div style={{backgroundColor:'black',padding:'2%',minWidth:'100%'}} className="dropdown-menu">
             
             <div className='swm'  onClick={() => handleOptionClick('/')}><NavLink className='snowwhite' exact to="/">Home</NavLink></div>
-            <div className='swm'  onClick={() => handleOptionClick('/section3')}><NavLink className='snowwhite' exact to="/section3">UFC Pick 'ems</NavLink></div>
+           {isUfcCardLoaded ? <div className='swm'  onClick={() => handleOptionClick('/section3')}><NavLink className='snowwhite' exact to="/section3">UFC Pick 'ems</NavLink></div>
+           :<div style={{ display: 'flex',justifyContent:'center' }}><div className="loading" style={{ height: '50px', width: '50px' }}></div>
+           <h5 style={{ display: 'flex', whiteSpace: 'nowrap' }}>
+             Loading Card Details
+           </h5>
+         </div>}
             <div className='swm'  onClick={() => handleOptionClick('/results')}><NavLink className='snowwhite' exact to="/results">Results</NavLink></div>
             <div className='swm'  onClick={() => handleOptionClick('/about')}><NavLink className='snowwhite' exact to="/about">About Us</NavLink></div>
             

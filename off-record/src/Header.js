@@ -7,6 +7,8 @@ import './App.css';
 function Header({user}) {
     const navigate = useNavigate()
 
+    
+
     const handleOptionClick = (option) => {
         // Implement the functionality for each option here if needed
         console.log(`Option "${option}" clicked.`);

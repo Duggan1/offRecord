@@ -502,11 +502,13 @@ if (isLoading) {
       <div className="bayLoc" > 
       <h1 >UFC {locationCity} <img style={{height:'40px', backgroundColor:'black', padding:'0px 2px'}} src={`https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png`}
           alt={`Flag of ${location}`} ></img></h1><br></br><h2 className="bay" >{mainEvent}</h2><button className='dreamcardbutton' onClick={toggleCard}>
-          {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
+          {showUfcCard ? ' Dream Card' : 'Show Current UFC Card'}
         </button><h1> Fight Predictions</h1></div>: 
           
           <div className="bayLoc"><h1 >Dream Card <img style={{height:'40px', backgroundColor:'black', padding:'0px 2px',border:' purple solid 2px'}} src={`https://s.tmimgcdn.com/scr/800x500/294500/crown-concept-logo-design-template2_294549-original.jpg`}
-          alt={`Flag of ${location}`} ></img></h1><br></br><h2 className="bay" >{mainEvent}</h2><button className='dreamcardbutton' onClick={toggleCard}>
+          alt={`Flag of ${location}`} ></img></h1><br></br><h2 className="bay" >{mainEvent}</h2
+          
+          ><button className='dreamcardbutton' onClick={toggleCard}>
           {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
         </button><h1> Fight Predictions</h1></div>}
 
@@ -533,7 +535,7 @@ if (isLoading) {
 
 
 
-<div className="nice">
+<div className="nice" style={{zIndex:'0'}}>
               <label 
               
               className={`method ${predictions[index]?.method === 'TKO/KO' ||predictions[index]?.method === 'Decision' ||predictions[index]?.method === 'Draw/No-Contest' || predictions[index]?.method === 'Submission' ? 'selected' : ''}`}
@@ -557,8 +559,11 @@ if (isLoading) {
         }`}
         style={{
           width: '100%',
-          backgroundImage: `url('${fight.fighterPics[0]}')`,
-        
+          backgroundImage: `url('${fight.fighterPics[0]}'`,
+          
+          
+
+
         }}
         // url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")
        
@@ -569,6 +574,7 @@ if (isLoading) {
       onClick={() => handlePredictionChange(index, 0)}
       style={{
         backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, 0)}/shiny/64.png")`,
+        
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
       }}
@@ -595,6 +601,11 @@ if (isLoading) {
         style={{
           width: '100%',
           backgroundImage: `url('${fight.fighterPics[1]}')`,
+          backgroundSize: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '135% 100%' : '',
+          marginBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
+          paddingBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
+          zIndex:'-1'
+
 
           
         }}

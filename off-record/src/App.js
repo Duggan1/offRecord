@@ -63,6 +63,7 @@ useEffect(() => {
  
       const { event_name, event_date,fights, records  } = response.data;
 
+
       const newUfcCard = fights.map((fight, index) => {
         return {
             fighters: [fight.redCornerName, fight.blueCornerName],
@@ -122,7 +123,7 @@ console.log(eventInfo)
         match: "Heavyweight Championship Bout",
         records: ["30-1-0", "36-5-0"],
         flags: ["United States", "Russia"],
-        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2023-03/JONES_JON_L_BELT_03_04.png?itok=P6J6DQpm', 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/10/fedor-emelianenko-bellator-269-17.jpg?w=800',],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-03/JONES_JON_L_BELT_03_04.png?itok=Y8Eh_69p', 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/10/fedor-emelianenko-bellator-269-17.jpg?w=800',],
       }
       ,
       {
@@ -145,7 +146,7 @@ console.log(eventInfo)
         match: "Featherweight Championship Bout",
         records: ["24-1-0","22-5-0" ],
         flags: ["Australia", "Ireland"],
-        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2023-07/VOLKANOVSKI_ALEXANDER_L_BELT_07-08.png?itok=FewlqaNo', 'https://i.pinimg.com/originals/e4/92/64/e492645b85e6f25f1dfcf742162b6990.png',],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-07/VOLKANOVSKI_ALEXANDER_L_BELT_07-08.png?itok=rrdc9sM9', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-07/67667%252Fprofile-galery%252Ffullbodyright-picture%252FMCGREGOR_CONOR_R_07-10.png?itok=gL8I_tyo',],
       },
       {
         fighters: ["Khabib Nurmagomedov", "BJ Penn"],
@@ -166,14 +167,14 @@ console.log(eventInfo)
         match: "Middleweight Championship Bout",
         records: ["13-5-0","34-11-0" ],
         flags: ["Cuba","Brazil" ],
-        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2019-08/ROMERO_YOEL_L.png?VersionId=rMWoCutUaCZ5g3ltk5jLMlEU83wP2ukr&itok=2fdVAvOR', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-10/67302%252Fprofile-galery%252Ffullbodyright-picture%252FSILVA_ANDERSON_R_10-31.png?itok=TlJEp4ti',],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2019-08/ROMERO_YOEL_L.png?VersionId=wTpI3pU1qOO6j9MpcQ0gLSbeOTXWtrrY&itok=m3oyIJCE', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-10/67302%252Fprofile-galery%252Ffullbodyright-picture%252FSILVA_ANDERSON_R_10-31.png?itok=TlJEp4ti',],
       },
       {
         fighters: ["Daniel Cormier", "Chuck Liddell"],
         match: "Light Heavyweight Championship Bout",
         records: ["22-3-0", "21-9-0"],
         flags: ["United States", "United States"],
-        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_bio_full_body/s3/2020-08/CORMIER_DANIEL_L_08-15.png?VersionId=8c0xGmF.jAN.__8bESM5BDrDOjfgi0MX&itok=-L9HNdVo', 'https://i.pinimg.com/originals/f4/cd/9c/f4cd9c4355c740f3ccb7f5a6bf1e66ef.png',],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-08/CORMIER_DANIEL_L_08-15.png?VersionId=X4Gimp.0zYGxx4haM_ASnymi8cEe4qNr&itok=EWrGvjtb', 'https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png',],
       }
     ];
     
@@ -361,7 +362,7 @@ handleSubmit()
 </div>
 
 </div>
-{user ? <NavBar user={user} /> : <Johnny onLogin={handleLogin} onLogout={handleLogout} />}
+{user ? <NavBar ufcCard={ufcCard2} user={user} /> : <Johnny onLogin={handleLogin} onLogout={handleLogout} />}
 
     
    <Routes>

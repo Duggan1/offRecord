@@ -187,15 +187,54 @@ code {
   margin-top: 1%;
   border-radius: 10%;
 }
+
+
+
 .dreamcardbutton {
-  background-color: gold;
-  border: purple 3px solid;
-  padding: 1%;
-  color: black;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3px 6px;
+  padding-left: 10%;
+  overflow: hidden;
   font-weight: bold;
+  background: purple;
+  border-radius: 5px;
+  color: white;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  font-size: 16px;
   margin-top: 1%;
-  border-radius: 10%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: gold; /* purple color */
+    border-radius: 50%;
+    transform: rotate(-40deg);
+    bottom: 0;
+    left: 0;
+    transition: all 0.5s ease-out;
+    transform: translate(-100%, 100%);
+    margin-bottom: 36px;
+    margin-left: 36px;
+  }
+
+  &:hover {
+    &::before {
+      margin-left: 0;
+      margin-bottom: 96px;
+      transform: translate(0, 0);
+    }
+    background: white;
+    color: purple;
+    cursor:pointer;
+  }
 }
+
 .methodbar.selected {
   background-color: black;
   border: green 3px solid;

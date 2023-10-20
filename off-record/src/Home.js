@@ -62,7 +62,7 @@ function Home({user, ufcCard, stallUfcCard}) {
                 { isUfcCardLoaded ? <div className='crdiv'  onClick={() => handleOptionClick('/section3')}><NavLink className='color-gold hgysnow' exact to="/section3">Off the Record Pick 'ems</NavLink><h5 className='purple2   snow'style={{marginTop:'0%',paddingTop:'0%'}} >{mainEvent}</h5></div> : 
                 <div style={{ display: 'flex' }}><div className="loading" style={{ height: '100px', width: '100px' }}></div>
                 <h5 style={{ display: 'flex', whiteSpace: 'nowrap' }}>
-                  Updating Card Details
+                  Loading Card Details
                 </h5>
               </div>
                }
