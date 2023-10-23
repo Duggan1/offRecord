@@ -665,8 +665,27 @@ if (predictions.methodCounts) {
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 points</span> for picking Draw/No-Contest correctly</p><center><button className="expoint" onClick={() => setExplainPointst(!explainPoints)} >Hide Point System</button></center></div></div>
        : <center><button className="expoint" onClick={() => setExplainPointst(!explainPoints)} >Explain Point System</button></center> }
 
+<center><button className="expoint"  onClick={() => setSelectedEvent('Jon Jones vs Fedor Emelianenko')} >Dream Card Results</button></center>
 
-{showCardWins ?   <div className="pointEXCard" >
+     
+
+
+
+            <center><label style={{color:'gold',backgroundColor:'black',fontWeight:'bold'}}>Filter Results by Fight Card</label><br></br>
+      <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
+        <option value="">All</option>
+        <option value="Israel Adesanya vs Sean Strickland">Israel Adesanya vs Sean Strickland</option>
+        <option value="Alexa Grasso vs Valentina Shevchenko">Grasso vs Shevchenko 2</option>
+        <option value="Rafael Fiziev vs Mateusz Gamrot">Fiziev vs Gamrot</option>
+        <option value="Grant Dawson vs Bobby Green">Dawson vs Green</option>
+        <option value="Sodiq Yusuff vs Edson Barboza">Yusuff vs Barboza</option>
+        <option value="Islam Makhachev vs Alexander Volkanovski">Makhachev vs Volkanovski 2</option>
+        <option value="Derrick Lewis vs Jailton Almeida">Lewis vs Almeida</option>
+        <option value="Jon Jones vs Stipe Miocic">Jones vs Miocic</option>
+
+      </select></center>
+
+      {showCardWins ?   <div className="pointEXCard" >
       
               {Object.entries(leaderboardwinners).map(([event, eventData]) => (
                 <div key={event}>
@@ -708,25 +727,8 @@ if (predictions.methodCounts) {
       <center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Hide Card Winners</button></center></div>
        : <center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Show Card Winners</button></center> }
       
-     
 
-
-
-            <center><label style={{color:'gold',backgroundColor:'black',fontWeight:'bold'}}>Filter Results by Fight Card</label><br></br>
-      <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
-        <option value="">All</option>
-        <option value="Israel Adesanya vs Sean Strickland">Israel Adesanya vs Sean Strickland</option>
-        <option value="Alexa Grasso vs Valentina Shevchenko">Grasso vs Shevchenko 2</option>
-        <option value="Rafael Fiziev vs Mateusz Gamrot">Fiziev vs Gamrot</option>
-        <option value="Grant Dawson vs Bobby Green">Dawson vs Green</option>
-        <option value="Sodiq Yusuff vs Edson Barboza">Yusuff vs Barboza</option>
-        <option value="Islam Makhachev vs Alexander Volkanovski">Makhachev vs Volkanovski 2</option>
-        <option value="Derrick Lewis vs Jailton Almeida">Lewis vs Almeida</option>
-        <option value="Jon Jones vs Stipe Miocic">Jones vs Miocic</option>
-
-      </select></center>
-
-      <center><button className="expoint"  onClick={() => setSelectedEvent('Jon Jones vs Fedor Emelianenko')} >Dream Card Results</button></center>
+      
       {user && user.username ? (
                   <center>
                     <button
@@ -793,6 +795,7 @@ if (predictions.methodCounts) {
                 ? prediction.fighters[0]
                 : prediction.winner === 1
                 ? prediction.fighters[1]
+                
                 : "None"}
               <br />
               <strong>Method:</strong> {prediction.method}
@@ -855,7 +858,7 @@ if (predictions.methodCounts) {
     
     {adminKevMatch.methodCounts ?  null :  <strong>Winner:  </strong> }
     {adminKevMatch.winner !== null
-  ? adminKevMatch.winner === 'Draw/No-Contest'
+  ? adminKevMatch.winner === 'Draw/No-Contest' || 3
     ? 'Draw/No-Contest'
     : adminKevMatch.fighters[adminKevMatch.winner]
   : "Results Pending"}

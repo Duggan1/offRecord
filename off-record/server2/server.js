@@ -9,8 +9,8 @@ const port = 3001; // Choose an available port
 // Enable CORS for all routes
 app.use(cors());
 
-const deatilsUrl = 'https://www.ufc.com/event/ufc-294';
-const Recurl = 'https://www.tapology.com/fightcenter/events/99416-ufc-294';
+const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-november-04-2023';
+const Recurl = 'https://www.tapology.com/fightcenter/events/101863-ufc-fight-night';
 
 const fightRecords = [];
 const addedFighters = [];

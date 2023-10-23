@@ -200,13 +200,13 @@ function normalizeMethod(method, winner) {
     if (method === "KO/TKOKO/TKO" || method === "DQDQ" && winner !== null) {
       return "TKO/KO";
     }
-    if (method === "Decision - UnanimousDecision - Unanimous" || method === "Decision - SplitDecision - Split" && winner !== null ) {
+    if (method === "Decision - UnanimousDecision - Unanimous" || method === "Decision - SplitDecision - Split" && winner !== null || method === "DECISION - MAJORITYDECISION - MAJORITY" && winner !== null ) {
       return "Decision";
     }
     if (method === "SubmissionSubmission") {
       return "Submission";
     }
-    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned" ) && (winner === "N/A" || winner === null)) {
+    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned" || method === "Could Not ContinueCould Not Continue" ) && (winner === "N/A" || winner === null)) {
       return "Draw/No-Contest";
     }
     
@@ -220,8 +220,16 @@ function normalizeMethod(method, winner) {
 
 function checkWinner4drawNocontest(method, winner) {
   if (!winner) {
-    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned") && (winner === "N/A" || winner === null)) {
-      return "Draw/No-Contest";
+    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned" || method === "Could Not ContinueCould Not Continue") && (winner === "N/A" || winner === null)) {
+      return 3;
+    }
+    else {
+      if (winner === '1'){
+        return 1
+      }
+      if (winner === '2'){
+        return 2
+      }
     }
   }
   return winner; // Return the original winner if conditions are not met
@@ -281,63 +289,114 @@ console.log(modifiedUfcResults)
     ).required('At least one prediction is required'),
   });
 
-
-  const handleSubmit = async (e) => {
+console.log(modifiedUfcResults)
+//   const handleSubmit = async (e) => {
    
 
+//     try {
+//         // Validate the form data using Yup
+//         await validationSchema.validate({ modifiedUfcResults });
+
+//         // Check if every method in modifiedUfcResults is not null
+//         if (modifiedUfcResults.every(result => result.method !== null)) {
+//             // All methods are not null, proceed to submit as "AdminKev"
+//             const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`
+//             const dataToSend = {
+//                 owner: "AdminKev", // Set the owner to "AdminKev"
+//                 location: 'AUTO-Server',
+//                 mainEvent: mainEvent,
+//                 predictions: modifiedUfcResults, // Use modifiedUfcResults here
+//                 user_id: user.id || 2,
+//             };
+
+//             fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                 },
+//                 body: JSON.stringify(dataToSend),
+//             })
+//             .then(response => {
+//                 if (!response.ok) {
+//                     // setError(response);
+//                     // console.error(error); // Use console.error to log errors
+//                     throw new Error('Network response was not ok');
+//                 }
+//                 return response.json();
+//             })
+//             .then(data => {
+//                 console.log('Predictions submitted successfully:', data);
+//                 // Perform any further actions here
+//                 // setPredictions([]);
+//                 // navigate('/results');
+//             })
+//             .catch(error => {
+//                 console.error('Error submitting predictions:', error);
+//                 // setError(error.message);
+//                 // Handle error as needed
+//             });
+//         } else {
+//             // If any method in modifiedUfcResults is null, show an error message
+//             // setError("All methods must be provided.");
+//         }
+//     } catch (error) {
+//         console.error('Validation error:', error.message);
+//         // setErrors(error.message || []);
+//         // Handle validation error messages, setErrors, etc.
+//     }
+// };
+// handleSubmit()
+useEffect(() => {
+  // Define the async function for form submission
+  async function submitForm() {
     try {
-        // Validate the form data using Yup
-        await validationSchema.validate({ modifiedUfcResults });
+      
+      // Validate the form data using Yup
+      
 
-        // Check if every method in modifiedUfcResults is not null
-        if (modifiedUfcResults.every(result => result.method !== null)) {
-            // All methods are not null, proceed to submit as "AdminKev"
-            const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`
-            const dataToSend = {
-                owner: "AdminKev", // Set the owner to "AdminKev"
-                location: 'location',
-                mainEvent: mainEvent,
-                predictions: modifiedUfcResults, // Use modifiedUfcResults here
-                user_id: user.id || 2,
-            };
+      // Check if every method in modifiedUfcResults is not null
+      if (modifiedUfcResults.every(result => result.method !== null)) {
+        // All methods are not null, proceed to submit as "AdminKev"
+        const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`;
+        const dataToSend = {
+          owner: "AdminKev", // Set the owner to "AdminKev"
+          location: 'AUTO-Server',
+          mainEvent: mainEvent,
+          predictions: modifiedUfcResults, // Use modifiedUfcResults here
+          user_id: 4,
+        };
+        // await validationSchema.validate({ dataToSend });
 
-            fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataToSend),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    // setError(response);
-                    // console.error(error); // Use console.error to log errors
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Predictions submitted successfully:', data);
-                // Perform any further actions here
-                // setPredictions([]);
-                // navigate('/results');
-            })
-            .catch(error => {
-                console.error('Error submitting predictions:', error);
-                // setError(error.message);
-                // Handle error as needed
-            });
+        const response = await fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSend),
+        });
+
+        if (response.ok) {
+          // Handle success
+          const responseData = await response.json();
+          console.log('Predictions submitted successfully:', responseData);
+          // Perform any further actions here
         } else {
-            // If any method in modifiedUfcResults is null, show an error message
-            // setError("All methods must be provided.");
+          // Handle errors
+          throw new Error('Network response was not ok');
         }
+      } else {
+        // If any method in modifiedUfcResults is null, show an error message
+        // Handle the error as needed
+      }
     } catch (error) {
-        console.error('Validation error:', error.message);
-        // setErrors(error.message || []);
-        // Handle validation error messages, setErrors, etc.
+      console.error('Error:', error);
+      // Handle errors and validation errors as needed
     }
-};
-handleSubmit()
+  }
+
+  // Call the submitForm function to submit the form data automatically
+  submitForm();
+}, [modifiedUfcResults.length > 0]); 
 
 
 
