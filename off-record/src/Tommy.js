@@ -28,29 +28,6 @@ function Tommy({ user, ufcCard, stallUfcCard}) {
 
   
   const [isLoading, setIsLoading] = useState(true);
-  // const [eventInfo, setEventInfo] = useState({});
-
-  // Replace the URL with the appropriate endpoint on your server
-// const apiUrl = 'http://localhost:3001/scrape-ufc-website';
-  
-// useEffect(() => { 
-//   async function fetchData() {
-//     try {
-//       const response = await axios.get(apiUrl);
-//       console.log(response.data) 
- 
-//       const { event_name, event_date,fights, records  } = response.data;
- 
-
-//       // Update state with the scraped data
-//       setEventInfo({ event_name, event_date, fights, records });
-//     } catch (error) { 
-//       console.error('Error:', error);
-//     }
-//   } 
-     
-//   fetchData();      
-// }, []);      
 
       
   
@@ -66,8 +43,8 @@ function Tommy({ user, ufcCard, stallUfcCard}) {
   const [errors, setErrors] = useState([]);
   const [error, setError] = useState(null);
  
-  const locationCity = ' 294 Abu Dhabi'
-  const location = 'United Arab Emirates'
+  const locationCity = ' Sao Paulo'
+  const location = 'Brazil'
   
   const fighterNamesFormatted = ufcCard.map(({ fighters }) => {
     const formattedFighters = fighters.map(name => {
@@ -83,13 +60,6 @@ function Tommy({ user, ufcCard, stallUfcCard}) {
   });   
   
   
-
-
-// console.log(fighterNamesFormatted);
-
-
-// console.log(fighterNamesFormatted);
-  
   function getFighterCountry(matchIndex, fighterIndex) {
   if (ufcCard[matchIndex] && ufcCard[matchIndex].flags) {
     return ufcCard[matchIndex].flags[fighterIndex] || "Country Not Found";
@@ -99,7 +69,7 @@ function Tommy({ user, ufcCard, stallUfcCard}) {
 }
 
   
-  // Example usage
+
   const matchIndex = 0;
   const fighterIndex = 0;
   const country = getFighterCountry(matchIndex, fighterIndex);
