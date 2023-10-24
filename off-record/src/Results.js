@@ -550,6 +550,11 @@ const deletePrediction = (pickId, predIndex) => {
     handleUpdatePredictions(pickId, updatedPredictions);
   }
 };
+const [showPredictions, setShowPredictions] = useState(true);
+const togglePredictions = () => {
+  setShowPredictions(!showPredictions);
+};
+
 
 
 if (predictions.methodCounts) {
@@ -745,7 +750,12 @@ if (predictions.methodCounts) {
 
 
 
-     
+<button
+          className={showPredictions ? "hide-button":"show-button"  }
+          onClick={togglePredictions}
+        >
+          {showPredictions ?"Hide": "Show"  }
+        </button>
       <table className="wholeOne" >
         <thead>
           <tr>
@@ -759,13 +769,16 @@ if (predictions.methodCounts) {
         <tbody >
         {filteredByMainEvent.map((result, index) => (
   <tr key={index} >
+    
     <td className="LeftOne">
       <div className="ownpicksdiv">
-        
+
+              
         <center>
           <strong><span className="small">{result.owner}'s</span> picks</strong>
           <br />
-          <strong>{result.main_event}</strong><br></br>
+          <strong>{result.main_event}</strong>
+      <br></br>
           {deletePicks && user && (user.username === result.owner || user.username === 'AdminKev') ? (
     <button
       className="delete-button"
@@ -778,7 +791,8 @@ if (predictions.methodCounts) {
          
         </center>
       </div>
-      <div>
+      {showPredictions ? (
+      <div className={`predictions-container ${showPredictions ? '' : 'hidden-predictions'}`}>
         {result.predictions.map((prediction, predIndex) => {
           // Check if adminKevPicks contains the main event as a key
           const adminKevPicksForEvent = adminKevPicks[result.main_event] || {};
@@ -827,7 +841,8 @@ if (predictions.methodCounts) {
             </p>
           );
         })}
-        </div>
+        </div>)
+ : null}
       </td>
 
 
@@ -850,6 +865,7 @@ if (predictions.methodCounts) {
             <h2>Popularity Vote </h2>
           </center>}
         </div>
+        {showPredictions ? (
         <div className="">
         {getAdminKevPicksForEvent(result.main_event).map((adminKevMatch, matchIndex) => (
   <div className="real-results-container" key={matchIndex}>
@@ -946,7 +962,8 @@ if (predictions.methodCounts) {
   </div>
 ))} 
 
-</div>
+</div>)
+ : null}
 
       </td>
     </tr>

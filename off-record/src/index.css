@@ -297,9 +297,18 @@ code {
   border: #282c34 5px solid;
   /* border-radius:5%; */
   font-weight: 700;
-    
-  
 }
+/* CSS for the button */
+.show-button {
+  background-color: green; /* Green background when showPredictions is true */
+  color: white; /* White text color for better contrast */
+}
+
+.hide-button {
+  background-color: red; /* Red background when showPredictions is false */
+  color: white; /* White text color for better contrast */
+}
+
 .bay{
   background-color: black;
   color: gold;
@@ -317,6 +326,12 @@ code {
   text-decoration: wavy;
   /* margin-bottom: -3%; */
 }
+
+/* CSS for hiding and showing predictions */
+.hidden-predictions {
+  display: none;
+}
+
 .color-blue {
   color:blue;
   text-decoration: wavy;
