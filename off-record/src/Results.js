@@ -1114,12 +1114,20 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
     <td className="LeftOne">
       <div className="ownpicksdiv">
 
-      <button
-          className={ownPicksVisibility[result.owner] ? "hide-button" : "show-button"}
-          onClick={() => toggleOwnPicks(result.id)}
-        >
-          {ownPicksVisibility[result.owner] ? "Hide" : "Show"}
-        </button>
+      <span style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+  <button
+    className={ownPicksVisibility[result.owner] ? "hide-button" : "show-button"}
+    onClick={() => toggleOwnPicks(result.id)}
+  >
+    {ownPicksVisibility[result.owner] ? "Hide" : "Show"}
+  </button>
+  <p style={{ textAlign: 'right', margin: '0' }}>
+  {((calculateTotalPoints(result, result.main_event, adminKevPicks) / (result.predictions.length * 2)) * 100).toFixed(0)}%
+</p>
+
+
+</span>
+
         <center>
           <strong>{result.main_event}</strong>
       <br></br>
