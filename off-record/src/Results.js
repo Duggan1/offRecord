@@ -15,7 +15,7 @@ function Results({ user, ufcCard, ufcResults }) {
   const [explainPoints, setExplainPointst] = useState(false); 
   const [showLeaderBoard, setshowLeaderBoard] = useState(false); 
   const [showCardWins, setShowCardWins] = useState(false); 
-  console.log(updatedResults)
+  // console.log(updatedResults)
   const navigate = useNavigate()
   const handleOptionClick = (option) => {
       navigate(`${option}`);
@@ -78,9 +78,9 @@ function Results({ user, ufcCard, ufcResults }) {
   });
   
   // Display the array of prediction details
-  console.log("Predictions:", predictions);
+  // console.log("Predictions:", predictions);
   
-  console.log( ufcResults)
+  // console.log( ufcResults)
   
   
   
@@ -101,10 +101,10 @@ function Results({ user, ufcCard, ufcResults }) {
     }
   };
   
-console.log(results) 
-console.log(ufcResults)
-console.log(updatedResults)
-console.log(filteredByMainEvent)
+// console.log(results) 
+// console.log(ufcResults)
+// console.log(updatedResults)
+// console.log(filteredByMainEvent)
 // console.log(user.username)
 
 const [leaderboard, setLeaderboard] = useState([]);
@@ -205,7 +205,7 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
   
   
 
-console.log(leaderboardwinners)
+// console.log(leaderboardwinners)
 
 
 
@@ -282,7 +282,7 @@ function calculateTotalPoints(result, mainEvent) {
   
 // }
 
-console.log(results);
+// console.log(results);
 // const winners = findUsersWithMostPointsPerEvent(results);
 // console.log(winners);
 
@@ -554,60 +554,78 @@ const [showPredictions, setShowPredictions] = useState(true);
 const togglePredictions = () => {
   setShowPredictions(!showPredictions);
 };
+const [ownPicksVisibility, setOwnPicksVisibility] = useState({});
+
+const toggleOwnPicks = (id) => {
+  setOwnPicksVisibility((prevState) => ({
+    ...prevState,
+    [id]: !prevState[id],
+  }));
+  console.log(ownPicksVisibility)
+};
+// useEffect(() => {
+//   const initialVisibility = {};
+//   filteredByMainEvent.forEach((result) => {
+//     initialVisibility[result.owner] = true;
+//   });
+//   setOwnPicksVisibility(initialVisibility);
+// }, [filteredByMainEvent]);
 
 
 
-if (predictions.methodCounts) {
-  // Data for the chart
-  const data = {
-    labels: ["TKO/KO", "Submission", "Decision", "Draw/No-Contest"],
-    datasets: [
-      {
-        label: "Method Counts",
-        data: [
-          predictions.methodCounts["TKO/KO"],
-          predictions.methodCounts["Submission"],
-          predictions.methodCounts["Decision"],
-          predictions.methodCounts["Draw/No-Contest"],
-        ],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
 
-  // Options for the chart
-  const options = {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-  };
+
+// if (predictions.methodCounts) {
+//   // Data for the chart
+//   const data = {
+//     labels: ["TKO/KO", "Submission", "Decision", "Draw/No-Contest"],
+//     datasets: [
+//       {
+//         label: "Method Counts",
+//         data: [
+//           predictions.methodCounts["TKO/KO"],
+//           predictions.methodCounts["Submission"],
+//           predictions.methodCounts["Decision"],
+//           predictions.methodCounts["Draw/No-Contest"],
+//         ],
+//         backgroundColor: [
+//           "rgba(255, 99, 132, 0.2)",
+//           "rgba(54, 162, 235, 0.2)",
+//           "rgba(255, 206, 86, 0.2)",
+//           "rgba(75, 192, 192, 0.2)",
+//         ],
+//         borderColor: [
+//           "rgba(255, 99, 132, 1)",
+//           "rgba(54, 162, 235, 1)",
+//           "rgba(255, 206, 86, 1)",
+//           "rgba(75, 192, 192, 1)",
+//         ],
+//         borderWidth: 1,
+//       },
+//     ],
+//   };
+
+//   // Options for the chart
+//   const options = {
+//     scales: {
+//       y: {
+//         beginAtZero: true,
+//       },
+//     },
+//   };
 
   // Get the canvas element
-  const chartCanvas = document.getElementById("methodChart");
+//   const chartCanvas = document.getElementById("methodChart");
 
-  if (chartCanvas) {
-    const ctx = chartCanvas.getContext("2d");
-    new Chart(ctx, {
-      type: "bar",
-      data: data,
-      options: options,
-    });
-  }
-}
+//   if (chartCanvas) {
+//     const ctx = chartCanvas.getContext("2d");
+//     new Chart(ctx, {
+//       type: "bar",
+//       data: data,
+//       options: options,
+//     });
+//   }
+// }
 
 
 
@@ -750,12 +768,12 @@ if (predictions.methodCounts) {
 
 
 
-<button
-          className={showPredictions ? "hide-button":"show-button"  }
-          onClick={togglePredictions}
-        >
-          {showPredictions ?"Hide": "Show"  }
-        </button>
+        <center><button
+                  className={showPredictions ? "hide-button":"show-button"  }
+                  onClick={togglePredictions}
+                >
+                  {showPredictions ?"Hide All": "Show All"  }
+                </button></center>
       <table className="wholeOne" >
         <thead>
           <tr>
@@ -773,7 +791,12 @@ if (predictions.methodCounts) {
     <td className="LeftOne">
       <div className="ownpicksdiv">
 
-              
+      <button
+          className={ownPicksVisibility[result.owner] ? "hide-button" : "show-button"}
+          onClick={() => toggleOwnPicks(result.id)}
+        >
+          {ownPicksVisibility[result.owner] ? "Hide" : "Show"}
+        </button>
         <center>
           <strong><span className="small">{result.owner}'s</span> picks</strong>
           <br />
@@ -791,8 +814,8 @@ if (predictions.methodCounts) {
          
         </center>
       </div>
-      {showPredictions ? (
-      <div className={`predictions-container ${showPredictions ? '' : 'hidden-predictions'}`}>
+      {showPredictions || ownPicksVisibility[result.id] ? (
+      <div className={`predictions-container ${showPredictions || ownPicksVisibility ? '' : 'hidden-predictions'}`}>
         {result.predictions.map((prediction, predIndex) => {
           // Check if adminKevPicks contains the main event as a key
           const adminKevPicksForEvent = adminKevPicks[result.main_event] || {};
@@ -865,7 +888,7 @@ if (predictions.methodCounts) {
             <h2>Popularity Vote </h2>
           </center>}
         </div>
-        {showPredictions ? (
+        {showPredictions || ownPicksVisibility[result.id]  ? (
         <div className="">
         {getAdminKevPicksForEvent(result.main_event).map((adminKevMatch, matchIndex) => (
   <div className="real-results-container" key={matchIndex}>
