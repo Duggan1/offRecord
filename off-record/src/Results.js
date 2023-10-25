@@ -178,6 +178,7 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
   
     // Sort the leaderboard by totalPoints in descending order
     leaderboardArray.sort((a, b) => b.totalPoints - a.totalPoints);
+    
   
     // Sort eventWinners, putting "Pending" winners first
     const sortedEventWinners = {};
@@ -361,7 +362,10 @@ function calculateTotalPoints(result, mainEvent) {
 
 
 
-
+  const uniqueMainEventsRD = [...new Set(results.map(result => result.main_event))];
+  const uniqueMainEvents = uniqueMainEventsRD.filter(event => event !== 'Jon Jones vs Fedor Emelianenko');
+  console.log(uniqueMainEvents);
+  
   const handleDeletePick = (pickId) => {
     
     console.log(`https://off-therecordpicks.onrender.com/picks/${pickId}`)
@@ -849,6 +853,17 @@ const countryData = {
 function getCountryAbbreviation(countryName) {
   return countryData[countryName] || "Not Found";
 }
+
+
+
+// Calculate the points and add a 'points' property to each result
+filteredByMainEvent.forEach((result) => {
+  result.points = calculateTotalPoints(result, result.main_event, adminKevPicks);
+});
+
+// Sort the filteredByMainEvent array by the 'points' property in descending order
+filteredByMainEvent.sort((a, b) => b.points - a.points);
+
 // useEffect(() => {
 //   const initialVisibility = {};
 //   filteredByMainEvent.forEach((result) => {
@@ -981,18 +996,18 @@ function getCountryAbbreviation(countryName) {
 
 
             <center><label style={{color:'gold',backgroundColor:'black',fontWeight:'bold'}}>Filter Results by Fight Card</label><br></br>
-      <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
-        <option value="">All</option>
-        <option value="Israel Adesanya vs Sean Strickland">Israel Adesanya vs Sean Strickland</option>
-        <option value="Alexa Grasso vs Valentina Shevchenko">Grasso vs Shevchenko 2</option>
-        <option value="Rafael Fiziev vs Mateusz Gamrot">Fiziev vs Gamrot</option>
-        <option value="Grant Dawson vs Bobby Green">Dawson vs Green</option>
-        <option value="Sodiq Yusuff vs Edson Barboza">Yusuff vs Barboza</option>
-        <option value="Islam Makhachev vs Alexander Volkanovski">Makhachev vs Volkanovski 2</option>
-        <option value="Derrick Lewis vs Jailton Almeida">Lewis vs Almeida</option>
-        <option value="Jon Jones vs Stipe Miocic">Jones vs Miocic</option>
+            <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
+              <option value="">All</option>
+              {uniqueMainEvents
+                .slice()
+                .reverse()
+                .map((mainEvent, index) => (
+                  <option key={index} value={mainEvent}>
+                    {mainEvent}
+                  </option>
+                ))}
 
-      </select></center>
+            </select></center>
 
       {showCardWins ?   <div className="pointEXCard" >
       

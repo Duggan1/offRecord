@@ -988,6 +988,11 @@ input[type='checkbox'] {
   justify-content: center; /* Center horizontally */
   width: 8em;
   height: 3.5em;
+  border-top: 5px solid purple;
+  border-right: 10px solid purple;
+  border-bottom: 10px solid purple;
+  border-left: 10px solid purple;
+  
 }
 
 
