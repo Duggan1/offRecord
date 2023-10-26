@@ -1057,14 +1057,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
   </select>
 </center>
 
-<center>
-  <button
-    className="urpicksB"
-    onClick={() => setShowOnlyUserPicks(!showOnlyUserPicks)}
-  >
-    {showOnlyUserPicks ? "Show All Picks" : `Show Only My Picks`}
-  </button>
-</center>
+
 
 
 
