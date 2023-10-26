@@ -37,6 +37,8 @@ code {
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 15%;
+  z-index: 1;
+
 }
 
 .crdiv {
@@ -51,6 +53,7 @@ code {
   /* border-radius:5%; */
   font-weight: 800;
   width: 40%;
+  z-index: 1;
 
 
 }
@@ -937,7 +940,27 @@ input[type='checkbox'] {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.home-fighter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  min-width: 100%;
+  position: absolute;
+  
+  
+  z-index: 0; /* Set a negative z-index to position it behind other elements */
+}
 
+.fi {
+  
+  flex: 1; 
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: left;
+  min-width: 50%;
+  min-height:600px;
+  overflow: hidden;
+}
 .fighter-image {
   flex: 1; /* Grow to fill available space */
   background-size: cover;
@@ -988,13 +1011,15 @@ input[type='checkbox'] {
   justify-content: center; /* Center horizontally */
   width: 8em;
   height: 3.5em;
+  
+  
+}
+.pborder {
   border-top: 5px solid purple;
   border-right: 10px solid purple;
   border-bottom: 10px solid purple;
   border-left: 10px solid purple;
-  
 }
-
 
 /* Hide default HTML checkbox */
 .switch .cb {

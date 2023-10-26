@@ -54,6 +54,7 @@ function Home({user, ufcCard, stallUfcCard}) {
                 >
                 Off The Record Picks!
                 </h1>
+               
                 { !user ? 
                 <div className='crdiv2' >
                 <h6 className='color-yellow snow'style={{marginBottom:'0%',paddingBottom:'0%'}}> Login/Signup to make Off the Record Picks </h6><br></br>
@@ -74,7 +75,10 @@ function Home({user, ufcCard, stallUfcCard}) {
                
                 <h2 style={{paddingTop:'15%'}} className="homeheaders">{countPick} - Off-The-Record-Picks -  </h2>
         
-        
+                { isUfcCardLoaded ? <div className="home-fighter">
+                                    <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[0]}')`,backgroundPosition: 'left'}} ></div>
+                                    <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[1]}')`,backgroundPosition: 'right'}}> </div>
+                                    </div> : <div className="loading" style={{ height: '100px', width: '100px' ,justifyContent:'center'}}></div> }
         
 
         

@@ -31,13 +31,27 @@ function Results({ user, ufcCard, ufcResults }) {
   const byMainEvent = (results) => {
     return !selectedEvent || results.main_event === selectedEvent;
   }
- 
+  
+  const [selectedUser, setSelectedUser] = useState(""); // Add this line to define the state
+
+  
   const filteredByMainEvent = results.filter((result) => {
     return (
       (!selectedEvent || result.main_event === selectedEvent) &&
+      (!selectedUser || result.owner === selectedUser) &&
       (!showOnlyUserPicks || result.owner === user.username)
     );
   });
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
 
@@ -77,13 +91,7 @@ function Results({ user, ufcCard, ufcResults }) {
     });
   });
   
-  // Display the array of prediction details
-  // console.log("Predictions:", predictions);
-  
-  // console.log( ufcResults)
-  
-  
-  
+
   
   
 
@@ -101,18 +109,13 @@ function Results({ user, ufcCard, ufcResults }) {
     }
   };
   
-// console.log(results) 
-// console.log(ufcResults)
-// console.log(updatedResults)
-// console.log(filteredByMainEvent)
-// console.log(user.username)
+
 
 const [leaderboard, setLeaderboard] = useState([]);
 const [leaderboardwinners, setLeaderboardwinners] = useState([]);
 
 
 
-  // Other state variables...
 
   useEffect(() => {
     // Fetch and set results data as you are currently doing...
@@ -124,10 +127,16 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
   const calculateLeaderboard = (results, ufcResults) => {
     const userPointsMap = new Map();
     const eventWinners = {};
+    const userPicksCountMap = new Map();
   
     results.filter(result => result.main_event !== 'Jon Jones vs Fedor Emelianenko').forEach((result) => {
       // Calculate total points for each result
       const totalPoints = calculateTotalPoints(result, result.main_event, ufcResults);
+  
+      if (!userPicksCountMap.has(result.owner)) {
+        userPicksCountMap.set(result.owner, 0);
+      }
+      userPicksCountMap.set(result.owner, userPicksCountMap.get(result.owner) + result.predictions.length);
   
       // Update the user's total points in the map
       if (!userPointsMap.has(result.owner)) {
@@ -153,16 +162,7 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
         eventWinners[result.main_event].winners.push(result.owner);
       }
       
-      // if (userPoints === eventWinners[result.main_event].points) {
-      //   if (eventWinners[result.main_event].winner === null) {
-      //     // If the current winner is null, initialize an array to keep track of tied users
-      //     eventWinners[result.main_event].winners = [result.owner];
-      //     eventWinners[result.main_event].points = [userPoints]; // Initialize points to 1
-      //   } else if (eventWinners[result.main_event].winners) {
-      //     // If there are already tied users, add the current user to the list
-      //     eventWinners[result.main_event].winners.append(result.owner);
-      //   }
-      // }
+  
       
     });
   
@@ -173,9 +173,11 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
       }
     }
   
-    // Convert the map to an array of objects for easier sorting
-    const leaderboardArray = Array.from(userPointsMap, ([username, totalPoints]) => ({ username, totalPoints }));
-  
+    const leaderboardArray = Array.from(userPointsMap, ([username, totalPoints]) => ({
+      username,
+      totalPoints,
+      totalPicksCount: userPicksCountMap.get(username) || 0, // Add totalPicksCount
+    }));
     // Sort the leaderboard by totalPoints in descending order
     leaderboardArray.sort((a, b) => b.totalPoints - a.totalPoints);
     
@@ -206,7 +208,7 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
   
   
 
-// console.log(leaderboardwinners)
+console.log(leaderboard)
 
 
 
@@ -272,20 +274,6 @@ function calculateTotalPoints(result, mainEvent) {
   return totalPoints;
 } 
 
-// function findUsersWithMostPointsPerEvent(results) {
-  
-
-//   results.forEach((result) => {
-//   });
-
-  
-
-  
-// }
-
-// console.log(results);
-// const winners = findUsersWithMostPointsPerEvent(results);
-// console.log(winners);
 
 
 
@@ -365,6 +353,10 @@ function calculateTotalPoints(result, mainEvent) {
   const uniqueMainEventsRD = [...new Set(results.map(result => result.main_event))];
   const uniqueMainEvents = uniqueMainEventsRD.filter(event => event !== 'Jon Jones vs Fedor Emelianenko');
   console.log(uniqueMainEvents);
+  const uniqueUsernamesRD = [...new Set(results.map(result => result.owner))];
+  const uniqueUsernames = uniqueUsernamesRD.filter(user => user !== 'AdminKev');
+  console.log(uniqueUsernames);
+
   
   const handleDeletePick = (pickId) => {
     
@@ -419,20 +411,7 @@ function countWinsForUsername(leaderboardwinners, username) {
 
 const [updatedPicks, setUpdatedPicks] = useState(filteredByMainEvent);
 
-// Function to handle prediction order change
-// const handlePredictionOrderChange = (pickId, updatedPredictions) => {
-//   console.log(pickId)
-//   console.log(updatedPredictions)
-//   const updatedPicksCopy = [...updatedPredictions];
-//   const updatedPickIndex = updatedPicksCopy.findIndex((pick) => pick.id === pickId);
-//   console.log(updatedPicksCopy)
-//   console.log(updatedPickIndex)
 
-//   if (updatedPickIndex !== -1) {
-//     updatedPicksCopy[updatedPickIndex].predictions = updatedPredictions;
-//     setUpdatedPicks(updatedPicksCopy);
-//   }
-// };
 
 // Function to send a PATCH request to update the pick on the server
 const handleUpdatePredictions = (pickId, updatedPredictions) => {
@@ -956,10 +935,19 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
             
             <h2 className="tac" style={{letterSpacing: '2xcpx',}}>Leaderboard</h2>
       <center><table ><thead><tr>
-            <th className="downUnder">Username</th><th  className="downUnder">Total Points</th><th className="downUnder Left5">Wins</th></tr></thead>
+            <th className="downUnder">Username</th><th  className="downUnder">Total Points</th><th className="downUnder ">Wins</th><th className="downUnder Left5" >%</th></tr></thead>
         <tbody>{leaderboard.map((user, index) => (
             <tr key={index}>
-              <td style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}}>{user.username}</td><td className="tac" style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}} >{user.totalPoints}</td><td className="tac Left6" style={{backgroundColor:'rgba(55, 0, 59, 0.650)'}}  >{countWinsForUsername(leaderboardwinners, user.username)}</td></tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button></center></div>
+              
+              <td style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}}>{user.username}</td>
+              <td className="tac" style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}} >{user.totalPoints}</td>
+              
+              <td className="tac " style={{backgroundColor:'rgba(55, 0, 59, 0.650)'}}  >{countWinsForUsername(leaderboardwinners, user.username)}</td>
+              <td className="tac Left6" style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}}>{((user.totalPoints / (user.totalPicksCount * 2)) * 100).toFixed(0)}% </td>
+
+              
+              
+              </tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button></center></div>
                : <center><button className="expoint" onClick={() => setshowLeaderBoard(!showLeaderBoard)} >View Leaderboard</button></center> }
 
  
@@ -990,6 +978,47 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
        : <center><button className="expoint" onClick={() => setExplainPointst(!explainPoints)} >Explain Point System</button></center> }
 
 <center><button className="expoint"  onClick={() => setSelectedEvent('Jon Jones vs Fedor Emelianenko')} >Dream Card Results</button></center>
+{showCardWins ?   <div className="pointEXCard" >
+      
+      {Object.entries(leaderboardwinners).map(([event, eventData]) => (
+        <div key={event}>
+          <h3 className="tight">{event}</h3>
+          <div className="tight">
+            {eventData.winner === "Pending" ? (
+            
+            <div className="loading2 tight color-yellow" style={{  minHeight: '25px',textAlign:'center'}}>Results Pending</div>
+             
+          
+          ) : (
+            <div>
+              
+              <p className='color-yellow'>
+                {eventData.winners ? (
+                  <span>
+                    {eventData.winners.map((winner, index) => (
+                      <span key={index}>
+                        {winner} +{eventData.points} Points
+                        {index < eventData.winners.length - 1 ? <br /> : ' '}
+                      </span>
+                    ))}
+                  
+                  </span>
+                ) : (
+                  <span>
+                    {eventData.winner} +{eventData.points} Points
+                  </span>
+                )}
+              </p>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+
+
+
+<center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Hide Card Winners</button></center></div>
+: <center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Show Card Winners</button></center> }
 
      
 
@@ -1009,48 +1038,38 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
             </select></center>
 
-      {showCardWins ?   <div className="pointEXCard" >
-      
-              {Object.entries(leaderboardwinners).map(([event, eventData]) => (
-                <div key={event}>
-                  <h3 className="tight">{event}</h3>
-                  <div className="tight">
-                    {eventData.winner === "Pending" ? (
-                    
-                    <div className="loading2 tight color-yellow" style={{  minHeight: '25px',textAlign:'center'}}>Results Pending</div>
-                     
-                  
-                  ) : (
-                    <div>
-                      
-                      <p className='color-yellow'>
-                        {eventData.winners ? (
-                          <span>
-                            {eventData.winners.map((winner, index) => (
-                              <span key={index}>
-                                {winner} +{eventData.points} Points
-                                {index < eventData.winners.length - 1 ? <br /> : ' '}
-                              </span>
-                            ))}
-                          
-                          </span>
-                        ) : (
-                          <span>
-                            {eventData.winner} +{eventData.points} Points
-                          </span>
-                        )}
-                      </p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
+            <center>
+  <label style={{ color: 'gold', backgroundColor: 'black', fontWeight: 'bold' }}>
+    Filter Results by User
+  </label>
+  <br />
+  <select
+    className="filterbutton"
+    value={selectedUser}
+    onChange={(e) => setSelectedUser(e.target.value)}
+  >
+    <option value="">All Users</option>
+    {uniqueUsernames.map((username, index) => (
+      <option key={index} value={username}>
+        {username}
+      </option>
+    ))}
+  </select>
+</center>
+
+<center>
+  <button
+    className="urpicksB"
+    onClick={() => setShowOnlyUserPicks(!showOnlyUserPicks)}
+  >
+    {showOnlyUserPicks ? "Show All Picks" : `Show Only My Picks`}
+  </button>
+</center>
 
 
 
-      <center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Hide Card Winners</button></center></div>
-       : <center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Show Card Winners</button></center> }
-      
+
+     
 
       
       {user && user.username ? (
@@ -1074,7 +1093,8 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
   >
     {showPredictions ? "Hide All" : "Show All"}
   </button> */}
-<label  class="switch">
+<label className={`switch ${showPredictions ? 'pborder' : ''}`}>
+
   <input onClick={togglePredictions} type="checkbox" class="cb"></input>
   <span class="toggle">
     <span class="left">Hide All</span>  
@@ -1135,14 +1155,14 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
           <br />
           
           {deletePicks && user && (user.username === result.owner || user.username === 'AdminKev') ? (
-    <button
-      className="delete-button"
-      onClick={() => handleDeletePick(result.id)}
-    >
-      Delete Pick
-    </button>
-  ) : null }
-          <h2>{calculateTotalPoints(result, result.main_event, adminKevPicks)} Points</h2>
+              <button
+                className="delete-button"
+                onClick={() => handleDeletePick(result.id)}
+              >
+                Delete Pick
+              </button>
+            ) : null }
+          <h2>{calculateTotalPoints(result, result.main_event, adminKevPicks)}+ Points</h2>
          
         </center>
       </div>
@@ -1222,7 +1242,8 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
             backgroundSize: '50% 150%',
             backgroundRepeat:'no-repeat',
             backgroundPosition: 'right',
-          }}>{result.predictions.length * 2} Possible</h2></>
+            paddingLeft:'5%',
+          }}>  / {result.predictions.length * 2}+</h2></>
          :  <center>
             <strong>Dream Card Results</strong>
             <br />
