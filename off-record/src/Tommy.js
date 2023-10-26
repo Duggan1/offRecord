@@ -8,11 +8,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Dnd from './Dnd';
 
-function Tommy({ user, ufcCard, stallUfcCard}) {
+function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
 
-  // const selectedUfcCard = ufcCard.length > 1 ? ufcCard : stallUfcCard;
-  // console.log(stallUfcCard)
-  // console.log(ufcCard)
+  // const locationCity = locationCity
+  // const location = location
 
   const [showUfcCard, setShowUfcCard] = useState(true);
 
@@ -43,8 +42,7 @@ function Tommy({ user, ufcCard, stallUfcCard}) {
   const [errors, setErrors] = useState([]);
   const [error, setError] = useState(null);
  
-  const locationCity = ' Sao Paulo'
-  const location = 'Brazil'
+  
   
   const fighterNamesFormatted = ufcCard.map(({ fighters }) => {
     const formattedFighters = fighters.map(name => {

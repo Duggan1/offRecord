@@ -396,7 +396,11 @@ useEffect(() => {
 
   // Call the submitForm function to submit the form data automatically
   submitForm();
-}, [modifiedUfcResults.length > 0]); 
+}, [modifiedUfcResults.length > 0]);
+
+
+const locationCity = ' Sao Paulo'
+const location = 'Brazil' 
 
 
 
@@ -425,12 +429,12 @@ useEffect(() => {
 
     
    <Routes>
-      <Route path="/"  element={<Home user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard}   />} />
+      <Route path="/"  element={<Home user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationCity} location={location}  />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} />}/>
-      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard2} user={user}/>}/>
+      <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationCity} location={location}/>}/>
+      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard2} user={user} />}/>
       
       <Route path="/about" element={<About/>}/>
       
