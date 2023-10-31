@@ -82,6 +82,13 @@ app.get('/scrape-ufc-website', async (req, res) => {
         const html = response.data;
         const $ = cheerio.load(html);
 
+        const backgroundImageSrc = $('picture img').attr('src');
+        console.log('Background Image Source:', backgroundImageSrc);
+
+        // Scrape the location
+        const location = $('.field--name-venue.field__item').text().trim();
+        console.log('Location:', location);
+
         $('.fightCard').each((index, element) => {
           const redCornerName = $(element).find('.fightCardFighterName').eq(0).text().trim();
           const blueCornerName = $(element).find('.fightCardFighterName').eq(1).text().trim();
@@ -113,8 +120,15 @@ app.get('/scrape-ufc-website', async (req, res) => {
       return;
     }
 
-    // Send the response with all the data
-    res.json({ event_name, event_date, fights: fightData, records: fightRecords });
+   
+    res.json({
+      event_name,
+      event_date,
+      fights: fightData,
+      records: fightRecords,
+      backgroundImageSrc,
+      location,
+    });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'An error occurred while scraping data.' });
