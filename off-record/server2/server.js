@@ -25,6 +25,11 @@ app.get('/scrape-ufc-website', async (req, res) => {
     // Scrape the event name and date
     let event_name = $('.c-hero__headline').text().trim();
     let event_date = $('.e-eventDate').text().trim();
+    
+    const backgroundImageSrc = $('picture img').attr('src');
+    console.log('Background Image Source:', backgroundImageSrc);
+    const location = $('.field--name-venue.field__item').text().trim();
+    console.log('Location:', location);
 
     event_name = event_name.replace(/\s+/g, ' ').trim();
     event_date = event_date.replace(/\s+/g, ' ').trim();
@@ -74,6 +79,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       fightData.push(fightInfo);
     });
 
+   
     // Use async/await to wait for the Tapology request to complete
     try {
       const response = await axios.get(Recurl);
@@ -82,12 +88,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
         const html = response.data;
         const $ = cheerio.load(html);
 
-        const backgroundImageSrc = $('picture img').attr('src');
-        console.log('Background Image Source:', backgroundImageSrc);
-
-        // Scrape the location
-        const location = $('.field--name-venue.field__item').text().trim();
-        console.log('Location:', location);
+        
 
         $('.fightCard').each((index, element) => {
           const redCornerName = $(element).find('.fightCardFighterName').eq(0).text().trim();

@@ -10,7 +10,7 @@ import Tommy from './Tommy';
 import About from './About';
 import axios from 'axios';
 import * as yup from 'yup';
-import CommentSection from './CommentSection';
+// import CommentSection from './CommentSection';
 
 
 
@@ -62,7 +62,10 @@ useEffect(() => {
       const response = await axios.get(apiUrl);
       console.log(response.data) 
  
-      const { event_name, event_date,fights, records  } = response.data;
+      const { event_name, event_date,fights, records,
+        backgroundImageSrc, location, 
+       } = response.data;
+
 
 
       const newUfcCard = fights.map((fight, index) => {
@@ -80,7 +83,7 @@ useEffect(() => {
  
 
       // Update state with the scraped data
-      setEventInfo({ event_name, event_date, fights, records });
+      setEventInfo({ event_name, event_date, fights, records ,backgroundImageSrc, location,});
     } catch (error) { 
       console.error('Error:', error);
     }
@@ -438,7 +441,7 @@ const location = 'Brazil'
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard2} user={user} />}/>
       
       <Route path="/about" element={<About/>}/>
-      <Route path="/comments" element={<CommentSection />}/>
+      {/* <Route path="/comments" element={<CommentSection />}/> */}
        
     </Routes>
     
