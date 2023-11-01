@@ -92,6 +92,7 @@ useEffect(() => {
   fetchData();      
 }, []);      
 console.log(eventInfo) 
+const backgroundImageSrc = eventInfo.backgroundImageSrc
   
   // const ufcCard = [
   //   { fighters: ["Alexa Grasso","Valentina Shevchenko"], match: "125 lbs", records: ["23-4", "16-3"], flags: ["Mexico", "Kyrgyzstan"] },
@@ -433,7 +434,7 @@ const location = 'Brazil'
 
     
    <Routes>
-      <Route path="/"  element={<Home user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationCity} location={location}  />} />
+      <Route path="/"  element={<Home user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationCity} location={location} BGpic={backgroundImageSrc} />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
