@@ -25,12 +25,18 @@ app.get('/scrape-ufc-website', async (req, res) => {
     // Scrape the event name and date
     let event_name = $('.c-hero__headline').text().trim();
     let event_date = $('.e-eventDate').text().trim();
-    
+
     const backgroundImageSrc = $('picture img').attr('src');
     console.log('Background Image Source:', backgroundImageSrc);
-    const location = $('.field--name-venue.field__item').text().trim();
-    console.log('Location:', location);
+    const locationString = $('.field--name-venue.field__item').text().trim();
 
+// Split the locationString by the line break and remove any leading/trailing whitespace
+    const locationParts = locationString.split('\n').map(part => part.trim());
+
+    // Extract the components
+    const arena = locationParts[0]; // The first part should be the arena
+    const city = locationParts[1];  // The second part should be the city
+    const country = locationParts[2];
     event_name = event_name.replace(/\s+/g, ' ').trim();
     event_date = event_date.replace(/\s+/g, ' ').trim();
 
@@ -128,7 +134,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       fights: fightData,
       records: fightRecords,
       backgroundImageSrc,
-      location,
+      arena, city, country
     });
   } catch (error) {
     console.error('Error:', error);
