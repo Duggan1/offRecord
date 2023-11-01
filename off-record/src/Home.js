@@ -334,7 +334,7 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic}) {
                 
                 { isUfcCardLoaded ? <div className='crdiv' style={{ height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundColor: "black", position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
                     <NavLink className='color-gold hgysnow' exact to="/section3"></NavLink>
-                    <h5 className='purple2 snow' style={{ textAlign: 'center',  marginTop: '-6%' }}>UFC PICK'EMS</h5>
+                    <h5 className='color-yellow snow' style={{ textAlign: 'center',  marginTop: '-6%',textShadow: '0 0 15px black' }}>UFC PICK'EMS</h5>
                 </div>
                 : 
 
