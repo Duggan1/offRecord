@@ -211,7 +211,7 @@ function normalizeMethod(method, winner) {
     if (method === "SubmissionSubmission") {
       return "Submission";
     }
-    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned" || method === "Could Not ContinueCould Not Continue" ) && (winner === "N/A" || winner === null)) {
+    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned" || method === "Could Not ContinueCould Not Continue"|| method === "Decision - MajorityDecision - Majority" ) && (winner === "N/A" || winner === null)) {
       return "Draw/No-Contest";
     }
     
@@ -225,7 +225,8 @@ function normalizeMethod(method, winner) {
 
 function checkWinner4drawNocontest(method, winner) {
   if (!winner) {
-    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned" || method === "Could Not ContinueCould Not Continue") && (winner === "N/A" || winner === null)) {
+    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned" || method === "Could Not ContinueCould Not Continue" 
+    || method === "Decision - MajorityDecision - Majority") && (winner === "N/A" || winner === null)) {
       return 3;
     }
     else {

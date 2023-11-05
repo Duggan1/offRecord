@@ -1253,10 +1253,11 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
     
     {adminKevMatch.methodCounts ?  null :  <strong>Winner:  </strong> }
     {adminKevMatch.winner !== null
-  ? adminKevMatch.winner === 'Draw/No-Contest' || 3
+  ? adminKevMatch.winner === 'Draw/No-Contest'
     ? 'Draw/No-Contest'
     : adminKevMatch.fighters[adminKevMatch.winner]
-  : "Results Pending"}
+  : "Results Pending"
+}
 {adminKevMatch.methodCounts ? (
   <div style={{ display: "flex", alignItems: "center" }}>
     <div
