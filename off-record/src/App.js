@@ -212,7 +212,11 @@ function normalizeMethod(method, winner) {
     if (method === "SubmissionSubmission") {
       return "Submission";
     }
-    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned" || method === "Could Not ContinueCould Not Continue"|| method === "Decision - MajorityDecision - Majority" || method === "DECISION - MAJORITYDECISION - MAJORITY" ) && (winner === "N/A" || winner === null)) {
+    if ((method === "Decision - SplitDecision - Split" ||
+        method === "OverturnedOverturned" ||
+        method === "Could Not ContinueCould Not Continue"||
+        method === "Decision - MajorityDecision - Majority" ||
+        method === "DECISION - MAJORITYDECISION - MAJORITY" ) && (winner === "N/A" || winner === null)) {
       return "Draw/No-Contest";
     }
     

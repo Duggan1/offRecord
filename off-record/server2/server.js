@@ -9,9 +9,9 @@ const port = 3001; // Choose an available port
 // Enable CORS for all routes
 app.use(cors());
 
-const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-november-04-2023';
+const deatilsUrl = 'https://www.ufc.com/event/ufc-295';
 
-const Recurl = 'https://www.tapology.com/fightcenter/events/101863-ufc-fight-night';
+const Recurl = 'https://www.tapology.com/fightcenter/events/102959-ufc-295-jones-vs-miocic';
 
 const fightRecords = [];
 const addedFighters = [];
@@ -94,6 +94,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
         const html = response.data;
         const $ = cheerio.load(html);
 
+        const locationCC = detailsElement.find('li:contains("Location:") a').text();
+
         
 
         $('.fightCard').each((index, element) => {
@@ -134,7 +136,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       fights: fightData,
       records: fightRecords,
       backgroundImageSrc,
-      arena, city, country, locationString
+      arena, city, country, locationCC
     });
   } catch (error) {
     console.error('Error:', error);
