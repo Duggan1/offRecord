@@ -37,6 +37,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
     const arena = locationParts[0]; // The first part should be the arena
     const city = locationParts[1];  // The second part should be the city
     const country = locationParts[2];
+    let locationCC 
     event_name = event_name.replace(/\s+/g, ' ').trim();
     event_date = event_date.replace(/\s+/g, ' ').trim();
 
@@ -95,7 +96,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
         const $ = cheerio.load(html);
 
         const detailsElement = $('.details.details_with_poster.clearfix');
-        const locationCC = detailsElement.find('li:contains("Location:") a').text();
+        locationCC = detailsElement.find('li:contains("Location:") a').text();
 
         
 
