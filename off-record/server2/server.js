@@ -38,6 +38,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
     const city = locationParts[1];  // The second part should be the city
     const country = locationParts[2];
     let locationCC 
+    let tapImage 
     event_name = event_name.replace(/\s+/g, ' ').trim();
     event_date = event_date.replace(/\s+/g, ' ').trim();
 
@@ -97,6 +98,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
         const detailsElement = $('.details.details_with_poster.clearfix');
         locationCC = detailsElement.find('li:contains("Location:") a').text();
+        tapImage = detailsElement.find('.left img').attr('src');
 
         
 
@@ -138,7 +140,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       fights: fightData,
       records: fightRecords,
       backgroundImageSrc,
-      arena, city, country, locationCC
+      arena, city, country, locationCC, tapImage
     });
   } catch (error) {
     console.error('Error:', error);

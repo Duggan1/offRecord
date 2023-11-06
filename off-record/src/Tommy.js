@@ -249,7 +249,7 @@ const countryData = {
   "Curaçao": "CW",
   "Christmas Island": "CX",
   "Cyprus": "CY",
-  "Czech Republic": "CZ",
+  "Czech Republic": "CZ","Czechia": "CZ",
   "Germany": "DE",
   "Djibouti": "DJ",
   "Denmark": "DK",

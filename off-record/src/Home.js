@@ -310,7 +310,17 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic}) {
                 // Adjust this value as needed
                 >
                 Off The Record Picks!
-                </h1><h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'10%',paddingBottom:'10%'}}>{mainEvent}</h6>
+                </h1><h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%'}}>{mainEvent}</h6>
+                <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%'}}>  {locationCity} </h6>
+                <h5 className=' snow' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
+                  backgroundSize: 'contain',
+                  backgroundRepeat:'no-repeat',
+                  paddingTop:'15%',
+                  paddingBottom:'15%',marginBottom:'10%',marginTop:'0%',
+                  width:'30%', justifyContent:'center',textAlign:'center'
+                  }} ></h5>
+                  
+                  
                
                
                 <div className='crdiv2'style={{
@@ -319,18 +329,22 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic}) {
                 }} > 
                 { !user ? 
                 <h6 className='color-yellow snow'style={{marginBottom:'10%',paddingBottom:'10%',marginTop:'0%',paddingTop:'0%',}}> Login/Signup to make Off the Record Picks </h6>:
-                <h6 className='color-yellow snow'style={{marginBottom:'10%',paddingBottom:'10%',marginTop:'0%',paddingTop:'0%',}}> Welcome Back <span className="color-white">{user.username}</span></h6>
+                <h6 className='color-yellow snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',}}> Welcome Back <span className="color-white">{user.username}</span></h6>
 
                               }
-               
-               
-                <h5 className='color-black  snow' style={{marginTop:'0%',paddingTop:'0%', backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
+
+                  <h5 className=' snow' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
                   paddingTop:'15%',
-                  paddingBottom:'15%',marginBottom:'0%'
-                  }} ></h5>
-                  <h6 className='color-white snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%'}}>  {locationCity} </h6><br></br></div>
+                  paddingBottom:'15%',marginBottom:'0%',marginTop:'0%',
+                 height:'200px'
+                  }} ></h5>     
+
+               
+               
+                
+                  </div>
                 
                 { isUfcCardLoaded ? <div className='crdiv' style={{ height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundColor: "black", position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
                     <NavLink className='color-gold hgysnow' exact to="/section3"></NavLink>
@@ -354,8 +368,8 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic}) {
                 <h2 style={{paddingTop:'15%'}} className="homeheaders">{countPick} - Off-The-Record-Picks -  </h2>
         
                 { isUfcCardLoaded ? <div className="home-fighter">
-                                    <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[0]}')`,backgroundPosition: 'left'}} ></div>
-                                    <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[1]}')`,backgroundPosition: 'right'}}> </div>
+                                    <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[0]}')`,backgroundPosition: 'left',marginTop:'20%'}} ></div>
+                                    <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[1]}')`,backgroundPosition: 'right',marginTop:'20%'}}> </div>
                                     </div> : <div className="loading" style={{ height: '100px', width: '100px' ,justifyContent:'center'}}></div> }
         
 

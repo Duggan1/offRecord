@@ -63,7 +63,7 @@ useEffect(() => {
       console.log(response.data) 
  
       const { event_name, event_date,fights, records,
-        backgroundImageSrc, location, 
+        backgroundImageSrc, location, locationCC
        } = response.data;
 
 
@@ -83,7 +83,7 @@ useEffect(() => {
  
 
       // Update state with the scraped data
-      setEventInfo({ event_name, event_date, fights, records ,backgroundImageSrc, location,});
+      setEventInfo({ event_name, event_date, fights, records ,backgroundImageSrc, location, locationCC});
     } catch (error) { 
       console.error('Error:', error);
     }
@@ -410,8 +410,20 @@ useEffect(() => {
 }, [modifiedUfcResults.length > 0]);
 
 
-const locationCity = ' Sao Paulo'
-const location = 'Brazil' 
+// Check if eventInfo.locationCC is defined before splitting it
+let locationInfo = [];
+if (eventInfo && eventInfo.locationCC) {
+  locationInfo = eventInfo.locationCC.split(', ').map(part => part.trim());
+}
+
+const locationcity = locationInfo[0];
+const locationstate = locationInfo[1];
+const location = locationInfo[locationInfo.length - 1];
+
+// console.log(locationcity); // New York City
+// console.log(locationstate); // New York
+console.log(location); // United States
+
 
 
 
@@ -440,11 +452,11 @@ const location = 'Brazil'
 
     
    <Routes>
-      <Route path="/"  element={<Home user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationCity} location={location} BGpic={backgroundImageSrc} />} />
+      <Route path="/"  element={<Home user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationcity} location={location} BGpic={backgroundImageSrc} />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationCity} location={location}/>}/>
+      <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard2} user={user} />}/>
       
       <Route path="/about" element={<About/>}/>
