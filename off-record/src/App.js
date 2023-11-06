@@ -63,7 +63,7 @@ useEffect(() => {
       console.log(response.data) 
  
       const { event_name, event_date,fights, records,
-        backgroundImageSrc, location, locationCC
+        backgroundImageSrc, location, locationCC, tapImage
        } = response.data;
 
 
@@ -83,7 +83,7 @@ useEffect(() => {
  
 
       // Update state with the scraped data
-      setEventInfo({ event_name, event_date, fights, records ,backgroundImageSrc, location, locationCC});
+      setEventInfo({ event_name, event_date, fights, records ,backgroundImageSrc, location, locationCC, tapImage});
     } catch (error) { 
       console.error('Error:', error);
     }
@@ -93,6 +93,7 @@ useEffect(() => {
 }, []);      
 console.log(eventInfo) 
 const backgroundImageSrc = eventInfo.backgroundImageSrc
+const tapImageSrc = eventInfo.tapImage
   
   // const ufcCard = [
   //   { fighters: ["Alexa Grasso","Valentina Shevchenko"], match: "125 lbs", records: ["23-4", "16-3"], flags: ["Mexico", "Kyrgyzstan"] },
@@ -452,7 +453,7 @@ console.log(location); // United States
 
     
    <Routes>
-      <Route path="/"  element={<Home user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationcity} location={location} BGpic={backgroundImageSrc} />} />
+      <Route path="/"  element={<Home user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationcity} location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       

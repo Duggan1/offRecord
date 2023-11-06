@@ -3,7 +3,7 @@ import './App.css';
 import { NavLink } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 
-function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic}) {
+function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapImage}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
@@ -11,6 +11,7 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic}) {
     const [ countPick ,setPickCount] = useState(null)
     // const [mainEvent, setMainEvent ] = useState('UFC')
     console.log(BGpic)
+    console.log(tapImage)
     
       useEffect(() => {
         // Fetch results from the API
@@ -310,15 +311,9 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic}) {
                 // Adjust this value as needed
                 >
                 Off The Record Picks!
-                </h1><h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%'}}>{mainEvent}</h6>
-                <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%'}}>  {locationCity} </h6>
-                <h5 className=' snow' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
-                  backgroundSize: 'contain',
-                  backgroundRepeat:'no-repeat',
-                  paddingTop:'15%',
-                  paddingBottom:'15%',marginBottom:'10%',marginTop:'0%',
-                  width:'30%', justifyContent:'center',textAlign:'center'
-                  }} ></h5>
+                </h1>
+                
+                
                   
                   
                
@@ -328,12 +323,12 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic}) {
                   // paddingLeft:'5%',
                 }} > 
                 { !user ? 
-                <h6 className='color-yellow snow'style={{marginBottom:'10%',paddingBottom:'10%',marginTop:'0%',paddingTop:'0%',}}> Login/Signup to make Off the Record Picks </h6>:
+                <h6 className='color-yellow snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',}}> Login/Signup to make Off the Record Picks </h6>:
                 <h6 className='color-yellow snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',}}> Welcome Back <span className="color-white">{user.username}</span></h6>
 
                               }
 
-                  <h5 className=' snow' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
+                  <h5 className=' snow' style={{backgroundImage: `url(${tapImage})`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
                   paddingTop:'15%',
@@ -345,8 +340,20 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic}) {
                
                 
                   </div>
+
+
+
+                 <div style={{zIndex:'1',textAlign:'center'}}> <h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black'}}>{mainEvent}</h6>
+                <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black'}}>  {locationCity} </h6>
+                <h5 className=' snow' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
+                  backgroundSize: '100% 100%',
+                  backgroundRepeat:'no-repeat',
+                  paddingTop:'15%',
+                  paddingBottom:'45%',marginBottom:'0%',marginTop:'0%',
+                  width:'100%', justifyContent:'center',textAlign:'center'
+                  }} ></h5></div>
                 
-                { isUfcCardLoaded ? <div className='crdiv' style={{ height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundColor: "black", position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
+                { isUfcCardLoaded ? <div className='crdiv' style={{ border:'gold solid 5px', height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundColor: "black", position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
                     <NavLink className='color-gold hgysnow' exact to="/section3"></NavLink>
                     <h5 className='color-yellow snow' style={{ textAlign: 'center',  marginTop: '-6%',textShadow: '0 0 15px black' }}>UFC PICK'EMS</h5>
                 </div>
