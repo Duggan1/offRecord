@@ -205,13 +205,14 @@ function normalizeMethod(method, winner) {
     if (method === "KO/TKOKO/TKO" || method === "DQDQ" && winner !== null) {
       return "TKO/KO";
     }
-    if (method === "Decision - UnanimousDecision - Unanimous" || method === "Decision - SplitDecision - Split" && winner !== null || method === "DECISION - MAJORITYDECISION - MAJORITY" && winner !== null ) {
+    if (method === "Decision - UnanimousDecision - Unanimous" || method === "Decision - SplitDecision - Split" && winner !== null
+     || method === "DECISION - MAJORITYDECISION - MAJORITY" && winner !== null ) {
       return "Decision";
     }
     if (method === "SubmissionSubmission") {
       return "Submission";
     }
-    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned" || method === "Could Not ContinueCould Not Continue"|| method === "Decision - MajorityDecision - Majority" ) && (winner === "N/A" || winner === null)) {
+    if ((method === "Decision - SplitDecision - Split" || method === "OverturnedOverturned" || method === "Could Not ContinueCould Not Continue"|| method === "Decision - MajorityDecision - Majority" || method === "DECISION - MAJORITYDECISION - MAJORITY" ) && (winner === "N/A" || winner === null)) {
       return "Draw/No-Contest";
     }
     
