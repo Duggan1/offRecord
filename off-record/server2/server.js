@@ -94,6 +94,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
         const html = response.data;
         const $ = cheerio.load(html);
 
+        const detailsElement = $('.details.details_with_poster.clearfix');
         const locationCC = detailsElement.find('li:contains("Location:") a').text();
 
         
