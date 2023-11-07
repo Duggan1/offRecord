@@ -32,11 +32,11 @@ function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
   
 // console.log(eventInfo)        
   useEffect(() => {
-    if (ufcCard)
+    if (ufcCard.length > 3)
       setIsLoading(false); // Data has loaded
       
     
-  }, []);
+  }, [ufcCard]);
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
@@ -73,7 +73,7 @@ function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
   const country = getFighterCountry(matchIndex, fighterIndex);
   
   
-  const mainEvent = selectedUfcCard[0].fighters.join(' vs ');
+  const mainEvent = selectedUfcCard.length > 2 ? selectedUfcCard[0].fighters.join(' vs ') : 'Loading'
   // console.log(mainEvent)
  
   const [predictions, setPredictions] = useState([]);
@@ -456,10 +456,22 @@ function getFighterCountryAbbreviation(matchIndex, fighterIndex) {
 // Example usage
 const inputCountry = "United States";
 const abbreviation = getCountryAbbreviation(inputCountry);
-  
+
+
+const [signIn, setSignIn] = useState(false);
+
+const toggleSI = () => {
+  setSignIn(!signIn);
+}
+
+
+console.log(signIn)
+
 if (isLoading) {
   return <Dnd />; // Render loading indicator
 } 
+
+
 
   return  (
     <div>
@@ -468,15 +480,41 @@ if (isLoading) {
 
       {showUfcCard?
       <div className="bayLoc" > 
-      <h1 >UFC {locationCity} <img style={{height:'40px', backgroundColor:'black', padding:'0px 2px'}} src={`https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png`}
-          alt={`Flag of ${location}`} ></img></h1><br></br><h2 className="bay" >{mainEvent}</h2><button className='dreamcardbutton' onClick={toggleCard}>
+                  <h1 style={{
+                              height: '100px',
+                              backgroundColor: 'black',
+                              padding: '0px 2px',
+                              backgroundSize: '100% 100%',
+                              margin:'0',
+                              backgroundImage: `url(https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png)`
+                            }} alt={`Flag of ${location}`}>
+                              
+                            </h1><h1 style={{margin:'0'}}> UFC {locationCity}</h1>
+          
+          
+          <br></br><h2 className="bay" >{mainEvent}</h2><button className='dreamcardbutton' onClick={toggleCard}>
           {showUfcCard ? ' Dream Card' : 'Show Current UFC Card'}
-        </button><h1> Fight Predictions</h1></div>: 
+        </button><h1> Fight Predictions</h1>
+        
+        
+        </div>: 
           
-          <div className="bayLoc"><h1 >Dream Card <img style={{height:'40px', backgroundColor:'black', padding:'0px 2px',border:' purple solid 2px'}} src={`https://s.tmimgcdn.com/scr/800x500/294500/crown-concept-logo-design-template2_294549-original.jpg`}
-          alt={`Flag of ${location}`} ></img></h1><br></br><h2 className="bay" >{mainEvent}</h2
+          <div className="bayLoc">
+            
+            <h1 style={{
+                height: '100px',
+                backgroundColor: 'black',
+                padding: '0px 2px',
+                backgroundSize: '100% 100%',
+                margin:'0',
+                backgroundImage: `url(https://s.tmimgcdn.com/scr/800x500/294500/crown-concept-logo-design-template2_294549-original.jpg)`
+              }} alt={`Flag of ${location}`}>
+                
+              </h1><h1 style={{margin:'0'}}>Dream Card</h1>
           
-          ><button className='dreamcardbutton' onClick={toggleCard}>
+          <h2 className="bay" >{mainEvent}</h2>
+          
+          <button className='dreamcardbutton' onClick={toggleCard}>
           {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
         </button><h1> Fight Predictions</h1></div>}
 
@@ -486,7 +524,7 @@ if (isLoading) {
        
       {/* <p className="color-black bold ">Fighter's images will be availabe on Friday after UFC photoshoot occurs </p> */}
       <form style={{marginBottom: '0px'}} className="blackBG" onSubmit={handleSubmit}>
-        {selectedUfcCard.map((fight, index) => (
+        {selectedUfcCard.length > 2 && selectedUfcCard.map((fight, index) => (
     <div key={index} className="fight">
       <div key={index} className="fighterready">
   <p key={index} className="mobile-fight-info">
@@ -626,10 +664,199 @@ if (isLoading) {
         
       </form>
     </div> ) : (
-      <Dnd />
-    )}
+      <div>
+        {/* //////////// tAKE 2 NO SIGNIN////// */}
+        <div className="tommy">
+
+      {showUfcCard?
+      <div className="bayLoc" >   {signIn ? <p className='snowwhite'>Please Login or SignUp! </p>: <p className='color-yellow'>Please Login or SignUp! </p>}
+      <h1 style={{
+  height: '100px',
+  backgroundColor: 'black',
+  padding: '0px 2px',
+  backgroundSize: '100% 100%',
+  margin:'0',
+  backgroundImage: `url(https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png)`
+}} alt={`Flag of ${location}`}>
+  
+</h1><h1 style={{margin:'0'}}> UFC {locationCity}</h1>
+
+          
+          
+          
+          <br></br><h2 className="bay" >{mainEvent}</h2><button className='dreamcardbutton' onClick={toggleCard}>
+          {showUfcCard ? ' Dream Card' : 'Show Current UFC Card'}
+        </button></div>: 
+          
+          <div className="bayLoc">
+            
+            {signIn ? <p className='snowwhite'>Please Login or SignUp! </p>: <p className='color-yellow'>Please Login or SignUp! </p>}
+            
+            {/* <h1 >Dream Card <img style={{height:'40px',
+             backgroundColor:'black', padding:'0px 2px',border:' purple solid 2px'}}
+              src={`https://s.tmimgcdn.com/scr/800x500/294500/crown-concept-logo-design-template2_294549-original.jpg`}
+          alt={`Flag of ${location}`} ></img></h1> */}
+
+              <h1 style={{
+                height: '100px',
+                backgroundColor: 'black',
+                padding: '0px 2px',
+                backgroundSize: '100% 100%',
+                margin:'0',
+                backgroundImage: `url(https://s.tmimgcdn.com/scr/800x500/294500/crown-concept-logo-design-template2_294549-original.jpg)`
+              }} alt={`Flag of ${location}`}>
+                
+              </h1><h1 style={{margin:'0'}}>Dream Card</h1>
+          
+          
+          
+         <h2 className="bay" >{mainEvent}</h2>
+          
+          <button className='dreamcardbutton' onClick={toggleCard}>
+          {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
+        </button></div>}
+
+      
+      
+      
+       
+      {/* <p className="color-black bold ">Fighter's images will be availabe on Friday after UFC photoshoot occurs </p> */}
+      <div style={{marginBottom: '0px'}} className="blackBG" >
+        {selectedUfcCard.length > 2 && selectedUfcCard.map((fight, index) => (
+    <div key={index} className="fight">
+      <div key={index} className="fighterready">
+  <p key={index} className="mobile-fight-info">
+    <div className="mobile-fighter-name">
+      <span className={`mobile-fighter-name ${predictions[index]?.winner === 0 ? 'selected' : ''}`}>
+        {fight.fighters[0]}
+      </span>
+      <span className="mobile-fight-info color-black"> vs. </span>
+      <span className={`mobile-fighter-name ${predictions[index]?.winner === 1 ? 'selected' : ''}`}>
+        {fight.fighters[1]}
+      </span>
+    </div>
+  </p>
+
+
+  {signIn ? <p className='snowwhite'>Please Login or SignUp! </p>: <p className='color-yellow'>Please Login or SignUp! </p>}
+
+            
+            </div>
+
+
+    <div className="fighter-container">
+      <div
+        className={`fighter-image ${
+          predictions[index]?.winner === 0 ? 'selected' : ''
+        }`}
+        style={{
+          width: '100%',
+          backgroundImage: `url('${fight.fighterPics[0]}'`,
+          
+          
+
+
+        }}
+        // url("https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc")
+       
+        // https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc
+
+      ><div className="sireal" ><div className="recordwcir redcorner">{fight.records[0]}</div>  <button
+      className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
+      onClick={toggleSI}
+      style={{
+        backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, 0)}/shiny/64.png")`,
+        
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+      }}
+      
+    >
+      
+      {fight.fighters[0]}
+    </button>
+    
+    </div>
+      </div>
+      <div
+        className={`fighter-info ${
+          predictions[index]?.winner === 0 ? 'selected' : ''
+        }`}
+        style={{
+          width: '50%',
+          textAlign: 'center',
+        }}
+      ><div
+        className={`fighter-image ${
+          predictions[index]?.winner === 1 ? 'selected' : ''
+        }`}
+        style={{
+          width: '100%',
+          backgroundImage: `url('${fight.fighterPics[1]}')`,
+          backgroundSize: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '135% 100%' : '',
+          marginBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
+          paddingBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
+          zIndex:'-1'
+
+
+          
+        }}
+        
+      ><div className="sireal" ><div className="recordwcir bluecorner">{fight.records[1]}</div>  <button
+      className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
+      onClick={toggleSI}
+      style={{
+        backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, 1)}/shiny/64.png")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+      }}
+    >
+      
+      {fight.fighters[1]}
+    </button>
+    
+    </div>
+        
+        {/* Add other fighter information here */}
+      </div>
+    </div>
+   
+     
+    </div>
+    
+
+
+
+
+    
+            
+            
+          </div>
+        ))}
+       
+     <center>
+        {errors && (<p className="errortime" style={{ border: errors.length > 0 ? '5px solid red' : 'none' }}>{errors} </p>)}
+</center><div style={{ borderTop: '2px solid purple'}} className="blackBG">
+ </div>
+
+        
+
+        
+    
+        
+    
+
+
+        
+      </div>
+      <h1 className='snowwhite'>Please login!</h1>
+      < Dnd/>
+        </div>
+    </div>
+    ) }
   </div>
-);
+        );
+      
     }
 export default Tommy;
 
