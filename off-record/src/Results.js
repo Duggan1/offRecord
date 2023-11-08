@@ -1080,6 +1080,8 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
 
 <center style={{paddingBottom:'5%'}}>
+
+  
   {/* <button
     className={showPredictions ? "allhide-button" : "allshow-button"}
     onClick={togglePredictions}
@@ -1113,7 +1115,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
       <table className="wholeOne" >
         <thead>
           <tr>
-            <th>Picks</th>
+            <th>{filteredByMainEvent.length} Picks</th>
             
             
             <th> Fight Results</th>

@@ -125,11 +125,12 @@ const tapImageSrc = eventInfo.tapImage
   const ufcCard = [
 
       {
-        fighters: ["Jon Jones", "Fedor Emelianenko"],
+        fighters: ["Jon Jones", "Francis Ngannou"],
         match: "Heavyweight Championship Bout",
-        records: ["30-1-0", "36-5-0"],
-        flags: ["United States", "Russia"],
-        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-03/JONES_JON_L_BELT_03_04.png?itok=Y8Eh_69p', 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/10/fedor-emelianenko-bellator-269-17.jpg?w=800',],
+        records: ["30-1-0", "17-3-0"],
+        flags: ["United States", "Cameroon"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-03/JONES_JON_L_BELT_03_04.png?itok=Y8Eh_69p',
+         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-03/67964%252Fprofile-galery%252Ffullbodyright-picture%252FNGANNOU_FRANCIS_R_03-27.png?itok=E8A9RaUa',],
       }
       ,
       {
