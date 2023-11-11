@@ -130,19 +130,22 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
     const userPicksCountMap = new Map();
   
     results.filter(result => result.main_event !== 'Jon Jones vs Fedor Emelianenko').forEach((result) => {
+      // Standardize the username by converting it to lowercase
+      const standardizedUsername = result.owner.toLowerCase();
+  
       // Calculate total points for each result
       const totalPoints = calculateTotalPoints(result, result.main_event, ufcResults);
   
-      if (!userPicksCountMap.has(result.owner)) {
-        userPicksCountMap.set(result.owner, 0);
+      if (!userPicksCountMap.has(standardizedUsername)) {
+        userPicksCountMap.set(standardizedUsername, 0);
       }
-      userPicksCountMap.set(result.owner, userPicksCountMap.get(result.owner) + result.predictions.length);
+      userPicksCountMap.set(standardizedUsername, userPicksCountMap.get(standardizedUsername) + result.predictions.length);
   
       // Update the user's total points in the map
-      if (!userPointsMap.has(result.owner)) {
-        userPointsMap.set(result.owner, 0);
+      if (!userPointsMap.has(standardizedUsername)) {
+        userPointsMap.set(standardizedUsername, 0);
       }
-      userPointsMap.set(result.owner, userPointsMap.get(result.owner) + totalPoints);
+      userPointsMap.set(standardizedUsername, userPointsMap.get(standardizedUsername) + totalPoints);
   
       const userPoints = calculateTotalPoints(result, result.main_event);
   
@@ -151,19 +154,15 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
       }
   
       if (userPoints > eventWinners[result.main_event].points) {
-        eventWinners[result.main_event] = { winner: result.owner, points: userPoints };
-      }
-      else if (userPoints === eventWinners[result.main_event].points) {
+        eventWinners[result.main_event] = { winner: standardizedUsername, points: userPoints };
+      } else if (userPoints === eventWinners[result.main_event].points && userPoints > 0) {
         // Check if there's already an array to store tied winners; if not, create one
         if (!eventWinners[result.main_event].winners) {
           eventWinners[result.main_event].winners = [eventWinners[result.main_event].winner];
         }
         // Add the current user to the array of tied winners
-        eventWinners[result.main_event].winners.push(result.owner);
+        eventWinners[result.main_event].winners.push(standardizedUsername);
       }
-      
-  
-      
     });
   
     // Set the winner to "Pending" for events with no points
@@ -180,7 +179,6 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
     }));
     // Sort the leaderboard by totalPoints in descending order
     leaderboardArray.sort((a, b) => b.totalPoints - a.totalPoints);
-    
   
     // Sort eventWinners, putting "Pending" winners first
     const sortedEventWinners = {};
@@ -207,8 +205,9 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
   };
   
   
+  
 
-console.log(leaderboard)
+console.log(leaderboardwinners)
 
 
 
