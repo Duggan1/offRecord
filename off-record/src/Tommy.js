@@ -11,6 +11,21 @@ import Dnd from './Dnd';
 function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
 
   // const locationCity = locationCity
+  const handleRoundChange = (index, round) => {
+    const updatedPredictions = [...predictions];
+    updatedPredictions[index] = { ...updatedPredictions[index], round };
+    setPredictions(updatedPredictions);
+
+    // Validate the updated predictions
+    validationSchema
+      .validate({ predictions: updatedPredictions })
+      .then(() => {
+        setErrors([]); // No errors, clear errors
+      })
+      .catch((validationError) => {
+        setErrors(validationError.errors || []);
+      });
+  };
   // const location = location
 
   const [showUfcCard, setShowUfcCard] = useState(true);
@@ -129,7 +144,7 @@ function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
   });
 
 
-console.log(user)
+console.log(predictions)
 
 
 
@@ -192,6 +207,8 @@ const handleSubmit = async (e) => {
         // Handle validation error messages, setErrors, etc.
     }
 };
+
+
 const countryData = {
   "Andorra": "AD",
   "United Arab Emirates": "AE",
@@ -542,20 +559,45 @@ if (isLoading) {
 
 
 <div className="nice" style={{zIndex:'0'}}>
-              <label 
+              {/* <label 
               
               className={`method ${predictions[index]?.method === 'TKO/KO' ||predictions[index]?.method === 'Decision' ||predictions[index]?.method === 'Draw/No-Contest' || predictions[index]?.method === 'Submission' ? 'selected' : ''}`}
 
 
-              >Method of Victory:</label>
-              <select className={`methodbar ${predictions[index]?.method === 'TKO/KO' ||predictions[index]?.method === 'Decision' ||predictions[index]?.method === 'Draw/No-Contest' || predictions[index]?.method === 'Submission' ? 'selected' : ''}`}onChange={(e) => handleMethodChange(index, e.target.value)}>
-                <option value="">Select Method</option>
+              >Method of Victory:</label> */}
+              <select className={`methodbar ${predictions[index]?.method === 'TKO/KO' ||predictions[index]?.method === 'Decision' ||predictions[index]?.method === 'Draw/No-Contest/DQ' || predictions[index]?.method === 'Submission' ? 'selected' : ''}`} onChange={(e) => handleMethodChange(index, e.target.value)}>
+                <option value="">Select Method of Victory</option>
                 <option value="TKO/KO">TKO/KO</option>
                 <option value="Submission">Submission</option>
                 <option value="Decision">Decision</option>
                 <option value="Draw/No-Contest/DQ">Draw/No-Contest</option>
               </select>
-            </div></div>
+            </div>
+
+            {/* Add the following code for selecting the round */}
+            {(predictions[index]?.method === 'TKO/KO' || predictions[index]?.method === 'Submission') && (
+              <div>
+                {/* <label
+                
+                
+                >Round:</label> */}
+                <select
+                  className={`methodbar ${predictions[index]?.round === '1' ||predictions[index]?.round === '2' ||predictions[index]?.round === '3' || predictions[index]?.round === '4'|| predictions[index]?.round === '5' ? 'selected' : ''}`}
+                  onChange={(e) => handleRoundChange(index, e.target.value)}
+                >
+                  <option value="">Select Round</option>
+                  {[1, 2, 3, 4, 5].map((round) => (
+                    <option key={round} value={round}>{round}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+                      
+            
+            
+            
+            
+            </div>
 
 
     <div className="fighter-container">
@@ -663,7 +705,8 @@ if (isLoading) {
 
         
       </form>
-    </div> ) : (
+    </div> 
+    ) : (
       <div>
         {/* //////////// tAKE 2 NO SIGNIN////// */}
         <div className="tommy">

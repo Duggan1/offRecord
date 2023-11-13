@@ -13,6 +13,10 @@ const deatilsUrl = 'https://www.ufc.com/event/ufc-295';
 
 const Recurl = 'https://www.tapology.com/fightcenter/events/102959-ufc-295-jones-vs-miocic';
 
+// const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-november-18-2023';
+
+// const Recurl = 'https://www.tapology.com/fightcenter/events/101867-ufc-fight-night';
+
 const fightRecords = [];
 const addedFighters = [];
 
@@ -56,6 +60,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
       const winnerElement = $(element).find('.c-listing-fight__corner-body--red .c-listing-fight__outcome--Win');
       const methodElement = $(element).find('.c-listing-fight__result-text.method');
+      const roundElement = $(element).find('.c-listing-fight__result-text.round');
 
       let winner = 'N/A'; 
       if (winnerElement.length > 0) {
@@ -82,6 +87,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
         blueCornerImage,
         winner,
         method,
+        roundElement,
+
       };
 
       fightData.push(fightInfo);
