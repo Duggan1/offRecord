@@ -310,59 +310,6 @@ console.log(modifiedUfcResults)
 //   const handleSubmit = async (e) => {
    
 
-//     try {
-//         // Validate the form data using Yup
-//         await validationSchema.validate({ modifiedUfcResults });
-
-//         // Check if every method in modifiedUfcResults is not null
-//         if (modifiedUfcResults.every(result => result.method !== null)) {
-//             // All methods are not null, proceed to submit as "AdminKev"
-//             const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`
-//             const dataToSend = {
-//                 owner: "AdminKev", // Set the owner to "AdminKev"
-//                 location: 'AUTO-Server',
-//                 mainEvent: mainEvent,
-//                 predictions: modifiedUfcResults, // Use modifiedUfcResults here
-//                 user_id: user.id || 2,
-//             };
-
-//             fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                 },
-//                 body: JSON.stringify(dataToSend),
-//             })
-//             .then(response => {
-//                 if (!response.ok) {
-//                     // setError(response);
-//                     // console.error(error); // Use console.error to log errors
-//                     throw new Error('Network response was not ok');
-//                 }
-//                 return response.json();
-//             })
-//             .then(data => {
-//                 console.log('Predictions submitted successfully:', data);
-//                 // Perform any further actions here
-//                 // setPredictions([]);
-//                 // navigate('/results');
-//             })
-//             .catch(error => {
-//                 console.error('Error submitting predictions:', error);
-//                 // setError(error.message);
-//                 // Handle error as needed
-//             });
-//         } else {
-//             // If any method in modifiedUfcResults is null, show an error message
-//             // setError("All methods must be provided.");
-//         }
-//     } catch (error) {
-//         console.error('Validation error:', error.message);
-//         // setErrors(error.message || []);
-//         // Handle validation error messages, setErrors, etc.
-//     }
-// };
-// handleSubmit()
 useEffect(() => {
   // Define the async function for form submission
   async function submitForm() {
@@ -372,7 +319,7 @@ useEffect(() => {
       
 
       // Check if every method in modifiedUfcResults is not null
-      if (modifiedUfcResults.every(result => result.method !== null)) {
+      if (modifiedUfcResults) {
         // All methods are not null, proceed to submit as "AdminKev"
         const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`;
         const dataToSend = {

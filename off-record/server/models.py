@@ -99,8 +99,9 @@ class Prediction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     picks_id = db.Column(db.Integer, db.ForeignKey('picks.id'), nullable=False)
     fighters = db.Column(db.JSON, nullable=False)
-    winner = db.Column(db.Integer, nullable=False)  # Index of the winning fighter
-    method = db.Column(db.String(50), nullable=False)
+    winner = db.Column(db.Integer, nullable=True)  # Index of the winning fighter
+    method = db.Column(db.String(50), nullable=True)
+    round = db.Column(db.String(50), nullable=True)
 
     # You can add other fields as needed
 
@@ -108,7 +109,8 @@ class Prediction(db.Model):
         return {
             "fighters": self.fighters,
             "winner": self.winner,
-            "method": self.method
+            "method": self.method,
+            "round": self.round
             # Add other fields here
         }
    
