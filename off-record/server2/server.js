@@ -77,6 +77,11 @@ app.get('/scrape-ufc-website', async (req, res) => {
           method = methodElement.text().trim();
       }
 
+      let round = 'N/A'; 
+      if (roundElement.length > 0) {
+          method = methodElement.text().trim();
+      }
+
       const fightInfo = {
         weightClass,
         redCornerName,
@@ -87,7 +92,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
         blueCornerImage,
         winner,
         method,
-        roundElement,
+        round,
 
       };
 
