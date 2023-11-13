@@ -150,9 +150,15 @@ class PicksResource(Resource):
             fighters = pred['fighters']
             winner = pred['winner']
             method = pred['method']
-            round = pred['round']
+            round = pred.get('round')  # Use get to safely retrieve the value or None
 
-            prediction = Prediction(fighters=fighters, winner=winner, method=method,)
+    # You can now check if 'round' is not None before using it
+            if round is not None:
+                # 'round' has a value, you can use it as needed
+                prediction = Prediction(fighters=fighters, winner=winner, method=method, round=round)
+            else:
+                # 'round' is None, handle this case accordingly
+                prediction = Prediction(fighters=fighters, winner=winner, method=method)
             new_picks.predictions.append(prediction)
 
         # Add and commit the new Picks and associated Predictions to the database
