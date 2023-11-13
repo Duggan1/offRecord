@@ -3,38 +3,38 @@ import './App.css';
 import { NavLink } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 
-function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapImage}) {
+function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapImage, countPick}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
       };
-    const [ countPick ,setPickCount] = useState(null)
-    // const [mainEvent, setMainEvent ] = useState('UFC')
-    console.log(BGpic)
-    console.log(tapImage)
+    // const [ countPick ,setPickCount] = useState(null)
+    // // const [mainEvent, setMainEvent ] = useState('UFC')
+    // console.log(BGpic)
+    // console.log(tapImage)
     
-      useEffect(() => {
-        // Fetch results from the API
-        fetch('https://off-therecordpicks.onrender.com/picks')
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            return response.json();
-          })
-          .then(data => {
-            console.log(data); // Log the data received from the API
-            if (Array.isArray(data.picks)) {
-                console.log(data)
-                setPickCount(data.picks.length);
+    //   useEffect(() => {
+    //     // Fetch results from the API
+    //     fetch('https://off-therecordpicks.onrender.com/picks')
+    //       .then(response => {
+    //         if (!response.ok) {
+    //           throw new Error('Network response was not ok');
+    //         }
+    //         return response.json();
+    //       })
+    //       .then(data => {
+    //         console.log(data); // Log the data received from the API
+    //         if (Array.isArray(data.picks)) {
+    //             console.log(data)
+    //             setPickCount(data.picks.length);
               
-            } 
-          })
-          .catch(error => {
-            console.error('Error fetching results:', error);
-            // Handle error as needed
-          });
-      }, []); // Empty dependency array means this effect runs once after the component mounts
+    //         } 
+    //       })
+    //       .catch(error => {
+    //         console.error('Error fetching results:', error);
+    //         // Handle error as needed
+    //       });
+    //   }, []); // Empty dependency array means this effect runs once after the component mounts
       
       
    

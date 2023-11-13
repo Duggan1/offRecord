@@ -10,6 +10,7 @@ import Tommy from './Tommy';
 import About from './About';
 import axios from 'axios';
 import * as yup from 'yup';
+import isEqual from 'lodash/isEqual';
 // import CommentSection from './CommentSection';
 
 
@@ -195,7 +196,7 @@ console.log(ufcCard2)
 
   const ufcResults = ufcCard2.map((match, index) => ({
     fighters: match.fighters,
-    match: match.match,
+    // match: match.match,
     winner: eventInfo.fights[0].winner === "" || eventInfo.fights[index].winner === "N/A" ? null : eventInfo.fights[index].winner,
     method: eventInfo.fights[0].method === "" || eventInfo.fights[index].method === "N/A" ? null : eventInfo.fights[index].method,
     round: eventInfo.fights[0].round === "" || eventInfo.fights[index].round === "N/A" ? null : eventInfo.fights[index].round[0],
@@ -293,74 +294,173 @@ console.log(modifiedUfcResults)
 
 
 
-  const validationSchema = yup.object().shape({
-    // userName: yup.string().required('Username is required'),
-    // password: yup.string().required('Password is required'),
-    predictions: yup.array().of(
-      yup.object().shape({
-        winner: yup.number()
-                .oneOf([0, 1], 'Invalid winner selection'),
-                // .required('Winner is required'),
-        method: yup.string().required('Method of victory is required'),
-      })
-    ).required('At least one prediction is required'),
-  });
+  // const validationSchema = yup.object().shape({
+  //   // userName: yup.string().required('Username is required'),
+  //   // password: yup.string().required('Password is required'),
+  //   predictions: yup.array().of(
+  //     yup.object().shape({
+  //       winner: yup.number()
+  //               .oneOf([0, 1], 'Invalid winner selection'),
+  //               // .required('Winner is required'),
+  //       method: yup.string().required('Method of victory is required'),
+  //     })
+  //   ).required('At least one prediction is required'),
+  // });
 
 console.log(modifiedUfcResults)
 //   const handleSubmit = async (e) => {
    
 
+// useEffect(() => {
+//   // Define the async function for form submission
+//   async function submitForm() {
+//     try {
+      
+//       // Validate the form data using Yup
+      
+
+//       // Check if every method in modifiedUfcResults is not null
+//       if (modifiedUfcResults) {
+//         // All methods are not null, proceed to submit as "AdminKev"
+//         const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`;
+//         const dataToSend = {
+//           owner: "AdminKev", // Set the owner to "AdminKev"
+//           location: 'AUTO-Server',
+//           mainEvent: mainEvent,
+//           predictions: modifiedUfcResults, // Use modifiedUfcResults here
+//           user_id: 4,
+//         };
+//         // await validationSchema.validate({ dataToSend });
+
+//         const response = await fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//           body: JSON.stringify(dataToSend),
+//         });
+
+//         if (response.ok) {
+//           // Handle success
+//           const responseData = await response.json();
+//           console.log('Predictions submitted successfully:', responseData);
+//           // Perform any further actions here
+//         } else {
+//           // Handle errors
+//           throw new Error('Network response was not ok');
+//         }
+//       } else {
+//         // If any method in modifiedUfcResults is null, show an error message
+//         // Handle the error as needed
+//       }
+//     } catch (error) {
+//       console.error('Error:', error);
+//       // Handle errors and validation errors as needed
+//     }
+//   }
+
+//   // Call the submitForm function to submit the form data automatically
+//   submitForm();
+// }, [modifiedUfcResults.length > 0]);
+
+const [akp , setAKP] = useState('')
+const [ countPick ,setPickCount] = useState(null)
 useEffect(() => {
-  // Define the async function for form submission
-  async function submitForm() {
-    try {
-      
-      // Validate the form data using Yup
-      
-
-      // Check if every method in modifiedUfcResults is not null
-      if (modifiedUfcResults) {
-        // All methods are not null, proceed to submit as "AdminKev"
-        const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`;
-        const dataToSend = {
-          owner: "AdminKev", // Set the owner to "AdminKev"
-          location: 'AUTO-Server',
-          mainEvent: mainEvent,
-          predictions: modifiedUfcResults, // Use modifiedUfcResults here
-          user_id: 4,
-        };
-        // await validationSchema.validate({ dataToSend });
-
-        const response = await fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(dataToSend),
-        });
-
-        if (response.ok) {
-          // Handle success
-          const responseData = await response.json();
-          console.log('Predictions submitted successfully:', responseData);
-          // Perform any further actions here
-        } else {
-          // Handle errors
-          throw new Error('Network response was not ok');
-        }
-      } else {
-        // If any method in modifiedUfcResults is null, show an error message
-        // Handle the error as needed
+  // Fetch results from the API
+fetch('https://off-therecordpicks.onrender.com/picks')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-    } catch (error) {
-      console.error('Error:', error);
-      // Handle errors and validation errors as needed
-    }
-  }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data); // Log the data received from the API
+       setPickCount(data.picks.length);
+      if (Array.isArray(data.picks)) {
+        const mainEventToFind = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`;
+        console.log(mainEventToFind)
+        const adminKevPick = data.picks.find(
+          pick =>
+            pick.owner === 'AdminKev' &&
+            pick.location === 'AUTO-Server' &&
+            pick.main_event === mainEventToFind
+        );
+    
+        if (adminKevPick) {
+          console.log('AdminKev Pick ID:', adminKevPick.id);
+          setAKP(adminKevPick)
+          // Do something with the pick ID
+        } else {
+          console.log('AdminKev pick not found.');
+          // Handle the case where the pick is not found
+        }
+      }
+    })
+    
+    .catch(error => {
+      console.error('Error fetching results:', error);
+      // Handle error as needed
+    });
+}, [eventInfo]);
+console.log(akp)
 
-  // Call the submitForm function to submit the form data automatically
-  submitForm();
-}, [modifiedUfcResults.length > 0]);
+useEffect(() => {
+
+  // if (akp, modifiedUfcResults){
+
+
+  if (isEqual(akp.predictions, modifiedUfcResults)) {
+    console.log('matching');
+  }
+  if (!akp){
+    console.log('loading yo yo')
+
+  } 
+  if (akp && !isEqual(akp.predictions, modifiedUfcResults)){
+    console.log('ready for patch')
+    //////////////////////////////////
+    const dataToSend = {
+      id: akp.id,
+      owner: akp.owner ,
+      location: akp.location,
+      mainEvent: akp.main_event,
+      predictions: modifiedUfcResults,
+      user_id: akp.id || 4,
+  };
+  ////////////////////////////////////
+    fetch(`https://off-therecordpicks.onrender.com/picks/${akp.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to update pick");
+        }
+        // Refresh the list of picks after a successful update
+        // return fetchPicks();
+      })
+      .catch((error) => {
+        console.error("Error updating pick:", error);
+        // Handle error as needed
+      })
+
+
+  }
+  // else {
+  //   console.log('not a match');
+  //   console.log(akp.predictions);
+  //   console.log(modifiedUfcResults);
+  // }
+}, [akp, modifiedUfcResults]);
+
+
+
+
+
 
 
 // Check if eventInfo.locationCC is defined before splitting it
@@ -405,7 +505,7 @@ console.log(location); // United States
 
     
    <Routes>
-      <Route path="/"  element={<Home user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationcity} location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} />} />
+      <Route path="/"  element={<Home user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationcity} location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} countPick={countPick} />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       

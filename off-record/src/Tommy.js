@@ -164,6 +164,7 @@ const handleSubmit = async (e) => {
             fighters: fight.fighters,
             winner: predictions[index]?.winner ,
             method: predictions[index]?.method ,
+            round: predictions[index]?.round, 
         }));
 
         const dataToSend = {
@@ -586,9 +587,12 @@ if (isLoading) {
                   onChange={(e) => handleRoundChange(index, e.target.value)}
                 >
                   <option value="">Select Round</option>
-                  {[1, 2, 3, 4, 5].map((round) => (
-                    <option key={round} value={round}>{round}</option>
-                  ))}
+                      {[1, 2, 3, 4, 5].map((round) => (
+                        <option key={round} value={round}>
+                          {round === 4 || round === 5 ? `${round} (Championship Rounds)` : round}
+                        </option>
+                      ))}
+
                 </select>
               </div>
             )}

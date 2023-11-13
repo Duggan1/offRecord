@@ -1181,7 +1181,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
                 
                 : "None"}
               <br />
-              <strong>Method:</strong> {prediction.method}
+              <strong>Method:</strong> {prediction.method} {prediction.round}
               <br />
               <center>
                 {/* Your additional code */}

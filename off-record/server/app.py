@@ -150,6 +150,7 @@ class PicksResource(Resource):
             fighters = pred['fighters']
             winner = pred['winner']
             method = pred['method']
+            round = pred['round']
 
             prediction = Prediction(fighters=fighters, winner=winner, method=method,)
             new_picks.predictions.append(prediction)
