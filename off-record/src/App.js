@@ -63,7 +63,7 @@ useEffect(() => {
       console.log(response.data) 
  
       const { event_name, event_date,fights, records,
-        backgroundImageSrc, location, locationCC, tapImage
+        backgroundImageSrc, location, locationCC, tapImage,
        } = response.data;
 
 
@@ -75,6 +75,7 @@ useEffect(() => {
             records: [records[index]?.redCornerRecord, records[index]?.blueCornerRecord],
             flags: [fight.redCornerCountry, fight.blueCornerCountry],
             fighterPics: [fight.redCornerImage, fight.blueCornerImage],
+
         };
     });
 
@@ -90,7 +91,9 @@ useEffect(() => {
   }   
       
   fetchData();      
-}, []);      
+}, []);  
+
+
 console.log(eventInfo) 
 const backgroundImageSrc = eventInfo.backgroundImageSrc
 const tapImageSrc = eventInfo.tapImage
@@ -125,7 +128,7 @@ const tapImageSrc = eventInfo.tapImage
   const ufcCard = [
 
       {
-        fighters: ["Jon Jones", "Francis Ngannou"],
+        fighters: ["Jon Jones", "Francis Ngannou0pp"],
         match: "Heavyweight Championship Bout",
         records: ["30-1-0", "17-3-0"],
         flags: ["United States", "Cameroon"],
@@ -195,6 +198,7 @@ console.log(ufcCard2)
     match: match.match,
     winner: eventInfo.fights[0].winner === "" || eventInfo.fights[index].winner === "N/A" ? null : eventInfo.fights[index].winner,
     method: eventInfo.fights[0].method === "" || eventInfo.fights[index].method === "N/A" ? null : eventInfo.fights[index].method,
+    round: eventInfo.fights[0].round === "" || eventInfo.fights[index].round === "N/A" ? null : eventInfo.fights[index].round[0],
 
   }));
   console.log(ufcResults) 
