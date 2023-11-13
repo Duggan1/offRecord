@@ -79,7 +79,9 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
       let round = 'N/A'; 
       if (roundElement.length > 0) {
-          round = roundElement.text().trim();
+        const roundText = roundElement.text().trim();
+        const match = roundText.match(/\d+/);
+        round = match ? match[0] : 'N/A';
       }
 
       const fightInfo = {
