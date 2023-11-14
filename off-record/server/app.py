@@ -3,7 +3,7 @@ from config import app, api,db, bcrypt
 from flask import make_response, redirect, request, session, jsonify
 from flask_restful import Resource, Api
 
-from models import User, Pick, Prediction
+from models import User, Pick, Prediction, UFCEvent, UFCFight
 # app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'  # Your database URI
 # db = SQLAlchemy(app)
@@ -187,6 +187,112 @@ class PickResource(Resource):
    
 # Add the PickResource to the API with the '/picks' endpoint
 api.add_resource(PickResource, '/picks')
+
+
+class UFCEventResource(Resource):
+    def post(self):
+        data = request.json
+
+        event_name = data['event_name']
+        locationCC = data['locationCC']
+        backgroundImageSrc = data['backgroundImageSrc']
+        tapImage = data['tapImage']
+        fights = data['fights']
+        records = data['records']
+
+        # Check if the user has already submitted a pick for the same main event
+        existing_event = Pick.query.filter_by(event_name=event_name, locationCC=locationCC).first()
+        if existing_event:
+            return {'error': 'You have already submitted for this main event'}, 400
+
+        # Create a new UFCEvent object
+        new_event = UFCEvent(event_name=event_name, locationCC=locationCC, 
+                             backgroundImageSrc=backgroundImageSrc, tapImage=tapImage)
+
+        # Create UFCFight objects and associate them with the UFCEvent
+        # Create UFCFight objects and associate them with the UFCEvent
+        for fight, record in zip(fights, records):
+            weight_class = fight['weightClass']
+            red_corner_name = fight['redCornerName']
+            blue_corner_name = fight['blueCornerName']
+            red_corner_country = fight['redCornerCountry']
+            blue_corner_country = fight['blueCornerCountry']
+            red_corner_image = fight['redCornerImage']
+            blue_corner_image = fight['blueCornerImage']
+
+            # Access records directly using the loop variable
+            red_corner_record = record['redCornerRecord']
+            blue_corner_record = record['blueCornerRecord']
+
+            method = fight['method']
+            round = fight['round']
+            winner = fight['winner']
+
+            ufc_fight = UFCFight(weight_class=weight_class, red_corner_name=red_corner_name,
+                                blue_corner_name=blue_corner_name, red_corner_country=red_corner_country,
+                                blue_corner_country=blue_corner_country, blue_corner_image=blue_corner_image, red_corner_image=red_corner_image, red_corner_record=red_corner_record,
+                                blue_corner_record=blue_corner_record, method=method, round=round, winner=winner)
+            new_event.fights.append(ufc_fight)
+
+
+        # Add and commit the new UFCEvent and associated UFCFights to the database
+        db.session.add(new_event)
+        db.session.commit()
+
+        return {'message': 'UFC event submitted successfully'}, 201
+
+api.add_resource(UFCEventResource, '/submit-ufc-event')
+
+class UFCEventsResource(Resource):
+    def get(self):
+        # Retrieve all UFC events from the database
+        ufc_events = UFCEvent.query.all()
+
+        # Serialize the UFC events to JSON
+        ufc_events_data = []
+        for event in ufc_events:
+            event_data = {
+                'event_name': event.event_name,
+                'locationCC': event.locationCC,
+                'backgroundImageSrc': event.backgroundImageSrc,
+                'tapImage': event.tapImage,
+                'fights': [],
+                'records': [],
+            }
+
+            for fight in event.fights:
+                fight_data = {
+                    'weightClass': fight.weight_class,
+                    'redCornerName': fight.red_corner_name,
+                    'blueCornerName': fight.blue_corner_name,
+                    'redCornerCountry': fight.red_corner_country,
+                    'blueCornerCountry': fight.blue_corner_country,
+                    'redCornerImage': fight.red_corner_image,
+                    'blueCornerImage': fight.blue_corner_image,
+                    'method': fight.method,
+                    'round': fight.round,
+                    'winner': fight.winner,
+                }
+                event_data['fights'].append(fight_data)
+
+            for record in event.records:
+                record_data = {
+                    # 'redCornerName': record.red_corner_name,
+                    # 'blueCornerName': record.blue_corner_name,
+                    'redCornerRecord': record.red_corner_record,
+                    'blueCornerRecord': record.blue_corner_record,
+                }
+                event_data['records'].append(record_data)
+
+            ufc_events_data.append(event_data)
+
+        return {'ufc_events': ufc_events_data}
+
+api.add_resource(UFCEventsResource, '/events')
+
+
+
+
 
 
 

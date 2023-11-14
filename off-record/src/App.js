@@ -86,6 +86,8 @@ useEffect(() => {
 
       // Update state with the scraped data
       setEventInfo({ event_name, event_date, fights, records ,backgroundImageSrc, location, locationCC, tapImage});
+      /////////////////////////////
+
     } catch (error) { 
       console.error('Error:', error);
     }
@@ -93,6 +95,48 @@ useEffect(() => {
       
   fetchData();      
 }, []);  
+
+
+useEffect(() => {
+  async function submitUfcEvent() {
+    try {
+      // Example data to send in the POST request
+      const dataToSend = {
+        event_name: eventInfo.event_name,
+        locationCC: eventInfo.locationCC,
+        backgroundImageSrc: eventInfo.backgroundImageSrc,
+        tapImage: eventInfo.tapImage,
+        fights: eventInfo.fights,
+        records: eventInfo.records,
+      };
+
+      // Make a POST request to submit UFC event
+      const postResponse = await axios.post('/submit-ufc-event', dataToSend, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (postResponse.status === 201) {
+        // Handle success
+        console.log('UFC event submitted successfully:', postResponse.data);
+        // Perform any further actions here
+      } else {
+        // Handle errors
+        console.error('Network response was not ok');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle errors and validation errors as needed
+    }
+  }
+
+  // Call the submitUfcEvent function separately, not dependent on the fetchData useEffect
+  submitUfcEvent();
+}, [eventInfo]);
+
+
+
 
 
 console.log(eventInfo) 
@@ -357,6 +401,7 @@ useEffect(() => {
       console.error('Error:', error);
       // Handle errors and validation errors as needed
     }
+
   }
 
   // Call the submitForm function to submit the form data automatically
