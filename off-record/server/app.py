@@ -252,6 +252,7 @@ class UFCEventsResource(Resource):
         ufc_events_data = []
         for event in ufc_events:
             event_data = {
+                'id': event.id,
                 'event_name': event.event_name,
                 'locationCC': event.locationCC,
                 'backgroundImageSrc': event.backgroundImageSrc,
