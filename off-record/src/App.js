@@ -96,6 +96,70 @@ useEffect(() => {
   fetchData();      
 }, []);  
 
+const [ufcEvents, setUfcEvents] = useState([]);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://off-therecordpicks.onrender.com/events');
+      const data = await response.json();
+      console.log(data)
+      setUfcEvents(data.ufc_events[0] || []);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  fetchData();
+}, []);
+
+console.log(ufcEvents.length)
+console.log(eventInfo !== null)
+
+if (ufcEvents !== null && eventInfo !== null) {
+  console.log('comparing');
+  if (
+    eventInfo.event_name === ufcEvents.event_name &&
+    eventInfo.locationCC === ufcEvents.locationCC &&
+    eventInfo.backgroundImageSrc === ufcEvents.backgroundImageSrc &&
+    eventInfo.tapImage === ufcEvents.tapImage &&
+    // eventInfo.fights.length === ufcEvents.fights.length &&
+    eventInfo.fights.every((fight, index) => {
+      const ufcEventFight = ufcEvents.fights[index];
+
+      console.log('Index:', index);
+
+      if (ufcEventFight) {
+        console.log('Comparing fight details:');
+        console.log('eventInfo:', fight);
+        console.log('ufcEvents:', ufcEventFight);
+
+        // Compare details within each fight
+        return (
+          fight.weightClass === ufcEventFight.weightClass &&
+          fight.redCornerName === ufcEventFight.redCornerName &&
+          fight.blueCornerName === ufcEventFight.blueCornerName &&
+          fight.redCornerCountry === ufcEventFight.redCornerCountry &&
+          fight.blueCornerCountry === ufcEventFight.blueCornerCountry
+          // Add more comparisons for other fight details
+          // ...
+        );
+      } else {
+        console.log('ufcEventFight is undefined for index:', index);
+        return false; // or handle the case where ufcEventFight is undefined
+      }
+    })
+  ) {
+    // The details, including fights, match
+    console.log('Details match!');
+  } else {
+    // Details do not match
+    console.log('Ready to patch ufcEvent ');
+  }
+}
+
+
+
 
 useEffect(() => {
   async function submitUfcEvent() {

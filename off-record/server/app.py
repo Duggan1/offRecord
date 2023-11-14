@@ -341,9 +341,6 @@ class PickByID(Resource):
 
         return make_response({"message": "Pick updated successfully"}, 200)
     
-        
-    
-
 
     def delete(self, pick_id):  # Change 'id' to 'pick_id'
         print(f"DELETE request received for pick_id {pick_id}")
@@ -363,11 +360,54 @@ class PickByID(Resource):
         
         return make_response({"deleted": "she gone"}, 204)
 
-    
-
 api.add_resource(PickByID, '/picks/<int:pick_id>')
 
+class UFCEventByID(Resource):
+    def get(self, event_id):
+        # Retrieve the UFC event from the database by ID
+        ufc_event = UFCEvent.query.get(event_id)
 
+        if ufc_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Serialize the UFC event to JSON
+        event_data = {
+            'event_name': ufc_event.event_name,
+            'locationCC': ufc_event.locationCC,
+            'backgroundImageSrc': ufc_event.backgroundImageSrc,
+            'tapImage': ufc_event.tapImage,
+            'fights': [],
+        }
+
+        for fight in ufc_event.fights:
+            fight_data = {
+                'weightClass': fight.weight_class,
+                'redCornerName': fight.red_corner_name,
+                'blueCornerName': fight.blue_corner_name,
+                'redCornerCountry': fight.red_corner_country,
+                'blueCornerCountry': fight.blue_corner_country,
+                'redCornerImage': fight.red_corner_image,
+                'blueCornerImage': fight.blue_corner_image,
+                'redCornerRecord': fight.red_corner_record,
+                'blueCornerRecord': fight.blue_corner_record,
+                'method': fight.method,
+                'round': fight.round,
+                'winner': fight.winner,
+            }
+            event_data['fights'].append(fight_data)
+
+        return {'ufc_event': event_data}
+
+    def patch(self, event_id):
+        # Add your patch logic here
+        pass
+
+    def delete(self, event_id):
+        # Add your delete logic here
+        pass
+
+# Add the resource to the API
+api.add_resource(UFCEventByID, '/events/<int:event_id>')
 
 
 if __name__ == '__main__':
