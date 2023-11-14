@@ -198,7 +198,7 @@ class UFCEventResource(Resource):
         backgroundImageSrc = data['backgroundImageSrc']
         tapImage = data['tapImage']
         fights = data['fights']
-        records = data['records']
+        # records = data['records']
 
         # Check if the user has already submitted a pick for the same main event
         existing_event = UFCEvent.query.filter_by(event_name=event_name, locationCC=locationCC).first()
@@ -257,7 +257,7 @@ class UFCEventsResource(Resource):
                 'backgroundImageSrc': event.backgroundImageSrc,
                 'tapImage': event.tapImage,
                 'fights': [],
-                'records': [],
+                # 'records': [],
             }
 
             for fight in event.fights:
@@ -269,20 +269,22 @@ class UFCEventsResource(Resource):
                     'blueCornerCountry': fight.blue_corner_country,
                     'redCornerImage': fight.red_corner_image,
                     'blueCornerImage': fight.blue_corner_image,
+                    'redCornerRecord': record.red_corner_record,
+                    'blueCornerRecord': record.blue_corner_record,
                     'method': fight.method,
                     'round': fight.round,
                     'winner': fight.winner,
                 }
                 event_data['fights'].append(fight_data)
 
-            for record in event.records:
-                record_data = {
-                    # 'redCornerName': record.red_corner_name,
-                    # 'blueCornerName': record.blue_corner_name,
-                    'redCornerRecord': record.red_corner_record,
-                    'blueCornerRecord': record.blue_corner_record,
-                }
-                event_data['records'].append(record_data)
+            # for record in event.records:
+            #     record_data = {
+            #         # 'redCornerName': record.red_corner_name,
+            #         # 'blueCornerName': record.blue_corner_name,
+            #         'redCornerRecord': record.red_corner_record,
+            #         'blueCornerRecord': record.blue_corner_record,
+            #     }
+            #     event_data['records'].append(record_data)
 
             ufc_events_data.append(event_data)
 
