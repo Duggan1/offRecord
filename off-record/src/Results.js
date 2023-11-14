@@ -243,6 +243,11 @@ function calculatePoints(pick, result) {
           if (pick.method !== null && result.method !== null && pick.method === result.method) {
             points += 1;
           }
+          if (pick.round !== null && result.round !== null && pick.round == result.round) {
+            points += 1;
+          }
+
+
         }
        }
   }
@@ -1181,8 +1186,11 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
                 
                 : "None"}
               <br />
-              <strong>Method:</strong> {prediction.method} {prediction.round}
+              <strong>Method:</strong> {prediction.method} 
               <br />
+              {prediction.round ? <>
+              <strong>Round:</strong> {prediction.round} 
+              <br /> </>: null }
               <center>
                 {/* Your additional code */}
               
@@ -1323,7 +1331,15 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
       "Draw/No-Contest": 
       adminKevMatch.method : 
       "Results Pending"}
+
+
     <br />
+    { !adminKevMatch.methodCounts ? 
+        adminKevMatch.method === 'TKO/KO' || adminKevMatch.method === 'Submission'  ? <>
+        <strong>Round:</strong> {adminKevMatch.round} 
+        <br /> </> : null
+    
+               : null }
 
     {adminKevMatch.methodCounts ? 
     <div>

@@ -311,57 +311,57 @@ console.log(modifiedUfcResults)
 //   const handleSubmit = async (e) => {
    
 
-// useEffect(() => {
-//   // Define the async function for form submission
-//   async function submitForm() {
-//     try {
+useEffect(() => {
+  // Define the async function for form submission
+  async function submitForm() {
+    try {
       
-//       // Validate the form data using Yup
+      // Validate the form data using Yup
       
 
-//       // Check if every method in modifiedUfcResults is not null
-//       if (modifiedUfcResults) {
-//         // All methods are not null, proceed to submit as "AdminKev"
-//         const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`;
-//         const dataToSend = {
-//           owner: "AdminKev", // Set the owner to "AdminKev"
-//           location: 'AUTO-Server',
-//           mainEvent: mainEvent,
-//           predictions: modifiedUfcResults, // Use modifiedUfcResults here
-//           user_id: 4,
-//         };
-//         // await validationSchema.validate({ dataToSend });
+      // Check if every method in modifiedUfcResults is not null
+      if (modifiedUfcResults) {
+        // All methods are not null, proceed to submit as "AdminKev"
+        const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`;
+        const dataToSend = {
+          owner: "AdminKev", // Set the owner to "AdminKev"
+          location: 'AUTO-Server',
+          mainEvent: mainEvent,
+          predictions: modifiedUfcResults, // Use modifiedUfcResults here
+          user_id: 4,
+        };
+        // await validationSchema.validate({ dataToSend });
 
-//         const response = await fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
-//           method: 'POST',
-//           headers: {
-//             'Content-Type': 'application/json',
-//           },
-//           body: JSON.stringify(dataToSend),
-//         });
+        const response = await fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSend),
+        });
 
-//         if (response.ok) {
-//           // Handle success
-//           const responseData = await response.json();
-//           console.log('Predictions submitted successfully:', responseData);
-//           // Perform any further actions here
-//         } else {
-//           // Handle errors
-//           throw new Error('Network response was not ok');
-//         }
-//       } else {
-//         // If any method in modifiedUfcResults is null, show an error message
-//         // Handle the error as needed
-//       }
-//     } catch (error) {
-//       console.error('Error:', error);
-//       // Handle errors and validation errors as needed
-//     }
-//   }
+        if (response.ok) {
+          // Handle success
+          const responseData = await response.json();
+          console.log('Predictions submitted successfully:', responseData);
+          // Perform any further actions here
+        } else {
+          // Handle errors
+          throw new Error('Network response was not ok');
+        }
+      } else {
+        // If any method in modifiedUfcResults is null, show an error message
+        // Handle the error as needed
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle errors and validation errors as needed
+    }
+  }
 
-//   // Call the submitForm function to submit the form data automatically
-//   submitForm();
-// }, [modifiedUfcResults.length > 0]);
+  // Call the submitForm function to submit the form data automatically
+  submitForm();
+}, [modifiedUfcResults.length > 0]);
 
 const [akp , setAKP] = useState('')
 const [ countPick ,setPickCount] = useState(null)

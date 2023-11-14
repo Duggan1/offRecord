@@ -419,6 +419,7 @@ const countryData = {
   "San Marino": "SM",
   "Senegal": "SN",
   "Somalia": "SO",
+  "Scotland": "GB",
   "Suriname": "SR",
   "South Sudan": "SS",
   "Sao Tome and Principe": "ST",
