@@ -201,7 +201,7 @@ class UFCEventResource(Resource):
         records = data['records']
 
         # Check if the user has already submitted a pick for the same main event
-        existing_event = Pick.query.filter_by(event_name=event_name, locationCC=locationCC).first()
+        existing_event = UFCEvent.query.filter_by(event_name=event_name, locationCC=locationCC).first()
         if existing_event:
             return {'error': 'You have already submitted for this main event'}, 400
 
