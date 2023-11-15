@@ -194,7 +194,7 @@ if (ufcEvents && ufcEvents.event_name && eventInfo && eventInfo.event_name ) {
     eventInfo.fights.every((fight, index) => {
       const ufcEventFight = ufcEvents.fights[index];
 
-      console.log('Index:', index);
+      // console.log('Index:', index);
 
       if (ufcEventFight) {
         // console.log('Comparing fight details:');

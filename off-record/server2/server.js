@@ -21,7 +21,7 @@ const espnurl = 'https://www.espn.com/mma/fightcenter/_/league/ufc'
 
 const fightRecords = [];
 const addedFighters = [];
-const fighters = []
+
 
 app.get('/scrape-ufc-website', async (req, res) => {
   try {
@@ -158,26 +158,29 @@ app.get('/scrape-ufc-website', async (req, res) => {
         const $ = cheerio.load(html);
 
 
-        
-
-
+        const fighters = []
 
         $('.MMACompetitor__Detail').each((index, element) => {
-          const nameElement = $(element).find('.h9.ttu.pt1.w-100.fw-heavy.clr-gray-02 span.truncate.tc.db');
-          // const firstName = nameElement.eq(0).text().trim();
-          const lastName = nameElement.text().trim();
-          const name = `${lastName}`;
-      
-          const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
-          const record = recordElement.text().trim();
-      
-          const fighter = {
-              name,
-              record,
-          };
-      
-          fighters.push(fighter);
-      });
+            const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
+            const record = recordElement.text().trim();
+
+            // Move the name declaration outside the inner loop
+            let name;
+
+            $('.h9.ttu.pt1.w-100.fw-heavy.clr-gray-02').each((index, element2) => {
+                const nameElement = $(element2).find('span.truncate.tc.db');
+                const lastName = nameElement.text().trim();
+                name = `${lastName}`;
+            });
+
+            const fighter = {
+                name,
+                record,
+            };
+
+            fighters.push(fighter);
+        });
+
       
 
         
@@ -191,7 +194,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       res.status(500).json({ error: 'An error occurred while scraping data.' });
       return;
     }
-
+    console.log(fighters)
    
     res.json({
       event_name,
