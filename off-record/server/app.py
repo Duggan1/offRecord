@@ -400,7 +400,7 @@ class UFCEventByID(Resource):
         return {'ufc_event': event_data}
 
     def patch(self, event_id):
-        # Retrieve the UFC event from the database by ID
+    # Retrieve the UFC event from the database by ID
         ufc_event = UFCEvent.query.get(event_id)
 
         if ufc_event is None:
@@ -409,15 +409,23 @@ class UFCEventByID(Resource):
         # Get the JSON data from the request
         data = request.get_json()
 
-        # Update the fields with non-empty values from the request
-        for key, value in data.items():
-            if value is not None:
-                setattr(ufc_event, key, value)
+        # Handle the fights data from the request
+        fights_data = data.get("fights")
+
+        # Update or create fights based on the data
+        if fights_data:
+            # Handle the relationship based on your data structure
+            ufc_event.fights.delete()
+            # For example, if fights is a list of dictionaries:
+            for fight_data in fights_data:
+                fight = UFCFight(**fight_data)
+                ufc_event.fights.append(fight)
 
         # Commit changes to the database
         db.session.commit()
 
         return {'message': 'UFC event updated successfully'}
+
 
     def delete(self, event_id):
         # Retrieve the UFC event from the database by ID

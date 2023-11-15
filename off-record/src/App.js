@@ -64,8 +64,35 @@ useEffect(() => {
       console.log(response.data) 
  
       const { event_name, event_date,fights, records,
-        backgroundImageSrc, location, locationCC, tapImage,
+        backgroundImageSrc, location, locationCC, tapImage, fighters
        } = response.data;
+
+       const uniqueFighters = [...new Set(fighters.map(JSON.stringify))].map(JSON.parse);
+       const updatedFighters = uniqueFighters.map((fighter, index) => {
+         const corner = index % 2 === 0 ? 'Red Corner' : 'Blue Corner';
+         return {
+             ...fighter,
+             corner,
+         };
+     });
+     // Assuming you have the `updatedFighters` array
+ 
+       const updatedRecords = [];
+ 
+       for (let i = 0; i < updatedFighters.length; i += 2) {
+           const redFighter = updatedFighters[i];
+           const blueFighter = updatedFighters[i + 1];
+ 
+           const record = {
+               redCornerName: redFighter.name,
+               redCornerRecord: redFighter.record,
+               blueCornerName: blueFighter.name,
+               blueCornerRecord: blueFighter.record,
+           };
+ 
+           updatedRecords.push(record);
+       }
+ 
 
 
 
@@ -73,7 +100,7 @@ useEffect(() => {
         return {
             fighters: [fight.redCornerName, fight.blueCornerName],
             match: fight.weightClass,
-            records: [records[index]?.redCornerRecord, records[index]?.blueCornerRecord],
+            records: [updatedRecords[index]?.redCornerRecord, updatedRecords[index]?.blueCornerRecord],
             flags: [fight.redCornerCountry, fight.blueCornerCountry],
             fighterPics: [fight.redCornerImage, fight.blueCornerImage],
 
@@ -83,9 +110,12 @@ useEffect(() => {
     // Update state with the ufcCard
     setUfcCard2(newUfcCard);
  
+     
+// Now, `updatedRecords` will have the same structure as `records`
+
 
       // Update state with the scraped data
-      setEventInfo({ event_name, event_date, fights, records ,backgroundImageSrc, location, locationCC, tapImage});
+      setEventInfo({ event_name, event_date, fights, records ,backgroundImageSrc, location, locationCC, tapImage, });
       /////////////////////////////
 
     } catch (error) { 
