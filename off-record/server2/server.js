@@ -21,6 +21,7 @@ const espnurl = 'https://www.espn.com/mma/fightcenter/_/league/ufc'
 
 const fightRecords = [];
 const addedFighters = [];
+const fighters = []
 
 
 app.get('/scrape-ufc-website', async (req, res) => {
@@ -158,7 +159,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
         const $ = cheerio.load(html);
 
 
-        const fighters = []
+      
 
         $('.MMACompetitor__Detail').each((index, element) => {
             const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
