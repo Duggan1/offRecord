@@ -161,18 +161,14 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
       
 
+        
+
         $('.MMACompetitor__Detail').each((index, element) => {
             const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
             const record = recordElement.text().trim();
 
-            // Move the name declaration outside the inner loop
-            let name;
-
-            $('.h9.ttu.pt1.w-100.fw-heavy.clr-gray-02').each((index, element2) => {
-                const nameElement = $(element2).find('span.truncate.tc.db');
-                const lastName = nameElement.text().trim();
-                name = `${lastName}`;
-            });
+            const nameElement = $(element).find('h2.h9.ttu.pt1.w-100.fw-heavy.clr-gray-02 span.truncate.tc.db');
+            const name = nameElement.text().trim();
 
             const fighter = {
                 name,
@@ -181,6 +177,10 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
             fighters.push(fighter);
         });
+
+        // Now you can use the fighters array or log its content
+        console.log(fighters);
+
 
       
 
