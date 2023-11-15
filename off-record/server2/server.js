@@ -167,14 +167,17 @@ app.get('/scrape-ufc-website', async (req, res) => {
             const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
             const record = recordElement.text().trim();
 
-            const nameElement = $(element).find('.h9.ttu.pt1.w-100.fw-heavy.clr-gray-02');
+            const nameElement = $(element).find('.h9');
             const name = nameElement.text().trim();
 
-            const nameElement2 = $(element).find('truncate.tc.db');
+            const nameElement2 = $(element).find('.truncate.tc.db');
             const name2 = nameElement2.text().trim();
 
+            const nameElement3 = $(element).find('.truncate');
+            const name3 = nameElement3.text().trim();
+
             const fighter = {
-                name, name2,
+                name, name2, name3,
                 record,
             };
 
