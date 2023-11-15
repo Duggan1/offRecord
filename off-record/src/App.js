@@ -39,21 +39,10 @@ function App() {
   const handleAppleClick = () => {
     setShowDropdown(!showDropdown);
   };
-  // const ufcCard = [
-  //   { match: "Heavyweight", fighters: ["Ciryl Gane", "Serghei Spivac"], records: ["11-2", "16-3"], flags: ["France", "Romania"] },
-  //   { match: "Flyweight", fighters: ["Manon Fiorot", "Rose Namajunas"], records: ["11-5", "12-2"], flags: ["France", "United States"] },
-  //   { match: "Featherweight", fighters: ["Lucas Almeida", "Benoit Saint-Denis"], records: ["14-2", "11-1"], flags: ["Brazil", "Canada"] },
-  //   { match: "Lightweight", fighters: ["Thiago Moisés", "Yanis Ghemmouri"], records: ["17-6", "12-1"], flags: ["Brazil", "France"] },
-  //   { match: "Bantamweight", fighters: ["Bogdan Guskov", "Volkan Oezdemir"], records: ["8-0", "18-7"], flags: ["United Kingdom", "Switzerland"] },
-  //   { match: "Light Heavyweight", fighters: ["Bogdan Guskov", "Nora Cornolle"], records: ["14-2", "6-1"], flags: ["Russia", "France"] },
-  //   { match: "Bantamweight", fighters: ["Joselyne Edwards", "Ange Loosa"], records: ["13-4", "9-3"], flags: ["Panama", "France"] },
-  //   { match: "Welterweight", fighters: ["Rhys McKee", "Taylor Lapilus"], records: ["13-4-1", "18-3"], flags: ["Ireland", "France"] },
-  //   { match: "Bantamweight", fighters: ["Muin Gafurov", "Morgan Charriere"], records: ["18-5", "18-9-1"], flags: ["Russia", "France"] },
-  //   { match: "Featherweight", fighters: ["Manolo Zecchini", "Farid Basharat"], records: ["11-3", "10-0"], flags: ["Italy", "Afghanistan"] },
-  //   { match: "Flyweight", fighters: ["Kleydson Rodrigues", "Zarah Fairn"], records: ["8-2", "6-5"], flags: ["Brazil", "Germany"] },
-  //   { match: "Flyweight", fighters: ["Jacqueline Cavalcanti", "Unknown Fighter"], records: ["5-1", "-"], flags: ["Brazil", "Unknown"] },
-  // ];
+
+
 const [ufcCard2, setUfcCard2] = useState([]);
+const [ufcCard3, setUfcCard3] = useState([]);
 const [eventInfo, setEventInfo] = useState({});
 const apiUrl = 'https://offtherecordcards.onrender.com/scrape-ufc-website';
 
@@ -135,41 +124,55 @@ useEffect(() => {
       const data = await response.json();
       console.log(data)
       setUfcEvents(data.ufc_events[0] || []);
+      const newUfcCard = ufcEvents.fights.map((fight, index) => {
+        return {
+            fighters: [fight.redCornerName, fight.blueCornerName],
+            match: fight.weightClass,
+            records: [fight.redCornerRecord, fight.blueCornerRecord],
+            flags: [fight.redCornerCountry, fight.blueCornerCountry],
+            fighterPics: [fight.redCornerImage, fight.blueCornerImage],
+
+        };
+    });
+
+    // Update state with the ufcCard
+    
+    setUfcCard3(newUfcCard);
+
+
+
+
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
   fetchData();
-}, []);
+}, [ufcEvents ]);
 
 console.log(ufcEvents !== null)
 console.log(eventInfo)
 console.log(ufcEvents)
+console.log(ufcCard2)
+console.log(ufcCard3)
 
 const patchEvent = () => {
 
-  const recreatedFights = eventInfo.fights.map((fight, index) => {
-    const record = eventInfo.records[index];
-
-      // Check if record is defined before accessing its properties
-    const redCornerRecord = record ? record.redCornerRecord : '';
-    const blueCornerRecord = record ? record.blueCornerRecord : '';
-
+  const recreatedFights = ufcCard2.map((fight, index) => {
     return {
-      weight_class: fight.weightClass,
-      red_corner_name: fight.redCornerName,
-      blue_corner_name: fight.blueCornerName,
-      red_corner_country: fight.redCornerCountry,
-      blue_corner_country: fight.blueCornerCountry,
-      red_corner_record: redCornerRecord, // Use record from records array
-      blue_corner_record: blueCornerRecord, // Use record from records array
-      red_corner_image: fight.redCornerImage,
-      blue_corner_image: fight.blueCornerImage,
-      method: fight.method,
-      round: fight.round,
-      winner: fight.winner,
-      // ... other properties ...
+      weight_class: fight.match,
+      red_corner_name: fight.fighters[0],
+      blue_corner_name: fight.fighters[1],
+      red_corner_country: fight.flags[0],
+      blue_corner_country: fight.flags[1],
+      red_corner_record: fight.records[0],
+      blue_corner_record: fight.records[1],
+      red_corner_image: fight.fighterPics[0],
+      blue_corner_image: fight.fighterPics[1],
+      // Add more properties as needed
+      method: "", // Example placeholder
+      round: 0, // Example placeholder
+      winner: "", // Example placeholder
     };
   });
   
@@ -180,7 +183,7 @@ const patchEvent = () => {
     locationCC: eventInfo.location,
     backgroundImageSrc: eventInfo.main_event,
     tapImage: eventInfo.tapImage,
-    fights: eventInfo.fights,
+    fights: recreatedFights,
   };
 
   fetch(`https://off-therecordpicks.onrender.com/events/${ufcEvents.id}`, {
@@ -211,52 +214,40 @@ const patchEvent = () => {
 };
 //////////////////////////////
 
-//need useeffect
-////////////////////////////////
-if (ufcEvents && ufcEvents.event_name && eventInfo && eventInfo.event_name ) {
-  console.log('comparing');
-  if (
-    eventInfo.event_name === ufcEvents.event_name &&
-    eventInfo.locationCC === ufcEvents.locationCC &&
-    eventInfo.backgroundImageSrc === ufcEvents.backgroundImageSrc &&
-    eventInfo.tapImage === ufcEvents.tapImage &&
-    // eventInfo.fights.length === ufcEvents.fights.length &&
-    eventInfo.fights.every((fight, index) => {
-      const ufcEventFight = ufcEvents.fights[index];
 
-      // console.log('Index:', index);
+useEffect(() => {
+  // Check if ufcCard2 and ufcCard3 are both loaded
+  if (ufcCard2 && ufcCard3 ) {
+    // Check if the details do not match for any fight
+    const detailsDoNotMatch = ufcCard2.some((fight, index) => {
+      const ufcCard3Fight = ufcCard3[index];
 
-      if (ufcEventFight) {
-        // console.log('Comparing fight details:');
-        // console.log('eventInfo:', fight);
-        // console.log('ufcEvents:', ufcEventFight);
-
-        // Compare details within each fight
-        return (
-          fight.weightClass === ufcEventFight.weightClass &&
-          fight.redCornerName === ufcEventFight.redCornerName &&
-          fight.blueCornerName === ufcEventFight.blueCornerName &&
-          fight.redCornerCountry === ufcEventFight.redCornerCountry &&
-          fight.blueCornerCountry === ufcEventFight.blueCornerCountry
-          // Add more comparisons for other fight details
-          // ...
-        );
-      } else {
-        console.log('ufcEventFight is undefined for index:', index);
-        return false; // or handle the case where ufcEventFight is undefined
+      if (!ufcCard3Fight) {
+        console.log(`ufcCard3Fight is undefined for index: ${index}`);
+        return true; // or handle the case where ufcCard3Fight is undefined
       }
-    })
-  ) {
-    // The details, including fights, match
-    console.log('Details match!');
-  } else {
-    // Details do not match
-    console.log('Ready to patch ufcEvent ');
-    //////////////////////////////////
-    patchEvent()
 
+      // Compare relevant properties within each fight for ufcCard2 and ufcCard3
+      return (
+        fight.match === ufcCard3Fight.match &&
+        fight.records[0] === ufcCard3Fight.records[0] &&
+        fight.records[1] === ufcCard3Fight.records[1]
+        // Add more comparisons for other relevant properties
+      );
+    });
+
+    if (detailsDoNotMatch) {
+      // Details do not match, ready to patch ufcEvent
+      console.log('Details do not match! Ready to patch ufcEvent');
+      //////////////////////////////////
+      patchEvent();
+    } else {
+      // The details, including fights, match
+      console.log('Details match!');
+    }
   }
-}
+}, [ufcCard2, ufcCard3]);
+
 
 
 
@@ -306,35 +297,9 @@ useEffect(() => {
 
 
 console.log(eventInfo) 
-const backgroundImageSrc = eventInfo.backgroundImageSrc
-const tapImageSrc = eventInfo.tapImage
+const backgroundImageSrc = ufcEvents.backgroundImageSrc
+const tapImageSrc = ufcEvents.tapImage
   
-  // const ufcCard = [
-  //   { fighters: ["Alexa Grasso","Valentina Shevchenko"], match: "125 lbs", records: ["23-4", "16-3"], flags: ["Mexico", "Kyrgyzstan"] },
-  //   { fighters: ["Kevin Holland", "Jack Della Maddalena"], match: "170 lbs", records: ["25-9", "15-2"], flags: ["United States", "Australia"] },
-  //   { fighters: ["Raul Rosas Jr", "Terrence Mitchell"], match: "135 lbs", records: ["7-1", "14-3"], flags: ["Mexico", "United States"] },
-  //   { fighters: ["Daniel Zellhuber", "Christos Giagos"], match: "155 lbs", records: ["13-1", "20-10"], flags: ["Mexico", "United States"] },
-  //   { fighters: ["Fernando Padilla", "Kyle Nelson"], match: "145 lbs", records: ["15-4", "14-5-1"], flags: ["Mexico", "Canada"] },
-  //   { fighters: ["Loopy Godinez", "Elise Reed"], match: "115 lbs", records: ["10-3", "7-3"], flags: ["Mexico", "United States"] },
-  //   { fighters: ["Roman Kopylov", "Josh Fremd"], match: "185 lbs", records: ["11-2", "11-4"], flags: ["Russia", "United States"] },
-  //   { fighters: ["Edgar Chairez", "Daniel Lacerda"], match: "125 lbs", records: ["10-5", "11-5"], flags: ["Mexico", "Brazil"] },
-  //   { fighters: ["Tracy Cortez", "Jasmine Jasudavicius"], match: "125 lbs", records: ["10-1", "9-2"], flags: ["United States", "Canada"] },
-  //   { fighters: ["Alex Reyes", "Charlie Campbell"], match: "155 lbs", records: ["7-2", "13-3"], flags: ["United States", "United States"] },
-  //   { fighters: ["Josefine Knutsson", "Marnic Mann"], match: "115 lbs", records: ["6-0", "6-1"], flags: ["Sweden", "United States"] },
-  // ];
-  // const ufcCard = [
-  //   { fighters: ["Rafael Fiziev", "Mateusz Gamrot"], match: "155 lbs", records: ["12-2", "22-2"], flags: ["Azerbaijan", "Poland"] },
-  //   { fighters: ["Bryce Mitchell", "Dan Ige"], match: "145 lbs", records: ["15-1", "17-6"], flags: ["United States", "United States"] },
-  //   { fighters: ["Marina Rodriguez", "Michelle Waterson-Gomez"], match: "115 lbs", records: ["16-3-2", "18-11"], flags: ["Brazil", "United States"] },
-  //   { fighters: ["Bryan Battle", "AJ Fletcher"], match: "170 lbs", records: ["9-2", "10-2"], flags: ["United States", "United States"] },
-  //   { fighters: ["Ricardo Ramos", "Charles Jourdain"], match: "145 lbs", records: ["16-4","14-6-1" ], flags: ["Brazil", "Canada"] },
-  //   { fighters: ["Dan Argueta", "Miles Johns"], match: "135 lbs", records: ["9-1", "13-2"], flags: ["United States", "United States"] },
-  //   { fighters: ["Tim Means", "Andre Fialho"], match: "170 lbs", records: ["32-15-1", "16-7"], flags: ["United States", "Portugal"] },
-  //   { fighters: ["Jacob Malkoun", "Cody Brundage"], match: "185 lbs", records: ["7-2", "8-5"], flags: ["Australia", "United States"] },
-  //   { fighters: ["Mohammad Usman","Jake Collier" ], match: "265 lbs", records: ["9-2","13-9" ], flags: ["Nigeria","United States" ] },
-  //   { fighters: ["Mizuki Inoue", "Hannah Goldy"], match: "115 lbs", records: ["14-6", "6-3"], flags: ["Japan", "United States"] },
-  //   { fighters: ["Tamires Vidal","Montserrat Rendon" ], match: "135 lbs", records: ["7-1","5-0" ], flags: ["Brazil","Mexico" ] },
-  // ];
   
   const ufcCard = [
 
@@ -503,20 +468,6 @@ console.log(modifiedUfcResults)
   console.log(user)
 
 
-
-  // const validationSchema = yup.object().shape({
-  //   // userName: yup.string().required('Username is required'),
-  //   // password: yup.string().required('Password is required'),
-  //   predictions: yup.array().of(
-  //     yup.object().shape({
-  //       winner: yup.number()
-  //               .oneOf([0, 1], 'Invalid winner selection'),
-  //               // .required('Winner is required'),
-  //       method: yup.string().required('Method of victory is required'),
-  //     })
-  //   ).required('At least one prediction is required'),
-  // });
-
 console.log(modifiedUfcResults)
 //   const handleSubmit = async (e) => {
    
@@ -676,16 +627,14 @@ useEffect(() => {
 
 // Check if eventInfo.locationCC is defined before splitting it
 let locationInfo = [];
-if (eventInfo && eventInfo.locationCC) {
-  locationInfo = eventInfo.locationCC.split(', ').map(part => part.trim());
+if (ufcEvents && ufcEvents.locationCC) {
+  locationInfo = ufcEvents.locationCC.split(', ').map(part => part.trim());
 }
 
 const locationcity = locationInfo[0];
 const locationstate = locationInfo[1];
 const location = locationInfo[locationInfo.length - 1];
 
-// console.log(locationcity); // New York City
-// console.log(locationstate); // New York
 console.log(location); // United States
 
 
@@ -712,16 +661,16 @@ console.log(location); // United States
 </div>
 
 </div>
-{user ? <NavBar ufcCard={ufcCard2} user={user} /> : <Johnny onLogin={handleLogin} onLogout={handleLogout} />}
+{user ? <NavBar ufcCard={ufcCard3} user={user} /> : <Johnny onLogin={handleLogin} onLogout={handleLogout} />}
 
     
    <Routes>
-      <Route path="/"  element={<Home user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationcity} location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} countPick={countPick} />} />
+      <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} stallUfcCard={ufcCard} locationCity={locationcity} location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} countPick={countPick} />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard2} stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
-      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard2} user={user} />}/>
+      <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
+      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} />}/>
       
       <Route path="/about" element={<About/>}/>
       {/* <Route path="/comments" element={<CommentSection />}/> */}

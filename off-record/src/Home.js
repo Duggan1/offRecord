@@ -37,7 +37,7 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapIma
     //   }, []); // Empty dependency array means this effect runs once after the component mounts
       
       
-   
+      console.log(ufcCard)
       const selectedUfcCard = ufcCard.length > 1 ? ufcCard : stallUfcCard;
       console.log(selectedUfcCard)
 
