@@ -172,12 +172,12 @@ app.get('/scrape-ufc-website', async (req, res) => {
             
 
             const nameElement3 = $(element).find('.truncate');
-            const name3 = nameElement3.text().trim();
+            const name = nameElement3.text().trim();
 
             const fighter = {
                 // name,
                 // name2,
-                name3,
+                name,
                 record,
             };
 
