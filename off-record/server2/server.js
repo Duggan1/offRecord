@@ -163,25 +163,22 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
 
         $('.MMACompetitor__Detail').each((index, element) => {
-
-          const name= $(element).find('.h9.ttu.pt1.w-100.fw-heavy.clr-gray-02');
-          // const firstName = nameElement.eq(0).text().trim();
-          // const lastName = nameElement.eq(1).text().trim();
-          // const name = `${firstName} ${lastName}`;
-
-
+          const nameElement = $(element).find('.h9.ttu.pt1.w-100.fw-heavy.clr-gray-02 span.truncate.tc.db');
+          const firstName = nameElement.eq(0).text().trim();
+          const lastName = nameElement.eq(1).text().trim();
+          const name = `${firstName} ${lastName}`;
+      
           const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
-  
-          
           const record = recordElement.text().trim();
-  
+      
           const fighter = {
               name,
               record,
           };
-  
+      
           fighters.push(fighter);
       });
+      
 
         
 
