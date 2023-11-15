@@ -163,6 +163,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
         
 
+        // const fighters = [];
+
         $('.MMACompetitor__Detail').each((index, element) => {
             const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
             const record = recordElement.text().trim();
@@ -177,12 +179,22 @@ app.get('/scrape-ufc-website', async (req, res) => {
             const name3 = nameElement3.text().trim();
 
             const fighter = {
-                name, name2, name3,
+                name,
+                name2,
+                name3,
                 record,
             };
 
             fighters.push(fighter);
         });
+
+        // Remove duplicates by converting the array to a Set and back to an array
+        const uniqueFighters = [...new Set(fighters.map(JSON.stringify))].map(JSON.parse);
+
+        console.log(uniqueFighters);
+
+        fighters.push(uniqueFighters)
+
 
         // Now you can use the fighters array or log its content
         console.log(fighters);
@@ -209,7 +221,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       fights: fightData,
       records: fightRecords,
       backgroundImageSrc,
-      arena, city, country, locationCC, tapImage, fighters
+      arena, city, country, locationCC, tapImage, fighters, uniqueFighters
     });
   } catch (error) {
     console.error('Error:', error);
