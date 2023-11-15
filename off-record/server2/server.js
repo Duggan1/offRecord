@@ -162,9 +162,9 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
 
 
-        $('.AccordionPanel mb4').each((index, element) => {
-          const nameElement = $(element).find('.h9 ttu pt1 w-100 fw-heavy clr-gray-02');
-          const recordElement = $(element).find('.flex items-center n9 nowrap clr-gray-04');
+        $('.AccordionPanel.mb4').each((index, element) => {
+          const nameElement = $(element).find('.h9.ttu.pt1.w-100.fw-heavy.clr-gray-02');
+          const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
   
           const name = nameElement.text().trim();
           const record = recordElement.text().trim();
