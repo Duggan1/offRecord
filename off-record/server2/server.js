@@ -162,12 +162,12 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
 
 
-        $('.AccordionPanel.mb4').each((index, element) => {
+        $('.MMACompetitor__Detail').each((index, element) => {
 
-          const nameElement = $(element).find('.MMACompetitor__Detail h2.h9.ttu.pt1.w-100.fw-heavy.clr-gray-02 span.truncate.tc.db');
-          const firstName = nameElement.eq(0).text().trim();
-          const lastName = nameElement.eq(1).text().trim();
-          const name = `${firstName} ${lastName}`;
+          const name= $(element).find('.h9.ttu.pt1.w-100.fw-heavy.clr-gray-02');
+          // const firstName = nameElement.eq(0).text().trim();
+          // const lastName = nameElement.eq(1).text().trim();
+          // const name = `${firstName} ${lastName}`;
 
 
           const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
