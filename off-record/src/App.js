@@ -113,10 +113,73 @@ useEffect(() => {
   fetchData();
 }, []);
 
-console.log(ufcEvents.length)
-console.log(eventInfo !== null)
+console.log(ufcEvents !== null)
+console.log(eventInfo)
+console.log(ufcEvents)
 
-if (ufcEvents !== null && eventInfo !== null) {
+const patchEvent = () => {
+
+  const recreatedFights = eventInfo.fights.map((fight, index) => {
+    const record = eventInfo.records[index];
+
+      // Check if record is defined before accessing its properties
+    const redCornerRecord = record ? record.redCornerRecord : '';
+    const blueCornerRecord = record ? record.blueCornerRecord : '';
+
+    return {
+      weight_class: fight.weightClass,
+      red_corner_name: fight.redCornerName,
+      blue_corner_name: fight.blueCornerName,
+      red_corner_country: fight.redCornerCountry,
+      blue_corner_country: fight.blueCornerCountry,
+      red_corner_record: redCornerRecord, // Use record from records array
+      blue_corner_record: blueCornerRecord, // Use record from records array
+      red_corner_image: fight.redCornerImage,
+      blue_corner_image: fight.blueCornerImage,
+      method: fight.method,
+      round: fight.round,
+      winner: fight.winner,
+      // ... other properties ...
+    };
+  });
+  
+  console.log(recreatedFights);
+
+  const dataToSend = {
+    event_name: eventInfo.event_name,
+    locationCC: eventInfo.location,
+    backgroundImageSrc: eventInfo.main_event,
+    tapImage: eventInfo.tapImage,
+    fights: eventInfo.fights,
+  };
+
+  fetch(`https://off-therecordpicks.onrender.com/events/${ufcEvents.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dataToSend),
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        throw new Error("Failed to update pick");
+      }
+      if (response.ok) {
+        // Handle success
+        console.log(response)
+        const responseData = await response.json();
+        console.log('Predictions patched successfully:', responseData);
+        // Perform any further actions here
+      }
+      // Refresh the list of picks after a successful update
+      // return fetchPicks();
+    })
+    .catch((error) => {
+      console.error("Error updating pick:", error);
+      // Handle error as needed
+    });
+};
+if (ufcEvents && ufcEvents.event_name && eventInfo && eventInfo.event_name ) {
   console.log('comparing');
   if (
     eventInfo.event_name === ufcEvents.event_name &&
@@ -155,8 +218,13 @@ if (ufcEvents !== null && eventInfo !== null) {
   } else {
     // Details do not match
     console.log('Ready to patch ufcEvent ');
+    //////////////////////////////////
+    patchEvent()
+
   }
 }
+
+
 
 
 

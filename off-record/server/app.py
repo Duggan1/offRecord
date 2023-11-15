@@ -400,12 +400,37 @@ class UFCEventByID(Resource):
         return {'ufc_event': event_data}
 
     def patch(self, event_id):
-        # Add your patch logic here
-        pass
+        # Retrieve the UFC event from the database by ID
+        ufc_event = UFCEvent.query.get(event_id)
+
+        if ufc_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Get the JSON data from the request
+        data = request.get_json()
+
+        # Update the fields with non-empty values from the request
+        for key, value in data.items():
+            if value is not None:
+                setattr(ufc_event, key, value)
+
+        # Commit changes to the database
+        db.session.commit()
+
+        return {'message': 'UFC event updated successfully'}
 
     def delete(self, event_id):
-        # Add your delete logic here
-        pass
+        # Retrieve the UFC event from the database by ID
+        ufc_event = UFCEvent.query.get(event_id)
+
+        if ufc_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Delete the UFC event
+        db.session.delete(ufc_event)
+        db.session.commit()
+
+        return {'message': 'UFC event deleted successfully'}
 
 # Add the resource to the API
 api.add_resource(UFCEventByID, '/events/<int:event_id>')

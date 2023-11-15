@@ -17,8 +17,11 @@ const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-november-18-2023';
 
 const Recurl = 'https://www.tapology.com/fightcenter/events/101867-ufc-fight-night';
 
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/league/ufc'
+
 const fightRecords = [];
 const addedFighters = [];
+const fighters = []
 
 app.get('/scrape-ufc-website', async (req, res) => {
   try {
@@ -147,6 +150,45 @@ app.get('/scrape-ufc-website', async (req, res) => {
       return;
     }
 
+    try {
+      const response = await axios.get(espnurl);
+
+      if (response.status === 200) {
+        const html = response.data;
+        const $ = cheerio.load(html);
+
+
+        
+
+
+
+        $('.AccordionPanel mb4').each((index, element) => {
+          const nameElement = $(element).find('.h9 ttu pt1 w-100 fw-heavy clr-gray-02');
+          const recordElement = $(element).find('.flex items-center n9 nowrap clr-gray-04');
+  
+          const name = nameElement.text().trim();
+          const record = recordElement.text().trim();
+  
+          const fighter = {
+              name,
+              record,
+          };
+  
+          fighters.push(fighter);
+      });
+
+        
+
+        
+
+        
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({ error: 'An error occurred while scraping data.' });
+      return;
+    }
+
    
     res.json({
       event_name,
@@ -154,7 +196,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       fights: fightData,
       records: fightRecords,
       backgroundImageSrc,
-      arena, city, country, locationCC, tapImage
+      arena, city, country, locationCC, tapImage, fighters
     });
   } catch (error) {
     console.error('Error:', error);
