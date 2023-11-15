@@ -179,6 +179,10 @@ const patchEvent = () => {
       // Handle error as needed
     });
 };
+//////////////////////////////
+
+//need useeffect
+////////////////////////////////
 if (ufcEvents && ufcEvents.event_name && eventInfo && eventInfo.event_name ) {
   console.log('comparing');
   if (
@@ -193,9 +197,9 @@ if (ufcEvents && ufcEvents.event_name && eventInfo && eventInfo.event_name ) {
       console.log('Index:', index);
 
       if (ufcEventFight) {
-        console.log('Comparing fight details:');
-        console.log('eventInfo:', fight);
-        console.log('ufcEvents:', ufcEventFight);
+        // console.log('Comparing fight details:');
+        // console.log('eventInfo:', fight);
+        // console.log('ufcEvents:', ufcEventFight);
 
         // Compare details within each fight
         return (
