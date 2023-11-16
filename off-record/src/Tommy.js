@@ -499,6 +499,9 @@ if (isLoading) {
 
       {showUfcCard?
       <div className="bayLoc" > 
+      <button className='dreamcardbutton' onClick={toggleCard}>
+          {showUfcCard ? ' Dream Card' : 'Show Current UFC Card'}
+        </button>
                   <h1 style={{
                               height: '100px',
                               backgroundColor: 'black',
@@ -511,14 +514,17 @@ if (isLoading) {
                             </h1><h1 style={{margin:'0'}}> UFC {locationCity}</h1>
           
           
-          <br></br><h2 className="bay" >{mainEvent}</h2><button className='dreamcardbutton' onClick={toggleCard}>
-          {showUfcCard ? ' Dream Card' : 'Show Current UFC Card'}
-        </button><h1> Fight Predictions</h1>
+          <br></br><h2 className="bay" >{mainEvent}</h2>
+          
+        {/* <h1> Fight Predictions</h1> */}
         
         
         </div>: 
           
           <div className="bayLoc">
+            <button className='dreamcardbutton' onClick={toggleCard}>
+          {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
+        </button>
             
             <h1 style={{
                 height: '100px',
@@ -533,9 +539,9 @@ if (isLoading) {
           
           <h2 className="bay" >{mainEvent}</h2>
           
-          <button className='dreamcardbutton' onClick={toggleCard}>
-          {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
-        </button><h1> Fight Predictions</h1></div>}
+          
+        {/* <h1> Fight Predictions</h1> */}
+        </div>}
 
       
       

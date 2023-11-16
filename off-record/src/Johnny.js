@@ -130,8 +130,8 @@ function Johnny({ onLogin }) {
     return (
         <div className="johnny">
           <Header/>
-            <h1 style={{marginTop:'0%'}}>Sign Up / Login</h1>
-            <div style={{ display: 'inline-block',marginBottom:'5%'}}className="custom-checkbox">
+            {/* <h3 style={{marginTop:'0%'}}>Sign Up / Login</h3> */}
+            <div style={{ display: 'inline-block',marginBottom:'5%',marginTop:'5%',}}className="custom-checkbox">
           <input
             id="status"
             type="checkbox"

@@ -307,11 +307,99 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapIma
     return (
         < div className="home" >
             {/* <p style={{ color: 'yellow' }}>Welcome to</p> */}
-            <h1 className="homeheaders"style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%'}}
+            {/* <h1 className="homeheaders"style={{}}
                 // Adjust this value as needed
-                >
-                Off The Record Picks!
+                > */}
+                 <div style={{display:'flex', justifyContent:'center',}}>
+            <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'white',
+                margin: "0",
+                fontSize:'35px',
+                maxWidth: '100%',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                P
+                </h1><h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'white',
+                margin: "0",
+                fontSize:'15px',
+                maxWidth: '100%',
+                marginTop: '10px',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                ick
                 </h1>
+                
+                <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'white',
+                margin: "0",
+                fontSize:'35px',
+                marginTop: '0%',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                4P
+                </h1>
+                <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'white',
+                margin: "0",
+                fontSize:'15px',
+                maxWidth: '100%',
+                marginTop: '10px',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                oints
+                </h1>
+                <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'white',
+                margin: "0",
+                fontSize:'15px',
+                maxWidth: '100%',
+                marginTop: '10px',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                .com
+                </h1></div>
+                {/* </h1> */}
                 
                 
                   
@@ -355,7 +443,7 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapIma
                 
                 { isUfcCardLoaded ? <div className='crdiv' style={{ border:'gold solid 5px', height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundColor: "black", position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
                     <NavLink className='color-gold hgysnow' exact to="/section3"></NavLink>
-                    <h5 className='color-yellow snow' style={{ textAlign: 'center',  marginTop: '-6%',textShadow: '0 0 15px black' }}>UFC PICK'EMS</h5>
+                    <h5 className='color-yellow snow' style={{ textAlign: 'center',  marginTop: '-6%',textShadow: '0 0 15px black' }}>PICK'EM</h5>
                 </div>
                 : 
 
@@ -369,18 +457,106 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapIma
                
                 
                 <div className='crdiv' onClick={() => handleOptionClick('/results')}><NavLink className=' purple2 snow' exact to="/results">Check Results</NavLink></div>
-                <div className='crdiv'  onClick={() => handleOptionClick('/about')}><NavLink className='purple2 snow' exact to="/about">About Us</NavLink></div>
+                <div className='crdiv'  onClick={() => handleOptionClick('/about')}><NavLink className='purple2 snow' exact to="/about">About P4P</NavLink></div>
                 
-               
-                <h2 style={{paddingTop:'15%'}} className="homeheaders">{countPick} - Off-The-Record-Picks -  </h2>
-        
+                
+                
+        <div style={{display:'flex', justifyContent:'center',paddingTop:'15%'}}>
+            <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'white',
+                margin: "0",
+                fontSize:'35px',
+                maxWidth: '100%',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                P
+                </h1><h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'white',
+                margin: "0",
+                fontSize:'15px',
+                maxWidth: '100%',
+                marginTop: '10px',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                ick
+                </h1>
+                
+                <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'white',
+                margin: "0",
+                fontSize:'35px',
+                marginTop: '0%',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                4P
+                </h1>
+                <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'white',
+                margin: "0",
+                fontSize:'15px',
+                maxWidth: '100%',
+                marginTop: '10px',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                oints
+                </h1>
+                <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'white',
+                margin: "0",
+                fontSize:'15px',
+                maxWidth: '100%',
+                marginTop: '10px',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                .com
+                </h1></div>
                 { isUfcCardLoaded ? <div className="home-fighter">
                                     <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[0]}')`,backgroundPosition: 'left',marginTop:'20%'}} ></div>
                                     <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[1]}')`,backgroundPosition: 'right',marginTop:'20%'}}> </div>
                                     </div> : <div className="loading" style={{ height: '100px', width: '100px' ,justifyContent:'center'}}></div> }
         
 
-        
+                                    <h2 style={{}} className="homeheaders2">Pick Count ({countPick})   </h2>
         </div>
     )
 }

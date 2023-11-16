@@ -86,6 +86,15 @@ code {
   max-width: 90%;
   font-family:'Copperplate', 'Arial Narrow', Arial, sans-serif;
 }
+.homeheaders2 {
+  text-align: right;
+  margin: 0%;
+  color: white;
+  text-shadow: 0 0 5px rgba(55, 0, 59, 0.5); /* Corrected syntax */
+  font-size: 15px;
+  /* max-width: 90%; */
+  font-family:'Copperplate', 'Arial Narrow', Arial, sans-serif;
+}
 
 .purple2 {
   color: rgb(32, 3, 86);

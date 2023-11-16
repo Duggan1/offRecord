@@ -148,7 +148,7 @@ useEffect(() => {
   };
 
   fetchData();
-}, [ufcEvents ]);
+}, [ufcEvents.length ]);
 
 console.log(ufcEvents !== null)
 console.log(eventInfo)
@@ -304,7 +304,7 @@ const tapImageSrc = ufcEvents.tapImage
   const ufcCard = [
 
       {
-        fighters: ["Jon Jones", "Francis Ngannou0pp"],
+        fighters: ["Jon Jones", "Francis Ngannou"],
         match: "Heavyweight Championship Bout",
         records: ["30-1-0", "17-3-0"],
         flags: ["United States", "Cameroon"],
