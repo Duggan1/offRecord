@@ -52,7 +52,7 @@ function Header({user}) {
 
                 // Adjust this value as needed
                 }}>
-                ick
+                icks
                 </h1>
                 
                 <h1 

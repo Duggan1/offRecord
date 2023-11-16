@@ -343,7 +343,7 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapIma
 
                 // Adjust this value as needed
                 }}>
-                ick
+                icks
                 </h1>
                 
                 <h1 
@@ -494,7 +494,7 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapIma
 
                 // Adjust this value as needed
                 }}>
-                ick
+                icks
                 </h1>
                 
                 <h1 
