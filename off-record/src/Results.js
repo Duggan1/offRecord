@@ -124,6 +124,7 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
     calculateLeaderboard(results, ufcResults);
   }, [results, ufcResults]);
 
+
   const calculateLeaderboard = (results, ufcResults) => {
     const userPointsMap = new Map();
     const eventWinners = {};
@@ -137,15 +138,17 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
       const totalPoints = calculateTotalPoints(result, result.main_event, ufcResults);
   
       if (!userPicksCountMap.has(standardizedUsername)) {
-        userPicksCountMap.set(standardizedUsername, 0);
+        userPicksCountMap.set(standardizedUsername, { totalPicksCount: 0 });
       }
-      userPicksCountMap.set(standardizedUsername, userPicksCountMap.get(standardizedUsername) + result.predictions.length);
+      userPicksCountMap.get(standardizedUsername).totalPicksCount += result.predictions.length;
   
       // Update the user's total points in the map
       if (!userPointsMap.has(standardizedUsername)) {
-        userPointsMap.set(standardizedUsername, 0);
+        userPointsMap.set(standardizedUsername, { totalPoints: 0, totalWinnerPointsOnly: 0, totalPicksCount: 0 });
       }
-      userPointsMap.set(standardizedUsername, userPointsMap.get(standardizedUsername) + totalPoints);
+      userPointsMap.get(standardizedUsername).totalPoints += totalPoints;
+      userPointsMap.get(standardizedUsername).totalWinnerPointsOnly += calculateTotalWinnerPointsOnly(result, result.main_event);
+      userPointsMap.get(standardizedUsername).totalPicksCount += result.predictions.length;
   
       const userPoints = calculateTotalPoints(result, result.main_event);
   
@@ -172,10 +175,11 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
       }
     }
   
-    const leaderboardArray = Array.from(userPointsMap, ([username, totalPoints]) => ({
+    const leaderboardArray = Array.from(userPointsMap, ([username, { totalPoints, totalWinnerPointsOnly, totalPicksCount }]) => ({
       username,
-      totalPoints,
-      totalPicksCount: userPicksCountMap.get(username) || 0, // Add totalPicksCount
+      totalPoints: totalPoints,
+      totalPicksCount: totalPicksCount || 0,
+      totalWinnerPointsOnly: totalWinnerPointsOnly
     }));
     // Sort the leaderboard by totalPoints in descending order
     leaderboardArray.sort((a, b) => b.totalPoints - a.totalPoints);
@@ -206,16 +210,61 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
   
   
   
+  
+  
+  
+  
 
-console.log(leaderboardwinners)
-
-
-
-
-
-
+console.log(leaderboard)
 
 
+
+
+
+
+function calculatewinnerePointsonly(pick, result) {
+  let points = 0;
+  // console.log(pick)
+  // console.log(result)
+
+  
+  if (pick && result) {
+    
+    // Check if the winner matches
+    if (pick.method !== null && result.method !== null && pick.method === "Draw/No-Contest" && result.method === "Draw/No-Contest") {
+      points += 2;
+    }
+    if  (pick.method !== null && result.method !== null && pick.method !== "Draw/No-Contest" && result.method === "Draw/No-Contest") {
+      // console.log('working')
+    }
+
+    else {
+
+        if (pick.winner !== null && result.winner !== null && pick.winner == result.winner) {
+          points += 1;
+
+
+        }
+       }
+  }
+
+  return points;
+}
+function calculateTotalWinnerPointsOnly(result, mainEvent) {
+  let totalPoints = 0;
+
+  result.predictions.forEach((prediction, predIndex) => {
+    const adminKevPicksForEvent = getAdminKevPicksForEvent(mainEvent);
+    const adminKevPick = adminKevPicksForEvent[predIndex];
+    const ufcResult = ufcResults[predIndex];
+    
+
+    const points = calculatewinnerePointsonly(prediction, adminKevPick || ufcResult);
+    totalPoints += points;
+  });
+  
+  return totalPoints;
+}
 
  
 function calculatePoints(pick, result) {
@@ -947,8 +996,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
               <td className="tac" style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}} >{user.totalPoints}</td>
               
               <td className="tac " style={{backgroundColor:'rgba(55, 0, 59, 0.650)'}}  >{countWinsForUsername(leaderboardwinners, user.username)}</td>
-              <td className="tac Left6" style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}}>{((user.totalPoints / (user.totalPicksCount * 2)) * 100).toFixed(0)}% </td>
-
+              <td className="tac Left6" style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}}>{((user.totalWinnerPointsOnly / (user.totalPicksCount )) * 100).toFixed(0)}% </td>
               
               
               </tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button></center></div>
