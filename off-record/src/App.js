@@ -165,8 +165,8 @@ const patchEvent = () => {
       blue_corner_name: fight.fighters[1],
       red_corner_country: fight.flags[0],
       blue_corner_country: fight.flags[1],
-      red_corner_record: fight.records[0],
-      blue_corner_record: fight.records[1],
+      red_corner_record: fight.records[0] || ' ',
+      blue_corner_record: fight.records[1] || ' ',
       red_corner_image: fight.fighterPics[0],
       blue_corner_image: fight.fighterPics[1],
       // Add more properties as needed
@@ -214,10 +214,13 @@ const patchEvent = () => {
 };
 //////////////////////////////
 
+console.log(ufcCard2)
+console.log(ufcCard3)
+
 
 useEffect(() => {
   // Check if ufcCard2 and ufcCard3 are both loaded
-  if (ufcCard2 && ufcCard3 ) {
+  if (ufcCard2 && ufcCard3) {
     // Check if the details do not match for any fight
     const detailsDoNotMatch = ufcCard2.some((fight, index) => {
       const ufcCard3Fight = ufcCard3[index];
@@ -228,12 +231,13 @@ useEffect(() => {
       }
 
       // Compare relevant properties within each fight for ufcCard2 and ufcCard3
-      return (
-        fight.match === ufcCard3Fight.match &&
-        fight.records[0] === ufcCard3Fight.records[0] &&
-        fight.records[1] === ufcCard3Fight.records[1]
-        // Add more comparisons for other relevant properties
-      );
+      const matchComparison = fight.match === ufcCard3Fight.match;
+      const recordsComparison = fight.records[0] === ufcCard3Fight.records[0] && fight.records[1] === ufcCard3Fight.records[1];
+
+      console.log(`Fight ${index + 1} - Match Comparison: ${matchComparison}`);
+      console.log(`Fight ${index + 1} - Records Comparison: ${recordsComparison}`);
+
+      return !(matchComparison && recordsComparison);
     });
 
     if (detailsDoNotMatch) {

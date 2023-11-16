@@ -724,6 +724,9 @@ if (isLoading) {
 
       {showUfcCard?
       <div className="bayLoc" >   {signIn ? <p className='snowwhite'>Please Login or SignUp! </p>: <p className='color-yellow'>Please Login or SignUp! </p>}
+       <button className='dreamcardbutton' onClick={toggleCard}>
+          {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
+        </button>
       <h1 style={{
   height: '100px',
   backgroundColor: 'black',
@@ -738,13 +741,14 @@ if (isLoading) {
           
           
           
-          <br></br><h2 className="bay" >{mainEvent}</h2><button className='dreamcardbutton' onClick={toggleCard}>
-          {showUfcCard ? ' Dream Card' : 'Show Current UFC Card'}
-        </button></div>: 
+          <br></br><h2 className="bay" >{mainEvent}</h2></div>: 
           
           <div className="bayLoc">
             
             {signIn ? <p className='snowwhite'>Please Login or SignUp! </p>: <p className='color-yellow'>Please Login or SignUp! </p>}
+            <button className='dreamcardbutton' onClick={toggleCard}>
+          {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
+        </button>
             
             {/* <h1 >Dream Card <img style={{height:'40px',
              backgroundColor:'black', padding:'0px 2px',border:' purple solid 2px'}}
@@ -766,9 +770,8 @@ if (isLoading) {
           
          <h2 className="bay" >{mainEvent}</h2>
           
-          <button className='dreamcardbutton' onClick={toggleCard}>
-          {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
-        </button></div>}
+         
+        </div>}
 
       
       
