@@ -9,13 +9,13 @@ const port = 3001; // Choose an available port
 // Enable CORS for all routes
 app.use(cors());
 
-const deatilsUrl = 'https://www.ufc.com/event/ufc-295';
+// const deatilsUrl = 'https://www.ufc.com/event/ufc-295';
 
-const Recurl = 'https://www.tapology.com/fightcenter/events/102959-ufc-295-jones-vs-miocic';
+// const Recurl = 'https://www.tapology.com/fightcenter/events/102959-ufc-295-jones-vs-miocic';
 
-// const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-november-18-2023';
+const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-november-18-2023';
 
-// const Recurl = 'https://www.tapology.com/fightcenter/events/101867-ufc-fight-night';
+const Recurl = 'https://www.tapology.com/fightcenter/events/101867-ufc-fight-night';
 
 const espnurl = 'https://www.espn.com/mma/fightcenter/_/league/ufc'
 
