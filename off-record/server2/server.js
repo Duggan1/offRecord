@@ -71,17 +71,17 @@ app.get('/scrape-ufc-website', async (req, res) => {
       const methodElement = $(element).find('.c-listing-fight__result-text.method');
       const roundElement = $(element).find('.c-listing-fight__result-text.round');
   
-      if (winnerElementRed.length > 0) {
+      if (winnerElementRed) {
           winner = '0'; 
-      } else if (winnerElementBlue.length > 0) {
+      } else if (winnerElementBlue) {
           winner = '1'; 
       }
   
-      if (methodElement.length > 0) {
+      if (methodElement) {
           method = methodElement.text().trim();
       }
   
-      if (roundElement.length > 0) {
+      if (roundElement) {
           const roundText = roundElement.text().trim();
           const match = roundText.match(/\d+/);
           round = match ? match[0] : 'N/A';
