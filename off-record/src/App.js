@@ -381,6 +381,7 @@ console.log(ufcCard2)
     round: eventInfo.fights[0].round === "" || eventInfo.fights[index].round === "N/A" ? null : eventInfo.fights[index].round[0],
 
   }));
+  
   console.log(ufcResults) 
   // Define a function to normalize the method values
 // Define a function to normalize the method values
