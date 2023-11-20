@@ -44,6 +44,9 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapIma
       const isUfcCardLoaded = ufcCard.length > 1;
 
       const mainEvent = isUfcCardLoaded ? ufcCard[0].fighters.join(' vs ') : '';
+      const mainRedC = isUfcCardLoaded ? ufcCard[0].fighters[0] : '';
+      const mainBlueC = isUfcCardLoaded ? ufcCard[0].fighters[1]  : '';
+      
     
       const countryData = {
         "Andorra": "AD",
@@ -431,7 +434,11 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapIma
 
 
 
-                 <div style={{zIndex:'1',textAlign:'center'}}> <h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black'}}>{mainEvent}</h6>
+                 <div style={{zIndex:'0',textAlign:'center'}}> <h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black'}}>{mainRedC}</h6>
+                 {/* ////////////////////// */}
+                 <h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black'}}> vs </h6>
+                 <h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black'}}>{mainBlueC}</h6>
+                 {/* //////////////////////// */}
                 <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black'}}>  {locationCity} </h6>
                 <h5 className=' snow' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
                   backgroundSize: '100% 100%',

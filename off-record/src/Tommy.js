@@ -451,7 +451,7 @@ const countryData = {
   "Uzbekistan": "UZ",
   "Holy See (Vatican City State)": "VA",
   "Saint Vincent And The Grenadines": "VC",
-  "Venezuela, Bolivarian Republic of": "VE",
+  "Venezuela": "VE",
   "Virgin Islands, British": "VG",
   "Virgin Islands, U.S.": "VI",
   "Vietnam": "VN",
@@ -732,8 +732,11 @@ if (isLoading) {
   backgroundColor: 'black',
   padding: '0px 2px',
   backgroundSize: '100% 100%',
-  margin:'0',
-  backgroundImage: `url(https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png)`
+  margin:'0% 20%',
+  backgroundImage: `url(https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png)`,
+  backgroundRepeat:'no-repeat',
+  // border:'1px solid black',
+
 }} alt={`Flag of ${location}`}>
   
 </h1><h1 style={{margin:'0'}}> UFC {locationCity}</h1>
@@ -741,7 +744,9 @@ if (isLoading) {
           
           
           
-          <br></br><h2 className="bay" >{mainEvent}</h2></div>: 
+          <br></br>
+          {/* <h2 className="bay" >{mainEvent}</h2> */}
+          </div>: 
           
           <div className="bayLoc">
             

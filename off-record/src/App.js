@@ -126,7 +126,7 @@ useEffect(() => {
       const response = await fetch('https://off-therecordpicks.onrender.com/events');
       const data = await response.json();
       console.log(data)
-      setUfcEvents(data.ufc_events[-1] || []);
+      setUfcEvents(data.ufc_events[1] || []);
       const newUfcCard = ufcEvents.fights.map((fight, index) => {
         return {
             fighters: [fight.redCornerName, fight.blueCornerName],
@@ -151,7 +151,7 @@ useEffect(() => {
   };
 
   fetchData();
-}, [ufcEvents.length ]);
+}, [ufcEvents.length]);
 
 console.log(ufcEvents !== null)
 console.log(eventInfo)
@@ -267,15 +267,15 @@ useEffect(() => {
       // Example data to send in the POST request
       const recreatedFights = ufcCard2.map((fight, index) => {
         return {
-          weight_class: fight.match,
-          red_corner_name: fight.fighters[0],
-          blue_corner_name: fight.fighters[1],
-          red_corner_country: fight.flags[0],
-          blue_corner_country: fight.flags[1],
-          red_corner_record: fight.records[0] || ' ',
-          blue_corner_record: fight.records[1] || ' ',
-          red_corner_image: fight.fighterPics[0],
-          blue_corner_image: fight.fighterPics[1],
+          weightClass: fight.match,
+          redCornerName: fight.fighters[0],
+          blueCornerName: fight.fighters[1],
+          redCornerCountry: fight.flags[0],
+          blueCornerCountry: fight.flags[1],
+          redCornerRecord: fight.records[0] || ' ',
+          blueCornerRecord: fight.records[1] || ' ',
+          redCornerImage: fight.fighterPics[0],
+          blueCornerImage: fight.fighterPics[1],
           // Add more properties as needed
           method: fight.method, // Example placeholder
           round: fight.round, // Example placeholder
