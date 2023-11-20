@@ -211,7 +211,7 @@ class UFCEventResource(Resource):
 
         # Create UFCFight objects and associate them with the UFCEvent
         # Create UFCFight objects and associate them with the UFCEvent
-        for fight, record in zip(fights, records):
+        for fight in fights:
             weight_class = fight['weightClass']
             red_corner_name = fight['redCornerName']
             blue_corner_name = fight['blueCornerName']
@@ -221,8 +221,8 @@ class UFCEventResource(Resource):
             blue_corner_image = fight['blueCornerImage']
 
             # Access records directly using the loop variable
-            red_corner_record = record['redCornerRecord']
-            blue_corner_record = record['blueCornerRecord']
+            red_corner_record = fight['redCornerRecord']
+            blue_corner_record = fight['blueCornerRecord']
 
             method = fight['method']
             round = fight['round']
