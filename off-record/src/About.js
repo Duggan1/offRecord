@@ -32,7 +32,7 @@ But we don't just focus on event champions. We also reward consistency through o
       <div className="pointEXB"><div className="pointEX">
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Winner </p><br></br>
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 point</span> for picking the correct Method & Winner</p><br></br>
-      <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 3 point</span> for picking the correct Round, Mehod & Winner</p><br></br>
+      <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 3 point</span> for picking the correct Round, Method & Winner</p><br></br>
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 points</span> for picking Draw/No-Contest correctly</p></div></div>
        <br></br>
        

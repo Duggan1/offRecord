@@ -92,6 +92,9 @@ useEffect(() => {
             records: [updatedRecords[index]?.redCornerRecord, updatedRecords[index]?.blueCornerRecord],
             flags: [fight.redCornerCountry, fight.blueCornerCountry],
             fighterPics: [fight.redCornerImage, fight.blueCornerImage],
+            winner: fight.winner,
+            method: fight.method,
+            round: fight.round
 
         };
     });
@@ -170,9 +173,9 @@ const patchEvent = () => {
       red_corner_image: fight.fighterPics[0],
       blue_corner_image: fight.fighterPics[1],
       // Add more properties as needed
-      method: "", // Example placeholder
-      round: 0, // Example placeholder
-      winner: "", // Example placeholder
+      method: fight.method, // Example placeholder
+      round: fight.round, // Example placeholder
+      winner: fight.winner, // Example placeholder
     };
   });
   
