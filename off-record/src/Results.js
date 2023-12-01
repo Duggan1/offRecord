@@ -6,11 +6,11 @@ import Chart from "chart.js/auto";
 
 import Dnd from './Dnd';
 
-function Results({ user, ufcCard, ufcResults }) {
-  const [results, setResults] = useState([]);
+function Results({ user, ufcCard, ufcResults, results2, adminKevPicks2 }) {
+  const [results, setResults] = useState(results2);
   const [updatedResults, setUpdatedResults] = useState(ufcResults)
   const [showOnlyUserPicks, setShowOnlyUserPicks] = useState(false);
-  const [adminKevPicks, setAdminKevPicks] = useState({});
+  const [adminKevPicks, setAdminKevPicks] = useState(adminKevPicks2);
   const [selectedEvent, setSelectedEvent] = useState(""); 
   const [explainPoints, setExplainPointst] = useState(false); 
   const [showLeaderBoard, setshowLeaderBoard] = useState(false); 
@@ -334,41 +334,41 @@ function calculateTotalPoints(result, mainEvent) {
   
 
   
-  useEffect(() => {
-    fetch('https://off-therecordpicks.onrender.com/picks')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log(data); // Log the data received from the API
-        if (Array.isArray(data.picks)) {
+  // useEffect(() => {
+  //   fetch('https://off-therecordpicks.onrender.com/picks')
+  //     .then(response => {
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       return response.json();
+  //     })
+  //     .then(data => {
+  //       console.log(data); // Log the data received from the API
+  //       if (Array.isArray(data.picks)) {
 
-          console.log(data)  
-          setResults(data.picks);
-          const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
-          setResults(filteredResults);
-          console.log(filteredResults)
-          data.picks.forEach(result => {
-            if (result.owner === 'AdminKev' && result.predictions.length > 0) {
-              setAdminKevPicks(picks => ({
-                ...picks,
-                [result.main_event]: result.predictions
-              }));
-            }
-          });
-        } else {
-          console.error('API response does not have an array in the "picks" property:', data);
-        }
+  //         console.log(data)  
+  //         setResults(data.picks);
+  //         const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
+  //         setResults(filteredResults);
+  //         console.log(filteredResults)
+  //         data.picks.forEach(result => {
+  //           if (result.owner === 'AdminKev' && result.predictions.length > 0) {
+  //             setAdminKevPicks(picks => ({
+  //               ...picks,
+  //               [result.main_event]: result.predictions
+  //             }));
+  //           }
+  //         });
+  //       } else {
+  //         console.error('API response does not have an array in the "picks" property:', data);
+  //       }
       
-      })
-      .catch(error => {
-        console.error('Error fetching results:', error);
-        // Handle error as needed
-      });
-  }, []); 
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching results:', error);
+  //       // Handle error as needed
+  //     });
+  // }, []); 
 
 
   const fetchPicks = () => {

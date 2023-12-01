@@ -3,7 +3,7 @@ import './App.css';
 import { NavLink } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 
-function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapImage, countPick}) {
+function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic, tapImage, countPick}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
@@ -433,13 +433,14 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapIma
                   </div>
 
 
-
-                 <div style={{zIndex:'0',textAlign:'center'}}> <h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black'}}>{mainRedC}</h6>
-                 {/* ////////////////////// */}
-                 <h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black'}}> vs </h6>
-                 <h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black'}}>{mainBlueC}</h6>
-                 {/* //////////////////////// */}
-                <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black'}}>  {locationCity} </h6>
+                {/* ////////////////////// */}
+                 <div style={{textAlign:'center'}}> <div
+                  style={{zIndex:'1',display:'flex'}}
+                  ><h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black',color:'red'}}>{mainRedC}</h6>
+                 <h6 className='color-white snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black'}}>  vs  </h6>
+                 <h6 className=' snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black',color:'lightblue'}}>{mainBlueC}</h6>
+                 {/* //////////////////////// */}</div>
+                <h6 className='color-gold snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black'}}> {locationCity}, {state}</h6>
                 <h5 className=' snow' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
@@ -463,8 +464,8 @@ function Home({user, ufcCard, stallUfcCard, locationCity,location, BGpic, tapIma
                }
                
                 
-                <div className='crdiv' onClick={() => handleOptionClick('/results')}><NavLink className=' purple2 snow' exact to="/results">Check Results</NavLink></div>
-                <div className='crdiv'  onClick={() => handleOptionClick('/about')}><NavLink className='purple2 snow' exact to="/about">About P4P</NavLink></div>
+                <div className='crdiv background-purple'style={{ border:'gold solid 5px'}} onClick={() => handleOptionClick('/results')}><NavLink className=' color-gold snow' exact to="/results">Check Results</NavLink></div>
+                <div className='crdiv background-purple' style={{ border:'gold solid 5px',}}  onClick={() => handleOptionClick('/about')}><NavLink className='color-gold snow' exact to="/about">About P4P</NavLink></div>
                 
                 
                 

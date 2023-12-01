@@ -555,6 +555,10 @@ useEffect(() => {
 
 const [akp , setAKP] = useState('')
 const [ countPick ,setPickCount] = useState(null)
+const [results2, setResults2] = useState([]);
+const [adminKevPicks, setAdminKevPicks] = useState({});
+
+
 useEffect(() => {
   // Fetch results from the API
 fetch('https://off-therecordpicks.onrender.com/picks')
@@ -567,6 +571,24 @@ fetch('https://off-therecordpicks.onrender.com/picks')
     .then(data => {
       console.log(data); // Log the data received from the API
        setPickCount(data.picks.length);
+       ///////////////////////////////////
+       /////////////////////////////////
+       setResults2(data.picks);
+        const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
+          setResults2(filteredResults);
+          console.log(filteredResults)
+          data.picks.forEach(result => {
+            if (result.owner === 'AdminKev' && result.predictions.length > 0) {
+              setAdminKevPicks(picks => ({
+                ...picks,
+                [result.main_event]: result.predictions
+              }));
+            }
+          });
+
+
+/////////////////////////////////////////////
+////////////////////////////////////////////////
       if (Array.isArray(data.picks)) {
         const mainEventToFind = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`;
         console.log(mainEventToFind)
@@ -693,12 +715,12 @@ console.log(location); // United States
 
     
    <Routes>
-      <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} stallUfcCard={ufcCard} locationCity={locationcity} location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} countPick={countPick} />} />
+      <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} stallUfcCard={ufcCard} locationCity={locationcity} state={locationstate} location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} countPick={countPick} />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
-      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} />}/>
+      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} />}/>
       
       <Route path="/about" element={<About/>}/>
       {/* <Route path="/comments" element={<CommentSection />}/> */}
