@@ -8,7 +8,7 @@ import './App.css';
 function Header({user, ufcCard}) {
     const navigate = useNavigate()
 
-    const [showDropdown, setShowDropdown] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(true);
   // const navigate = useNavigate()
   const isUfcCardLoaded = ufcCard ? ufcCard.length > 1 : false;
   console.log(isUfcCardLoaded)
@@ -187,7 +187,7 @@ function Header({user, ufcCard}) {
                 height={'40px'}
                  src={logo} alt='fighting logo' 
                  onClick={() => handleAppleClick()}
-                  style={{cursor:'pointer',backgroundColor:'purple',marginLeft:'0%',padding:'3%',border:'white 2px solid',borderRadius:'15%'}}/>
+                  style={{color:'darkred',cursor:'pointer',backgroundColor:'darkred',marginLeft:'0%',padding:'3%',border:'white 2px solid',borderRadius:'15%'}}/>
      
       
 
@@ -196,18 +196,18 @@ function Header({user, ufcCard}) {
       }} className="dropdown-menu">
               {/* Dropdown Menu */}
             <div style={{border: 'white 5px solid'}} className='swm' onClick={() => { handleOptionClick('/'); handleAppleClick(); }}>
-            <NavLink className='snowwhite' exact to="/">Home</NavLink>
+            <NavLink className='color-gold' exact to="/">Home</NavLink>
                     </div>
 
-           {isUfcCardLoaded ? <div className='swm'  onClick={() => { handleOptionClick('/section3'); handleAppleClick(); }}><NavLink className='color-gold' exact to="/section3">Pick 'em</NavLink></div>
+           {isUfcCardLoaded ? <div style={{border: 'white 5px solid'}} className='swm'  onClick={() => { handleOptionClick('/section3'); handleAppleClick(); }}><NavLink className='color-gold' exact to="/section3">Pick 'em</NavLink></div>
            :
            <div style={{ display: 'flex',justifyContent:'center' }}><div className="loading" style={{ height: '50px', width: '50px' }}></div>
            <h5 style={{ display: 'flex', whiteSpace: 'nowrap' }}>
              Loading Card Details
            </h5>
          </div>}
-            <div className='swm'  onClick={() => { handleOptionClick('/results'); handleAppleClick(); }}><NavLink className='color-gold' exact to="/results">Results</NavLink></div>
-            <div className='swm'  onClick={() => { handleOptionClick('/about'); handleAppleClick(); }}><NavLink className='color-gold' exact to="/about">About P4P</NavLink></div>
+            <div style={{border: 'white 5px solid'}} className='swm'  onClick={() => { handleOptionClick('/results'); handleAppleClick(); }}><NavLink className='color-gold' exact to="/results">Results</NavLink></div>
+            <div style={{border: 'white 5px solid'}} className='swm'  onClick={() => { handleOptionClick('/about'); handleAppleClick(); }}><NavLink className='color-gold' exact to="/about">About P4P</NavLink></div>
             
           </div>
           </>  }
