@@ -10,6 +10,31 @@ import Dnd from './Dnd';
 
 function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
 
+  const [backupID, setBackupID] = useState(0)
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://off-therecordpicks.onrender.com/users');
+        const data = await response.json();
+        setBackupID(data.length);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []); 
+
+console.log(backupID)
+
+
+
+
+
+
   // const locationCity = locationCity
   const handleRoundChange = (index, round) => {
     const updatedPredictions = [...predictions];
@@ -30,7 +55,7 @@ function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
 
   const [showUfcCard, setShowUfcCard] = useState(true);
 
-  
+  console.log(user)
   const toggleCard = () => {
     setShowUfcCard((prevShowUfcCard) => !prevShowUfcCard);
     setPredictions([])
@@ -152,6 +177,11 @@ console.log(predictions)
 
 
 
+console.log(predictions)
+console.log(mainEvent)
+// console.log(user.username !== undefined ? user.username : user.userName)
+// console.log(user.id !== undefined ? user.id : 2)
+
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -168,12 +198,14 @@ const handleSubmit = async (e) => {
         }));
 
         const dataToSend = {
-            owner: user.username || user.userName,
-            location: location,
-            mainEvent: mainEvent,
-            predictions: predictionData,
-            user_id: user.id || 2,
-        };
+          owner: user.username !== undefined ? user.username : user.userName,
+          location: location,
+          mainEvent: mainEvent,
+          predictions: predictionData,
+          user_id: user.id !== undefined ? user.id : backupID,
+      };
+      
+        console.log(dataToSend)
 
         fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
             method: 'POST',

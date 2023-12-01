@@ -27,15 +27,7 @@ function App() {
   const [showDropdown, setShowDropdown] = useState(false);
 
 
-  
 
-
-
-
-
-
-
- 
   const handleAppleClick = () => {
     setShowDropdown(!showDropdown);
   };
@@ -493,7 +485,7 @@ console.log(modifiedUfcResults)
     setUser(null);
   }
 
-  console.log(user)
+console.log(user)
 
 
 console.log(modifiedUfcResults)
