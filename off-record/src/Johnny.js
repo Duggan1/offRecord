@@ -7,7 +7,7 @@ import Header from "./Header";
 
 
 
-function Johnny({ onLogin }) {
+function Johnny({ onLogin, ufcCard }) {
     const navigate = useNavigate()
     const [userName, setUserName] = useState('');
     const [fullName, setFullName] = useState('');
@@ -49,6 +49,7 @@ function Johnny({ onLogin }) {
                 password,
                 fullName,
                 Email,
+                
                 
             };
             fetch('https://off-therecordpicks.onrender.com/signup', {
@@ -129,7 +130,7 @@ function Johnny({ onLogin }) {
 
     return (
         <div className="johnny">
-          <Header/>
+          <Header ufcCard={ufcCard}/>
             {/* <h3 style={{marginTop:'0%'}}>Sign Up / Login</h3> */}
             <div style={{ display: 'inline-block',marginBottom:'5%',marginTop:'5%',}}className="custom-checkbox">
           <input

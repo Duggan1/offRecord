@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
-import Header from './Header';
+// import Header from './Header';
 
 
 
@@ -25,7 +25,7 @@ function NavBar({ user ,onLogin, onLogout, ufcCard}) {
 
   return (
     <div className="App">
-      <Header user={user} onLogin={onLogin} onLogout={onLogout} />
+      {/* <Header user={user} onLogin={onLogin} onLogout={onLogout} /> */}
       <header className="App-header">
       
         

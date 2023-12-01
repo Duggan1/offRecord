@@ -72,6 +72,9 @@ code {
 
 
 }
+.text-align-center {
+  text-align: center;
+}
 .background-purple {
   background-color: rgb(58, 0, 58);
 }

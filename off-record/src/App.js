@@ -12,7 +12,7 @@ import axios from 'axios';
 import * as yup from 'yup';
 import isEqual from 'lodash/isEqual';
 // import CommentSection from './CommentSection';
-
+import Header from './Header';
 
 
 
@@ -703,7 +703,10 @@ console.log(location); // United States
 </div>
 
 </div>
-{user ? <NavBar ufcCard={ufcCard3} user={user} /> : <Johnny onLogin={handleLogin} onLogout={handleLogout} />}
+{user ?
+//  <NavBar ufcCard={ufcCard3} user={user} /> 
+    <Header ufcCard={ufcCard3}/>
+ : <Johnny onLogin={handleLogin} onLogout={handleLogout} ufcCard={ufcCard3} />}
 
     
    <Routes>
