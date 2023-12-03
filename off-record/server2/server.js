@@ -65,6 +65,11 @@ app.get('/scrape-ufc-website', async (req, res) => {
       const winnerElement = $(element).find('.c-listing-fight__corner-body--red .c-listing-fight__outcome--Win');
       const methodElement = $(element).find('.c-listing-fight__result-text.method');
       const roundElement = $(element).find('.c-listing-fight__result-text.round');
+      console.log('Processing fight:', index);
+      console.log('Winner element:', winnerElement);
+      console.log('Method element:', methodElement);
+      console.log('Round element:', roundElement);
+
 
       let winner = 'N/A'; 
       if (winnerElement.length > 0) {

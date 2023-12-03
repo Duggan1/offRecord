@@ -107,7 +107,7 @@ function Header({user, ufcCard}) {
                 height={'40px'}
                  src={logo} alt='fighting logo' 
                  onClick={() => handleAppleClick()}
-                  style={{cursor:'pointer',backgroundColor:'purple',marginLeft:'0%',padding:'3%',border:'white 2px solid',borderRadius:'15%'}}/>
+                  style={{cursor:'pointer',backgroundColor:'purple',marginLeft:'0%',padding: '3% 25%',border:'white 2px solid',borderRadius:'15%'}}/>
      
          </>         
           : 
@@ -185,9 +185,17 @@ function Header({user, ufcCard}) {
                 </h1></div>
                 <img 
                 height={'40px'}
+                // Width={'40%'}
                  src={logo} alt='fighting logo' 
                  onClick={() => handleAppleClick()}
-                  style={{color:'darkred',cursor:'pointer',backgroundColor:'darkred',marginLeft:'0%',padding:'3%',border:'white 2px solid',borderRadius:'15%'}}/>
+                  style={{color:'darkred',
+                  cursor:'pointer',
+                  backgroundColor:'darkred',
+                  
+                  padding: '3% 25%',
+                  marginLeft:'0%',
+                  // padding:'3%',
+                  border:'white 2px solid',borderRadius:'15%',backgroundSize:'cover'}}/>
      
       
 
