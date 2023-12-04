@@ -291,10 +291,10 @@ function calculatePoints(pick, result) {
           // Check if the method also matches, only if the winner is correct
           if (pick.method !== null && result.method !== null && pick.method === result.method) {
             points += 1;
-          }
+          
           if (pick.round !== null && result.round !== null && pick.round == result.round) {
             points += 1;
-          }
+          }}
 
 
         }
