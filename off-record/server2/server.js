@@ -192,6 +192,9 @@ app.get('/scrape-ufc-website', async (req, res) => {
             broadcaster
 
           }
+          if (!oddResults.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(oddDetails))) {
+            fightRecords.push(oddDetails);
+          }
           oddResults.push(oddDetails)
       });
       
@@ -201,24 +204,29 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
         // const fighters = [];
 
-        $('.MMACompetitor__Detail').each((index, element) => {
-            const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
-            const record = recordElement.text().trim();
-
-            
-
-            const nameElement3 = $(element).find('.truncate');
-            const name = nameElement3.text().trim();
-
-            const fighter = {
-                // name,
-                // name2,
-                name,
-                record,
-            };
-
-            fighters.push(fighter);
-        });
+        $('.MMACompetitor').each((index, element) => {
+          const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
+          const record = recordElement.text().trim();
+      
+          const arrowElement = $(element).find('.MMACompetitor__arrow');
+          const xlinkHref = arrowElement.find('use').attr('xlink:href');
+      
+          // Determine if it is a left or right arrow based on xlinkHref
+          const isLeftArrow = xlinkHref.includes('icon__arrow__winner_left');
+          const isRightArrow = xlinkHref.includes('icon__arrow__winner_right');
+      
+          const nameElement = $(element).find('.truncate');
+          const name = nameElement.text().trim();
+      
+          const fighter = {
+              name,
+              record,
+              arrowDirection: isLeftArrow ? 'left' : isRightArrow ? 'right' : 'unknown',
+          };
+      
+          fighters.push(fighter);
+      });
+      
 
       
 
