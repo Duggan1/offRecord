@@ -334,41 +334,41 @@ function calculateTotalPoints(result, mainEvent) {
   
 
   
-  // useEffect(() => {
-  //   fetch('https://off-therecordpicks.onrender.com/picks')
-  //     .then(response => {
-  //       if (!response.ok) {
-  //         throw new Error('Network response was not ok');
-  //       }
-  //       return response.json();
-  //     })
-  //     .then(data => {
-  //       console.log(data); // Log the data received from the API
-  //       if (Array.isArray(data.picks)) {
+  useEffect(() => {
+    fetch('https://off-therecordpicks.onrender.com/picks')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data); // Log the data received from the API
+        if (Array.isArray(data.picks)) {
 
-  //         console.log(data)  
-  //         setResults(data.picks);
-  //         const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
-  //         setResults(filteredResults);
-  //         console.log(filteredResults)
-  //         data.picks.forEach(result => {
-  //           if (result.owner === 'AdminKev' && result.predictions.length > 0) {
-  //             setAdminKevPicks(picks => ({
-  //               ...picks,
-  //               [result.main_event]: result.predictions
-  //             }));
-  //           }
-  //         });
-  //       } else {
-  //         console.error('API response does not have an array in the "picks" property:', data);
-  //       }
+          console.log(data)  
+          setResults(data.picks);
+          const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
+          setResults(filteredResults);
+          console.log(filteredResults)
+          data.picks.forEach(result => {
+            if (result.owner === 'AdminKev' && result.predictions.length > 0) {
+              setAdminKevPicks(picks => ({
+                ...picks,
+                [result.main_event]: result.predictions
+              }));
+            }
+          });
+        } else {
+          console.error('API response does not have an array in the "picks" property:', data);
+        }
       
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching results:', error);
-  //       // Handle error as needed
-  //     });
-  // }, []); 
+      })
+      .catch(error => {
+        console.error('Error fetching results:', error);
+        // Handle error as needed
+      });
+  }, []); 
 
 
   const fetchPicks = () => {
@@ -1037,7 +1037,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
       
       {Object.entries(leaderboardwinners).map(([event, eventData]) => (
         <div key={event}>
-          <h3 className="tight">{event}</h3>
+          <p className="tight snow landunder" style={{textDecoration:'underline',fontWeight:'bold'}}>{event}</p>
           <div className="tight">
             {eventData.winner === "Pending" ? (
             
