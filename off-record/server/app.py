@@ -277,6 +277,7 @@ class UFCEventsResource(Resource):
                     'method': fight.method,
                     'round': fight.round,
                     'winner': fight.winner,
+                    'odds': fight.odds,
                 }
                 event_data['fights'].append(fight_data)
 

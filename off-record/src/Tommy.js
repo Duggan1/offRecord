@@ -516,7 +516,7 @@ const toggleSI = () => {
 }
 
 
-console.log(signIn)
+console.log(selectedUfcCard)
 
 if (isLoading) {
   return <Dnd />; // Render loading indicator
@@ -593,6 +593,7 @@ if (isLoading) {
       <span className={`mobile-fighter-name ${predictions[index]?.winner === 1 ? 'selected' : ''}`}>
         {fight.fighters[1]}
       </span>
+      <span className='color-gold'>hello</span>
     </div>
   </p>
 
@@ -828,7 +829,8 @@ if (isLoading) {
       <span className={`mobile-fighter-name ${predictions[index]?.winner === 1 ? 'selected' : ''}`}>
         {fight.fighters[1]}
       </span>
-    </div>
+      
+    </div><span className='color-gold'>{fight.odd}</span>
   </p>
 
 
