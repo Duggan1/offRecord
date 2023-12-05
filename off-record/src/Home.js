@@ -8,34 +8,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
     const handleOptionClick = (option) => {
         navigate(`${option}`);
       };
-    // const [ countPick ,setPickCount] = useState(null)
-    // // const [mainEvent, setMainEvent ] = useState('UFC')
-    // console.log(BGpic)
-    // console.log(tapImage)
-    
-    //   useEffect(() => {
-    //     // Fetch results from the API
-    //     fetch('https://off-therecordpicks.onrender.com/picks')
-    //       .then(response => {
-    //         if (!response.ok) {
-    //           throw new Error('Network response was not ok');
-    //         }
-    //         return response.json();
-    //       })
-    //       .then(data => {
-    //         console.log(data); // Log the data received from the API
-    //         if (Array.isArray(data.picks)) {
-    //             console.log(data)
-    //             setPickCount(data.picks.length);
-              
-    //         } 
-    //       })
-    //       .catch(error => {
-    //         console.error('Error fetching results:', error);
-    //         // Handle error as needed
-    //       });
-    //   }, []); // Empty dependency array means this effect runs once after the component mounts
-      
+
       
       console.log(ufcCard)
       const selectedUfcCard = ufcCard.length > 1 ? ufcCard : stallUfcCard;
@@ -413,11 +386,17 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                   
                   // paddingLeft:'5%',
                 }} > 
-                { !user ? 
-                <h6 className='color-yellow snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',}}> Login/Signup to make Off the Record Picks </h6>:
-                <h6 className='color-yellow snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',}}> Welcome Back <span className="color-white">{user.username}</span></h6>
 
-                              }
+               {mainBlueC ?<>
+                 <div
+                  style={{zIndex:'1',display:'flex',justifyContent:'center'}}
+                  ><h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white'}}>{mainRedC}</h6>
+                 <h6 className='color-white snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white',color:'black'}}>  vs  </h6>
+                 <h6 className=' snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'blue',color:'white'}}>{mainBlueC}</h6>
+                 
+                 {/* //////////////////////// */}</div>
+                 <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</h6>
+                </>: null} 
 
                   <h5 className=' snow' style={{backgroundImage: `url(${tapImage})`,
                   backgroundSize: '100% 100%',
@@ -434,13 +413,19 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
 
 
                 {/* ////////////////////// */}
-                 <div style={{textAlign:'center'}}> <div
-                  style={{zIndex:'1',display:'flex'}}
-                  ><h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black',color:'red'}}>{mainRedC}</h6>
-                 <h6 className='color-white snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black'}}>  vs  </h6>
-                 <h6 className=' snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'black',color:'lightblue'}}>{mainBlueC}</h6>
-                 {/* //////////////////////// */}</div>
-                <h6 className='color-gold snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black'}}> {locationCity}, {state}</h6>
+                 <div style={{textAlign:'center'}}>
+
+
+
+                 { !user ? 
+                <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',}}> Login/Signup to make Off the Record Picks </h6>:
+                <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',}}> Welcome Back <span className="color-white">{user.username}</span></h6>
+
+                              }
+
+
+                  {/* //////////////////////////// */}
+                
                 <h5 className=' snow' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',

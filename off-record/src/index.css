@@ -717,10 +717,10 @@ code {
 /* Add some spacing from buttons */
 }
 .bluecorner{
-  border: blue 2px solid;
+  border: blue 4px solid;
 }
 .redcorner{
-  border: red 2px solid;
+  border: red 4px solid;
 }
 .fighter-button:not(.selected):hover {
   background-color: blue;
