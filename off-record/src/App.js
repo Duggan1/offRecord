@@ -231,7 +231,8 @@ const patchEvent = () => {
       // Add more properties as needed
       method: fight.method, // Example placeholder
       round: fight.round, // Example placeholder
-      winner: fight.winner, // Example placeholder
+      winner: fight.winner,
+      odds: fight.odds // Example placeholder
     };
   });
   
@@ -291,12 +292,15 @@ useEffect(() => {
 
       // Compare relevant properties within each fight for ufcCard2 and ufcCard3
       const matchComparison = fight.match === ufcCard3Fight.match;
+
+      const oddsComparison = fight.odds === ufcCard3Fight.odds;
+
       const recordsComparison = fight.records[0] === ufcCard3Fight.records[0] && fight.records[1] === ufcCard3Fight.records[1];
 
       console.log(`Fight ${index + 1} - Match Comparison: ${matchComparison}`);
       console.log(`Fight ${index + 1} - Records Comparison: ${recordsComparison}`);
 
-      return !(matchComparison && recordsComparison);
+      return !(matchComparison && recordsComparison && oddsComparison);
     });
 
     if (detailsDoNotMatch) {
@@ -310,7 +314,7 @@ useEffect(() => {
       console.log(ufcCard2)
     }
   }
-}, [ufcCard2 && ufcCard3]);
+}, [ufcCard3.length > 3]);
 
 
 
