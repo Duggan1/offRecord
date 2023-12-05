@@ -9,15 +9,15 @@ const port = 3001; // Choose an available port
 // Enable CORS for all routes
 app.use(cors());
 
-// const deatilsUrl = 'https://www.ufc.com/event/ufc-295';
+const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-december-09-2023';
+const Recurl = 'https://www.tapology.com/fightcenter/events/105194-ufc-fight-night';
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039634/league/ufc'
 
-// const Recurl = 'https://www.tapology.com/fightcenter/events/102959-ufc-295-jones-vs-miocic';
-
-const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-december-02-2023';
-
-const Recurl = 'https://www.tapology.com/fightcenter/events/104486-ufc-fight-night';
-
-const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039593/league/ufc'
+// wait for JalenTurner>BobbyGreen to Update to auto-patch
+// const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-december-02-2023';
+// const Recurl = 'https://www.tapology.com/fightcenter/events/104486-ufc-fight-night';
+// const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039593/league/ufc'
+// wait for JalenTurner>BobbyGreen to Update to auto-patch
 
 const fightRecords = [];
 const addedFighters = [];
@@ -239,7 +239,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
 
         // Now you can use the fighters array or log its content
-        console.log(fighters);
+        // console.log(fighters);
 
 
       
