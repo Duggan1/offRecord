@@ -208,10 +208,10 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
           const record = recordElement.text().trim();
       
-          const arrowElement = $(element).find('.MMACompetitor__arrow');
-          const useElement = arrowElement.find('use');
-          const xlinkHref = useElement.attr('xlink:href');
-          const xlinkHref2 = useElement.text().trim(); // If there's any text content within the <use> tag
+          // const arrowElement = $(element).find('.MMACompetitor__arrow');
+          // const useElement = arrowElement.find('use');
+          // const xlinkHref = useElement.attr('xlink:href');
+          // const xlinkHref2 = useElement.text().trim(); // If there's any text content within the <use> tag
 
       
           // Determine if it is a left or right arrow based on xlinkHref
@@ -224,10 +224,10 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const fighter = {
               name,
               record,
-              xlinkHref,
-              xlinkHref2,
-              arrowElement,
-              useElement
+              // xlinkHref,
+              // xlinkHref2,
+              // arrowElement,
+              // useElement
 
           };
       

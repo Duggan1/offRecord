@@ -118,7 +118,9 @@ useEffect(() => {
       const response = await fetch('https://off-therecordpicks.onrender.com/events');
       const data = await response.json();
       console.log(data)
-      setUfcEvents(data.ufc_events[1] || []);
+      const EventNum = data.ufc_events.length - 1
+      console.log(data.ufc_events)
+      setUfcEvents(data.ufc_events[EventNum] || []);
       const newUfcCard = ufcEvents.fights.map((fight, index) => {
         return {
             fighters: [fight.redCornerName, fight.blueCornerName],
@@ -301,9 +303,10 @@ useEffect(() => {
     } else {
       // The details, including fights, match
       console.log('Details match!');
+      console.log(ufcCard2)
     }
   }
-}, [ufcCard2, ufcCard3]);
+}, [ufcCard2 && ufcCard3]);
 
 
 
@@ -318,8 +321,8 @@ useEffect(() => {
 
 
 console.log(eventInfo) 
-const backgroundImageSrc = eventInfo.backgroundImageSrc
-const tapImageSrc = eventInfo.tapImage
+const backgroundImageSrc = ufcEvents.backgroundImageSrc
+const tapImageSrc = ufcEvents.tapImage
   
   ///move out of App
   const ufcCard = [
@@ -671,14 +674,15 @@ useEffect(() => {
 
 // Check if eventInfo.locationCC is defined before splitting it
 let locationInfo = [];
-if (eventInfo && eventInfo.locationCC) {
-  locationInfo = eventInfo.locationCC.split(', ').map(part => part.trim());
+if (ufcEvents && ufcEvents.locationCC) {
+  locationInfo = ufcEvents.locationCC.split(', ').map(part => part.trim());
 }
 
 const locationcity = locationInfo[0];
 const locationstate = locationInfo[1];
 const location = locationInfo[locationInfo.length - 1];
 
+console.log(eventInfo)
 console.log(location); // United States
 
 
