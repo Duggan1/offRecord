@@ -45,7 +45,7 @@ useEffect(() => {
       console.log(response.data) 
  
       const { event_name, event_date,fights, records,
-        backgroundImageSrc, location, locationCC, tapImage, fighters
+        backgroundImageSrc, location, locationCC, tapImage, fighters, 
        } = response.data;
 
        const uniqueFighters = [...new Set(fighters.map(JSON.stringify))].map(JSON.parse);
@@ -76,7 +76,7 @@ useEffect(() => {
  
 
 
-
+      console.log(updatedRecords.length)
       const newUfcCard = fights.map((fight, index) => {
         return {
             fighters: [fight.redCornerName, fight.blueCornerName],
@@ -86,7 +86,8 @@ useEffect(() => {
             fighterPics: [fight.redCornerImage, fight.blueCornerImage],
             winner: fight.winner,
             method: fight.method,
-            round: fight.round
+            round: fight.round,
+            odds: records[updatedRecords.length + index].odds
 
         };
     });
@@ -128,6 +129,7 @@ useEffect(() => {
             records: [fight.redCornerRecord, fight.blueCornerRecord],
             flags: [fight.redCornerCountry, fight.blueCornerCountry],
             fighterPics: [fight.redCornerImage, fight.blueCornerImage],
+            odds: fight.odds
 
         };
     });
@@ -170,7 +172,9 @@ useEffect(() => {
           // Add more properties as needed
           method: fight.method, // Example placeholder
           round: fight.round, // Example placeholder
-          winner: fight.winner, // Example placeholder
+          winner: fight.winner,
+          odds: fight.odds,
+          // Example placeholder
         };
       });
 

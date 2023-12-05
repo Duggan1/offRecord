@@ -227,11 +227,13 @@ class UFCEventResource(Resource):
             method = fight['method']
             round = fight['round']
             winner = fight['winner']
+            odds = fight['odds']
+            
 
             ufc_fight = UFCFight(weight_class=weight_class, red_corner_name=red_corner_name,
                                 blue_corner_name=blue_corner_name, red_corner_country=red_corner_country,
                                 blue_corner_country=blue_corner_country, blue_corner_image=blue_corner_image, red_corner_image=red_corner_image, red_corner_record=red_corner_record,
-                                blue_corner_record=blue_corner_record, method=method, round=round, winner=winner)
+                                blue_corner_record=blue_corner_record, method=method, round=round, winner=winner, odds=odds)
             new_event.fights.append(ufc_fight)
 
 

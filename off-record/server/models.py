@@ -99,7 +99,7 @@ class Prediction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     picks_id = db.Column(db.Integer, db.ForeignKey('picks.id'), nullable=False)
     fighters = db.Column(db.JSON, nullable=False)
-    winner = db.Column(db.Integer, nullable=True)  # Index of the winning fighter
+    winner = db.Column(db.Integer, nullable=True)  # nullable True LIVE updates
     method = db.Column(db.String(50), nullable=True)
     round = db.Column(db.String(50), nullable=True)
 
@@ -142,6 +142,7 @@ class UFCFight(db.Model):
     method = db.Column(db.String(50), nullable=True)
     round = db.Column(db.String(50), nullable=True)
     winner = db.Column(db.String(50), nullable=True)
+    odds = db.Column(db.String(50), nullable=True)
 
     event_id = db.Column(db.Integer, db.ForeignKey('ufc_events.id'), nullable=False)
 
