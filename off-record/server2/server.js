@@ -179,7 +179,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       
               // Extract other details if available
               const broadcaster = $(element).find('.SomeOtherElementClass').text();
-      
+          }
       
           // Do something with the extracted information
           console.log(`Network: ${network}`);
