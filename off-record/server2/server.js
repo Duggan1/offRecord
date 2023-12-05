@@ -22,6 +22,7 @@ const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039593/league/ufc'
 const fightRecords = [];
 const addedFighters = [];
 const fighters = []
+const oddResults = []
 
 
 app.get('/scrape-ufc-website', async (req, res) => {
@@ -160,6 +161,44 @@ app.get('/scrape-ufc-website', async (req, res) => {
         const $ = cheerio.load(html);
 
 
+        // .Gamestrip__Overview
+        $('.Gamestrip__Overview').each((index, element) => {
+          // Extract network and odds information
+          const network = $(element).find('.ScoreCell__NetworkItem').text();
+          const odds = $(element).find('.ScoreCell__Odds').text();
+      
+          // Extract time, method, and other details
+          const timeDetails = $(element).find('.ScoreCell__Time .tc').text();
+          const [final, method, _, roundInfo] = timeDetails.split('\n').map(s => s.trim());
+      
+          // Extract round and winner information
+          const [round, winner] = roundInfo.split(',').map(s => s.trim());
+      
+          // Extract other details if available
+          const broadcaster = $(element).find('.SomeOtherElementClass').text();
+      
+          // Do something with the extracted information
+          console.log(`Network: ${network}`);
+          console.log(`Odds: ${odds}`);
+          console.log(`Final: ${final}`);
+          console.log(`Method: ${method}`);
+          console.log(`Round: ${round}`);
+          console.log(`Winner: ${winner}`);
+          console.log(`Broadcaster: ${broadcaster}`);
+          const oddDetails = {
+      
+            network,
+            odds,
+            final,
+            method,
+            round,
+            winner,
+            broadcaster
+
+          }
+          oddResults.push(oddDetails)
+      });
+      
       
 
         
@@ -213,7 +252,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       fights: fightData,
       records: fightRecords,
       backgroundImageSrc,
-      arena, city, country, locationCC, tapImage, fighters,
+      arena, city, country, locationCC, tapImage, fighters, oddResults
     });
   } catch (error) {
     console.error('Error:', error);
