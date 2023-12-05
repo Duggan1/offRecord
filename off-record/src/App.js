@@ -150,6 +150,64 @@ console.log(eventInfo)
 console.log(ufcEvents)
 console.log(ufcCard2)
 console.log(ufcCard3)
+useEffect(() => {
+  async function submitUfcEvent() {
+    try {
+      // Example data to send in the POST request
+      const recreatedFights = ufcCard2.map((fight, index) => {
+        return {
+          weightClass: fight.match,
+          redCornerName: fight.fighters[0],
+          blueCornerName: fight.fighters[1],
+          redCornerCountry: fight.flags[0],
+          blueCornerCountry: fight.flags[1],
+          redCornerRecord: fight.records[0] || ' ',
+          blueCornerRecord: fight.records[1] || ' ',
+          redCornerImage: fight.fighterPics[0],
+          blueCornerImage: fight.fighterPics[1],
+          // Add more properties as needed
+          method: fight.method, // Example placeholder
+          round: fight.round, // Example placeholder
+          winner: fight.winner, // Example placeholder
+        };
+      });
+
+
+      const dataToSend = {
+        event_name: eventInfo.event_name,
+        locationCC: eventInfo.locationCC,
+        backgroundImageSrc: eventInfo.backgroundImageSrc,
+        tapImage: eventInfo.tapImage,
+        // fights: eventInfo.fights,
+        // records: eventInfo.records,
+        fights: recreatedFights,
+      };
+
+      // Make a POST request to submit UFC event
+      const postResponse = await axios.post('/submit-ufc-event', dataToSend, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (postResponse.status === 201) {
+        // Handle success
+        console.log('UFC event submitted successfully:', postResponse.data);
+        // Perform any further actions here
+      } else {
+        // Handle errors
+        console.error('Network response was not ok');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle errors and validation errors as needed
+    }
+  }
+
+  // Call the submitUfcEvent function separately, not dependent on the fetchData useEffect
+  submitUfcEvent();
+}, [eventInfo.event_name !== null]);
+
 
 const patchEvent = () => {
 
@@ -253,73 +311,17 @@ useEffect(() => {
 
 
 
-useEffect(() => {
-  async function submitUfcEvent() {
-    try {
-      // Example data to send in the POST request
-      const recreatedFights = ufcCard2.map((fight, index) => {
-        return {
-          weightClass: fight.match,
-          redCornerName: fight.fighters[0],
-          blueCornerName: fight.fighters[1],
-          redCornerCountry: fight.flags[0],
-          blueCornerCountry: fight.flags[1],
-          redCornerRecord: fight.records[0] || ' ',
-          blueCornerRecord: fight.records[1] || ' ',
-          redCornerImage: fight.fighterPics[0],
-          blueCornerImage: fight.fighterPics[1],
-          // Add more properties as needed
-          method: fight.method, // Example placeholder
-          round: fight.round, // Example placeholder
-          winner: fight.winner, // Example placeholder
-        };
-      });
 
-
-      const dataToSend = {
-        event_name: eventInfo.event_name,
-        locationCC: eventInfo.locationCC,
-        backgroundImageSrc: eventInfo.backgroundImageSrc,
-        tapImage: eventInfo.tapImage,
-        // fights: eventInfo.fights,
-        // records: eventInfo.records,
-        fights: recreatedFights,
-      };
-
-      // Make a POST request to submit UFC event
-      const postResponse = await axios.post('/submit-ufc-event', dataToSend, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (postResponse.status === 201) {
-        // Handle success
-        console.log('UFC event submitted successfully:', postResponse.data);
-        // Perform any further actions here
-      } else {
-        // Handle errors
-        console.error('Network response was not ok');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      // Handle errors and validation errors as needed
-    }
-  }
-
-  // Call the submitUfcEvent function separately, not dependent on the fetchData useEffect
-  submitUfcEvent();
-}, [eventInfo]);
 
 
 
 
 
 console.log(eventInfo) 
-const backgroundImageSrc = ufcEvents.backgroundImageSrc
-const tapImageSrc = ufcEvents.tapImage
+const backgroundImageSrc = eventInfo.backgroundImageSrc
+const tapImageSrc = eventInfo.tapImage
   
-  
+  ///move out of App
   const ufcCard = [
 
       {
@@ -381,7 +383,7 @@ const tapImageSrc = ufcEvents.tapImage
         flags: ["United States", "United States"],
         fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-08/CORMIER_DANIEL_L_08-15.png?VersionId=X4Gimp.0zYGxx4haM_ASnymi8cEe4qNr&itok=EWrGvjtb', 'https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png',],
       }
-    ];
+    ]; ///move out of App
     
   
 console.log(ufcCard)
@@ -669,8 +671,8 @@ useEffect(() => {
 
 // Check if eventInfo.locationCC is defined before splitting it
 let locationInfo = [];
-if (ufcEvents && ufcEvents.locationCC) {
-  locationInfo = ufcEvents.locationCC.split(', ').map(part => part.trim());
+if (eventInfo && eventInfo.locationCC) {
+  locationInfo = eventInfo.locationCC.split(', ').map(part => part.trim());
 }
 
 const locationcity = locationInfo[0];
