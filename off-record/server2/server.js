@@ -210,6 +210,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       
           const arrowElement = $(element).find('.MMACompetitor__arrow');
           const xlinkHref = arrowElement.find('use').attr('xlink:href');
+          const xlinkHref2 = arrowElement.text().trim();
       
           // Determine if it is a left or right arrow based on xlinkHref
           // const isLeftArrow = xlinkHref.includes('icon__arrow__winner_left');
@@ -222,6 +223,9 @@ app.get('/scrape-ufc-website', async (req, res) => {
               name,
               record,
               xlinkHref,
+              xlinkHref2,
+              arrowElement,
+
           };
       
           fighters.push(fighter);
