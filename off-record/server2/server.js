@@ -168,14 +168,18 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const odds = $(element).find('.ScoreCell__Odds').text();
       
           // Extract time, method, and other details
-          const timeDetails = $(element).find('.ScoreCell__Time .tc').text();
-          const [final, method, _, roundInfo] = timeDetails.split('\n').map(s => s.trim());
+          const timeDetailsElement = $(element).find('.ScoreCell__Time .tc');
+          const timeDetails = timeDetailsElement.length > 0 ? timeDetailsElement.text() : '';
       
-          // Extract round and winner information
-          const [round, winner] = roundInfo.split(',').map(s => s.trim());
+          if (timeDetails) {
+              const [final, method, _, roundInfo] = timeDetails.split('\n').map(s => s.trim());
       
-          // Extract other details if available
-          const broadcaster = $(element).find('.SomeOtherElementClass').text();
+              // Extract round and winner information
+              const [round, winner] = roundInfo.split(',').map(s => s.trim());
+      
+              // Extract other details if available
+              const broadcaster = $(element).find('.SomeOtherElementClass').text();
+      
       
           // Do something with the extracted information
           console.log(`Network: ${network}`);
