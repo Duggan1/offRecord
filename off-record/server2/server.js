@@ -212,8 +212,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const xlinkHref = arrowElement.find('use').attr('xlink:href');
       
           // Determine if it is a left or right arrow based on xlinkHref
-          const isLeftArrow = xlinkHref.includes('icon__arrow__winner_left');
-          const isRightArrow = xlinkHref.includes('icon__arrow__winner_right');
+          // const isLeftArrow = xlinkHref.includes('icon__arrow__winner_left');
+          // const isRightArrow = xlinkHref.includes('icon__arrow__winner_right');
       
           const nameElement = $(element).find('.truncate');
           const name = nameElement.text().trim();
@@ -221,7 +221,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const fighter = {
               name,
               record,
-              arrowDirection: isLeftArrow ? 'left' : isRightArrow ? 'right' : 'unknown',
+              xlinkHref,
           };
       
           fighters.push(fighter);
