@@ -170,33 +170,25 @@ app.get('/scrape-ufc-website', async (req, res) => {
           // Extract time, method, and other details
           const timeDetailsElement = $(element).find('.ScoreCell__Time .tc');
           const timeDetails = timeDetailsElement.length > 0 ? timeDetailsElement.text() : '';
-      
-          if (timeDetails) {
-              const [final, method, _, roundInfo] = timeDetails.split('\n').map(s => s.trim());
-      
-              // Extract round and winner information
-              const [round, winner] = roundInfo.split(',').map(s => s.trim());
-      
-              // Extract other details if available
-              const broadcaster = $(element).find('.SomeOtherElementClass').text();
-          }
-      
+        
+          const broadcaster = $(element).find('.SomeOtherElementClass').text();
+     
           // Do something with the extracted information
-          console.log(`Network: ${network}`);
-          console.log(`Odds: ${odds}`);
-          console.log(`Final: ${final}`);
-          console.log(`Method: ${method}`);
-          console.log(`Round: ${round}`);
-          console.log(`Winner: ${winner}`);
-          console.log(`Broadcaster: ${broadcaster}`);
+          // console.log(`Network: ${network}`);
+          // console.log(`Odds: ${odds}`);
+          // console.log(`Final: ${final}`);
+          // console.log(`Method: ${method}`);
+          // console.log(`Round: ${round}`);
+          // console.log(`Winner: ${winner}`);
+          // console.log(`Broadcaster: ${broadcaster}`);
           const oddDetails = {
       
             network,
             odds,
-            final,
-            method,
-            round,
-            winner,
+            timeDetails,
+            // method,
+            // round,
+            // winner,
             broadcaster
 
           }
