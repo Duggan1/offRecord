@@ -593,8 +593,8 @@ if (isLoading) {
       <span className={`mobile-fighter-name ${predictions[index]?.winner === 1 ? 'selected' : ''}`}>
         {fight.fighters[1]}
       </span>
-      <span className='color-gold'>hello</span>
-    </div>
+      
+    </div><span className='color-gold'>{fight.odds}</span>
   </p>
 
 
@@ -830,7 +830,7 @@ if (isLoading) {
         {fight.fighters[1]}
       </span>
       
-    </div><span className='color-gold'>{fight.odd}</span>
+    </div><span className='color-gold'>{fight.odds}</span>
   </p>
 
 
