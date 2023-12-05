@@ -202,37 +202,37 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
         
 
-        // const fighters = [];
+      //   // const fighters = [];
 
-        $('.MMACompetitor').each((index, element) => {
-          const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
-          const record = recordElement.text().trim();
+      //   $('.MMACompetitor').each((index, element) => {
+      //     const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
+      //     const record = recordElement.text().trim();
       
-          const arrowElement = $(element).find('.MMACompetitor__arrow');
-          const useElement = arrowElement.find('use');
-          const xlinkHref = useElement.attr('xlink:href');
-          const xlinkHref2 = useElement.text().trim(); // If there's any text content within the <use> tag
+      //     const arrowElement = $(element).find('.MMACompetitor__arrow');
+      //     const useElement = arrowElement.find('use');
+      //     const xlinkHref = useElement.attr('xlink:href');
+      //     const xlinkHref2 = useElement.text().trim(); // If there's any text content within the <use> tag
 
       
-          // Determine if it is a left or right arrow based on xlinkHref
-          // const isLeftArrow = xlinkHref.includes('icon__arrow__winner_left');
-          // const isRightArrow = xlinkHref.includes('icon__arrow__winner_right');
+      //     // Determine if it is a left or right arrow based on xlinkHref
+      //     // const isLeftArrow = xlinkHref.includes('icon__arrow__winner_left');
+      //     // const isRightArrow = xlinkHref.includes('icon__arrow__winner_right');
       
-          const nameElement = $(element).find('.truncate');
-          const name = nameElement.text().trim();
+      //     const nameElement = $(element).find('.truncate');
+      //     const name = nameElement.text().trim();
       
-          const fighter = {
-              name,
-              record,
-              xlinkHref,
-              xlinkHref2,
-              arrowElement,
-              useElement
+      //     const fighter = {
+      //         name,
+      //         record,
+      //         xlinkHref,
+      //         xlinkHref2,
+      //         arrowElement,
+      //         useElement
 
-          };
+      //     };
       
-          fighters.push(fighter);
-      });
+      //     fighters.push(fighter);
+      // });
       
 
       
