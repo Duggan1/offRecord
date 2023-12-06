@@ -12,7 +12,7 @@ function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
 
   const [backupID, setBackupID] = useState(0)
 
-
+//  user = true
 
   useEffect(() => {
     const fetchData = async () => {
@@ -539,14 +539,16 @@ if (isLoading) {
                               backgroundColor: 'black',
                               padding: '0px 2px',
                               backgroundSize: '100% 100%',
-                              margin:'0',
+                              margin:'0% 20%',
                               backgroundImage: `url(https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png)`
                             }} alt={`Flag of ${location}`}>
                               
-                            </h1><h1 style={{margin:'0'}}> UFC {locationCity}</h1>
+                            </h1><div class="element-with-border"></div><h1 style={{margin:'0'}}> UFC {locationCity}</h1>
           
           
-          <br></br><h2 className="bay" >{mainEvent}</h2>
+          {/* <br></br><h2 className="" >{mainEvent}</h2> */}
+          
+
           
         {/* <h1> Fight Predictions</h1> */}
         
@@ -567,9 +569,12 @@ if (isLoading) {
                 backgroundImage: `url(https://s.tmimgcdn.com/scr/800x500/294500/crown-concept-logo-design-template2_294549-original.jpg)`
               }} alt={`Flag of ${location}`}>
                 
-              </h1><h1 style={{margin:'0'}}>Dream Card</h1>
+              </h1><div class="element-with-border"></div><h1 style={{margin:'0'}}>Dream Card</h1>
           
-          <h2 className="bay" >{mainEvent}</h2>
+          {/* <h2 className="" >{mainEvent}</h2> */}
+          
+
+          
           
           
         {/* <h1> Fight Predictions</h1> */}
@@ -580,21 +585,19 @@ if (isLoading) {
       
        
       {/* <p className="color-black bold ">Fighter's images will be availabe on Friday after UFC photoshoot occurs </p> */}
-      <form style={{marginBottom: '0px'}} className="blackBG" onSubmit={handleSubmit}>
+      <form style={{marginBottom: '0px',textAlign:'center'}} className="blackBG" onSubmit={handleSubmit}>
         {selectedUfcCard.length > 2 && selectedUfcCard.map((fight, index) => (
     <div key={index} className="fight">
       <div key={index} className="fighterready">
   <p key={index} className="mobile-fight-info">
-    <div className="mobile-fighter-name">
-      <span className={`mobile-fighter-name ${predictions[index]?.winner === 0 ? 'selected' : ''}`}>
-        {fight.fighters[0]}
-      </span>
-      <span className="mobile-fight-info color-black"> vs. </span>
-      <span className={`mobile-fighter-name ${predictions[index]?.winner === 1 ? 'selected' : ''}`}>
+    <div  className=" mobile-fighter-name">
+      <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white'}} className={`white-border mobile-fighter-name ${predictions[index]?.winner === 0 ? 'selected' : ''}`}> {fight.fighters[0]} </span>
+      <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white',color:'black'}} className=" white-border mobile-fight-name color-black"> vs </span>
+      <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'blue',color:'white'}} className={` white-border mobile-fighter-name ${predictions[index]?.winner === 1 ? 'selected' : ''}`}>
         {fight.fighters[1]}
       </span>
       
-    </div><span className='color-gold'>{fight.odds}</span>
+    </div><span className='color-black bg-white'>{fight.odds}</span>
   </p>
 
 
@@ -623,7 +626,7 @@ if (isLoading) {
                 
                 >Round:</label> */}
                 <select
-                  className={`methodbar ${predictions[index]?.round === '1' ||predictions[index]?.round === '2' ||predictions[index]?.round === '3' || predictions[index]?.round === '4'|| predictions[index]?.round === '5' ? 'selected' : ''}`}
+                  className={`methodbar2 ${predictions[index]?.round === '1' ||predictions[index]?.round === '2' ||predictions[index]?.round === '3' || predictions[index]?.round === '4'|| predictions[index]?.round === '5' ? 'selected' : ''}`}
                   onChange={(e) => handleRoundChange(index, e.target.value)}
                 >
                   <option value="">Select Round</option>
@@ -733,10 +736,12 @@ if (isLoading) {
             
           </div>
         ))}
-       
+        <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
      <center>
         {errors && (<p className="errortime" style={{ border: errors.length > 0 ? '5px solid red' : 'none' }}>{errors} </p>)}
-</center><div style={{ borderTop: '2px solid purple'}} className="blackBG">
+</center>
+<div className="blakBG">
+ 
  <button className="submitb" type="submit">Submit Predictions</button></div>
 
         
@@ -772,12 +777,13 @@ if (isLoading) {
 
 }} alt={`Flag of ${location}`}>
   
-</h1><h1 style={{margin:'0'}}> UFC {locationCity}</h1>
+</h1><div style={{borderTop:'solid white 3px'}} class="element-with-border"></div><h1 style={{margin:'0'}}> UFC {locationCity}</h1>
+
 
           
           
           
-          <br></br>
+          
           {/* <h2 className="bay" >{mainEvent}</h2> */}
           </div>: 
           
@@ -802,11 +808,12 @@ if (isLoading) {
                 backgroundImage: `url(https://s.tmimgcdn.com/scr/800x500/294500/crown-concept-logo-design-template2_294549-original.jpg)`
               }} alt={`Flag of ${location}`}>
                 
-              </h1><h1 style={{margin:'0'}}>Dream Card</h1>
+              </h1><div style={{borderTop:'solid white 3px'}} class="element-with-border"></div><h1 style={{margin:'0'}}>Dream Card</h1>
           
           
           
-         <h2 className="bay" >{mainEvent}</h2>
+         {/* <h2 className="marginB0" >{mainEvent}</h2> */}
+         
           
          
         </div>}
@@ -822,15 +829,15 @@ if (isLoading) {
       <div key={index} className="fighterready">
   <p key={index} className="mobile-fight-info">
     <div className="mobile-fighter-name">
-      <span className={`mobile-fighter-name ${predictions[index]?.winner === 0 ? 'selected' : ''}`}>
+      <span style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white'}} className={` white-border mobile-fighter-name ${predictions[index]?.winner === 0 ? 'selected' : ''}`}>
         {fight.fighters[0]}
       </span>
-      <span className="mobile-fight-info color-black"> vs. </span>
-      <span className={`mobile-fighter-name ${predictions[index]?.winner === 1 ? 'selected' : ''}`}>
-        {fight.fighters[1]}
+      <span style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white'}} className={` white-border mobile-fighter-name  color-black`}> vs </span>
+      <span style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'blue',color:'white'}} className={` white-border mobile-fighter-name ${predictions[index]?.winner === 1 ? 'selected' : ''}`}>
+         {fight.fighters[1]}
       </span>
       
-    </div><span className='color-gold'>{fight.odds}</span>
+    </div><span className='bg-white color-black'>{fight.odds}</span>
   </p>
 
 
@@ -929,10 +936,10 @@ if (isLoading) {
             
           </div>
         ))}
-       
+       <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
      <center>
         {errors && (<p className="errortime" style={{ border: errors.length > 0 ? '5px solid red' : 'none' }}>{errors} </p>)}
-</center><div style={{ borderTop: '2px solid purple'}} className="blackBG">
+</center><div style={{ }} className="blackBG">
  </div>
 
         

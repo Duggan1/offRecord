@@ -152,15 +152,15 @@ function Johnny({ onLogin, ufcCard }) {
 
         { showVideo ? 
             <form className="loginsu" onSubmit={handleSubmit}>
-                <label className="color-gold bold">Username:</label>
+                <label className="caged-black bold">Username:</label>
                 <input className="ltypediv" type="text" value={userName} onChange={(e) => setUserName(e.target.value)} required /><br></br>
-                <label className="color-gold bold">Password:</label>
+                <label className="caged-black bold">Password:</label>
                 <input className="ltypediv" type="text" value={password} onChange={(e) => setPassword(e.target.value)} required /><br></br>
 
-                <label className="color-gold bold">Full Name:</label>
+                <label className="caged-black bold">Full Name:</label>
                 <input className="ltypediv" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required /><br></br>
                 
-                <label className="color-gold bold" >Email:</label>
+                <label className="caged-black bold" >Email:</label>
                 <input className="ltypediv" type="email" value={Email} onChange={(e) => setEmail(e.target.value)} required /><br></br>
                 
                 <button style={{marginRight:'17%',minWidth:'10%', marginTop:'3%'}} className="submitb" type="submit">Submit</button>
@@ -174,7 +174,7 @@ function Johnny({ onLogin, ufcCard }) {
             </form> : 
             // <form >
             <form  className="loginsu" onSubmit={handleSubmit2}>
-            <label className="  color-gold bold" >Username:</label>
+            <label className=" caged-black bold" >Username:</label>
             <input
             className="ltypediv"
               type="text"
@@ -183,7 +183,7 @@ function Johnny({ onLogin, ufcCard }) {
               onChange={(e) => setUsername(e.target.value)}
             />
             <br></br>
-            <label className="color-gold bold" >Password:</label>
+            <label className="caged-black bold" >Password:</label>
             <input
             className="ltypediv"
             type="password"

@@ -37,7 +37,7 @@ function Header({user, ufcCard}) {
             onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'red',
                 margin: "0",
                 fontSize:'35px',
                 maxWidth: '100%',
@@ -53,7 +53,7 @@ function Header({user, ufcCard}) {
             onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'red',
                 margin: "0",
                 fontSize:'15px',
                 maxWidth: '100%',
@@ -83,13 +83,29 @@ function Header({user, ufcCard}) {
 
                 // Adjust this value as needed
                 }}>
-                4P
+                4
+                </h1><h1 
+            onClick={() => handleOptionClick('/')}
+            style={{
+                textAlign: 'center',
+                color: 'lightblue',
+                margin: "0",
+                fontSize:'35px',
+                marginTop: '0%',
+                cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                P
                 </h1>
                 <h1 
             onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'lightblue',
                 margin: "0",
                 fontSize:'15px',
                 maxWidth: '100%',
@@ -107,7 +123,7 @@ function Header({user, ufcCard}) {
                 height={'40px'}
                  src={logo} alt='fighting logo' 
                  onClick={() => handleAppleClick()}
-                  style={{cursor:'pointer',backgroundColor:'purple',marginLeft:'0%',padding: '3% 25%',border:'white 2px solid',borderRadius:'15%'}}/>
+                  style={{cursor:'pointer',backgroundColor:'white',marginLeft:'0%',padding: '3% 25%',border:'blue 5px solid',borderRadius:'15%'}}/>
      
          </>         
           : 
@@ -117,7 +133,7 @@ function Header({user, ufcCard}) {
             onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'red',
                 margin: "0",
                 fontSize:'35px',
                 maxWidth: '100%',
@@ -133,7 +149,7 @@ function Header({user, ufcCard}) {
             onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'red',
                 margin: "0",
                 fontSize:'15px',
                 maxWidth: '100%',
@@ -163,13 +179,30 @@ function Header({user, ufcCard}) {
 
                 // Adjust this value as needed
                 }}>
-                4P
+                4
                 </h1>
                 <h1 
             onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'lightblue',
+                margin: "0",
+                fontSize:'35px',
+                marginTop: '0%',
+                cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                P
+                </h1>
+                <h1 
+            onClick={() => handleOptionClick('/')}
+            style={{
+                textAlign: 'center',
+                color: 'lightblue',
                 margin: "0",
                 fontSize:'15px',
                 maxWidth: '100%',
@@ -195,7 +228,7 @@ function Header({user, ufcCard}) {
                   padding: '3% 25%',
                   marginLeft:'0%',
                   // padding:'3%',
-                  border:'white 2px solid',borderRadius:'15%',backgroundSize:'cover'}}/>
+                  border:'white 5px solid',borderRadius:'15%',backgroundSize:'cover'}}/>
      
       
 
@@ -203,19 +236,19 @@ function Header({user, ufcCard}) {
       // backgroundImage: `url(${logo})`,backgroundSize:'cover',backgroundRepeat:'no-repeat' 
       }} className="dropdown-menu">
               {/* Dropdown Menu */}
-            <div style={{border: 'white 5px solid'}} className='swm' onClick={() => { handleOptionClick('/'); handleAppleClick(); }}>
-            <NavLink className='color-gold' exact to="/">Home</NavLink>
+            <div className='swm' onClick={() => { handleOptionClick('/'); handleAppleClick(); }}>
+            <NavLink className='wavy' exact to="/">Home</NavLink>
                     </div>
 
-           {isUfcCardLoaded ? <div style={{border: 'white 5px solid'}} className='swm'  onClick={() => { handleOptionClick('/section3'); handleAppleClick(); }}><NavLink className='color-gold' exact to="/section3">Pick 'em</NavLink></div>
+           {isUfcCardLoaded ? <div  className='swm'  onClick={() => { handleOptionClick('/section3'); handleAppleClick(); }}><NavLink className='wavy' exact to="/section3">Pick 'em</NavLink></div>
            :
            <div style={{ display: 'flex',justifyContent:'center' }}><div className="loading" style={{ height: '50px', width: '50px' }}></div>
            <h5 style={{ display: 'flex', whiteSpace: 'nowrap' }}>
              Loading Card Details
            </h5>
          </div>}
-            <div style={{border: 'white 5px solid'}} className='swm'  onClick={() => { handleOptionClick('/results'); handleAppleClick(); }}><NavLink className='color-gold' exact to="/results">Results</NavLink></div>
-            <div style={{border: 'white 5px solid'}} className='swm'  onClick={() => { handleOptionClick('/about'); handleAppleClick(); }}><NavLink className='color-gold' exact to="/about">About P4P</NavLink></div>
+            <div  className='swm'  onClick={() => { handleOptionClick('/results'); handleAppleClick(); }}><NavLink className='wavy' exact to="/results">Results</NavLink></div>
+            <div  className='swm'  onClick={() => { handleOptionClick('/about'); handleAppleClick(); }}><NavLink className='wavy' exact to="/about">About P4P</NavLink></div>
             
           </div>
           </>  }

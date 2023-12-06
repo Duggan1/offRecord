@@ -15,17 +15,22 @@ code {
 .landunder {
   text-decoration: underline;
 }
+.wavy {
+  text-decoration: wavy;
+  color:rgb(0, 0, 0);
+}
 .swm {
-  background-color: rgb(58, 0, 58) ;
-  /* color: green; */
+  background-color: white ;
+  color: green;
   /* border: 7px solid black; */
   cursor: pointer;
   margin: 5%;
   padding: 3% 100px;
   text-align: center;
-  border: gold 5px solid;
-  /* border-radius:5%; */
+  border: blue 5px solid;
+  border-radius: 10%;
   font-weight: 800;
+  text-decoration: wavy;
 }
 .home{
   background-color: black;
@@ -35,30 +40,34 @@ code {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  background-image: url('https://t3.ftcdn.net/jpg/00/92/80/64/360_F_92806458_cuy3wFTL9h8FqisKPbd9yGoihsNjy8xQ.jpg');
+  /* background-image: url('https://t3.ftcdn.net/jpg/00/92/80/64/360_F_92806458_cuy3wFTL9h8FqisKPbd9yGoihsNjy8xQ.jpg'); */
+   background-image: url('https://image.shutterstock.com/image-vector/empty-cage-martial-arts-fighting-260nw-1136825033.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 110%;
   padding-bottom: 15%;
   z-index: 1;
 
 }
 
 .crdiv {
-  background-color: rgb(167, 167, 167) ;
+  background-color: white ;
   color: blue;
   /* border: 7px solid black; */
   cursor: pointer;
   margin: 5%;
   padding: 3% ;
   text-align: center;
-  border: rgb(58, 0, 58) 5px solid;
-  /* border-radius:5%; */
+  border: black 5px solid;
+  border-right: blue 5px solid;
+  border-left: red 5px solid;
+  color: white;
   font-weight: 800;
   width: 40%;
   z-index: 1;
 
 
 }
+
 .crdiv2 {
   background-color: rgb(0, 0, 0) ;
   color: blue;
@@ -67,7 +76,7 @@ code {
   margin: 5% 5% 0% 5%;
   padding: 3% 3% 0% 3% ;
   text-align: center;
-  border: rgb(58, 0, 58) 5px solid;
+  border: white 5px solid;
   /* border-radius:5%; */
   font-weight: 800;
   width: 40%;
@@ -198,16 +207,41 @@ code {
 
 }
 .methodbar {
-  background-color: purple;
-  border: gold 3px solid;
+  background-color: whitesmoke;
+  border: blue 3px solid;
   padding: 1%;
-  color: white;
+  color: black;
   font-weight: bold;
   margin-top: 1%;
   border-radius: 10%;
 }
-
-
+.methodbar.selected {
+  background-color: black;
+  border: green 3px solid;
+  padding: 1%;
+  color: white;
+  font-weight: bold;
+  margin-top: 1%;
+  border-radius: 15%;
+}
+.methodbar2 {
+  background-color: whitesmoke;
+  border: red 3px solid;
+  padding: 1%;
+  color: black;
+  font-weight: bold;
+  margin-top: 1%;
+  border-radius: 10%;
+}
+.methodbar2.selected {
+  background-color: black;
+  border: green 3px solid;
+  padding: 1%;
+  color: white;
+  font-weight: bold;
+  margin-top: 1%;
+  border-radius: 15%;
+}
 
 .dreamcardbutton {
   position: relative;
@@ -218,7 +252,7 @@ code {
   padding-left: 10%;
   overflow: hidden;
   font-weight: bold;
-  background: purple;
+  background: darkblue;
   border-radius: 5px;
   color: white;
   transition: all 0.3s ease-in-out;
@@ -231,7 +265,7 @@ code {
     position: absolute;
     width: 48px;
     height: 48px;
-    background: gold; /* purple color */
+    background: red; /* purple color */
     border-radius: 50%;
     transform: rotate(-40deg);
     bottom: 0;
@@ -248,21 +282,13 @@ code {
       margin-bottom: 96px;
       transform: translate(0, 0);
     }
-    background: white;
-    color: purple;
+    background: darkred;
+    color: white;
     cursor:pointer;
   }
 }
 
-.methodbar.selected {
-  background-color: black;
-  border: green 3px solid;
-  padding: 1%;
-  color: white;
-  font-weight: bold;
-  margin-top: 1%;
-  border-radius: 15%;
-}
+
 .method.selected {
   /* Change background color and border color for selected method */
   
@@ -297,9 +323,13 @@ code {
   
   
 }
+.caged-black {
+  background-color: black;    
+  color: white;
+}
 .ltypediv {
-  background-color: lightyellow;
-  border: purple 2px solid;
+  background-color: lightgrey;
+  border: black 3px solid;
   padding: 2%;
   margin-bottom: 1%;
   border-radius: 10%;
@@ -339,13 +369,19 @@ code {
   background-color: red; /* Red background when showPredictions is false */
   color: white; /* White text color for better contrast */
 }
-.bay{
+.bay {
   background-color: black;
-  color: gold;
+  color: white;
   /* text-shadow: 0px 0px 5px white; */
-  border-bottom: 10px gold solid;
+  border-bottom: 10px white solid;
   text-decoration: wavy;
   margin-bottom: 0%;
+}
+.element-with-border {
+  width: 100%;
+  height: 10px;
+  border-top: 3px solid;
+  background: linear-gradient(to right, red 50%, blue 50%);
 }
 
 .bayLoc{
@@ -446,9 +482,9 @@ code {
 }
 
 .submitb{
-  background-color: rgb(80, 10, 80);
-  color: whitesmoke;
-  border: 3px  solid gold;
+  background-color:darkblue ;
+  color: white ;
+  border: 3px  solid white;
   padding: 4% 3% ;
   margin-top: 5%;
   border-radius: 10%;
@@ -461,6 +497,9 @@ code {
 }
 .bold {
   font-weight: bold;
+}
+.marginB0 {
+  margin-bottom: 0%;
 }
 .errortime{
   background-color: white;
@@ -731,10 +770,10 @@ code {
 .johnny {
   text-align: center;
   background-color: rgba(55, 0, 59, 0.439);
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9qflDIAMraYexPNcE5Za_92-ymLKuk0N0YuWHQ9veoUBIu6OoVHVm7WyI9OHOGcPXCWU&usqp=CAU");
-  background-size: cover;
+  background-image: url("https://t3.ftcdn.net/jpg/03/57/92/94/360_F_357929406_33BPzrx3uSUOgwokmDZ4QpESUBrJJaqC.jpg");
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  color: gold;
+  color: navy;
   margin-top: 0%;
   margin-bottom: 0%;
   padding-bottom: 5%;
@@ -819,8 +858,8 @@ input[type='checkbox'] {
   width: 100%;
   height: 100%;
   position: relative;
-  background-color: rgba(255, 217, 0, 0.668);
-  color: purple;
+  background-color: white;
+  color: navy;
   font-weight: bold;
   transition: all 0.5s ease;
   padding: 3px;
@@ -837,8 +876,8 @@ input[type='checkbox'] {
   transition: all 0.3s ease;
 }
 .custom-checkbox input#status + label > .status-switch:before {
-  background-color: black;
-  color: gold;
+  background-color: darkred;
+  color: white;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
   left: 3px;
   z-index: 10;
@@ -849,15 +888,16 @@ input[type='checkbox'] {
   content: attr(data-checked);
 }
 .custom-checkbox input#status:checked + label > .status-switch {
-  background-color: purple;
-  color:gold
+  background-color: white;
+  color:darkred
 }
 .custom-checkbox input#status:checked + label > .status-switch:after {
   left: 0;
   content: attr(data-unchecked);
 }
 .custom-checkbox input#status:checked + label > .status-switch:before {
-  color: gold;
+  color: white;
+  background-color: navy;
   left: 50%;
   content: attr(data-checked);
 }
@@ -922,7 +962,13 @@ input[type='checkbox'] {
 .color-black {
   color: black
 }
-
+.white-border {
+  border: solid white 1px;
+}
+.bg-white {
+  background-color: white;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .mobile-fight-info {
   font-size: 1rem;
   color: white;
@@ -938,7 +984,7 @@ input[type='checkbox'] {
   background-color: black;
   margin-top: 0px;
   margin-bottom: 0px;
-  border-top: 3px purple solid;
+  border-top: 3px white solid;
 }
 .mobile-fighter-name.selected {
   font-size: 1.7rem;
@@ -952,9 +998,11 @@ input[type='checkbox'] {
   align-items: center; /* Vertically align children */
   margin-bottom: 20px; /* Add margin between fighter containers */
   min-width: 50%;
-  background-image: url('https://t3.ftcdn.net/jpg/00/92/80/64/360_F_92806458_cuy3wFTL9h8FqisKPbd9yGoihsNjy8xQ.jpg');
+  /* min-height: 100%; */
+  background-image: url('https://www.shutterstock.com/image-vector/empty-mma-arena-red-blue-260nw-1705409833.jpg');
+  /* background-image: url('https://image.shutterstock.com/image-vector/empty-cage-martial-arts-fighting-260nw-1136825033.jpg'); */
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 110%;
 }
 .home-fighter {
   display: flex;

@@ -291,7 +291,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
             
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'red',
                 margin: "0",
                 fontSize:'35px',
                 maxWidth: '100%',
@@ -307,7 +307,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
             
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'red',
                 margin: "0",
                 fontSize:'15px',
                 maxWidth: '100%',
@@ -337,13 +337,30 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
 
                 // Adjust this value as needed
                 }}>
-                4P
+                4
                 </h1>
                 <h1 
             
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'lightblue',
+                margin: "0",
+                fontSize:'35px',
+                marginTop: '0%',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                P
+                </h1>
+                <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'lightblue',
                 margin: "0",
                 fontSize:'15px',
                 maxWidth: '100%',
@@ -361,7 +378,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
             
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'lightblue',
                 margin: "0",
                 fontSize:'15px',
                 maxWidth: '100%',
@@ -417,11 +434,11 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
 
 
 
-                 { !user ? 
+                 {/* { !user ? 
                 <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',}}> Login/Signup to make Off the Record Picks </h6>:
                 <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',}}> Welcome Back <span className="color-white">{user.username}</span></h6>
 
-                              }
+                              } */}
 
 
                   {/* //////////////////////////// */}
@@ -434,9 +451,9 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                   width:'100%', justifyContent:'center',textAlign:'center'
                   }} ></h5></div>
                 
-                { isUfcCardLoaded ? <div className='crdiv' style={{ border:'gold solid 5px', height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundColor: "black", position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
+                { isUfcCardLoaded ? <div className='crdiv' style={{  height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',  position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
                     <NavLink className='color-gold hgysnow' exact to="/section3"></NavLink>
-                    <h5 className='color-yellow snow' style={{ textAlign: 'center',  marginTop: '-6%',textShadow: '0 0 15px black' }}>PICK'EM</h5>
+                    <h5 className=' snow' style={{ color:'white',textAlign: 'center',  marginTop: '-6%',textShadow: '0 0 15px black' }}>PICK'EM</h5>
                 </div>
                 : 
 
@@ -449,8 +466,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                }
                
                 
-                <div className='crdiv background-purple'style={{ border:'gold solid 5px'}} onClick={() => handleOptionClick('/results')}><NavLink className=' color-gold snow' exact to="/results">Check Results</NavLink></div>
-                <div className='crdiv background-purple' style={{ border:'gold solid 5px',}}  onClick={() => handleOptionClick('/about')}><NavLink className='color-gold snow' exact to="/about">About P4P</NavLink></div>
+                <div className='crdiv ' onClick={() => handleOptionClick('/results')}><NavLink className=' color-black snow' exact to="/results">Check Results</NavLink></div>
+                <div className='crdiv '   onClick={() => handleOptionClick('/about')}><NavLink className='color-black snow' exact to="/about">About P4P</NavLink></div>
                 
                 
                 
@@ -459,7 +476,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
             
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'red',
                 margin: "0",
                 fontSize:'35px',
                 maxWidth: '100%',
@@ -475,7 +492,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
             
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'red',
                 margin: "0",
                 fontSize:'15px',
                 maxWidth: '100%',
@@ -505,13 +522,30 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
 
                 // Adjust this value as needed
                 }}>
-                4P
+                4
                 </h1>
                 <h1 
             
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'blue',
+                margin: "0",
+                fontSize:'35px',
+                marginTop: '0%',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                P
+                </h1>
+                <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'blue',
                 margin: "0",
                 fontSize:'15px',
                 maxWidth: '100%',
@@ -529,7 +563,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
             
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'blue',
                 margin: "0",
                 fontSize:'15px',
                 maxWidth: '100%',
