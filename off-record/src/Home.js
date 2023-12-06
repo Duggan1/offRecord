@@ -453,7 +453,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                 
                 { isUfcCardLoaded ? <div className='crdiv' style={{  height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',  position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
                     <NavLink className='color-gold hgysnow' exact to="/section3"></NavLink>
-                    <h5 className=' snow' style={{ color:'white',textAlign: 'center',  marginTop: '-6%',textShadow: '0 0 15px black' }}>PICK'EM</h5>
+                    <h5 className=' snow' style={{ color:'black',textAlign: 'center',  marginTop: '-6%',textShadow: '0 0 15px white' }}>PICK'EM</h5>
                 </div>
                 : 
 
@@ -511,7 +511,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
             
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'black',
+                // olor:'black',
                 margin: "0",
                 fontSize:'35px',
                 marginTop: '0%',
@@ -583,7 +584,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                                     </div> : <div className="loading" style={{ height: '100px', width: '100px' ,justifyContent:'center'}}></div> }
         
 
-                                    <h2 style={{}} className="homeheaders2">Pick Count ({countPick})   </h2>
+                                    <h2 style={{backgroundColor:'white',color:'black'}} className="homeheaders2">Pick Count ({countPick})   </h2>
         </div>
     )
 }

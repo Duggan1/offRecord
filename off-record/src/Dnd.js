@@ -17,7 +17,7 @@ function Payment() {
   return (
     <div className="dnd">
       <h1>Please login!</h1>
-      <div className="pupCirc" onClick={() => handleOptionClick('/section3')}><NavLink className='color-purple' exact to="/section2">Login/Signup</NavLink></div>
+      <div className="pupCirc" onClick={() => handleOptionClick('/section3')}><NavLink className='snowwhite' exact to="/section2">Login/Signup</NavLink></div>
 
 
     

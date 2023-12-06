@@ -316,8 +316,8 @@ code {
   
 }
 .pupCirc {
-  border: purple solid 3px;
-  background-color: gold;
+  border: blue solid 3px;
+  background-color: darkred;
   
   
   
@@ -510,21 +510,21 @@ code {
   color:darkred
 }
 .pointEX {
-  border: purple 5px solid;
+  border: gold 5px solid;
   
   
-  background-color: rgba(55, 0, 59, 0.439);
+  background-color: rgba(0, 4, 59, 0.439);
   
 }
 .pointEXCard {
-  border: purple 5px solid;
+  border: darkred 5px solid;
   margin-right: 20%;
   margin-left: 20%;
   text-align: center;
   margin-top: 0%;
   
   
-  background-color: rgba(55, 0, 59, 0.439);
+  background-color: rgba(2, 0, 59, 0.439);
   
 }
 .pointEXB {
@@ -545,7 +545,7 @@ code {
   justify-content: center;
 }
 .pointEXB2 {
-  border: gold 10px dotted;
+  border: blue 10px dotted;
   margin-right: 20%;
   margin-left: 20%;
   margin-bottom: 2%;
@@ -553,17 +553,17 @@ code {
 
 }
 .expoint {
-  border: gold 3px solid;
-  background-color: rgb(80, 10, 80); 
-  color: white;
+  border: darkred 3px solid;
+  background-color: white; 
+  color: navy;
   cursor: pointer;
   margin-bottom: 5%;
   font-weight: bold;
 }
 .urpicksB {
-  border: purple 3px solid;
+  border: darkred 3px solid;
   background-color: snow; 
-  color: purple;
+  color: navy;
   cursor: pointer;
   margin-bottom: 5%;
   font-weight: bold;
@@ -572,7 +572,7 @@ code {
 .b2fight {
   border: black 3px solid;
   background-color: gold; 
-  color: rgb(80, 10, 80);
+  color: rgb(12, 10, 80);
   cursor: pointer;
   margin-bottom: 5%;
   font-weight: bold;
@@ -597,7 +597,7 @@ code {
 
 .lboard {
   text-align: center;
-  background-color: rgba(55, 0, 59, 0.439);
+  background-color: rgba(0, 5, 59, 0.439);
   color:white;
   border: 5px black solid;
   margin-bottom: 5%;
@@ -610,19 +610,9 @@ code {
 .Header{
   background-color:black ;
 }
-.pickresultsdiv {
-  background-color:black ;
-  color: white;
-  border-left: black 3px solid;
-}
-.pickresultsdiv h2 {
-  background-color: rgb(145, 124, 0);
-  margin-top: 2%;
-  padding-bottom: 2%;
-  color: black;
-}
+
 .filterbutton {
-  border : 3px solid gold;
+  border : 3px solid rgb(255, 0, 0);
   font-weight: bold;
 }
 .delete-button {
@@ -633,7 +623,8 @@ code {
   font-weight: bold;
 }
 .results {
-  background-image: url('https://c4.wallpaperflare.com/wallpaper/121/402/526/anderson-silva-boxing-fight-fitness-wallpaper-preview.jpg');
+  /* background-image: url('https://c4.wallpaperflare.com/wallpaper/121/402/526/anderson-silva-boxing-fight-fitness-wallpaper-preview.jpg'); */
+  background-image: url('https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_sm/s3/2020-04/Crowd-Fan-Generic-198.jpg?itok=VMsavZNn');
   background-repeat: no-repeat;
   background-size: contain;
   color:white;
@@ -653,13 +644,24 @@ code {
   background-color: #282c34;
 
 }
+.pickresultsdiv {
+  background-color:darkblue ;
+  color: white;
+  border-left: black 3px solid;
+}
+.pickresultsdiv h2 {
+  background-color: black;
+  margin-top: 2%;
+  padding-bottom: 2%;
+  color: lightblue;
+}
 .ownpicksdiv {
-  background-color: rgb(255, 255, 255);
-  color: rgb(80, 10, 80);
+  background-color: darkred;
+  color: white;
   border-right: black 3px solid ;
 }
 .ownpicksdiv h2 {
-  background-color: rgb(80, 10, 80);
+  background-color: black;
   margin-top: 2%;
   padding-bottom: 2%;
   color: white;
@@ -1079,10 +1081,10 @@ input[type='checkbox'] {
   
 }
 .pborder {
-  border-top: 5px solid purple;
-  border-right: 10px solid purple;
-  border-bottom: 10px solid purple;
-  border-left: 10px solid purple;
+  border-top: 5px solid blue;
+  border-right: 10px solid blue;
+  border-bottom: 10px solid blue;
+  border-left: 10px solid blue;
 }
 
 /* Hide default HTML checkbox */
@@ -1188,7 +1190,7 @@ input[type='checkbox'] {
 
 .switch input:checked + .toggle > .right {
   transform: rotateX(10deg) rotateY(0deg);
-  color: #8548db;
+  color: #4877db;
 }
 
 

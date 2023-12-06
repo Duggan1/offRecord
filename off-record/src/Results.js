@@ -973,8 +973,8 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
                   textAlign: 'center',
                   marginTop: '0%',
                   marginBottom: '0%',
-                  color: 'gold',
-                  textShadow: '0 0 5px rgb(80, 10, 80)',
+                  color: 'white',
+                  textShadow: '0 0 5px darkred',
                   fontSize:'65px',
                   maxWidth: '100%',
                   letterSpacing: '4px',
@@ -992,14 +992,15 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
         <tbody>{leaderboard.map((user, index) => (
             <tr key={index}>
               
-              <td style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}}>{user.username}</td>
-              <td className="tac" style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}} >{user.totalPoints}</td>
+              <td style={{backgroundColor:'rgba(0, 5, 59, 0.439)'}}>{user.username}</td>
+              <td className="tac" style={{backgroundColor:'rgba(0, 5, 59, 0.439)'}} >{user.totalPoints}</td>
               
-              <td className="tac " style={{backgroundColor:'rgba(55, 0, 59, 0.650)'}}  >{countWinsForUsername(leaderboardwinners, user.username)}</td>
-              <td className="tac Left6" style={{backgroundColor:'rgba(55, 0, 59, 0.439)'}}>{((user.totalWinnerPointsOnly / (user.totalPicksCount )) * 100).toFixed(0)}% </td>
+              <td className="tac " style={{backgroundColor:'rgba(0, 5, 59, 0.650)'}}  >{countWinsForUsername(leaderboardwinners, user.username)}</td>
+              <td className="tac Left6" style={{backgroundColor:'rgba(0, 5, 59, 0.439)'}}>{((user.totalWinnerPointsOnly / (user.totalPicksCount )) * 100).toFixed(0)}% </td>
               
               
-              </tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button></center></div>
+              </tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button></center>
+              </div>
                : <center><button className="expoint" onClick={() => setshowLeaderBoard(!showLeaderBoard)} >View Leaderboard</button></center> }
 
  
@@ -1079,7 +1080,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
 
 
-            <center><label style={{color:'gold',backgroundColor:'black',fontWeight:'bold'}}>Filter Results by Fight Card</label><br></br>
+            <center><label style={{color:'lightblue',backgroundColor:'black',fontWeight:'bold'}}>Filter Results by Fight Card</label><br></br>
             <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
               <option value="">All</option>
               {uniqueMainEvents
@@ -1094,7 +1095,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
             </select></center>
 
             <center>
-  <label style={{ color: 'gold', backgroundColor: 'black', fontWeight: 'bold' }}>
+  <label style={{ color: 'lightblue', backgroundColor: 'black', fontWeight: 'bold' }}>
     Filter Results by User
   </label>
   <br />
@@ -1198,10 +1199,10 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
 </span>
 
-        <center>
-          <strong>{result.main_event}</strong>
+        <center><strong><span className="small">{result.owner}'s</span> picks</strong>
+         
       <br></br>
-          <strong><span className="small">{result.owner}'s</span> picks</strong>
+           <strong>{result.main_event}</strong>
           <br />
           
           {deletePicks && user && (user.username === result.owner || user.username === 'AdminKev') ? (

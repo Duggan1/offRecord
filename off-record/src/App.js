@@ -706,7 +706,7 @@ console.log(location); // United States
      <div style={{ display: 'flex', justifyContent: 'flex-end', textAlign: 'end', fontSize: '8px', width: '100%' }}>
   {user ? (
     <>
-      <h1 className='color-gold'>Hello {user.fullname}{user.fullName}</h1>
+      <h1 className='color-white'>Hello {user.fullname}{user.fullName}</h1>
       <button onClick={handleLogout} className="submitb" style={{ marginLeft: '10px', minWidth: '10%', padding:'2%',marginTop:'0%' }} type="submit">
         Log out
       </button>
