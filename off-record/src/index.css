@@ -19,6 +19,11 @@ code {
   text-decoration: wavy;
   color:rgb(0, 0, 0);
 }
+.bgw-cb {
+  background-color: whitesmoke;
+  color: black;
+
+}
 /* .mainHeader {
   margin-right: 50%;
   text-align: left;
@@ -42,6 +47,7 @@ code {
   font-weight: 800;
   text-decoration: wavy;
 }
+
 
 
 .home{
@@ -131,10 +137,15 @@ code {
   color:rgb(255, 255, 255);
   text-align: center;
   justify-content: center;
-  background-image: url('https://t3.ftcdn.net/jpg/00/92/80/64/360_F_92806458_cuy3wFTL9h8FqisKPbd9yGoihsNjy8xQ.jpg');
+  background-image: url('https://www.tilingtextures.com/wp-content/uploads/2017/04/0054-2.png');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   margin-top: 0%;
+  min-height: fit-content;
+  border: black 5px solid;
+  border-right: blue 5px solid;
+  border-left: red 5px solid;
+
 }
 .about p{
   margin-right: 20%;
@@ -151,7 +162,7 @@ code {
   margin-right: 20%;
   margin-left: 20%;
 }
-.about img {
+/* .about img {
   background-color: gold;
   height: 100px;
   padding: 10%;
@@ -159,7 +170,7 @@ code {
   border-radius: 30%;
 
   
-}
+}  */
 .resultsimg {
   background-color: gold;
   height: 50px;
@@ -190,21 +201,43 @@ code {
 
 }
 .donateB {
-  background-color: purple;
+  background-color: whitesmoke;
   margin-right: 10%;
   margin-left: 10%;
-  color:gold;
+  color:black;
   width: 15%;
   min-width: min-content;
   padding: 2%;
-  border: solid gold 10px;
+  border-top: solid red 10px;
+  border-bottom: solid blue 10px;
+  border-right: solid blue 10px;
+  border-left: solid red 10px;
   border-radius: 30%;
   font-size: x-large;
   font-weight: bolder;
   margin-bottom: 15%;
   cursor: pointer;
 }
-
+.redbutton {
+  border: red solid 10px;
+  color: red;
+  background-color: whitesmoke;
+  padding: 1% 3%;
+  margin: 2%;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.bluebutton {
+  border: blue solid 10px;
+  color: navy;
+  background-color: whitesmoke;
+  padding: 1% 3%;
+  margin: 2%;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+}
 
 .blackBG {
   background-color: black;
@@ -220,7 +253,10 @@ code {
 }
 .methodbar {
   background-color: whitesmoke;
-  border: blue 3px solid;
+  border-top: red 4px solid;
+  border-right: blue 3px solid;
+  border-left: red 3px solid;
+  border-bottom: blue 4px solid;
   padding: 1%;
   color: black;
   font-weight: bold;
@@ -238,7 +274,10 @@ code {
 }
 .methodbar2 {
   background-color: whitesmoke;
-  border: red 3px solid;
+  border-top: red 4px solid;
+  border-right: blue 3px solid;
+  border-left: red 3px solid;
+  border-bottom: blue 4px solid;
   padding: 1%;
   color: black;
   font-weight: bold;
@@ -498,9 +537,13 @@ code {
 }
 
 .submitb{
-  background-color:darkblue ;
-  color: white ;
-  border: 3px  solid white;
+  background-color:white ;
+  color: black ;
+  /* border: black 5px solid; */
+  border-right: blue 5px solid;
+  border-left: red 5px solid;
+  border-top: red 5px solid;
+  border-bottom: blue 5px solid;
   padding: 4% 3% ;
   margin-top: 5%;
   border-radius: 10%;
@@ -526,10 +569,12 @@ code {
   color:darkred
 }
 .pointEX {
-  border: gold 5px solid;
+  border: black 5px solid;
+  border-right: blue 5px solid;
+  border-left: red 5px solid;
   
   
-  background-color: rgba(0, 4, 59, 0.439);
+  background-color: rgba(0, 0, 0, 0.439);
   
 }
 .pointEXCard {
@@ -540,14 +585,15 @@ code {
   margin-top: 0%;
   
   
-  background-color: rgba(2, 0, 59, 0.439);
+  background-color: rgba(4, 11, 85, 0.565);
   
 }
 .pointEXB {
   border: gold 10px dotted;
   margin-right: 20%;
   margin-left: 20%;
-  background-color: rgba(55, 0, 59, 0.439);
+  background-color: rgba(0, 0, 0, 0.439);
+  margin-bottom: 2%;
 
 }
 .tight {
@@ -642,7 +688,7 @@ code {
   /* background-image: url('https://c4.wallpaperflare.com/wallpaper/121/402/526/anderson-silva-boxing-fight-fitness-wallpaper-preview.jpg'); */
   background-image: url('https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_sm/s3/2020-04/Crowd-Fan-Generic-198.jpg?itok=VMsavZNn');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
   color:white;
   
 }
@@ -661,23 +707,23 @@ code {
 
 }
 .pickresultsdiv {
-  background-color:darkblue ;
-  color: white;
+  background-color:whitesmoke ;
+  color: black;
   border-left: black 3px solid;
 }
 .pickresultsdiv h2 {
-  background-color: black;
+  background-color: darkblue;
   margin-top: 2%;
   padding-bottom: 2%;
-  color: lightblue;
+  color: white;
 }
 .ownpicksdiv {
-  background-color: darkred;
-  color: white;
+  background-color: whitesmoke;
+  color: black;
   border-right: black 3px solid ;
 }
 .ownpicksdiv h2 {
-  background-color: black;
+  background-color: darkred;
   margin-top: 2%;
   padding-bottom: 2%;
   color: white;
@@ -998,19 +1044,42 @@ input[type='checkbox'] {
   font-weight: bold;
   color: white;
 }
+.mobile-fighter-name.selected {
+  font-size: 1.7rem;
+  font-weight: bold;
+  background-color: darkgreen;
+  color: white;
+  max-width: 50%;
+}
+.mobile-fighter-name.notselected {
+  font-size: 1.7rem;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  max-width: 50%;
+}
+.redName{
+  background-color: red;
+  color: white;
+
+}
+.blueName {
+  background-color: blue;
+  color: white;
+}
 .fighterready{
   background-color: black;
   margin-top: 0px;
   margin-bottom: 0px;
   border-top: 3px white solid;
 }
-.mobile-fighter-name.selected {
-  font-size: 1.7rem;
-  font-weight: bold;
-  color: green;
-  
-  max-width: 50%;
+.fighterACTready{
+  background-color: black;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-top: 6px darkgreen solid;
 }
+
 .fighter-container {
   display: flex; /* Display children in a row (horizontal) */
   align-items: center; /* Vertically align children */
@@ -1021,6 +1090,17 @@ input[type='checkbox'] {
   /* background-image: url('https://image.shutterstock.com/image-vector/empty-cage-martial-arts-fighting-260nw-1136825033.jpg'); */
   background-repeat: no-repeat;
   background-size: 100% 110%;
+}
+.fighter-container2 {
+  display: flex; /* Display children in a row (horizontal) */
+  align-items: center; /* Vertically align children */
+  margin-bottom: 20px; /* Add margin between fighter containers */
+  min-width: 50%;
+  /* min-height: 100%; */
+  background-image: url('https://cdn2.iconfinder.com/data/icons/greenline/512/check-512.png');
+  /* background-image: url('https://image.shutterstock.com/image-vector/empty-cage-martial-arts-fighting-260nw-1136825033.jpg'); */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 .home-fighter {
   display: flex;

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import logo from './logo.png';
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import {useNavigate} from 'react-router-dom'
 import './App.css';
 
 function Header({user, ufcCard}) {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location.pathname)
 
     const [showDropdown, setShowDropdown] = useState(true);
   // const navigate = useNavigate()
@@ -28,6 +30,7 @@ function Header({user, ufcCard}) {
         
         navigate(`${option}`);
       };
+
 
   return (
     <div className="Header text-align-center">
@@ -61,7 +64,7 @@ function Header({user, ufcCard}) {
 
 <div style={{display:'flex', justifyContent:'center'}}>
           <h1 
-          onClick={() => handleOptionClick('/')}
+          // onClick={() => handleOptionClick('/')}
           style={{
               textAlign: 'center',
               color: 'red',
@@ -78,7 +81,7 @@ function Header({user, ufcCard}) {
               }}>
               P
               </h1><h1 
-          onClick={() => handleOptionClick('/')}
+          // onClick={() => handleOptionClick('/')}
           style={{
               textAlign: 'center',
               color: 'red',
@@ -97,7 +100,7 @@ function Header({user, ufcCard}) {
               </h1>
               
               <h1 
-          onClick={() => handleOptionClick('/')}
+          // onClick={() => handleOptionClick('/')}
           style={{
               textAlign: 'center',
               color: 'black',
@@ -113,7 +116,7 @@ function Header({user, ufcCard}) {
               }}>
               4
               </h1><h1 
-          onClick={() => handleOptionClick('/')}
+          // onClick={() => handleOptionClick('/')}
           style={{
               textAlign: 'center',
               color: 'blue',
@@ -130,7 +133,6 @@ function Header({user, ufcCard}) {
               P
               </h1>
               <h1 
-          onClick={() => handleOptionClick('/')}
           style={{
               textAlign: 'center',
               color: 'blue',
@@ -192,7 +194,7 @@ function Header({user, ufcCard}) {
 
 <div style={{display:'flex', justifyContent:'center'}}>
             <h1 
-            onClick={() => handleOptionClick('/')}
+            // onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
                 color: 'red',
@@ -209,7 +211,7 @@ function Header({user, ufcCard}) {
                 }}>
                 P
                 </h1><h1 
-            onClick={() => handleOptionClick('/')}
+            // onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
                 color: 'red',
@@ -228,7 +230,7 @@ function Header({user, ufcCard}) {
                 </h1>
                 
                 <h1 
-            onClick={() => handleOptionClick('/')}
+            // onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
                 color: 'black',
@@ -244,7 +246,7 @@ function Header({user, ufcCard}) {
                 }}>
                 4
                 </h1><h1 
-            onClick={() => handleOptionClick('/')}
+            // onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
                 color: 'blue',
@@ -261,7 +263,7 @@ function Header({user, ufcCard}) {
                 P
                 </h1>
                 <h1 
-            onClick={() => handleOptionClick('/')}
+            // onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
                 color: 'blue',
@@ -295,19 +297,42 @@ function Header({user, ufcCard}) {
       // backgroundImage: `url(${logo})`,backgroundSize:'cover',backgroundRepeat:'no-repeat' 
       }} className="dropdown-menu">
               {/* Dropdown Menu */}
-            <div className='swm' onClick={() => { handleOptionClick('/'); handleAppleClick(); }}>
+            <div className='swm '
+             style={{
+              backgroundImage: `url(${logo})`,
+              backgroundSize: '25% 100%',
+              backgroundPosition: location.pathname === "/" ? '85% 0' : '5% 0',
+              backgroundRepeat: 'no-repeat',
+            }}
+            
+         onClick={() => { handleOptionClick('/'); handleAppleClick(); }}>
             <NavLink className='wavy' exact to="/">Home</NavLink>
                     </div>
 
-           {isUfcCardLoaded ? <div  className='swm'  onClick={() => { handleOptionClick('/section3'); handleAppleClick(); }}><NavLink className='wavy' exact to="/section3">Pick 'em</NavLink></div>
+           {isUfcCardLoaded ? <div style={{
+              backgroundImage: `url(${logo})`,
+              backgroundSize: '25% 100%',
+              backgroundPosition: location.pathname === "/section3" ? '85% 0' : '5% 0',
+              backgroundRepeat: 'no-repeat',
+            }}  className='swm'  onClick={() => { handleOptionClick('/section3'); handleAppleClick(); }}><NavLink className='wavy' exact to="/section3">Pick 'em</NavLink></div>
            :
            <div style={{ display: 'flex',justifyContent:'center' }}><div className="loading" style={{ height: '50px', width: '50px' }}></div>
            <h5 style={{ display: 'flex', whiteSpace: 'nowrap' }}>
              Loading Card Details
            </h5>
          </div>}
-            <div  className='swm'  onClick={() => { handleOptionClick('/results'); handleAppleClick(); }}><NavLink className='wavy' exact to="/results">Results</NavLink></div>
-            <div  className='swm'  onClick={() => { handleOptionClick('/about'); handleAppleClick(); }}><NavLink className='wavy' exact to="/about">About P4P</NavLink></div>
+            <div  className='swm' style={{
+              backgroundImage: `url(${logo})`,
+              backgroundSize: '25% 100%',
+              backgroundPosition: location.pathname === "/results" ? '85% 0' : '5% 0',
+              backgroundRepeat: 'no-repeat',
+            }}  onClick={() => { handleOptionClick('/results'); handleAppleClick(); }}><NavLink className='wavy' exact to="/results">Results</NavLink></div>
+            <div  className='swm' style={{
+              backgroundImage: `url(${logo})`,
+              backgroundSize: '25% 100%',
+              backgroundPosition: location.pathname === "/about" ? '85% 0' : '5% 0',
+              backgroundRepeat: 'no-repeat',
+            }} onClick={() => { handleOptionClick('/about'); handleAppleClick(); }}><NavLink className='wavy' exact to="/about">About P4P</NavLink></div>
             
           </div>
           </>  }

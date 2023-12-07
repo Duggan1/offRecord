@@ -12,7 +12,7 @@ function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
 
   const [backupID, setBackupID] = useState(0)
 
-//  user = true
+ user = true
 
   useEffect(() => {
     const fetchData = async () => {
@@ -588,15 +588,25 @@ if (isLoading) {
       <form style={{marginBottom: '0px',textAlign:'center'}} className="blackBG" onSubmit={handleSubmit}>
         {selectedUfcCard.length > 2 && selectedUfcCard.map((fight, index) => (
     <div key={index} className="fight">
-      <div key={index} className="fighterready">
+      <div key={index} 
+      className={`${(predictions[index]?.winner === 0 || predictions[index]?.winner === 1) && 
+        (predictions[index]?.method === 'TKO/KO' || predictions[index]?.method === 'Decision' || predictions[index]?.method === 'Draw/No-Contest/DQ' || predictions[index]?.method === 'Submission') &&
+        (predictions[index]?.round === '1' || predictions[index]?.round === '2' || predictions[index]?.round === '3' || predictions[index]?.round === '4'|| predictions[index]?.round === '5' || predictions[index]?.method === 'Decision' || predictions[index]?.method === 'Draw/No-Contest/DQ')
+        ? 'fighterACTready' : 'fighterready'}`}>
+      
   <p key={index} className="mobile-fight-info">
     <div  className=" mobile-fighter-name">
-      <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white'}} className={`white-border mobile-fighter-name ${predictions[index]?.winner === 0 ? 'selected' : ''}`}> {fight.fighters[0]} </span>
-      <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white',color:'black'}} className=" white-border mobile-fight-name color-black"> vs </span>
-      <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'blue',color:'white'}} className={` white-border mobile-fighter-name ${predictions[index]?.winner === 1 ? 'selected' : ''}`}>
-        {fight.fighters[1]}
-      </span>
+      <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%'}} className={` redName white-border mobile-fighter-name
       
+      ${predictions[index]?.winner === 0 ? 'selected' : ''} ${predictions[index]?.winner === 1 ? 'notselected' : ''}`}> {fight.fighters[0]} </span>
+
+
+      <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white',color:'black'}} className=" white-border mobile-fight-name color-black"> vs </span>
+      <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%'}} className={`blueName white-border mobile-fighter-name
+      
+      ${predictions[index]?.winner === 1 ? 'selected' : ''} ${predictions[index]?.winner === 0 ? 'notselected' : ''} `}> {fight.fighters[1]} </span>
+      
+
     </div><span className='color-black bg-white'>{fight.odds}</span>
   </p>
 
@@ -647,7 +657,11 @@ if (isLoading) {
             </div>
 
 
-    <div className="fighter-container">
+            <div className={`${(predictions[index]?.winner === 0 || predictions[index]?.winner === 1) && 
+      (predictions[index]?.method === 'TKO/KO' || predictions[index]?.method === 'Decision' || predictions[index]?.method === 'Draw/No-Contest/DQ' || predictions[index]?.method === 'Submission') &&
+      (predictions[index]?.round === '1' || predictions[index]?.round === '2' || predictions[index]?.round === '3' || predictions[index]?.round === '4'|| predictions[index]?.round === '5' || predictions[index]?.method === 'Decision' || predictions[index]?.method === 'Draw/No-Contest/DQ')
+     ? 'fighter-container2' : 'fighter-container'}`}>
+
       <div
         className={`fighter-image ${
           predictions[index]?.winner === 0 ? 'selected' : ''

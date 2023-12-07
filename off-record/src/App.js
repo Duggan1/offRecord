@@ -31,6 +31,9 @@ function App() {
   const handleAppleClick = () => {
     setShowDropdown(!showDropdown);
   };
+  // const PATHlocation = useLocation();
+  // const { pathname } = PATHlocation;
+  // console.log(pathname)
 
 
 const [ufcCard2, setUfcCard2] = useState([]);
@@ -719,7 +722,7 @@ console.log(location); // United States
 </div>
 {user ?
 //  <NavBar ufcCard={ufcCard3} user={user} /> 
-    <Header ufcCard={ufcCard3}/>
+    <Header ufcCard={ufcCard3} />
  : <Johnny onLogin={handleLogin} onLogout={handleLogout} ufcCard={ufcCard3} />}
 
     

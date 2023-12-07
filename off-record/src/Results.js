@@ -967,6 +967,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
   return (
 <div>
   (
+    <div className="snowwhite">
     <div className="results">
 
     <h1 style={{
@@ -1024,7 +1025,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
 
 
-            {explainPoints ?    <div className="pointEXB2"><div className="pointEX" >
+            {explainPoints ?    <div className="pointEXB"><div className="pointEX" >
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Winner </p><br></br>
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 point</span> for picking the correct Method & Winner</p><br></br>
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 3 point</span> for picking the correct Round, Method & Winner</p><br></br>
@@ -1164,7 +1165,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
 
 
-
+</div>
 
 
                 
@@ -1199,10 +1200,11 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
 </span>
 
-        <center><strong><span className="small">{result.owner}'s</span> picks</strong>
-         
-      <br></br>
-           <strong>{result.main_event}</strong>
+        <center>
+          
+         <strong>{result.main_event}</strong>
+      <br></br><strong className=" landunder"><span className="small color-red landunder">{result.owner}'s</span> picks</strong>
+           
           <br />
           
           {deletePicks && user && (user.username === result.owner || user.username === 'AdminKev') ? (
@@ -1284,13 +1286,15 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
           {result.main_event !== 'Jon Jones vs Fedor Emelianenko' ?<>
           <center >
           
-          
-          <strong>Ufc Results</strong>
-          <br />
-          <strong>{result.main_event}</strong><br></br>
           <strong >
             {result.location}
-          </strong>
+          </strong><br></br>
+          <strong>{result.main_event}</strong>
+          <br />
+          <strong className="landunder">
+            Results
+            </strong>
+          
         </center><h2 style={{
             backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(result.location)}/flat/64.png")`,
             backgroundSize: '50% 150%',
