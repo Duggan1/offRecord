@@ -12,7 +12,7 @@ function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
 
   const [backupID, setBackupID] = useState(0)
 
- user = true
+
 
   useEffect(() => {
     const fetchData = async () => {
