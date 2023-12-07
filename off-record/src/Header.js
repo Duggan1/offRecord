@@ -32,112 +32,165 @@ function Header({user, ufcCard}) {
   return (
     <div className="Header text-align-center">
       {showDropdown ? <>
-      <div style={{display:'flex', justifyContent:'center'}}>
-            <h1 
-            onClick={() => handleOptionClick('/')}
-            style={{
-                textAlign: 'center',
-                color: 'red',
-                margin: "0",
-                fontSize:'35px',
-                maxWidth: '100%',
+        <div 
+                
+                style={{color:'darkred',
                 cursor:'pointer',
-                fontFamily:"Copperplate,monospace",
-                
+                background:'white',
+                marginLeft:'20%',
+                marginRight:'20%',
+                padding: '3% 25%',
+                maxWidth:'80%',
+                borderTop:'red 5px solid',
+                borderRight:'blue 5px solid',
+                borderLeft:'red 5px solid',
+                borderBottom:'blue 5px solid',
+                backgroundImage:`url(${logo})`, 
+                backgroundSize:'25% 100%',
+                backgroundPosition:'5%',
+                backgroundRepeat:'no-repeat',
+                height:'40px',
+                // padding:'3%',
+                borderRadius:'15%',
+                // backgroundSize:'cover'
+              }}
+                onClick={() => handleAppleClick()}
+                ><div >
 
 
-                // Adjust this value as needed
-                }}>
-                P
-                </h1><h1 
-            onClick={() => handleOptionClick('/')}
-            style={{
-                textAlign: 'center',
-                color: 'red',
-                margin: "0",
-                fontSize:'15px',
-                maxWidth: '100%',
-                marginTop: '2%',
-                cursor:'pointer',
-                fontFamily:"Copperplate,monospace",
-                
+
+<div style={{display:'flex', justifyContent:'center'}}>
+          <h1 
+          onClick={() => handleOptionClick('/')}
+          style={{
+              textAlign: 'center',
+              color: 'red',
+              margin: "0",
+              fontSize:'35px',
+              maxWidth: '100%',
+              cursor:'pointer',
+              fontFamily:"Copperplate,monospace"
+              ,backgroundColor:'white'
+              
 
 
-                // Adjust this value as needed
-                }}>
-                icks
-                </h1>
-                
-                <h1 
-            onClick={() => handleOptionClick('/')}
-            style={{
-                textAlign: 'center',
-                color: 'white',
-                margin: "0",
-                fontSize:'35px',
-                marginTop: '0%',
-                cursor:'pointer',
-                fontFamily:"Copperplate,monospace",
-                
+              // Adjust this value as needed
+              }}>
+              P
+              </h1><h1 
+          onClick={() => handleOptionClick('/')}
+          style={{
+              textAlign: 'center',
+              color: 'red',
+              margin: "0",
+              fontSize:'15px',
+              maxWidth: '100%',
+              marginTop: '10px',
+              cursor:'pointer',
+              fontFamily:"Copperplate,monospace",backgroundColor:'white'
+              
 
 
-                // Adjust this value as needed
-                }}>
-                4
-                </h1><h1 
-            onClick={() => handleOptionClick('/')}
-            style={{
-                textAlign: 'center',
-                color: 'lightblue',
-                margin: "0",
-                fontSize:'35px',
-                marginTop: '0%',
-                cursor:'pointer',
-                fontFamily:"Copperplate,monospace",
-                
+              // Adjust this value as needed
+              }}>
+              icks
+              </h1>
+              
+              <h1 
+          onClick={() => handleOptionClick('/')}
+          style={{
+              textAlign: 'center',
+              color: 'black',
+              margin: "0",
+              fontSize:'35px',
+              marginTop: '0%',
+              cursor:'pointer',
+              fontFamily:"Copperplate,monospace",backgroundColor:'white'
+              
 
 
-                // Adjust this value as needed
-                }}>
-                P
-                </h1>
-                <h1 
-            onClick={() => handleOptionClick('/')}
-            style={{
-                textAlign: 'center',
-                color: 'lightblue',
-                margin: "0",
-                fontSize:'15px',
-                maxWidth: '100%',
-                marginTop: '2%',
-                cursor:'pointer',
-                fontFamily:"Copperplate,monospace",
-                
+              // Adjust this value as needed
+              }}>
+              4
+              </h1><h1 
+          onClick={() => handleOptionClick('/')}
+          style={{
+              textAlign: 'center',
+              color: 'blue',
+              margin: "0",
+              fontSize:'35px',
+              marginTop: '0%',
+              cursor:'pointer',
+              fontFamily:"Copperplate,monospace",backgroundColor:'white'
+              
 
 
-                // Adjust this value as needed
-                }}>
-                oints.com
-                </h1></div>
-                <img 
-                height={'40px'}
-                className=""
-                 src={logo} alt='fighting logo' 
-                 onClick={() => handleAppleClick()}
-                  style={{cursor:'pointer',
-                  background:'white',
-                  marginLeft:'0%',
-                  padding: '3% 25%',
-                  borderTop:'red 5px solid',
-                  borderRight:'blue 5px solid',
-                  borderLeft:'red 5px solid',
-                  borderBottom:'blue 5px solid',
-                  borderRadius:'15%'}}/>
+              // Adjust this value as needed
+              }}>
+              P
+              </h1>
+              <h1 
+          onClick={() => handleOptionClick('/')}
+          style={{
+              textAlign: 'center',
+              color: 'blue',
+              margin: "0",
+              fontSize:'15px',
+              // maxWidth: '100%',
+              marginTop: '10px',
+              cursor:'pointer',
+              fontFamily:"Copperplate,monospace",
+              backgroundColor:'white'
+              
+
+
+              // Adjust this value as needed
+              }}>
+              oints.com
+              </h1></div>
+                  
+
+
+
+
+
+                 </div>
+                  
+                  
+                  </div>  
      
          </>         
           : 
 <>
-      <div style={{display:'flex', justifyContent:'center'}}>
+      
+                <div 
+                
+                  style={{color:'darkred',
+                  cursor:'pointer',
+                  background:'white',
+                  marginLeft:'20%',
+                  marginRight:'20%',
+                  padding: '3% 25%',
+                  maxWidth:'80%',
+                  borderTop:'red 5px solid',
+                  borderRight:'blue 5px solid',
+                  borderLeft:'red 5px solid',
+                  borderBottom:'blue 5px solid',
+                  backgroundImage:`url(${logo})`, 
+                  backgroundSize:'25% 100%',
+                  backgroundPosition:'95%',
+                  backgroundRepeat:'no-repeat',
+                  height:'40px',
+                  // padding:'3%',
+                  borderRadius:'15%',
+                  // backgroundSize:'cover'
+                }}
+                  onClick={() => handleAppleClick()}
+                  ><div >
+
+
+
+<div style={{display:'flex', justifyContent:'center'}}>
             <h1 
             onClick={() => handleOptionClick('/')}
             style={{
@@ -147,7 +200,8 @@ function Header({user, ufcCard}) {
                 fontSize:'35px',
                 maxWidth: '100%',
                 cursor:'pointer',
-                fontFamily:"Copperplate,monospace",
+                fontFamily:"Copperplate,monospace"
+                ,backgroundColor:'white'
                 
 
 
@@ -162,9 +216,9 @@ function Header({user, ufcCard}) {
                 margin: "0",
                 fontSize:'15px',
                 maxWidth: '100%',
-                marginTop: '2%',
+                marginTop: '10px',
                 cursor:'pointer',
-                fontFamily:"Copperplate,monospace",
+                fontFamily:"Copperplate,monospace",backgroundColor:'white'
                 
 
 
@@ -177,29 +231,28 @@ function Header({user, ufcCard}) {
             onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'black',
                 margin: "0",
                 fontSize:'35px',
                 marginTop: '0%',
                 cursor:'pointer',
-                fontFamily:"Copperplate,monospace",
+                fontFamily:"Copperplate,monospace",backgroundColor:'white'
                 
 
 
                 // Adjust this value as needed
                 }}>
                 4
-                </h1>
-                <h1 
+                </h1><h1 
             onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
-                color: 'lightblue',
+                color: 'blue',
                 margin: "0",
                 fontSize:'35px',
                 marginTop: '0%',
                 cursor:'pointer',
-                fontFamily:"Copperplate,monospace",
+                fontFamily:"Copperplate,monospace",backgroundColor:'white'
                 
 
 
@@ -211,13 +264,13 @@ function Header({user, ufcCard}) {
             onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
-                color: 'lightblue',
+                color: 'blue',
                 margin: "0",
                 fontSize:'15px',
-                maxWidth: '100%',
-                marginTop: '2%',
+                // maxWidth: '100%',
+                marginTop: '10px',
                 cursor:'pointer',
-                fontFamily:"Copperplate,monospace",
+                fontFamily:"Copperplate,monospace",backgroundColor:'white'
                 
 
 
@@ -225,25 +278,16 @@ function Header({user, ufcCard}) {
                 }}>
                 oints.com
                 </h1></div>
-                <img 
-                height={'40px'}
-                // Width={'40%'}
-                 src={logo} alt='fighting logo' 
-                 onClick={() => handleAppleClick()}
-                  style={{color:'darkred',
-                  cursor:'pointer',
-                  background:'white',
-                  marginLeft:'0%',
-                  padding: '3% 25%',
-                  borderTop:'red 5px solid',
-                  borderRight:'blue 5px solid',
-                  borderLeft:'red 5px solid',
-                  borderBottom:'blue 5px solid',
-                  
-                  padding: '3% 25%',
-                  marginLeft:'0%',
-                  // padding:'3%',
-                  borderRadius:'15%',backgroundSize:'cover'}}/>
+                    
+
+
+
+
+
+                   </div>
+                    
+                    
+                    </div>  
      
       
 

@@ -19,6 +19,14 @@ code {
   text-decoration: wavy;
   color:rgb(0, 0, 0);
 }
+/* .mainHeader {
+  margin-right: 50%;
+  text-align: left;
+  justify-content: left;
+  flex: content;
+  display: flex;
+
+} */
 .swm {
   background-color: white;
   color: green;
