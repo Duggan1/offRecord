@@ -20,18 +20,22 @@ code {
   color:rgb(0, 0, 0);
 }
 .swm {
-  background-color: white ;
+  background-color: white;
   color: green;
-  /* border: 7px solid black; */
   cursor: pointer;
   margin: 5%;
   padding: 3% 100px;
   text-align: center;
-  border: blue 5px solid;
+  border-top: 5px solid red;
+  border-right: 5px solid blue;
+  border-left: 5px solid red;
+  border-bottom: 5px solid blue;
   border-radius: 10%;
   font-weight: 800;
   text-decoration: wavy;
 }
+
+
 .home{
   background-color: black;
   display: flex;
@@ -383,6 +387,10 @@ code {
   border-top: 3px solid;
   background: linear-gradient(to right, red 50%, blue 50%);
 }
+.element-with-border2 {
+  background: linear-gradient(to right, red 33.33%, blue 33.33%, white 33.33%);
+}
+
 
 .bayLoc{
   background-color: black;
