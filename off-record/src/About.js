@@ -26,21 +26,21 @@ function About() {
       className: 'section section2',
       content: (
         <>
-          <h1 style={{ marginTop: '0px',backgroundColor:'black' }}> Point System</h1>
-          <div className="pointEXB">
-            <div className="pointEX">
-              <p style={{ color: 'white', fontWeight: 'Bold' }}>
-                <span style={{ color: 'gold' }}> + 1 point</span> for picking the correct Winner
+          <h1 style={{ marginTop: '0px',backgroundColor:'black', color:'white' }}> Point System</h1>
+          <div className="">
+            <div  style={{textAlign:'start'}}>
+              <p style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3% 1% 0%',border:'2px black solid', fontWeight: 'Bold' }}>
+                <span style={{ color: 'gold',backgroundColor:'black'  }}> + 1 point</span> for picking the correct Winner
               </p>
-              <p style={{ color: 'white', fontWeight: 'Bold' }}>
-                <span style={{ color: 'gold' }}> + 2 point</span> for picking the correct Method & Winner
+              <p style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3% 1% 0%',border:'2px black solid', fontWeight: 'Bold' }}>
+                <span style={{ color: 'gold',backgroundColor:'black'  }}> + 2 points</span> for picking the correct Method & Winner
+              </p><p style={{backgroundColor:'whitesmoke',color:'black', padding:'0% 3% 1% 0%',border:'2px black solid', fontWeight: 'Bold' }}>
+                <span style={{ color: 'gold',backgroundColor:'black'  }}> + 2 points</span> for picking Draw/No-Contest correctly
               </p>
-              <p style={{ color: 'white', fontWeight: 'Bold' }}>
-                <span style={{ color: 'gold' }}> + 3 point</span> for picking the correct Round, Method & Winner
+              <p style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3% 1% 0%',border:'2px black solid', fontWeight: 'Bold' }}>
+                <span style={{ color: 'gold',backgroundColor:'black' }}> + 3 points</span> for picking the correct Round, Method & Winner
               </p>
-              <p style={{ color: 'white', fontWeight: 'Bold' }}>
-                <span style={{ color: 'gold' }}> + 2 point</span> for picking Draw/No-Contest correctly
-              </p>
+              
             </div>
           </div>
           <br />
