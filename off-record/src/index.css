@@ -1317,14 +1317,20 @@ input[type='checkbox'] {
   }
 
   .mobile-fighter-name {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: white;
   }
   .mobile-fighter-name.selected {
     font-size: 1.2rem;
     font-weight: bold;
-    color: green;
+    color: lightgreen;
+    
+  }
+  .mobile-fighter-name.notselected {
+    font-size: 1.2rem;
+    font-weight: bold;
+
     
   }
   .color-black {
