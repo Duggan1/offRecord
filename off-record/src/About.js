@@ -5,6 +5,9 @@ import tqtcat from './tqtcat.jpeg'
 
 import { useNavigate } from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
+
 function About() {
   const navigate = useNavigate();
   const [currentSection, setCurrentSection] = useState(0);
@@ -91,8 +94,12 @@ function About() {
           <div className={sections[currentSection].className}>{sections[currentSection].content}</div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <button className='redbutton' onClick={() => setCurrentSection((prevSection) => (prevSection - 1 + sections.length) % sections.length)}>{'<'}</button>
-            <button style={{background:`url(${logo})`,backgroundColor:'white',backgroundSize:'cover'}} className='pauseButton' onClick={() => setIsPaused(!isPaused)}>
-              <span className='bgw-cb'>{isPaused ? 'Resume' : 'Pause'}</span>
+            <button style={{
+              // background:`url(${logo})`,
+            backgroundColor:'white',backgroundSize:'cover', minWidth:"40px",border:'black 5px solid'}} className='pauseButton' onClick={() => setIsPaused(!isPaused)}>
+            <span className='bgw-cb'>
+                {isPaused ? <FontAwesomeIcon icon={faPlay} /> : <FontAwesomeIcon icon={faPause} />}
+              </span>
             </button>
             <button className='bluebutton' onClick={() => setCurrentSection((prevSection) => (prevSection + 1) % sections.length)}>{'>'}</button>
             

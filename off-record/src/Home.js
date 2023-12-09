@@ -482,31 +482,35 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                 maxWidth: '100%',
                 // cursor:'pointer',
                 fontFamily:"Copperplate,monospace",
+                backgroundColor:'white',
+                borderTop: "2px black solid",
+                borderLeft: "2px black solid"
                 
 
 
                 // Adjust this value as needed
                 }}>
                 P
-                </h1><h1 
-            
-            style={{
-                textAlign: 'center',
-                color: 'red',
-                margin: "0",
-                fontSize:'15px',
-                maxWidth: '100%',
-                marginTop: '10px',
-                // cursor:'pointer',
-                fontFamily:"Copperplate,monospace",
-                
+                  </h1>
+                  {/* <h1 
+              
+              style={{
+                  textAlign: 'center',
+                  color: 'red',
+                  margin: "0",
+                  fontSize:'15px',
+                  maxWidth: '100%',
+                  marginTop: '10px',
+                  // cursor:'pointer',
+                  fontFamily:"Copperplate,monospace",
+                  
 
 
-                // Adjust this value as needed
-                }}>
-                icks
-                </h1>
-                
+                  // Adjust this value as needed
+                  }}>
+                  icks
+                  </h1>
+                 */}
                 <h1 
             
             style={{
@@ -518,6 +522,9 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                 marginTop: '0%',
                 // cursor:'pointer',
                 fontFamily:"Copperplate,monospace",
+                backgroundColor:'white',
+                borderTop: "2px black solid",
+                
                 
 
 
@@ -534,7 +541,9 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                 fontSize:'35px',
                 marginTop: '0%',
                 // cursor:'pointer',
-                fontFamily:"Copperplate,monospace",
+                fontFamily:"Copperplate,monospace",backgroundColor:'white',
+                borderTop: "2px black solid",
+                borderRight: "2px black solid"
                 
 
 
@@ -542,7 +551,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                 }}>
                 P
                 </h1>
-                <h1 
+                {/* <h1 
             
             style={{
                 textAlign: 'center',
@@ -559,8 +568,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                 // Adjust this value as needed
                 }}>
                 oints
-                </h1>
-                <h1 
+                </h1> */}
+                {/* <h1 
             
             style={{
                 textAlign: 'center',
@@ -577,14 +586,15 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                 // Adjust this value as needed
                 }}>
                 .com
-                </h1></div>
+                </h1> */}
+                </div>
                 { isUfcCardLoaded ? <div className="home-fighter">
                                     <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[0]}')`,backgroundPosition: 'left',marginTop:'20%'}} ></div>
                                     <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[1]}')`,backgroundPosition: 'right',marginTop:'20%'}}> </div>
                                     </div> : <div className="loading" style={{ height: '100px', width: '100px' ,justifyContent:'center'}}></div> }
         
 
-                                    <h2 style={{backgroundColor:'white',color:'black'}} className="homeheaders2">Pick Count ({countPick})   </h2>
+                                    <h2 style={{backgroundColor:'white',color:'black',border:'black 1px solid'}} className="homeheaders2">Pick Count ({countPick})   </h2>
         </div>
     )
 }

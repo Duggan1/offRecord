@@ -1440,8 +1440,11 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
                 
               ) : null}
-  )<img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} className='resultsimg' style={{cursor:'pointer'}}/> <p style={{color:'purple',fontWeight:'Bold',textAlign:'center'}}>Click Logo to go to Home Page</p>
-       
+  )
+  <img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} className='resultsimg' style={{cursor:'pointer'}}/> 
+  
+  <p style={{color:'white',fontWeight:'Bold',textAlign:'center'}}>Click Logo to go to Home Page</p>
+  <div className="element-with-border2"></div>     
             
 </div>
 

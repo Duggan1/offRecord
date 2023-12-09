@@ -69,7 +69,7 @@ function Header({user, ufcCard}) {
               textAlign: 'center',
               color: 'red',
               margin: "0",
-              fontSize:'35px',
+              fontSize:'45px',
               maxWidth: '100%',
               cursor:'pointer',
               fontFamily:"Copperplate,monospace"
@@ -80,7 +80,8 @@ function Header({user, ufcCard}) {
               // Adjust this value as needed
               }}>
               P
-              </h1><h1 
+              </h1>
+              {/* <h1 
           // onClick={() => handleOptionClick('/')}
           style={{
               textAlign: 'center',
@@ -97,7 +98,7 @@ function Header({user, ufcCard}) {
               // Adjust this value as needed
               }}>
               icks
-              </h1>
+              </h1> */}
               
               <h1 
           // onClick={() => handleOptionClick('/')}
@@ -105,7 +106,7 @@ function Header({user, ufcCard}) {
               textAlign: 'center',
               color: 'black',
               margin: "0",
-              fontSize:'35px',
+              fontSize:'45px',
               marginTop: '0%',
               cursor:'pointer',
               fontFamily:"Copperplate,monospace",backgroundColor:'white'
@@ -121,7 +122,7 @@ function Header({user, ufcCard}) {
               textAlign: 'center',
               color: 'blue',
               margin: "0",
-              fontSize:'35px',
+              fontSize:'45px',
               marginTop: '0%',
               cursor:'pointer',
               fontFamily:"Copperplate,monospace",backgroundColor:'white'
@@ -132,7 +133,7 @@ function Header({user, ufcCard}) {
               }}>
               P
               </h1>
-              <h1 
+              {/* <h1 
           style={{
               textAlign: 'center',
               color: 'blue',
@@ -149,7 +150,8 @@ function Header({user, ufcCard}) {
               // Adjust this value as needed
               }}>
               oints.com
-              </h1></div>
+              </h1> */}
+              </div>
                   
 
 
@@ -199,7 +201,7 @@ function Header({user, ufcCard}) {
                 textAlign: 'center',
                 color: 'red',
                 margin: "0",
-                fontSize:'35px',
+                fontSize:'45px',
                 maxWidth: '100%',
                 cursor:'pointer',
                 fontFamily:"Copperplate,monospace"
@@ -210,7 +212,8 @@ function Header({user, ufcCard}) {
                 // Adjust this value as needed
                 }}>
                 P
-                </h1><h1 
+                </h1>
+                {/* <h1 
             // onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
@@ -227,7 +230,7 @@ function Header({user, ufcCard}) {
                 // Adjust this value as needed
                 }}>
                 icks
-                </h1>
+                </h1> */}
                 
                 <h1 
             // onClick={() => handleOptionClick('/')}
@@ -235,7 +238,7 @@ function Header({user, ufcCard}) {
                 textAlign: 'center',
                 color: 'black',
                 margin: "0",
-                fontSize:'35px',
+                fontSize:'45px',
                 marginTop: '0%',
                 cursor:'pointer',
                 fontFamily:"Copperplate,monospace",backgroundColor:'white'
@@ -251,7 +254,7 @@ function Header({user, ufcCard}) {
                 textAlign: 'center',
                 color: 'blue',
                 margin: "0",
-                fontSize:'35px',
+                fontSize:'45px',
                 marginTop: '0%',
                 cursor:'pointer',
                 fontFamily:"Copperplate,monospace",backgroundColor:'white'
@@ -262,7 +265,7 @@ function Header({user, ufcCard}) {
                 }}>
                 P
                 </h1>
-                <h1 
+                {/* <h1 
             // onClick={() => handleOptionClick('/')}
             style={{
                 textAlign: 'center',
@@ -279,7 +282,8 @@ function Header({user, ufcCard}) {
                 // Adjust this value as needed
                 }}>
                 oints.com
-                </h1></div>
+                </h1> */}
+                </div>
                     
 
 
