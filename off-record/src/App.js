@@ -676,6 +676,8 @@ useEffect(() => {
   //   console.log(modifiedUfcResults);
   // }
 }, [akp, modifiedUfcResults]);
+console.log(akp)
+console.log(modifiedUfcResults)
 
 
 

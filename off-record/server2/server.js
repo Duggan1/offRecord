@@ -63,32 +63,88 @@ app.get('/scrape-ufc-website', async (req, res) => {
       const redCornerImage = $(element).find('.c-listing-fight__corner-image--red img').attr('src');
       const blueCornerImage = $(element).find('.c-listing-fight__corner-image--blue img').attr('src');
 
-      const winnerElement = $(element).find('.c-listing-fight__corner-body--red .c-listing-fight__outcome--Win');
-      const methodElement = $(element).find('.c-listing-fight__result-text.method');
-      const roundElement = $(element).find('.c-listing-fight__result-text.round');
+      // const winnerElement = $(element).find('.c-listing-fight__corner-body--red .c-listing-fight__outcome--Win');
+      // const methodElement = $(element).find('.c-listing-fight__result-text.method');
+      // const roundElement = $(element).find('.c-listing-fight__result-text.round');
       
 
-      let winner = 'N/A'; 
-      if (winnerElement.length > 0) {
-          winner = '0'; 
-      } else {
+      // let winner = 'N/A'; 
+      // if (winnerElement.length > 0) {
+      //     winner = '0'; 
+      // } else {
+      //   const blueWinnerElement = $(element).find('.c-listing-fight__corner-body--blue .c-listing-fight__outcome--Win');
+      //   if (blueWinnerElement.length > 0) {
+      //     winner = '1'; 
+      //   }
+      // }
+
+      // let method = 'N/A'; 
+      // if (methodElement.length > 0) {
+      //     method = methodElement.text().trim();
+      // }
+
+      // let round = 'N/A'; 
+      // if (roundElement.length > 0) {
+      //   const roundText = roundElement.text().trim();
+      //   const match = roundText.match(/\d+/);
+      //   round = match ? match[0] : 'N/A';
+      // }
+      const winnerElement = $(element).find('.c-listing-fight__corner-body--red .c-listing-fight__outcome--Win');
+    const methodElement = $(element).find('.c-listing-fight__result-text.method');
+    const roundElement = $(element).find('.c-listing-fight__result-text.round');
+
+    let winner = 'N/A';
+    if (winnerElement.length > 0) {
+        winner = '0';
+    } else {
         const blueWinnerElement = $(element).find('.c-listing-fight__corner-body--blue .c-listing-fight__outcome--Win');
         if (blueWinnerElement.length > 0) {
-          winner = '1'; 
+            winner = '1';
         }
-      }
+    }
 
-      let method = 'N/A'; 
-      if (methodElement.length > 0) {
-          method = methodElement.text().trim();
-      }
+    let method = 'N/A';
+    if (methodElement.length > 0) {
+        method = methodElement.text().trim();
+        updatePreviousFights('method', method, index);
+    }
 
-      let round = 'N/A'; 
-      if (roundElement.length > 0) {
+    let round = 'N/A';
+    if (roundElement.length > 0) {
         const roundText = roundElement.text().trim();
         const match = roundText.match(/\d+/);
         round = match ? match[0] : 'N/A';
-      }
+        updatePreviousFights('round', round, index);
+    }
+
+    const fightInfo = {
+        weightClass,
+        redCornerName,
+        blueCornerName,
+        redCornerCountry,
+        blueCornerCountry,
+        redCornerImage,
+        blueCornerImage,
+        winner,
+        method,
+        round,
+    };
+
+    fightData.push(fightInfo);
+});
+
+function updatePreviousFights(property, value, currentIndex) {
+    for (let i = currentIndex - 1; i >= 0; i--) {
+        if (fightData[i][property] === 'N/A') {
+            fightData[i][property] = value;
+        } else {
+            // If the value is already updated, break the loop
+            break;
+        }
+    }
+}
+
+
 
       const fightInfo = {
         weightClass,
