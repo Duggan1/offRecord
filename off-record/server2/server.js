@@ -9,9 +9,13 @@ const port = 3001; // Choose an available port
 // Enable CORS for all routes
 app.use(cors());
 
-const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-december-09-2023';
-const Recurl = 'https://www.tapology.com/fightcenter/events/105194-ufc-fight-night';
-const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039634/league/ufc'
+// const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-december-09-2023';
+// const Recurl = 'https://www.tapology.com/fightcenter/events/105194-ufc-fight-night';
+// const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039634/league/ufc'
+
+const deatilsUrl = 'https://www.ufc.com/event/ufc-296'
+const Recurl = 'https://www.tapology.com/fightcenter/events/101868-ufc'
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600038652/league/ufc'
 
 // wait for JalenTurner>BobbyGreen to Update to auto-patch
 // const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-december-02-2023';
