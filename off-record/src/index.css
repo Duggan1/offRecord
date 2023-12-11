@@ -492,26 +492,35 @@ code {
   text-align: center;
 }
 .apple {
-  /* max-width: 100%; */
-  min-width: 150px;
+  max-width: 33%;
+  min-width: 33%;
   max-height: 100%;
   min-height: 150px;
   height:auto;
-  background-image: url('./apple.ico');
+  /* background-position: 20%; */
+  background-image: url('./logo.png');
   background-repeat: no-repeat;
-	background-size: contain;
-  /* margin-left: 50%; */
+  background-position-x: 50%;
+	background-size: 100% 100%;
+  background-color: white;
+  border-bottom: blue 5px solid;
+  border-top: red 5px solid;
+  border-right: blue 5px solid;
+  border-left: red 5px solid;
+  margin-left: 33%;
   text-align: center;
+  /* padding:5%; */
+  /* border-radius: 25%; */
   /* margin: 0; */
-  animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 2s linear;
 
 }
 @keyframes App-logo-spin {
   from {
-    transform: rotate(360deg); /* Start from 360 degrees (full rotation) */
+    transform: rotate(0deg); /* Start from 360 degrees (full rotation) */
   }
   to {
-    transform: rotate(0deg); /* End at 0 degrees (original position) */
+    transform: rotate(360deg); /* End at 0 degrees (original position) */
   }
 }
 

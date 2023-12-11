@@ -34,6 +34,7 @@ function Header({user, ufcCard}) {
 
   return (
     <div className="Header text-align-center">
+      
       {showDropdown ? <>
         <div 
                 
@@ -320,10 +321,11 @@ function Header({user, ufcCard}) {
               backgroundRepeat: 'no-repeat',
             }}  className='swm'  onClick={() => { handleOptionClick('/section3'); handleAppleClick(); }}><NavLink className='wavy' exact to="/section3">Pick 'em</NavLink></div>
            :
-           <div style={{ display: 'flex',justifyContent:'center' }}><div className="loading" style={{ height: '50px', width: '50px' }}></div>
-           <h5 style={{ display: 'flex', whiteSpace: 'nowrap' }}>
+           <div style={{  }}><div className="apple" 
+           style={{ maxHeight: '10%',minHeight: '10%', maxWidth: '10%', minWidth: '10%',marginLeft:'45%',backgroundRepeat:'repeat'}}></div>
+           {/* <h5 style={{ display: 'flex', whiteSpace: 'nowrap' }}>
              Loading Card Details
-           </h5>
+           </h5> */}
          </div>}
             <div  className='swm' style={{
               backgroundImage: `url(${logo})`,
