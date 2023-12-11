@@ -281,7 +281,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
 
 
     return ( <>
-      {isUfcCardLoaded ?  < div className="home" >
+      {isUfcCardLoaded ?  
+      < div className="home" >
             {/* <p style={{ color: 'yellow' }}>Welcome to</p> */}
             {/* <h1 className="homeheaders"style={{}}
                 // Adjust this value as needed
@@ -599,8 +600,15 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
         :
         
         
-        <><div style={{marginTop:"15%"}} className="apple"></div> 
-                          <div style={{marginTop:"5%"}} className="element-with-border2"></div>
+        <>
+        
+
+            <div style={{paddingTop:'15%',paddingBottom:'35%'}}className="element-with-border3">
+                  <div style={{marginTop:"5%"}} className="apple"></div> 
+            </div>
+            <div style={{marginTop:"1%",marginBottom:'25px'}} className="element-with-border">
+          <p className="snowwhite text-align-center " style={{minHeight:'10px'}}><strong >Loading...</strong></p></div>
+                          <div style={{marginTop:"1%",marginBottom:'1%'}} className="element-with-borderBB"></div>              
        </>
         }
     </>)
