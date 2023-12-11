@@ -281,12 +281,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
 
 
     return ( <>
-      {isUfcCardLoaded ? <><div style={{marginTop:"15%"}} className="apple"></div> 
-                          <div style={{marginTop:"5%"}} className="element-with-border2"></div>
-       </>
-        :
-        
-         < div className="home" >
+      {isUfcCardLoaded ?  < div className="home" >
             {/* <p style={{ color: 'yellow' }}>Welcome to</p> */}
             {/* <h1 className="homeheaders"style={{}}
                 // Adjust this value as needed
@@ -601,7 +596,12 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
 
                                     <h2 style={{backgroundColor:'white',color:'black',border:'black 1px solid'}} className="homeheaders2">Pick Count ({countPick})   </h2>
         </div> 
+        :
         
+        
+        <><div style={{marginTop:"15%"}} className="apple"></div> 
+                          <div style={{marginTop:"5%"}} className="element-with-border2"></div>
+       </>
         }
     </>)
 }
