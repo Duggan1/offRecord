@@ -144,8 +144,8 @@ function Johnny({ onLogin, ufcCard }) {
             <div
             
               className={`status-switch ${showVideo ? 'checked' : ''}`}
-              data-unchecked="Sign-Up"
-              data-checked="Login"
+              data-unchecked="Login"
+              data-checked="Sign-Up"
             ></div>
           </label>
         </div>

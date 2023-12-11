@@ -217,7 +217,7 @@ useEffect(() => {
   submitUfcEvent();
 }, [eventInfo.event_name !== null]);
 
-
+console.log(eventInfo)
 const patchEvent = () => {
 
   const recreatedFights = ufcCard2.map((fight, index) => {
@@ -331,10 +331,7 @@ useEffect(() => {
 
 
 
-console.log(eventInfo) 
-const backgroundImageSrc = ufcEvents.backgroundImageSrc
-const tapImageSrc = ufcEvents.tapImage
-  
+
   ///move out of App
   const ufcCard = [
 
@@ -681,14 +678,18 @@ console.log(modifiedUfcResults)
 
 
 
-
-
-
+console.log(eventInfo) 
+const PreLeonColby =  ('' + ufcEvents.backgroundImageSrc)
+const backgroundImageSrc = 'https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_md/s3/image/2023-12/121623-UFC-296-EDWARDS-VS-COVINGTON-EVENT-ART.jpg?h=d1cb525d&itok=Jy3J4tLz';
+const tapImageSrc = ufcEvents.tapImage
+console.log(backgroundImageSrc) 
+console.log(tapImageSrc) 
+  
 
 // Check if eventInfo.locationCC is defined before splitting it
 let locationInfo = [];
-if (ufcEvents && ufcEvents.locationCC) {
-  locationInfo = ufcEvents.locationCC.split(', ').map(part => part.trim());
+if (eventInfo && eventInfo.locationCC) {
+  locationInfo = eventInfo.locationCC.split(', ').map(part => part.trim());
 }
 
 const locationcity = locationInfo[0];
@@ -696,6 +697,7 @@ const locationstate = locationInfo[1];
 const location = locationInfo[locationInfo.length - 1];
 
 console.log(eventInfo)
+console.log(ufcEvents)
 console.log(location); // United States
 
 

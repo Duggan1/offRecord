@@ -451,7 +451,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                   width:'100%', justifyContent:'center',textAlign:'center'
                   }} ></h5></div>
                 
-                { isUfcCardLoaded ? <div className='crdiv' style={{  height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',  position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
+                { isUfcCardLoaded ? <div className='crdiv' style={{  height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',  position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
                     <NavLink className='color-gold hgysnow' exact to="/section3"></NavLink>
                     <h5 className=' snow' style={{ color:'black',textAlign: 'center',  marginTop: '-6%',textShadow: '0 0 15px white' }}>PICK'EM</h5>
                 </div>
