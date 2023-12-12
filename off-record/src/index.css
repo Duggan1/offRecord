@@ -503,6 +503,20 @@ code {
 .payment {
   text-align: center;
 }
+.p4pplus {
+  max-width: 100%;
+  min-width: 80px;
+  max-height: 40px;
+  min-height: 40px;
+  height:auto;
+  background-image: url('./p4p+whitegreen.png');
+  background-repeat: no-repeat;
+  /* background-position-x: 50%; */
+	background-size: 100% 100%;
+  /* border: red solid 2px; */
+  padding: 5% 25%;
+
+}
 .apple {
   max-width: 33%;
   min-width: 33%;
@@ -1332,6 +1346,15 @@ input[type='checkbox'] {
 @media (max-width: 767px) {
   #basement{
     padding: 20px 0px;
+  }
+  .p4pplus{
+    max-width: 100%;
+    min-width: 60px;
+    max-height: 40px;
+    min-height: 40px;
+    
+    padding: 0%;
+    
   }
   .schead {
     font-size: 9px;
