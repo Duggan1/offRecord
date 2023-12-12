@@ -99,7 +99,7 @@ function About() {
             padding:'12% 15%',
             borderRadius:'50%'
 }}
- className='p4pplusBlack'></span>
+ className='p4pplus'></span>
       {/* <span style={{color:'red',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black'}}>P</span>
       <span style={{color:'black',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black'}}>4</span>
       <span style={{color:'blue',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black',borderRight:'3px solid black'}} >P</span>  */}
