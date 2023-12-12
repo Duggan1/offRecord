@@ -504,10 +504,10 @@ code {
   text-align: center;
 }
 .p4pplusBlack {
-  /* max-width: 100%;
-  min-width: 80px;
-  max-height: 40px;
-  min-height: 40px; */
+  max-width: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  min-height: 50px;
   height:auto;
   background-image: url('./p4p+black.png');
   background-repeat: no-repeat;

@@ -83,20 +83,20 @@ function About() {
   }, [currentSection, isPaused]);
 
   return (
-    <div  style={{backgroundImage:`url(${tqtcat})`,backgroundSize:'cover' ,marginBottom: '0px',marginTop:'0%',textAlign:'center' }}>
+    <div  style={{backgroundImage:`url(${tqtcat})`,backgroundSize:'cover' ,marginBottom: '0px',marginTop:'0%',textAlign:'center',paddingTop:'5%' }}>
       
       
-      <h1 style={{padding :'10% 0',textAlign:'center',color:'white'}}>
+      <h1 style={{padding :'20% 0',textAlign:'center',color:'white'}}>
       {/* <span style={{color:'white',backgroundColor:'black'}} >About </span><br></br> */}
       <span style={{
-            borderTop: '5px solid red',
-            borderRight: '5px solid blue',
-            borderLeft: '5px solid red',
-            borderBottom: '5px solid blue',
+            borderTop: '15px solid red',
+            borderRight: '15px solid blue',
+            borderLeft: '15px solid red',
+            borderBottom: '15px solid blue',
             borderRadius: '10%',
             color: 'white',
             backgroundColor: 'black',
-            padding:'10%',
+            padding:'12% 15%',
             borderRadius:'50%'
 }}
  className='p4pplusBlack'></span>
