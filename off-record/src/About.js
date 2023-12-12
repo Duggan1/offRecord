@@ -83,12 +83,26 @@ function About() {
   }, [currentSection, isPaused]);
 
   return (
-    <div  style={{backgroundImage:`url(${tqtcat})`,backgroundSize:'cover' ,marginBottom: '0px',marginTop:'0%' }}>
+    <div  style={{backgroundImage:`url(${tqtcat})`,backgroundSize:'cover' ,marginBottom: '0px',marginTop:'0%',textAlign:'center' }}>
+      
+      
       <h1 style={{padding :'10% 0',textAlign:'center',color:'white'}}>
-      <span style={{color:'white',backgroundColor:'black',borderTop:'3px solid black',borderBottom:'3px solid black',borderLeft:'3px solid black'}} >About </span>
-      <span style={{color:'red',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black'}}>P</span>
+      {/* <span style={{color:'white',backgroundColor:'black'}} >About </span><br></br> */}
+      <span style={{
+            borderTop: '5px solid red',
+            borderRight: '5px solid blue',
+            borderLeft: '5px solid red',
+            borderBottom: '5px solid blue',
+            borderRadius: '10%',
+            color: 'white',
+            backgroundColor: 'black',
+            padding:'10%',
+            borderRadius:'50%'
+}}
+ className='p4pplusBlack'></span>
+      {/* <span style={{color:'red',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black'}}>P</span>
       <span style={{color:'black',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black'}}>4</span>
-      <span style={{color:'blue',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black',borderRight:'3px solid black'}} >P</span> 
+      <span style={{color:'blue',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black',borderRight:'3px solid black'}} >P</span>  */}
       </h1>
       <div className="about"style={{maxWidth:'80%', margin:'0 10%'}}>
           <div className={sections[currentSection].className}>{sections[currentSection].content}</div>

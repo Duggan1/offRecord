@@ -503,6 +503,20 @@ code {
 .payment {
   text-align: center;
 }
+.p4pplusBlack {
+  /* max-width: 100%;
+  min-width: 80px;
+  max-height: 40px;
+  min-height: 40px; */
+  height:auto;
+  background-image: url('./p4p+black.png');
+  background-repeat: no-repeat;
+  /* background-position-x: center; */
+	background-size: 100% 100%;
+  /* border: red solid 2px; */
+  padding: 5% 15%;
+
+}
 .p4pplus {
   max-width: 100%;
   min-width: 80px;
@@ -1352,7 +1366,6 @@ input[type='checkbox'] {
     min-width: 60px;
     max-height: 40px;
     min-height: 40px;
-    
     padding: 0%;
     
   }
