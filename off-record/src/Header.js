@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import whitelogo  from './whitelogo.png'
 import logo from './logo.png';
 import { NavLink, useLocation } from "react-router-dom";
 

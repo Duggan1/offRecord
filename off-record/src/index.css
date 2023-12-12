@@ -555,6 +555,169 @@ code {
   animation: App-logo-spin infinite 2s linear;
 
 }
+.juice {
+  max-width: 33%;
+  min-width: 33%;
+  max-height: 100%;
+  min-height: 150px;
+  height:auto;
+  background-image: url('./whitelogo.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+	background-size: 100% 100%;
+  margin-left: 33%;
+  text-align: center;
+  animation: App-logo-spin infinite 2s linear;
+}
+
+.f-Man {
+  max-width: 33%;
+  min-width: 33%;
+  max-height: 100%;
+  min-height: 150px;
+  height:auto;
+  background-image: url('./fightingMan.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+	background-size: 100% 100%;
+  margin-left: 33%;
+  text-align: center;
+  animation: App-logo-spin infinite 2s linear;
+}
+.f-Man1 {
+  max-width: 33%;
+  min-width: 33%;
+  max-height: 100%;
+  min-height: 150px;
+  height:auto;
+  background-image: url('./fightingMan1.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+	background-size: 100% 100%;
+  margin-left: 33%;
+  text-align: center;
+  animation: App-logo-spin infinite 2s linear;
+}
+.f-Man2 {
+  max-width: 33%;
+  min-width: 33%;
+  max-height: 100%;
+  min-height: 150px;
+  height:auto;
+  background-image: url('./fightingMan2.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+	background-size: 100% 100%;
+  margin-left: 33%;
+  text-align: center;
+  /* animation: App-logo-spin infinite 2s linear; */
+}
+.f-Man3 {
+  max-width: 33%;
+  min-width: 33%;
+  max-height: 100%;
+  min-height: 150px;
+  height:auto;
+  background-image: url('./fightingMan3.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+	background-size: 75% 75%;
+  margin-left: 33%;
+  text-align: center;
+  /* animation: App-logo-spin infinite 2s linear; */
+}
+.f-Man4 {
+  max-width: 33%;
+  min-width: 33%;
+  max-height: 100%;
+  min-height: 150px;
+  height:auto;
+  background-image: url('./fightingMan4.png');
+  background-repeat: no-repeat;
+  background-position-x: 50% 50%;
+	background-size: 75% 75%;
+  margin-left: 33%;
+  text-align: center;
+  animation: App-logo-spin infinite 2s linear;
+}
+/* //////////INVERT THIS//////// */
+.f-Man4R {
+  max-width: 33%;
+  min-width: 33%;
+  max-height: 100%;
+  min-height: 150px;
+  height: auto;
+  background-image: url('./fightingMan4R.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-size: 100% 100%;
+  margin-left: 33%;
+  text-align: center;
+  animation: App-logo-spin-inverse infinite 2s linear; /* Changed animation name */
+  transform: scaleX(-1); /* Invert horizontally */
+}
+.f-Man5 {
+  max-width: 33%;
+  min-width: 33%;
+  max-height: 100%;
+  min-height: 150px;
+  height:auto;
+  background-image: url('./fightingMan5.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+	background-size: 100% 100%;
+  margin-left: 33%;
+  text-align: center;
+  animation: App-logo-spin infinite 2s linear;
+}
+.f-Man6 {
+  max-width: 33%;
+  min-width: 33%;
+  max-height: 100%;
+  min-height: 150px;
+  height:auto;
+  background-image: url('./fightingMan6.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+	background-size: 100% 100%;
+  margin-left: 33%;
+  text-align: center;
+  animation: App-logo-spin infinite 2s linear;
+}
+.f-Man7 {
+  max-width: 33%;
+  min-width: 33%;
+  max-height: 100%;
+  min-height: 150px;
+  height:auto;
+  background-image: url('./fightingMan7.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+	background-size: 100% 100%;
+  margin-left: 33%;
+  text-align: center;
+  animation: App-logo-spin infinite 2s linear;
+  background-color:'whitesmoke',
+}
+.p4p8 {
+  max-width: 33%;
+  min-width: 33%;
+  max-height: 100%;
+  min-height: 150px;
+  height:auto;
+  background-image: url('./p4p+black.png');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+	background-size: 100% 100%;
+  margin-left: 33%;
+  text-align: center;
+  animation: App-logo-spin infinite 2s linear;
+  background-color:'whitesmoke',
+
+}
+
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg); /* Start from 360 degrees (full rotation) */
