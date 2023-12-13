@@ -4,12 +4,14 @@ import './App.css';
 import * as yup from 'yup';
 import axios from 'axios';
 import Modal from 'react-modal';
+import Johnny from './Johnny';
+import Header from './Header';
 
 
 import { useNavigate } from 'react-router-dom';
 import Dnd from './Dnd';
 
-function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
+function Tommy({ handleLogout,onLogin,user, ufcCard, stallUfcCard,locationCity,location}) {
 
   const [backupID, setBackupID] = useState(0)
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -532,6 +534,13 @@ if (isLoading) {
 
   return  (
     <>
+    {user ?
+              <Header handleLogout={handleLogout} user={user} ufcCard={ufcCard} />
+          : <Johnny onLogin={onLogin} onLogout={handleLogout} ufcCard={ufcCard} />}
+
+
+
+
     <div>
       {user ? (
     <div className="tommy">

@@ -2,8 +2,10 @@ import React, { useState, useEffect  } from "react";
 import './App.css';
 import { NavLink } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
+import Johnny from './Johnny';
+import Header from './Header';
 
-function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic, tapImage, countPick}) {
+function Home({handleLogout,onLogin,user, ufcCard, stallUfcCard, state, locationCity,location, BGpic, tapImage, countPick}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
@@ -295,6 +297,10 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
       }, [currentClass, fightingMan]);
 
     return ( <>
+    {user ?
+              <Header handleLogout={handleLogout} user={user} ufcCard={ufcCard} />
+          : <Johnny onLogin={onLogin} onLogout={handleLogout} ufcCard={ufcCard} />}
+    
       {isUfcCardLoaded ?  
       < div className="home" >
             {/* <p style={{ color: 'yellow' }}>Welcome to</p> */}

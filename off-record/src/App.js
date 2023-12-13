@@ -5,6 +5,7 @@ import Home from './Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Elijah from './Elijah';
 import Johnny from './Johnny';
+import Header from './Header';
 import Results from './Results';
 import Tommy from './Tommy';
 import About from './About';
@@ -12,7 +13,7 @@ import axios from 'axios';
 import * as yup from 'yup';
 import isEqual from 'lodash/isEqual';
 // import CommentSection from './CommentSection';
-import Header from './Header';
+
 
 
 
@@ -705,41 +706,26 @@ console.log(location); // United States
 
   return (
     <BrowserRouter>
-     {/* <div >
- 
-
-
-
-     <div style={{ display: 'flex', justifyContent: 'flex-end', textAlign: 'end', fontSize: '8px', width: '100%' }}>
-  {user ? (
-    <>
-      <h1 className='color-white'>Hello {user.fullname}{user.fullName}</h1>
-      <button onClick={handleLogout} className="submitb" style={{ marginLeft: '10px', minWidth: '10%', padding:'2%',marginTop:'0%' }} type="submit">
-        Log out
-      </button>
-    </>
-  ) : (
-    <p></p>
-  )}
-</div>
-
-</div> */}
-{user ?
-//  <NavBar ufcCard={ufcCard3} user={user} /> 
-    <Header handleLogout={handleLogout} user={user} ufcCard={ufcCard3} />
- : <Johnny onLogin={handleLogin} onLogout={handleLogout} ufcCard={ufcCard3} />}
+     
+          {/* {user ?
+              <Header handleLogout={handleLogout} user={user} ufcCard={ufcCard3} />
+          : <Johnny onLogin={handleLogin} onLogout={handleLogout} ufcCard={ufcCard3} />} */}
 
     
    <Routes>
-      <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} stallUfcCard={ufcCard} locationCity={locationcity} state={locationstate} location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} countPick={countPick} />} />
+      <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} handleLogout={handleLogout} onLogin={handleLogin} 
+                                      stallUfcCard={ufcCard} locationCity={locationcity} state={locationstate} 
+                                      location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} countPick={countPick} />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
+      <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} handleLogout={handleLogout} onLogin={handleLogin} 
+                                              stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} />}/>
       
       <Route path="/about" element={<About/>}/>
       {/* <Route path="/comments" element={<CommentSection />}/> */}
+      {/* <Route path="/pools" element={<Pools />}/> */}
        
     </Routes>
     
