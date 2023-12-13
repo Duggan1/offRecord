@@ -988,6 +988,7 @@ if (isLoading) {
   contentLabel=""
 >
   <div className='text-align-center element-with-border3 'style={{MaxHeight:'fit-content'}}>
+  <center> <div className='p4pplusBlack ggg'></div></center>
     <h2 className='snowwhite'
     style={{ margin:'10px' }}
     >Picks4Points.com</h2>
@@ -999,39 +1000,68 @@ if (isLoading) {
             round: predictions[index]?.round */}
     {selectedUfcCard.map((fight, index) => (
       <div style={{ }}  key={index}>
-        <div className='text-align-center snowwhite' style={{ display:'flex', justifyContent: 'center' ,margin:'0px',marginTop:'-25px'  }}>
+
+        {/* <div className='text-align-center snowwhite' style={{ display:'flex', justifyContent: 'center' ,margin:'0px',marginTop:'-25px'  }}>
           <p style={{ color: predictions[index]?.winner === 0 ? 'white' : 'white',backgroundColor: predictions[index]?.winner === 0 ? 'green' : '' }}>{fight.fighters[0]} </p>
           <p style={{padding:'0px 5px', backgroundColor:'whitesmoke', border:'black 1px solid', borderRadius:'40%',color:'black'}}> VS </p>
           <p style={{ color: predictions[index]?.winner === 1 ? 'white' : 'white',backgroundColor: predictions[index]?.winner === 1 ? 'green' : '' }}>
-                    {fight.fighters[1]}</p>{/* <p>Winner: {predictions[index]?.winner}</p> */}
-        </div>
+                    {fight.fighters[1]}</p>
+        </div> */}
+
         <div className='text-align-center snowwhite' style={{ display:'flex', justifyContent: 'center',margin:'0px',marginTop:'-25px'   }}>
           
-          {predictions[index]?.round ? 
-          <p style={{paddingRight:'5px',backgroundColor:'black'}}>Round {predictions[index]?.round} </p>: null}
-          <p 
-          style={{backgroundColor:'black'
-          }}
+        {predictions[index]?.winner === 0 ? <>
+        <p style={{backgroundColor:'darkgreen',paddingLeft:'5px',paddingRight:'5px'}}>{fight.fighters[0]} </p>
+        
+        {predictions[index]?.round ? 
+          <p style={{paddingLeft:'5px',backgroundColor:'black'}}>Round {predictions[index]?.round} </p>: null}
+          <p style={{paddingLeft:'5px',paddingRight:'5px',backgroundColor:'black'}}>
+             {predictions[index]?.method}</p>
+         <p 
+         style={{backgroundColor:'black',color:'black',
+         backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, predictions[index]?.winner)}/shiny/64.png")`,
+         backgroundSize: '100% 100%',
+         backgroundPosition: 'center center',
+       }}
+       
+       > _______</p>
           
-          > {predictions[index]?.method}</p>
-          <p 
-          style={{backgroundColor:'black',color:'black',
-            backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, predictions[index]?.winner)}/shiny/64.png")`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center',
-          }}
           
-          > _______</p>
+         </> : null}
+         
+
+      {/* You can add additional content or actions here */}
+          
+ 
+    {/* You can add additional content or actions here */}
+
+             {predictions[index]?.winner === 1 ? <>
+              
+                <p 
+                style={{backgroundColor:'black',color:'black',
+                backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, predictions[index]?.winner)}/shiny/64.png")`,
+                backgroundSize: '100% 100%',
+                backgroundPosition: 'center center',
+              }}
+              
+              > _______</p>{predictions[index]?.round ? 
+                <p style={{paddingLeft:'5px',backgroundColor:'black'}}>Round {predictions[index]?.round} </p>: null}
+                <p style={{paddingLeft:'5px',paddingRight:'5px',backgroundColor:'black'}}>
+                   {predictions[index]?.method}</p>
+
+                        <p style={{backgroundColor:'darkgreen',paddingLeft:'5px',paddingRight:'5px'}}>{fight.fighters[1]} </p>
+                          
+         </> : null}
+         
 
           
         </div>
       </div>
     ))}
+   
     {/* You can add additional content or actions here */}
     {/* You can add additional content or actions here */}
-    {/* You can add additional content or actions here */}
-    {/* You can add additional content or actions here */}
-   <center> <div className='p4pplusBlack ggg'></div></center>
+   
     
     <button
     style={{backgroundColor:'whitesmoke', color:'black',padding :"3%", border:'black solid 3px', borderRadius:'10%', marginTop:'2%'}}
