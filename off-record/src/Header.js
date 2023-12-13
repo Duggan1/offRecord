@@ -6,7 +6,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 import './App.css';
 
-function Header({user, ufcCard}) {
+function Header({user, ufcCard, handleLogout}) {
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location.pathname)
@@ -35,6 +35,21 @@ function Header({user, ufcCard}) {
 
   return (
     <div className="Header text-align-center">
+      <div >
+              <div style={{ display: 'flex', justifyContent: 'flex-end', textAlign: 'end', fontSize: '8px', width: '100%' }}>
+              {user ? (
+                    <>
+                      <h1 className='color-white'>Hello {user.fullname}{user.fullName}</h1>
+                      <button onClick={handleLogout} className="submitb" style={{ marginLeft: '10px', minWidth: '10%', padding:'2%',marginTop:'0%' }} type="submit">
+                        Log out
+                      </button>
+                    </>
+              ) : (
+              <p></p>
+              )}
+              </div>
+
+              </div>
       
       {showDropdown ? <>
         <div 

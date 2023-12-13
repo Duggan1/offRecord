@@ -705,7 +705,7 @@ console.log(location); // United States
 
   return (
     <BrowserRouter>
-     <div >
+     {/* <div >
  
 
 
@@ -723,10 +723,10 @@ console.log(location); // United States
   )}
 </div>
 
-</div>
+</div> */}
 {user ?
 //  <NavBar ufcCard={ufcCard3} user={user} /> 
-    <Header ufcCard={ufcCard3} />
+    <Header handleLogout={handleLogout} user={user} ufcCard={ufcCard3} />
  : <Johnny onLogin={handleLogin} onLogout={handleLogout} ufcCard={ufcCard3} />}
 
     

@@ -7,7 +7,7 @@ import Header from "./Header";
 
 
 
-function Johnny({ onLogin, ufcCard }) {
+function Johnny({ onLogin, ufcCard,onLogout  }) {
     const navigate = useNavigate()
     const [userName, setUserName] = useState('');
     const [fullName, setFullName] = useState('');
@@ -130,7 +130,7 @@ function Johnny({ onLogin, ufcCard }) {
 
     return (
         <div className="johnny">
-          <Header ufcCard={ufcCard}/>
+          <Header handleLogout={onLogout} ufcCard={ufcCard}/>
             {/* <h3 style={{marginTop:'0%'}}>Sign Up / Login</h3> */}
             <div style={{ display: 'inline-block',marginBottom:'5%',marginTop:'5%',}}className="custom-checkbox">
           <input
