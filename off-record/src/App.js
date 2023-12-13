@@ -707,19 +707,19 @@ console.log(location); // United States
   return (
     <BrowserRouter>
      
-          {/* {user ?
+          {user ?
               <Header handleLogout={handleLogout} user={user} ufcCard={ufcCard3} />
-          : <Johnny onLogin={handleLogin} onLogout={handleLogout} ufcCard={ufcCard3} />} */}
+          : <Johnny onLogin={handleLogin} onLogout={handleLogout} ufcCard={ufcCard3} />}
 
     
    <Routes>
-      <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} handleLogout={handleLogout} onLogin={handleLogin} 
+      <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} 
                                       stallUfcCard={ufcCard} locationCity={locationcity} state={locationstate} 
                                       location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} countPick={countPick} />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} handleLogout={handleLogout} onLogin={handleLogin} 
+      <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} 
                                               stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} />}/>
       

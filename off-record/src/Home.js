@@ -2,10 +2,9 @@ import React, { useState, useEffect  } from "react";
 import './App.css';
 import { NavLink } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
-import Johnny from './Johnny';
-import Header from './Header';
 
-function Home({handleLogout,onLogin,user, ufcCard, stallUfcCard, state, locationCity,location, BGpic, tapImage, countPick}) {
+
+function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic, tapImage, countPick}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
@@ -280,7 +279,7 @@ function Home({handleLogout,onLogin,user, ufcCard, stallUfcCard, state, location
       function getCountryAbbreviation(countryName) {
         return countryData[countryName] || "Not Found";
       }
-
+      console.log(location)
       const fightingMan = ['p4p8','apple', 'f-Man5', 'f-Man6', 'f-Man7', 'f-Man', 'f-Man2', 'f-Man3',  'f-Man4R','f-Man4','apple'];
       const [currentClass, setCurrentClass] = useState(fightingMan[0]);
     
@@ -297,9 +296,7 @@ function Home({handleLogout,onLogin,user, ufcCard, stallUfcCard, state, location
       }, [currentClass, fightingMan]);
 
     return ( <>
-    {user ?
-              <Header handleLogout={handleLogout} user={user} ufcCard={ufcCard} />
-          : <Johnny onLogin={onLogin} onLogout={handleLogout} ufcCard={ufcCard} />}
+    
     
       {isUfcCardLoaded ?  
       < div className="home" >
@@ -470,7 +467,7 @@ function Home({handleLogout,onLogin,user, ufcCard, stallUfcCard, state, location
                   paddingTop:'15%',
                   paddingBottom:'45%',marginBottom:'0%',marginTop:'0%',
                   width:'100%', justifyContent:'center',textAlign:'center'
-                  }} ></h5></div>
+                  }} >a</h5></div>
                 
                 { isUfcCardLoaded ? <div className='crdiv' style={{  height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',  position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
                     <NavLink className='color-gold hgysnow' exact to="/section3"></NavLink>
