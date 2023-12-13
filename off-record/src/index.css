@@ -531,6 +531,9 @@ code {
   color: gold;
   text-decoration: wavy;
 }
+.color-transp {
+  color: #ffffff00;
+}
 .payment {
   text-align: center;
 }

@@ -999,7 +999,7 @@ if (isLoading) {
             method: predictions[index]?.method ,
             round: predictions[index]?.round */}
     {selectedUfcCard.map((fight, index) => (
-      <div style={{ }}  key={index}>
+      <div style={{maxWidth:'100%' }}  key={index}>
 
         {/* <div className='text-align-center snowwhite' style={{ display:'flex', justifyContent: 'center' ,margin:'0px',marginTop:'-25px'  }}>
           <p style={{ color: predictions[index]?.winner === 0 ? 'white' : 'white',backgroundColor: predictions[index]?.winner === 0 ? 'green' : '' }}>{fight.fighters[0]} </p>
@@ -1011,20 +1011,20 @@ if (isLoading) {
         <div className='text-align-center snowwhite' style={{ display:'flex', justifyContent: 'center',margin:'0px',marginTop:'-25px'   }}>
           
         {predictions[index]?.winner === 0 ? <>
-        <p style={{backgroundColor:'darkgreen',paddingLeft:'5px',paddingRight:'5px'}}>{fight.fighters[0]} </p>
+        <p style={{backgroundColor:'darkgreen',paddingLeft:'5px',paddingRight:'5px'}}>{fight.fighters[0].split(' ').pop()} </p>
         
         {predictions[index]?.round ? 
-          <p style={{paddingLeft:'5px',backgroundColor:'black'}}>Round {predictions[index]?.round} </p>: null}
+          <p style={{paddingLeft:'5px',backgroundColor:'black'}}>R. {predictions[index]?.round} </p>: null}
           <p style={{paddingLeft:'5px',paddingRight:'5px',backgroundColor:'black'}}>
              {predictions[index]?.method}</p>
-         <p 
-         style={{backgroundColor:'black',color:'black',
+         <p className='color-transp'
+         style={{backgroundColor:'black',
          backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, predictions[index]?.winner)}/shiny/64.png")`,
          backgroundSize: '100% 100%',
          backgroundPosition: 'center center',
        }}
        
-       > _______</p>
+       >___</p>
           
           
          </> : null}
@@ -1037,19 +1037,19 @@ if (isLoading) {
 
              {predictions[index]?.winner === 1 ? <>
               
-                <p 
-                style={{backgroundColor:'black',color:'black',
+                <p className='color-transp'
+                style={{backgroundColor:'black',
                 backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, predictions[index]?.winner)}/shiny/64.png")`,
                 backgroundSize: '100% 100%',
                 backgroundPosition: 'center center',
               }}
               
-              > _______</p>{predictions[index]?.round ? 
-                <p style={{paddingLeft:'5px',backgroundColor:'black'}}>Round {predictions[index]?.round} </p>: null}
+              > ___</p>{predictions[index]?.round ? 
+                <p style={{paddingLeft:'5px',backgroundColor:'black'}}>R. {predictions[index]?.round} </p>: null}
                 <p style={{paddingLeft:'5px',paddingRight:'5px',backgroundColor:'black'}}>
                    {predictions[index]?.method}</p>
 
-                        <p style={{backgroundColor:'darkgreen',paddingLeft:'5px',paddingRight:'5px'}}>{fight.fighters[1]} </p>
+                        <p style={{backgroundColor:'darkgreen',paddingLeft:'5px',paddingRight:'5px'}}>{fight.fighters[1].split(' ').pop()} </p>
                           
          </> : null}
          
