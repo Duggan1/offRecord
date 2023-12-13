@@ -432,6 +432,13 @@ code {
   text-decoration: wavy;
   margin-bottom: 0%;
 }
+.ggg {
+  border-radius: 50%;
+  border-top: red solid 5px;
+  border-bottom: blue solid 5px;
+  border-right: blue solid 5px;
+  border-left: red solid 5px;
+}
 .element-with-border {
   width: 100%;
   height: 10px;
@@ -452,12 +459,36 @@ code {
 }
 .element-with-border3 {
   width: 100%;
-  height: 100%;
+  height: 150%;
+  
   background: linear-gradient(to right, darkred 50%, navy 50%);
   
 }
+.landunder {
+  text-decoration: underline;
+}
+.blueDelete {
+  margin: 5%;
+  padding : 3% 5%;
+  background-color: whitesmoke;
+  color :navy;
+  border: 2px solid navy;
+  cursor: pointer;
+  
 
-
+}
+.redDelete {
+  margin: 5%;
+  padding : 3% 5%;
+  background-color: darkred;
+  color :white;
+  cursor: pointer;
+  /* border: 2px solid red */
+}
+.height-100per {
+  max-height: 100%;
+  min-height: 100%;
+}
 .bayLoc{
   background-color: black;
   color: whitesmoke;
@@ -697,7 +728,7 @@ code {
   margin-left: 33%;
   text-align: center;
   animation: App-logo-spin infinite 2s linear;
-  background-color:'whitesmoke',
+  
 }
 .p4p8 {
   max-width: 33%;
@@ -712,7 +743,6 @@ code {
   margin-left: 33%;
   text-align: center;
   animation: App-logo-spin infinite 2s linear;
-  background-color:'whitesmoke',
 
 }
 

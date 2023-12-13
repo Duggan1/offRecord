@@ -17,9 +17,9 @@ function About() {
     {
       className: 'section section1',
       content: (
-        <>
-          <h1 style={{ marginTop: '0px',backgroundColor:'black', color:'white' }}> Story</h1>
-          <p style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3%',border:'2px black solid'}}>
+        < >
+          <h1 onClick={() => setIsPaused(!isPaused)} style={{ marginTop: '0px',backgroundColor:'black', color:'white' }}> Story</h1>
+          <p onClick={() => setIsPaused(!isPaused)} style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3%',border:'2px black solid'}}>
             Our platform is a App for Fight fans, offering a unique opportunity to showcase their fight prediction skills. The goal is simple: win the event by making accurate predictions for each fight on the card. But we don't just focus on event champions. We also reward consistency through our total points system. Even if you don't win an event, every correct prediction boosts your total points, highlighting your expertise and dedication. What sets us apart is that we operate entirely without monetary transactions. Instead, we rely on the support of our community through donations to secure our domain name and maintain the site's functionality.
           </p>
         </>
@@ -29,9 +29,9 @@ function About() {
       className: 'section section2',
       content: (
         <>
-          <h1 style={{ marginTop: '0px',backgroundColor:'black', color:'white' }}> Point System</h1>
+          <h1 onClick={() => setIsPaused(!isPaused)} style={{ marginTop: '0px',backgroundColor:'black', color:'white' }}> Point System</h1>
           <div className="">
-            <div  style={{textAlign:'start'}}>
+            <div onClick={() => setIsPaused(!isPaused)}  style={{textAlign:'start'}}>
               <p style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3% 1% 0%',border:'2px black solid', fontWeight: 'Bold' }}>
                 <span style={{ color: 'gold',backgroundColor:'black'  }}> + 1 point</span> for picking the correct Winner
               </p>
@@ -54,7 +54,7 @@ function About() {
       className: 'section section3',
       content: (
         <>
-          <div className="section3 ">
+          <div onClick={() => setIsPaused(!isPaused)} className="section3 ">
             <h1 style={{ marginTop: '0px',backgroundColor:"black",color:'white', }}> Donate Below</h1>
             <p style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3%',border:'2px black solid'}}>Since the website does not take part in gambling or money exchanges, we rely on the kindness of our users</p>
             <button className="donateB" onClick={() => window.open('https://donate.stripe.com/4gw8xEdNP0ypfqo6ot')}>$5</button>
@@ -99,7 +99,9 @@ function About() {
             padding:'12% 15%',
             borderRadius:'50%'
 }}
- className='p4pplus'></span>
+ className='p4pplus'
+ onClick={() => setIsPaused(!isPaused)}
+ ></span>
       {/* <span style={{color:'red',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black'}}>P</span>
       <span style={{color:'black',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black'}}>4</span>
       <span style={{color:'blue',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black',borderRight:'3px solid black'}} >P</span>  */}
@@ -110,7 +112,9 @@ function About() {
             <button className='redbutton' onClick={() => setCurrentSection((prevSection) => (prevSection - 1 + sections.length) % sections.length)}>{'<'}</button>
             <button style={{
               // background:`url(${logo})`,
-            backgroundColor:'white',backgroundSize:'cover', minWidth:"40px",border:'black 5px solid'}} className='pauseButton' onClick={() => setIsPaused(!isPaused)}>
+            backgroundColor:'white',backgroundSize:'cover', minWidth:"40px"}} className='pauseButton ggg'
+             onClick={() => setIsPaused(!isPaused)}
+             >
             <span className='bgw-cb'>
                 {isPaused ? <FontAwesomeIcon icon={faPlay} /> : <FontAwesomeIcon icon={faPause} />}
               </span>

@@ -279,7 +279,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
         return countryData[countryName] || "Not Found";
       }
 
-      const fightingMan = ['p4p8','apple', 'f-Man', 'f-Man2', 'f-Man3',  'f-Man4R','f-Man4', 'f-Man5', 'f-Man6', 'f-Man7','p4p8'];
+      const fightingMan = ['p4p8','apple', 'f-Man5', 'f-Man6', 'f-Man7', 'f-Man', 'f-Man2', 'f-Man3',  'f-Man4R','f-Man4','apple'];
       const [currentClass, setCurrentClass] = useState(fightingMan[0]);
     
       useEffect(() => {

@@ -3,7 +3,7 @@ import './App.css';
 import {useNavigate} from 'react-router-dom';
 import logo from './logo.png';
 import Chart from "chart.js/auto";
-
+import Modal from 'react-modal';
 import Dnd from './Dnd';
 
 function Results({ user, ufcCard, ufcResults, results2, adminKevPicks2 }) {
@@ -20,6 +20,9 @@ function Results({ user, ufcCard, ufcResults, results2, adminKevPicks2 }) {
   const handleOptionClick = (option) => {
       navigate(`${option}`);
     };
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const openModal = () => setModalIsOpen(true);
+  const closeModal = () => setModalIsOpen(false);
 
 
 
@@ -571,7 +574,7 @@ const movePredictionUp = (pickId, predIndex) => {
     
   }
 };
-
+const [pick2delete, setPick2delete] = useState('') 
 // Function to move a prediction down within a pick
 const deletePrediction = (pickId, predIndex) => {
   // Get the updated list of predictions
@@ -964,7 +967,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
 
 
-  return (
+  return (<>
 <div>
   (
     <div className="snowwhite">
@@ -1210,11 +1213,18 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
           {deletePicks && user && (user.username === result.owner || user.username === 'AdminKev') ? (
               <button
                 className="delete-button"
-                onClick={() => handleDeletePick(result.id)}
+                onClick={() => 
+                 { setPick2delete(result.id)
+                  openModal()
+}
+                
+                }
               >
                 Delete Pick
               </button>
             ) : null }
+
+            
           <h2>{calculateTotalPoints(result, result.main_event, adminKevPicks)}+ Points</h2>
          
         </center>
@@ -1447,7 +1457,40 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
   <div className="element-with-border2"></div>     
             
 </div>
+{/* Modal */}
+<Modal
+  isOpen={modalIsOpen}
+  onRequestClose={closeModal}
+  contentLabel=""
+  style={{maxHeight:'fit-content'}}
+>
+  <div  className='text-align-center  '>
+    <h2 className=''
+    style={{ margin:'10px' }}
+    >Picks4Points.com</h2>
+    <p style={{fontSize:'bolder',textDecoration:'underline'}} className="color-red landunder">Confirm you wish to Delete your picks for this card?</p>
+    <p className="color-black">Doing this allows you to make picks for this event again</p>
+       
 
+    
+
+          
+        
+     
+    {/* You can add additional content or actions here */}
+    <button className="redDelete" onClick={async () => {
+                                  handleDeletePick(pick2delete);
+                                  closeModal();
+                                }}>Delete</button>
+
+<button className="blueDelete" onClick={() => closeModal()}>Cancel</button>
+
+    
+    
+    </div>
+  
+</Modal>
+</>
   );
 }
 

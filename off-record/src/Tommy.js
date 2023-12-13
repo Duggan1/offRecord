@@ -3,6 +3,7 @@ import cheerio from 'cheerio';
 import './App.css';
 import * as yup from 'yup';
 import axios from 'axios';
+import Modal from 'react-modal';
 
 
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +12,10 @@ import Dnd from './Dnd';
 function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
 
   const [backupID, setBackupID] = useState(0)
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => setModalIsOpen(true);
+  const closeModal = () => setModalIsOpen(false);
 
 
 
@@ -225,8 +230,9 @@ const handleSubmit = async (e) => {
         .then(data => {
             console.log('Predictions submitted successfully:', data);
             // Perform any further actions here
-            setPredictions([]);
-            navigate('/results');
+            // setPredictions([]);
+            openModal()
+            // navigate('/results');
 
         })
         .catch(error => {
@@ -525,6 +531,7 @@ if (isLoading) {
 
 
   return  (
+    <>
     <div>
       {user ? (
     <div className="tommy">
@@ -768,7 +775,9 @@ if (isLoading) {
 
         
       </form>
+      
     </div> 
+    
     ) : (
       <div>
         {/* //////////// tAKE 2 NO SIGNIN////// */}
@@ -971,7 +980,70 @@ if (isLoading) {
         </div>
     </div>
     ) }
+    </div>
+    {/* Modal */}
+    <Modal
+  isOpen={modalIsOpen}
+  onRequestClose={closeModal}
+  contentLabel=""
+>
+  <div className='text-align-center element-with-border3 'style={{MaxHeight:'fit-content'}}>
+    <h2 className='snowwhite'
+    style={{ margin:'10px' }}
+    >Picks4Points.com</h2>
+
+    {/* selectedUfcCard.map((fight, index) => ({
+            fighters: fight.fighters,
+            winner: predictions[index]?.winner ,
+            method: predictions[index]?.method ,
+            round: predictions[index]?.round */}
+    {selectedUfcCard.map((fight, index) => (
+      <div style={{ }}  key={index}>
+        <div className='text-align-center snowwhite' style={{ display:'flex', justifyContent: 'center' ,margin:'0px',marginTop:'-25px'  }}>
+          <p style={{ color: predictions[index]?.winner === 0 ? 'white' : 'white',backgroundColor: predictions[index]?.winner === 0 ? 'green' : '' }}>{fight.fighters[0]} </p>
+          <p style={{padding:'0px 5px', backgroundColor:'whitesmoke', border:'black 1px solid', borderRadius:'40%',color:'black'}}> VS </p>
+          <p style={{ color: predictions[index]?.winner === 1 ? 'white' : 'white',backgroundColor: predictions[index]?.winner === 1 ? 'green' : '' }}>
+                    {fight.fighters[1]}</p>{/* <p>Winner: {predictions[index]?.winner}</p> */}
+        </div>
+        <div className='text-align-center snowwhite' style={{ display:'flex', justifyContent: 'center',margin:'0px',marginTop:'-25px'   }}>
+          
+          {predictions[index]?.round ? 
+          <p style={{paddingRight:'5px',backgroundColor:'black'}}>Round {predictions[index]?.round} </p>: null}
+          <p 
+          style={{backgroundColor:'black'
+          }}
+          
+          > {predictions[index]?.method}</p>
+          <p 
+          style={{backgroundColor:'black',color:'black',
+            backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, predictions[index]?.winner)}/shiny/64.png")`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+          }}
+          
+          > _______</p>
+
+          
+        </div>
+      </div>
+    ))}
+    {/* You can add additional content or actions here */}
+    {/* You can add additional content or actions here */}
+    {/* You can add additional content or actions here */}
+    {/* You can add additional content or actions here */}
+   <center> <div className='p4pplusBlack ggg'></div></center>
+    
+    <button
+    style={{backgroundColor:'whitesmoke', color:'black',padding :"3%", border:'black solid 3px', borderRadius:'10%', marginTop:'2%'}}
+    onClick={() => {
+      closeModal();
+      setPredictions([]);
+      navigate('/results');
+    }}>Close</button>
   </div>
+</Modal>
+
+    </>
         );
       
     }
