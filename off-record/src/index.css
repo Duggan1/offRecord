@@ -63,7 +63,7 @@ code {
    background-image: url('https://image.shutterstock.com/image-vector/empty-cage-martial-arts-fighting-260nw-1136825033.jpg');
   background-repeat: no-repeat;
   background-size: 100% 110%;
-  padding-bottom: 15%;
+  padding-top: 0%;
   z-index: 1;
 
 }
@@ -1365,16 +1365,7 @@ input[type='checkbox'] {
   z-index: 0; /* Set a negative z-index to position it behind other elements */
 }
 
-.fi {
-  
-  flex: 1; 
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: left;
-  min-width: 50%;
-  min-height:600px;
-  overflow: hidden;
-}
+
 .fighter-image {
   flex: 1; /* Grow to fill available space */
   background-size: cover;
@@ -1550,10 +1541,26 @@ input[type='checkbox'] {
 
 
 
-
+.fi {
+  
+  flex: 1; 
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: left;
+  min-width: 50%;
+  min-height:1000px;
+  overflow: hidden;
+}
 
 
 @media (max-width: 767px) {
+
+  .fi {
+  
+    
+    min-height:600px;
+    
+  }
   #basement{
     padding: 20px 0px;
   }

@@ -699,6 +699,7 @@ const location = locationInfo[locationInfo.length - 1];
 
 console.log(eventInfo)
 console.log(ufcEvents)
+console.log(locationInfo.length)
 console.log(location); // United States
 
 
