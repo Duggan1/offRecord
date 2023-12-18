@@ -352,7 +352,11 @@ code {
 }
 
 
-
+.width-30 {
+  min-width: 100%;
+  max-width: 100%;
+  width: 100%;
+}
 
 .snowwhite{ 
   color: white;
@@ -477,6 +481,7 @@ code {
   
 
 }
+
 .redDelete {
   margin: 5%;
   padding : 3% 5%;
@@ -928,6 +933,7 @@ code {
 .filterbutton {
   border : 3px solid darkred;
   font-weight: bold;
+  width: 50%;
 }
 .delete-button {
   background-color: gold;
@@ -1085,7 +1091,7 @@ code {
 
 .johnny {
   text-align: center;
-  background-color: rgba(55, 0, 59, 0.439);
+  background-color: rgb(0, 0, 0);
   background-image: url("https://t3.ftcdn.net/jpg/03/57/92/94/360_F_357929406_33BPzrx3uSUOgwokmDZ4QpESUBrJJaqC.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -1420,10 +1426,10 @@ input[type='checkbox'] {
   
 }
 .pborder {
-  border-top: 5px solid blue;
+  border-top: 5px solid red;
   border-right: 10px solid blue;
   border-bottom: 10px solid blue;
-  border-left: 10px solid blue;
+  border-left: 10px solid red;
 }
 
 /* Hide default HTML checkbox */
@@ -1454,7 +1460,7 @@ input[type='checkbox'] {
   width: 50%;
   height: 88%;
   background-color: #f3f3f3;
-  color: #373737;
+  color: darkred;
   left: 0;
   bottom: 0;
   align-items: center;
@@ -1464,7 +1470,9 @@ input[type='checkbox'] {
   transform-style: preserve-3d;
   transition: all 150ms;
 }
-
+.cursor-pointer{
+  cursor: pointer;
+}
 .left::before {
   position: absolute;
   content: "";

@@ -693,8 +693,8 @@ console.log(modifiedUfcResults)
 
 console.log(eventInfo) 
 const PreLeonColby =  ('' + ufcEvents.backgroundImageSrc)
-const backgroundImageSrc = ufcEvents.backgroundImageSrc
-const tapImageSrc = ufcEvents.tapImage
+const backgroundImageSrc = eventInfo.backgroundImageSrc
+const tapImageSrc = eventInfo.tapImage
 console.log(backgroundImageSrc) 
 console.log(tapImageSrc) 
   
@@ -705,14 +705,14 @@ if (eventInfo && eventInfo.locationCC) {
   locationInfo = eventInfo.locationCC.split(', ').map(part => part.trim());
 }
 
-const locationcity = locationInfo[0];
-const locationstate = locationInfo[1];
-const location = locationInfo[locationInfo.length - 1];
+const locationcity = locationInfo[0]; // Lav Vegas
+const locationstate = locationInfo[1]; // Nevada 
+const location = locationInfo[locationInfo.length - 1];// United States
 
 console.log(eventInfo)
 console.log(ufcEvents)
 console.log(locationInfo.length)
-console.log(location); // United States
+console.log(location); 
 console.log(liveFinishes)
 
 

@@ -989,7 +989,26 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
                   </h1>
 
 
-            {showLeaderBoard ? <div className="lboard">
+
+  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '100%' }}>
+  
+<div style={{ flex: 1 }}>
+
+<center><button className="expoint" onClick={() => setshowLeaderBoard(!showLeaderBoard)} >View Leaderboard</button></center>
+
+
+
+           
+</div>
+ <div style={{ flex: 1 }}>
+ <center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Show Card Winners</button></center> 
+                  
+</div>
+
+
+
+</div> 
+{showLeaderBoard ? <div className="lboard">
             
             <h2 className="tac" style={{letterSpacing: '2xcpx',}}>Leaderboard</h2>
       <center><table ><thead><tr>
@@ -1006,86 +1025,93 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
               
               </tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button></center>
               </div>
-               : <center><button className="expoint" onClick={() => setshowLeaderBoard(!showLeaderBoard)} >View Leaderboard</button></center> }
+               : null }
+{showCardWins ?   <div className="pointEXCard" >
+                        
+                        {Object.entries(leaderboardwinners).map(([event, eventData]) => (
+                          <div key={event}>
+                            <p className="tight snow landunder" style={{textDecoration:'underline',fontWeight:'bold'}}>{event}</p>
+                            <div className="tight">
+                              {eventData.winner === "Pending" ? (
+                              
+                              <div className="loading2 tight color-yellow" style={{  minHeight: '25px',textAlign:'center'}}>Results Pending</div>
+                              
+                            
+                            ) : (
+                              <div>
+                                
+                                <p className='color-yellow'>
+                                  {eventData.winners ? (
+                                    <span>
+                                      {eventData.winners.map((winner, index) => (
+                                        <span key={index}>
+                                          {winner} +{eventData.points} Points
+                                          {index < eventData.winners.length - 1 ? <br /> : ' '}
+                                        </span>
+                                      ))}
+                                    
+                                    </span>
+                                  ) : (
+                                    <span>
+                                      {eventData.winner} +{eventData.points} Points
+                                    </span>
+                                  )}
+                                </p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        ))}
 
- 
+
+
+                  <center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Hide Card Winners</button></center></div>
+                  : null}
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{/* 
             {explainPoints ?    <div className="pointEXB"><div className="pointEX" >
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Winner </p><br></br>
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 point</span> for picking the correct Method & Winner</p><br></br>
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 3 point</span> for picking the correct Round, Method & Winner</p><br></br>
       <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 points</span> for picking Draw/No-Contest correctly</p><center><button className="expoint" onClick={() => setExplainPointst(!explainPoints)} >Hide Point System</button></center></div></div>
-       : <center><button className="expoint" onClick={() => setExplainPointst(!explainPoints)} >Explain Point System</button></center> }
+       : <center><button className="expoint" onClick={() => setExplainPointst(!explainPoints)} >Explain Point System</button></center> } */}
 
 {/* <center><button className="expoint"  onClick={() => setSelectedEvent('Jon Jones vs Fedor Emelianenko')} >Dream Card Results</button></center>
 */}
 
-{showCardWins ?   <div className="pointEXCard" >
-      
-      {Object.entries(leaderboardwinners).map(([event, eventData]) => (
-        <div key={event}>
-          <p className="tight snow landunder" style={{textDecoration:'underline',fontWeight:'bold'}}>{event}</p>
-          <div className="tight">
-            {eventData.winner === "Pending" ? (
-            
-            <div className="loading2 tight color-yellow" style={{  minHeight: '25px',textAlign:'center'}}>Results Pending</div>
-             
-          
-          ) : (
-            <div>
-              
-              <p className='color-yellow'>
-                {eventData.winners ? (
-                  <span>
-                    {eventData.winners.map((winner, index) => (
-                      <span key={index}>
-                        {winner} +{eventData.points} Points
-                        {index < eventData.winners.length - 1 ? <br /> : ' '}
-                      </span>
-                    ))}
-                  
-                  </span>
-                ) : (
-                  <span>
-                    {eventData.winner} +{eventData.points} Points
-                  </span>
-                )}
-              </p>
-              </div>
-            )}
-          </div>
-        </div>
-      ))}
 
 
+{/* /////////////////////////////////
+/////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////
+/////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+/
+/
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////// */}
+  {/* {user && user.username ? (
+                  <center>
+                    <button
+                  className="urpicksB"
+                  onClick={() => setShowOnlyUserPicks(!showOnlyUserPicks)}
+                >
+                  {showOnlyUserPicks ? "Show All Picks" : `Show Only My Picks`}
+                </button>
 
-<center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Hide Card Winners</button></center></div>
-: <center><button className="expoint" onClick={() => setShowCardWins(!showCardWins)} >Show Card Winners</button></center> }
-
-     
+                  </center>
+                ) : null} */}
 
 
-
-            <center><label style={{color:'lightblue',backgroundColor:'black',fontWeight:'bold'}}>Filter Results by Fight Card</label><br></br>
+            {/* <center><label style={{color:'lightblue',backgroundColor:'black',fontWeight:'bold'}}>Filter Results by Fight Card</label><br></br>
             <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
               <option value="">All</option>
               {uniqueMainEvents
@@ -1100,72 +1126,91 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
             </select></center>
 
             <center>
-  <label style={{ color: 'lightblue', backgroundColor: 'black', fontWeight: 'bold' }}>
-    Filter Results by User
-  </label>
-  <br />
-  <select
-    className="filterbutton"
-    value={selectedUser}
-    onChange={(e) => setSelectedUser(e.target.value)}
-  >
-    <option value="">All Users</option>
-    {uniqueUsernames.map((username, index) => (
-      <option key={index} value={username}>
-        {username}
-      </option>
-    ))}
-  </select>
-</center>
+              <label style={{ color: 'lightblue', backgroundColor: 'black', fontWeight: 'bold' }}>
+                Filter Results by User
+              </label>
+              <br />
+              <select
+                className="filterbutton"
+                value={selectedUser}
+                onChange={(e) => setSelectedUser(e.target.value)}
+              >
+                <option value="">All Users</option>
+                {uniqueUsernames.map((username, index) => (
+                  <option key={index} value={username}>
+                    {username}
+                  </option>
+                ))}
+              </select>
+            </center>
 
 
+          <center style={{}}>
 
+          <label className={`switch ${showPredictions ? 'pborder' : ''}`}>
 
+            <input onClick={togglePredictions} type="checkbox" class="cb"></input>
+            <span class="toggle">
+              <span class="left">Hide All</span>  
+              <span class="right">Show All</span>  
+            </span>
+          </label>
 
+          </center> */}
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '100%',paddingTop:'200px' }}>
+  
+<div style={{ flex: 1 }}>
+    <center>
+    <label style={{ color: 'lightblue', backgroundColor: 'black', fontWeight: 'bold' }}>
+      Filter by User
+    </label>
+    <br />
+    <select
+      className="filterbutton"
+      value={selectedUser}
+      onChange={(e) => setSelectedUser(e.target.value)}
+    >
+      <option value="">All </option>
+      {uniqueUsernames.map((username, index) => (
+        <option key={index} value={username}>
+          {username}
+        </option>
+      ))}
+    </select></center>
+  </div>
 
-     
-
-      
-      {user && user.username ? (
-                  <center>
-                    <button
-                  className="urpicksB"
-                  onClick={() => setShowOnlyUserPicks(!showOnlyUserPicks)}
-                >
-                  {showOnlyUserPicks ? "Show All Picks" : `Show Only My Picks`}
-                </button>
-
-                  </center>
-                ) : null}
-
-
-
-<center style={{paddingBottom:'5%'}}>
+  <div style={{ flex: 1, paddingBottom: '5%'}}>
+    <center>
+    <label className={`switch ${showPredictions ? 'pborder' : ''}`}>
+      <input onClick={togglePredictions} type="checkbox" className="cb"></input>
+      <span className="toggle">
+        <span className="left">Hide Picks</span>
+        <span className="right">Show Picks</span>
+      </span>
+    </label></center>
+  </div>
 
   
-  {/* <button
-    className={showPredictions ? "allhide-button" : "allshow-button"}
-    onClick={togglePredictions}
-  >
-    {showPredictions ? "Hide All" : "Show All"}
-  </button> */}
-<label className={`switch ${showPredictions ? 'pborder' : ''}`}>
-
-  <input onClick={togglePredictions} type="checkbox" class="cb"></input>
-  <span class="toggle">
-    <span class="left">Hide All</span>  
-    <span class="right">Show All</span>  
-  </span>
-</label>
-
-
-
-
-
-
+  <div style={{ flex: 1 }}><center>
+    <label style={{ color: 'lightblue', backgroundColor: 'black', fontWeight: 'bold' }}>
+      Filter by Card
+    </label>
+    <br />
+    <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
+      <option value="">All</option>
+      {uniqueMainEvents
+        .slice()
+        .reverse()
+        .map((mainEvent, index) => (
+          <option key={index} value={mainEvent}>
+            {mainEvent}
+          </option>
+        ))}
+    </select></center>
+  </div>
+</div>
 
 
-</center>
 
 
 
@@ -1192,7 +1237,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
       <span style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
   <button
-    className={ownPicksVisibility[result.owner] ? "hide-button" : "show-button"}
+    className={ ownPicksVisibility[result.owner] ? "hide-button cursor-pointer" : "show-button cursor-pointer"}
     onClick={() => toggleOwnPicks(result.id)}
   >
     {ownPicksVisibility[result.owner] ? "Hide" : "Show"}
@@ -1207,7 +1252,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
         <center>
           
          <strong>{result.main_event}</strong>
-      <br></br><strong className=" landunder"><span className="small color-red landunder">{result.owner}'s</span> picks</strong>
+      <br></br><strong onClick={() => toggleOwnPicks(result.id)} className=" landunder"><span className="small color-red landunder cursor-pointer">{result.owner}'s</span> picks</strong>
            
           <br />
           
@@ -1306,7 +1351,8 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
             Results
             </strong>
           
-        </center><h2 style={{
+        </center>
+        <h2 style={{
             backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(result.location)}/flat/64.png")`,
             backgroundSize: '50% 150%',
             backgroundRepeat:'no-repeat',
