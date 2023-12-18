@@ -693,7 +693,7 @@ console.log(modifiedUfcResults)
 
 console.log(eventInfo) 
 const PreLeonColby =  ('' + ufcEvents.backgroundImageSrc)
-const backgroundImageSrc = 'https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_md/s3/image/2023-12/121623-UFC-296-EDWARDS-VS-COVINGTON-EVENT-ART.jpg?h=d1cb525d&itok=Jy3J4tLz';
+const backgroundImageSrc = ufcEvents.backgroundImageSrc
 const tapImageSrc = ufcEvents.tapImage
 console.log(backgroundImageSrc) 
 console.log(tapImageSrc) 
