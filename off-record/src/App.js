@@ -41,7 +41,7 @@ const [ufcCard2, setUfcCard2] = useState([]);
 const [ufcCard3, setUfcCard3] = useState([]);
 const [eventInfo, setEventInfo] = useState({});
 const apiUrl = 'https://offtherecordcards.onrender.com/scrape-ufc-website';
-
+const [liveFinishes, setLiveFinishes] = useState([]);
 useEffect(() => { 
   async function fetchData() {
     try {
@@ -61,6 +61,17 @@ useEffect(() => {
          };
      });
      // Assuming you have the `updatedFighters` array
+    const uniqueFinishes = new Set();
+
+    // Iterate through each record and add it to the Set if it's not a duplicate
+    records.forEach(record => {
+      if (record.timeDetails && !uniqueFinishes.has(record.timeDetails)) {
+        uniqueFinishes.add(record.timeDetails);
+        // Process the record or store it as needed
+        console.log(record.timeDetails);
+      }
+    });
+    setLiveFinishes(uniqueFinishes)
  
        const updatedRecords = [];
  
@@ -114,6 +125,7 @@ useEffect(() => {
       
   fetchData();      
 }, []);  
+
 
 const [ufcEvents, setUfcEvents] = useState([]);
 
@@ -701,6 +713,7 @@ console.log(eventInfo)
 console.log(ufcEvents)
 console.log(locationInfo.length)
 console.log(location); // United States
+console.log(liveFinishes)
 
 
 
@@ -722,7 +735,7 @@ console.log(location); // United States
       
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} 
                                               stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
-      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} />}/>
+      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} liveFinishes={liveFinishes} />}/>
       
       <Route path="/about" element={<About/>}/>
       {/* <Route path="/comments" element={<CommentSection />}/> */}

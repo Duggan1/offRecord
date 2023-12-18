@@ -6,7 +6,7 @@ import Chart from "chart.js/auto";
 import Modal from 'react-modal';
 import Dnd from './Dnd';
 
-function Results({ user, ufcCard, ufcResults, results2, adminKevPicks2 }) {
+function Results({ user, ufcCard, ufcResults, results2, adminKevPicks2, liveFinishes }) {
   const [results, setResults] = useState(results2);
   const [updatedResults, setUpdatedResults] = useState(ufcResults)
   const [showOnlyUserPicks, setShowOnlyUserPicks] = useState(false);
@@ -906,8 +906,9 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 //   });
 //   setOwnPicksVisibility(initialVisibility);
 // }, [filteredByMainEvent]);
-
-
+  const liveFinishesArray = Array.from(liveFinishes);
+  console.log( liveFinishesArray)
+  console.log( liveFinishes)
 
 
 
@@ -1331,7 +1332,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
   ? adminKevMatch.winner === 'Draw/No-Contest'
     ? 'Draw/No-Contest'
     : adminKevMatch.fighters[adminKevMatch.winner]
-  : "Results Pending"
+  : liveFinishesArray ? liveFinishesArray[matchIndex] : 'results pending'
 }
 {adminKevMatch.methodCounts ? (
   <div style={{ display: "flex", alignItems: "center" }}>
@@ -1396,7 +1397,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
      adminKevMatch.method === "Decision - MajorityDecision - Majority" && adminKevMatch.winner === 3  ?
       "Draw/No-Contest": 
       adminKevMatch.method : 
-      "Results Pending"}
+      liveFinishesArray[matchIndex]}
 
 
     <br />
