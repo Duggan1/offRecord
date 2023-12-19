@@ -310,7 +310,7 @@ console.log(selectedEvent)
                  
 
                    
-<div style={{backgroundColor:'grey', padding:'2%'}}>
+<div className="element-with-border3" style={{backgroundColor:'', padding:'2%'}}>
         <div style={{ flex: 1 }}>
             <center>
                                 <label style={{ color: 'white', backgroundColor: 'black', fontWeight: 'bold' }}>
@@ -395,9 +395,22 @@ console.log(selectedEvent)
   <table className="wholeOne">
   <thead>
     <tr>
-      <th style={{color:'white',backgroundColor:'red',border:'solid white 2px',minWidth:'33%',maxWidth:'33%'}} >Red Corner User</th>
+      <th style={{color:'white',backgroundColor:'red',border:'solid white 2px',minWidth:'33%',maxWidth:'33%'}} >{selectedUser}<br></br>
+      {filteredByMainEvent.map((result, rowIndex) => (
+                <div key={rowIndex}>
+                    {calculateTotalPoints(result, result.main_event, adminKevPicks)}
+                </div>
+                ))}
+
+      </th>
       <th style={{color:'black',backgroundColor:'whitesmoke',border:'solid black 2px',minWidth:'33%',maxWidth:'33%'}} >Fight Results</th>
-      <th style={{color:'white',backgroundColor:'blue',border:'solid white 2px',minWidth:'33%',maxWidth:'33%'}} >Blue Corner User</th>
+      <th style={{color:'white',backgroundColor:'blue',border:'solid white 2px',minWidth:'33%',maxWidth:'33%'}} >{selectedUser2}<br></br>
+      {filteredByMainEvent2.map((result, rowIndex) => (
+                <div key={rowIndex}>
+                    {calculateTotalPoints(result, result.main_event, adminKevPicks)}
+                </div>
+                ))}
+      </th>
       {/* Add more table headers as needed later*/}
     </tr>
   </thead>
@@ -408,25 +421,25 @@ console.log(selectedEvent)
 
           {/* Red Corner user's pick for the fight card */}
           {filteredByMainEvent.map((result, rowIndex) => (
-            <td style={{color:'white',backgroundColor:'darkred',border:'solid black 2px',minWidth:'33%',maxWidth:'33%'}}  key={rowIndex}>
+            <td style={{color:'black',backgroundColor:' white',border:'solid darkred 2px',minWidth:'33%',maxWidth:'33%'}}  key={rowIndex}>
                 
                 {result.predictions.map((prediction, matchIndex) => (
-                    <div key={matchIndex} className="" style={{border: 'solid black 2px', minHeight:'120px',maxHeight:'120px'}} >
-                    <strong>{prediction.fighters.join(' vs ')}</strong>
+                    <div key={matchIndex}  style={{border: 'solid black 2px', minHeight:'200px',maxHeight:'200px'}} >
+                    {/* <strong>{prediction.fighters.join(' vs ')}</strong> */}
                     <br />
                     {/* Display other prediction details */}
-                    <strong>Winner:</strong>{" "}
+                    <strong className={calculatePoints(prediction, adminKevPicksForEvent[rowIndex] || ufcResults[rowIndex]) > 0 ? "color-green" : ""}>Winner:{" "}
                         {prediction.winner === 0
                             ? prediction.fighters[0]
                             : prediction.winner === 1
                             ? prediction.fighters[1]
                             
-                            : "None"}
+                            : "None"}</strong>
                         <br />
-                        <strong>Method:</strong> {prediction.method} 
+                        <strong className={calculatePoints(prediction, adminKevPicksForEvent[rowIndex] || ufcResults[rowIndex]) > 1 ? "color-green" : ""}>Method: {prediction.method} </strong>
                         <br />
                         {prediction.round ? <>
-                        <strong>Round:</strong> {prediction.round} 
+                        <strong className={calculatePoints(prediction, adminKevPicksForEvent[rowIndex] || ufcResults[rowIndex]) > 2 ? "color-green" : ""}>Round:{prediction.round} </strong> 
                         <br /> </>: null }
                     </div>
                 ))}
@@ -436,9 +449,10 @@ console.log(selectedEvent)
 
 
           {/* AdminKev's pick for that fight card (results) */}
-          <td style={{backgroundColor:'whitesmoke',border:'solid black 2px',minWidth:'33%',maxWidth:'33%'}}>
+          <td className="" style={{color:'white',backgroundColor:'black',border:'solid white 2px',minWidth:'33%',maxWidth:'33%'}}>
             {adminKevPicksForEvent.map((adminKevMatch, matchIndex) => (
-              <div style={{border: 'solid black 2px', minHeight:'120px',maxHeight:'120px'}} >
+              <div style={{border: 'solid black 2px', minHeight:'200px',maxHeight:'200px'}} >
+                <div className="element-with-border2"></div>
                 <strong key={matchIndex}>{adminKevMatch.fighters.join(' vs ')}</strong>
                 <br />
 
@@ -477,6 +491,7 @@ console.log(selectedEvent)
                     </>
                   ) : null
                 ) : null}
+                
 
                 {adminKevMatch.winner !== null ? (
                   <div className="flag-image">
@@ -492,11 +507,11 @@ console.log(selectedEvent)
           {/* Blue Corner user's pick for the fight card */}
           
           {filteredByMainEvent2.map((result, rowIndex) => (
-            <td key={rowIndex} style={{backgroundColor:'navy',color:'white',border:'solid black 2px',minWidth:'33%',maxWidth:'33%'}}>
+            <td key={rowIndex} style={{backgroundColor:'white',color:'black',border:'solid  navy 2px',minWidth:'33%',maxWidth:'33%'}}>
                 <div>
                 {result.predictions.map((prediction, matchIndex) => (
-                    <div key={matchIndex} className="" style={{border: 'solid black 2px', minHeight:'120px',maxHeight:'120px'}}>
-                    <strong>{prediction.fighters.join(' vs ')}</strong>
+                    <div key={matchIndex} className="" style={{border: 'solid black 2px', minHeight:'200px',maxHeight:'200px'}}>
+                    {/* <strong>{prediction.fighters.join(' vs ')}</strong> */}
                     <br />
                     {/* Display other prediction details */}
                     <strong>Winner:</strong>{" "}
