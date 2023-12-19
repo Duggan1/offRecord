@@ -165,6 +165,18 @@ function Header({user, ufcCard, handleLogout}) {
               backgroundPosition: location.pathname === "/results" ? '85% 0' : '5% 0',
               backgroundRepeat: 'no-repeat',
             }}  onClick={() => { handleOptionClick('/results'); handleAppleClick(); }}><NavLink className='wavy' exact to="/results">Results</NavLink></div>
+
+
+<div  className='swm' style={{
+              backgroundImage: `url(${logo})`,
+              backgroundSize: '25% 100%',
+              backgroundPosition: location.pathname === "/results/compare" ? '85% 0' : '5% 0',
+              backgroundRepeat: 'no-repeat',
+            }}  onClick={() => { handleOptionClick('/results/compare'); handleAppleClick(); }}><NavLink className='wavy' exact to="/results/compare">Compare Picks</NavLink></div>
+
+
+
+
             <div  className='swm' style={{
               backgroundImage: `url(${logo})`,
               backgroundSize: '25% 100%',

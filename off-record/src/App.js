@@ -12,6 +12,7 @@ import About from './About';
 import axios from 'axios';
 import * as yup from 'yup';
 import isEqual from 'lodash/isEqual';
+import Compare from './Compare';
 // import CommentSection from './CommentSection';
 
 
@@ -736,6 +737,8 @@ console.log(liveFinishes)
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} 
                                               stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} liveFinishes={liveFinishes} />}/>
+      <Route path="/results/Compare" element={<Compare ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} liveFinishes={liveFinishes} />}/>
+      
       
       <Route path="/about" element={<About/>}/>
       {/* <Route path="/comments" element={<CommentSection />}/> */}

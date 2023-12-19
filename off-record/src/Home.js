@@ -381,6 +381,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                
                 
                 <div className='crdiv ' onClick={() => handleOptionClick('/results')}><NavLink className=' color-black snow' exact to="/results">Check Results</NavLink></div>
+                <div className='crdiv ' onClick={() => handleOptionClick('/results/compare')}><NavLink className=' color-black snow' exact to="/results/compare">Compare Picks</NavLink></div>
                 <div className='crdiv '   onClick={() => handleOptionClick('/about')}><NavLink className='color-black snow' exact to="/about">About P4P</NavLink></div>
                 
                 
