@@ -432,7 +432,7 @@ if (Head2Head.user1.wins > Head2Head.user2.wins) {
   </div>
 )}
                    
-<div className="element-with-border3" style={{backgroundColor:'', padding:'2%'}}>
+<div className="element-with-border3" style={{backgroundColor:'', padding:'0%'}}>
         
 {/* { selectedEvent.length > 2 ?  */}
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '100%',paddingTop:'20px',paddingBottom:'20px' }}>
