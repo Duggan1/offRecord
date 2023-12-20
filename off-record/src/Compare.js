@@ -388,6 +388,7 @@ if (Head2Head.user1.wins > Head2Head.user2.wins) {
             
             <p className=" blueName h2h">{Head2Head.user2.wins}</p>
     </div></center> */}
+    <center> <h3 className="p4pplusBlack"></h3></center>
      <div class="scoreboard2" style={{}} > 
    
    <div   class="scoreboard">
@@ -482,7 +483,8 @@ if (Head2Head.user1.wins > Head2Head.user2.wins) {
             </select></center>
             </div>
         </div>
-        <div style={{ flex: 1 }}>
+
+        <div style={{ flex: 1,backgroundColor:'black' }}>
             <center>
                                 <label style={{ color: 'white', backgroundColor: 'black', fontWeight: 'bold' }}>
                                     Select Fight Card

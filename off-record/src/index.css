@@ -1821,6 +1821,7 @@ h1 {
   color: var(--text-color1);
 }
 
+
 .two {
   display: flex;
   flex-direction: row;
@@ -1857,5 +1858,42 @@ button:hover {
 
 a {
   color: var(--text-color2);
+}
+.pts2 {
+  font-family: monospace;
+  font-size: 1em;
+  text-align: center;
+
+  position: relative;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  margin: 0;
+  /* margin-right: 37.2px; */
+  color: var(--text-color1);
+}
+.pts-shadow2 {
+  font-family: monospace;
+  font-size: 1em;
+  text-align: center;
+
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 52.5%;
+  transform: translate(-50%, -50%);
+
+  margin: 0;
+  color: black;
+}
+.one2 {
+  position: relative;
+  width: 8em;
+  height: 1em;
+
+  margin-bottom: 15px;
+  background-color: #0c0c0c ;
 }
 
