@@ -204,6 +204,11 @@ code {
   
 
 }
+.width-90 {
+  max-width: 90%;
+  min-width: 90%;
+  text-align: left;
+}
 .donateB {
   background-color: whitesmoke;
   margin-right: 10%;
@@ -245,6 +250,9 @@ code {
 
 .blackBG {
   background-color: black;
+}
+.whiteBG {
+  background-color: white;
 }
 
 
@@ -381,6 +389,50 @@ code {
   
   
   
+}
+.wid100 {
+  min-width: 100%;
+}
+.bg-navy{
+  background-color: navy; 
+  border-right: 6px white solid;
+  width: 100%;
+}
+.bg-darkred{
+  background-color: darkred;
+  width: 100%;
+  border-left: 6px white solid;
+
+}
+.white-border2 {
+  border: 6px white solid;
+  border-right: 6px white solid;
+
+}
+.pred {
+  color:darkred;
+  background-color: snow;
+  padding: 1%;
+  border: black 1px solid;
+}
+.pdraw {
+  color:black;
+  background-color: snow;
+  padding: 0.5%;
+  border-top: red 3px solid;
+  border-left: red 3px solid;
+  border-right: blue 3px solid;
+  border-bottom: blue 3px solid;
+  border-radius: 30%;
+
+
+}
+
+.pblue {
+  color:navy;
+  background-color: snow;
+  padding: 1%;
+  border: black 1px solid;
 }
 .caged-black {
   background-color: black;    
@@ -562,6 +614,10 @@ code {
 .color-transp {
   color: #ffffff00;
 }
+.select{
+  border: #2f2f2f 3px solid;
+  border-radius: 5%;
+}
 .payment {
   text-align: center;
 }
@@ -572,6 +628,20 @@ code {
   min-height: 50px;
   height:auto;
   background-image: url('./p4p+black.png');
+  background-repeat: no-repeat;
+  /* background-position-x: center; */
+	background-size: 100% 100%;
+  /* border: red solid 2px; */
+  padding: 5% 15%;
+
+}
+.p4pplusWhite {
+  max-width: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  min-height: 50px;
+  height:auto;
+  background-image: url('./p4p+whitegreen.png');
   background-repeat: no-repeat;
   /* background-position-x: center; */
 	background-size: 100% 100%;
@@ -1831,17 +1901,7 @@ h1 {
   width: 10em;
 }
 
-button {
-  cursor: pointer;
-  width: 50px; /* Adjusted width */
-  height: 50px; /* Adjusted height */
-  font-size: 1em;
-  border: 3px solid white;
-  border-radius: 10px;
 
-  color: var(--text-color2);
-  background-color: transparent;
-}
 
 button:hover {
   background-color: rgb(0, 7, 100);

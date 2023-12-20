@@ -350,7 +350,11 @@ if (Head2Head.user1.wins > Head2Head.user2.wins) {
 
 
 
+const [showDetails, setShowDetails] = useState(true)
 
+const toggleDetails =()=>{
+    setShowDetails(!showDetails)
+}
 
   return (<>
 <div>
@@ -378,60 +382,110 @@ if (Head2Head.user1.wins > Head2Head.user2.wins) {
                   </h1>
     </div>
                  
-    {selectedUser && selectedUser2 && (
-  <div className="snowwhite text-align-center">
-    {/* <h3 className="h2header"> <span className="redName">{Head2Head.user1.username}</span> VS <span className="blueName">{Head2Head.user2.username}</span></h3> */}
-    {/* <center><div className=" flex ">
-            <p className=" redName h2h">{Head2Head.user1.wins}</p>
-            
-            <h2 className="wsignal">{Wsignal}</h2>
-            
-            <p className=" blueName h2h">{Head2Head.user2.wins}</p>
-    </div></center> */}
-    <center> <h3 className="p4pplusBlack"></h3></center>
-     <div class="scoreboard2" style={{}} > 
-   
-   <div   class="scoreboard">
-      <div class="team-container">
-         <h2 class="color-red  ">{selectedUser}</h2>
-         <div class="one">
-            <p class="pts" id="home-pts">{Head2Head.user1.wins}</p>
-            <p class="pts-shadow">000</p>
-         </div>
-         {/* <div class="two">
-            {/* <button id="one-pt" onclick="homeAddPoint()">+1</button>
-            <button id="two-pts" onclick="homeAddTwoPoints()">+2</button>
-            <button id="three-pts" onclick="homeAddThreePoints()">+3</button> */}
-         {/* </div>  */}
-      </div>
-      <div class="team-container">
-         <h2 class="color-blue">{selectedUser2}</h2>
-         <div class="one">
-            <p class="pts" id="guest-pts">{Head2Head.user2.wins}</p>
-            <p class="pts-shadow">000</p>
-         </div>
-         {/* <div class="two">
-            {/* <button id="one-pt" onclick="guestAddPoint()">Details</button> */}
-            
-         {/* </div> */} 
-      </div>
-      
-   </div>
-   <div className="flex">
-        <h2 style={{padding:'0 2%'}}class="color-black ">Draws </h2>
-        <div class="one">
-   
-            <p class="pts" id="">{Head2Head.draws.draws}</p>
-            <p class="pts-shadow">000</p>
-         </div>
-         </div>
-   {/* <p className="text-align-center snowwhite">Draws : {Head2Head.draws.draws}</p> */}
-</div>
+    {selectedUser && selectedUser2 && ( <>
 
-    {/* Add more details as needed */}
-    
-  </div>
-)}
+{showDetails ? 
+                <div onClick={toggleDetails}  className="snowwhite text-align-center">
+                    {/* <h3 className="h2header"> <span className="redName">{Head2Head.user1.username}</span> VS <span className="blueName">{Head2Head.user2.username}</span></h3> */}
+                    {/* <center><div className=" flex ">
+                            <p className=" redName h2h">{Head2Head.user1.wins}</p>
+                            
+                            <h2 className="wsignal">{Wsignal}</h2>
+                            
+                            <p className=" blueName h2h">{Head2Head.user2.wins}</p>
+                    </div></center> */}
+                    <center> <h3 className="p4pplusBlack"></h3></center>
+                    <div class="scoreboard2" style={{}} > 
+                
+                <div   class="scoreboard">
+                    <div class="team-container">
+                        <h2 class="color-red  ">{selectedUser}</h2>
+                        <div class="one">
+                            <p class="pts" id="home-pts">{Head2Head.user1.wins}</p>
+                            <p class="pts-shadow">000</p>
+                        </div>
+                        {/* <div class="two">
+                            {/* <button id="one-pt" onclick="homeAddPoint()">+1</button>
+                            <button id="two-pts" onclick="homeAddTwoPoints()">+2</button>
+                            <button id="three-pts" onclick="homeAddThreePoints()">+3</button> */}
+                        {/* </div>  */}
+                    </div>
+                    <div class="team-container">
+                      
+                        <h2 class="color-blue">{selectedUser2}</h2>
+                        <div class="one">
+                            <p class="pts" id="guest-pts">{Head2Head.user2.wins}</p>
+                            <p class="pts-shadow">000</p>
+                        </div>
+                        {/* <div class="two">
+                            {/* <button id="one-pt" onclick="guestAddPoint()">Details</button> */}
+                            
+                        {/* </div> */} 
+                    </div>
+                    
+                </div>
+                <div className="flex">
+                        <h2 style={{padding:'0 2%'}}class="color-black ">Draws </h2>
+                        <div class="one">
+                
+                            <p class="pts" id="">{Head2Head.draws.draws}</p>
+                            <p class="pts-shadow">000</p>
+                        </div>
+                        </div>
+                {/* <p className="text-align-center snowwhite">Draws : {Head2Head.draws.draws}</p> */}
+                </div>
+
+                    {/* Add more details as needed */}
+                    
+                </div>
+: <div onClick={toggleDetails} className=" text-align-center whiteBG"> 
+                <center className='whiteBG'> <h3 className="p4pplusWhite"></h3></center>
+                   
+                   <div className="flex whiteBG wid100">
+                    <div class="team-container bg-darkred">
+                    <h2 class="pred  ">{selectedUser}</h2>
+                    
+                    {Head2Head.user1.cards.map((card, index) => (
+            <p key={index} className="width-90 snowwhite" id={``}>
+              <span className="greencircle"> {index + 1}.</span> {card}
+            </p>
+        ))}
+                                
+                            </div>
+                        <div class="team-container bg-navy">              
+                    <h2 class="  pblue">{selectedUser2}</h2>
+                    
+                    {Head2Head.user2.cards.map((card, index) => (
+                            <p key={index} className="width-90 snowwhite" id={``}>
+                            <span className="greencircle">{index + 1}.</span>    {card}
+                            </p>
+                        ))}
+                            
+                        
+                        </div>
+                        
+                        </div>
+
+                        <div className="flex blackBG snowwhite white-border2">
+                        
+                        <div class="">
+                <h2 style={{padding:'5%'}}class="pdraw ">Draws </h2>
+                        {Head2Head.draws.cards.map((card, index) => (
+                            <p key={index} className="width-90" id={``}>
+                            {index + 1}.    {card}
+                            </p>
+                        ))}
+                            {/* <p class="pts-shadow">000</p> */}
+                        </div>
+                        </div>
+            
+
+
+                </div>}
+
+
+
+       </> )}
                    
 <div className="element-with-border3" style={{backgroundColor:'', padding:'0%'}}>
         
@@ -445,7 +499,7 @@ if (Head2Head.user1.wins > Head2Head.user2.wins) {
             </label>
             <br />
             <select
-                className=""
+                className="select"
                 value={selectedUser}
                 onChange={(e) => setSelectedUser(e.target.value)}
             >
@@ -470,7 +524,7 @@ if (Head2Head.user1.wins > Head2Head.user2.wins) {
             </label>
             <br />
             <select
-                className=""
+                className="select"
                 value={selectedUser2}
                 onChange={(e) => setSelectedUser2(e.target.value)}
             >
@@ -490,7 +544,7 @@ if (Head2Head.user1.wins > Head2Head.user2.wins) {
                                     Select Fight Card
                                 </label>
                                 <br />
-                                <select className="" value={selectedEvent} onChange={(e) => {
+                                <select className="select" value={selectedEvent} onChange={(e) => {
                                     const selectedEventValue = e.target.value;
 
                                     // Check if selectedEventValue is in any of the cards in headToHead
