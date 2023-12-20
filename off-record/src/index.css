@@ -815,7 +815,26 @@ code {
   min-width: 75%;
   
 }
+.h2h {
+  padding: 5% 2%;
+  border-radius: 55%;
+  font-weight: 900;
+  font-size: larger;
+  
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-weight: bold;
+}
+.wsignal {
+  padding: 5% 10%;
+  
+  color: white;
+  
+}
+.h2header {
+  background-color: snow;
+  color: black;
 
+}
 .submitb{
   background-color:white ;
   color: black ;
@@ -969,7 +988,7 @@ code {
   /* background-image: url('https://c4.wallpaperflare.com/wallpaper/121/402/526/anderson-silva-boxing-fight-fitness-wallpaper-preview.jpg'); */
   background-image: url('https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_sm/s3/2020-04/Crowd-Fan-Generic-198.jpg?itok=VMsavZNn');
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 120%;
   color:white;
   
 }
@@ -1669,3 +1688,174 @@ input[type='checkbox'] {
 
 
 }
+@font-face {
+  font-family: 'Digital Display';
+  src: url('https://praxeds.github.io/scrimba-basketball-scoreboard/Assets/Digital-Display.woff2') format('woff2'),
+      url('https://praxeds.github.io/basketball-scoreboard/Assets/Digital-Display.woff2') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/*
+
+!Variables
+
+*/
+
+:root{
+  --background-color: rgb(5, 5, 5);
+  --background-color1: rgb(6, 42, 139);
+  --text-color1: rgb(255, 217, 0); 
+  --text-color2: rgb(255, 255, 255); 
+}
+
+/* body{
+  margin:0;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+} */
+
+.container {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 350px;
+}
+
+.text {
+  text-transform: uppercase;
+  color: var(--text-color2);
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+
+.scoreboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  /* border-radius: 8px; */
+  /* background-color: var(--background-color1); */
+  /* border: 5px solid white; */
+  /* outline: 8px solid var(--background-color1); */
+}
+.scoreboard2 {
+ 
+  border-radius: 8px;
+  background-color: rgb(211, 211, 211); 
+  border: 5px solid black;
+  border-right: 5px solid blue;
+  border-left: 5px solid red;
+  /* border-bottom: 5px solid blue; */
+  /* outline: 8px solid white; */
+
+}
+
+.team-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+/* h2 {
+  font-size: 5em;
+  margin-top: 0;
+  margin-bottom: 10px;
+} */
+
+.one {
+  position: relative;
+  width: 8em;
+  height: 5em;
+
+  margin-bottom: 30px;
+  background-color: #0c0c0c ;
+}
+
+.pts-shadow {
+  font-family: 'Digital Display',monospace;
+  font-size: 6em;
+  text-align: center;
+
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 52.5%;
+  transform: translate(-50%, -50%);
+
+  margin: 0;
+  color: black;
+}
+
+.pts {
+  font-family: 'Digital Display',monospace;
+  font-size: 7em;
+  text-align: end;
+
+  position: relative;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  margin: 0;
+  /* margin-right: 37.2px; */
+  color: var(--text-color1);
+}
+
+.two {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1;
+
+  width: 10em;
+}
+
+button {
+  cursor: pointer;
+  width: 50px; /* Adjusted width */
+  height: 50px; /* Adjusted height */
+  font-size: 1em;
+  border: 3px solid white;
+  border-radius: 10px;
+
+  color: var(--text-color2);
+  background-color: transparent;
+}
+
+button:hover {
+  background-color: rgb(0, 7, 100);
+}
+
+#guest-pts {
+  color: rgb(77, 77, 254)
+}
+#home-pts {
+  color: red
+}
+
+
+
+a {
+  color: var(--text-color2);
+}
+

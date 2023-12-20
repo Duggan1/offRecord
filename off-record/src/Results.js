@@ -971,8 +971,8 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
   return (<>
 <div>
   (
-    <div className="snowwhite">
-    <div className="results">
+    {/* <div className=""> */}
+    <div style={{paddingBottom:'200px'}} className="results snowwhite">
 
     <h1 style={{
                   textAlign: 'center',
@@ -1157,7 +1157,10 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
           </label>
 
           </center> */}
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '100%',paddingTop:'200px' }}>
+         </div>
+         
+          <> 
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '100%', }}>
   
 <div style={{ flex: 1 }}>
     <center>
@@ -1208,301 +1211,302 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
         ))}
     </select></center>
   </div>
-</div>
+          </div>
 
 
 
 
 
-</div>
 
 
-                
-      <table className="wholeOne" >
-        <thead>
-          <tr>
-            <th>{filteredByMainEvent.length} Picks</th>
+
+             
+              <table className="wholeOne" >
+                <thead>
+                  <tr>
+                    <th>{filteredByMainEvent.length} Picks</th>
+                    
+                    
+                    <th> Fight Results</th>
+                    {/* Add more table headers as needed later*/}
+                  </tr>
+                </thead>
+                <tbody >
+                {filteredByMainEvent.map((result, index) => (
+          <tr key={index} >
             
-            
-            <th> Fight Results</th>
-            {/* Add more table headers as needed later*/}
-          </tr>
-        </thead>
-        <tbody >
-        {filteredByMainEvent.map((result, index) => (
-  <tr key={index} >
-    
-    <td className="LeftOne">
-      <div className="ownpicksdiv">
+            <td className="LeftOne">
+              <div className="ownpicksdiv">
 
-      <span style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-  <button
-    className={ ownPicksVisibility[result.owner] ? "hide-button cursor-pointer" : "show-button cursor-pointer"}
-    onClick={() => toggleOwnPicks(result.id)}
-  >
-    {ownPicksVisibility[result.owner] ? "Hide" : "Show"}
-  </button>
-  <p style={{ textAlign: 'right', margin: '0' }}>
-  {((calculateTotalPoints(result, result.main_event, adminKevPicks) / (result.predictions.length * 2)) * 100).toFixed(0)}%
-</p>
+              <span style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <button
+            className={ ownPicksVisibility[result.owner] ? "hide-button cursor-pointer" : "show-button cursor-pointer"}
+            onClick={() => toggleOwnPicks(result.id)}
+          >
+            {ownPicksVisibility[result.owner] ? "Hide" : "Show"}
+          </button>
+          <p style={{ textAlign: 'right', margin: '0' }}>
+          {((calculateTotalPoints(result, result.main_event, adminKevPicks) / (result.predictions.length * 2)) * 100).toFixed(0)}%
+        </p>
 
 
-</span>
+        </span>
 
-        <center>
-          
-         <strong>{result.main_event}</strong>
-      <br></br><strong onClick={() => toggleOwnPicks(result.id)} className=" landunder"><span className="small color-red landunder cursor-pointer">{result.owner}'s</span> picks</strong>
-           
-          <br />
-          
-          {deletePicks && user && (user.username === result.owner || user.username === 'AdminKev') ? (
-              <button
-                className="delete-button"
-                onClick={() => 
-                 { setPick2delete(result.id)
-                  openModal()
-}
-                
-                }
-              >
-                Delete Pick
-              </button>
-            ) : null }
-
-            
-          <h2>{calculateTotalPoints(result, result.main_event, adminKevPicks)}+ Points</h2>
-         
-        </center>
-      </div>
-      { ownPicksVisibility[result.id] ? (
-      <div className={`predictions-container ${ownPicksVisibility ? '' : 'hidden-predictions'}`}>
-        {result.predictions.map((prediction, predIndex) => {
-          // Check if adminKevPicks contains the main event as a key
-          const adminKevPicksForEvent = adminKevPicks[result.main_event] || {};
-
-          return (
-            <p
-              className={calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 0 ? "winnerCircle" : "results-container"}
-              key={predIndex}
-            >
-              <strong>{prediction.fighters.join(' vs ')}</strong>
-              <br />
-              <strong>Winner:</strong>{" "}
-              {prediction.winner === 0
-                ? prediction.fighters[0]
-                : prediction.winner === 1
-                ? prediction.fighters[1]
-                
-                : "None"}
-              <br />
-              <strong>Method:</strong> {prediction.method} 
-              <br />
-              {prediction.round ? <>
-              <strong>Round:</strong> {prediction.round} 
-              <br /> </>: null }
-              <center>
-                {/* Your additional code */}
-              
-              <strong className={calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 1 ? "rightgreen" : ""}>
-                {calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 1
-                  ? ` + ${calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex])} `
-                  : null}
-              </strong></center>
-              <br />
-              
-
-                  {deletePicks && user && ( user.username === 'AdminKev') ?
-                   (
-                   <div key={prediction.id}>
-                  {/* Display prediction details */}
-                  {prediction.details}
-                  <button onClick={() => movePredictionUp(result, predIndex)}>Move Up </button><br></br>
-                  <button onClick={() => movePredictionDown(result, predIndex)}>Move Down </button>
-                  <button onClick={() => deletePrediction(result, predIndex)}>Delete</button>
-                  </div> ) : null }
-                 
-                
-                <br></br>
-                
-            </p>
-          );
-        })}
-        </div>)
- : null}
-      </td>
-
-
-      
-
-      
-    
-      <td  className="RightOne">  
-        <div  className="pickresultsdiv">
-          {result.main_event !== 'Jon Jones vs Fedor Emelianenko' ?<>
-          <center >
-          
-          <strong >
-            {result.location}
-          </strong><br></br>
-          <strong>{result.main_event}</strong>
-          <br />
-          <strong className="landunder">
-            Results
-            </strong>
-          
-        </center>
-        <h2 style={{
-            backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(result.location)}/flat/64.png")`,
-            backgroundSize: '50% 150%',
-            backgroundRepeat:'no-repeat',
-            backgroundPosition: 'right',
-            paddingLeft:'5%',
-          }}>  / {result.predictions.length * 2}+</h2></>
-         :  <center>
-            <strong>Dream Card Results</strong>
-            <br />
-            <strong>{result.main_event}</strong>
-            <h2>Popularity Vote </h2>
-          </center>}
-        </div>
-        { ownPicksVisibility[result.id]  ? (
-        <div className="">
-        {getAdminKevPicksForEvent(result.main_event).map((adminKevMatch, matchIndex) => (
-  <div className="real-results-container" key={matchIndex}>
-    <strong>{adminKevMatch.fighters.join(' vs ')}</strong>
-    <br />
-    
-    {adminKevMatch.methodCounts ?  null :  <strong>Winner:  </strong> }
-    {adminKevMatch.winner !== null
-  ? adminKevMatch.winner === 'Draw/No-Contest'
-    ? 'Draw/No-Contest'
-    : adminKevMatch.fighters[adminKevMatch.winner]
-  : liveFinishesArray ? liveFinishesArray[matchIndex] : 'results pending'
-}
-{adminKevMatch.methodCounts ? (
-  <div style={{ display: "flex", alignItems: "center" }}>
-    <div
-       style={{
-        backgroundColor: `${
-          adminKevMatch.winner0C > adminKevMatch.winner1C
-            ? 'green'
-            : adminKevMatch.winner0C < adminKevMatch.winner1C
-            ? 'white'
-            : 'grey' // Set white for a tie
-        }`,
-        color: `${
-          adminKevMatch.winner0C > adminKevMatch.winner1C
-            ? 'white'
-            : adminKevMatch.winner0C < adminKevMatch.winner1C
-            ? 'darkred'
-            : 'white' // Set darkred for a tie
-        }`,
-        flex: `${adminKevMatch.winner0C / (adminKevMatch.winner0C + adminKevMatch.winner1C)}`,
-        padding: "5px", // Add padding for spacing
-      }}
-    >
-      {adminKevMatch.fighters[0]}{" "}
-      {((adminKevMatch.winner0C / (adminKevMatch.winner0C + adminKevMatch.winner1C)) * 100)}
-      % {adminKevMatch.winner0C}
-    </div>
-    <div
-     style={{
-      backgroundColor: `${
-        adminKevMatch.winner0C < adminKevMatch.winner1C
-          ? 'green'
-          : adminKevMatch.winner0C > adminKevMatch.winner1C
-          ? 'white'
-          : 'grey' // Set white for a tie
-      }`,
-      color: `${
-        adminKevMatch.winner0C < adminKevMatch.winner1C
-          ? 'white'
-          : adminKevMatch.winner0C > adminKevMatch.winner1C
-          ? 'darkred'
-          : 'white' // Set darkred for a tie
-      }`,
-      flex: `${adminKevMatch.winner1C / (adminKevMatch.winner0C + adminKevMatch.winner1C)}`,
-      padding: "5px", // Add padding for spacing
-    }}
-    >
-      {adminKevMatch.fighters[1]}{" "}
-      {((adminKevMatch.winner1C / (adminKevMatch.winner0C + adminKevMatch.winner1C)) * 100)}
-      % {adminKevMatch.winner1C}
-    </div>
-  </div>
-) : null}
-
-
-
-{adminKevMatch.methodCounts ?  null : <br></br>}
-    
-    {adminKevMatch.methodCounts ?  null : <strong>Method:</strong>   }
-    
-     {adminKevMatch.method !== null  ? 
-     adminKevMatch.method === "Decision - MajorityDecision - Majority" && adminKevMatch.winner === 3  ?
-      "Draw/No-Contest": 
-      adminKevMatch.method : 
-      liveFinishesArray[matchIndex]}
-
-
-    <br />
-    { !adminKevMatch.methodCounts ? 
-        adminKevMatch.method === 'TKO/KO' || adminKevMatch.method === 'Submission'  ? <>
-        <strong>Round:</strong> {adminKevMatch.round} 
-        <br /> </> : null
-    
-               : null }
-
-    {adminKevMatch.methodCounts ? 
-    <div>
-    TKO/KO - {adminKevMatch.methodCounts['TKO/KO'] }  |  
-    Submission - {adminKevMatch.methodCounts['Submission'] }<br></br>
-    Decision - {adminKevMatch.methodCounts['Decision'] }  |  
-    Draw/No-Contest - {adminKevMatch.methodCounts['Draw/No-Contest'] }<br></br>
-    <div>
-  {/* <canvas id="methodChart" style={{height:'300px', width: '400px'}}></canvas> */}
-      </div>
-
-
-  </div> : null}
-    {adminKevMatch.winner !== null ? (
-      <div className="flag-image">
-        {/* ... Flag image code ... */}
-      </div>
-    ) : (
-      <div className="loading" style={{ height: '30px', marginLeft: '40%' }}></div>
-    )}
-  </div>
-))} 
-
-</div>)
- : null}
-
-      </td>
-    </tr>
-  ))}
-</tbody>
-
-      </table>
-    </div>
-    {user && user.username ? (
+                <center>
                   
-                  <button
-                style={{ border: 'gold 3px solid', backgroundColor: 'rgb(80, 10, 80)', color: 'white', cursor: 'pointer', marginBottom: '5%',fontWeight:'bold' }}
-                onClick={() => setDeletePicks(!deletePicks)}
-              >
-                {deletePicks ? "Hide Delete" : `Delete My Picks `}
-              </button>
+                <strong>{result.main_event}</strong>
+              <br></br><strong onClick={() => toggleOwnPicks(result.id)} className=" landunder"><span className="small color-red landunder cursor-pointer">{result.owner}'s</span> picks</strong>
+                  
+                  <br />
+                  
+                  {deletePicks && user && (user.username === result.owner || user.username === 'AdminKev') ? (
+                      <button
+                        className="delete-button"
+                        onClick={() => 
+                        { setPick2delete(result.id)
+                          openModal()
+        }
+                        
+                        }
+                      >
+                        Delete Pick
+                      </button>
+                    ) : null }
 
+                    
+                  <h2>{calculateTotalPoints(result, result.main_event, adminKevPicks)}+ Points</h2>
                 
-              ) : null}
-  )
-  <img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} className='resultsimg' style={{cursor:'pointer'}}/> 
-  
-  <p style={{color:'white',fontWeight:'Bold',textAlign:'center'}}>Click Logo to go to Home Page</p>
-  <div className="element-with-border2"></div>     
+                </center>
+              </div>
+              { ownPicksVisibility[result.id] ? (
+              <div className={`predictions-container ${ownPicksVisibility ? '' : 'hidden-predictions'}`}>
+                {result.predictions.map((prediction, predIndex) => {
+                  // Check if adminKevPicks contains the main event as a key
+                  const adminKevPicksForEvent = adminKevPicks[result.main_event] || {};
+
+                  return (
+                    <p
+                      className={calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 0 ? "winnerCircle" : "results-container"}
+                      key={predIndex}
+                    >
+                      <strong>{prediction.fighters.join(' vs ')}</strong>
+                      <br />
+                      <strong>Winner:</strong>{" "}
+                      {prediction.winner === 0
+                        ? prediction.fighters[0]
+                        : prediction.winner === 1
+                        ? prediction.fighters[1]
+                        
+                        : "None"}
+                      <br />
+                      <strong>Method:</strong> {prediction.method} 
+                      <br />
+                      {prediction.round ? <>
+                      <strong>Round:</strong> {prediction.round} 
+                      <br /> </>: null }
+                      <center>
+                        {/* Your additional code */}
+                      
+                      <strong className={calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 1 ? "rightgreen" : ""}>
+                        {calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 1
+                          ? ` + ${calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex])} `
+                          : null}
+                      </strong></center>
+                      <br />
+                      
+
+                          {deletePicks && user && ( user.username === 'AdminKev') ?
+                          (
+                          <div key={prediction.id}>
+                          {/* Display prediction details */}
+                          {prediction.details}
+                          <button onClick={() => movePredictionUp(result, predIndex)}>Move Up </button><br></br>
+                          <button onClick={() => movePredictionDown(result, predIndex)}>Move Down </button>
+                          <button onClick={() => deletePrediction(result, predIndex)}>Delete</button>
+                          </div> ) : null }
+                        
+                        
+                        <br></br>
+                        
+                    </p>
+                  );
+                })}
+                </div>)
+        : null}
+              </td>
+
+
+              
+
+              
             
+              <td  className="RightOne">  
+                <div  className="pickresultsdiv">
+                  {result.main_event !== 'Jon Jones vs Fedor Emelianenko' ?<>
+                  <center >
+                  
+                  <strong >
+                    {result.location}
+                  </strong><br></br>
+                  <strong>{result.main_event}</strong>
+                  <br />
+                  <strong className="landunder">
+                    Results
+                    </strong>
+                  
+                </center>
+                <h2 style={{
+                    backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(result.location)}/flat/64.png")`,
+                    backgroundSize: '50% 150%',
+                    backgroundRepeat:'no-repeat',
+                    backgroundPosition: 'right',
+                    paddingLeft:'5%',
+                  }}>  / {result.predictions.length * 2}+</h2></>
+                :  <center>
+                    <strong>Dream Card Results</strong>
+                    <br />
+                    <strong>{result.main_event}</strong>
+                    <h2>Popularity Vote </h2>
+                  </center>}
+                </div>
+                { ownPicksVisibility[result.id]  ? (
+                <div className="">
+                {getAdminKevPicksForEvent(result.main_event).map((adminKevMatch, matchIndex) => (
+          <div className="real-results-container" key={matchIndex}>
+            <strong>{adminKevMatch.fighters.join(' vs ')}</strong>
+            <br />
+            
+            {adminKevMatch.methodCounts ?  null :  <strong>Winner:  </strong> }
+            {adminKevMatch.winner !== null
+          ? adminKevMatch.winner === 'Draw/No-Contest'
+            ? 'Draw/No-Contest'
+            : adminKevMatch.fighters[adminKevMatch.winner]
+          : liveFinishesArray ? liveFinishesArray[matchIndex] : 'results pending'
+        }
+        {adminKevMatch.methodCounts ? (
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <div
+              style={{
+                backgroundColor: `${
+                  adminKevMatch.winner0C > adminKevMatch.winner1C
+                    ? 'green'
+                    : adminKevMatch.winner0C < adminKevMatch.winner1C
+                    ? 'white'
+                    : 'grey' // Set white for a tie
+                }`,
+                color: `${
+                  adminKevMatch.winner0C > adminKevMatch.winner1C
+                    ? 'white'
+                    : adminKevMatch.winner0C < adminKevMatch.winner1C
+                    ? 'darkred'
+                    : 'white' // Set darkred for a tie
+                }`,
+                flex: `${adminKevMatch.winner0C / (adminKevMatch.winner0C + adminKevMatch.winner1C)}`,
+                padding: "5px", // Add padding for spacing
+              }}
+            >
+              {adminKevMatch.fighters[0]}{" "}
+              {((adminKevMatch.winner0C / (adminKevMatch.winner0C + adminKevMatch.winner1C)) * 100)}
+              % {adminKevMatch.winner0C}
+            </div>
+            <div
+            style={{
+              backgroundColor: `${
+                adminKevMatch.winner0C < adminKevMatch.winner1C
+                  ? 'green'
+                  : adminKevMatch.winner0C > adminKevMatch.winner1C
+                  ? 'white'
+                  : 'grey' // Set white for a tie
+              }`,
+              color: `${
+                adminKevMatch.winner0C < adminKevMatch.winner1C
+                  ? 'white'
+                  : adminKevMatch.winner0C > adminKevMatch.winner1C
+                  ? 'darkred'
+                  : 'white' // Set darkred for a tie
+              }`,
+              flex: `${adminKevMatch.winner1C / (adminKevMatch.winner0C + adminKevMatch.winner1C)}`,
+              padding: "5px", // Add padding for spacing
+            }}
+            >
+              {adminKevMatch.fighters[1]}{" "}
+              {((adminKevMatch.winner1C / (adminKevMatch.winner0C + adminKevMatch.winner1C)) * 100)}
+              % {adminKevMatch.winner1C}
+            </div>
+          </div>
+        ) : null}
+
+
+
+        {adminKevMatch.methodCounts ?  null : <br></br>}
+            
+            {adminKevMatch.methodCounts ?  null : <strong>Method:</strong>   }
+            
+            {adminKevMatch.method !== null  ? 
+            adminKevMatch.method === "Decision - MajorityDecision - Majority" && adminKevMatch.winner === 3  ?
+              "Draw/No-Contest": 
+              adminKevMatch.method : 
+              liveFinishesArray[matchIndex]}
+
+
+            <br />
+            { !adminKevMatch.methodCounts ? 
+                adminKevMatch.method === 'TKO/KO' || adminKevMatch.method === 'Submission'  ? <>
+                <strong>Round:</strong> {adminKevMatch.round} 
+                <br /> </> : null
+            
+                      : null }
+
+            {adminKevMatch.methodCounts ? 
+            <div>
+            TKO/KO - {adminKevMatch.methodCounts['TKO/KO'] }  |  
+            Submission - {adminKevMatch.methodCounts['Submission'] }<br></br>
+            Decision - {adminKevMatch.methodCounts['Decision'] }  |  
+            Draw/No-Contest - {adminKevMatch.methodCounts['Draw/No-Contest'] }<br></br>
+            <div>
+          {/* <canvas id="methodChart" style={{height:'300px', width: '400px'}}></canvas> */}
+              </div>
+
+
+          </div> : null}
+            {adminKevMatch.winner !== null ? (
+              <div className="flag-image">
+                {/* ... Flag image code ... */}
+              </div>
+            ) : (
+              <div className="loading" style={{ height: '30px', marginLeft: '40%' }}></div>
+            )}
+          </div>
+        ))} 
+
+        </div>)
+        : null}
+
+              </td>
+            </tr>
+          ))}
+        </tbody>
+
+              </table>
+              
+            {/* </div> */}
+            {user && user.username ? (
+                          
+                          <button
+                        style={{ border: 'gold 3px solid', backgroundColor: 'rgb(80, 10, 80)', color: 'white', cursor: 'pointer', marginBottom: '5%',fontWeight:'bold' }}
+                        onClick={() => setDeletePicks(!deletePicks)}
+                      >
+                        {deletePicks ? "Hide Delete" : `Delete My Picks `}
+                      </button>
+
+                        
+                      ) : null}
+          )
+          <img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} className='resultsimg' style={{cursor:'pointer'}}/> 
+          
+          <p style={{color:'white',fontWeight:'Bold',textAlign:'center'}}>Click Logo to go to Home Page</p>
+          <div className="element-with-border2"></div>     
+      </>       
 </div>
 {/* Modal */}
 <Modal

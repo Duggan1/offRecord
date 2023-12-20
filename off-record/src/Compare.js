@@ -154,24 +154,7 @@ function calculatePoints(pick, result) {
 
 const [cardsWon, setCardsWon] = useState({});
 
-function calculateTotalPoints(result, mainEvent) {
-  let totalPoints = 0;
 
-  result.predictions.forEach((prediction, predIndex) => {
-    const adminKevPicksForEvent = getAdminKevPicksForEvent(mainEvent);
-    const adminKevPick = adminKevPicksForEvent[predIndex];
-    const ufcResult = ufcResults[predIndex];
-    const cardsWonCopy = { ...cardsWon }; 
-
-    const points = calculatePoints(prediction, adminKevPick || ufcResult);
-    totalPoints += points;
-
-
-   
-  });
-  
-  return totalPoints;
-} 
 
 
 
@@ -193,34 +176,6 @@ function calculateTotalPoints(result, mainEvent) {
   const uniqueUsernames = uniqueUsernamesRD.filter(user => user !== 'AdminKev');
   console.log(uniqueUsernames);
 
-
-
-
-
-  
-
-
-
-
-
-function countWinsForUsername(leaderboardwinners, username) {
-  let winCount = 0;
-
-  for (const event in leaderboardwinners) {
-    const winner = leaderboardwinners[event].winner;
-    const winners = leaderboardwinners[event].winners;
-
-    if (winners) {
-      if (winners.includes(username) ) {
-        winCount++;
-      }
-    } else if (winner === username) {
-      winCount++;
-    }
-  }
-
-  return winCount;
-}
 
 
 
@@ -294,9 +249,117 @@ console.log(filteredByMainEvent2)
 
 console.log(adminKevPicksForEvent)
 console.log(selectedEvent)
+console.log(results)
+
+function calculateTotalPoints(result, mainEvent) {
+    let totalPoints = 0;
+  
+    result.predictions.forEach((prediction, predIndex) => {
+      const adminKevPicksForEvent = getAdminKevPicksForEvent(mainEvent);
+      const adminKevPick = adminKevPicksForEvent[predIndex];
+      const ufcResult = ufcResults[predIndex];
+      const cardsWonCopy = { ...cardsWon }; 
+  
+      const points = calculatePoints(prediction, adminKevPick || ufcResult);
+      totalPoints += points;
+  
+  
+     
+    });
+    
+    return totalPoints;
+  } 
+
+
+  const [Wsignal ,setW ]= useState('')
+
+  function compareHeadToHead(selectedUser, selectedUser2) {
+    const headToHeadStats = {
+      user1: { wins: 0, username: selectedUser ,cards: []},
+      user2: { wins: 0, username: selectedUser2 ,cards: []},
+      draws: { draws: 0,cards: []}
+    };
+ 
+    let user1Picks = []
+    let user2Picks = []
+    // Iterate through the results array
+    results.forEach((result) => {
+      // Check if both users have picks for the current event
+      
+
+      if (result.owner == selectedUser) {
+        user1Picks.push(result)
+        // console.log(user1Picks)
+      }
+      if (result.owner == selectedUser2) {
+        user2Picks.push(result)
+        // console.log(user2Picks)
+      }
+      console.log(user2Picks)
+      console.log(user1Picks)
+      
+      
+
+    });
+
+    user1Picks.forEach((pickUser1) => {
+        // Find the corresponding pick of user2 with the same main event
+        const pickUser2 = user2Picks.find((pick) => pick.main_event === pickUser1.main_event);
+    
+        // If a corresponding pick is found, compare points
+        if (pickUser2) {
+          const pointsUser1 = calculateTotalPoints(pickUser1, pickUser1.main_event);
+          const pointsUser2 = calculateTotalPoints(pickUser2, pickUser2.main_event);
+    
+          if (pointsUser1 > pointsUser2) {
+            headToHeadStats.user1.wins += 1; 
+            headToHeadStats.user1.cards.push(pickUser2.main_event)// User 1 wins
+
+          } else if (pointsUser1 < pointsUser2) {
+            headToHeadStats.user2.wins += 1; // User 2 wins
+            headToHeadStats.user2.cards.push(pickUser2.main_event)
+          }
+          else if (pointsUser1 === pointsUser2) {
+            headToHeadStats.draws.draws += 1; // Draw
+            headToHeadStats.draws.cards.push(pickUser2.main_event)
+          }
+
+        }
+      });
+
+   
+
+
+  
+    return headToHeadStats;
+  }
+const Head2Head = compareHeadToHead(selectedUser, selectedUser2)
+console.log(Head2Head)
+
+useEffect(() => {
+if (Head2Head.user1.wins > Head2Head.user2.wins) {
+    setW('>')
+  }
+  if (Head2Head.user2.wins > Head2Head.user1.wins) {
+    setW('>')
+  }
+  if (Head2Head.user2.wins === Head2Head.user1.wins) {
+    setW('DRAW')
+  }
+}, [Head2Head]);
+
+
+
+
 
   return (<>
 <div>
+
+
+
+
+
+
   
     <div style={{backgroundImage:'url(https://pokerstarslearn.com/wp-content/uploads/2019/04/GettyImages-648062892-scaled.jpg)',transform: 'scaleX(-1)', backgroundSize:'100% 100%', minHeight:'200px'}}>
             <h1 style={{
@@ -315,32 +378,63 @@ console.log(selectedEvent)
                   </h1>
     </div>
                  
+    {selectedUser && selectedUser2 && (
+  <div className="snowwhite text-align-center">
+    {/* <h3 className="h2header"> <span className="redName">{Head2Head.user1.username}</span> VS <span className="blueName">{Head2Head.user2.username}</span></h3> */}
+    {/* <center><div className=" flex ">
+            <p className=" redName h2h">{Head2Head.user1.wins}</p>
+            
+            <h2 className="wsignal">{Wsignal}</h2>
+            
+            <p className=" blueName h2h">{Head2Head.user2.wins}</p>
+    </div></center> */}
+     <div class="scoreboard2" style={{}} > 
+   
+   <div   class="scoreboard">
+      <div class="team-container">
+         <h2 class="color-red  ">{selectedUser}</h2>
+         <div class="one">
+            <p class="pts" id="home-pts">{Head2Head.user1.wins}</p>
+            <p class="pts-shadow">000</p>
+         </div>
+         {/* <div class="two">
+            {/* <button id="one-pt" onclick="homeAddPoint()">+1</button>
+            <button id="two-pts" onclick="homeAddTwoPoints()">+2</button>
+            <button id="three-pts" onclick="homeAddThreePoints()">+3</button> */}
+         {/* </div>  */}
+      </div>
+      <div class="team-container">
+         <h2 class="color-blue">{selectedUser2}</h2>
+         <div class="one">
+            <p class="pts" id="guest-pts">{Head2Head.user2.wins}</p>
+            <p class="pts-shadow">000</p>
+         </div>
+         {/* <div class="two">
+            {/* <button id="one-pt" onclick="guestAddPoint()">Details</button> */}
+            
+         {/* </div> */} 
+      </div>
+      
+   </div>
+   <div className="flex">
+        <h2 style={{padding:'0 2%'}}class="color-black ">Draws </h2>
+        <div class="one">
+   
+            <p class="pts" id="">{Head2Head.draws.draws}</p>
+            <p class="pts-shadow">000</p>
+         </div>
+         </div>
+   {/* <p className="text-align-center snowwhite">Draws : {Head2Head.draws.draws}</p> */}
+</div>
 
+    {/* Add more details as needed */}
+    
+  </div>
+)}
                    
 <div className="element-with-border3" style={{backgroundColor:'', padding:'2%'}}>
-        <div style={{ flex: 1 }}>
-            <center>
-                                <label style={{ color: 'white', backgroundColor: 'black', fontWeight: 'bold' }}>
-                                    Select Fight Card
-                                </label>
-                                <br />
-                                <select className="" value={selectedEvent} onChange={(e) => {
-                                    setSelectedEvent(e.target.value);
-                                    setSelectedUser("");  // Reset selectedUser
-                                    setSelectedUser2(""); // Reset selectedUser2
-                                    }}>
-                                    <option value="">All</option>
-                                    {uniqueMainEvents
-                                    .slice()
-                                    .reverse()
-                                    .map((mainEvent, index) => (
-                                        <option key={index} value={mainEvent}>
-                                        {mainEvent}
-                                        </option>
-                                    ))}
-                                </select></center>
-            </div>
-{ selectedEvent.length > 2 ? 
+        
+{/* { selectedEvent.length > 2 ?  */}
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '100%',paddingTop:'20px',paddingBottom:'20px' }}>
         
         <div style={{ flex: 1 }}>
@@ -387,7 +481,42 @@ console.log(selectedEvent)
                 ))}
             </select></center>
             </div>
-        </div>: null  }
+        </div>
+        <div style={{ flex: 1 }}>
+            <center>
+                                <label style={{ color: 'white', backgroundColor: 'black', fontWeight: 'bold' }}>
+                                    Select Fight Card
+                                </label>
+                                <br />
+                                <select className="" value={selectedEvent} onChange={(e) => {
+                                    const selectedEventValue = e.target.value;
+
+                                    // Check if selectedEventValue is in any of the cards in headToHead
+                                    const isEventInHeadToHead = Object.values(Head2Head).some((userStats) =>
+                                        userStats.cards.includes(selectedEventValue)
+                                    );
+
+                                    setSelectedEvent(selectedEventValue);
+                                    console.log(selectedEventValue)
+
+                                    if (!isEventInHeadToHead && selectedEventValue !== "") {
+                                        // Reset selectedUser and selectedUser2 only if selectedEvent is not in headToHead
+                                        setSelectedUser("");
+                                        setSelectedUser2("");
+                                    }
+                                }}>
+                                    <option value="">All</option>
+                                    {uniqueMainEvents
+                                    .slice()
+                                    .reverse()
+                                    .map((mainEvent, index) => (
+                                        <option key={index} value={mainEvent}>
+                                        {mainEvent}
+                                        </option>
+                                    ))}
+                                </select></center>
+            </div>
+        {/* // : null  }// */}
     
 </div>
   {/* //////////////////////////////////////////////////////////////////////////////////////////////////////
