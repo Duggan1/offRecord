@@ -48,6 +48,11 @@ console.log(results)
       (!showOnlyUserPicks || result.owner === user.username)
     );
   });
+  const filteredByMainEvent3 = results.filter((result) => {
+    return (
+      (!selectedEvent || result.main_event === selectedEvent) 
+    );
+  });
 
   const dreamCardResults = results.filter((result) => result.main_event === 'Jon Jones vs Fedor Emelianenko');
 
@@ -184,9 +189,10 @@ function calculateTotalPoints(result, mainEvent) {
   const uniqueMainEventsRD = [...new Set(results.map(result => result.main_event))];
   const uniqueMainEvents = uniqueMainEventsRD.filter(event => event !== 'Jon Jones vs Fedor Emelianenko');
   console.log(uniqueMainEvents);
-  const uniqueUsernamesRD = [...new Set(results.map(result => result.owner))];
+  const uniqueUsernamesRD = [...new Set(filteredByMainEvent3.map(result => result.owner))];
   const uniqueUsernames = uniqueUsernamesRD.filter(user => user !== 'AdminKev');
   console.log(uniqueUsernames);
+
 
 
 
@@ -292,7 +298,7 @@ console.log(selectedEvent)
   return (<>
 <div>
   
-    <div style={{backgroundImage:'url(https://pokerstarslearn.com/wp-content/uploads/2019/04/GettyImages-648062892-scaled.jpg)', backgroundSize:'100% 100%', minHeight:'200px'}}>
+    <div style={{backgroundImage:'url(https://pokerstarslearn.com/wp-content/uploads/2019/04/GettyImages-648062892-scaled.jpg)',transform: 'scaleX(-1)', backgroundSize:'100% 100%', minHeight:'200px'}}>
             <h1 style={{
                   textAlign: 'center',
                   marginTop: '0%',
@@ -302,6 +308,7 @@ console.log(selectedEvent)
                   fontSize:'65px',
                   maxWidth: '100%',
                   letterSpacing: '4px',
+                  transform: 'scaleX(-1)',
                   
                   }}>
                   Compare 
@@ -317,7 +324,11 @@ console.log(selectedEvent)
                                     Select Fight Card
                                 </label>
                                 <br />
-                                <select className="" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
+                                <select className="" value={selectedEvent} onChange={(e) => {
+                                    setSelectedEvent(e.target.value);
+                                    setSelectedUser("");  // Reset selectedUser
+                                    setSelectedUser2(""); // Reset selectedUser2
+                                    }}>
                                     <option value="">All</option>
                                     {uniqueMainEvents
                                     .slice()
@@ -392,152 +403,167 @@ console.log(selectedEvent)
 ///////////////////////////////////////////////////
 /////////////////////////////////////////////////// */}
 { selectedEvent.length > 2 && selectedUser2.length > 2 && selectedUser.length ? 
-  <table className="wholeOne">
-  <thead>
-    <tr>
-      <th style={{color:'white',backgroundColor:'red',border:'solid white 2px',minWidth:'33%',maxWidth:'33%'}} >{selectedUser}<br></br>
-      {filteredByMainEvent.map((result, rowIndex) => (
-                <div key={rowIndex}>
-                    {calculateTotalPoints(result, result.main_event, adminKevPicks)}
+  <div className="wholeOne">
+      <div style={{padding:'5%',backgroundColor:'black',backgroundImage:"url(https://www.shutterstock.com/image-illustration/red-blue-boxing-glove-against-260nw-1225142947.jpg)",backgroundSize:'100% 140%', paddingTop:'-5%'}} className="flex text-align-center snowwhite">
+                {filteredByMainEvent.map((result, rowIndex) => (
+                                <div  style={{color: 'white',
+                                backgroundColor: calculateTotalPoints(result, result.main_event, adminKevPicks) > calculateTotalPoints(filteredByMainEvent2[rowIndex], filteredByMainEvent2[rowIndex].main_event, adminKevPicks) ? 'green' : 'red',
+                                  border: 'solid white 2px', minWidth: '30%', maxWidth: '30%',padding:'5% 0px', borderRadius:'50%',margin:'0px 0px 0px 10%' }}key={rowIndex}>
+                                   <h2>+{calculateTotalPoints(result, result.main_event, adminKevPicks)}</h2>
+                                    
+                                </div>
+                                ))}
+                {filteredByMainEvent2.map((result, rowIndex) => (
+                <div style={{color: 'white',
+                backgroundColor: calculateTotalPoints(result, result.main_event, adminKevPicks) > calculateTotalPoints(filteredByMainEvent[rowIndex], filteredByMainEvent[rowIndex].main_event, adminKevPicks) ? 'green' : 'blue',
+                  border: 'solid white 2px', minWidth: '30%', maxWidth: '30%' ,padding:'5% 0px', borderRadius:'50%',fontWeight:'bold',margin:'0px 10% 0px 0px'}} key={rowIndex}>
+                    <h2>+{calculateTotalPoints(result, result.main_event, adminKevPicks)}</h2>
+                    
                 </div>
-                ))}
+                ))}</div>
+  <div className="flex text-align-center">
+    {/* <tr> */}
+      <div style={{color:'white',
+      backgroundColor:'red',
+      border:'solid white 2px',minWidth:'33%',maxWidth:'33%'}} >{selectedUser}<br></br>
+     
 
-      </th>
-      <th style={{color:'black',backgroundColor:'whitesmoke',border:'solid black 2px',minWidth:'33%',maxWidth:'33%'}} >Fight Results</th>
-      <th style={{color:'white',backgroundColor:'blue',border:'solid white 2px',minWidth:'33%',maxWidth:'33%'}} >{selectedUser2}<br></br>
-      {filteredByMainEvent2.map((result, rowIndex) => (
-                <div key={rowIndex}>
-                    {calculateTotalPoints(result, result.main_event, adminKevPicks)}
-                </div>
-                ))}
-      </th>
+      </div>
+      <div style={{color:'white',backgroundColor:'black',border:'solid white 2px',minWidth:'33%',maxWidth:'33%'}} >- VS -</div>
+      <div style={{color:'white',backgroundColor:'blue',border:'solid white 2px',minWidth:'33%',maxWidth:'33%'}} >{selectedUser2}<br></br>
+      
+      </div>
       {/* Add more table headers as needed later*/}
-    </tr>
-  </thead>
-  <tbody className="text-align-center">
+    {/* </tr> */}
+  </div>
+  
+  <div >
     
 
-        <tr>
-
-          {/* Red Corner user's pick for the fight card */}
-          {filteredByMainEvent.map((result, rowIndex) => (
-            <td style={{color:'black',backgroundColor:' white',border:'solid darkred 2px',minWidth:'33%',maxWidth:'33%'}}  key={rowIndex}>
-                
-                {result.predictions.map((prediction, matchIndex) => (
-                    <div key={matchIndex}  style={{border: 'solid black 2px', minHeight:'200px',maxHeight:'200px'}} >
-                    {/* <strong>{prediction.fighters.join(' vs ')}</strong> */}
-                    <br />
-                    {/* Display other prediction details */}
-                    <strong className={calculatePoints(prediction, adminKevPicksForEvent[rowIndex] || ufcResults[rowIndex]) > 0 ? "color-green" : ""}>Winner:{" "}
-                        {prediction.winner === 0
-                            ? prediction.fighters[0]
-                            : prediction.winner === 1
-                            ? prediction.fighters[1]
-                            
-                            : "None"}</strong>
-                        <br />
-                        <strong className={calculatePoints(prediction, adminKevPicksForEvent[rowIndex] || ufcResults[rowIndex]) > 1 ? "color-green" : ""}>Method: {prediction.method} </strong>
-                        <br />
-                        {prediction.round ? <>
-                        <strong className={calculatePoints(prediction, adminKevPicksForEvent[rowIndex] || ufcResults[rowIndex]) > 2 ? "color-green" : ""}>Round:{prediction.round} </strong> 
-                        <br /> </>: null }
-                    </div>
-                ))}
-                
-            </td>
-            ))}
-
+        
 
           {/* AdminKev's pick for that fight card (results) */}
-          <td className="" style={{color:'white',backgroundColor:'black',border:'solid white 2px',minWidth:'33%',maxWidth:'33%'}}>
-            {adminKevPicksForEvent.map((adminKevMatch, matchIndex) => (
-              <div style={{border: 'solid black 2px', minHeight:'200px',maxHeight:'200px'}} >
-                <div className="element-with-border2"></div>
-                <strong key={matchIndex}>{adminKevMatch.fighters.join(' vs ')}</strong>
-                <br />
+          <div className="text-align-center" style={{ color: 'white', backgroundColor: 'black', minWidth: '100%', maxWidth: '100%', minHeight: 'fit-content' }}>
+  {adminKevPicksForEvent.map((adminKevMatch, matchIndex) => (
+    <div key={matchIndex} style={{ border: 'solid black 2px', minHeight: 'fit-content', maxHeight: 'fit-content' }}>
+      <div className="element-with-border22"></div>
+      <strong key={matchIndex}>{adminKevMatch.fighters.join(' vs ')}</strong>
+      <br />
 
-                {adminKevMatch.methodCounts ? null : <strong>Winner: </strong>}
-                {adminKevMatch.winner !== null ? (
-                  adminKevMatch.winner === 'Draw/No-Contest' ? (
-                    'Draw/No-Contest'
-                  ) : (
-                    adminKevMatch.fighters[adminKevMatch.winner]
-                  )
-                ) : (
-                  liveFinishesArray ? liveFinishesArray[matchIndex] : 'results pending'
-                )}
+      {adminKevMatch.methodCounts ? null : <strong>Winner: </strong>}
+      {adminKevMatch.winner !== null ? (
+        adminKevMatch.winner === 'Draw/No-Contest' ? (
+          'Draw/No-Contest'
+        ) : (
+          adminKevMatch.fighters[adminKevMatch.winner]
+        )
+      ) : (
+        liveFinishesArray ? liveFinishesArray[matchIndex] : 'results pending'
+      )}
 
-                {adminKevMatch.methodCounts ? null : <br />}
+      {adminKevMatch.methodCounts ? null : <br />}
 
-                {adminKevMatch.methodCounts ? null : <strong>Method:</strong>}
+      {adminKevMatch.methodCounts ? null : <strong>Method:</strong>}
 
-                {adminKevMatch.method !== null ? (
-                  adminKevMatch.method === 'Decision - MajorityDecision - Majority' &&
-                  adminKevMatch.winner === 3 ? (
-                    'Draw/No-Contest'
-                  ) : (
-                    adminKevMatch.method
-                  )
-                ) : (
-                  liveFinishesArray[matchIndex]
-                )}
+      {adminKevMatch.method !== null ? (
+        adminKevMatch.method === 'Decision - MajorityDecision - Majority' &&
+        adminKevMatch.winner === 3 ? (
+          'Draw/No-Contest'
+        ) : (
+          adminKevMatch.method
+        )
+      ) : (
+        liveFinishesArray[matchIndex]
+      )}
 
-                <br />
-                {!adminKevMatch.methodCounts ? (
-                  adminKevMatch.round ? (
-                    <>
-                      <strong>Round:</strong> {adminKevMatch.round}
-                      <br />
-                    </>
-                  ) : null
-                ) : null}
-                
+      <br />
+      {!adminKevMatch.methodCounts ? (
+        adminKevMatch.round ? (
+          <>
+            <strong>Round:</strong> {adminKevMatch.round}
+            <br />
+          </>
+        ) : null
+      ) : null}
 
-                {adminKevMatch.winner !== null ? (
-                  <div className="flag-image">
-                    {/* ... Flag image code ... */}
-                  </div>
-                ) : (
-                  <div className="loading" style={{ height: '30px', marginLeft: '40%' }}></div>
-                )}
-              </div>
-            ))}
-          </td>
+      {adminKevMatch.winner !== null ? (
+        <div className="flag-image">
+          {/* ... Flag image code ... */}
+        </div>
+      ) : (
+        <div className="loading" style={{ height: '30px', marginLeft: '40%' }}></div>
+      )}
+      <div className="flex text-align-center">
+<div style={{ color: 'black', backgroundColor: ' grey', border: 'solid darkred 2px', minWidth: '50%', maxWidth: '50%' }} >
+      {calculatePoints(filteredByMainEvent[0].predictions[matchIndex], adminKevPicksForEvent[matchIndex] || ufcResults[matchIndex]) ? 
+       <p> <span className="greencircle">+{calculatePoints(filteredByMainEvent[0].predictions[matchIndex], adminKevPicksForEvent[matchIndex] || ufcResults[matchIndex])}
+</span> </p> : <p ><span className="Xmas">X</span></p>} 
+      <p className={calculatePoints(filteredByMainEvent[0].predictions[matchIndex], adminKevPicksForEvent[matchIndex] || ufcResults[matchIndex]) > 0 ? "color-greenBB" : ""}>{filteredByMainEvent[0].predictions[matchIndex].fighters[filteredByMainEvent[0].predictions[matchIndex].winner]}</p>
+      <p className={calculatePoints(filteredByMainEvent[0].predictions[matchIndex], adminKevPicksForEvent[matchIndex] || ufcResults[matchIndex]) > 1 ? "color-greenBB" : ""}>{filteredByMainEvent[0].predictions[matchIndex].method}</p>
+      {filteredByMainEvent[0].predictions[matchIndex].round ? 
+      <p className={calculatePoints(filteredByMainEvent[0].predictions[matchIndex], adminKevPicksForEvent[matchIndex] || ufcResults[matchIndex]) > 2 ? "color-greenBB" : ""}> Round {filteredByMainEvent[0].predictions[matchIndex].round}</p>: null}
+       </div>
+
+
+<div style={{ color: 'black', backgroundColor: ' grey', border: 'solid navy 2px', minWidth: '50%', maxWidth: '50%' }} >
+{calculatePoints(filteredByMainEvent2[0].predictions[matchIndex], adminKevPicksForEvent[matchIndex] || ufcResults[matchIndex]) ? 
+      <p><span className="greencircle">+{calculatePoints(filteredByMainEvent2[0].predictions[matchIndex], adminKevPicksForEvent[matchIndex] || ufcResults[matchIndex])}
+ </span></p> : <p ><span className="Xmas">X</span></p>}
+      <p className={calculatePoints(filteredByMainEvent2[0].predictions[matchIndex], adminKevPicksForEvent[matchIndex] || ufcResults[matchIndex]) > 0 ? "color-greenBB" : ""}>{filteredByMainEvent2[0].predictions[matchIndex].fighters[filteredByMainEvent2[0].predictions[matchIndex].winner]}</p>
+      <p className={calculatePoints(filteredByMainEvent2[0].predictions[matchIndex], adminKevPicksForEvent[matchIndex] || ufcResults[matchIndex]) > 1 ? "color-greenBB" : ""}>{filteredByMainEvent2[0].predictions[matchIndex].method}</p>
+      {filteredByMainEvent[0].predictions[matchIndex].round ? 
+      <p className={calculatePoints(filteredByMainEvent2[0].predictions[matchIndex], adminKevPicksForEvent[matchIndex] || ufcResults[matchIndex]) > 2 ? "color-greenBB" : ""}> Round {filteredByMainEvent2[0].predictions[matchIndex].round}</p>: null}
+      
+ </div>
+ 
+
+ 
+ </div>
+
+
+
+    </div>
+
+
+    // {filteredByMainEvent.map((result, rowIndex) => (
+    //     <div style={{ color: 'black', backgroundColor: ' white', border: 'solid darkred 2px', minWidth: '50%', maxWidth: '50%' }} key={rowIndex}>
+  
+    //       {result.predictions.map((prediction, matchIndex) => (
+    //         <div key={matchIndex} style={{ border: 'solid black 2px', minHeight: '200px', maxHeight: '200px' }}>
+    //           <strong className={calculatePoints(prediction, adminKevPicksForEvent[rowIndex] || ufcResults[rowIndex]) > 0 ? "color-green" : ""}>Winner:{" "}
+    //             {prediction.winner === 0
+    //               ? prediction.fighters[0]
+    //               : prediction.winner === 1
+    //                 ? prediction.fighters[1]
+    //                 : "None"}</strong>
+    //           <br />
+    //           <strong className={calculatePoints(prediction, adminKevPicksForEvent[rowIndex] || ufcResults[rowIndex]) > 1 ? "color-green" : ""}>Method: {prediction.method} </strong>
+    //           <br />
+    //           {prediction.round ? <>
+    //             <strong className={calculatePoints(prediction, adminKevPicksForEvent[rowIndex] || ufcResults[rowIndex]) > 2 ? "color-green" : ""}>Round:{prediction.round} </strong>
+    //             <br /> </>: null}
+    //         </div>
+    //       ))}
+  
+    //     </div>
+    //   ))}
+  
+  
+  
+  ))}
+
+  
+</div>
+
 
           {/* Blue Corner user's pick for the fight card */}
           
-          {filteredByMainEvent2.map((result, rowIndex) => (
-            <td key={rowIndex} style={{backgroundColor:'white',color:'black',border:'solid  navy 2px',minWidth:'33%',maxWidth:'33%'}}>
-                <div>
-                {result.predictions.map((prediction, matchIndex) => (
-                    <div key={matchIndex} className="" style={{border: 'solid black 2px', minHeight:'200px',maxHeight:'200px'}}>
-                    {/* <strong>{prediction.fighters.join(' vs ')}</strong> */}
-                    <br />
-                    {/* Display other prediction details */}
-                    <strong>Winner:</strong>{" "}
-                        {prediction.winner === 0
-                            ? prediction.fighters[0]
-                            : prediction.winner === 1
-                            ? prediction.fighters[1]
-                            
-                            : "None"}
-                        <br />
-                        <strong>Method:</strong> {prediction.method} 
-                        <br />
-                        {prediction.round ? <>
-                        <strong>Round:</strong> {prediction.round} 
-                        <br /> </>: null }
-                    </div>
-                ))}
-                </div>
-            </td>
-            ))}
-
-        </tr>
+          
       
 
-  </tbody>
-</table>
+  </div>
+
+</div>
 
 :  <div style={{ margin: '0px 20%', backgroundColor: 'whitesmoke', textAlign: 'center', marginTop: '5%', padding: '20px', borderRadius: '10px' }}>
 <p style={{ marginBottom: '20px' }}>If you'd like to compare users picks, please:</p>
@@ -564,7 +590,6 @@ console.log(selectedEvent)
                 
       
    
-    
   
   <img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} className='resultsimg' style={{cursor:'pointer'}}/> 
   
