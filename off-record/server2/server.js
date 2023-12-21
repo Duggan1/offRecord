@@ -29,6 +29,8 @@ const fightRecords = [];
 const addedFighters = [];
 const fighters = []
 const oddResults = []
+const liveR = []
+
 
 function updatePreviousFights(property, value, currentIndex) {
   for (let i = currentIndex - 1; i >= 0; i--) {
@@ -185,6 +187,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
         $('.AccordionPanel.mb4').each((index, element) => {
         // .Gamestrip__Overview
+
+        const liveOne = []
         $('.Gamestrip__Overview').each((index, element) => {
           // Extract network and odds information
           const network = $(element).find('.ScoreCell__NetworkItem').text();
@@ -208,8 +212,9 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
           }
           if (!oddResults.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(oddDetails))) {
-            fightRecords.push(oddDetails);
+            oddResults.push(oddDetails);
           }
+          
           // oddResults.push(oddDetails)
       });
       
@@ -233,16 +238,20 @@ app.get('/scrape-ufc-website', async (req, res) => {
               hasRedArrow,
               hasBlueArrow,
           };
-          if (!fighters.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(fighter))) {
+          if (!fighters.has(fighter)) {
             fighters.push(fighter);
           }
 
           fighters.push(fighter);
             });
       
-
-      
+//////////////////////////////////////////////////
+            liveR.push(liveOne);
+          
+          
           });
+
+
 
         
 
