@@ -183,7 +183,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
 
 
-        $('."AccordionPanel mb4"').each((index, element) => {
+        $('.AccordionPanel.mb4').each((index, element) => {
         // .Gamestrip__Overview
         $('.Gamestrip__Overview').each((index, element) => {
           // Extract network and odds information
