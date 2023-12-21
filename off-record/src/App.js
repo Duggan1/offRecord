@@ -56,6 +56,7 @@ useEffect(() => {
        const uniqueFighters = [...new Set(fighters.map(JSON.stringify))].map(JSON.parse);
        const updatedFighters = uniqueFighters.map((fighter, index) => {
          const corner = index % 2 === 0 ? 'Red Corner' : 'Blue Corner';
+
          return {
              ...fighter,
              corner,
@@ -73,6 +74,7 @@ useEffect(() => {
       }
     });
     setLiveFinishes(uniqueFinishes)
+    console.log(uniqueFinishes)
  
        const updatedRecords = [];
  
@@ -103,7 +105,8 @@ useEffect(() => {
             winner: fight.winner,
             method: fight.method,
             round: fight.round,
-            odds: records[updatedRecords.length + index].odds
+            odds: records[updatedRecords.length + index].odds,
+            liveResults: records[updatedRecords.length + index].odds
 
         };
     });

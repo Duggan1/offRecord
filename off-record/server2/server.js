@@ -183,7 +183,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
 
 
-        
+        $('."AccordionPanel mb4"').each((index, element) => {
         // .Gamestrip__Overview
         $('.Gamestrip__Overview').each((index, element) => {
           // Extract network and odds information
@@ -196,14 +196,6 @@ app.get('/scrape-ufc-website', async (req, res) => {
         
           const broadcaster = $(element).find('.SomeOtherElementClass').text();
      
-          // Do something with the extracted information
-          // console.log(`Network: ${network}`);
-          // console.log(`Odds: ${odds}`);
-          // console.log(`Final: ${final}`);
-          // console.log(`Method: ${method}`);
-          // console.log(`Round: ${round}`);
-          // console.log(`Winner: ${winner}`);
-          // console.log(`Broadcaster: ${broadcaster}`);
           const oddDetails = {
       
             network,
@@ -221,12 +213,6 @@ app.get('/scrape-ufc-website', async (req, res) => {
           // oddResults.push(oddDetails)
       });
       
-      
-
-        
-
-      //   // const fighters = [];
-
         $('.MMACompetitor').each((index, element) => {
           const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
           const record = recordElement.text().trim();
@@ -247,16 +233,18 @@ app.get('/scrape-ufc-website', async (req, res) => {
               hasRedArrow,
               hasBlueArrow,
           };
+          if (!fighters.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(fighter))) {
+            fighters.push(fighter);
+          }
 
           fighters.push(fighter);
             });
       
 
       
+          });
 
-
-        // Now you can use the fighters array or log its content
-        // console.log(fighters);
+        
 
 
       
