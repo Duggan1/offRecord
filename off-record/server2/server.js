@@ -278,7 +278,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       fights: fightData,
       records: fightRecords,
       backgroundImageSrc,
-      arena, city, country, locationCC, tapImage, fighters, oddResults
+      arena, city, country, locationCC, tapImage, fighters, oddResults,liveR
     });
   } catch (error) {
     console.error('Error:', error);
