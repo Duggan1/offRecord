@@ -40,6 +40,7 @@ function App() {
 
 const [ufcCard2, setUfcCard2] = useState([]);
 const [ufcCard3, setUfcCard3] = useState([]);
+const [weRlive , setweRlive] = useState([]);
 const [eventInfo, setEventInfo] = useState({});
 const apiUrl = 'https://offtherecordcards.onrender.com/scrape-ufc-website';
 const [liveFinishes, setLiveFinishes] = useState([]);
@@ -78,24 +79,32 @@ useEffect(() => {
     console.log(liveR[0][0].timeDetails)
     console.log(updatedFighters)
     const associatedData = [];
-    if (liveR) {
-          for (let i = 0; i < liveR.length - 1; i++) {
-              const timeDetails1 = liveR[0][i].timeDetails;
-              console.log(i)
+if (liveR) {
+    for (let i = 0; i < fights.length ; i++) {
+        const timeDetails1 = liveR[0][i].timeDetails;
+        const oddsDetails = liveR[0][i].odds;
 
-              const fighter1 = fighters[i + 12]; // Offset by 12 to match the index of the fighters array
-              const fighter2 = fighters[i + 13];
+        const fighter1Index = i * 2;
+        const fighter2Index = fighter1Index + 1;
 
-              const dataPair = {
-                  timeDetails1,
-                  // timeDetails2,
-                  fighter1,
-                  fighter2,
-              };
+        const fighter1 = updatedFighters[fighter1Index];
+        const fighter2 = updatedFighters[fighter2Index];
 
-              associatedData.push(dataPair);
-          }}
-      console.log(associatedData)
+        const dataPair = {
+            timeDetails1,
+            fighter1,
+            fighter2,
+        };
+
+        associatedData.push(dataPair);
+    }
+
+    setweRlive(associatedData)
+
+
+}
+console.log(associatedData);
+
 
  
        const updatedRecords = [];
@@ -740,6 +749,7 @@ console.log(ufcEvents)
 console.log(locationInfo.length)
 console.log(location); 
 console.log(liveFinishes)
+console.log(weRlive)
 
 
 
