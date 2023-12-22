@@ -213,6 +213,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
           }
           if (!oddResults.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(oddDetails))) {
             fightRecords.push(oddDetails);
+            liveOne.push(oddDetails);
           }
           // oddResults.push(oddDetails)
       });
@@ -237,11 +238,12 @@ app.get('/scrape-ufc-website', async (req, res) => {
               hasRedArrow,
               hasBlueArrow,
           };
-          if (!fighters.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(fighter))) {
-            fighters.push(fighter);
-          }
+          // if (!fighters.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(fighter))) {
+          //   fighters.push(fighter);
+          // }
 
           fighters.push(fighter);
+          liveOne.push(fighter);
             });
       
 
