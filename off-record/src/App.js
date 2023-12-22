@@ -50,7 +50,7 @@ useEffect(() => {
       console.log(response.data) 
  
       const { event_name, event_date,fights, records,
-        backgroundImageSrc, location, locationCC, tapImage, fighters, 
+        backgroundImageSrc, location, locationCC, tapImage, fighters, liveR
        } = response.data;
 
        const uniqueFighters = [...new Set(fighters.map(JSON.stringify))].map(JSON.parse);
@@ -75,6 +75,28 @@ useEffect(() => {
     });
     setLiveFinishes(uniqueFinishes)
     console.log(uniqueFinishes)
+    console.log(liveR[0][0].timeDetails)
+    console.log(updatedFighters)
+    const associatedData = [];
+    if (liveR) {
+          for (let i = 0; i < liveR.length - 1; i++) {
+              const timeDetails1 = liveR[0][i].timeDetails;
+              console.log(i)
+
+              const fighter1 = fighters[i + 12]; // Offset by 12 to match the index of the fighters array
+              const fighter2 = fighters[i + 13];
+
+              const dataPair = {
+                  timeDetails1,
+                  // timeDetails2,
+                  fighter1,
+                  fighter2,
+              };
+
+              associatedData.push(dataPair);
+          }}
+      console.log(associatedData)
+
  
        const updatedRecords = [];
  
@@ -718,6 +740,7 @@ console.log(ufcEvents)
 console.log(locationInfo.length)
 console.log(location); 
 console.log(liveFinishes)
+
 
 
 
