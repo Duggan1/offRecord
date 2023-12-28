@@ -6,7 +6,7 @@ import Chart from "chart.js/auto";
 import Modal from 'react-modal';
 import Dnd from './Dnd';
 
-function Results({ user, ufcCard, ufcResults, results2, adminKevPicks2, liveFinishes }) {
+function Results({ user, ufcCard, ufcResults, results2, adminKevPicks2, weRlive }) {
   const [results, setResults] = useState(results2);
   const [updatedResults, setUpdatedResults] = useState(ufcResults)
   const [showOnlyUserPicks, setShowOnlyUserPicks] = useState(false);
@@ -308,7 +308,6 @@ function calculatePoints(pick, result) {
 }
 
 
-
 const [cardsWon, setCardsWon] = useState({});
 
 function calculateTotalPoints(result, mainEvent) {
@@ -329,6 +328,7 @@ function calculateTotalPoints(result, mainEvent) {
   
   return totalPoints;
 } 
+
 
 
 
@@ -906,63 +906,73 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 //   });
 //   setOwnPicksVisibility(initialVisibility);
 // }, [filteredByMainEvent]);
-  const liveFinishesArray = Array.from(liveFinishes);
-  console.log( liveFinishesArray)
-  console.log( liveFinishes)
+// const [weRlive1 , setweRlive1] = useState(weRlive)
+// ///////////////////////////////////////////////////////
+// LIVE/////////////////////////////
+// ///////////////////////////////////////////////////////
+// ///////////////////////////////
 
 
 
-// if (predictions.methodCounts) {
-//   // Data for the chart
-//   const data = {
-//     labels: ["TKO/KO", "Submission", "Decision", "Draw/No-Contest"],
-//     datasets: [
-//       {
-//         label: "Method Counts",
-//         data: [
-//           predictions.methodCounts["TKO/KO"],
-//           predictions.methodCounts["Submission"],
-//           predictions.methodCounts["Decision"],
-//           predictions.methodCounts["Draw/No-Contest"],
-//         ],
-//         backgroundColor: [
-//           "rgba(255, 99, 132, 0.2)",
-//           "rgba(54, 162, 235, 0.2)",
-//           "rgba(255, 206, 86, 0.2)",
-//           "rgba(75, 192, 192, 0.2)",
-//         ],
-//         borderColor: [
-//           "rgba(255, 99, 132, 1)",
-//           "rgba(54, 162, 235, 1)",
-//           "rgba(255, 206, 86, 1)",
-//           "rgba(75, 192, 192, 1)",
-//         ],
-//         borderWidth: 1,
-//       },
-//     ],
-//   };
+function transformData(initialData) {
+  const predictions = initialData.map((fight, index) => {
+    const winner = fight.fighter1.hasRedArrow ? 0 : 1; // Assuming red arrow signifies winner
+    const methodMapping = {
+      'Dec': 'Decision',
+      'Sub': 'Submission',
+      'KO/TKO': 'TKO/KO',
+    };
 
-//   // Options for the chart
-//   const options = {
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//       },
-//     },
-//   };
+    const methodMatch = fight.timeDetails1.match(/(Dec|Sub|KO\/TKO)/);
+    const method = methodMatch ? methodMapping[methodMatch[0]] : null;
+    const roundMatch = fight.timeDetails1.match(/R(\d+)/);
+    const round = roundMatch ? roundMatch[1] : null;
 
-  // Get the canvas element
-//   const chartCanvas = document.getElementById("methodChart");
 
-//   if (chartCanvas) {
-//     const ctx = chartCanvas.getContext("2d");
-//     new Chart(ctx, {
-//       type: "bar",
-//       data: data,
-//       options: options,
-//     });
-//   }
-// }
+    
+
+    return {
+      fighters: [fight.fighter1.name, fight.fighter2.name],
+      method: method,
+      round: round,
+      winner: winner,
+    };
+  });
+
+  return  predictions ;
+}
+
+// Example usage
+
+const liveNready = transformData(weRlive);
+console.log(liveNready);
+console.log(adminKevPicks)
+console.log(weRlive)
+
+
+// ///////////////////////////////////////////////////////
+// LIVE/////////////////////////////
+// ///////////////////////////////////////////////////////
+// ///////////////////////////////
+function calculateLiveTotalPoints(result) {
+  let totalPoints = 0;
+
+  result.predictions.forEach((prediction, predIndex) => {
+    const adminKevPick = liveNready[predIndex];
+    const ufcResult = ufcResults[predIndex];
+    
+    
+    const points = calculatePoints(prediction, adminKevPick || ufcResult);
+    totalPoints += points;
+
+
+   
+  });
+  
+  return totalPoints;
+} 
+
+
 
 
 
@@ -1071,100 +1081,14 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
 
 
-
-
-{/* 
-            {explainPoints ?    <div className="pointEXB"><div className="pointEX" >
-      <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 1 point</span> for picking the correct Winner </p><br></br>
-      <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 point</span> for picking the correct Method & Winner</p><br></br>
-      <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 3 point</span> for picking the correct Round, Method & Winner</p><br></br>
-      <p style={{color:'white',fontWeight:'Bold'}}><span style={{color:'gold'}}> + 2 points</span> for picking Draw/No-Contest correctly</p><center><button className="expoint" onClick={() => setExplainPointst(!explainPoints)} >Hide Point System</button></center></div></div>
-       : <center><button className="expoint" onClick={() => setExplainPointst(!explainPoints)} >Explain Point System</button></center> } */}
-
-{/* <center><button className="expoint"  onClick={() => setSelectedEvent('Jon Jones vs Fedor Emelianenko')} >Dream Card Results</button></center>
-*/}
-
-
-
-{/* /////////////////////////////////
-/////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////
-/////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-/
-/
-/////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////// */}
-  {/* {user && user.username ? (
-                  <center>
-                    <button
-                  className="urpicksB"
-                  onClick={() => setShowOnlyUserPicks(!showOnlyUserPicks)}
-                >
-                  {showOnlyUserPicks ? "Show All Picks" : `Show Only My Picks`}
-                </button>
-
-                  </center>
-                ) : null} */}
-
-
-            {/* <center><label style={{color:'lightblue',backgroundColor:'black',fontWeight:'bold'}}>Filter Results by Fight Card</label><br></br>
-            <select className="filterbutton" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)}>
-              <option value="">All</option>
-              {uniqueMainEvents
-                .slice()
-                .reverse()
-                .map((mainEvent, index) => (
-                  <option key={index} value={mainEvent}>
-                    {mainEvent}
-                  </option>
-                ))}
-
-            </select></center>
-
-            <center>
-              <label style={{ color: 'lightblue', backgroundColor: 'black', fontWeight: 'bold' }}>
-                Filter Results by User
-              </label>
-              <br />
-              <select
-                className="filterbutton"
-                value={selectedUser}
-                onChange={(e) => setSelectedUser(e.target.value)}
-              >
-                <option value="">All Users</option>
-                {uniqueUsernames.map((username, index) => (
-                  <option key={index} value={username}>
-                    {username}
-                  </option>
-                ))}
-              </select>
-            </center>
-
-
-          <center style={{}}>
-
-          <label className={`switch ${showPredictions ? 'pborder' : ''}`}>
-
-            <input onClick={togglePredictions} type="checkbox" class="cb"></input>
-            <span class="toggle">
-              <span class="left">Hide All</span>  
-              <span class="right">Show All</span>  
-            </span>
-          </label>
-
-          </center> */}
          </div>
          
           <> 
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '100%', }}>
+          <div className="wholeOne" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '100%' ,paddingTop:'2%',borderTop:'2px black solid',marginBottom:'0px',paddingBottom:'0px'}}>
   
 <div style={{ flex: 1 }}>
     <center>
-    <label style={{ color: 'lightblue', backgroundColor: 'black', fontWeight: 'bold' }}>
+    <label style={{ color: 'black', backgroundColor: 'whitesmoke', fontWeight: 'bold' }}>
       Filter by User
     </label>
     <br />
@@ -1195,7 +1119,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
   
   <div style={{ flex: 1 }}><center>
-    <label style={{ color: 'lightblue', backgroundColor: 'black', fontWeight: 'bold' }}>
+    <label style={{ color: 'black', backgroundColor: 'whitesmoke', fontWeight: 'bold' }}>
       Filter by Card
     </label>
     <br />
@@ -1221,7 +1145,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
 
              
-              <table className="wholeOne" >
+              <table className="wholeOne snowwhite" style={{marginBottom:'0px',paddingBottom:'0px'}} >
                 <thead>
                   <tr>
                     <th>{filteredByMainEvent.length} Picks</th>
@@ -1273,8 +1197,12 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
                       </button>
                     ) : null }
 
-                    
+                {calculateTotalPoints(result, result.main_event, adminKevPicks) > 0 ? (
                   <h2>{calculateTotalPoints(result, result.main_event, adminKevPicks)}+ Points</h2>
+                ) : (
+                  <h2>{calculateLiveTotalPoints(result)}+ Points</h2>
+                )}
+
                 
                 </center>
               </div>
@@ -1286,7 +1214,7 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
                   return (
                     <p
-                      className={calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 0 ? "winnerCircle" : "results-container"}
+                      className={calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 0 || calculatePoints(prediction, liveNready[predIndex] || ufcResults[predIndex]) > 0 ? "winnerCircle" : "results-container"}
                       key={predIndex}
                     >
                       <strong>{prediction.fighters.join(' vs ')}</strong>
@@ -1307,10 +1235,10 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
                       <center>
                         {/* Your additional code */}
                       
-                      <strong className={calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 1 ? "rightgreen" : ""}>
-                        {calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 1
+                      <strong className={calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 1 || calculatePoints(prediction, liveNready[predIndex] || ufcResults[predIndex]) > 1  ? "rightgreen" : ""}>
+                        {calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex]) > 1 
                           ? ` + ${calculatePoints(prediction, adminKevPicksForEvent[predIndex] || ufcResults[predIndex])} `
-                          : null}
+                          : calculatePoints(prediction, liveNready[predIndex] || ufcResults[predIndex]) > 1 ? ` + ${calculatePoints(prediction, liveNready[predIndex] || ufcResults[predIndex]) }`: null }
                       </strong></center>
                       <br />
                       
@@ -1362,7 +1290,8 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
                     backgroundPosition: 'right',
                     paddingLeft:'5%',
                   }}>  / {result.predictions.length * 2}+</h2></>
-                :  <center>
+                :  
+                <center>
                     <strong>Dream Card Results</strong>
                     <br />
                     <strong>{result.main_event}</strong>
@@ -1381,7 +1310,9 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
           ? adminKevMatch.winner === 'Draw/No-Contest'
             ? 'Draw/No-Contest'
             : adminKevMatch.fighters[adminKevMatch.winner]
-          : liveFinishesArray ? liveFinishesArray[matchIndex] : 'results pending'
+          : liveNready[matchIndex] && liveNready[matchIndex].winner !== null
+          ? liveNready[matchIndex].fighters[liveNready[matchIndex].winner]
+          : 'results pending'
         }
         {adminKevMatch.methodCounts ? (
           <div style={{ display: "flex", alignItems: "center" }}>
@@ -1446,16 +1377,27 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
             adminKevMatch.method === "Decision - MajorityDecision - Majority" && adminKevMatch.winner === 3  ?
               "Draw/No-Contest": 
               adminKevMatch.method : 
-              liveFinishesArray[matchIndex]}
+              liveNready[matchIndex] && liveNready[matchIndex].winner !== null
+                ? liveNready[matchIndex].method
+                : 'results pending'
+              
+              }
 
 
             <br />
             { !adminKevMatch.methodCounts ? 
                 adminKevMatch.method === 'TKO/KO' || adminKevMatch.method === 'Submission'  ? <>
                 <strong>Round:</strong> {adminKevMatch.round} 
-                <br /> </> : null
+                <br /> </> : 
+                adminKevMatch.method !== null ? null :
+
+
+                
+                            liveNready[matchIndex]  ? 
+                                    liveNready[matchIndex].method == 'TKO/KO' || liveNready[matchIndex].method == 'Submission' ? <><strong>Round:</strong> {liveNready[matchIndex].round} </> : null
+                            : 'results pending'
             
-                      : null }
+               : null }
 
             {adminKevMatch.methodCounts ? 
             <div>
@@ -1473,9 +1415,16 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
               <div className="flag-image">
                 {/* ... Flag image code ... */}
               </div>
-            ) : (
+            ) : 
+            liveNready[matchIndex] && liveNready[matchIndex].winner !== null ? null :
+                
+            
+                (
               <div className="loading" style={{ height: '30px', marginLeft: '40%' }}></div>
-            )}
+                 )
+                 
+                 
+                 }
           </div>
         ))} 
 

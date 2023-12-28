@@ -772,7 +772,8 @@ console.log(weRlive)
       
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} 
                                               stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
-      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} liveFinishes={liveFinishes} />}/>
+      <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} 
+                                                weRlive={weRlive} />}/>
       <Route path="/results/Compare" element={<Compare ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} liveFinishes={liveFinishes} />}/>
       
       
