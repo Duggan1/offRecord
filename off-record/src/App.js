@@ -728,8 +728,8 @@ console.log(modifiedUfcResults)
 
 console.log(eventInfo) 
 const PreLeonColby =  ('' + ufcEvents.backgroundImageSrc)
-const backgroundImageSrc = eventInfo.backgroundImageSrc
-const tapImageSrc = eventInfo.tapImage
+const backgroundImageSrc = ufcEvents.backgroundImageSrc
+const tapImageSrc = ufcEvents.tapImage
 console.log(backgroundImageSrc) 
 console.log(tapImageSrc) 
   

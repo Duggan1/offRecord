@@ -15,7 +15,7 @@ app.use(cors());
 
 const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-january-13-2024'
 const Recurl = 'https://www.tapology.com/fightcenter/events/105485-ufc-fight-night'
-const espnurl = 'hhttps://www.espn.com/mma/fightcenter/_/id/600039893/league/ufc'
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039893/league/ufc'
 
 // const deatilsUrl = 'https://www.ufc.com/event/ufc-296'
 // const Recurl = 'https://www.tapology.com/fightcenter/events/101868-ufc'
