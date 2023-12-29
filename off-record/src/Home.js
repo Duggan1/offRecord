@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 
 
-function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic, tapImage, countPick}) {
+function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic, tapImage, countPick, isOwnerAndEventMatch}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
@@ -341,7 +341,10 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                   paddingTop:'15%',
                   paddingBottom:'15%',marginBottom:'0%',marginTop:'0%',
                  height:'200px'
-                  }} ></h5>     
+                  }} ></h5>  
+
+
+                  {isOwnerAndEventMatch ? <p className="color-green">Picks submitted </p> :  user ?  <p className="color-red">Picks Missing </p> : null }
 
                
                

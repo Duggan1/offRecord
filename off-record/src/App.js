@@ -751,7 +751,28 @@ console.log(location);
 console.log(liveFinishes)
 console.log(weRlive)
 
+console.log(user)
+console.log(results2)
+const [isOwnerAndEventMatch, setIsOwnerAndEventMatch] = useState(false);
+const checkConditions = () => {
+  const eventToCheck = ufcCard3.length > 2 ?  ufcCard3[0].fighters.join(' vs ') : 'LOADING';
 
+  if (user) {
+  const isMatch = results2.some(
+    (result) => result.owner === user.username && result.main_event === eventToCheck
+  );
+  setIsOwnerAndEventMatch(isMatch);
+  }
+};
+useEffect(() => {
+  checkConditions()
+
+}, [results2 && user !== null]);
+
+console.log(isOwnerAndEventMatch)
+
+const [justSubmitted, setjustSubmitted] = useState('');
+console.log(justSubmitted)
 
 
 
@@ -764,16 +785,16 @@ console.log(weRlive)
 
     
    <Routes>
-      <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} 
+      <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch}
                                       stallUfcCard={ufcCard} locationCity={locationcity} state={locationstate} 
                                       location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} countPick={countPick} />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       
-      <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} 
+      <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
                                               stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} 
-                                                weRlive={weRlive} />}/>
+                                                weRlive={weRlive} justSubmitted={justSubmitted} />}/>
       <Route path="/results/Compare" element={<Compare ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} liveFinishes={liveFinishes} />}/>
       
       

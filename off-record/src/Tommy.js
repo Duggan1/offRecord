@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import Dnd from './Dnd';
 import Dnd2 from './Dnd2';
 
-function Tommy({ user, ufcCard, stallUfcCard,locationCity,location}) {
+function Tommy({ user, ufcCard, stallUfcCard,locationCity,location, isOwnerAndEventMatch, setjustSubmitted}) {
 
   const [backupID, setBackupID] = useState(0)
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -233,6 +233,7 @@ const handleSubmit = async (e) => {
             console.log('Predictions submitted successfully:', data);
             // Perform any further actions here
             // setPredictions([]);
+            setjustSubmitted([mainEvent])
             openModal()
             // navigate('/results');
 
@@ -550,6 +551,7 @@ if (isLoading) {
       <button className='dreamcardbutton' onClick={toggleCard}>
           {showUfcCard ? ' Dream Card' : 'Show Current UFC Card'}
         </button>
+        
                   <h1 style={{
                               height: '100px',
                               backgroundColor: 'black',
@@ -771,8 +773,10 @@ if (isLoading) {
         {errors && (<p className="errortime" style={{ border: errors.length > 0 ? '5px solid red' : 'none' }}>{errors} </p>)}
 </center>
 <div className="blakBG">
+
+{isOwnerAndEventMatch ? <p className="color-green">{user.username} submitted picks for {mainEvent} ! </p> :   <button className="submitb" type="submit">Submit Predictions</button> }
  
- <button className="submitb" type="submit">Submit Predictions</button></div>
+ </div>
 
         
 

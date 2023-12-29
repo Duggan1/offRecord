@@ -6,12 +6,12 @@ import Chart from "chart.js/auto";
 import Modal from 'react-modal';
 import Dnd from './Dnd';
 
-function Results({ user, ufcCard, ufcResults, results2, adminKevPicks2, weRlive }) {
+function Results({ user, ufcCard, ufcResults, results2, adminKevPicks2, weRlive , justSubmitted}) {
   const [results, setResults] = useState(results2);
   const [updatedResults, setUpdatedResults] = useState(ufcResults)
   const [showOnlyUserPicks, setShowOnlyUserPicks] = useState(false);
   const [adminKevPicks, setAdminKevPicks] = useState(adminKevPicks2);
-  const [selectedEvent, setSelectedEvent] = useState(""); 
+  const [selectedEvent, setSelectedEvent] = useState(justSubmitted); // '' is the value unless pICKS WERE JUST SUBMITTED 
   const [explainPoints, setExplainPointst] = useState(false); 
   const [showLeaderBoard, setshowLeaderBoard] = useState(false); 
   const [showCardWins, setShowCardWins] = useState(false); 
@@ -20,9 +20,14 @@ function Results({ user, ufcCard, ufcResults, results2, adminKevPicks2, weRlive 
   const handleOptionClick = (option) => {
       navigate(`${option}`);
     };
+    /////////////////////////////////////////////////////////DELETE
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
+  ///////////////////////////////////////////////////////////////////REVIEW
+  const [modalIsOpen2, setModalIsOpen2] = useState(false);
+  const openModal2 = () => setModalIsOpen2(true);
+  const closeModal2 = () => setModalIsOpen2(false);
 
 
 
@@ -402,8 +407,11 @@ function calculateTotalPoints(result, mainEvent) {
         // Handle error as needed
       });
   };
-  
 
+
+useEffect(() => {  
+  fetchPicks()
+ }, [justSubmitted]); //This should refresh the Picks after a user submits and filter the results to show that main event currently fighting
 
 
   const uniqueMainEventsRD = [...new Set(results.map(result => result.main_event))];
@@ -916,23 +924,34 @@ filteredByMainEvent.sort((a, b) => b.points - a.points);
 
 function transformData(initialData) {
   const predictions = initialData.map((fight, index) => {
-    const winner = fight.fighter1.hasRedArrow ? 0 : 1; // Assuming red arrow signifies winner
+    const winner =
+  (fight.fighter1 && fight.fighter1.hasRedArrow) ? 0 :
+    (fight.fighter2 && fight.fighter2.hasBlueArrow) ? 1 :
+      fight.timeDetails1 ? 3 : null;
+
+                            
+                            ; // Assuming red arrow signifies winner
     const methodMapping = {
       'Dec': 'Decision',
       'Sub': 'Submission',
       'KO/TKO': 'TKO/KO',
     };
 
-    const methodMatch = fight.timeDetails1.match(/(Dec|Sub|KO\/TKO)/);
+    const methodMatch = fight.timeDetails1 ? fight.timeDetails1.match(/(Dec|Sub|KO\/TKO)/) : null;
+
+
     const method = methodMatch ? methodMapping[methodMatch[0]] : null;
-    const roundMatch = fight.timeDetails1.match(/R(\d+)/);
+    const roundMatch = fight.timeDetails1 ? fight.timeDetails1.match(/R(\d+)/): null;
     const round = roundMatch ? roundMatch[1] : null;
 
-
+    const fighter1Name = fight.fighter1 ? fight.fighter1.name : 'Unknown Fighter 1';
+    const fighter2Name = fight.fighter2 ? fight.fighter2.name : 'Unknown Fighter 2';
+    
+    const fighters = [fighter1Name, fighter2Name];
     
 
     return {
-      fighters: [fight.fighter1.name, fight.fighter2.name],
+      fighters: fighters,
       method: method,
       round: round,
       winner: winner,
@@ -944,7 +963,7 @@ function transformData(initialData) {
 
 // Example usage
 
-const liveNready = transformData(weRlive);
+const liveNready = weRlive ? transformData(weRlive) : [];
 console.log(liveNready);
 console.log(adminKevPicks)
 console.log(weRlive)
@@ -1163,18 +1182,16 @@ function calculateLiveTotalPoints(result) {
               <div className="ownpicksdiv">
 
               <span style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <button
-            className={ ownPicksVisibility[result.owner] ? "hide-button cursor-pointer" : "show-button cursor-pointer"}
-            onClick={() => toggleOwnPicks(result.id)}
-          >
-            {ownPicksVisibility[result.owner] ? "Hide" : "Show"}
-          </button>
-          <p style={{ textAlign: 'right', margin: '0' }}>
-          {((calculateTotalPoints(result, result.main_event, adminKevPicks) / (result.predictions.length * 2)) * 100).toFixed(0)}%
-        </p>
-
-
-        </span>
+                <button
+                  className={ ownPicksVisibility[result.owner] ? "hide-button cursor-pointer" : "show-button cursor-pointer"}
+                  onClick={() => toggleOwnPicks(result.id)}
+                >
+                  {ownPicksVisibility[result.owner] ? "Hide" : "Show"}
+                </button>
+                    <p style={{ textAlign: 'right', margin: '0' }}>
+                    {((calculateTotalPoints(result, result.main_event, adminKevPicks) / (result.predictions.length * 2)) * 100).toFixed(0)}%
+                    </p>
+              </span>
 
                 <center>
                   
@@ -1486,6 +1503,33 @@ function calculateLiveTotalPoints(result) {
 <button className="blueDelete" onClick={() => closeModal()}>Cancel</button>
 
     
+    
+    </div>
+  
+</Modal>
+{/* Modal 2*/}
+<Modal
+  isOpen={modalIsOpen2}
+  onRequestClose={closeModal2}
+  contentLabel=""
+  style={{maxHeight:'fit-content'}}
+>
+  <div  className='text-align-center  '>
+    <h2 className=''
+    style={{ margin:'10px' }}
+    >Picks4Points.com</h2>
+
+    {/* You can add additional content or actions here */}
+    {/* You can add additional content or actions here */}
+   
+    
+    <button
+    style={{backgroundColor:'whitesmoke', color:'black',padding :"3%", border:'black solid 3px', borderRadius:'10%', marginTop:'2%'}}
+    onClick={() => {
+      closeModal2();
+    }}>Close</button>
+
+
     
     </div>
   
