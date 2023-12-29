@@ -11,7 +11,7 @@ function Results({ user, ufcCard, ufcResults, results2, adminKevPicks2, weRlive 
   const [updatedResults, setUpdatedResults] = useState(ufcResults)
   const [showOnlyUserPicks, setShowOnlyUserPicks] = useState(false);
   const [adminKevPicks, setAdminKevPicks] = useState(adminKevPicks2);
-  const [selectedEvent, setSelectedEvent] = useState(justSubmitted); // '' is the value unless pICKS WERE JUST SUBMITTED 
+  const [selectedEvent, setSelectedEvent] = useState(''); // 
   const [explainPoints, setExplainPointst] = useState(false); 
   const [showLeaderBoard, setshowLeaderBoard] = useState(false); 
   const [showCardWins, setShowCardWins] = useState(false); 
@@ -379,39 +379,46 @@ function calculateTotalPoints(result, mainEvent) {
   }, []); 
 
 
-  const fetchPicks = () => {
-    fetch('https://off-therecordpicks.onrender.com/picks')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+  const fetchPicks = async () => {
+    try {
+      const response = await fetch('https://off-therecordpicks.onrender.com/picks');
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data = await response.json();
+      
+      // Update the list of picks with the newly fetched data
+      setResults(data.picks);
+      
+      const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
+      setResults(filteredResults);
+      console.log(filteredResults);
+  
+      data.picks.forEach(result => {
+        if (result.owner === 'AdminKev' && result.predictions.length > 0) {
+          setAdminKevPicks(picks => ({
+            ...picks,
+            [result.main_event]: result.predictions
+          }));
         }
-        return response.json();
-      })
-      .then((data) => {
-        // Update the list of picks with the newly fetched data
-        setResults(data.picks);
-        const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
-          setResults(filteredResults);
-          console.log(filteredResults)
-          data.picks.forEach(result => {
-            if (result.owner === 'AdminKev' && result.predictions.length > 0) {
-              setAdminKevPicks(picks => ({
-                ...picks,
-                [result.main_event]: result.predictions
-              }));
-            }
-          });
-      })
-      .catch((error) => {
-        console.error('Error fetching results:', error);
-        // Handle error as needed
       });
+    } catch (error) {
+      console.error('Error fetching results:', error);
+      // Handle error as needed
+    }
   };
-
-
-useEffect(() => {  
-  fetchPicks()
- }, [justSubmitted]); //This should refresh the Picks after a user submits and filter the results to show that main event currently fighting
+  
+  useEffect(() => {  
+    const fetchData = async () => {
+      await fetchPicks();
+      
+    };
+  
+    fetchData();
+  }, [justSubmitted]);
+   //This should refresh the Picks after a user submits and filter the results to show that main event currently fighting
 
 
   const uniqueMainEventsRD = [...new Set(results.map(result => result.main_event))];
@@ -1459,7 +1466,7 @@ function calculateLiveTotalPoints(result) {
             {user && user.username ? (
                           
                           <button
-                        style={{ border: 'gold 3px solid', backgroundColor: 'rgb(80, 10, 80)', color: 'white', cursor: 'pointer', marginBottom: '5%',fontWeight:'bold' }}
+                        style={{ border: 'gold 3px solid', backgroundColor: 'red', color: 'white', cursor: 'pointer', marginBottom: '5%',fontWeight:'bold' }}
                         onClick={() => setDeletePicks(!deletePicks)}
                       >
                         {deletePicks ? "Hide Delete" : `Delete My Picks `}
