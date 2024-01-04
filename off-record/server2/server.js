@@ -231,7 +231,11 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const nameElement = $(element).find('.truncate');
           const name = nameElement.text().trim();
 
-          const countryFlag = $(element).find('.Image.Logo.MMACompetitor__flag.Logo__md').text();
+          const countryFlag = $(element).find('.Image.Logo.MMACompetitor__flag.Logo__md').attr('src');
+          const countryFlagUrl = $(element).find('.Image.Logo.MMACompetitor__flag.Logo__md').attr('src');
+          const countryFlagCode = countryFlagUrl.split('/').pop().replace('.png', '');
+
+
           const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
       
           // Check for RedArrow
@@ -246,7 +250,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
               hasRedArrow,
               hasBlueArrow,
               playerImageSrc,
-              countryFlag
+              countryFlag,countryFlagCode
           };
           // if (!fighters.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(fighter))) {
           //   fighters.push(fighter);
