@@ -223,65 +223,46 @@ app.get('/scrape-ufc-website', async (req, res) => {
           // oddResults.push(oddDetails)
       });
       
-       // Function to check if an image source is a placeholder
-    function isPlaceholderImage(src) {
-      return src === 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-    }
+        $('.MMACompetitor').each((index, element) => {
+          const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
+          const record = recordElement.text().trim();
+      
+        
+          const nameElement = $(element).find('.truncate');
+          const name = nameElement.text().trim();
 
-    // Function to scrape fighter details from an element
-    function scrapeFighterDetails(element) {
-      const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
-      const record = recordElement.text().trim();
+          const headshotImageSrc = $(element).find('.headshot img[data-mptype="image"]').attr('src');
+          const countryFlagImageSrc = $(element).find('.MMACompetitor__flag[data-mptype="image"]').attr('src');
 
-      const nameElement = $(element).find('.truncate');
-      const name = nameElement.text().trim();
 
-      const countryFlag = $(element).find('.Image.Logo.MMACompetitor__flag.Logo__md').attr('src');
-      const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
+          const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
+      
+          // Check for RedArrow
+          const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
 
-      // Check if the image sources are not placeholders
-      const isValidCountryFlag = !isPlaceholderImage(countryFlag);
-      const isValidPlayerImageSrc = !isPlaceholderImage(playerImageSrc);
+          // Check for BlueArrow
+          const hasBlueArrow = $(element).find('.MMACompetitor__arrow:not(.MMACompetitor__arrow--reverse)').length > 0;
 
-      // Check for RedArrow
-      const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
+          const fighter = {
+              name,
+              record,
+              hasRedArrow,
+              hasBlueArrow,
+              playerImageSrc,
+              headshotImageSrc,countryFlagImageSrc
+          };
+          // if (!fighters.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(fighter))) {
+          //   fighters.push(fighter);
+          // }
 
-      // Check for BlueArrow
-      const hasBlueArrow = $(element).find('.MMACompetitor__arrow:not(.MMACompetitor__arrow--reverse)').length > 0;
+          fighters.push(fighter);
+          liveOne.push(fighter);
+            });
+      
 
-      return {
-          name,
-          record,
-          hasRedArrow,
-          hasBlueArrow,
-          isValidCountryFlag,
-          isValidPlayerImageSrc,
-          countryFlag,
-          playerImageSrc,
-      };
-    }
-
-    // Main loop for scraping competitor details
-    $('.MMACompetitor').each((index, element) => {
-      try {
-          const fighter = scrapeFighterDetails(element);
-
-          // Include only valid entries in the result
+            liveR.push(liveOne);
           
-              fighters.push(fighter);
-              liveOne.push(fighter);
           
-      } catch (error) {
-          console.error('Error scraping fighter details:', error.message);
-          // Handle the error (e.g., skip this fighter or log the issue)
-      }
-    });
-
-    // Add the scraped details to the main result array
-    liveR.push(liveOne);
-
-              
-              
           });
 
 
