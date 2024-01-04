@@ -527,6 +527,58 @@ const toggleSI = () => {
 
 console.log(selectedUfcCard)
 
+
+
+  const [leagues, setLeagues] = useState([]);
+  const [formData, setFormData] = useState({
+    name: '',
+    owner_id: '', // Assuming the owner_id is obtained from authentication
+    user_id: user ? user.id : 3 ,
+    saying:'',
+    image:'',
+    passcode:'' // Assuming the user_id is obtained from authentication
+  });
+
+  useEffect(() => {
+    // Fetch the list of leagues when the component mounts
+    axios.get('YOUR_API_URL/leagues')
+      .then(response => setLeagues(response.data))
+      .catch(error => console.error('Error fetching leagues:', error));
+  }, []);
+
+  const createLeague = () => {
+    axios.post('YOUR_API_URL/leagues', formData)
+      .then(response => {
+        // Update the list of leagues after creating a new one
+        setLeagues([...leagues, { id: response.data.league_id, name: formData.name }]);
+      })
+      .catch(error => console.error('Error creating league:', error));
+  };
+
+  const joinLeague = (leagueId) => {
+    axios.patch(`YOUR_API_URL/leagues/${leagueId}/members`, formData)
+      .then(response => console.log(response.data.message))
+      .catch(error => console.error('Error joining league:', error));
+  };
+
+  const deleteLeague = (leagueId) => {
+    axios.delete(`YOUR_API_URL/leagues/${leagueId}`)
+      .then(response => {
+        // Update the list of leagues after deleting one
+        setLeagues(leagues.filter(league => league.id !== leagueId));
+      })
+      .catch(error => console.error('Error deleting league:', error));
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+const [clo ,setClo] = useState(false)
+const toggleClo =()=>{
+  setClo(!clo)
+}
+
+
 if (isLoading) {
   return <Dnd />; // Render loading indicator
 } 
@@ -540,17 +592,91 @@ if (isLoading) {
           : <Johnny onLogin={onLogin} onLogout={handleLogout} ufcCard={ufcCard} />} */}
 
 
+{/* <div className='text-align-center' style={{backgroundColor:'tan'}}>
+      <h2 onClick={toggleClo} >Create a League</h2>
+     { clo ? 
+      <form  onSubmit={(e) => { e.preventDefault(); createLeague(); }}>
+      <div><label>Name</label>
+        <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} /> 
+      </div>
+      <div><label>Motto</label>
+        <input type="text" name="saying" placeholder='Motto' value={formData.saying} onChange={handleInputChange} />
+      </div>
+      <div>        <label>Logo</label>
+        <input type="text" name="image" placeholder='Image Address' value={formData.image} onChange={handleInputChange} />
+      </div>
+      <div><label>Code</label>
+        <input type="text" name="passcode  ( Optional )" placeholder='passcode' value={formData.passcode} onChange={handleInputChange} />
+      </div>
 
+        <button type="submit">Create League</button>
+      </form> : null}
+
+      <h2>Join a League</h2>
+      {leagues.map(league => (
+        <div key={league.id}>
+          <span>{league.name}</span>
+          <button onClick={() => joinLeague(league.id)}>Join League</button>
+        </div>
+      ))}
+
+     
+      <h2>Delete a League</h2>
+      {leagues.map(league => (
+        <div key={league.id}>
+          <span>{league.name}</span>
+          <button onClick={() => deleteLeague(league.id)}>Delete League</button>
+        </div>
+      ))}
+
+
+
+    </div> */}
 
     <div>
       {user ? (
     <div className="tommy">
 
+
+          <button className='dreamcardbutton' onClick={toggleCard}>
+                {showUfcCard ? ' Dream Card' : 'Show Current UFC Card'}
+              </button>
+
+        {/* <div>FRANKLINS </div> */}
+        {/* <div class="pool-form">
+  <h2>Join or Add a Pool</h2>
+
+  <div class="form-group">
+    <label for="poolSelection">Select or Add Pool:</label>
+    <select id="poolSelection" onchange="handlePoolSelection()">
+      <option value="existing">Existing Pool 1</option>
+      <option value="existing">Existing Pool 2</option>
+      <option value="existing">Existing Pool 3</option>
+      <option value="add">+ Add New Pool</option>
+    </select>
+  </div>
+
+
+  
+  <div class="add-pool-section">
+    <div class="form-group">
+      <label for="newPoolName">New Pool Name:</label>
+      <input type="text" id="newPoolName" placeholder="Enter New Pool Name"></input>
+    </div>
+
+    <div class="form-group">
+      <label for="newPoolCode">New Pool Code:</label>
+      <input type="text" id="newPoolCode" placeholder="Enter New Pool Code"></input>
+    </div>
+  </div>
+
+  <button onclick="joinOrAddPool()">Join or Add Pool</button>
+</div> */}
+
+
       {showUfcCard?
       <div className="bayLoc" > 
-      <button className='dreamcardbutton' onClick={toggleCard}>
-          {showUfcCard ? ' Dream Card' : 'Show Current UFC Card'}
-        </button>
+      
         
                   <h1 style={{
                               height: '100px',
@@ -574,9 +700,9 @@ if (isLoading) {
         </div>: 
           
           <div className="bayLoc">
-            <button className='dreamcardbutton' onClick={toggleCard}>
+            {/* <button className='dreamcardbutton' onClick={toggleCard}>
           {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
-        </button>
+        </button> */}
             
             <h1 style={{
                 height: '100px',

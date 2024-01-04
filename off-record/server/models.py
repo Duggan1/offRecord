@@ -33,6 +33,8 @@ class User(db.Model, SerializerMixin):
 
     picks = db.relationship('Pick', backref = 'user', cascade = 'all, delete-orphan')
     # gyms = association_proxy('memberships', 'gym')
+    league_id = db.Column(db.Integer, db.ForeignKey('leagues.id'))
+    
 
   
     @validates( 'email' )
@@ -72,6 +74,35 @@ class User(db.Model, SerializerMixin):
     
     
 # ////nullable fo gym&user idbefore the push
+class League(db.Model):
+    __tablename__ = 'leagues'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False, unique=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, unique=True )
+    image = db.Column(db.String(255), nullable=True)
+    passcode = db.Column(db.Integer(4), nullable=True)
+    
+
+    # Define a one-to-many relationship with the User model
+    members = db.relationship('User', backref='league', lazy='dynamic')
+
+    def __init__(self, name, owner_id):
+        self.name = name
+        self.owner_id = owner_id
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Pick(db.Model):
     __tablename__ = 'picks'
@@ -81,7 +112,9 @@ class Pick(db.Model):
     owner = db.Column(db.String(120), nullable=False)
     location = db.Column(db.String(120), nullable=False)
     main_event = db.Column(db.String(120), nullable=False)
+    pools = db.Column(db.String(120), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
     
     # Here we define a one-to-many relationship with the Prediction model
     predictions = db.relationship('Prediction', backref='pick', lazy='dynamic')
@@ -145,6 +178,14 @@ class UFCFight(db.Model):
     odds = db.Column(db.String(50), nullable=True)
 
     event_id = db.Column(db.Integer, db.ForeignKey('ufc_events.id'), nullable=False)
+
+
+
+
+
+
+
+
 
 
 

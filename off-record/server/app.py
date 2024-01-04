@@ -3,7 +3,7 @@ from config import app, api,db, bcrypt
 from flask import make_response, redirect, request, session, jsonify
 from flask_restful import Resource, Api
 
-from models import User, Pick, Prediction, UFCEvent, UFCFight
+from models import User, Pick, Prediction, UFCEvent, UFCFight, League
 # app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'  # Your database URI
 # db = SQLAlchemy(app)
@@ -73,6 +73,135 @@ class SignUp(Resource):
             return make_response({"error": "Invalid input data"}, 400)
 
 
+class Leagues(Resource):
+    def get(self):
+        # Return a list of all leagues
+        leagues = League.query.all()
+        return {'leagues': [league.name for league in leagues]}
+
+    def post(self):
+        # Create a new league
+        data = request.get_json()
+        name = data.get('name')
+        owner_id = data.get('owner_id')  # ID of the league owner (user)
+        passcode = data.get('passcode')  # Optional passcode for joining the league
+
+        if not name or not owner_id:
+            return {'error': 'Name and owner_id are required'}, 400
+
+        # Check if the owner_id corresponds to an existing user
+        owner = User.query.get(owner_id)
+        if not owner:
+            return {'error': 'Invalid owner_id'}, 400
+
+        # Create a new league
+        new_league = League(name=name, owner=owner, passcode=passcode)
+        db.session.add(new_league)
+        db.session.commit()
+
+        return {'message': 'League created successfully', 'league_id': new_league.id}
+
+    def patch(self, league_id):
+        # Update an existing league
+        data = request.get_json()
+        new_owner_id = data.get('new_owner_id')  # Optional: change league owner
+
+        league = League.query.get(league_id)
+        if not league:
+            return {'error': 'League not found'}, 404
+
+        if new_owner_id:
+            new_owner = User.query.get(new_owner_id)
+            if not new_owner:
+                return {'error': 'Invalid new_owner_id'}, 400
+
+            league.owner = new_owner
+
+        db.session.commit()
+
+        return {'message': 'League updated successfully'}
+
+    def delete(self, league_id):
+        # Delete an existing league
+        league = League.query.get(league_id)
+        if not league:
+            return {'error': 'League not found'}, 404
+
+        db.session.delete(league)
+        db.session.commit()
+
+        return {'message': 'League deleted successfully'}
+
+
+class Leagues(Resource):
+    def get(self):
+        # Get a list of all leagues
+        leagues = League.query.all()
+        return [league.serialize() for league in leagues]
+
+    def post(self):
+        # Create a new league
+        data = request.get_json()
+        name = data.get('name')
+        owner_id = data.get('owner_id')
+
+        if not name or not owner_id:
+            return {'message': 'Missing required data'}, 400
+
+        # Check if the user (owner) exists
+        owner = User.query.get(owner_id)
+        if not owner:
+            return {'message': 'User not found'}, 404
+
+        # Check if the league name is unique
+        if League.query.filter_by(name=name).first():
+            return {'message': 'League name must be unique'}, 400
+
+        # Create a new league
+        new_league = League(name=name, owner_id=owner_id)
+        db.session.add(new_league)
+        db.session.commit()
+
+        return {'message': 'League created successfully', 'league_id': new_league.id}, 201
+
+class LeagueMembers(Resource):
+    def patch(self, league_id):
+        # Join a league
+        data = request.get_json()
+        user_id = data.get('user_id')
+
+        if not user_id:
+            return {'message': 'Missing user_id'}, 400
+
+        # Check if the league exists
+        league = League.query.get(league_id)
+        if not league:
+            return {'message': 'League not found'}, 404
+
+        # Check if the user exists
+        user = User.query.get(user_id)
+        if not user:
+            return {'message': 'User not found'}, 404
+
+        # Add the user to the league
+        league.members.append(user)
+        db.session.commit()
+
+        return {'message': 'User joined the league successfully'}, 200
+
+    def delete(self, league_id):
+        # Delete a league
+        league = League.query.get(league_id)
+        if not league:
+            return {'message': 'League not found'}, 404
+
+        db.session.delete(league)
+        db.session.commit()
+
+        return {'message': 'League deleted successfully'}, 200
+
+api.add_resource(Leagues, '/leagues')
+api.add_resource(LeagueMembers, '/leagues/<int:league_id>/members')
 
 
 
