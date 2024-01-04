@@ -267,10 +267,10 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const fighter = scrapeFighterDetails(element);
 
           // Include only valid entries in the result
-          if (fighter.isValidCountryFlag && fighter.isValidPlayerImageSrc) {
+          
               fighters.push(fighter);
               liveOne.push(fighter);
-          }
+          
       } catch (error) {
           console.error('Error scraping fighter details:', error.message);
           // Handle the error (e.g., skip this fighter or log the issue)
