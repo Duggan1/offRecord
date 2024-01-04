@@ -231,8 +231,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const nameElement = $(element).find('.truncate');
           const name = nameElement.text().trim();
 
-          const countryFlag = $(element).find('.Image.Logo.MMACompetitor__flag.Logo__md').attr('src');
-          const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
+          const countryFlag = $(element).find('.Image.Logo.MMACompetitor__flag').attr('src');
+          const playerImageSrc = $(element).find('.image').attr('src');
       
           // Check for RedArrow
           const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
