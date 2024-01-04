@@ -231,7 +231,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const nameElement = $(element).find('.truncate');
           const name = nameElement.text().trim();
 
-          const headshotImageSrc = $(element).find('.headshot img[data-mptype="image"]').attr('src');
+          const headshotImageSrc = $(element).find('.headshot img[data-mptype="image"]')['data-src'];
           const countryFlagImageSrc = $(element).find('.MMACompetitor__flag[data-mptype="image"]').attr('src');
 
 
