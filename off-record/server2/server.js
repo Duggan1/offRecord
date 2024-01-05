@@ -9,6 +9,12 @@ const port = 3001; // Choose an available port
 // Enable CORS for all routes
 app.use(cors());
 
+const fs = require('fs'); // You might use a library to fetch the HTML content instead
+
+
+
+
+
 // const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-december-09-2023';
 // const Recurl = 'https://www.tapology.com/fightcenter/events/105194-ufc-fight-night';
 // const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039634/league/ufc'
@@ -223,41 +229,50 @@ app.get('/scrape-ufc-website', async (req, res) => {
           // oddResults.push(oddDetails)
       });
       
-        $('.MMACompetitor').each((index, element) => {
+      const base64Img = require('base64-img');
+
+      $('.MMACompetitor').each((index, element) => {
           const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
           const record = recordElement.text().trim();
       
-        
           const nameElement = $(element).find('.truncate');
           const name = nameElement.text().trim();
-
+      
           const headshotImageSrc = $(element).find('.MMACompetitor__flag')['data-src'];
           const countryFlagImageSrc = $(element).find('.MMACompetitor__flag[data-mptype="image"]').attr('src');
-
-
+      
+          // Obtain Base64 image data dynamically from the element
+          const base64Image = $(element).find('img[data-mptype="image"]').attr('src').split(';base64,').pop();
+      
+          const path = `decoded_image_${index}.gif`; // Use a unique path for each image
+      
+          base64Img.img(base64Image, '.', path, function (err, filepath) {
+              if (err) {
+                  console.error(err);
+              } else {
+                  console.log('Image decoded and saved at:', filepath);
+              }
+          });
+      
           const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
       
-          // Check for RedArrow
           const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
-
-          // Check for BlueArrow
           const hasBlueArrow = $(element).find('.MMACompetitor__arrow:not(.MMACompetitor__arrow--reverse)').length > 0;
-
+      
           const fighter = {
               name,
               record,
               hasRedArrow,
               hasBlueArrow,
               playerImageSrc,
-              headshotImageSrc,countryFlagImageSrc
+              headshotImageSrc,
+              countryFlagImageSrc,
           };
-          // if (!fighters.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(fighter))) {
-          //   fighters.push(fighter);
-          // }
-
+      
           fighters.push(fighter);
           liveOne.push(fighter);
-            });
+      });
+      
       
 
             liveR.push(liveOne);
