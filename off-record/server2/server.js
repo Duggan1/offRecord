@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const cors = require('cors'); 
-const { DOMParser } = require('dom-parser'); // Import DOMParser from dom-parser
+// const { DOMParser } = require('dom-parser'); // Import DOMParser from dom-parser
 
 
 const app = express();
@@ -11,7 +11,7 @@ const port = 3001; // Choose an available port
 // Enable CORS for all routes
 app.use(cors());
 
-const fs = require('fs'); // You might use a library to fetch the HTML content instead
+// const fs = require('fs'); // You might use a library to fetch the HTML content instead
 
 
 
@@ -60,9 +60,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
     const url = deatilsUrl;
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
-    // Parse HTML using DOMParser
-    const parser = new DOMParser();
-    const dom = parser.parseFromString(html, 'text/html');
+
 
     // Scrape the event name and date
     let event_name = $('.c-hero__headline').text().trim();
@@ -162,6 +160,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
         $('.fightCard').each((index, element) => {
           const redCornerName = $(element).find('.fightCardFighterName').eq(0).text().trim();
           const blueCornerName = $(element).find('.fightCardFighterName').eq(1).text().trim();
+          const redCornerFlag = $(element).find('.fighterFlag').eq(0).attr('src');
+           const blueCornerFlag = $(element).find('.fighterFlag').eq(1).attr('src');
           const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
           const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
 
@@ -175,7 +175,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
               redCornerName,
               redCornerRecord,
               blueCornerName,
-              blueCornerRecord,
+              blueCornerRecord, blueCornerFlag,redCornerFlag
             };
             if (!fightRecords.some(existingFighter => JSON.stringify(existingFighter) === JSON.stringify(fighter))) {
               fightRecords.push(fighter);
@@ -242,9 +242,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const nameElement = $(element).find('.truncate');
           const name = nameElement.text().trim();
 
-          // Extract the required attributes
-          const headshotImageSrc = dom.querySelector('.MMACompetitor__flag').getAttribute('data-src');
-          const countryFlagImageSrc = dom.querySelector('.MMACompetitor__flag[data-mptype="image"]').getAttribute('src');
+          const headshotImageSrc = element.querySelector('.MMACompetitor__flag').getAttribute('data-src');
+          const countryFlagImageSrc = element.querySelector('.MMACompetitor__flag[data-mptype="image"]').getAttribute('src');
 
 
           
