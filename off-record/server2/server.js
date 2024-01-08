@@ -229,59 +229,45 @@ app.get('/scrape-ufc-website', async (req, res) => {
           // oddResults.push(oddDetails)
       });
       
-      const base64Img = require('base64-img');
-
-$('.MMACompetitor').each((index, element) => {
-    try {
-        const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
-        const record = recordElement.text().trim();
-
-        const nameElement = $(element).find('.truncate');
-        const name = nameElement.text().trim();
-
-        const headshotImageSrc = $(element).find('.MMACompetitor__flag')['data-src'];
-        const countryFlagImageSrc = $(element).find('.MMACompetitor__flag[data-mptype="image"]').attr('src');
-
-        // Obtain Base64 image data dynamically from the element
-        const base64Image = $(element).find('img[data-mptype="image"]').attr('src').split(';base64,').pop();
-
-        if (!base64Image) {
-            throw new Error('Base64 image data not found');
-        }
-
-        const path = `decoded_image_${index}.gif`; // Use a unique path for each image
-
-        base64Img.img(base64Image, '.', path, function (err, filepath) {
-            if (err) {
-                console.error(`Error decoding and saving image (${index}):`, err);
-            } else {
-                console.log(`Image (${index}) decoded and saved at:`, filepath);
-            }
-        });
-
-        const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
-
-        const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
-        const hasBlueArrow = $(element).find('.MMACompetitor__arrow:not(.MMACompetitor__arrow--reverse)').length > 0;
-
-        const fighter = {
-            name,
-            record,
-            hasRedArrow,
-            hasBlueArrow,
-            playerImageSrc,
-            headshotImageSrc,
-            countryFlagImageSrc,
-        };
-
-        fighters.push(fighter);
-        liveOne.push(fighter);
-    } catch (error) {
-        console.error(`Error processing element (${index}):`, error);
-    }
-});
-
+        $('.MMACompetitor').each((index, element) => {
+          const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
+          const record = recordElement.text().trim();
       
+        
+          const nameElement = $(element).find('.truncate');
+          const name = nameElement.text().trim();
+
+          const headshotImageSrc = element.querySelector('.MMACompetitor__flag').getAttribute('data-src');
+          const countryFlagImageSrc = element.querySelector('.MMACompetitor__flag[data-mptype="image"]').getAttribute('src');
+
+
+          
+         
+
+
+          const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
+      
+          // Check for RedArrow
+          const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
+
+          // Check for BlueArrow
+          const hasBlueArrow = $(element).find('.MMACompetitor__arrow:not(.MMACompetitor__arrow--reverse)').length > 0;
+
+          const fighter = {
+              name,
+              record,
+              hasRedArrow,
+              hasBlueArrow,
+              playerImageSrc,
+              headshotImageSrc,countryFlagImageSrc
+          };
+          // if (!fighters.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(fighter))) {
+          //   fighters.push(fighter);
+          // }
+
+          fighters.push(fighter);
+          liveOne.push(fighter);
+            });
       
 
             liveR.push(liveOne);
