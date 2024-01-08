@@ -826,11 +826,13 @@ if (isLoading) {
       className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 0)}
       style={{
-        backgroundImage: `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, 0)}/shiny/64.png")`,
-        
+        backgroundImage: getFighterCountryAbbreviation(index, 0) !== "Not Found"
+          ? `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, 0)}/shiny/64.png")`
+          : `url('https://www.tapology.com/${fight.flags[0]}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
       }}
+      
       
     >
       

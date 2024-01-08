@@ -132,12 +132,13 @@ console.log(associatedData);
             match: fight.weightClass,
             records: [updatedRecords[index]?.redCornerRecord, updatedRecords[index]?.blueCornerRecord],
             flags: [fight.redCornerCountry, fight.blueCornerCountry],
+            flags2: [records[index].redCornerFlag, records[index].blueCornerFlag],
             fighterPics: [fight.redCornerImage, fight.blueCornerImage],
             winner: fight.winner,
             method: fight.method,
             round: fight.round,
-            odds: records[updatedRecords.length + index].odds,
-            liveResults: records[updatedRecords.length + index].odds
+            odds: liveR[0][index].odds,
+            liveResults: liveR[0][index].timeDetails,
 
         };
     });
@@ -173,6 +174,7 @@ useEffect(() => {
       const EventNum = data.ufc_events.length - 1
       console.log(data.ufc_events)
       setUfcEvents(data.ufc_events[EventNum] || []);
+      console.log(ufcEvents)
       const newUfcCard = ufcEvents.fights.map((fight, index) => {
         return {
             fighters: [fight.redCornerName, fight.blueCornerName],
@@ -214,8 +216,8 @@ useEffect(() => {
           weightClass: fight.match,
           redCornerName: fight.fighters[0],
           blueCornerName: fight.fighters[1],
-          redCornerCountry: fight.flags[0],
-          blueCornerCountry: fight.flags[1],
+          redCornerCountry: fight.flags[0].length > 1 ? fight.flags[0] : fight.flags2[0] ,
+          blue_corner_country: fight.flags[1].length > 1 ? fight.flags[1] : fight.flags2[1] ,
           redCornerRecord: fight.records[0] || ' ',
           blueCornerRecord: fight.records[1] || ' ',
           redCornerImage: fight.fighterPics[0],
@@ -269,12 +271,15 @@ console.log(eventInfo)
 const patchEvent = () => {
 
   const recreatedFights = ufcCard2.map((fight, index) => {
+
+
+
     return {
       weight_class: fight.match,
       red_corner_name: fight.fighters[0],
       blue_corner_name: fight.fighters[1],
-      red_corner_country: fight.flags[0],
-      blue_corner_country: fight.flags[1],
+      red_corner_country: fight.flags[0].length > 1 ? fight.flags[0] : fight.flags2[0] ,
+      blue_corner_country: fight.flags[1].length > 1 ? fight.flags[1] : fight.flags2[1] ,
       red_corner_record: fight.records[0] || ' ',
       blue_corner_record: fight.records[1] || ' ',
       red_corner_image: fight.fighterPics[0],
@@ -348,10 +353,12 @@ useEffect(() => {
 
       const recordsComparison = fight.records[0] === ufcCard3Fight.records[0] && fight.records[1] === ufcCard3Fight.records[1];
 
+      const flagComparison = fight.flags[0].length > 1 && fight.flags[1].length > 1
+
       console.log(`Fight ${index + 1} - Match Comparison: ${matchComparison}`);
       console.log(`Fight ${index + 1} - Records Comparison: ${recordsComparison}`);
 
-      return !(matchComparison && recordsComparison && oddsComparison);
+      return !(matchComparison && recordsComparison && oddsComparison && flagComparison);
     });
 
     if (detailsDoNotMatch) {
@@ -722,7 +729,7 @@ useEffect(() => {
   // }
 }, [akp, modifiedUfcResults]);
 console.log(akp)
-console.log(modifiedUfcResults)
+console.log(ufcCard3)
 
 
 
