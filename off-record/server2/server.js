@@ -160,8 +160,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
         $('.fightCard').each((index, element) => {
           const redCornerName = $(element).find('.fightCardFighterName').eq(0).text().trim();
           const blueCornerName = $(element).find('.fightCardFighterName').eq(1).text().trim();
-          const redCornerFlag = $(element).find('.fighterFlag').attr('src');
-          const blueCornerFlag = $(element).find('.fightCardFighterBout right.fighterFlag').attr('src');
+          const redCornerFlag = $(element).find('.fightCardFlag').attr('src');
+          const blueCornerFlag = $(element).find('.fightCardFlag').eq(1).find('img').attr('src'); 
           const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
           const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
 
