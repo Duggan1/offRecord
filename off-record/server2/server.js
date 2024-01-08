@@ -229,7 +229,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
           }
           if (!oddResults.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(oddDetails))) {
-            fightRecords.push(oddDetails);
+            // fightRecords.push(oddDetails);
             liveOne.push(oddDetails);
           }
           // oddResults.push(oddDetails)
