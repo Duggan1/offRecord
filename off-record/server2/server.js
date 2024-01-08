@@ -160,22 +160,22 @@ app.get('/scrape-ufc-website', async (req, res) => {
         $('.fightCard').each((index, element) => {
           const redCornerName = $(element).find('.fightCardFighterName').eq(0).text().trim();
           const blueCornerName = $(element).find('.fightCardFighterName').eq(1).text().trim();
-          const redCornerFlag = $(element).find('.fighterFlag').eq(0).attr('src');
-           const blueCornerFlag = $(element).find('.fighterFlag').eq(1).attr('src');
+          const redCornerFlag = $(element).find('.fighterFlag').attr('src');
+          const blueCornerFlag = $(element).find('.fightCardFighterBout right.fighterFlag').attr('src');
           const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
           const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
 
           console.log(redCornerName);
           console.log(blueCornerName);
-          console.log(redCornerRecord);
-          console.log(blueCornerRecord);
+          console.log(blueCornerFlag);
+          console.log(redCornerFlag);
 
           if (redCornerName && blueCornerName && redCornerRecord && blueCornerRecord) {
             const fighter = {
               redCornerName,
               redCornerRecord,
               blueCornerName,
-              blueCornerRecord, blueCornerFlag,redCornerFlag
+              blueCornerRecord, blueCornerFlag, redCornerFlag
             };
             if (!fightRecords.some(existingFighter => JSON.stringify(existingFighter) === JSON.stringify(fighter))) {
               fightRecords.push(fighter);
@@ -303,6 +303,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
     res.json({
       event_name,
       event_date,
+
       fights: fightData,
       records: fightRecords,
       backgroundImageSrc,
