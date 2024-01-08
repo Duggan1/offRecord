@@ -1,0 +1,45 @@
+{
+  "name": "dom-parser",
+  "version": "1.1.5",
+  "description": "Fast dom parser based on regexps",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ershov-konst/dom-parser.git"
+  },
+  "keywords": [
+    "domparser",
+    "dom",
+    "parser",
+    "xml",
+    "html",
+    "xmlparser",
+    "htmlparser",
+    "scraping"
+  ],
+  "main": "dist/index.js",
+  "devDependencies": {
+    "@types/jest": "^29.5.6",
+    "dom-compare": "https://github.com/ershov-konst/dom-compare.git",
+    "eslint": "^8.52.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-sonarjs": "^0.21.0",
+    "jest": "^29.7.0",
+    "json-summary": "^1.3.0",
+    "prettier": "^3.0.3",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "prettier": "npx prettier --check .",
+    "build": "tsc",
+    "test": "jest --coverage"
+  },
+  "author": "Konstantin Ershov",
+  "license": "ISC",
+  "files": [
+    "dist"
+  ]
+}

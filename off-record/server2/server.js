@@ -2,6 +2,8 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const cors = require('cors'); 
+const { DOMParser } = require('dom-parser'); // Import DOMParser from dom-parser
+
 
 const app = express();
 const port = 3001; // Choose an available port
@@ -58,6 +60,9 @@ app.get('/scrape-ufc-website', async (req, res) => {
     const url = deatilsUrl;
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
+    // Parse HTML using DOMParser
+    const parser = new DOMParser();
+    const dom = parser.parseFromString(html, 'text/html');
 
     // Scrape the event name and date
     let event_name = $('.c-hero__headline').text().trim();
@@ -237,8 +242,9 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const nameElement = $(element).find('.truncate');
           const name = nameElement.text().trim();
 
-          const headshotImageSrc = element.querySelector('.MMACompetitor__flag').getAttribute('data-src');
-          const countryFlagImageSrc = element.querySelector('.MMACompetitor__flag[data-mptype="image"]').getAttribute('src');
+          // Extract the required attributes
+          const headshotImageSrc = dom.querySelector('.MMACompetitor__flag').getAttribute('data-src');
+          const countryFlagImageSrc = dom.querySelector('.MMACompetitor__flag[data-mptype="image"]').getAttribute('src');
 
 
           
