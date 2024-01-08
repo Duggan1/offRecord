@@ -242,15 +242,15 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const nameElement = $(element).find('.truncate');
           const name = nameElement.text().trim();
 
-          const headshotImageSrc = element.querySelector('.MMACompetitor__flag').getAttribute('data-src');
-          const countryFlagImageSrc = element.querySelector('.MMACompetitor__flag[data-mptype="image"]').getAttribute('src');
+          // const headshotImageSrc = element.querySelector('.MMACompetitor__flag').getAttribute('data-src');
+          // const countryFlagImageSrc = element.querySelector('.MMACompetitor__flag[data-mptype="image"]').getAttribute('src');
 
 
           
          
 
 
-          const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
+          // const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
       
           // Check for RedArrow
           const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
@@ -263,8 +263,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
               record,
               hasRedArrow,
               hasBlueArrow,
-              playerImageSrc,
-              headshotImageSrc,countryFlagImageSrc
+              // playerImageSrc,
+              // headshotImageSrc,countryFlagImageSrc
           };
           // if (!fighters.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(fighter))) {
           //   fighters.push(fighter);
