@@ -98,12 +98,30 @@ if (liveR) {
 
         associatedData.push(dataPair);
     }
-
-    setweRlive(associatedData)
+    console.log()
+    const sortedAssociatedData = associatedData.sort((a, b) => {
+      // Assuming that pending results have an empty string for 'timeDetails1'
+      const aIsPending = a.timeDetails1 === '';
+      const bIsPending = b.timeDetails1 === '';
+    
+      if (aIsPending && !bIsPending) {
+        return -1; // a comes before b
+      } else if (!aIsPending && bIsPending) {
+        return 1; // b comes before a
+      } else {
+        return 0; // leave them in the same order
+      }
+    });
+    setweRlive(sortedAssociatedData)
 
 
 }
 console.log(associatedData);
+// Assuming your array is named associatedData
+
+
+// console.log(sortedAssociatedData);
+
 
 
  
