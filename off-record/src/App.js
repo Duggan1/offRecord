@@ -117,14 +117,7 @@ if (liveR) {
 
 }
 console.log(associatedData);
-// Assuming your array is named associatedData
-
-
-// console.log(sortedAssociatedData);
-
-
-
- 
+/////////////////////////////////////
        const updatedRecords = [];
  
        for (let i = 0; i < updatedFighters.length; i += 2) {
@@ -144,13 +137,15 @@ console.log(associatedData);
 
 
       console.log(updatedRecords.length)
+      console.log(fights)
+      console.log(records)
       const newUfcCard = fights.map((fight, index) => {
         return {
             fighters: [fight.redCornerName, fight.blueCornerName],
             match: fight.weightClass,
             records: [updatedRecords[index]?.redCornerRecord, updatedRecords[index]?.blueCornerRecord],
             flags: [fight.redCornerCountry, fight.blueCornerCountry],
-            flags2: [records[index].redCornerFlag, records[index].blueCornerFlag],
+            flags2: [records[index]?.redCornerFlag ,  records[index]?.blueCornerFlag],
             fighterPics: [fight.redCornerImage, fight.blueCornerImage],
             winner: fight.winner,
             method: fight.method,
@@ -161,6 +156,7 @@ console.log(associatedData);
         };
     });
 
+    console.log(newUfcCard)
     // Update state with the ufcCard
     setUfcCard2(newUfcCard);
  
@@ -192,6 +188,7 @@ useEffect(() => {
       const EventNum = data.ufc_events.length - 1
       console.log(data.ufc_events)
       setUfcEvents(data.ufc_events[EventNum] || []);
+      console.log(EventNum)
       console.log(ufcEvents)
       const newUfcCard = ufcEvents.fights.map((fight, index) => {
         return {
@@ -319,6 +316,7 @@ const patchEvent = () => {
     tapImage: eventInfo.tapImage,
     fights: recreatedFights,
   };
+  console.log(dataToSend)
 
   fetch(`https://off-therecordpicks.onrender.com/events/${ufcEvents.id}`, {
     method: "PATCH",
@@ -390,7 +388,7 @@ useEffect(() => {
       console.log(ufcCard2)
     }
   }
-}, [ufcCard3.length > 3]);
+}, [ufcCard3.length > 3 && ufcCard2.length > 3 ]);
 
 
 
