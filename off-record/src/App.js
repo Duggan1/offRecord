@@ -751,8 +751,8 @@ console.log(ufcCard3)
 
 console.log(eventInfo) 
 const PreLeonColby =  ('' + ufcEvents.backgroundImageSrc)
-const backgroundImageSrc = ufcEvents.backgroundImageSrc
-const tapImageSrc = ufcEvents.tapImage
+const backgroundImageSrc = eventInfo.backgroundImageSrc
+const tapImageSrc = eventInfo.tapImage
 console.log(backgroundImageSrc) 
 console.log(tapImageSrc) 
   
