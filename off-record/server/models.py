@@ -26,6 +26,7 @@ class User(db.Model, SerializerMixin):
     _password_hash = db.Column(db.String,nullable=False)
     fullname = db.Column(db.String, nullable=False)
     email = db.Column(db.String,nullable=False)
+    image = db.Column(db.String,nullable=True)
    
     
     created_at = db.Column(db.DateTime, server_default = db.func.now())
@@ -34,6 +35,14 @@ class User(db.Model, SerializerMixin):
     picks = db.relationship('Pick', backref = 'user', cascade = 'all, delete-orphan')
     # gyms = association_proxy('memberships', 'gym')
     league_id = db.Column(db.Integer, db.ForeignKey('leagues.id'))
+    leagues_participating = db.relationship('League', secondary='user_league_association', backref='participants')
+    leagues_created = db.relationship('League', backref='creator', lazy='dynamic')
+
+    # Association table for the many-to-many relationship between User and League
+    user_league_association = db.Table('user_league_association',
+        db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
+        db.Column('league_id', db.Integer, db.ForeignKey('leagues.id'))
+)
     
 
   
@@ -80,12 +89,14 @@ class League(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False, unique=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, unique=True )
-    image = db.Column(db.String(255), nullable=True)
-    passcode = db.Column(db.Integer(4), nullable=True)
+    message = db.Column(db.String(255), nullable=False)
+    image = db.Column(db.String(255), nullable=False)
+    passcode = db.Column(db.Integer, nullable=True)
     
 
     # Define a one-to-many relationship with the User model
     members = db.relationship('User', backref='league', lazy='dynamic')
+    creator = db.relationship('User', backref='created_leagues', lazy='dynamic')
 
     def __init__(self, name, owner_id):
         self.name = name

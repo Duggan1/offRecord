@@ -13,6 +13,7 @@ import axios from 'axios';
 import * as yup from 'yup';
 import isEqual from 'lodash/isEqual';
 import Compare from './Compare';
+import Leagues from './Leagues';
 // import CommentSection from './CommentSection';
 
 
@@ -813,6 +814,8 @@ console.log(justSubmitted)
                                       location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} countPick={countPick} />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
+
+      <Route path="/leagues"  element={<Leagues user={user}  />} />
       
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
                                               stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
