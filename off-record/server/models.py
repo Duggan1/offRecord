@@ -38,11 +38,6 @@ class User(db.Model, SerializerMixin):
     leagues_participating = db.relationship('League', secondary='user_league_association', backref='participants')
     leagues_created = db.relationship('League', backref='creator', lazy='dynamic')
 
-    # Association table for the many-to-many relationship between User and League
-    user_league_association = db.Table('user_league_association',
-        db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
-        db.Column('league_id', db.Integer, db.ForeignKey('leagues.id'))
-)
     
 
   

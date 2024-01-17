@@ -42,7 +42,10 @@ function Leagues({user}) {
 
 
       const validationSchema = Yup.object().shape({
-        // Define your validation schema
+        name: Yup.string().required('Name is required'),
+        message: Yup.string().required('Message is required'),
+        image: Yup.string().required('Image is required'),
+        passcode: Yup.string(),
       });
 
 
@@ -51,7 +54,7 @@ function Leagues({user}) {
         name: '',
         owner_id: '', // Assuming the owner_id is obtained from authentication
         user_id: user ? user.id : 3 ,
-        saying:'',
+        message:'',
         image:'',
         passcode:'' // Assuming the user_id is obtained from authentication
       });
@@ -137,10 +140,10 @@ function Leagues({user}) {
         <input type="text" name="image" placeholder='Image Address' value={formData.image} onChange={handleInputChange} />
       </div>
       <div><label>Code</label>
-        <input type="text" name="passcode  ( Optional )" placeholder='passcode' value={formData.passcode} onChange={handleInputChange} />
+        <input type="text" name="passcode  ( Optional )" placeholder='Passcode' value={formData.passcode} onChange={handleInputChange} />
       </div>
 
-        <button type="submit">Create League</button>
+        <button onClick={handleSubmit} type="submit">Create League</button>
       </form> : null}
 
       <h2>Join a League</h2>
@@ -172,7 +175,7 @@ function Leagues({user}) {
         <div style={{marginTop:"1%",marginBottom:'25px'}} className="element-with-border">
       <p className="snowwhite text-align-center " style={{minHeight:'10px'}}><strong >Picks4Points.com</strong></p></div>
                       <div style={{marginTop:"1%",marginBottom:'1%'}} className="element-with-borderBB"></div>              
-   </>
+        </>
     </div>
   );
 }
