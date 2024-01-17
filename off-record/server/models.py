@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api, Resource
-from sqlalchemy import MetaData
-from sqlalchemy.orm import validates
+from sqlalchemy import MetaData, Table, Column, Integer, ForeignKey
+from sqlalchemy.orm import validates, relationship
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
