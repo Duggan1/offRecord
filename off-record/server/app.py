@@ -134,10 +134,15 @@ class SignUp(Resource):
 
 
 class Leagues(Resource):
+    # def get(self):
+    #     # Get a list of all leagues
+    #     leagues = League.query.all()
+    #     return [league.serialize() for league in leagues]
     def get(self):
-        # Get a list of all leagues
+        # Return a list of all leagues
         leagues = League.query.all()
-        return [league.serialize() for league in leagues]
+        return {'leagues': [league.name for league in leagues]}
+
 
     def post(self):
         # Create a new league

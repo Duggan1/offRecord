@@ -57,10 +57,11 @@ function Leagues({user}) {
         owner_id: user ? user.id : 3 ,
         message:'',
         image:'',
-        passcode:'' // Assuming the user_id is obtained from authentication
+        passcode:'',// Assuming the user_id is obtained from authentication
+        members: user.username !== undefined ? user.username : user.userName,
       });
       console.log(formData)
-      console.log(user)
+      console.log(user.username !== undefined ? user.username : user.userName)
     
 /////////////////////////////////////////////////////////////////////////////////////////////////////
     const handleSubmit = async (e) => {
@@ -76,7 +77,7 @@ function Leagues({user}) {
             name: formData.name,
             message: formData.message,
             image: formData.image,
-            // members: user.,
+            members: formData.members,
             passcode: formData.passcode? formData.passcode : null
             // user_id: 
         };
@@ -251,7 +252,9 @@ function Leagues({user}) {
         <div style={{marginTop:"1%",marginBottom:'25px'}} className="element-with-border">
       <p className="snowwhite text-align-center " style={{minHeight:'10px'}}><strong >Picks4Points.com</strong></p></div>
                       <div style={{marginTop:"1%",marginBottom:'1%'}} className="element-with-borderBB"></div>              
-        </>:<Dnd2/> }
+        </>:
+        null
+        }
     </div>
   );
 }
