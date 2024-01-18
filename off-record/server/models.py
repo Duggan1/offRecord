@@ -34,9 +34,16 @@ class User(db.Model, SerializerMixin):
 
     picks = db.relationship('Pick', backref = 'user', cascade = 'all, delete-orphan')
     # gyms = association_proxy('memberships', 'gym')
-    league_id = db.Column(db.Integer, db.ForeignKey('leagues.id'))
-    leagues_participating = db.relationship('League', secondary='user_league_association', backref='participants')
-    leagues_created = db.relationship('League', backref='creator', lazy='dynamic')
+#     league_id = db.Column(db.Integer, db.ForeignKey('leagues.id'))
+#     leagues_participating = db.relationship('League', secondary='user_league_association', backref='participants')
+#     leagues_created = db.relationship('League', backref='creator', lazy='dynamic')
+
+#     user_league_association = db.Table(
+#     'user_league_association',
+#     db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
+#     db.Column('league_id', db.Integer, db.ForeignKey('leagues.id'))
+# )
+
 
     
 
@@ -47,12 +54,6 @@ class User(db.Model, SerializerMixin):
             raise ValueError( 'email too short')
         return value
     
-   
-    
-    
-
-
-
 
     # def __repr__(self):
     #     return f'User {self.username}, ID {self.id}'
@@ -118,7 +119,7 @@ class Pick(db.Model):
     owner = db.Column(db.String(120), nullable=False)
     location = db.Column(db.String(120), nullable=False)
     main_event = db.Column(db.String(120), nullable=False)
-    pools = db.Column(db.String(120), nullable=True)
+    # pools = db.Column(db.String(120), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     
