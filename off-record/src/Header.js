@@ -184,6 +184,13 @@ function Header({user, ufcCard, handleLogout}) {
               backgroundRepeat: 'no-repeat',
             }} onClick={() => { handleOptionClick('/about'); handleAppleClick(); }}><NavLink className='wavy' exact to="/about">About P4P</NavLink></div>
             
+
+            <div  className='swm' style={{
+              backgroundImage: `url(${logo})`,
+              backgroundSize: '25% 100%',
+              backgroundPosition: location.pathname === "/leagues" ? '85% 0' : '5% 0',
+              backgroundRepeat: 'no-repeat',
+            }} onClick={() => { handleOptionClick('/leagues'); handleAppleClick(); }}><NavLink className='wavy' exact to="/leagues">Leagues</NavLink></div>
           </div>
           </>  }
 

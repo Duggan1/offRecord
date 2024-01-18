@@ -49,6 +49,7 @@ function NavBar({ user ,onLogin, onLogout, ufcCard}) {
          </div>}
             <div className='swm'  onClick={() => handleOptionClick('/results')}><NavLink className='snowwhite' exact to="/results">Results</NavLink></div>
             <div className='swm'  onClick={() => handleOptionClick('/about')}><NavLink className='snowwhite' exact to="/about">About P4P</NavLink></div>
+            <div className='swm'  onClick={() => handleOptionClick('/leagues')}><NavLink className='snowwhite' exact to="/leagues">Leagues</NavLink></div>
             
           </div>
         )}

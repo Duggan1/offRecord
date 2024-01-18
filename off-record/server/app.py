@@ -73,64 +73,64 @@ class SignUp(Resource):
             return make_response({"error": "Invalid input data"}, 400)
 
 
-class Leagues(Resource):
-    def get(self):
-        # Return a list of all leagues
-        leagues = League.query.all()
-        return {'leagues': [league.name for league in leagues]}
+# class Leagues(Resource):
+#     def get(self):
+#         # Return a list of all leagues
+#         leagues = League.query.all()
+#         return {'leagues': [league.name for league in leagues]}
 
-    def post(self):
-        # Create a new league
-        data = request.get_json()
-        name = data.get('name')
-        owner_id = data.get('owner_id')  # ID of the league owner (user)
-        passcode = data.get('passcode')  # Optional passcode for joining the league
+#     def post(self):
+#         # Create a new league
+#         data = request.get_json()
+#         name = data.get('name')
+#         owner_id = data.get('owner_id')  # ID of the league owner (user)
+#         passcode = data.get('passcode')  # Optional passcode for joining the league
 
-        if not name or not owner_id:
-            return {'error': 'Name and owner_id are required'}, 400
+#         if not name or not owner_id:
+#             return {'error': 'Name and owner_id are required'}, 400
 
-        # Check if the owner_id corresponds to an existing user
-        owner = User.query.get(owner_id)
-        if not owner:
-            return {'error': 'Invalid owner_id'}, 400
+#         # Check if the owner_id corresponds to an existing user
+#         owner = User.query.get(owner_id)
+#         if not owner:
+#             return {'error': 'Invalid owner_id'}, 400
 
-        # Create a new league
-        new_league = League(name=name, owner=owner, passcode=passcode)
-        db.session.add(new_league)
-        db.session.commit()
+#         # Create a new league
+#         new_league = League(name=name, owner=owner, passcode=passcode)
+#         db.session.add(new_league)
+#         db.session.commit()
 
-        return {'message': 'League created successfully', 'league_id': new_league.id}
+#         return {'message': 'League created successfully', 'league_id': new_league.id}
 
-    def patch(self, league_id):
-        # Update an existing league
-        data = request.get_json()
-        new_owner_id = data.get('new_owner_id')  # Optional: change league owner
+#     def patch(self, league_id):
+#         # Update an existing league
+#         data = request.get_json()
+#         new_owner_id = data.get('new_owner_id')  # Optional: change league owner
 
-        league = League.query.get(league_id)
-        if not league:
-            return {'error': 'League not found'}, 404
+#         league = League.query.get(league_id)
+#         if not league:
+#             return {'error': 'League not found'}, 404
 
-        if new_owner_id:
-            new_owner = User.query.get(new_owner_id)
-            if not new_owner:
-                return {'error': 'Invalid new_owner_id'}, 400
+#         if new_owner_id:
+#             new_owner = User.query.get(new_owner_id)
+#             if not new_owner:
+#                 return {'error': 'Invalid new_owner_id'}, 400
 
-            league.owner = new_owner
+#             league.owner = new_owner
 
-        db.session.commit()
+#         db.session.commit()
 
-        return {'message': 'League updated successfully'}
+#         return {'message': 'League updated successfully'}
 
-    def delete(self, league_id):
-        # Delete an existing league
-        league = League.query.get(league_id)
-        if not league:
-            return {'error': 'League not found'}, 404
+#     def delete(self, league_id):
+#         # Delete an existing league
+#         league = League.query.get(league_id)
+#         if not league:
+#             return {'error': 'League not found'}, 404
 
-        db.session.delete(league)
-        db.session.commit()
+#         db.session.delete(league)
+#         db.session.commit()
 
-        return {'message': 'League deleted successfully'}
+#         return {'message': 'League deleted successfully'}
 
 
 class Leagues(Resource):
@@ -144,6 +144,9 @@ class Leagues(Resource):
         data = request.get_json()
         name = data.get('name')
         owner_id = data.get('owner_id')
+        message = data.get('message')
+        image = data.get('owner_id')
+        passcode = data.get('passcode')
 
         if not name or not owner_id:
             return {'message': 'Missing required data'}, 400
@@ -158,7 +161,7 @@ class Leagues(Resource):
             return {'message': 'League name must be unique'}, 400
 
         # Create a new league
-        new_league = League(name=name, owner_id=owner_id)
+        new_league = League(name=name, owner_id=owner_id, message=message,image=image,passcode=passcode)
         db.session.add(new_league)
         db.session.commit()
 

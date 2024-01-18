@@ -3,16 +3,7 @@ import { NavLink } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 import './App.css';
 import * as Yup from 'yup';  
-import {
-  AcademicCapIcon,
-  BanknotesIcon,
-  CheckBadgeIcon,
-  ClockIcon,
-  ReceiptRefundIcon,
-  UsersIcon,
-} from '@heroicons/react/24/outline';
-import { IconName } from '@heroicons/react/outline';
-
+import Dnd2 from './Dnd2';
 
 function Leagues({user}) {
 
@@ -54,7 +45,7 @@ function Leagues({user}) {
       const validationSchema = Yup.object().shape({
         name: Yup.string().required('Name is required'),
         message: Yup.string().required('Message is required'),
-        image: Yup.string().required('Image is required'),
+        // image: Yup.string().required('Image is required'),
         passcode: Yup.string(),
       });
 
@@ -62,12 +53,13 @@ function Leagues({user}) {
       const [leagues, setLeagues] = useState([]);
       const [formData, setFormData] = useState({
         name: '',
-        owner_id: '', // Assuming the owner_id is obtained from authentication
+        // Assuming the owner_id is obtained from authentication
         user_id: user ? user.id : 3 ,
         message:'',
         image:'',
         passcode:'' // Assuming the user_id is obtained from authentication
       });
+      console.log(formData)
     
 /////////////////////////////////////////////////////////////////////////////////////////////////////
     const handleSubmit = async (e) => {
@@ -75,7 +67,8 @@ function Leagues({user}) {
   
       try {
           // Validate the form data using Yup
-          await validationSchema.validate({ formData });
+          console.log('Before validation:', formData);
+          // await validationSchema.validate({ formData });
   
           const dataToSend = {
             owner: user.id !== undefined ? user.id : backupID,
@@ -135,85 +128,89 @@ function Leagues({user}) {
         //       'https://images.unsplash.com/photo-1582053433976-25c00369fc93?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80',
         //   },
         // ]
-        const actions = [
-          {
-            title: 'Request time off',
-            href: '#',
-            icon: ClockIcon,
-            iconForeground: 'text-teal-700',
-            iconBackground: 'bg-teal-50',
-          },
-          {
-            title: 'Benefits',
-            href: '#',
-            icon: CheckBadgeIcon,
-            iconForeground: 'text-purple-700',
-            iconBackground: 'bg-purple-50',
-          },
-          {
-            title: 'Schedule a one-on-one',
-            href: '#',
-            icon: UsersIcon,
-            iconForeground: 'text-sky-700',
-            iconBackground: 'bg-sky-50',
-          },
-          {
-            title: 'Payroll',
-            href: '#',
-            icon: BanknotesIcon,
-            iconForeground: 'text-yellow-700',
-            iconBackground: 'bg-yellow-50',
-          },
-          {
-            title: 'Submit an expense',
-            href: '#',
-            icon: ReceiptRefundIcon,
-            iconForeground: 'text-rose-700',
-            iconBackground: 'bg-rose-50',
-          },
-          {
-            title: 'Training',
-            href: '#',
-            icon: AcademicCapIcon,
-            iconForeground: 'text-indigo-700',
-            iconBackground: 'bg-indigo-50',
-          },
-        ]
-        function classNames(...classes) {
-          return classes.filter(Boolean).join(' ')
-        }
+        // const actions = [
+        //   {
+        //     title: 'Request time off',
+        //     href: '#',
+        //     icon: ClockIcon,
+        //     iconForeground: 'text-teal-700',
+        //     iconBackground: 'bg-teal-50',
+        //   },
+        //   {
+        //     title: 'Benefits',
+        //     href: '#',
+        //     icon: CheckBadgeIcon,
+        //     iconForeground: 'text-purple-700',
+        //     iconBackground: 'bg-purple-50',
+        //   },
+        //   {
+        //     title: 'Schedule a one-on-one',
+        //     href: '#',
+        //     icon: UsersIcon,
+        //     iconForeground: 'text-sky-700',
+        //     iconBackground: 'bg-sky-50',
+        //   },
+        //   {
+        //     title: 'Payroll',
+        //     href: '#',
+        //     icon: BanknotesIcon,
+        //     iconForeground: 'text-yellow-700',
+        //     iconBackground: 'bg-yellow-50',
+        //   },
+        //   {
+        //     title: 'Submit an expense',
+        //     href: '#',
+        //     icon: ReceiptRefundIcon,
+        //     iconForeground: 'text-rose-700',
+        //     iconBackground: 'bg-rose-50',
+        //   },
+        //   {
+        //     title: 'Training',
+        //     href: '#',
+        //     icon: AcademicCapIcon,
+        //     iconForeground: 'text-indigo-700',
+        //     iconBackground: 'bg-indigo-50',
+        //   },
+        // ]
+        // function classNames(...classes) {
+        //   return classes.filter(Boolean).join(' ')
+        // }
         
 
   return (
     <div className="dnd">
-      <>
+
+      { user ?  <>
         
 
         <div style={{paddingTop:'15%',paddingBottom:'35%',color:"white"}}className="element-with-border3">
-              <h1 ><span style={{backgroundColor:'black'}}>LEAGUES</span> </h1>
+              <h1 ><span style={{backgroundColor:'black'}}>League Settings</span> </h1>
               <div className='text-align-center' style={{backgroundColor:'tan'}}>
-      <h2 onClick={toggleClo} >Create a League</h2>
-     { clo ? 
-      <form  onClick={toggleClo}
+      
+    <div className="display- flex">  
+    <div className="LeftOne">
+       { clo ? <>
+   {/* <h2 onClick={toggleClo} >Create a League</h2> */}
+      <form  
     //   onSubmit={(e) => { e.preventDefault(); createLeague(); }}
-      >
+      ><h3 onClick={toggleClo}>League Details</h3>
       <div><label>Name</label>
         <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} /> 
       </div>
       <div><label>Motto</label>
-        <input type="text" name="saying" placeholder='Message' value={formData.message} onChange={handleInputChange} />
+        <input type="text" name="message" placeholder='Message' value={formData.message} onChange={handleInputChange} />
       </div>
       <div><label>Logo</label>
         <input type="text" name="image" placeholder='Image Address' value={formData.image} onChange={handleInputChange} />
       </div>
       <div><label>Code</label>
-        <input type="text" name="passcode  ( Optional )" placeholder='Passcode' value={formData.passcode} onChange={handleInputChange} />
+        <input type="text" name="passcode" placeholder='Passcode  ( Optional )' value={formData.passcode} onChange={handleInputChange} />
       </div>
 
         <button onClick={handleSubmit} type="submit">Create League</button>
-      </form> : null}
+      </form> </>: <h2 onClick={toggleClo} >Create a League</h2>}</div>
 
-      <h2>Join a League</h2>
+      <div  className="LeftOne"><h2>Join a League</h2>
       {leagues.map(league => (
         <div key={league.id}>
           <span>{league.name}</span>
@@ -221,7 +218,10 @@ function Leagues({user}) {
         //   onClick={() => joinLeague(league.id)}
           >Join League</button>
         </div>
-      ))}
+      ))}</div>
+
+    </div>
+
 
      
       <h2>Delete a League</h2>
@@ -241,53 +241,7 @@ function Leagues({user}) {
         </div>
 
 
-        <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
-      {actions.map((action, actionIdx) => (
-        <div
-          key={action.title}
-          className={classNames(
-            actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '',
-            actionIdx === 1 ? 'sm:rounded-tr-lg' : '',
-            actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '',
-            actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '',
-            'group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500'
-          )}
-        >
-          <div>
-            <span
-              className={classNames(
-                action.iconBackground,
-                action.iconForeground,
-                'inline-flex rounded-lg p-3 ring-4 ring-white'
-              )}
-            >
-              <action.icon className="h-6 w-6" aria-hidden="true" />
-            </span>
-          </div>
-          <div className="mt-8">
-            <h3 className="text-base font-semibold leading-6 text-gray-900">
-              <a href={action.href} className="focus:outline-none">
-                {/* Extend touch target to entire panel */}
-                <span className="absolute inset-0" aria-hidden="true" />
-                {action.title}
-              </a>
-            </h3>
-            <p className="mt-2 text-sm text-gray-500">
-              Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et
-              quo et molestiae.
-            </p>
-          </div>
-          <span
-            className="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
-            aria-hidden="true"
-          >
-            <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-            </svg>
-          </span>
-        </div>
-      ))}
-    </div>
+       
 
 
 
@@ -295,7 +249,7 @@ function Leagues({user}) {
         <div style={{marginTop:"1%",marginBottom:'25px'}} className="element-with-border">
       <p className="snowwhite text-align-center " style={{minHeight:'10px'}}><strong >Picks4Points.com</strong></p></div>
                       <div style={{marginTop:"1%",marginBottom:'1%'}} className="element-with-borderBB"></div>              
-        </>
+        </>:<Dnd2/> }
     </div>
   );
 }
