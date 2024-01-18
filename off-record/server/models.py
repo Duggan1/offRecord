@@ -91,8 +91,8 @@ class League(db.Model):
     
 
     # Define a one-to-many relationship with the User model
-    members = db.relationship('User', backref='league', lazy='dynamic')
-    creator = db.relationship('User', backref='created_leagues', lazy='dynamic')
+    # members = db.relationship('User', backref='league', lazy='dynamic')
+    # creator = db.relationship('User', backref='created_leagues', lazy='dynamic')
 
     def __init__(self, name, owner_id):
         self.name = name
