@@ -54,12 +54,13 @@ function Leagues({user}) {
       const [formData, setFormData] = useState({
         name: '',
         // Assuming the owner_id is obtained from authentication
-        user_id: user ? user.id : 3 ,
+        owner_id: user ? user.id : 3 ,
         message:'',
         image:'',
         passcode:'' // Assuming the user_id is obtained from authentication
       });
       console.log(formData)
+      console.log(user)
     
 /////////////////////////////////////////////////////////////////////////////////////////////////////
     const handleSubmit = async (e) => {
@@ -71,10 +72,11 @@ function Leagues({user}) {
           // await validationSchema.validate({ formData });
   
           const dataToSend = {
-            owner: user.id !== undefined ? user.id : backupID,
+            owner_id: user.id !== undefined ? user.id : backupID,
             name: formData.name,
             message: formData.message,
             image: formData.image,
+            // members: user.,
             passcode: formData.passcode? formData.passcode : null
             // user_id: 
         };

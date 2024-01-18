@@ -145,7 +145,8 @@ class Leagues(Resource):
         name = data.get('name')
         owner_id = data.get('owner_id')
         message = data.get('message')
-        image = data.get('owner_id')
+        image = data.get('image')
+        members = data.get('members')
         passcode = data.get('passcode')
 
         if not name or not owner_id:
@@ -161,7 +162,7 @@ class Leagues(Resource):
             return {'message': 'League name must be unique'}, 400
 
         # Create a new league
-        new_league = League(name=name, owner_id=owner_id, message=message,image=image,passcode=passcode)
+        new_league = League(name=name, owner_id=owner_id, message=message,image=image,members=members,passcode=passcode)
         db.session.add(new_league)
         db.session.commit()
 

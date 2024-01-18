@@ -84,21 +84,19 @@ class League(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False, unique=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, unique=True )
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, unique=True)
     message = db.Column(db.String(255), nullable=False)
     image = db.Column(db.String(255), nullable=False)
+    members = db.Column(db.String(255), nullable=False)
     passcode = db.Column(db.Integer, nullable=True)
-    
 
-    # Define a one-to-many relationship with the User model
-    # members = db.relationship('User', backref='league', lazy='dynamic')
-    # creator = db.relationship('User', backref='created_leagues', lazy='dynamic')
-
-    def __init__(self, name, owner_id):
+    def __init__(self, name, owner_id, message, image,members, passcode=None):
         self.name = name
         self.owner_id = owner_id
-
-
+        self.message = message
+        self.image = image
+        self.members = members
+        self.passcode = passcode
 
 
 
