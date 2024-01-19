@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 
 
-function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic, tapImage, countPick, isOwnerAndEventMatch}) {
+function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive, BGpic, tapImage, countPick, isOwnerAndEventMatch}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
@@ -294,6 +294,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
         // Clear the interval when the component is unmounted
         return () => clearInterval(intervalId);
       }, [currentClass, fightingMan]);
+      console.log(weRlive.some(item => item.timeDetails1 !== ''))
+      const countNonEmptyTimeDetails = weRlive.filter(item => item.timeDetails1 !== '').length;
 
     return ( <>
     
@@ -306,6 +308,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                 > */}
                  
                 {/* </h1> */}
+                
+                {/* <h1>{weRlive.some(item => item.fighter1 !== '') ? 'True' : 'False' }</h1> */}
       
                 <div className='crdiv2'style={{
                   
@@ -313,14 +317,18 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                 }} > 
 
                {mainBlueC ?<>
-                        <center><div style={{marginBottom:'-5px'}} className="p4pplusBlack"></div></center>
+                        {weRlive.some(item => item.timeDetails1 !== '')? <><p className="snowwhite">We Are <span className="color-green">Live</span></p>
+                         <p className="snowwhite">Fight  {countNonEmptyTimeDetails}/{ufcCard.length} </p> </> : null }
+                        <center><div  style={{marginBottom:'-5px'}} className="p4pplusBlack"></div></center>
                  <div
                   style={{zIndex:'1',display:'flex',justifyContent:'center'}}
                   ><h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white'}}>{mainRedC}</h6>
                  <h6 className='color-white snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white',color:'black'}}>  vs  </h6>
                  <h6 className=' snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'blue',color:'white'}}>{mainBlueC}</h6>
                  
-                 {/* //////////////////////// */}</div><div
+                 {/* //////////////////////// */}</div>
+                 {location ? 
+                 <div
                   style={{zIndex:'1',display:'flex',justifyContent:'center'}}>
                  <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</h6>
                  <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
@@ -333,6 +341,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                   // width:'100%',
                   //  justifyContent:'center',textAlign:'center'
                   }} >___</h6></div>
+                  : null}
                 </>: null} 
 
                   <h5 className=' snow' style={{backgroundImage: `url(${tapImage})`,
@@ -344,7 +353,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location, BGpic,
                   }} ></h5>  
 
 
-                  {isOwnerAndEventMatch ? <p className="color-green">Picks submitted </p> :  user ?  <p className="color-red">Picks Missing </p> : null }
+                  {isOwnerAndEventMatch ? <p className="color-green">Picks submitted </p> :  user ?  <p className="color-red">Picks missing </p> : null }
 
                
                

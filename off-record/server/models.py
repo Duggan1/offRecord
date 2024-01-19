@@ -87,8 +87,10 @@ class League(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, unique=True)
     message = db.Column(db.String(255), nullable=False)
     image = db.Column(db.String(255), nullable=False)
-    members = db.Column(db.String(255), nullable=False)
+    # members = db.Column(db.String(255), nullable=False)
     passcode = db.Column(db.Integer, nullable=True)
+
+    members = db.relationship('User', secondary='league_members', backref='leagues')
 
     def __init__(self, name, owner_id, message, image,members, passcode=None):
         self.name = name

@@ -810,7 +810,7 @@ console.log(justSubmitted)
     
    <Routes>
       <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch}
-                                      stallUfcCard={ufcCard} locationCity={locationcity} state={locationstate} 
+                                      stallUfcCard={ufcCard} locationCity={locationcity} state={locationstate} weRlive={weRlive} 
                                       location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} countPick={countPick} />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
