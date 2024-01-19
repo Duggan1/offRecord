@@ -79,6 +79,13 @@ class User(db.Model, SerializerMixin):
     
     
 # ////nullable fo gym&user idbefore the push
+league_members = db.Table(
+    'league_members',
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
+    db.Column('league_id', db.Integer, db.ForeignKey('leagues.id')),
+)
+# ////////////////////////////////////////////////
+
 class League(db.Model):
     __tablename__ = 'leagues'
 
