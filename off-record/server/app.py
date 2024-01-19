@@ -134,23 +134,22 @@ class SignUp(Resource):
 
 
 class Leagues(Resource):
-    # def get(self):
-    #     # Get a list of all leagues
-    #     leagues = League.query.all()
-    #     return [league.serialize() for league in leagues]
     def get(self):
         # Return a list of all leagues
         leagues = League.query.all()
 
-        league_data = [{'id': league.id,
-                         'name': league.name,
-                          'owner_id': league.owner_id,
-                           'message': league.message,
-                            'image': league.image,
-                             'members': league.members,
-                              'passcode': league.passcode} for league in leagues]
+        league_data = [{
+            'id': league.id,
+            'name': league.name,
+            'owner_id': league.owner_id,
+            'message': league.message,
+            'image': league.image,
+            'members': [member.to_dict() for member in league.members],  # Convert each User to a dictionary
+            'passcode': league.passcode
+        } for league in leagues]
 
         return {'leagues': league_data}
+
 
 
     def post(self):
