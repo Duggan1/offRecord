@@ -144,11 +144,12 @@ class Leagues(Resource):
             'owner_id': league.owner_id,
             'message': league.message,
             'image': league.image,
-            'members': [member.to_dict() for member in league.members],  # Convert each User to a dictionary
+            'members': [{'image': member.image, 'username': member.username, 'id': member.id} for member in league.members],
             'passcode': league.passcode
         } for league in leagues]
 
         return {'leagues': league_data}
+
 
 
 
