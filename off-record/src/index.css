@@ -1102,9 +1102,18 @@ font-weight: bold;
   border-left: red 5px solid;
   border-top: red 5px solid;
   border-bottom: blue 5px solid;
+  cursor: pointer;
 
 
 }
+.flex-start {
+  display: flex;
+  flex-direction: row; /* or column, depending on your desired direction */
+  flex-wrap: nowrap; /* or wrap, depending on your desired wrapping behavior */
+  justify-content: flex-start; /* align items along the start of the flex container */
+  align-items: flex-start; /* align items along the start of the cross axis */
+}
+
 .chosenL{
   margin: 15%;
   border-right: blue 5px solid;
@@ -1113,6 +1122,7 @@ font-weight: bold;
   border-bottom: blue 5px solid;
   background-color: whitesmoke;
   color: black;
+  cursor: pointer;
   
 
 }
@@ -1320,6 +1330,20 @@ input[type='checkbox'] {
   background-color: #007bff;
   color: blue;
 } */
+.paddingneeds{
+  padding: 10% 0%
+}
+.leagueDImg {
+  background-size: 100% 100%;
+  background-position: center center;
+  margin: 0 25%;
+  height: 150px;
+  background-color: black;
+}
+
+.width25{
+  width: 25%;
+}
 
 
 

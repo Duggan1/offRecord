@@ -914,6 +914,8 @@ filteredByMainEvent.forEach((result) => {
 // Sort the filteredByMainEvent array by the 'points' property in descending order
 filteredByMainEvent.sort((a, b) => b.points - a.points);
 
+console.log(filteredByMainEvent)
+
 // useEffect(() => {
 //   const initialVisibility = {};
 //   filteredByMainEvent.forEach((result) => {

@@ -5,7 +5,7 @@ import './App.css';
 import * as Yup from 'yup';  
 import Dnd2 from './Dnd2';
 
-function Leagues({user}) {
+function Leagues({user,setLN,appLeagues}) {
 
     const [backupID, setBackupID] = useState(0)
     useEffect(() => {
@@ -104,13 +104,13 @@ function Leagues({user}) {
       };
 
 
-      const [clo ,setClo] = useState(0)
+      const [clo ,setClo] = useState(2)
         const toggleClo =()=>{
         setClo(0)
         }
 
    
-        const [leagues, setLeagues] = useState([])
+        const [leagues, setLeagues] = useState([appLeagues])
 
         useEffect(() => {
         fetch('https://off-therecordpicks.onrender.com/leagues')
@@ -118,6 +118,14 @@ function Leagues({user}) {
         .then(data => setLeagues(data.leagues))
         .catch(error => console.error('Error fetching data:', error));
       }, []); 
+      console.log(leagues)
+
+
+
+      const userLeagues =  user && leagues.length > 1 ? leagues.filter(league => league.members.some(member => member.username === user.username)) : [];
+      console.log(userLeagues);
+
+
 
       const joinLeague = async (leagueId) => {
         try {
@@ -148,6 +156,29 @@ function Leagues({user}) {
           console.error('Error joining the league:', error);
         }
       };
+
+      const [showMembers, setShowMembers] = useState({});
+
+      const offMembers = (leagueId) => {
+        console.log(leagueId)
+        setShowMembers((prevShowMembers) => ({
+          ...prevShowMembers,
+          [leagueId]: !prevShowMembers,
+        }));
+      };
+      const onMembers = (leagueId) => {
+        console.log(leagueId)
+        setShowMembers((prevShowMembers) => ({
+          ...prevShowMembers,
+          [leagueId]: prevShowMembers,
+        }));
+      };
+      
+
+      useEffect(() => {
+        console.log(showMembers);
+      }, [showMembers]);
+      
       
 
     
@@ -158,15 +189,77 @@ function Leagues({user}) {
     <div className="dnd">
 
       { user ?  <>
-        
- <div style={{paddingTop:'5%',paddingBottom:'5%',color:"white"}}>
-        <div className={`element-with-border3`}>
+      <div style={{marginBottom:''}}>
+      <div style={{backgroundColor:'whitesmoke'}}>
+
+      <div className={`element-with-border3`}>
         <center> <h3 
         style={{margin:'0',marginBottom:'-3px'}}  
         className="p4pplusBlack"></h3></center>
-              <h1 style={{borderBottom:'10px solid whitesmoke',margin:'0' }}><span style={{backgroundColor:'black'}}>League Settings</span> </h1>
+              <h1 style={{borderBottom:'10px solid black',margin:'0',backgroundColor:'black' }}><span style={{border:'2px solid black',backgroundColor:'white',color:'black',padding:' 0 5%'}}>My Leagues</span> </h1>
               {/* <div className='' style={{backgroundColor:''}}> */}
         </div>
+        
+<div className={`element-with-border3 paddingneeds`} >
+       {userLeagues.map(league => (
+       <div className="flex-start" style={{border:'black 2px solid',borderRadius:'10%', margin:'0% 5%', marginTop:'5%',backgroundColor:'whitesmoke',cursor:'pointer'}}
+       onClick={() => {
+        setLN(league);
+        navigate('/leagues/deatils');
+      }}
+      
+       >
+       <span className="LeftOne"> <h2>{league.name}</h2>{league.message}</span>
+       <span className="RightOne">
+        <h1 style={{
+              textAlign:'center',
+              width: '80%',
+              height: '100px',
+              backgroundColor: 'white',
+              padding: '0px 0px',
+              backgroundSize: '100% 100%',
+              borderRadius:'5%',
+              backgroundImage: `url(${league.image})`
+            }} alt={`${league.image}`}></h1></span>
+            
+             
+            
+            </div>
+
+
+       ))}</div>
+       
+       
+       
+       </div> 
+      </div>
+        
+ <div style={{paddingBottom:'5%',color:"white"}}>
+        
+
+
+
+        <div style={{backgroundColor:'whitesmoke'}} className="flex-start">
+      <span  style={{
+            borderTop: '15px solid red',
+            borderRight: '15px solid blue',
+            borderLeft: '15px solid red',
+            borderBottom: '15px solid blue',
+            borderRadius: '10%',
+            color: 'white',
+            backgroundColor: 'white',
+            padding:'5% 8%',
+            borderRadius:'50%',
+            
+            }}
+            className='p4pplus LeftOne'
+            //  onClick={() => setIsPaused(!isPaused)}
+            ></span> 
+            <h1 className="LeftOne color-black" style={{margin:'5%'}} > League Settings</h1></div>
+            <div style={{marginTop:"0%",marginBottom:'0%'}} className="element-with-borderBB"></div> 
+
+
+
     <div className="wholeOne2 flex text-align-center" style={{borderBottom:'10px solid whitesmoke',margin:'0' }}>  
       <div className="LeftOne2">
         {/* <h2 className={clo === 4 ? `chosenL`:`notLchosenL`} onClick={() => setClo(4)}>My Leagues </h2> */}
@@ -179,10 +272,10 @@ function Leagues({user}) {
       {/* ////////////////////////////////////////////////////////////////////// */}
 
       <div style={{backgroundColor:'whitesmoke'}} className="RightOne2">
-        {clo === 0 ? <h2 style={{backgroundColor:'black'}} className="notLchosenL">Create League </h2>: null }
-        {clo === 1 ?<h2 style={{backgroundColor:'black'}}  className="notLchosenL">Join a League </h2>: null }
-        {clo === 2 ? <h2  style={{backgroundColor:'black'}} className="notLchosenL">About Leagues </h2>: null }
-        {clo === 3 ? <h2  style={{backgroundColor:'black'}} className="notLchosenL">Delete a League </h2>: null }
+        {clo === 0 ? <h2 style={{backgroundColor:'black',cursor:'crosshair'}} className="notLchosenL">Create League </h2>: null }
+        {clo === 1 ?<h2 style={{backgroundColor:'black',cursor:'crosshair'}}  className="notLchosenL">Join a League </h2>: null }
+        {clo === 2 ? <h2  style={{backgroundColor:'black',cursor:'crosshair'}} className="notLchosenL">About Leagues </h2>: null }
+        {clo === 3 ? <h2  style={{backgroundColor:'black',cursor:'crosshair'}} className="notLchosenL">Delete a League </h2>: null }
         {/* {clo === 4 ? <h2  style={{backgroundColor:'black'}} className="notLchosenL">My Leagues </h2>: null } */}
 
         {clo === 0 ? 
@@ -222,10 +315,10 @@ function Leagues({user}) {
         {clo === 1 ? 
         <div className="join ">
       {leagues.map(league => (
-        <div className="joinL" key={league.id}>
+        <div className="joinL " key={league.id}>
           <div ></div><h3>{league.name}</h3>
-          <span>{league.message}</span>
-
+          
+        <span>{league.message}</span>
           <h1 style={{
                 textAlign:'center',
                 width: '60%',
@@ -236,12 +329,61 @@ function Leagues({user}) {
                 margin:'0 20%',
                 backgroundImage: `url(${league.image})`
               }} alt={`${league.image}`}></h1>
+            
+            <div className="flex" >
+                  <p>{showMembers[league.id] ? 'Hide Members' : 'Show Members'}</p>
+                  {showMembers[league.id] ? <p
+                  onClick={() => offMembers(league.id)}
+                    style={{
+                      textAlign: 'center',
+                      width: '15px',
+                      height: '15px',
+                      backgroundColor:'green',
+                      borderRadius: '50%',
+                      border: 'white 1px solid',
+                      marginLeft: '2%',
+                      cursor:'pointer'
+                    }}
+                  ></p>  :
+                  <p
+                  onClick={() => onMembers(league.id)}
+                    style={{
+                      textAlign: 'center',
+                      width: '15px',
+                      height: '15px',
+                      backgroundColor:'red',
+                      borderRadius: '50%',
+                      border: 'white 1px solid',
+                      marginLeft: '2%', cursor:'pointer'
+                    }}
+                  ></p> }
+                </div>
+
+                {showMembers[league.id] ? <>
+
+              {league.members? league.members.map(member => ( 
+              
+              <div className="flex "><p style={{
+                textAlign:'center',
+                width: '30px',
+                height: '30px',
+                backgroundColor: 'white',
+                padding: '0px 0px',
+                backgroundSize: 'cover',
+                marginRight: '5%',
+                backgroundImage: `url(${member.image})`,
+                borderRadius:'50%',
+              }}></p><p> {member.username}</p></div> )): null} </> : null}
+
+
           
           <button className="cursor-pointer"
           onClick={() => joinLeague(league.id)}
           >Join League</button>
         </div>
-      ))}</div> : null }
+      ))}
+      
+      </div> : null }
 
         {clo === 2 ? 
       <div className="aboutL ">
@@ -258,19 +400,41 @@ function Leagues({user}) {
             padding:'12% 15%',
             borderRadius:'50%',
             
-}}
- className='p4pplus'
-//  onClick={() => setIsPaused(!isPaused)}
- ></span>
+            }}
+            className='p4pplus'
+            //  onClick={() => setIsPaused(!isPaused)}
+            ></span>
       </div> : null }
 
       {clo === 3 ? 
       <div className="delete">
        <p className="color-black">Development</p></div> : null }
 
-       {/* {clo === 4 ? 
+       {clo === 4 ? 
       <div className="delete">
-       <p className="color-black">My Leagues</p></div> : null } */}
+       <p className="color-black">My Leagues</p>
+       {userLeagues.map(league => (
+       <div className="flex">
+       
+        <h1 style={{
+              textAlign:'center',
+              width: '60%',
+              height: '100px',
+              backgroundColor: 'white',
+              padding: '0px 0px',
+              backgroundSize: 'cover',
+              margin:'0 20%',
+              backgroundImage: `url(${league.image})`
+            }} alt={`${league.image}`}></h1> <p>{league.name}</p><span>{league.message}</span>
+            
+            </div>
+
+
+       ))}
+       
+       
+       
+       </div> : null }
       
 
         

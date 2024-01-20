@@ -14,6 +14,7 @@ import * as yup from 'yup';
 import isEqual from 'lodash/isEqual';
 import Compare from './Compare';
 import Leagues from './Leagues';
+import LeagueInfo from './LeagueInfo';
 // import CommentSection from './CommentSection';
 
 
@@ -754,6 +755,7 @@ console.log(eventInfo)
 const PreLeonColby =  ('' + ufcEvents.backgroundImageSrc)
 const backgroundImageSrc = eventInfo.backgroundImageSrc
 const tapImageSrc = eventInfo.tapImage
+// console.log()
 console.log(backgroundImageSrc) 
 console.log(tapImageSrc) 
   
@@ -767,7 +769,9 @@ if (eventInfo && eventInfo.locationCC) {
 const locationcity = locationInfo[0]; // Lav Vegas
 const locationstate = locationInfo[1]; // Nevada 
 const location = locationInfo[locationInfo.length - 1];// United States
+const menow = ufcCard3.length > 2 ?  ufcCard3[0].fighters.join(' vs ') : 'LOADING';
 
+console.log(menow)
 console.log(eventInfo)
 console.log(ufcEvents)
 console.log(locationInfo.length)
@@ -798,6 +802,21 @@ console.log(isOwnerAndEventMatch)
 const [justSubmitted, setjustSubmitted] = useState('');
 console.log(justSubmitted)
 
+const [leagueName ,setLeagueName] = useState('')
+const setLN =(leagueN)=>{
+  setLeagueName(leagueN)
+}
+console.log(leagueName)
+
+const [leagues, setLeagues] = useState([])
+
+        useEffect(() => {
+        fetch('https://off-therecordpicks.onrender.com/leagues')
+        .then(response => response.json())
+        .then(data => setLeagues(data.leagues))
+        .catch(error => console.error('Error fetching data:', error));
+      }, []); 
+      console.log(leagues)
 
 
   return (
@@ -815,7 +834,12 @@ console.log(justSubmitted)
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
 
-      <Route path="/leagues"  element={<Leagues user={user}  />} />
+      <Route path="/leagues"  element={<Leagues user={user} setLN={setLN} appLeagues={leagues} />} />
+      
+      <Route path="/leagues/deatils" element={<LeagueInfo user={user} leagueName={leagueName} appLeagues={leagues} isOwnerAndEventMatch={isOwnerAndEventMatch} ufcResults={modifiedUfcResults}  weRlive={weRlive} results2={results2} menow={menow} />} />
+
+
+
       
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
                                               stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
