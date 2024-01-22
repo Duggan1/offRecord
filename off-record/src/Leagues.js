@@ -196,44 +196,46 @@ function Leagues({user,setLN,appLeagues}) {
         <center> <h3 
         style={{margin:'0',marginBottom:'-3px'}}  
         className="p4pplusBlack"></h3></center>
+       { userLeagues.length > 0 ? <div style={{}}>
               <h1 style={{borderBottom:'10px solid black',margin:'0',backgroundColor:'black' }}><span style={{border:'2px solid black',backgroundColor:'white',color:'black',padding:' 0 5%'}}>My Leagues</span> </h1>
               {/* <div className='' style={{backgroundColor:''}}> */}
-        </div>
         
-<div className={`element-with-border3 paddingneeds`} >
-       {userLeagues.map(league => (
-       <div className="flex-start" style={{border:'black 2px solid',borderRadius:'10%', margin:'0% 5%', marginTop:'5%',backgroundColor:'whitesmoke',cursor:'pointer'}}
-       onClick={() => {
-        setLN(league);
-        navigate('/leagues/deatils');
-      }}
-      
-       >
-       <span className="LeftOne"> <h2>{league.name}</h2>{league.message}</span>
-       <span className="RightOne">
-        <h1 style={{
-              textAlign:'center',
-              width: '80%',
-              height: '100px',
-              backgroundColor: 'white',
-              padding: '0px 0px',
-              backgroundSize: '100% 100%',
-              borderRadius:'5%',
-              backgroundImage: `url(${league.image})`
-            }} alt={`${league.image}`}></h1></span>
-            
-             
-            
-            </div>
+                  
+          <div className={`element-with-border3 paddingneeds`} >
+                {userLeagues.map(league => (
+                <div className="flex-start" style={{border:'black 2px solid',borderRadius:'10%', margin:'0% 5%', marginTop:'5%',backgroundColor:'whitesmoke',cursor:'pointer'}}
+                onClick={() => {
+                  setLN(league);
+                  navigate('/leagues/deatils');
+                }}
+                
+                >
+                <span className="LeftOne"> <h2>{league.name}</h2>{league.message}</span>
+                <span className="RightOne">
+                  <h1 style={{
+                        textAlign:'center',
+                        width: '80%',
+                        height: '100px',
+                        backgroundColor: 'white',
+                        padding: '0px 0px',
+                        backgroundSize: '100% 100%',
+                        borderRadius:'5%',
+                        backgroundImage: `url(${league.image})`
+                      }} alt={`${league.image}`}></h1></span>
+                      
+                      
+                      
+                      </div>
 
 
-       ))}</div>
-       
-       
-       
-       </div> 
+                ))}</div>
+
+       </div> : null }
+
+
+
       </div>
-        
+        </div></div>
  <div style={{paddingBottom:'5%',color:"white"}}>
         
 
@@ -253,7 +255,7 @@ function Leagues({user,setLN,appLeagues}) {
             
             }}
             className='p4pplus LeftOne'
-            //  onClick={() => setIsPaused(!isPaused)}
+            
             ></span> 
             <h1 className="LeftOne color-black" style={{margin:'5%'}} > League Settings</h1></div>
             <div style={{marginTop:"0%",marginBottom:'0%'}} className="element-with-borderBB"></div> 

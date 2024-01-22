@@ -44,6 +44,11 @@ const [ufcCard2, setUfcCard2] = useState([]);
 const [ufcCard3, setUfcCard3] = useState([]);
 const [weRlive , setweRlive] = useState([]);
 const [eventInfo, setEventInfo] = useState({});
+const [tapI, setTapI] = useState('')
+const [ufcI, setUfcI] = useState('')
+const [lo1, setLo] = useState('')
+const [lo2, setLo2] = useState('')
+const [lo3, setLo3] = useState('')
 const apiUrl = 'https://offtherecordcards.onrender.com/scrape-ufc-website';
 const [liveFinishes, setLiveFinishes] = useState([]);
 useEffect(() => { 
@@ -169,6 +174,18 @@ console.log(associatedData);
       // Update state with the scraped data
       setEventInfo({ event_name, event_date, fights, records ,backgroundImageSrc, location, locationCC, tapImage, });
       /////////////////////////////
+      // imgs & location
+      setTapI(tapImage)
+      setUfcI(backgroundImageSrc)
+      let locationInfo = [];
+        if (locationCC) {
+          locationInfo = locationCC.split(', ').map(part => part.trim());
+        }
+      setLo(locationInfo[0])
+      setLo2(locationInfo[1])
+      setLo3(locationInfo[locationInfo.length - 1])
+
+
 
     } catch (error) { 
       console.error('Error:', error);
@@ -769,6 +786,8 @@ if (eventInfo && eventInfo.locationCC) {
 const locationcity = locationInfo[0]; // Lav Vegas
 const locationstate = locationInfo[1]; // Nevada 
 const location = locationInfo[locationInfo.length - 1];// United States
+
+
 const menow = ufcCard3.length > 2 ?  ufcCard3[0].fighters.join(' vs ') : 'LOADING';
 
 console.log(menow)
@@ -778,6 +797,9 @@ console.log(locationInfo.length)
 console.log(location); 
 console.log(liveFinishes)
 console.log(weRlive)
+
+console.log(tapI)
+console.log(tapImageSrc)
 
 console.log(user)
 console.log(results2)
@@ -829,14 +851,14 @@ const [leagues, setLeagues] = useState([])
     
    <Routes>
       <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch}
-                                      stallUfcCard={ufcCard} locationCity={locationcity} state={locationstate} weRlive={weRlive} 
-                                      location={location} BGpic={backgroundImageSrc} tapImage={tapImageSrc} countPick={countPick} />} />
+                                      stallUfcCard={ufcCard} locationCity={lo1} state={lo2} weRlive={weRlive} 
+                                      location={lo3} BGpic={ufcI} tapImage={tapI} countPick={countPick} />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
 
       <Route path="/leagues"  element={<Leagues user={user} setLN={setLN} appLeagues={leagues} />} />
       
-      <Route path="/leagues/deatils" element={<LeagueInfo user={user} leagueName={leagueName} appLeagues={leagues} isOwnerAndEventMatch={isOwnerAndEventMatch} ufcResults={modifiedUfcResults}  weRlive={weRlive} results2={results2} menow={menow} />} />
+      <Route path="/leagues/deatils" element={<LeagueInfo user={user} leagueName={leagueName} appLeagues={leagues} isOwnerAndEventMatch={isOwnerAndEventMatch} ufcResults={modifiedUfcResults}  weRlive={weRlive} results2={results2} menow={menow} tapImage={tapI} />} />
 
 
 

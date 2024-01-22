@@ -163,6 +163,8 @@ code {
   margin-right: 20%;
   margin-left: 20%;
 }
+
+
 /* .about img {
   background-color: gold;
   height: 100px;
@@ -1333,13 +1335,7 @@ input[type='checkbox'] {
 .paddingneeds{
   padding: 10% 0%
 }
-.leagueDImg {
-  background-size: 100% 100%;
-  background-position: center center;
-  margin: 0 25%;
-  height: 150px;
-  background-color: black;
-}
+
 
 .width25{
   width: 25%;
@@ -2037,6 +2033,73 @@ a {
   margin-bottom: 15px;
   background-color: #0c0c0c ;
 }
+
+.MainEventContainer{
+  margin-bottom: 2%;
+  background: linear-gradient(to right, darkred 50%, navy 50%);
+}
+.p4pbg {
+  background: linear-gradient(to right, darkred 50%, navy 50%);
+
+}
+.leagueUcontainer{
+  margin: 1% 2%;
+  background-color: whitesmoke;
+
+}
+.leag {
+  background-image: url('https://www.tilingtextures.com/wp-content/uploads/2017/04/0054-2.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: black 2px solid;
+  border-right: navy 5px solid;
+  border-left: red 5px solid;
+
+}
+.leagueDImg {
+  background-size: 100% 100%;
+  background-position: center center;
+  margin: 0 5%;
+  min-height: 150px;
+  background-color: black;
+  /* border-right: blue 5px solid;
+  border-left: red 5px solid;
+  border-top: red 5px solid;
+  border-bottom: blue 5px solid; */
+}
+.p4pborder{
+  border-right: blue 5px solid;
+  border-left: red 5px solid;
+  border-top: red 5px solid;
+  border-bottom: blue 5px solid;
+  
+}
+
+.width10 {
+  width: 10%;
+}
+.width40{
+  width:40%;
+}
+.Limgsetup {
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  justify-content: center;
+  margin-left: 3%;
+}
+.background-dash {
+  background-image: url('./backgroundwhitedash.jpeg');
+  background-size: 100% 100%;
+}
+
+.Twoigs{
+  padding-bottom: 3%;
+
+
+}
+
 
 /* @import 'tailwindcss/base';
 @import 'tailwindcss/components';
