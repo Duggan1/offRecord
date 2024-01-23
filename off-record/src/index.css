@@ -1768,7 +1768,9 @@ input[type='checkbox'] {
 .fs45{
   font-size: 45px;
 }
-
+.fs20{
+  font-size: 20px;
+}
 .fi {
   
   flex: 1; 
@@ -1781,6 +1783,25 @@ input[type='checkbox'] {
 }
 .homebullet{
   font-size: 20px;
+}
+.formProfilePatch{
+  margin: 0% 5%;
+  background-color: whitesmoke;
+  padding: 5%;
+}
+.ProfilePicPreview{
+  border-right: blue 5px solid;
+  border-left: red 5px solid;
+  border-top: red 5px solid;
+  border-bottom: blue 5px solid;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  min-height: 150px;
+  min-width: 150px;
+  max-height: 150px;
+  max-width: 150px;
+  background-size: 100% 100%;
+  
 }
 
 @media (max-width: 767px) {

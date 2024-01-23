@@ -37,6 +37,31 @@ class Users(Resource):
 
 api.add_resource(Users, '/users')
 
+class UserProfile(Resource):
+    def patch(self, user_id):
+        user = User.query.get(user_id)
+
+        if not user:
+            return {"message": "User not found"}, 404
+
+        data = request.get_json()
+
+        # Update user attributes based on the data received in the PATCH request
+        if 'fullname' in data:
+            user.fullname = data['fullname']
+
+        if 'email' in data:
+            user.email = data['email']
+
+        if 'image' in data:
+            user.image = data['image']
+
+        db.session.commit()
+
+        return {"message": "User updated successfully"}, 200
+    
+api.add_resource(UserProfile, '/users/<int:user_id>')
+
 class SignUp(Resource):
     def post(self):
         data = request.json
