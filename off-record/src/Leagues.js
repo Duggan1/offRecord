@@ -4,8 +4,9 @@ import {useNavigate} from 'react-router-dom'
 import './App.css';
 import * as Yup from 'yup';  
 import Dnd2 from './Dnd2';
+import P4pHeader from "./P4pHeader";
 
-function Leagues({user,setLN,appLeagues}) {
+function Leagues({user,setLN,appLeagues,onLogout}) {
 
     const [backupID, setBackupID] = useState(0)
     useEffect(() => {
@@ -185,10 +186,13 @@ function Leagues({user,setLN,appLeagues}) {
 
         
 
-  return (
+  return (<>
+    <P4pHeader onLogout={onLogout} user={user} />
     <div className="dnd">
 
-      { user ?  <>
+
+      { user ?  
+      <>
       <div style={{marginBottom:''}}>
       <div style={{backgroundColor:'whitesmoke'}}>
 
@@ -455,9 +459,13 @@ function Leagues({user,setLN,appLeagues}) {
       <p className="snowwhite text-align-center " style={{minHeight:'10px'}}><strong >Picks4Points.com</strong></p></div>
                       <div style={{marginTop:"1%",marginBottom:'1%'}} className="element-with-borderBB"></div>              
         </>:
-        null
+        <div className="snowwhite marginTop20 flex" >
+        <p className="pt5">Please Sign In to View Leagues </p> <h1 className="fs65">&#8599;</h1>
+        </div>
+
         }
     </div>
+    </>
   );
 }
 

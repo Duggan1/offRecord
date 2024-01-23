@@ -1,3 +1,8 @@
+/* @import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities'; 
+ */
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -641,6 +646,33 @@ code {
 	background-size: 100% 100%;
   /* border: red solid 2px; */
   padding: 5% 15%;
+
+}
+.p4pplusBlack2 {
+  max-width: 100px;
+  min-width: 100px;
+  max-height: 100px;
+  min-height: 100px;
+  height:auto;
+  background-image: url('./p4p+black.png');
+  background-repeat: no-repeat;
+  /* background-position-x: center; */
+	background-size: 100% 100%;
+  /* border: red solid 2px; */
+  padding: 5% 15%;
+
+}
+.p4pHI {
+  max-width: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  min-height: 50px; 
+  height:auto; 
+  background-image: url('./p4p+whitegreen.png');
+  background-repeat: no-repeat;
+  /* background-position-x: center; */
+	background-size: 100% 100%;
+  
 
 }
 .p4pplusWhite {
@@ -2081,6 +2113,9 @@ a {
 .width40{
   width:40%;
 }
+.width45{
+  width:45%;
+}
 .Limgsetup {
   background-size: cover;
   width: 25px;
@@ -2096,11 +2131,17 @@ a {
 
 .Twoigs{
   padding-bottom: 3%;
-
-
+}
+.marginTop20{
+  margin-top: 20%;
+}
+.fs65{
+  font-size: 65px
+}
+.pt5{
+  padding-top: 5%;
+  padding-right: 2%;
 }
 
 
-/* @import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities'; */
+

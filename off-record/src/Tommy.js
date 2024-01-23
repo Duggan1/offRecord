@@ -4,6 +4,7 @@ import './App.css';
 import * as yup from 'yup';
 import axios from 'axios';
 import Modal from 'react-modal';
+import P4pHeader from './P4pHeader';
 
 
 
@@ -11,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import Dnd from './Dnd';
 import Dnd2 from './Dnd2';
 
-function Tommy({ user, ufcCard, stallUfcCard,locationCity,location, isOwnerAndEventMatch, setjustSubmitted}) {
+function Tommy({ user, ufcCard, stallUfcCard,locationCity,location, isOwnerAndEventMatch, setjustSubmitted, onLogout}) {
 
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -540,6 +541,7 @@ if (isLoading) {
     {/* {user ?
               <Header handleLogout={handleLogout} user={user} ufcCard={ufcCard} />
           : <Johnny onLogin={onLogin} onLogout={handleLogout} ufcCard={ufcCard} />} */}
+          <P4pHeader onLogout={onLogout} user={user} />
 
 
 

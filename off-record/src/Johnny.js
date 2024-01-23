@@ -4,6 +4,7 @@ import * as yup from 'yup';
 // import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import Header from "./Header";
+import P4pHeader from "./P4pHeader";
 
 
 
@@ -130,7 +131,7 @@ function Johnny({ onLogin, ufcCard,onLogout  }) {
 
     return (
         <div className="johnny">
-          <Header handleLogout={onLogout} ufcCard={ufcCard}/>
+          <P4pHeader handleLogout={onLogout} ufcCard={ufcCard}/>
             {/* <h3 style={{marginTop:'0%'}}>Sign Up / Login</h3> */}
             <div style={{ display: 'inline-block',marginBottom:'5%',marginTop:'5%',}}className="custom-checkbox">
           <input
@@ -163,7 +164,7 @@ function Johnny({ onLogin, ufcCard,onLogout  }) {
                 <label className="caged-black bold" >Email:</label>
                 <input className="ltypediv" type="email" value={Email} onChange={(e) => setEmail(e.target.value)} required /><br></br>
                 
-                <button style={{marginRight:'17%',minWidth:'10%', marginTop:'3%'}} className="submitb" type="submit">Submit</button>
+                <button style={{marginRight:'17%',minWidth:'10%', marginTop:'3%', backgroundColor:'whitesmoke'}} className="submitb" type="submit">Submit</button>
                 
                 {errors && (<p className="errors" style={{ border: errors.length > 1 ? '2px solid darkred' : 'none' }}>{errors} </p>)}
 
@@ -191,7 +192,7 @@ function Johnny({ onLogin, ufcCard,onLogout  }) {
             placeholder=""
             onChange={(e) => set_password(e.target.value)}
           /><br></br>
-            <button style={{marginRight:'17%',minWidth:'10%', marginTop:'3%'}} className="submitb"  type="submit">Login</button>
+            <button style={{marginRight:'17%',minWidth:'10%', marginTop:'3%', backgroundColor:'whitesmoke'}} className="submitb"  type="submit">Login</button>
             {isIncorrect ? <div>
                 <h2>Username or Password Invalid, Please Try Again!</h2>
             </div>: null}

@@ -2,9 +2,10 @@ import React, { useState, useEffect  } from "react";
 import './App.css';
 import { NavLink } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
+import P4pHeader from './P4pHeader'
 
 
-function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive, BGpic, tapImage, countPick, isOwnerAndEventMatch}) {
+function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive, BGpic, tapImage, countPick, isOwnerAndEventMatch, onLogout}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
@@ -20,6 +21,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       const mainEvent = isUfcCardLoaded ? ufcCard[0].fighters.join(' vs ') : '';
       const mainRedC = isUfcCardLoaded ? ufcCard[0].fighters[0] : '';
       const mainBlueC = isUfcCardLoaded ? ufcCard[0].fighters[1]  : '';
+      console.log(tapImage)
       
       
       const countryData = {
@@ -298,6 +300,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       const countNonEmptyTimeDetails = weRlive.filter(item => item.timeDetails1 !== '').length;
 
     return ( <>
+    <P4pHeader user={user} onLogout={onLogout} />
     
     
       {isUfcCardLoaded ?  
@@ -311,26 +314,26 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 
                 {/* <h1>{weRlive.some(item => item.fighter1 !== '') ? 'True' : 'False' }</h1> */}
       
-                <div className='crdiv2'style={{
-                  
-                  // paddingLeft:'5%',
-                }} > 
+                <div className='crdiv2 box-content'> 
 
                {mainBlueC ?<>
                         {weRlive.some(item => item.timeDetails1 !== '')? <><p className="snowwhite">We Are <span className="color-green">Live</span></p>
                          <p className="snowwhite">Fight  {countNonEmptyTimeDetails}/{ufcCard.length} </p> </> : null }
-                        <center><div  style={{marginBottom:'-5px'}} className="p4pplusBlack"></div></center>
+                        <center><div  style={{marginBottom:'-5px'}} className="p4pplusBlack2"></div></center>
                  <div
                   style={{zIndex:'1',display:'flex',justifyContent:'center'}}
-                  ><h6 className='color-gold snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white'}}>{mainRedC}</h6>
+                  >
+                  <h6 className=' snow 'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white'}}>{mainRedC}</h6>
+
                  <h6 className='color-white snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white',color:'black'}}>  vs  </h6>
+                 
                  <h6 className=' snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'blue',color:'white'}}>{mainBlueC}</h6>
                  
                  {/* //////////////////////// */}</div>
                  {location ? 
                  <div
                   style={{zIndex:'1',display:'flex',justifyContent:'center'}}>
-                 <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</h6>
+                 <p className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</p>
                  <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
@@ -342,15 +345,16 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                   //  justifyContent:'center',textAlign:'center'
                   }} >___</h6></div>
                   : null}
-                </>: null} 
-
+                </> : null} 
+                {tapImage ? 
                   <h5 className=' snow' style={{backgroundImage: `url(${tapImage})`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
                   paddingTop:'15%',
                   paddingBottom:'15%',marginBottom:'0%',marginTop:'0%',
                  height:'200px'
-                  }} ></h5>  
+                  }} ></h5> 
+                : null }
 
 
                   {isOwnerAndEventMatch ? <p className="color-green">Picks submitted </p> :  user ?  <p className="color-red">Picks missing </p> : null }
@@ -362,8 +366,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
 
 
                 {/* ////////////////////// */}
-                 <div className="" style={{textAlign:'center',height:'150px'}}>
-
+                 <div className="" style={{textAlign:'center',height:'400px'}}>
+</div>
 
 
                  {/* { !user ? 
@@ -375,9 +379,9 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
 
                   {/* //////////////////////////// */}
                 
-                </div>
                 
-                { isUfcCardLoaded ? <div className='crdiv' style={{  height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',  position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
+                
+                {/* { isUfcCardLoaded ? <div className='crdiv' style={{  height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',  position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
                     <NavLink className='color-gold hgysnow' exact to="/section3"></NavLink>
                     <h5 className=' snow' style={{ color:'black',textAlign: 'center',  marginTop: '-6%',textShadow: '0 0 15px white' }}>PICK'EM</h5>
                 </div>
@@ -396,20 +400,38 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 <div className='crdiv ' onClick={() => handleOptionClick('/results/compare')}><NavLink className=' color-black snow' exact to="/results/compare">Compare Picks</NavLink></div>
                 <div className='crdiv '   onClick={() => handleOptionClick('/about')}><NavLink className='color-black snow' exact to="/about">About P4P</NavLink></div>
                 
-                
+                 */}
                 
         <div style={{display:'flex', justifyContent:'center',paddingTop:'0%'}}>
-        <div style={{borderRight:'solid black 2px',borderLeft:'solid black 2px',borderTop:'solid black 2px',zIndex: '2'}} className="p4pplus"></div>
+        {/* <div style={{borderRight:'solid black 2px',borderLeft:'solid black 2px',borderTop:'solid black 2px',zIndex: '2'}} className="p4pplus"></div> */}
                 </div>
                 { isUfcCardLoaded ? <div className="home-fighter">
                                     <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[0]}')`,backgroundPosition: 'left',marginTop:'50%'}} ></div>
                                     <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[1]}')`,backgroundPosition: 'right',marginTop:'50%'}}> </div>
-                                    </div> : <div className="loading" style={{ height: '100px', width: '100px' ,justifyContent:'center'}}></div> }
+                                    </div> :
+                                    
+                                    
+                                    
+                                    <div className="loading" style={{ height: '100px', width: '100px' ,justifyContent:'center'}}></div> }
         
 
-                                    <h2 style={{backgroundColor:'white',color:'black',border:'black 1px solid',zIndex: '2'}} className="homeheaders2">Pick Count ({countPick})   </h2>
+                                   
+                                    <span style={{
+                                      borderTop: '15px solid red',
+                                      borderRight: '15px solid blue',
+                                      borderLeft: '15px solid red',
+                                      borderBottom: '15px solid blue',
+                                      minHeight:'100px',
+                                      width:'200px',
+                                      color: 'white',
+                                      backgroundColor: 'black',
+                                      // padding:'12% 15%',
+                                      borderRadius:'50%'
+                          }} className='p4pplus'> </span>
 
-                                    <div style={{display:'flex', justifyContent:'center',marginTop:'100px'}}>
+
+
+                                    <div style={{display:'flex', justifyContent:'center',marginTop:'80px'}}>
             <h1 
             
             style={{
@@ -515,6 +537,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 }}>
                 .com
                 </h1></div>
+
+
         </div> 
         :
         

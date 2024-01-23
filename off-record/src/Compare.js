@@ -5,8 +5,9 @@ import logo from './logo.png';
 import Chart from "chart.js/auto";
 import Modal from 'react-modal';
 import Dnd from './Dnd';
+import P4pHeader from "./P4pHeader";
 
-function Compare({results2, user, ufcCard, ufcResults,  adminKevPicks2, liveFinishes }) {
+function Compare({results2, user, ufcCard, ufcResults,  adminKevPicks2, liveFinishes, onLogout }) {
   const [results, setResults] = useState(results2);
   const [updatedResults, setUpdatedResults] = useState(ufcResults)
   const [showOnlyUserPicks, setShowOnlyUserPicks] = useState(false);
@@ -357,6 +358,7 @@ const toggleDetails =()=>{
 }
 
   return (<>
+  <P4pHeader onLogout={onLogout} user={user} />
 <div>
 
 

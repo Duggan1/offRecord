@@ -1,6 +1,7 @@
 // import { useParams } from 'react-router-dom';
+import P4pHeader from "./P4pHeader";
 
-function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,menow, tapImage }) {
+function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,menow, tapImage, onLogout }) {
 //   const {  } = useParams();
 
   // Now, you can use the leagueName in your component logic
@@ -140,6 +141,8 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
   
 
   return (
+    <>
+    <P4pHeader onLogout={onLogout} user={user} />
     <div className="text-align-center" style={{backgroundColor:'white',paddingBottom:'5%'}}>
       <div className="leag">
         <h1 ><span className="p4pborder" style={{backgroundColor:'white',margin:'0px 0px',padding:'0px 5px'}}>{leagueName? leagueName.name : null} League</span></h1>
@@ -204,6 +207,7 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
       )}
       </div>
     </div>
+    </>
   );
 }
 

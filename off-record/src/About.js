@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
+import P4pHeader from './P4pHeader';
 
-function About() {
+function About({user, onLogout}) {
   const navigate = useNavigate();
   const [currentSection, setCurrentSection] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -83,6 +84,8 @@ function About() {
   }, [currentSection, isPaused]);
 
   return (
+    <>
+    <P4pHeader onLogout={onLogout} user={user} />
     <div  style={{backgroundImage:`url(${tqtcat})`,backgroundSize:'cover' ,marginBottom: '0px',marginTop:'0%',textAlign:'center',paddingTop:'5%' }}>
       
       
@@ -139,6 +142,7 @@ function About() {
       <span style={{color:'blue',backgroundColor:'white'}} >P</span> 
       </h1>
     </div>
+    </>
   );
 }
 

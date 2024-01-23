@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 import './App.css';
+import './tailwind.css';
 import Home from './Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Elijah from './Elijah';
@@ -15,6 +16,8 @@ import isEqual from 'lodash/isEqual';
 import Compare from './Compare';
 import Leagues from './Leagues';
 import LeagueInfo from './LeagueInfo';
+import P4pHeader from './P4pHeader'
+
 // import CommentSection from './CommentSection';
 
 
@@ -840,37 +843,42 @@ const [leagues, setLeagues] = useState([])
       }, []); 
       console.log(leagues)
 
+      console.log(tapI)
+
 
   return (
     <BrowserRouter>
      
-          {user ?
+          {/* {user ?
               <Header handleLogout={handleLogout} user={user} ufcCard={ufcCard3} />
-          : <Johnny onLogin={handleLogin} onLogout={handleLogout} ufcCard={ufcCard3} />}
+          : <Johnny onLogin={handleLogin} onLogout={handleLogout} ufcCard={ufcCard3} />} */}
 
     
    <Routes>
+     <Route path="/newlook" element={<P4pHeader onLogout={handleLogout} />} />
+
+
       <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch}
                                       stallUfcCard={ufcCard} locationCity={lo1} state={lo2} weRlive={weRlive} 
-                                      location={lo3} BGpic={ufcI} tapImage={tapI} countPick={countPick} />} />
+                                      location={lo3} BGpic={ufcI} tapImage={tapI} countPick={countPick} onLogout={handleLogout}  />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
 
-      <Route path="/leagues"  element={<Leagues user={user} setLN={setLN} appLeagues={leagues} />} />
+      <Route path="/leagues"  element={<Leagues setLN={setLN} appLeagues={leagues} user={user} onLogout={handleLogout} />} />
       
-      <Route path="/leagues/deatils" element={<LeagueInfo user={user} leagueName={leagueName} appLeagues={leagues} isOwnerAndEventMatch={isOwnerAndEventMatch} ufcResults={modifiedUfcResults}  weRlive={weRlive} results2={results2} menow={menow} tapImage={tapI} />} />
+      <Route path="/leagues/deatils" element={<LeagueInfo user={user} leagueName={leagueName} appLeagues={leagues} isOwnerAndEventMatch={isOwnerAndEventMatch} ufcResults={modifiedUfcResults}  weRlive={weRlive} results2={results2} menow={menow} tapImage={tapI} onLogout={handleLogout} />} />
 
 
-
+     
       
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
-                                              stallUfcCard={ufcCard} locationCity={locationcity} location={location}/>}/>
+                                              stallUfcCard={ufcCard} locationCity={locationcity} location={location}  onLogout={handleLogout} />}/>
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} 
-                                                weRlive={weRlive} justSubmitted={justSubmitted} />}/>
-      <Route path="/results/Compare" element={<Compare ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} liveFinishes={liveFinishes} />}/>
+                                                weRlive={weRlive} justSubmitted={justSubmitted} onLogout={handleLogout} />}/>
+      <Route path="/results/Compare" element={<Compare ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} liveFinishes={liveFinishes} onLogout={handleLogout} />}/>
       
       
-      <Route path="/about" element={<About/>}/>
+      <Route path="/about" element={<About user={user} onLogout={handleLogout} />}/>
       {/* <Route path="/comments" element={<CommentSection />}/> */}
       {/* <Route path="/pools" element={<Pools />}/> */}
        
