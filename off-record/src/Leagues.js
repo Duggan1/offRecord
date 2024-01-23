@@ -224,9 +224,7 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
                         padding: '0px 0px',
                         backgroundSize: '100% 100%',
                         borderRadius:'5%',
-                        backgroundImage: `url(${user?.image || 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png?fit=500%2C500&ssl=1'})`
-
-
+                        backgroundImage: `url(${league?.image || 'https://64.media.tumblr.com/623d1cf0c804fc3c57a10fd72bb0215f/tumblr_n1tktnB4ku1tqptlzo2_500.gif'})`
                       }} alt={`${league.image}`}></h1></span>
                       
                       

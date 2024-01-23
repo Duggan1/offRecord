@@ -17,19 +17,14 @@ function Profile({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,men
 
     <div className="flex"><div className="RightOne text-align-center">
     {/* <p>Hello, </p> */}
-    <p>{user?.fullname}</p>
-    <p>{user?.email}</p>
+    <p className="pt5">{user?.fullname}</p>
+    <p className="pt5">{user?.email}</p>
     {/* <p></p> */}</div>
 
     <div className="LeftOne">
-    <h1 style={{
+    <h1 className="ProfilePicPreview" style={{
                         textAlign:'center',
-                        width: '80%',
-                        height: '100px',
-                        backgroundColor: 'white',
-                        padding: '0px 0px',
-                        backgroundSize: '100% 100%',
-                        borderRadius:'50%',
+                        margin:' 0 10%',
                         backgroundImage: `url(${user?.image || 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png?fit=500%2C500&ssl=1'})`
 
                       }} alt={`${user?.image}}`}></h1>
