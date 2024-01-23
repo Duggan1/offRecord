@@ -320,20 +320,20 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                         {weRlive.some(item => item.timeDetails1 !== '')? <><p className="snowwhite">We Are <span className="color-green">Live</span></p>
                          <p className="snowwhite">Fight  {countNonEmptyTimeDetails}/{ufcCard.length} </p> </> : null }
                         <center><div  style={{marginBottom:'-5px'}} className="p4pplusBlack2"></div></center>
-                 <div
-                  style={{zIndex:'1',display:'flex',justifyContent:'center'}}
-                  >
-                  <h6 className=' snow 'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white'}}>{mainRedC}</h6>
-
+                 <div className=""
+                  style={{zIndex:'1',display:'flex',justifyContent:'center',maxWidth:'100%'}}
+                  ><div style={{backgroundColor:'red',zIndex:'1',display:'flex',justifyContent:'center',minWidth:'45%'}}>
+                  <h6 className='homebullet snow 'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',color:'white'}}>{mainRedC}</h6>
+                </div><div style={{minWidth:'10%'}}>
                  <h6 className='color-white snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white',color:'black'}}>  vs  </h6>
-                 
-                 <h6 className=' snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'blue',color:'white'}}>{mainBlueC}</h6>
-                 
+                 </div><div style={{backgroundColor:'blue',minWidth:'45%'}}>
+                 <h6 className='homebullet snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',color:'white'}}>{mainBlueC}</h6>
+                 </div>
                  {/* //////////////////////// */}</div>
                  {location ? 
                  <div
                   style={{zIndex:'1',display:'flex',justifyContent:'center'}}>
-                 <p className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</p>
+                 <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</p>
                  <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',

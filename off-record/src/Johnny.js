@@ -153,16 +153,16 @@ function Johnny({ onLogin, ufcCard,onLogout  }) {
 
         { showVideo ? 
             <form className="loginsu" onSubmit={handleSubmit}>
-                <label className="caged-black bold">Username:</label>
-                <input className="ltypediv" type="text" value={userName} onChange={(e) => setUserName(e.target.value)} required /><br></br>
-                <label className="caged-black bold">Password:</label>
-                <input className="ltypediv" type="text" value={password} onChange={(e) => setPassword(e.target.value)} required /><br></br>
+                {/* <label className="caged-black bold">Username:</label> */}
+                <input className="ltypediv" type="text" placeholder="Username" value={userName} onChange={(e) => setUserName(e.target.value)} required /><br></br>
+                {/* <label className="caged-black bold">Password:</label> */}
+                <input className="ltypediv" type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required /><br></br>
 
-                <label className="caged-black bold">Full Name:</label>
-                <input className="ltypediv" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required /><br></br>
+                {/* <label className="caged-black bold">Full Name:</label> */}
+                <input className="ltypediv" type="text" placeholder="Full Name" value={fullName} onChange={(e) => setFullName(e.target.value)} required /><br></br>
                 
-                <label className="caged-black bold" >Email:</label>
-                <input className="ltypediv" type="email" value={Email} onChange={(e) => setEmail(e.target.value)} required /><br></br>
+                {/* <label className="caged-black bold" >Email:</label> */}
+                <input className="ltypediv" type="email" placeholder="Email" value={Email} onChange={(e) => setEmail(e.target.value)} required /><br></br>
                 
                 <button style={{marginRight:'17%',minWidth:'10%', marginTop:'3%', backgroundColor:'whitesmoke'}} className="submitb" type="submit">Submit</button>
                 
@@ -175,21 +175,21 @@ function Johnny({ onLogin, ufcCard,onLogout  }) {
             </form> : 
             // <form >
             <form  className="loginsu" onSubmit={handleSubmit2}>
-            <label className=" caged-black bold" >Username:</label>
+            {/* <label className=" caged-black bold" >Username:</label> */}
             <input
             className="ltypediv"
               type="text"
               value={username}
-              placeholder=""
+              placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
             />
             <br></br>
-            <label className="caged-black bold" >Password:</label>
+            {/* <label className="caged-black bold" >Password:</label> */}
             <input
             className="ltypediv"
             type="password"
             value={_password}
-            placeholder=""
+            placeholder="Password"
             onChange={(e) => set_password(e.target.value)}
           /><br></br>
             <button style={{marginRight:'17%',minWidth:'10%', marginTop:'3%', backgroundColor:'whitesmoke'}} className="submitb"  type="submit">Login</button>

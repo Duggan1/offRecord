@@ -16,8 +16,9 @@ import isEqual from 'lodash/isEqual';
 import Compare from './Compare';
 import Leagues from './Leagues';
 import LeagueInfo from './LeagueInfo';
-import P4pHeader from './P4pHeader'
-
+import P4pHeader from './P4pHeader';
+import Profile from './Profile';
+import ProfileSettings from './ProfileSettings';
 // import CommentSection from './CommentSection';
 
 
@@ -879,7 +880,12 @@ const [leagues, setLeagues] = useState([])
       
       
       <Route path="/about" element={<About user={user} onLogout={handleLogout} />}/>
+
+      <Route path="/profile" element={<Profile user={user} onLogout={handleLogout} />}/>
+      <Route path="/profile/settings" element={<ProfileSettings user={user} onLogout={handleLogout} />}/>
       {/* <Route path="/comments" element={<CommentSection />}/> */}
+
+
       {/* <Route path="/pools" element={<Pools />}/> */}
        
     </Routes>

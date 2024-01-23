@@ -1762,8 +1762,12 @@ input[type='checkbox'] {
 .formL{
   padding-bottom: 3%;
 }
-
-
+.bg-white {
+  background-color: white;
+}
+.fs45{
+  font-size: 45px;
+}
 
 .fi {
   
@@ -1775,10 +1779,15 @@ input[type='checkbox'] {
   min-height:1000px;
   overflow: hidden;
 }
-
+.homebullet{
+  font-size: 20px;
+}
 
 @media (max-width: 767px) {
 
+  .homebullet{
+    font-size: 12px;
+  }
 
   .chosenL{
     font-size: 15px;

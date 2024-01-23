@@ -145,7 +145,7 @@ export default function P4pHeader({user, onLogout}) {
                           <a
                             href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                            
+                            onClick={() => { handleOptionClick('/profile') }}
                           >
                             Your Profile
                           </a>
@@ -156,7 +156,8 @@ export default function P4pHeader({user, onLogout}) {
                           <a
                             href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
+                            onClick={() => { handleOptionClick('/profile/settings') }}
+                         >
                             Settings
                           </a>
                         )}
