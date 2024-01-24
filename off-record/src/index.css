@@ -889,8 +889,8 @@ code {
   .leagueBG {
     background-image: url('./leagueObg.jpeg');
     background-repeat: no-repeat;
-    background-position-x: 50%;
-    background-size: 100% 100%;
+    /* background-position-x: 50%; */
+    background-size: 100% 100%
 
   }
   .leagueBGH {
@@ -902,8 +902,26 @@ code {
     /* padding-left: -1%; */
 
   }
+  .cursor-pointer{
+    cursor: pointer;
+  }
+.border-1px-black{
+  border: black 1px solid;
+}
+.br15{
+  border-radius: 15%;
 
-
+} 
+.p2{
+  padding: 2%;
+}
+.margin5{
+  margin: 5%;
+}
+.paddingupdown{
+  padding-top :10%;
+  padding-bottom :10%
+}
 
 
 @keyframes App-logo-spin {

@@ -274,9 +274,9 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
     <div className="wholeOne2 flex text-align-center" style={{borderBottom:'10px solid black',margin:'0' }}>  
       <div className="LeftOne2">
         {/* <h2 className={clo === 4 ? `chosenL`:`notLchosenL`} onClick={() => setClo(4)}>My Leagues </h2> */}
-        <h2 className={clo === 2 ? `chosenL`:`notLchosenL`} onClick={() => setClo(2)}> Leagues </h2>
+        <h2 className={clo === 2 ? `chosenL`:`notLchosenL`} onClick={() => setClo(2)}> Leagues </h2> <h2 className={clo === 1 ? `chosenL`:`notLchosenL`} onClick={() => setClo(1)}>Join a League</h2>
         <h2 className={clo === 0 ? `chosenL`:`notLchosenL`} onClick={() => setClo(0)}>Create League</h2>
-        <h2 className={clo === 1 ? `chosenL`:`notLchosenL`} onClick={() => setClo(1)}>Join a League</h2>
+       
         <h2 className={clo === 3 ? `chosenL`:`notLchosenL`} onClick={() => setClo(3)}>Delete a League</h2>
       </div>
 
@@ -290,59 +290,65 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
         {/* {clo === 4 ? <h2  style={{backgroundColor:'black'}} className="notLchosenL">My Leagues </h2>: null } */}
 
         {clo === 0 ? 
-      <div className="create color-black ">
-        <form  className="formL"
+      <div className="create color-black bg-white p2  ">
+        <h3 >League Details</h3>
+        <form  className=" formProfilePatch"
         //   onSubmit={(e) => { e.preventDefault(); createLeague(); }}
           >
-            <h3 >League Details</h3>
+            
           <div className="formL"><label>Name </label>
-            <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} /> 
+            <input className="fgpsi" type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} /> 
           </div>
           <div className="formL"><label>Motto </label>
-            <input type="text" name="message" placeholder='Message' value={formData.message} onChange={handleInputChange} />
+            <input className="fgpsi" type="text" name="message" placeholder='Message' value={formData.message} onChange={handleInputChange} />
           </div>
           <div ><label>Logo </label>
-            <input type="text" name="image" placeholder='Image Address' value={formData.image} onChange={handleInputChange} />
+            <input className="fgpsi" type="text" name="image" placeholder='Image Address' value={formData.image} onChange={handleInputChange} />
           </div>
-          <h1 className="" style={{
+          <h1 className="border-1px-black" style={{
                 textAlign:'center',
                 width: '60%',
                 height: '100px',
                 backgroundColor: 'white',
-                padding: '0px 0px',
+                padding: '2% 0px',
                 backgroundSize: 'cover',
-                margin:'0 20%',
+                margin:'2% 20%',
                 backgroundImage: `url(${formData.image})`,
                 color:'black'
               }} alt={`Preview of Logo`}>Preview</h1>
           <div><label>Code</label>
-            <input type="text" name="passcode" placeholder='Passcode  ( Optional )' value={formData.passcode} onChange={handleInputChange} />
+            <input className="fgpsi" type="text" name="passcode" placeholder='Passcode  ( Optional )' value={formData.passcode} onChange={handleInputChange} />
           </div>
 
-            <button className="submitb" onClick={handleSubmit} type="submit">Create League</button>
+            <button className="submitb" style={{backgroundColor:'white'}} onClick={handleSubmit} type="submit">Create League</button>
           </form> 
           </div> : null }
 
         {clo === 1 ? 
-        <div className="join ">
+        <div className="join leagueBG paddingupdown">
       {leagues.map(league => (
-        <div className="joinL " key={league.id}>
-          <div ></div><h3>{league.name}</h3>
+        <div className=" p4pborder color-black br15 margin5 background-dash "  key={league.id}>
           
-        <span>{league.message}</span>
-          <h1 style={{
-                textAlign:'center',
-                width: '60%',
-                height: '100px',
-                backgroundColor: 'white',
-                padding: '0px 0px',
-                backgroundSize: 'cover',
-                margin:'0 20%',
-                backgroundImage: `url(${league.image})`
-              }} alt={`${league.image}`}></h1>
-            
-            <div className="flex" >
-                  <p>{showMembers[league.id] ? 'Hide Members' : 'Show Members'}</p>
+          <div className="flex-start   ">
+          <span className="LeftOne"> <h2 className="fs20 landunder">{league.name}</h2>{league.message}</span>
+                <span className="RightOne p2">
+                <h1 className="leagueBGH" style={{
+                    textAlign: 'center',
+                    width: '80%',
+                    margin: '0 10%',
+                    height: '100px',
+                    padding: '0px 0px',
+                    backgroundSize: '100% 100%',
+                    borderRadius: '5%',
+                    ...(league && league.image && { backgroundImage: `url(${league.image})` })
+                  }} alt={`${league && league.image}`} />
+                  </span>
+            </div>
+            <div className="flex-start">
+              <div className="LeftOne">
+
+            <div className="flex cursor-pointer " >
+            {showMembers[league.id] ? <p className="bg-white border-1px-black br15 p2" onClick={() => offMembers(league.id)}>Hide Members</p> :<p className="bg-white border-1px-black br15 p2" onClick={() => onMembers(league.id)}>Show Members</p>}
                   {showMembers[league.id] ? <p
                   onClick={() => offMembers(league.id)}
                     style={{
@@ -386,11 +392,14 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
                 borderRadius:'50%',
               }}></p><p> {member.username}</p></div> )): null} </> : null}
 
-
+</div><div className="RightOne p2">
           
-          <button className="cursor-pointer"
+          <button className="cursor-pointer submitb"
           onClick={() => joinLeague(league.id)}
           >Join League</button>
+          </div>
+
+</div>
         </div>
       ))}
       
