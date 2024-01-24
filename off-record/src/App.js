@@ -775,6 +775,7 @@ console.log(ufcCard3)
 console.log(eventInfo) 
 const PreLeonColby =  ('' + ufcEvents.backgroundImageSrc)
 const backgroundImageSrc = eventInfo.backgroundImageSrc
+const mewtwo = eventInfo.event_name
 const tapImageSrc = eventInfo.tapImage
 // console.log()
 console.log(backgroundImageSrc) 
@@ -873,7 +874,7 @@ const [leagues, setLeagues] = useState([])
      
       
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
-                                              stallUfcCard={ufcCard} locationCity={locationcity} location={location}  onLogout={handleLogout} />}/>
+                                              stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2}  onLogout={handleLogout} BGpic={ufcI} tapImage={tapI} mewtwo={mewtwo} />}/>
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} 
                                                 weRlive={weRlive} justSubmitted={justSubmitted} onLogout={handleLogout} />}/>
       <Route path="/results/Compare" element={<Compare ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} liveFinishes={liveFinishes} onLogout={handleLogout} />}/>

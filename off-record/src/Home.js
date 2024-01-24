@@ -314,7 +314,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 
                 {/* <h1>{weRlive.some(item => item.fighter1 !== '') ? 'True' : 'False' }</h1> */}
       
-                <div className='crdiv2 box-content'> 
+                <div  className='crdiv2 box-content'> 
 
                {mainBlueC ?<>
                         {weRlive.some(item => item.timeDetails1 !== '')? <><p className="snowwhite">We Are <span className="color-green">Live</span></p>
@@ -347,12 +347,12 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                   : null}
                 </> : null} 
                 {tapImage ? 
-                  <h5 className=' snow' style={{backgroundImage: `url(${tapImage})`,
+                  <h5 className=' snow'  style={{backgroundImage: `url(${tapImage})`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
                   paddingTop:'15%',
-                  paddingBottom:'15%',marginBottom:'0%',marginTop:'0%',
-                 height:'200px'
+                  paddingBottom:'15%',marginBottom:'0%',marginTop:'0%', cursor:'pointer',
+                 height:'200px',
                   }} ></h5> 
                 : null }
 

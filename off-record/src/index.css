@@ -1365,7 +1365,7 @@ input[type='checkbox'] {
   color: blue;
 } */
 .paddingneeds{
-  padding: 10% 0%
+  padding: 5% 0%
 }
 
 
@@ -1553,6 +1553,33 @@ input[type='checkbox'] {
 }
 
 .fighter-container {
+  display: flex; /* Display children in a row (horizontal) */
+  align-items: center; /* Vertically align children */
+  margin-bottom: 20px; /* Add margin between fighter containers */
+  min-width: 50%;
+  /* min-height: 100%; */
+  background-image: url('https://www.shutterstock.com/image-vector/empty-mma-arena-red-blue-260nw-1705409833.jpg');
+  /* background-image: url('https://image.shutterstock.com/image-vector/empty-cage-martial-arts-fighting-260nw-1136825033.jpg'); */
+  background-repeat: no-repeat;
+  background-size: 100% 110%;
+}
+.fc3{
+  /* display: flex; Display children in a row (horizontal) */
+  align-items: center; /* Vertically align children */
+  /* margin-bottom: 20px; Add margin between fighter containers */
+  min-width: 5%;
+  padding: 0 25%;
+  margin: 0 -25%;
+  min-height: 00px;
+  /* background-image: url('https://www.shutterstock.com/image-vector/empty-mma-arena-red-blue-260nw-1705409833.jpg'); */
+  /* background-image: url('https://image.shutterstock.com/image-vector/empty-cage-martial-arts-fighting-260nw-1136825033.jpg'); */
+  background-repeat: no-repeat;
+  background-size: 100% 110%;
+  /* position: relative; */
+  
+
+}
+.inside-fighter-container {
   display: flex; /* Display children in a row (horizontal) */
   align-items: center; /* Vertically align children */
   margin-bottom: 20px; /* Add margin between fighter containers */
@@ -2172,6 +2199,8 @@ a {
   padding-top: 5%;
   padding-right: 2%;
 }
-
+.fs-mono{
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 
 

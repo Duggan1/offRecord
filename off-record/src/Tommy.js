@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import Dnd from './Dnd';
 import Dnd2 from './Dnd2';
 
-function Tommy({ user, ufcCard, stallUfcCard,locationCity,location, isOwnerAndEventMatch, setjustSubmitted, onLogout}) {
+function Tommy({BGpic,tapImage, state, user,mewtwo, ufcCard, stallUfcCard,locationCity,location, isOwnerAndEventMatch, setjustSubmitted, onLogout,}) {
 
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -531,7 +531,7 @@ console.log(selectedUfcCard)
 
 
 if (isLoading) {
-  return <Dnd />; // Render loading indicator
+  return <> <P4pHeader onLogout={onLogout} user={user} /> <Dnd /></>; // Render loading indicator
 } 
 
 
@@ -551,26 +551,46 @@ if (isLoading) {
     <div className="tommy">
 
 
-          <button className='dreamcardbutton' onClick={toggleCard}>
+          {/* <button className='dreamcardbutton' onClick={toggleCard}>
                 {showUfcCard ? ' Dream Card' : 'Show Current UFC Card'}
-              </button>
+              </button> */}
 
 
 
       {showUfcCard?
       <div className="bayLoc" > 
-      
-        
+          <h1 className='fs45 fs-mono'>{mewtwo}</h1>
+      <div
+                  style={{zIndex:'1',display:'flex',justifyContent:'center'}}>
+                 <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</p>
+                 <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
+                  backgroundSize: '100% 100%',
+                  backgroundRepeat:'no-repeat',
+                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black'
+                  
+                  }} >___</h6></div><div class="element-with-border2"></div>
+                <div className='flex'>
                   <h1 style={{
-                              height: '100px',
+                              height: '200px',
                               backgroundColor: 'black',
                               padding: '0px 2px',
                               backgroundSize: '100% 100%',
-                              margin:'0% 20%',
-                              backgroundImage: `url(https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png)`
-                            }} alt={`Flag of ${location}`}>
-                              
-                            </h1><div class="element-with-border"></div><h1 style={{margin:'0'}}> UFC {locationCity}</h1>
+                              width:'50%',
+                              backgroundImage: `url(${BGpic})`
+                            }} alt={`Flag of ${location}`}> </h1>
+                            <h1 style={{
+                              height: '200px',
+                              backgroundColor: 'black',
+                              padding: '0px 2px',
+                              backgroundSize: '100% 100%',
+                              width:'50%',
+                              // margin:'0% 20%',
+                              backgroundImage: `url(${tapImage})`
+                            }} alt={`Flag of ${location}`}> </h1></div>
+
+                           
+                            
+                            
           
           
           {/* <br></br><h2 className="" >{mainEvent}</h2> */}
@@ -615,6 +635,7 @@ if (isLoading) {
       <form style={{marginBottom: '0px',textAlign:'center'}} className="blackBG" onSubmit={handleSubmit}>
         {selectedUfcCard.length > 2 && selectedUfcCard.map((fight, index) => (
     <div key={index} className="fight">
+
       <div key={index} 
       className={`${(predictions[index]?.winner === 0 || predictions[index]?.winner === 1) && 
         (predictions[index]?.method === 'TKO/KO' || predictions[index]?.method === 'Decision' || predictions[index]?.method === 'Draw/No-Contest/DQ' || predictions[index]?.method === 'Submission') &&
@@ -684,10 +705,11 @@ if (isLoading) {
             </div>
 
 
-            <div className={`${(predictions[index]?.winner === 0 || predictions[index]?.winner === 1) && 
+             <div className={`${(predictions[index]?.winner === 0 || predictions[index]?.winner === 1) && 
       (predictions[index]?.method === 'TKO/KO' || predictions[index]?.method === 'Decision' || predictions[index]?.method === 'Draw/No-Contest/DQ' || predictions[index]?.method === 'Submission') &&
       (predictions[index]?.round === '1' || predictions[index]?.round === '2' || predictions[index]?.round === '3' || predictions[index]?.round === '4'|| predictions[index]?.round === '5' || predictions[index]?.method === 'Decision' || predictions[index]?.method === 'Draw/No-Contest/DQ')
      ? 'fighter-container2' : 'fighter-container'}`}>
+      
 
       <div
         className={`fighter-image ${
@@ -695,7 +717,7 @@ if (isLoading) {
         }`}
         style={{
           width: '100%',
-          backgroundImage: `url('${fight.fighterPics[0]}'`,
+          backgroundImage: `url('${fight.fighterPics[0]}'`,zIndex:'1'
           
           
 
@@ -723,7 +745,7 @@ if (isLoading) {
     </button>
     
     </div>
-      </div>
+      </div><div className='fc3' style={{backgroundImage:`url(${BGpic})`}}> </div>
       <div
         className={`fighter-info ${
           predictions[index]?.winner === 0 ? 'selected' : ''
@@ -769,8 +791,8 @@ if (isLoading) {
       </div>
     </div>
    
-     
     </div>
+   
     
 
 
@@ -811,23 +833,39 @@ if (isLoading) {
 
       {showUfcCard?
       <div className="bayLoc" >   {signIn ? <p className='snowwhite'>Please Login or SignUp! </p>: <p className='color-yellow'>Please Login or SignUp! </p>}
-       <button className='dreamcardbutton' onClick={toggleCard}>
-          {showUfcCard ? 'Show Dream Card' : 'Show Current UFC Card'}
-        </button>
-      <h1 style={{
-  height: '100px',
-  backgroundColor: 'black',
-  padding: '0px 2px',
-  backgroundSize: '100% 100%',
-  margin:'0% 20%',
-  backgroundImage: `url(https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png)`,
-  backgroundRepeat:'no-repeat',
-  // border:'1px solid black',
+       
 
-}} alt={`Flag of ${location}`}>
-  
-</h1><div style={{borderTop:'solid white 3px'}} class="element-with-border"></div><h1 style={{margin:'0'}}> UFC {locationCity}</h1>
+       <h1 className='fs45 fs-mono'>{mewtwo}</h1>
+      <div
+                  style={{zIndex:'1',display:'flex',justifyContent:'center'}}>
+                 <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</p>
+                 <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
+                  backgroundSize: '100% 100%',
+                  backgroundRepeat:'no-repeat',
+                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black'
+                  
+                  }} >___</h6></div><div class="element-with-border2"></div>
+                <div className='flex'>
+                  <h1 style={{
+                              height: '200px',
+                              backgroundColor: 'black',
+                              padding: '0px 2px',
+                              backgroundSize: '100% 100%',
+                              width:'50%',
+                              backgroundImage: `url(${BGpic})`
+                            }} alt={`Flag of ${location}`}> </h1>
+                            <h1 style={{
+                              height: '200px',
+                              backgroundColor: 'black',
+                              padding: '0px 2px',
+                              backgroundSize: '100% 100%',
+                              width:'50%',
+                              // margin:'0% 20%',
+                              backgroundImage: `url(${tapImage})`
+                            }} alt={`Flag of ${location}`}> </h1></div>
 
+                           
+                            
 
           
           

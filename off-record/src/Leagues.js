@@ -194,20 +194,21 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
       { user ?  
       <>
       <div style={{marginBottom:''}}>
-      <div style={{backgroundColor:'whitesmoke'}}>
+      <div style={{backgroundColor:'white'}}>
 
-      <div className={`element-with-border3`}>
-        <center> <h3 
+      <div className={``}>
+        {/* <center> <h3 
         style={{margin:'0',marginBottom:'-3px'}}  
-        className="p4pplusBlack"></h3></center>
+        className="p4pplusBlack"></h3></center> */}
        { userLeagues.length > 0 ? <div style={{}}>
-              <h1 style={{borderBottom:'10px solid black',margin:'0',backgroundColor:'black' }}><span style={{border:'2px solid black',backgroundColor:'white',color:'black',padding:' 0 5%'}}>My Leagues</span> </h1>
+              <h1 className="fs45" style={{}}><span style={{color:'black',padding:' 0 5%'}}>My Leagues</span> </h1>
+              <p>{user?.username} {user?.userName}</p>
               {/* <div className='' style={{backgroundColor:''}}> */}
         
                   
-          <div className={`element-with-border3 paddingneeds`} >
+          <div className={` paddingneeds`} >
                 {userLeagues.map(league => (
-                <div className="flex-start" style={{border:'black 2px solid',borderRadius:'10%', margin:'0% 5%', marginTop:'5%',backgroundColor:'whitesmoke',cursor:'pointer'}}
+                <div className="flex-start p4pborder" style={{borderRadius:'10%', margin:'0% 5%', marginTop:'5%',backgroundColor:'whitesmoke',cursor:'pointer'}}
                 onClick={() => {
                   setLN(league);
                   navigate('/leagues/deatils');
@@ -245,7 +246,7 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
 
 
 
-        <div style={{backgroundColor:'whitesmoke'}} className="flex-start">
+        <div style={{backgroundColor:'black'}} className="flex-start">
       <span  style={{
             borderTop: '15px solid red',
             borderRight: '15px solid blue',
@@ -261,15 +262,15 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
             className='p4pplus LeftOne'
             
             ></span> 
-            <h1 className="LeftOne color-black" style={{margin:'5%'}} > League Settings</h1></div>
-            <div style={{marginTop:"0%",marginBottom:'0%'}} className="element-with-borderBB"></div> 
+            <h1 className="LeftOne snowwhite fs20" style={{margin:'5%'}} > League Settings</h1></div>
+            <div style={{marginTop:"0%",marginBottom:'0%',borderTop:'2px solid white'}} className="element-with-borderBB"></div> 
 
 
 
-    <div className="wholeOne2 flex text-align-center" style={{borderBottom:'10px solid whitesmoke',margin:'0' }}>  
+    <div className="wholeOne2 flex text-align-center" style={{borderBottom:'10px solid black',margin:'0' }}>  
       <div className="LeftOne2">
         {/* <h2 className={clo === 4 ? `chosenL`:`notLchosenL`} onClick={() => setClo(4)}>My Leagues </h2> */}
-        <h2 className={clo === 2 ? `chosenL`:`notLchosenL`} onClick={() => setClo(2)}>About Leagues </h2>
+        <h2 className={clo === 2 ? `chosenL`:`notLchosenL`} onClick={() => setClo(2)}> Leagues </h2>
         <h2 className={clo === 0 ? `chosenL`:`notLchosenL`} onClick={() => setClo(0)}>Create League</h2>
         <h2 className={clo === 1 ? `chosenL`:`notLchosenL`} onClick={() => setClo(1)}>Join a League</h2>
         <h2 className={clo === 3 ? `chosenL`:`notLchosenL`} onClick={() => setClo(3)}>Delete a League</h2>
@@ -278,10 +279,10 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
       {/* ////////////////////////////////////////////////////////////////////// */}
 
       <div style={{backgroundColor:'whitesmoke'}} className="RightOne2">
-        {clo === 0 ? <h2 style={{backgroundColor:'black',cursor:'crosshair'}} className="notLchosenL">Create League </h2>: null }
-        {clo === 1 ?<h2 style={{backgroundColor:'black',cursor:'crosshair'}}  className="notLchosenL">Join a League </h2>: null }
-        {clo === 2 ? <h2  style={{backgroundColor:'black',cursor:'crosshair'}} className="notLchosenL">About Leagues </h2>: null }
-        {clo === 3 ? <h2  style={{backgroundColor:'black',cursor:'crosshair'}} className="notLchosenL">Delete a League </h2>: null }
+        {clo === 0 ? <h2 style={{backgroundColor:'black',cursor:'crosshair'}} className="fs45">Create </h2>: null }
+        {clo === 1 ?<h2 style={{backgroundColor:'black',cursor:'crosshair'}}  className="fs45">Join</h2>: null }
+        {clo === 2 ? <h2  style={{backgroundColor:'black',cursor:'crosshair'}} className="fs45"> Leagues </h2>: null }
+        {clo === 3 ? <h2  style={{backgroundColor:'black',cursor:'crosshair'}} className='fs45'>Delete</h2>: null }
         {/* {clo === 4 ? <h2  style={{backgroundColor:'black'}} className="notLchosenL">My Leagues </h2>: null } */}
 
         {clo === 0 ? 
