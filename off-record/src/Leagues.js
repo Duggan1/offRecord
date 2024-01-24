@@ -194,19 +194,23 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
       { user ?  
       <>
       <div style={{marginBottom:''}}>
-      <div style={{backgroundColor:'white'}}>
-
+      <div style={{backgroundColor:'white',}}>
       <div className={``}>
         {/* <center> <h3 
         style={{margin:'0',marginBottom:'-3px'}}  
         className="p4pplusBlack"></h3></center> */}
-       { userLeagues.length > 0 ? <div style={{}}>
-              <h1 className="fs45" style={{}}><span style={{color:'black',padding:' 0 5%'}}>My Leagues</span> </h1>
-              <p>{user?.username} {user?.userName}</p>
+       
+              <div className="leagueBGH" style={{ paddingBottom:'20%'}}>
+              <h1 className="fs45" style={{}}><span style={{color:'black',padding:' 0 5%'}}></span> </h1>
+              {/* <p>{user?.username} {user?.userName}</p> */}
+              </div>
               {/* <div className='' style={{backgroundColor:''}}> */}
         
-                  
-          <div className={` paddingneeds`} >
+              { userLeagues.length > 0 ? <div style={{}}>    
+          <div style={{borderTop:' black 5px solid'}}
+
+          className={` paddingneeds leagueBG`} >
+            <p style={{marginTop:'-5%',}}><span style={{border:' black 3px solid', padding:'0 3%',color:'white',backgroundColor:'black'}} >{user?.username}{user?.userName}'s Leagues</span></p>
                 {userLeagues.map(league => (
                 <div className="flex-start p4pborder" style={{borderRadius:'10%', margin:'0% 5%', marginTop:'5%',backgroundColor:'whitesmoke',cursor:'pointer'}}
                 onClick={() => {
@@ -215,7 +219,7 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
                 }}
                 
                 >
-                <span className="LeftOne"> <h2>{league.name}</h2>{league.message}</span>
+                <span className="LeftOne"> <h2 className="fs20 landunder">{league.name}</h2>{league.message}</span>
                 <span className="RightOne">
                   <h1 style={{
                         textAlign:'center',
