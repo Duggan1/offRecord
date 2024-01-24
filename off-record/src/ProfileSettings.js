@@ -17,14 +17,20 @@ function ProfileSettings({ user, onLogout }) {
       [name]: value,
     });
   };
+  const [GTC , setGTC ] = useState(false)
+  const [response , setResponse ] = useState('')
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
   
     try {
+      setGTC(true)   
       const response = await axios.patch(`/users/${user.id}`, formData);
   
-      console.log(response.data.message);  // Log the server response
+      console.log(response.data.message); 
+      setResponse(response.data.message);
+      setGTC(false)   
+       // Log the server response
     } catch (error) {
       console.error('Error updating profile:', error);
     }
@@ -70,13 +76,14 @@ function ProfileSettings({ user, onLogout }) {
 
               {/* Form */}
               <form className="formProfilePatch">
+                
               <center>
                 <div className="ProfilePicPreview" style={{backgroundImage:`url(${formData?.image || 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png?fit=500%2C500&ssl=1'})`}}>
 
                 </div></center>
                 <div className="form-group">
                   <label htmlFor="fullname">Full Name</label><br></br>
-                  <input
+                  <input className="fgpsi"
                     type="text"
                     id="fullname"
                     name="fullname"
@@ -89,7 +96,7 @@ function ProfileSettings({ user, onLogout }) {
 
                 <div className="form-group">
                   <label htmlFor="email">Email</label><br></br>
-                  <input
+                  <input className="fgpsi"
                     type="email"
                     id="email"
                     name="email"
@@ -102,7 +109,7 @@ function ProfileSettings({ user, onLogout }) {
 
                 <div className="form-group">
                   <label htmlFor="image">Profile Picture</label><br></br>
-                  <input
+                  <input className="fgpsi"
                     type="text"
                     id="image"
                     name="image"
@@ -114,13 +121,17 @@ function ProfileSettings({ user, onLogout }) {
                 </div>
 
                 <div className="text-align-center">
+                {!GTC ? 
                 <button className="submitb" onClick={handleUpdateProfile} style={{ padding: '0' }}>
                 Update Profile
-                </button>
+                </button> : <div style={{height:'40px'}} className="loading3"></div>}
 
                 </div>
+                
               </form>
               {/* End Form */}
+              {response ? <p className="color-red">{response} </p>: null}
+
 
             </>
           )}
