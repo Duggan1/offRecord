@@ -25,7 +25,7 @@ function ProfileSettings({ user, onLogout }) {
   
     try {
       setGTC(true)   
-      const response = await axios.patch(`/users/${user.id}`, formData);
+      const response = await axios.patch(`https://off-therecordpicks.onrender.com/users/${user.id}`, formData);
   
       console.log(response.data.message); 
       setResponse(response.data.message);
