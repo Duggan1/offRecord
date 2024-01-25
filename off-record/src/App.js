@@ -882,7 +882,7 @@ const [leagues, setLeagues] = useState([])
       
       <Route path="/about" element={<About user={user} onLogout={handleLogout} />}/>
 
-      <Route path="/profile" element={<Profile user={user} onLogout={handleLogout} />}/>
+      <Route path="/profile" element={<Profile user={user} onLogout={handleLogout} ufcResults={modifiedUfcResults}  results2={results2} adminKevPicks2={adminKevPicks} />}/>
       <Route path="/profile/settings" element={<ProfileSettings user={user} onLogout={handleLogout} />}/>
       {/* <Route path="/comments" element={<CommentSection />}/> */}
 
