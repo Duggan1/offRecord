@@ -268,7 +268,7 @@ useEffect(() => {
     if (user) {
       user.wins = countWinsForUsername(leaderboardwinners, user.username.toLowerCase());
     }
-  }, [user]);
+  }, []);
 
   const getWinnerByIndex = (results, mainEventsList, index) => {
     const mainEventAtIndex = mainEventsList[index];
