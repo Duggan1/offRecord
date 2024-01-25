@@ -354,7 +354,13 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                   paddingBottom:'15%',marginBottom:'0%',marginTop:'0%', cursor:'pointer',
                  height:'200px',
                   }} ></h5> 
-                : null }
+                : <h5 className=' snow'  style={{backgroundImage: `url(${tapImage})`,
+                backgroundSize: '100% 100%',
+                backgroundRepeat:'no-repeat',
+                paddingTop:'15%',
+                paddingBottom:'15%',marginBottom:'0%',marginTop:'0%', cursor:'pointer',
+               height:'200px',
+                }} ></h5> }
 
 
                   {isOwnerAndEventMatch ? <p className="color-green">Picks submitted </p> :  user ?  <p className="color-red">Picks missing </p> : null }
