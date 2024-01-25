@@ -11,9 +11,14 @@ const [adminKevPicks, setAdminKevPicks] = useState(adminKevPicks2);
 
 const filteredByMainEvent = results.filter((result) => {
     return (
-      ( result.owner === user.username)
+      ( result.owner === user?.username)
     );
   });
+//   const filteredByMainEvent2 = results.filter((result) => {
+//     return (
+//       ( result.owner === user.username)
+//     );
+//   });
 //////////////////////////////////////////////
 const [leaderboard, setLeaderboard] = useState([]);
 const [leaderboardwinners, setLeaderboardwinners] = useState([]);
@@ -255,20 +260,32 @@ const uniqueMainEvents = [...new Set(filteredByMainEvent.map(result => result.ma
 const mainEventsWithPredictions = filteredByMainEvent.map(result => result.main_event);
 
 // Step 3: Display main events you missed or don't have picks for
-const mainEventsMissedOrNoPicks = uniqueMainEvents.filter(mainEvent => !mainEventsWithPredictions.includes(mainEvent));
+const uniqueMainEventsMissedOrNoPicks = results.filter(result => {
+    return !mainEventsWithPredictions.includes(result.main_event)
+    //  && uniqueMainEvents.includes(result.main_event) ;
+  });
+  // Step 4: Extract unique main events from mainEventsMissedOrNoPicks
+// const  = [...new Set(mainEventsMissedOrNoPicks.map(result => result.main_event))];
+
+// Step 4: Extract unique main events from mainEventsMissedOrNoPicks
+const mainEventsMissedOrNoPicks = [...new Set(uniqueMainEventsMissedOrNoPicks.map(result => result.main_event))];
+
+
+  
+
 
 console.log(mainEventsMissedOrNoPicks);
 console.log(mainEventsWithPredictions);
-console.log(leaderboard)
+console.log(uniqueMainEvents)
 // console.log(user.username)
 // console.log(countWinsForUsername(leaderboardwinners, user.username.toLowerCase() ))
 
-useEffect(() => {
+// useEffect(() => {
     // Check if user is not null before setting wins
     if (user) {
       user.wins = countWinsForUsername(leaderboardwinners, user.username.toLowerCase());
     }
-  }, []);
+//   }, [user && leaderboardwinners ]);
 
   const getWinnerByIndex = (results, mainEventsList, index) => {
     const mainEventAtIndex = mainEventsList[index];

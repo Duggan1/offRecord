@@ -29,6 +29,7 @@ function ProfileSettings({ user, onLogout }) {
   
       console.log(response.data.message); 
       setResponse(response.data.message);
+      user.image = formData.image
       setGTC(false)   
        // Log the server response
     } catch (error) {
