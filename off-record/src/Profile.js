@@ -259,7 +259,7 @@ const mainEventsMissedOrNoPicks = uniqueMainEvents.filter(mainEvent => !mainEven
 
 console.log(mainEventsMissedOrNoPicks);
 console.log(mainEventsWithPredictions);
-console.log(leaderboardwinners)
+console.log(leaderboard)
 // console.log(user.username)
 // console.log(countWinsForUsername(leaderboardwinners, user.username.toLowerCase() ))
 
@@ -279,6 +279,18 @@ useEffect(() => {
       return winner;
     } else {
       return 'Index out of range';
+    }
+  };
+  const findUserPointsByUsername = (leaderboard, username) => {
+    const user = leaderboard.find((user) => user.username === username);
+  
+    // Check if the user is found
+    if (user) {
+      return user.totalPoints;
+    } else {
+      // Handle case when user is not found
+      console.log(`User with username ${username} not found.`);
+      return null;
     }
   };
   
@@ -304,9 +316,10 @@ return (
             <div className="LeftOne">
               <h1 className="ProfilePicPreview" style={{
                 textAlign: 'center',
-                margin: '0 10%',
+                margin: '0 15%',
                 backgroundImage: `url(${user?.image || 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png?fit=500%2C500&ssl=1'})`
               }} alt={`${user?.image}`} />
+             <p className="text-align-center pt5"> Total Points { findUserPointsByUsername(leaderboard,user.username.toLowerCase())}</p>
             </div>
           </div>
   
