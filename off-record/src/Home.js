@@ -303,7 +303,15 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
     <P4pHeader user={user} onLogout={onLogout} />
     
     
-      {isUfcCardLoaded ?  
+      {isUfcCardLoaded ?  <>
+      <div className="homeSpace text-align-center">
+
+      {!user ? <> <p onClick={() => { handleOptionClick('/section1') }} className=" color-red landunder cursor-pointer">Please Sign In or Sign Up </p> <h1 onClick={() => { handleOptionClick('/section1') }} className="fs65 color-red cursor-pointer">&#8599;</h1> </> : <h1 className="fs452 color-blue">Welcome Back, {user?.username} {user?.userName}</h1>}
+        
+        {user ?  isOwnerAndEventMatch ? <p className="color-green text-alight-right">Picks submitted </p> :  <p className="color-red text-alight-right">Picks missing </p>  : null }
+        
+        </div>
+        <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
       < div className="home" >
             {/* <p style={{ color: 'yellow' }}>Welcome to</p> */}
             {/* <h1 className="homeheaders"style={{}}
@@ -330,6 +338,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                  <h6 className='homebullet snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',color:'white'}}>{mainBlueC}</h6>
                  </div>
                  {/* //////////////////////// */}</div>
+                
                  {location ? 
                  <div
                   style={{zIndex:'1',display:'flex',justifyContent:'center'}}>
@@ -344,17 +353,25 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                   // width:'100%',
                   //  justifyContent:'center',textAlign:'center'
                   }} >___</h6></div>
-                  : null}
+                  :
+                  
+                  <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> Loading Event Details ...</p>}
+               
+               
                 </> : null} 
-                {tapImage ? 
-                  <h5 className=' snow'  style={{backgroundImage: `url(${tapImage})`,
+                
+                
+                {!tapImage ? 
+                  <h5 className=' snow loadingL'  style={{
+                    // backgroundImage: `url(${tapImage})`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
                   paddingTop:'15%',
                   paddingBottom:'15%',marginBottom:'0%',marginTop:'0%', cursor:'pointer',
                  height:'200px',
                   }} ></h5> 
-                : <h5 className=' snow'  style={{backgroundImage: `url(${tapImage})`,
+                : <h5 className=' snow '  style={{
+                  backgroundImage: `url(${tapImage})`,
                 backgroundSize: '100% 100%',
                 backgroundRepeat:'no-repeat',
                 paddingTop:'15%',
@@ -363,7 +380,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 }} ></h5> }
 
 
-                  {isOwnerAndEventMatch ? <p className="color-green">Picks submitted </p> :  user ?  <p className="color-red">Picks missing </p> : null }
+                  
 
                
                
@@ -545,13 +562,20 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 </h1></div>
 
 
-        </div> 
+        </div> </>
         :
         
         
         <>
         
+                  <div className="homeSpace text-align-center">
 
+          {!user ? <> <p onClick={() => { handleOptionClick('/section1') }} className=" color-red landunder cursor-pointer">Please Sign In or Sign Up </p> <h1 onClick={() => { handleOptionClick('/section1') }} className="fs65 color-red cursor-pointer">&#8599;</h1> </> : <h1 className="fs452 color-blue">Welcome Back, {user?.username} {user?.userName}</h1>}
+            
+            {user ?  isOwnerAndEventMatch ? <p className="color-green text-alight-right">Picks submitted </p> :  <p className="color-red text-alight-right">Picks missing </p>  : null }
+            
+            </div>
+                 <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
             <div style={{paddingTop:'15%',paddingBottom:'35%'}}className="element-with-border3">
                   <div style={{marginTop:"5%",
                               
@@ -562,9 +586,11 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                               backgroundSize: '75% 75%'}} 
                      className={`${currentClass}`}></div> 
             </div>
-            <div style={{marginTop:"1%",marginBottom:'25px'}} className="element-with-border">
-          <p className="snowwhite text-align-center " style={{minHeight:'10px'}}><strong >Loading...</strong></p></div>
-                          <div style={{marginTop:"1%",marginBottom:'1%'}} className="element-with-borderBB"></div>              
+            <div style={{backgroundColor:'whitesmoke'}} >
+            <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
+                 <p className=" text-align-center " style={{minHeight:'10px'}}><strong >Loading...</strong></p>
+                 <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>         
+            </div>
        </>
         }
     </>)

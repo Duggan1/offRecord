@@ -331,17 +331,25 @@ return (
       <P4pHeader onLogout={onLogout} user={user} />
       {user ? (
         <div className="bg-white">
+            <div style={{backgroundColor:'whitesmoke'}}>
+            
           <h1 className="text-align-center fs45">{user?.username} {user?.userName}</h1>
   
           <div className="flex">
-            <div className="RightOne text-align-center">
+            <div className="RightOne text-align-center" >
+                
               <p className="pt5">{user?.fullname}</p>
               <p className="pt5">{user?.email}</p>
-
+                    <div style={{border:'2px solid black',borderRadius:'5%',backgroundColor:'white', margin:'0 2%'}}>
             <div className='p4pBelt pt5'>
+
+            
+
               
               </div>
               <p className="pt95 "style={{marginTop:'-20px',}}><span  className="insideBelt green-bg ">x {user?.wins}</span></p> 
+              <p className="">Champion</p>
+            </div>
             </div>
   
             <div className="LeftOne">
@@ -359,7 +367,9 @@ return (
                 <p className="text-align-center landunder pt5">+{ findUserPointsByUsername(leaderboard,user.username.toLowerCase())} Total Points </p>
             </div>
           </div>
-  
+          </div>
+
+                
           <div style={{ paddingTop: '1%', paddingBottom: '5%' }} className="element-with-border3"></div>
   <div className="flex-start background-dash">
     <div className="LeftOne text-align-center">
@@ -381,8 +391,8 @@ return (
             </p>
           ))}</>
           </div>
-          
-                </div>
+          </div>
+                
         </div>
       ) : (
         <div className="snowwhite marginTop20 flex">

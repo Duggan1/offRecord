@@ -36,9 +36,11 @@ function Payment() {
                           backgroundSize: '75% 75%'}} 
                  className={`${currentClass}`}></div> 
         </div>
-        <div style={{marginTop:"1%",marginBottom:'25px'}} className="element-with-border">
-      <p className="snowwhite text-align-center " style={{minHeight:'10px'}}><strong >Loading...</strong></p></div>
-                      <div style={{marginTop:"1%",marginBottom:'1%'}} className="element-with-borderBB"></div>              
+        <div style={{backgroundColor:'whitesmoke'}} >
+            <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
+                 <p className=" text-align-center " style={{minHeight:'10px'}}><strong >Loading...</strong></p>
+                 <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>         
+            </div>            
    </>
     </div>
   );

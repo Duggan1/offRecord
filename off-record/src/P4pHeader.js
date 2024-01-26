@@ -48,8 +48,8 @@ export default function P4pHeader({user, onLogout}) {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <div 
-                    className="h-8 w-auto p4pHI"
+                  <div onClick={() => { handleOptionClick('/') }}
+                    className="h-8 w-auto p4pHI cursor-pointer"
                     // src="./p4p+whitegreen.png"
                     // alt=""
                   ></div>
@@ -244,7 +244,7 @@ export default function P4pHeader({user, onLogout}) {
                 as="a"
                 href="#"
                 onClick={() => { handleOptionClick('/about') }}
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                className="block  border-l-4 border-transparent p4pBorder py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
               >
                 About P4P
               </Disclosure.Button>

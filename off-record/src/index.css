@@ -72,6 +72,15 @@ code {
   z-index: 1;
 
 }
+.homeSpace{
+  padding-top: 10%;
+  background-color: whitesmoke;
+  color:black
+}
+.text-alight-right{
+  text-align: right;
+  padding-right: 2%;
+}
 
 .crdiv {
   background-color: white ;
@@ -908,6 +917,7 @@ code {
     /* background-position-x: 50%; */
     background-size: 100% 100%;
     min-height: 150px;
+    margin: 0 5%;
     /* margin-left: -3.5%; */
     /* padding-left: -1%; */
 
@@ -1919,109 +1929,7 @@ input[type='checkbox'] {
   
 }
 
-@media (max-width: 767px) {
 
-  .homebullet{
-    font-size: 12px;
-  }
-
-  .chosenL{
-    font-size: 15px;
-
-  }
-  .notLchosenL{
-    font-size: 15px;
-
-  }
-  .fi {
-    min-height:600px;
-    
-  }
-  #basement{
-    padding: 20px 0px;
-  }
-  .p4pplus{
-    max-width: 100%;
-    min-width: 60px;
-    max-height: 40px;
-    min-height: 40px;
-    padding: 0%;
-    
-  }
-  .schead {
-    font-size: 9px;
-    font-weight: 600
-    ;
-  }
-  .mobile-fight-info {
-    font-size: .9rem;
-    color: white;
-    white-space: nowrap;
-  }
-
-  .mobile-fighter-name {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-  }
-  .mobile-fighter-name.selected {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: lightgreen;
-    
-  }
-  .mobile-fighter-name.notselected {
-    font-size: 1.2rem;
-    font-weight: bold;
-
-    
-  }
-  .color-black {
-    color: black
-  }
-  .recordwcir {
-    
-    margin-left: 22%;
-  }
-  .loginsu{
-    
-     margin-right:25%;
-  
-  }
-  .Left5 {
-    padding-left: 1%;
-
-  }
-  .Left6 {
-    padding-left: 1%;
-
-  }
-  .lboard{
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-  .loading2 {
-    background-image: url('./zzZZ.gif');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right;
-    min-height: '30px';
-    margin-right: 15%;
-    margin-left: 10%;
-    padding-top: 2%;
-  }
-
-
-
-}
-@font-face {
-  font-family: 'Digital Display';
-  src: url('https://praxeds.github.io/scrimba-basketball-scoreboard/Assets/Digital-Display.woff2') format('woff2'),
-      url('https://praxeds.github.io/basketball-scoreboard/Assets/Digital-Display.woff2') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
 
 
 /*
@@ -2283,6 +2191,9 @@ a {
 .fs65{
   font-size: 65px
 }
+.fs452{
+  font-size: 45px;
+}
 .pt5{
   padding-top: 5%;
   padding-right: 2%;
@@ -2292,3 +2203,124 @@ a {
 }
 
 
+@media (max-width: 767px) {
+
+  .homebullet{
+    font-size: 12px;
+  }
+
+  .fs452{
+    font-size: 30px;
+  }
+
+  .chosenL{
+    font-size: 15px;
+
+  }
+  .notLchosenL{
+    font-size: 15px;
+
+  }
+  .fi {
+    min-height:600px;
+    
+  }
+  #basement{
+    padding: 20px 0px;
+  }
+  .p4pplus{
+    max-width: 100%;
+    min-width: 60px;
+    max-height: 40px;
+    min-height: 40px;
+    padding: 0%;
+    
+  }
+  .schead {
+    font-size: 9px;
+    font-weight: 600
+    ;
+  }
+  .mobile-fight-info {
+    font-size: .9rem;
+    color: white;
+    white-space: nowrap;
+  }
+
+  .mobile-fighter-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+  }
+  .mobile-fighter-name.selected {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: lightgreen;
+    
+  }
+  .mobile-fighter-name.notselected {
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    
+  }
+  .color-black {
+    color: black
+  }
+  .recordwcir {
+    
+    margin-left: 22%;
+  }
+  .loginsu{
+    
+     margin-right:25%;
+  
+  }
+  .Left5 {
+    padding-left: 1%;
+
+  }
+  .Left6 {
+    padding-left: 1%;
+
+  }
+  .lboard{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .loading2 {
+    background-image: url('./zzZZ.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    min-height: '30px';
+    margin-right: 15%;
+    margin-left: 10%;
+    padding-top: 2%;
+  }
+
+  .homeSpace{
+    padding-top: 5%;
+    
+  }
+
+}
+
+
+@media (max-width: 640px) {
+.homeSpace{
+  padding-top: 0%;
+}
+.fs452{
+  font-size: 20px;
+}
+}
+
+@font-face {
+  font-family: 'Digital Display';
+  src: url('https://praxeds.github.io/scrimba-basketball-scoreboard/Assets/Digital-Display.woff2') format('woff2'),
+      url('https://praxeds.github.io/basketball-scoreboard/Assets/Digital-Display.woff2') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

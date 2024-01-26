@@ -822,7 +822,7 @@ const checkConditions = () => {
 useEffect(() => {
   checkConditions()
 
-}, [results2 && user !== null]);
+}, [user]);
 
 console.log(isOwnerAndEventMatch)
 
