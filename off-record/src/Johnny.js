@@ -14,6 +14,7 @@ function Johnny({ onLogin, ufcCard,onLogout  }) {
     const [fullName, setFullName] = useState('');
     const [password, setPassword] = useState('');
     const [Email, setEmail] = useState('');
+    const [GTC , setGTC ] = useState(false)
     
    
     const [errors, setErrors] = useState([]);
@@ -36,6 +37,7 @@ function Johnny({ onLogin, ufcCard,onLogout  }) {
         e.preventDefault();
         try {
             // Validate the form data using Yup
+            setGTC(true) 
             await validationSchema.validate({
                 userName,
                 password,
@@ -61,10 +63,13 @@ function Johnny({ onLogin, ufcCard,onLogout  }) {
                 if (r.ok) {
                     r.json().then(console.log('success'));
                     // setStudents([...students, newStudent]);
+                    
                     onLogin(newStudent)
+                    setGTC(false) 
                     navigate('/');
           } else {
             console.log('failure');
+            setGTC(false) 
           }
         });
 
@@ -77,6 +82,7 @@ function Johnny({ onLogin, ufcCard,onLogout  }) {
         } catch (error) {
             // Handle validation errors
             console.error(error.message);
+            setGTC(false)
             const validationErrors = {};
             error.inner.forEach((error) => {
             validationErrors[error.path] = error.message;
@@ -95,6 +101,7 @@ function Johnny({ onLogin, ufcCard,onLogout  }) {
     }
     function handleSubmit2(e) {
         e.preventDefault();
+        setGTC(true)
         fetch("https://off-therecordpicks.onrender.com/login", {
             method: "POST",
             headers: {
@@ -112,10 +119,12 @@ function Johnny({ onLogin, ufcCard,onLogout  }) {
             .then((user) => {
             console.log(user);
             onLogin(user);
+            setGTC(false)
             navigate("/");
             })
             .catch((error) => {
             console.error("Login error:", error);
+            setGTC(false)
             toggleIncorrect();
             });
 
@@ -192,7 +201,11 @@ function Johnny({ onLogin, ufcCard,onLogout  }) {
             placeholder="Password"
             onChange={(e) => set_password(e.target.value)}
           /><br></br>
+{!GTC ? 
             <button style={{marginRight:'17%',minWidth:'10%', marginTop:'3%', backgroundColor:'whitesmoke'}} className="submitb"  type="submit">Login</button>
+          :
+            <div style={{height:'50px',marginRight:'19%', backgroundPosition:'right'}} className="loading3"></div>}
+          
             {isIncorrect ? <div>
                 <h2>Username or Password Invalid, Please Try Again!</h2>
             </div>: null}

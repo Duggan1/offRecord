@@ -1260,10 +1260,21 @@ font-weight: bold;
   min-width: 90%;
   border-radius: 15%;
 }
+.loadingL {
+  background-image: url('./zzZZ.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+  min-height: '30px';
+  /* margin-right: 35%;
+  margin-left: 30%; */
+  padding-top: 20%;
+}
 .loading {
   background-image: url('./zzZZ.gif');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
   min-height: '30px';
   /* margin-left: '3%'; */
   text-align: right;
@@ -1294,6 +1305,9 @@ font-weight: bold;
   color: white;
    margin-right:35%;
 
+}
+.pt20{
+  padding-top: 20%;
 }
 .selectO {
   

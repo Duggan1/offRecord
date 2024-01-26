@@ -254,7 +254,7 @@ function countWinsForUsername(leaderboardwinners, username) {
 
 console.log(filteredByMainEvent)
 // Step 1: Identify all unique main events
-const uniqueMainEvents = [...new Set(filteredByMainEvent.map(result => result.main_event))];
+const uniqueMainEvents = [...new Set(results.map(result => result.main_event))];
 
 // Step 2: Filter out main events with predictions
 const mainEventsWithPredictions = filteredByMainEvent.map(result => result.main_event);
@@ -276,7 +276,7 @@ const mainEventsMissedOrNoPicks = [...new Set(uniqueMainEventsMissedOrNoPicks.ma
 
 console.log(mainEventsMissedOrNoPicks);
 console.log(mainEventsWithPredictions);
-console.log(uniqueMainEvents)
+console.log((mainEventsWithPredictions.length / uniqueMainEvents.length) )
 // console.log(user.username)
 // console.log(countWinsForUsername(leaderboardwinners, user.username.toLowerCase() ))
 
@@ -311,6 +311,20 @@ console.log(uniqueMainEvents)
     }
   };
   
+  const findUserPointsByWONLYByUsername = (leaderboard, username) => {
+    const user = leaderboard.find((user) => user.username === username);
+  
+    // Check if the user is found
+    if (user) {
+      return (user.totalWinnerPointsOnly / user.totalPicksCount * 100).toFixed(0);
+    } else {
+      // Handle case when user is not found
+      console.log(`User with username ${username} not found.`);
+      return null;
+    }
+  };
+  
+  
 //   console.log(getWinnerByIndex())
 return (
     <>
@@ -333,10 +347,16 @@ return (
             <div className="LeftOne">
               <h1 className="ProfilePicPreview" style={{
                 textAlign: 'center',
-                margin: '0 15%',
+                margin: '0 25%',
+                padding:'25%',
                 backgroundImage: `url(${user?.image || 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png?fit=500%2C500&ssl=1'})`
               }} alt={`${user?.image}`} />
-             <p className="text-align-center pt5"> Total Points { findUserPointsByUsername(leaderboard,user.username.toLowerCase())}</p>
+             
+             
+             <p className="text-align-center pt5"> Picks Winning Fighter { findUserPointsByWONLYByUsername(leaderboard,user.username.toLowerCase())}%</p>
+
+             <p className="text-align-center pt5"> Picks {(mainEventsWithPredictions.length / uniqueMainEvents.length * 100).toFixed(0)  }% of Events</p>
+                <p className="text-align-center landunder pt5">+{ findUserPointsByUsername(leaderboard,user.username.toLowerCase())} Total Points </p>
             </div>
           </div>
   

@@ -189,6 +189,7 @@ console.log(predictions)
 console.log(mainEvent)
 // console.log(user.username !== undefined ? user.username : user.userName)
 // console.log(user.id !== undefined ? user.id : 2)
+const [GTC , setGTC ] = useState(false)
 
 
 const handleSubmit = async (e) => {
@@ -196,6 +197,7 @@ const handleSubmit = async (e) => {
 
     try {
         // Validate the form data using Yup
+        setGTC(true) 
         await validationSchema.validate({ predictions });
 
         const predictionData = selectedUfcCard.map((fight, index) => ({
@@ -247,6 +249,7 @@ const handleSubmit = async (e) => {
     } catch (error) {
         console.error('Validation error:', error.message);
         setErrors(error.message || []);
+        setGTC(false) 
         // Handle validation error messages, setErrors, etc.
     }
 };
@@ -717,7 +720,7 @@ if (isLoading) {
         }`}
         style={{
           width: '100%',
-          backgroundImage: `url('${fight.fighterPics[0]}'`,zIndex:'1'
+          backgroundImage: `url('${fight.fighterPics[0]}'`
           
           
 
@@ -809,7 +812,13 @@ if (isLoading) {
 </center>
 <div className="blakBG">
 
-{isOwnerAndEventMatch ? <p className="color-green">{user.username} submitted picks for {mainEvent} ! </p> :   <button className="submitb" type="submit">Submit Predictions</button> }
+{isOwnerAndEventMatch ? <p className="color-green">{user.username} submitted picks for {mainEvent} ! </p> :  
+ !GTC ? 
+<button style={{backgroundColor:'white'}} className="submitb" type="submit">Submit Predictions</button>
+: <h1 className="loadingL " style={{padding:'25%',margin:' 0 25%'}}></h1>
+
+
+}
  
  </div>
 
@@ -1057,7 +1066,7 @@ if (isLoading) {
 >
   <div className='text-align-center element-with-border3 'style={{MaxHeight:'fit-content'}}>
   <center> <div className='p4pplusBlack ggg'></div></center>
-    <h2 className='snowwhite'
+    <h2 className='snowwhite fs20'
     style={{ margin:'10px' }}
     >Picks4Points.com</h2>
 
@@ -1076,7 +1085,7 @@ if (isLoading) {
                     {fight.fighters[1]}</p>
         </div> */}
 
-        <div className='text-align-center snowwhite' style={{ display:'flex', justifyContent: 'center',margin:'0px',marginTop:'-25px'   }}>
+        <div className='text-align-center snowwhite pt5' style={{ display:'flex', justifyContent: 'center',margin:'0px',marginTop:'-25px'   }}>
           
         {predictions[index]?.winner === 0 ? <>
         <p style={{backgroundColor:'darkgreen',paddingLeft:'5px',paddingRight:'5px'}}>{fight.fighters[0].split(' ').pop()} </p>

@@ -200,8 +200,9 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
         style={{margin:'0',marginBottom:'-3px'}}  
         className="p4pplusBlack"></h3></center> */}
        
-              <div className="leagueBGH" style={{ paddingBottom:'20%'}}>
-              <h1 className="fs45" style={{}}><span style={{color:'black',padding:' 0 5%'}}></span> </h1>
+              <div className="leagueBGH" style={{ paddingTop:'25%'}}>
+              
+              { leagues.length > 1 ?  <div className="pt20"></div> : <h1 className="loadingL " style={{}}></h1>}
               {/* <p>{user?.username} {user?.userName}</p> */}
               </div>
               {/* <div className='' style={{backgroundColor:''}}> */}
@@ -326,6 +327,7 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
 
         {clo === 1 ? 
         <div className="join leagueBG paddingupdown">
+          { leagues.length > 1 ?    <>
       {leagues.map(league => (
         <div className=" p4pborder color-black br15 margin5 background-dash "  key={league.id}>
           
@@ -401,7 +403,7 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
 
 </div>
         </div>
-      ))}
+      ))}</>: <h1 className="loadingL " style={{padding:'25%',margin:' 0 25%'}}></h1>}
       
       </div> : null }
 
