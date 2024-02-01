@@ -22,7 +22,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       const mainRedC = isUfcCardLoaded ? ufcCard[0].fighters[0] : '';
       const mainBlueC = isUfcCardLoaded ? ufcCard[0].fighters[1]  : '';
       console.log(tapImage)
-      const [firstName, secondName] = LNmenow.split(" vs ");
+      const [firstName, secondName] = LNmenow ? LNmenow.split(" vs ") : ['', ''] ;
       
       const countryData = {
         "Andorra": "AD",

@@ -182,9 +182,9 @@ console.log(associatedData);
       setTapI(tapImage)
       setUfcI(backgroundImageSrc)
       let locationInfo = [];
-        if (locationCC) {
-          locationInfo = locationCC.split(', ').map(part => part.trim());
-        }
+        // if (locationCC) {
+      locationInfo = locationCC ? locationCC.split(', ').map(part => part.trim()) : [];
+        // }
       setLo(locationInfo[0])
       setLo2(locationInfo[1])
       setLo3(locationInfo[locationInfo.length - 1])
