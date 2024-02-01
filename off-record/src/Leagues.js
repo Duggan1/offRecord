@@ -330,9 +330,9 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
           { leagues.length > 1 ?    <>
       {leagues.map(league => (
         <div className=" p4pborder color-black br15 margin5 background-dash "  key={league.id}>
-          
+          <h2 className="fs20  bottom-border-1px-black bg-white margin-top-2per margin-0-10"><span className="bg-white">{league.name}</span></h2>
           <div className="flex-start   ">
-          <span className="LeftOne"> <h2 className="fs20 landunder">{league.name}</h2>{league.message}</span>
+          <span className="LeftOne"> {league.message}</span>
                 <span className="RightOne p2">
                 <h1 className="leagueBGH" style={{
                     textAlign: 'center',
@@ -347,10 +347,12 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
                   </span>
             </div>
             <div className="flex-start">
-              <div className="LeftOne">
+              <div className="LeftOne p2">
 
-            <div className="flex cursor-pointer " >
-            {showMembers[league.id] ? <p className="bg-white border-1px-black br15 p2" onClick={() => offMembers(league.id)}>Hide Members</p> :<p className="bg-white border-1px-black br15 p2" onClick={() => onMembers(league.id)}>Show Members</p>}
+            <div className="flex cursor-pointer padding-top-5per" >
+            {showMembers[league.id] ? 
+            
+            <p className="bg-white border-1px-black br15 p2" onClick={() => offMembers(league.id)}>Hide Members</p> :<p className="bg-white border-1px-black br15 p2" onClick={() => onMembers(league.id)}>Show Members</p>}
                   {showMembers[league.id] ? <p
                   onClick={() => offMembers(league.id)}
                     style={{
@@ -375,24 +377,12 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
                       border: 'white 1px solid',
                       marginLeft: '2%', cursor:'pointer'
                     }}
-                  ></p> }
+                  ></p> 
+                  
+                  }
                 </div>
 
-                {showMembers[league.id] ? <>
-
-              {league.members? league.members.map(member => ( 
-              
-              <div className="flex "><p style={{
-                textAlign:'center',
-                width: '30px',
-                height: '30px',
-                backgroundColor: 'white',
-                padding: '0px 0px',
-                backgroundSize: 'cover',
-                marginRight: '5%',
-                backgroundImage: `url(${member.image})`,
-                borderRadius:'50%',
-              }}></p><p> {member.username}</p></div> )): null} </> : null}
+                
 
 </div><div className="RightOne p2">
           
@@ -401,7 +391,28 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
           >Join League</button>
           </div>
 
-</div>
+            </div>
+            
+            {showMembers[league.id] ? <><div className=" bg-white p4pborderLow">
+            
+
+{league.members? league.members.map(member => ( 
+
+<div className="flex-start top-border-1px-black "><p className="width20per" style={{
+  textAlign:'center',
+  width: '20%',
+  height: '30px',
+  backgroundColor: 'green',
+  padding: '0px 0px',
+  backgroundSize: 'cover',
+  marginRight: '5%',
+  backgroundImage: `url(${member.image})`,
+  borderRadius:'50%',
+}}></p><p className="width80per"> {member.username}</p></div> )): null} 
+               </div>
+               <p><span className="bg-white padding-top-5per">Join League &#8599;</span></p></>: null}
+              
+            
         </div>
       ))}</>: <h1 className="loadingL " style={{padding:'25%',margin:' 0 25%'}}></h1>}
       

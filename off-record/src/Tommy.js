@@ -841,7 +841,7 @@ if (isLoading) {
         <div className="tommy">
 
       {showUfcCard?
-      <div className="bayLoc" >   {signIn ? <p className='snowwhite'>Please Login or SignUp! </p>: <p className='color-yellow'>Please Login or SignUp! </p>}
+      <div className="bayLoc" >   {signIn ? <p className='snowwhite'>Please Login or SignUp! &#8599;</p>: <p className='color-yellow'>Please Login or SignUp!    &#8599;</p>}
        
 
        <h1 className='fs45 fs-mono'>{mewtwo}</h1>

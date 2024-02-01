@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import P4pHeader from './P4pHeader'
 
 
-function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive, BGpic, tapImage, countPick, isOwnerAndEventMatch, onLogout}) {
+function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive, BGpic, tapImage, countPick, isOwnerAndEventMatch, onLogout, LNmenow}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
@@ -22,7 +22,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       const mainRedC = isUfcCardLoaded ? ufcCard[0].fighters[0] : '';
       const mainBlueC = isUfcCardLoaded ? ufcCard[0].fighters[1]  : '';
       console.log(tapImage)
-      
+      const [firstName, secondName] = LNmenow.split(" vs ");
       
       const countryData = {
         "Andorra": "AD",
@@ -299,6 +299,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       console.log(weRlive.some(item => item.timeDetails1 !== ''))
       const countNonEmptyTimeDetails = weRlive.filter(item => item.timeDetails1 !== '').length;
 
+
+
     return ( <>
     <P4pHeader user={user} onLogout={onLogout} />
     
@@ -330,19 +332,24 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                         <center><div  style={{marginBottom:'-5px'}} className="p4pplusBlack2"></div></center>
                  <div className=""
                   style={{zIndex:'1',display:'flex',justifyContent:'center',maxWidth:'100%'}}
-                  ><div style={{backgroundColor:'red',zIndex:'1',display:'flex',justifyContent:'center',minWidth:'45%'}}>
-                  <h6 className='homebullet snow 'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',color:'white'}}>{mainRedC}</h6>
+                  ><div style={{backgroundColor:'white',color:'white',zIndex:'1',display:'flex',justifyContent:'center',minWidth:'45%'}}>
+                  {/* <h6 className='homebullet snow 'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',color:'white'}}>{mainRedC}</h6>
                 </div><div style={{minWidth:'10%'}}>
                  <h6 className='color-white snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white',color:'black'}}>  vs  </h6>
                  </div><div style={{backgroundColor:'blue',minWidth:'45%'}}>
-                 <h6 className='homebullet snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',color:'white'}}>{mainBlueC}</h6>
+                 <h6 className='homebullet snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',color:'white'}}>{mainBlueC}</h6> */}
+                 <h6>
+    <span style={{ backgroundColor: 'red', padding: '2px' }}>{firstName}</span>
+    <span style={{ backgroundColor: 'white', padding: '2px',color:'black' }}> vs </span>
+    <span style={{ backgroundColor: 'blue', padding: '2px' }}>{secondName}</span>
+</h6>
                  </div>
                  {/* //////////////////////// */}</div>
                 
                  {location ? 
                  <div
                   style={{zIndex:'1',display:'flex',justifyContent:'center'}}>
-                 <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</p>
+                 <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</p>
                  <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
@@ -370,7 +377,9 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                   paddingBottom:'15%',marginBottom:'0%',marginTop:'0%', cursor:'pointer',
                  height:'200px',
                   }} ></h5> 
-                : <h5 className=' snow '  style={{
+                : <h5 
+                onClick={() => { handleOptionClick('/section3') }}
+                className=' snow '  style={{
                   backgroundImage: `url(${tapImage})`,
                 backgroundSize: '100% 100%',
                 backgroundRepeat:'no-repeat',

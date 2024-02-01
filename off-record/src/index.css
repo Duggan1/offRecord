@@ -69,7 +69,7 @@ code {
   background-repeat: no-repeat;
   background-size: 100% 110%;
   padding-top: 0%;
-  z-index: 1;
+  /* z-index: 1; */
 
 }
 .homeSpace{
@@ -381,6 +381,7 @@ code {
   max-width: 100%;
   width: 100%;
 }
+
 
 .snowwhite{ 
   color: white;
@@ -984,13 +985,15 @@ code {
 .fighter-button {
   background-color: black;
   color: black;
-  border: 5px  solid black;
-  padding: 14% 3% ;
+  border-top: 5px  solid black;
+  border-bottom: 5px  solid black;
+  height: 100px;
   margin-right: 10px;
   border-radius: 10%;
   font-weight: 700;
   cursor: pointer;
-  min-width: 75%;
+  min-width: 80%;
+  background-size: 100% 100%;
   
 }
 .h2h {
@@ -1929,9 +1932,40 @@ input[type='checkbox'] {
   
 }
 
-
-
-
+.width100{
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+}
+.width20per{
+  max-width: 20%;
+}
+.width80per{
+  max-width: 80%;
+}
+.padding-top-5per{
+  padding-top: 10%
+}
+.padding-bottom-5per{
+  padding-bottom: 5%
+}
+.top-border-1px-black{
+ border-top: black 1px solid;
+}
+.bottom-border-1px-black{
+  border-bottom: black 1px solid;
+ }
+.p4pborderLow{
+ 
+  margin-bottom: 10%;
+  border-bottom: 1px solid black;
+}
+.margin-top-2per{
+  margin-top: 2%;
+}
+.margin-0-10{
+  margin: 0 10%;
+}
 /*
 
 !Variables

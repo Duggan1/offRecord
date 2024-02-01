@@ -794,6 +794,8 @@ const location = locationInfo[locationInfo.length - 1];// United States
 
 
 const menow = ufcCard3.length > 2 ?  ufcCard3[0].fighters.join(' vs ') : 'LOADING';
+const LNmenow = eventInfo ? eventInfo.event_name : 'Loading'
+
 
 console.log(menow)
 console.log(eventInfo)
@@ -861,7 +863,7 @@ const [leagues, setLeagues] = useState([])
 
 
       <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch}
-                                      stallUfcCard={ufcCard} locationCity={lo1} state={lo2} weRlive={weRlive} 
+                                      stallUfcCard={ufcCard} locationCity={lo1} state={lo2} weRlive={weRlive} LNmenow={LNmenow}
                                       location={lo3} BGpic={ufcI} tapImage={tapI} countPick={countPick} onLogout={handleLogout}  />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
