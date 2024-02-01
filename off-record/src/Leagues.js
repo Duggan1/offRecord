@@ -183,7 +183,11 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
       
 
     
+      const [settings, setSettings] = useState(false);
 
+      const toggleSettings =()=>{
+        setSettings(!settings)
+      }
         
 
   return (<>
@@ -246,12 +250,12 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
 
       </div>
         </div></div>
- <div style={{paddingBottom:'5%',color:"white"}}>
+
         
 
 
 
-        <div style={{backgroundColor:'black'}} className="flex-start">
+        <div style={{backgroundColor:'whitesmoke',borderTop:'1px solid black'}} className="flex-start">
       <span  style={{
             borderTop: '15px solid red',
             borderRight: '15px solid blue',
@@ -267,219 +271,223 @@ function Leagues({user,setLN,appLeagues,onLogout}) {
             className='p4pplus LeftOne'
             
             ></span> 
-            <h1 className="LeftOne snowwhite fs20" style={{margin:'5%'}} > League Settings</h1></div>
-            <div style={{marginTop:"0%",marginBottom:'0%',borderTop:'2px solid white'}} className="element-with-borderBB"></div> 
+            <h1 className="LeftOne snowwhite fs20" style={{margin:'5%',border:'1px solid black', borderRadius:'20%',backgroundColor:'white',color:'black', cursor:'pointer'}} onClick={toggleSettings} > League Settings</h1></div>
 
 
+            {/* <div style={{marginTop:"0%",marginBottom:'0%',borderTop:'2px solid white'}} className="element-with-borderBB"></div>  */}
+ 
+ {settings ? 
+      <div style={{paddingBottom:'5%',color:"white"}}>
 
-    <div className="wholeOne2 flex text-align-center" style={{borderBottom:'10px solid black',margin:'0' }}>  
-      <div className="LeftOne2">
-        {/* <h2 className={clo === 4 ? `chosenL`:`notLchosenL`} onClick={() => setClo(4)}>My Leagues </h2> */}
-        <h2 className={clo === 2 ? `chosenL`:`notLchosenL`} onClick={() => setClo(2)}> Leagues </h2> <h2 className={clo === 1 ? `chosenL`:`notLchosenL`} onClick={() => setClo(1)}>Join a League</h2>
-        <h2 className={clo === 0 ? `chosenL`:`notLchosenL`} onClick={() => setClo(0)}>Create League</h2>
-       
-        <h2 className={clo === 3 ? `chosenL`:`notLchosenL`} onClick={() => setClo(3)}>Delete a League</h2>
-      </div>
 
-      {/* ////////////////////////////////////////////////////////////////////// */}
-
-      <div style={{backgroundColor:'whitesmoke'}} className="RightOne2">
-        {clo === 0 ? <h2 style={{backgroundColor:'black',cursor:'crosshair'}} className="fs45">Create </h2>: null }
-        {clo === 1 ?<h2 style={{backgroundColor:'black',cursor:'crosshair'}}  className="fs45">Join</h2>: null }
-        {clo === 2 ? <h2  style={{backgroundColor:'black',cursor:'crosshair'}} className="fs45"> Leagues </h2>: null }
-        {clo === 3 ? <h2  style={{backgroundColor:'black',cursor:'crosshair'}} className='fs45'>Delete</h2>: null }
-        {/* {clo === 4 ? <h2  style={{backgroundColor:'black'}} className="notLchosenL">My Leagues </h2>: null } */}
-
-        {clo === 0 ? 
-      <div className="create color-black bg-white p2  ">
-        <h3 >League Details</h3>
-        <form  className=" formProfilePatch"
-        //   onSubmit={(e) => { e.preventDefault(); createLeague(); }}
-          >
+          <div className="wholeOne2 flex text-align-center" style={{borderBottom:'10px solid black',margin:'0' }}>  
+            <div className="LeftOne2">
+              {/* <h2 className={clo === 4 ? `chosenL`:`notLchosenL`} onClick={() => setClo(4)}>My Leagues </h2> */}
+              <h2 className={clo === 2 ? `chosenL`:`notLchosenL`} onClick={() => setClo(2)}> Leagues </h2> <h2 className={clo === 1 ? `chosenL`:`notLchosenL`} onClick={() => setClo(1)}>Join a League</h2>
+              <h2 className={clo === 0 ? `chosenL`:`notLchosenL`} onClick={() => setClo(0)}>Create League</h2>
             
-          <div className="formL"><label>Name </label>
-            <input className="fgpsi" type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} /> 
-          </div>
-          <div className="formL"><label>Motto </label>
-            <input className="fgpsi" type="text" name="message" placeholder='Message' value={formData.message} onChange={handleInputChange} />
-          </div>
-          <div ><label>Logo </label>
-            <input className="fgpsi" type="text" name="image" placeholder='Image Address' value={formData.image} onChange={handleInputChange} />
-          </div>
-          <h1 className="border-1px-black" style={{
-                textAlign:'center',
-                width: '60%',
-                height: '100px',
-                backgroundColor: 'white',
-                padding: '2% 0px',
-                backgroundSize: 'cover',
-                margin:'2% 20%',
-                backgroundImage: `url(${formData.image})`,
-                color:'black'
-              }} alt={`Preview of Logo`}>Preview</h1>
-          <div><label>Code</label>
-            <input className="fgpsi" type="text" name="passcode" placeholder='Passcode  ( Optional )' value={formData.passcode} onChange={handleInputChange} />
-          </div>
-
-            <button className="submitb" style={{backgroundColor:'white'}} onClick={handleSubmit} type="submit">Create League</button>
-          </form> 
-          </div> : null }
-
-        {clo === 1 ? 
-        <div className="join leagueBG paddingupdown">
-          { leagues.length > 1 ?    <>
-      {leagues.map(league => (
-        <div className=" p4pborder color-black br15 margin5 background-dash "  key={league.id}>
-          <h2 className="fs20  bottom-border-1px-black bg-white margin-top-2per margin-0-10"><span className="bg-white">{league.name}</span></h2>
-          <div className="flex-start   ">
-          <span className="LeftOne"> {league.message}</span>
-                <span className="RightOne p2">
-                <h1 className="leagueBGH" style={{
-                    textAlign: 'center',
-                    width: '80%',
-                    margin: '0 10%',
-                    height: '100px',
-                    padding: '0px 0px',
-                    backgroundSize: '100% 100%',
-                    borderRadius: '5%',
-                    ...(league && league.image && { backgroundImage: `url(${league.image})` })
-                  }} alt={`${league && league.image}`} />
-                  </span>
+              <h2 className={clo === 3 ? `chosenL`:`notLchosenL`} onClick={() => setClo(3)}>Delete a League</h2>
             </div>
-            <div className="flex-start">
-              <div className="LeftOne p2">
 
-            <div className="flex cursor-pointer padding-top-5per" >
-            {showMembers[league.id] ? 
-            
-            <p className="bg-white border-1px-black br15 p2" onClick={() => offMembers(league.id)}>Hide Members</p> :<p className="bg-white border-1px-black br15 p2" onClick={() => onMembers(league.id)}>Show Members</p>}
-                  {showMembers[league.id] ? <p
-                  onClick={() => offMembers(league.id)}
-                    style={{
-                      textAlign: 'center',
-                      width: '15px',
-                      height: '15px',
-                      backgroundColor:'green',
-                      borderRadius: '50%',
-                      border: 'white 1px solid',
-                      marginLeft: '2%',
-                      cursor:'pointer'
-                    }}
-                  ></p>  :
-                  <p
-                  onClick={() => onMembers(league.id)}
-                    style={{
-                      textAlign: 'center',
-                      width: '15px',
-                      height: '15px',
-                      backgroundColor:'red',
-                      borderRadius: '50%',
-                      border: 'white 1px solid',
-                      marginLeft: '2%', cursor:'pointer'
-                    }}
-                  ></p> 
+            {/* ////////////////////////////////////////////////////////////////////// */}
+
+            <div style={{backgroundColor:'whitesmoke'}} className="RightOne2">
+              {clo === 0 ? <h2 style={{backgroundColor:'black',cursor:'crosshair'}} className="fs45">Create </h2>: null }
+              {clo === 1 ?<h2 style={{backgroundColor:'black',cursor:'crosshair'}}  className="fs45">Join</h2>: null }
+              {clo === 2 ? <h2  style={{backgroundColor:'black',cursor:'crosshair'}} className="fs45"> Leagues </h2>: null }
+              {clo === 3 ? <h2  style={{backgroundColor:'black',cursor:'crosshair'}} className='fs45'>Delete</h2>: null }
+              {/* {clo === 4 ? <h2  style={{backgroundColor:'black'}} className="notLchosenL">My Leagues </h2>: null } */}
+
+              {clo === 0 ? 
+            <div className="create color-black bg-white p2  ">
+              <h3 >League Details</h3>
+              <form  className=" formProfilePatch"
+              //   onSubmit={(e) => { e.preventDefault(); createLeague(); }}
+                >
                   
-                  }
+                <div className="formL"><label>Name </label>
+                  <input className="fgpsi" type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} /> 
+                </div>
+                <div className="formL"><label>Motto </label>
+                  <input className="fgpsi" type="text" name="message" placeholder='Message' value={formData.message} onChange={handleInputChange} />
+                </div>
+                <div ><label>Logo </label>
+                  <input className="fgpsi" type="text" name="image" placeholder='Image Address' value={formData.image} onChange={handleInputChange} />
+                </div>
+                <h1 className="border-1px-black" style={{
+                      textAlign:'center',
+                      width: '60%',
+                      height: '100px',
+                      backgroundColor: 'white',
+                      padding: '2% 0px',
+                      backgroundSize: 'cover',
+                      margin:'2% 20%',
+                      backgroundImage: `url(${formData.image})`,
+                      color:'black'
+                    }} alt={`Preview of Logo`}>Preview</h1>
+                <div><label>Code</label>
+                  <input className="fgpsi" type="text" name="passcode" placeholder='Passcode  ( Optional )' value={formData.passcode} onChange={handleInputChange} />
                 </div>
 
-                
+                  <button className="submitb" style={{backgroundColor:'white'}} onClick={handleSubmit} type="submit">Create League</button>
+                </form> 
+                </div> : null }
 
-</div><div className="RightOne p2">
-          
-          <button className="cursor-pointer submitb"
-          onClick={() => joinLeague(league.id)}
-          >Join League</button>
+              {clo === 1 ? 
+              <div className="join leagueBG paddingupdown">
+                { leagues.length > 1 ?    <>
+            {leagues.map(league => (
+              <div className=" p4pborder color-black br15 margin5 background-dash "  key={league.id}>
+                <h2 className="fs20  bottom-border-1px-black bg-white margin-top-2per margin-0-10"><span className="bg-white">{league.name}</span></h2>
+                <div className="flex-start   ">
+                <span className="LeftOne"> {league.message}</span>
+                      <span className="RightOne p2">
+                      <h1 className="leagueBGH" style={{
+                          textAlign: 'center',
+                          width: '80%',
+                          margin: '0 10%',
+                          height: '100px',
+                          padding: '0px 0px',
+                          backgroundSize: '100% 100%',
+                          borderRadius: '5%',
+                          ...(league && league.image && { backgroundImage: `url(${league.image})` })
+                        }} alt={`${league && league.image}`} />
+                        </span>
+                  </div>
+                  <div className="flex-start">
+                    <div className="LeftOne p2">
+
+                  <div className="flex cursor-pointer padding-top-5per" >
+                  {showMembers[league.id] ? 
+                  
+                  <p className="bg-white border-1px-black br15 p2" onClick={() => offMembers(league.id)}>Hide Members</p> :<p className="bg-white border-1px-black br15 p2" onClick={() => onMembers(league.id)}>Show Members</p>}
+                        {showMembers[league.id] ? <p
+                        onClick={() => offMembers(league.id)}
+                          style={{
+                            textAlign: 'center',
+                            width: '15px',
+                            height: '15px',
+                            backgroundColor:'green',
+                            borderRadius: '50%',
+                            border: 'white 1px solid',
+                            marginLeft: '2%',
+                            cursor:'pointer'
+                          }}
+                        ></p>  :
+                        <p
+                        onClick={() => onMembers(league.id)}
+                          style={{
+                            textAlign: 'center',
+                            width: '15px',
+                            height: '15px',
+                            backgroundColor:'red',
+                            borderRadius: '50%',
+                            border: 'white 1px solid',
+                            marginLeft: '2%', cursor:'pointer'
+                          }}
+                        ></p> 
+                        
+                        }
+                      </div>
+
+                      
+
+      </div><div className="RightOne p2">
+                
+                <button className="cursor-pointer submitb"
+                onClick={() => joinLeague(league.id)}
+                >Join League</button>
+                </div>
+
+                  </div>
+                  
+                  {showMembers[league.id] ? <><div className=" bg-white p4pborderLow">
+                  
+
+      {league.members? league.members.map(member => ( 
+
+      <div className="flex-start top-border-1px-black "><p className="width20per" style={{
+        textAlign:'center',
+        width: '20%',
+        height: '30px',
+        backgroundColor: 'green',
+        padding: '0px 0px',
+        backgroundSize: 'cover',
+        marginRight: '5%',
+        backgroundImage: `url(${member.image})`,
+        borderRadius:'50%',
+      }}></p><p className="width80per"> {member.username}</p></div> )): null} 
+                    </div>
+                    <p><span className="bg-white padding-top-5per">Join League &#8599;</span></p></>: null}
+                    
+                  
+              </div>
+            ))}</>: <h1 className="loadingL " style={{padding:'25%',margin:' 0 25%'}}></h1>}
+            
+            </div> : null }
+
+              {clo === 2 ? 
+            <div className="aboutL ">
+                <p className="color-black">Leagues are to help you and some friends make predictions and compare them between a particular group of friends. This allows you to compete between your group similar to Fantasy Football </p>     
+                <p style={{height:'50px'}}></p>
+                <span style={{
+                  borderTop: '15px solid red',
+                  borderRight: '15px solid blue',
+                  borderLeft: '15px solid red',
+                  borderBottom: '15px solid blue',
+                  borderRadius: '10%',
+                  color: 'white',
+                  backgroundColor: 'white',
+                  padding:'12% 15%',
+                  borderRadius:'50%',
+                  
+                  }}
+                  className='p4pplus'
+                  //  onClick={() => setIsPaused(!isPaused)}
+                  ></span>
+            </div> : null }
+
+            {clo === 3 ? 
+            <div className="delete">
+            <p className="color-black">Development</p></div> : null }
+
+            {clo === 4 ? 
+            <div className="delete">
+            <p className="color-black">My Leagues</p>
+            {userLeagues.map(league => (
+            <div className="flex">
+            
+              <h1 style={{
+                    textAlign:'center',
+                    width: '60%',
+                    height: '100px',
+                    backgroundColor: 'white',
+                    padding: '0px 0px',
+                    backgroundSize: 'cover',
+                    margin:'0 20%',
+                    backgroundImage: `url(${league.image})`
+                  }} alt={`${league.image}`}></h1> <p>{league.name}</p><span>{league.message}</span>
+                  
+                  </div>
+
+
+            ))}
+            
+            
+            
+            </div> : null }
+            
+
+              
+                
+            
+            
+            </div>
+
           </div>
 
-            </div>
-            
-            {showMembers[league.id] ? <><div className=" bg-white p4pborderLow">
-            
-
-{league.members? league.members.map(member => ( 
-
-<div className="flex-start top-border-1px-black "><p className="width20per" style={{
-  textAlign:'center',
-  width: '20%',
-  height: '30px',
-  backgroundColor: 'green',
-  padding: '0px 0px',
-  backgroundSize: 'cover',
-  marginRight: '5%',
-  backgroundImage: `url(${member.image})`,
-  borderRadius:'50%',
-}}></p><p className="width80per"> {member.username}</p></div> )): null} 
-               </div>
-               <p><span className="bg-white padding-top-5per">Join League &#8599;</span></p></>: null}
-              
-            
-        </div>
-      ))}</>: <h1 className="loadingL " style={{padding:'25%',margin:' 0 25%'}}></h1>}
-      
-      </div> : null }
-
-        {clo === 2 ? 
-      <div className="aboutL ">
-          <p className="color-black">Leagues are to help you and some friends make predictions and compare them between a particular group of friends. This allows you to compete between your group similar to Fantasy Football </p>     
-          <p style={{height:'50px'}}></p>
-          <span style={{
-            borderTop: '15px solid red',
-            borderRight: '15px solid blue',
-            borderLeft: '15px solid red',
-            borderBottom: '15px solid blue',
-            borderRadius: '10%',
-            color: 'white',
-            backgroundColor: 'white',
-            padding:'12% 15%',
-            borderRadius:'50%',
-            
-            }}
-            className='p4pplus'
-            //  onClick={() => setIsPaused(!isPaused)}
-            ></span>
-      </div> : null }
-
-      {clo === 3 ? 
-      <div className="delete">
-       <p className="color-black">Development</p></div> : null }
-
-       {clo === 4 ? 
-      <div className="delete">
-       <p className="color-black">My Leagues</p>
-       {userLeagues.map(league => (
-       <div className="flex">
-       
-        <h1 style={{
-              textAlign:'center',
-              width: '60%',
-              height: '100px',
-              backgroundColor: 'white',
-              padding: '0px 0px',
-              backgroundSize: 'cover',
-              margin:'0 20%',
-              backgroundImage: `url(${league.image})`
-            }} alt={`${league.image}`}></h1> <p>{league.name}</p><span>{league.message}</span>
-            
-            </div>
-
-
-       ))}
-       
-       
-       
-       </div> : null }
-      
-
-        
-          
-      
-      
-      </div>
-
-    </div>
-
-    {/* </div> */}
-        </div>
+          {/* </div> */}
+              </div> : null }
 
 
         <div style={{marginTop:"1%",marginBottom:'25px'}} className="element-with-border">

@@ -338,11 +338,11 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                  <h6 className='color-white snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white',color:'black'}}>  vs  </h6>
                  </div><div style={{backgroundColor:'blue',minWidth:'45%'}}>
                  <h6 className='homebullet snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',color:'white'}}>{mainBlueC}</h6> */}
-                 <h6>
-    <span style={{ backgroundColor: 'red', padding: '2px' }}>{firstName}</span>
-    <span style={{ backgroundColor: 'white', padding: '2px',color:'black' }}> vs </span>
-    <span style={{ backgroundColor: 'blue', padding: '2px' }}>{secondName}</span>
-</h6>
+                 <p style={{maxWidth:'100%' }}>
+    <span style={{ backgroundColor: 'red', padding: '2px',maxWidth:'40%' }}>{firstName}</span>
+    <span style={{ backgroundColor: 'white', padding: '2px',color:'black',maxWidth:'10%' }}>vs</span>
+    <span style={{ backgroundColor: 'blue', padding: '2px',maxWidth:'40%' }}>{secondName}</span>
+</p>
                  </div>
                  {/* //////////////////////// */}</div>
                 

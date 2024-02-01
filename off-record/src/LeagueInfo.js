@@ -138,8 +138,28 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
     });
     
     return totalPoints;
+    
   } 
-  
+  const sortedMembers = selectedLeague && selectedLeague.members
+  ? selectedLeague.members.slice().sort((a, b) => {
+      const hasPicksA = findPredictionByMainEventAndOwner(results2, menow, a.username);
+      const hasPicksB = findPredictionByMainEventAndOwner(results2, menow, b.username);
+
+      // Move members without picks to the bottom
+      if (!hasPicksA && !hasPicksB) return 0;
+      if (!hasPicksA) return 1;
+      if (!hasPicksB) return -1;
+
+      // Sort based on livetotalpoints for members with picks
+      const pointsA = calculateLiveTotalPoints(hasPicksA);
+      const pointsB = calculateLiveTotalPoints(hasPicksB);
+      return pointsB - pointsA; // Sort in descending order
+    })
+  : [];
+  console.log(sortedMembers)
+
+
+
   
 
   return (
@@ -173,10 +193,11 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
       <div className="LeftOne">
         <h3 >Users</h3></div><div className="RightOne"><h3 >Points</h3></div>
      </div>
+     <div style={{borderBottom:'solid white 0px',borderTop:'solid white 3px'}} class="element-with-border2"></div>
 
 
-     {selectedLeague && selectedLeague.members ? (
-        selectedLeague.members.map((member) => (
+     {sortedMembers ? (
+        sortedMembers.map((member) => (
           <div key={member.id} className="flex leagueUcontainer">
             
             <div className="width10 " ><div className="p4pbg Limgsetup "
