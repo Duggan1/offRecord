@@ -438,8 +438,31 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
         {/* <div style={{borderRight:'solid black 2px',borderLeft:'solid black 2px',borderTop:'solid black 2px',zIndex: '2'}} className="p4pplus"></div> */}
                 </div>
                 { isUfcCardLoaded ? <div className="home-fighter">
-                                    <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[0]}')`,backgroundPosition: 'left',marginTop:'50%'}} ></div>
-                                    <div className="fi" style={{backgroundImage: `url('${ufcCard[0].fighterPics[1]}')`,backgroundPosition: 'right',marginTop:'50%'}}> </div>
+                                    <div className="fi"
+                                              style={{
+                                                backgroundImage: `url('${
+                                                  ufcCard[0].fighterPics[0].startsWith("/s3/files/")
+                                                    ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
+                                                      ufcCard[0].fighterPics[0].substring("/s3/files/".length)
+                                                    : ufcCard[0].fighterPics[0]
+                                                }')`,
+                                                backgroundPosition: 'right',
+                                                marginTop: '50%',
+                                              }} ></div>
+                                    <div
+                                              className="fi"
+                                              style={{
+                                                backgroundImage: `url('${
+                                                  ufcCard[0].fighterPics[1].startsWith("/s3/files/")
+                                                    ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
+                                                      ufcCard[0].fighterPics[1].substring("/s3/files/".length)
+                                                    : ufcCard[0].fighterPics[1]
+                                                }')`,
+                                                backgroundPosition: 'right',
+                                                marginTop: '50%',
+                                              }}
+                                            ></div>
+
                                     </div> :
                                     
                                     

@@ -720,7 +720,12 @@ if (isLoading) {
         }`}
         style={{
           width: '100%',
-          backgroundImage: `url('${fight.fighterPics[0]}'`
+          backgroundImage: `url('${
+            ufcCard[index].fighterPics[0].startsWith("/s3/files/")
+              ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
+                ufcCard[index].fighterPics[0].substring("/s3/files/".length)
+              : ufcCard[index].fighterPics[0]
+          }')`,
           
           
 
@@ -763,7 +768,12 @@ if (isLoading) {
         }`}
         style={{
           width: '100%',
-          backgroundImage: `url('${fight.fighterPics[1]}')`,
+          backgroundImage: `url('${
+            ufcCard[index].fighterPics[1].startsWith("/s3/files/")
+              ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
+                ufcCard[index].fighterPics[1].substring("/s3/files/".length)
+              : ufcCard[index].fighterPics[1]
+          }')`,
           backgroundSize: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '135% 100%' : '',
           marginBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
           paddingBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
@@ -950,7 +960,12 @@ if (isLoading) {
         }`}
         style={{
           width: '100%',
-          backgroundImage: `url('${fight.fighterPics[0]}'`,
+          backgroundImage: `url('${
+            ufcCard[index].fighterPics[0].startsWith("/s3/files/")
+              ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
+                ufcCard[index].fighterPics[0].substring("/s3/files/".length)
+              : ufcCard[index].fighterPics[0]
+          }')`,
           
           
 
@@ -993,7 +1008,12 @@ if (isLoading) {
         }`}
         style={{
           width: '100%',
-          backgroundImage: `url('${fight.fighterPics[1]}')`,
+          backgroundImage: `url('${
+            ufcCard[index].fighterPics[1].startsWith("/s3/files/")
+              ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
+                ufcCard[index].fighterPics[1].substring("/s3/files/".length)
+              : ufcCard[index].fighterPics[1]
+          }')`,
           backgroundSize: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '135% 100%' : '',
           marginBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
           paddingBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
