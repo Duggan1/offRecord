@@ -228,13 +228,13 @@ useEffect(() => {
     // Faster!!!! need to Do!!!
     
     // setUfcCard3(newUfcCard);
-    // setTapI(ufcEvents.tapImage)
-    // setUfcI(ufcEvents.backgroundImageSrc)
-    // let locationInfo = [];
-    // locationInfo = ufcEvents.locationCC ? ufcEvents.locationCC.split(', ').map(part => part.trim()) : [];
-    // setLo(locationInfo[0])
-    // setLo2(locationInfo[1])
-    // setLo3(locationInfo[locationInfo.length - 1])
+    setTapI(ufcEvents.tapImage)
+    setUfcI(ufcEvents.backgroundImageSrc)
+    let locationInfo = [];
+    locationInfo = ufcEvents.locationCC ? ufcEvents.locationCC.split(', ').map(part => part.trim()) : [];
+    setLo(locationInfo[0])
+    setLo2(locationInfo[1])
+    setLo3(locationInfo[locationInfo.length - 1])
 
   } catch (error) {
       console.error('Error fetching data:', error);
