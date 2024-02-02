@@ -585,6 +585,12 @@ class UFCEventByID(Resource):
         # Get the JSON data from the request
         data = request.get_json()
 
+         # Update fields
+        ufc_event.backgroundImageSrc = data.get("backgroundImageSrc", ufc_event.backgroundImageSrc)
+        ufc_event.tapImage = data.get("tapImage", ufc_event.tapImage)
+        ufc_event.locationCC = data.get("locationCC", ufc_event.locationCC)
+        ufc_event.event_name = data.get("event_name", ufc_event.event_name)
+
         # Handle the fights data from the request
         fights_data = data.get("fights")
 
