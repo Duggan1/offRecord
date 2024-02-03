@@ -12,10 +12,12 @@ function LeagueAdjustments({ user, leagueName, appLeagues, onLogout }) {
   });
 
   const navigate = useNavigate();
+  console.log(leagueName)
 
   useEffect(() => {
     if (leagueName) {
       setFormData({
+        league_id: leagueName.id,
         name: leagueName.name || '',
         message: leagueName.message || '',
         image: leagueName.image || '',
@@ -40,11 +42,12 @@ function LeagueAdjustments({ user, leagueName, appLeagues, onLogout }) {
   
     try {
       setGTC(true)   
-      const response = await axios.patch(`https://off-therecordpicks.onrender.com/leagues`, formData);
+      console.log(formData)
+      const response = await axios.patch(`https://off-therecordpicks.onrender.com/leagues/${formData.league_id}`, formData);
   
       console.log(response.data.message); 
       setResponse(response.data.message);
-      user.image = formData.image
+      leagueName.image = formData.image
       setGTC(false)   
        // Log the server response
     } catch (error) {

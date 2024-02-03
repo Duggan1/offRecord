@@ -159,6 +159,7 @@ class SignUp(Resource):
 
 
 class Leagues(Resource):
+
     def get(self):
         # Return a list of all leagues
         leagues = League.query.all()
@@ -228,6 +229,28 @@ class Leagues(Resource):
 
         return {'message': 'League created successfully', 'league_id': new_league.id}, 201
 
+class LeaguesAdjustment(Resource):
+ def patch(self, league_id):
+        # Retrieve the league from the database by ID
+        league = League.query.get(league_id)
+
+        if league is None:
+            return make_response({"error": "League not found"}, 404)
+
+        # Get the JSON data from the request
+        data = request.get_json()
+
+        # Update fields
+        league.name = data.get("name", league.name)
+        league.message = data.get("message", league.message)
+        league.image = data.get("image", league.image)
+        league.passcode = data.get("passcode", league.passcode)
+
+        # Commit changes to the database
+        db.session.commit()
+
+        return {'message': 'League updated successfully'}
+ 
 class LeagueMembers(Resource):
     def patch(self, league_id):
         # Join a league
@@ -266,6 +289,8 @@ class LeagueMembers(Resource):
 
 api.add_resource(Leagues, '/leagues')
 api.add_resource(LeagueMembers, '/leagues/<int:league_id>/members')
+api.add_resource(LeaguesAdjustment, '/leagues/<int:league_id>')
+
 
 
 
