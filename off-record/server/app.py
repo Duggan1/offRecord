@@ -174,6 +174,27 @@ class Leagues(Resource):
         } for league in leagues]
 
         return {'leagues': league_data}
+    
+    def patch(self, league_id):
+        # Retrieve the league from the database by ID
+        league = League.query.get(league_id)
+
+        if league is None:
+            return make_response({"error": "League not found"}, 404)
+
+        # Get the JSON data from the request
+        data = request.get_json()
+
+        # Update fields
+        league.name = data.get("name", league.name)
+        league.message = data.get("message", league.message)
+        league.image = data.get("image", league.image)
+        league.passcode = data.get("passcode", league.passcode)
+
+        # Commit changes to the database
+        db.session.commit()
+
+        return {'message': 'League updated successfully'}
 
 
 

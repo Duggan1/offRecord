@@ -171,7 +171,11 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
     onClick={() => navigate('/leagues')} 
     style={{cursor:'pointer',textAlign:'start', marginLeft:'5%'}} >&#8592;</h2>
               {/* <p>{user?.username} {user?.userName}</p> */}
+              <h2 className="fs45 color-blue "
+    onClick={() => navigate('/leagues/adjustments')} 
+    style={{cursor:'pointer',textAlign:'start', marginLeft:'5%'}} >&#8594;</h2>
               </div>
+              
       <div className="leag">
         <h1 ><span className="p4pborder fs45" style={{backgroundColor:'white',margin:'0px 0px',padding:'0px 5px'}}>{leagueName? leagueName.name : null} League</span></h1>
         <p><span style={{backgroundColor:'white',border:'2px solid black',margin:'0px 0px',padding:'0px 5%'}}>{leagueName? leagueName.message : null}</span></p>

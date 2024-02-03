@@ -19,6 +19,7 @@ import LeagueInfo from './LeagueInfo';
 import P4pHeader from './P4pHeader';
 import Profile from './Profile';
 import ProfileSettings from './ProfileSettings';
+import LeagueAdjustments from './LeagueAdjustments';
 // import CommentSection from './CommentSection';
 
 
@@ -228,13 +229,13 @@ useEffect(() => {
     // Faster!!!! need to Do!!!
     
     setUfcCard3(newUfcCard);
-    // setTapI(ufcEvents.tapImage)
-    // setUfcI(ufcEvents.backgroundImageSrc)
-    // let locationInfo = [];
-    // locationInfo = ufcEvents.locationCC ? ufcEvents.locationCC.split(', ').map(part => part.trim()) : [];
-    // setLo(locationInfo[0])
-    // setLo2(locationInfo[1])
-    // setLo3(locationInfo[locationInfo.length - 1])
+    setTapI(ufcEvents.tapImage)
+    setUfcI(ufcEvents.backgroundImageSrc)
+    let locationInfo = [];
+    locationInfo = ufcEvents.locationCC ? ufcEvents.locationCC.split(', ').map(part => part.trim()) : [];
+    setLo(locationInfo[0])
+    setLo2(locationInfo[1])
+    setLo3(locationInfo[locationInfo.length - 1])
 
   } catch (error) {
       console.error('Error fetching data:', error);
@@ -390,6 +391,12 @@ useEffect(() => {
       }
 
       // Compare relevant properties within each fight for ufcCard2 and ufcCard3
+
+      const backgroundImageSrcComparison = eventInfo.backgroundImageSrc === ufcEvents.backgroundImageSrc;
+      const tapImageComparison = eventInfo.tapImage === ufcEvents.tapImage;
+      const locationCCComparison = eventInfo.locationCC === ufcEvents.locationCC;
+      const event_nameComparison = eventInfo.event_name === ufcEvents.event_name;
+
       const matchComparison = fight.match === ufcCard3Fight.match;
 
       const oddsComparison = fight.odds === ufcCard3Fight.odds;
@@ -401,7 +408,7 @@ useEffect(() => {
       console.log(`Fight ${index + 1} - Match Comparison: ${matchComparison}`);
       console.log(`Fight ${index + 1} - Records Comparison: ${recordsComparison}`);
 
-      return !(matchComparison && recordsComparison && oddsComparison && flagComparison);
+      return !(matchComparison && recordsComparison && oddsComparison && flagComparison && backgroundImageSrcComparison && tapImageComparison && locationCCComparison && event_nameComparison );
     });
 
     if (detailsDoNotMatch) {
@@ -675,7 +682,7 @@ fetch('https://off-therecordpicks.onrender.com/picks')
       console.log(data); // Log the data received from the API
        setPickCount(data.picks.length);
        ///////////////////////////////////
-       /////////////////////////////////
+       ///////////////////////////////////
        setResults2(data.picks);
         const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
           setResults2(filteredResults);
@@ -875,7 +882,7 @@ const [leagues, setLeagues] = useState([])
       <Route path="/leagues"  element={<Leagues setLN={setLN} appLeagues={leagues} user={user} onLogout={handleLogout} />} />
       
       <Route path="/leagues/deatils" element={<LeagueInfo user={user} leagueName={leagueName} appLeagues={leagues} isOwnerAndEventMatch={isOwnerAndEventMatch} ufcResults={modifiedUfcResults}  weRlive={weRlive} results2={results2} menow={menow} tapImage={tapI} onLogout={handleLogout} />} />
-
+      <Route path="/leagues/adjustments" element={<LeagueAdjustments user={user} leagueName={leagueName} appLeagues={leagues} isOwnerAndEventMatch={isOwnerAndEventMatch} ufcResults={modifiedUfcResults}  weRlive={weRlive} results2={results2} menow={menow} tapImage={tapI} onLogout={handleLogout} />} />
 
      
       

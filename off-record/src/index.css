@@ -1966,6 +1966,10 @@ input[type='checkbox'] {
 .margin-0-10{
   margin: 0 10%;
 }
+
+.widh-75per{
+  width:75%
+}
 /*
 
 !Variables
@@ -2235,8 +2239,14 @@ a {
 .fs-mono{
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-
-
+.editLeagueInput{
+  padding: 5px 5%;
+  border: black solid 1px ;
+  border-radius: 25%;
+}
+.marginBottom5per{
+  margin-bottom: 5%;
+}
 @media (max-width: 767px) {
 
   .homebullet{
