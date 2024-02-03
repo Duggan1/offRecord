@@ -167,17 +167,27 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
     <P4pHeader onLogout={onLogout} user={user} />
     <div className="text-align-center" style={{backgroundColor:'white',paddingBottom:'5%'}}>
     <div className="leagueBGH" style={{ paddingBottom:'20%'}}>
-    <h2 className="fs45 color-red "
-    onClick={() => navigate('/leagues')} 
-    style={{cursor:'pointer',textAlign:'start', marginLeft:'5%'}} >&#8592;</h2>
-              {/* <p>{user?.username} {user?.userName}</p> */}
-              <h2 className="fs45 color-blue "
-    onClick={() => navigate('/leagues/adjustments')} 
-    style={{cursor:'pointer',textAlign:'start', marginLeft:'5%'}} >&#8594;</h2>
+    <div className="flex-start">
+  <h2
+    className="fs45 color-red"
+    onClick={() => navigate('/leagues')}
+    style={{ cursor: 'pointer', textAlign: 'start', marginLeft: '5%' }}
+  >
+    &#8592;
+  </h2>
+  <h2
+    className="fs45 color-blue"
+    onClick={() => navigate('/leagues/adjustments')}
+    style={{ cursor: 'pointer', textAlign: 'start', marginLeft: 'auto',marginRight:'2%' }}
+  >
+    &#8594;
+  </h2>
+</div>
+
               </div>
               
       <div className="leag">
-        <h1 ><span className="p4pborder fs45" style={{backgroundColor:'white',margin:'0px 0px',padding:'0px 5px'}}>{leagueName? leagueName.name : null} League</span></h1>
+        <h1 ><span className="p4pborder fs45" style={{backgroundColor:'white',margin:'0px 0px',padding:'0px 5px'}}>{leagueName? leagueName.name : null} </span></h1>
         <p><span style={{backgroundColor:'white',border:'2px solid black',margin:'0px 0px',padding:'0px 5%'}}>{leagueName? leagueName.message : null}</span></p>
         
         
