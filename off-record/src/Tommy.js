@@ -719,7 +719,7 @@ if (isLoading) {
           predictions[index]?.winner === 0 ? 'selected' : ''
         }`}
         style={{
-          width: '100%',
+          width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
           backgroundImage: `url('${
             ufcCard[index].fighterPics[0].startsWith("/s3/files/")
               ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
@@ -769,7 +769,7 @@ if (isLoading) {
           predictions[index]?.winner === 1 ? 'selected' : ''
         }`}
         style={{
-          width: '100%',
+          width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
           backgroundImage: `url('${
             ufcCard[index].fighterPics[1].startsWith("/s3/files/")
               ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
@@ -778,7 +778,7 @@ if (isLoading) {
                 ? "https://www.ufc.com/" + ufcCard[index].fighterPics[1]
                   : ufcCard[index].fighterPics[1] 
           }')`,
-          backgroundSize: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '135% 100%' : '',
+          
           marginBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
           paddingBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
           zIndex:'-1'
@@ -963,14 +963,14 @@ if (isLoading) {
           predictions[index]?.winner === 0 ? 'selected' : ''
         }`}
         style={{
-          width: '100%',
+          width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',
           backgroundImage: `url('${
             ufcCard[index].fighterPics[0].startsWith("/s3/files/")
               ? "https://dmxg5wxfqgb4u.cloudfront.net/" + ufcCard[index].fighterPics[0].substring("/s3/files/".length)
                   : ufcCard[index].fighterPics[0].startsWith("/themes/custom/") 
                     ? "https://www.ufc.com/" + ufcCard[index].fighterPics[0]
                       : ufcCard[index].fighterPics[0]
-          }')`,
+          }')`
           
           
 
@@ -999,7 +999,7 @@ if (isLoading) {
     
     </div>
       </div>
-      <div
+      {/* <div
         className={`fighter-info ${
           predictions[index]?.winner === 0 ? 'selected' : ''
         }`}
@@ -1007,12 +1007,14 @@ if (isLoading) {
           width: '50%',
           textAlign: 'center',
         }}
-      ><div
+      > */}
+        
+        <div
         className={`fighter-image ${
           predictions[index]?.winner === 1 ? 'selected' : ''
         }`}
         style={{
-          width: '100%',
+          width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
           backgroundImage: `url('${
             ufcCard[index].fighterPics[1].startsWith("/s3/files/")
               ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
@@ -1021,10 +1023,9 @@ if (isLoading) {
                 ? "https://www.ufc.com/" + ufcCard[index].fighterPics[1]
                   : ufcCard[index].fighterPics[1]
           }')`,
-          backgroundSize: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '135% 100%' : '',
           marginBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
           paddingBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
-          zIndex:'-1'
+          
 
 
           
@@ -1049,7 +1050,7 @@ if (isLoading) {
         
         {/* Add other fighter information here */}
       </div>
-    </div>
+    {/* </div> */}
    
      
     </div>
