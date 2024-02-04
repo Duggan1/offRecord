@@ -202,6 +202,8 @@ console.log(associatedData);
 
 
 const [ufcEvents, setUfcEvents] = useState([]);
+const [LNmenow, setLNmenow] = useState('Loading');
+// const LNmenow = eventInfo ? eventInfo.event_name : 'Loading'
 
 useEffect(() => {
   const fetchData = async () => {
@@ -236,6 +238,7 @@ useEffect(() => {
     setLo(locationInfo[0])
     setLo2(locationInfo[1])
     setLo3(locationInfo[locationInfo.length - 1])
+    setLNmenow(ufcEvents.event_name)
 
   } catch (error) {
       console.error('Error fetching data:', error);
@@ -727,19 +730,65 @@ fetch('https://off-therecordpicks.onrender.com/picks')
 }, [eventInfo]);
 console.log(akp)
 
+function transformData(initialData) {
+  const predictions = initialData.map((fight, index) => {
+    const winner =
+  (fight.fighter1 && fight.fighter1.hasRedArrow) ? 0 :
+    (fight.fighter2 && fight.fighter2.hasBlueArrow) ? 1 :
+      fight.timeDetails1 ? 3 : null;
+
+                            
+                            ; // Assuming red arrow signifies winner
+    const methodMapping = {
+      'Dec': 'Decision',
+      'Sub': 'Submission',
+      'KO/TKO': 'TKO/KO',
+    };
+
+    const methodMatch = fight.timeDetails1 ? fight.timeDetails1.match(/(Dec|Sub|KO\/TKO)/) : null;
+
+
+    const method = methodMatch ? methodMapping[methodMatch[0]] : null;
+    const roundMatch = fight.timeDetails1 ? fight.timeDetails1.match(/R(\d+)/): null;
+    const round = roundMatch ? roundMatch[1] : null;
+
+    const fighter1Name = fight.fighter1 ? fight.fighter1.name : 'Unknown Fighter 1';
+    const fighter2Name = fight.fighter2 ? fight.fighter2.name : 'Unknown Fighter 2';
+    
+    const fighters = [fighter1Name, fighter2Name];
+    
+
+    return {
+      fighters: fighters,
+      method: method,
+      round: round,
+      winner: winner,
+    };
+  });
+
+  return  predictions ;
+}
+const liveNready = weRlive ? transformData(weRlive) : [];
+
+
 useEffect(() => {
 
   // if (akp, modifiedUfcResults){
 
 
-  if (isEqual(akp.predictions, modifiedUfcResults)) {
+  if (isEqual(akp.predictions, liveNready)) {
     console.log('matching');
+
+    console.log(modifiedUfcResults)
+    console.log(akp.predictions)
+    console.log(weRlive)
+    console.log(liveNready)
   }
   if (!akp){
     console.log('loading yo yo')
 
   } 
-  if (akp && !isEqual(akp.predictions, modifiedUfcResults)){
+  if (akp && !isEqual(akp.predictions, liveNready)){
     console.log('ready for patch')
     //////////////////////////////////
     const dataToSend = {
@@ -747,7 +796,7 @@ useEffect(() => {
       owner: akp.owner ,
       location: akp.location,
       mainEvent: akp.main_event,
-      predictions: modifiedUfcResults,
+      predictions: liveNready,
       user_id: akp.id || 4,
   };
   ////////////////////////////////////
@@ -777,7 +826,7 @@ useEffect(() => {
   //   console.log(akp.predictions);
   //   console.log(modifiedUfcResults);
   // }
-}, [akp, modifiedUfcResults]);
+}, [akp, liveNready]);
 console.log(akp)
 console.log(ufcCard3)
 
@@ -805,7 +854,7 @@ const location = locationInfo[locationInfo.length - 1];// United States
 
 
 const menow = ufcCard3.length > 2 ?  ufcCard3[0].fighters.join(' vs ') : 'LOADING';
-const LNmenow = eventInfo ? eventInfo.event_name : 'Loading'
+
 
 
 console.log(menow)

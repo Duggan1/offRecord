@@ -21,9 +21,9 @@ app.use(cors());
 // const Recurl = 'https://www.tapology.com/fightcenter/events/105194-ufc-fight-night';
 // const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039634/league/ufc'
 
-const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-february-03-2024'
-const Recurl = 'https://www.tapology.com/fightcenter/events/106801-ufc-fight-night'
-const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600040373/league/ufc'
+const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-february-10-2024'
+const Recurl = 'https://www.tapology.com/fightcenter/events/107367-ufc-fight-night'
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600040033/league/ufc'
 
 // const deatilsUrl = 'https://www.ufc.com/event/ufc-296'
 // const Recurl = 'https://www.tapology.com/fightcenter/events/101868-ufc'
@@ -197,10 +197,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       if (response.status === 200) {
         const html = response.data;
         const $ = cheerio.load(html);
-
-
-
-
+    
         $('.AccordionPanel.mb4').each((index, element) => {
         // .Gamestrip__Overview
 
