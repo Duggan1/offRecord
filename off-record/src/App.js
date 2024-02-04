@@ -232,7 +232,8 @@ useEffect(() => {
     
     setUfcCard3(newUfcCard);
     setTapI(ufcEvents.tapImage)
-    setUfcI(ufcEvents.backgroundImageSrc)
+    setUfcI(ufcEvents.backgroundImageSrc.startsWith("/s3/files/")
+    ? "https://dmxg5wxfqgb4u.cloudfront.net/" + ufcEvents.backgroundImageSrc : ufcEvents.backgroundImageSrc )
     let locationInfo = [];
     locationInfo = ufcEvents.locationCC ? ufcEvents.locationCC.split(', ').map(part => part.trim()) : [];
     setLo(locationInfo[0])
