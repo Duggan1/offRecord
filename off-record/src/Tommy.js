@@ -646,6 +646,7 @@ if (isLoading) {
         ? 'fighterACTready' : 'fighterready'}`}>
       
   <p key={index} className="mobile-fight-info">
+  <p className='snowwhite'>{fight.match.slice(0, fight.match.length / 2)}</p>
     <div  className=" mobile-fighter-name">
       <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%'}} className={` redName white-border mobile-fighter-name
       
@@ -940,6 +941,7 @@ if (isLoading) {
     <div key={index} className="fight">
       <div key={index} className="fighterready">
   <p key={index} className="mobile-fight-info">
+  <p className='snowwhite'>{fight.match.slice(0, fight.match.length / 2)}</p>
     <div className="mobile-fighter-name">
       <span style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white'}} className={` white-border mobile-fighter-name ${predictions[index]?.winner === 0 ? 'selected' : ''}`}>
         {fight.fighters[0]}
@@ -954,6 +956,9 @@ if (isLoading) {
 
 
   {signIn ? <p className='snowwhite'>Please Login or SignUp! </p>: <p className='color-yellow'>Please Login or SignUp! </p>}
+  
+
+  
 
             
             </div>

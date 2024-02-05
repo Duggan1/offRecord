@@ -480,7 +480,7 @@ useEffect(() => {
         match: "Lightweight Championship Bout",
         records: ["29-0-0", "16-14-2"],
         flags: ["Russia", "United States"],
-        fighterPics: ['https://pngimg.com/d/khabib_PNG16.png', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2024-01/MAKHACHEV_ISLAM_BELT_R_10-21.png?itok=kS_KXIU2',],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/image/fighter_images/Khabib_Nurmagomedov/1NURMAGOMEDOV_KHABIB_L.png?itok=czY7iR8-', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2024-01/MAKHACHEV_ISLAM_BELT_R_10-21.png?itok=kS_KXIU2',],
       },
       {
         fighters: ["Belal Muhammad", "Georges St-Pierre"],
@@ -496,14 +496,57 @@ useEffect(() => {
         flags: ["Cuba","Brazil" ],
         fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2019-08/ROMERO_YOEL_L.png?VersionId=wTpI3pU1qOO6j9MpcQ0gLSbeOTXWtrrY&itok=m3oyIJCE', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-10/67302%252Fprofile-galery%252Ffullbodyright-picture%252FSILVA_ANDERSON_R_10-31.png?itok=TlJEp4ti',],
       }
-      // ,
-      // {
-      //   fighters: ["Daniel Cormier", "Chuck Liddell"],
-      //   match: "Light Heavyweight Championship Bout",
-      //   records: ["22-3-0", "21-9-0"],
-      //   flags: ["United States", "United States"],
-      //   fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-08/CORMIER_DANIEL_L_08-15.png?VersionId=X4Gimp.0zYGxx4haM_ASnymi8cEe4qNr&itok=EWrGvjtb', 'https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png',],
-      // }
+      ,
+      {
+        fighters: ["Jose Aldo", "Zabit"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-03/d44b164d-b5ae-4594-959e-12a7d6343803%252FALDO_JOSE_L_12-04.png?itok=J0vKBt4n',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2019-02/MAGOMEDSHARIPOV_ZABIT_R.png?VersionId=02bDgVdXFuELslgoOLV.Eu9K95Qumr99&itok=Yokvv_Az',],
+      } ,
+      {
+        fighters: ["Max Holloway", "Nate Diaz"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/HOLLOWAY_MAX_L_04-15.png?itok=Ig7AtZcm',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/DIAZ_NATE_R_09-10.png?itok=ck6SsbnH',],
+      } ,
+      {
+        fighters: ["Brock Lesner", "Stipe "],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/ufc-fighter-container/67517/profile-galery/fullbodyleft-picture/Brock-Lesnar_548_LeftFullBodyImage.png?VersionId=.CZid9QN_ks9i7rARwM5Pd51IY3mwBc8&itok=i1mOQw43',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2019-08/MIOCIC_STIPE_R.png?VersionId=gd_SnJ2wk3_BxWkuOwmr92pp028.w_8h&itok=TdtAGSuZ',],
+      }   ,
+      {
+        fighters: ["Anthony Johnson", "JOrge Masvidal"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/ufc-fighter-container/67359/profile-galery/fullbodyleft-picture/Anthony-Johnson_501_LeftFullBodyImage.png?VersionId=Ghml_r3SHEUV8mSGO3NbQSymR82cM.KJ&itok=nDLx9ojc',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/MASVIDAL_JORGE_R_04-08.png?itok=wVAws_LB',],
+      }   ,
+      {
+        fighters: ["Artem", "Poatan"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-09/ADESANYA_ISRAEL_L_04-08.png?itok=gIhiG7zY',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2024-01/PEREIRA_ALEX_R_BELT_04-08.png?itok=D3MMVdow',],
+      }   ,
+      
+      {
+      
+        fighters: ["Charles DO BRONX Oliveria ", "Khamzhat "],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/OLIVEIRA_CHARLES_L_06-10.png?itok=VPfDbyu9',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-10/71660%252Fprofile-galery%252Ffullbodyright-picture%252FCHIMAEV_KHAMZAT_R_10-30.png?itok=vBiGaKoz',],
+      }
     ]; ///move out of App
     
   
