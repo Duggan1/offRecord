@@ -21,7 +21,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       const mainEvent = isUfcCardLoaded ? ufcCard[0].fighters.join(' vs ') : '';
       const mainRedC = isUfcCardLoaded ? ufcCard[0].fighters[0] : '';
       const mainBlueC = isUfcCardLoaded ? ufcCard[0].fighters[1]  : '';
-      console.log(tapImage)
+      
       const [firstName, secondName] = LNmenow ? LNmenow.split(" vs ") : ['', ''] ;
       
       const countryData = {
@@ -281,21 +281,29 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       function getCountryAbbreviation(countryName) {
         return countryData[countryName] || "Not Found";
       }
-      console.log(location)
+      console.log(stallUfcCard[0].fighterPics[1])
       const fightingMan = ['p4p8','apple', 'f-Man5', 'f-Man6', 'f-Man7', 'f-Man', 'f-Man2', 'f-Man3',  'f-Man4R','f-Man4','apple'];
       const [currentClass, setCurrentClass] = useState(fightingMan[0]);
+      const [currentfighter, setCurrentfighter] = useState(stallUfcCard[0]);
     
       useEffect(() => {
         const intervalId = setInterval(() => {
           // Rotate through the classes
           const currentIndex = fightingMan.indexOf(currentClass);
           const nextIndex = (currentIndex + 1) % fightingMan.length;
+
+          const currentFightIndex = stallUfcCard.indexOf(currentfighter);
+          const nextFightIndex = (currentFightIndex + 1) % stallUfcCard.length;
+
+          setCurrentfighter(stallUfcCard[nextFightIndex])
           setCurrentClass(fightingMan[nextIndex]);
         }, 500);
     
         // Clear the interval when the component is unmounted
         return () => clearInterval(intervalId);
       }, [currentClass, fightingMan]);
+
+      console.log(currentfighter)
       console.log(weRlive.some(item => item.timeDetails1 !== ''))
       const countNonEmptyTimeDetails = weRlive.filter(item => item.timeDetails1 !== '').length;
 
@@ -331,17 +339,17 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                          <p className="snowwhite">Fight  {countNonEmptyTimeDetails}/{ufcCard.length} </p> </> : null }
                         <center><div  style={{marginBottom:'-5px'}} className="p4pplusBlack2"></div></center>
                  <div className=""
-                  style={{zIndex:'1',display:'flex',justifyContent:'center',maxWidth:'100%'}}
-                  ><div style={{backgroundColor:'white',color:'white',zIndex:'1',display:'flex',justifyContent:'center',minWidth:'45%'}}>
+                  style={{zIndex:'1',display:'',justifyContent:'center',maxWidth:'100%'}}
+                  ><div style={{backgroundColor:'black',color:'white',zIndex:'1',display:'flx',justifyContent:'center',minWidth:'45%'}}>
                   {/* <h6 className='homebullet snow 'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',color:'white'}}>{mainRedC}</h6>
                 </div><div style={{minWidth:'10%'}}>
                  <h6 className='color-white snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white',color:'black'}}>  vs  </h6>
                  </div><div style={{backgroundColor:'blue',minWidth:'45%'}}>
                  <h6 className='homebullet snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',color:'white'}}>{mainBlueC}</h6> */}
                  <p style={{maxWidth:'100%' }}>
-    <span style={{ backgroundColor: 'red', padding: '2px',maxWidth:'40%' }}>{firstName}</span>
+    <span style={{ backgroundColor: 'red', padding: '2px',maxWidth:'40%', fontSize: firstName.length > 7 ? '100%' : '100%'  }}>{firstName}</span>
     <span style={{ backgroundColor: 'white', padding: '2px',color:'black',maxWidth:'10%' }}>vs</span>
-    <span style={{ backgroundColor: 'blue', padding: '2px',maxWidth:'40%' }}>{secondName}</span>
+    <span style={{ backgroundColor: 'blue', padding: '2px',maxWidth:'40%', }}>{secondName}</span>
 </p>
                  </div>
                  {/* //////////////////////// */}</div>
@@ -447,7 +455,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                                                     : ufcCard[0].fighterPics[0]
                                                 }')`,
                                                 backgroundPosition: 'right',
-                                                marginTop: '50%',
+                                                marginTop: '50%',width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',
                                               }} ></div>
                                     <div
                                               className="fi"
@@ -458,7 +466,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                                                       ufcCard[0].fighterPics[1].substring("/s3/files/".length)
                                                     : ufcCard[0].fighterPics[1]
                                                 }')`,
-                                                backgroundPosition: 'right',
+                                                backgroundPosition: 'right',width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
                                                 marginTop: '50%',
                                               }}
                                             ></div>
@@ -608,7 +616,30 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
             
             </div>
                  <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
-            <div style={{paddingTop:'15%',paddingBottom:'35%'}}className="element-with-border3">
+            <div style={{paddingTop:'15%',paddingBottom:'500px'}}className="element-with-border3">
+
+            <div className="home-fighter">
+                                    <div className="fi"
+                                              style={{
+                                                backgroundImage: `url('${
+                                                  currentfighter.fighterPics[0]
+                                                }')`,
+                                                backgroundPosition: 'right',
+                                                marginTop: '0%',width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',
+                                              }} ></div>
+                                    <div
+                                              className="fi"
+                                              style={{
+                                                backgroundImage: `url('${
+                                                  currentfighter.fighterPics[1]
+                                                }')`,
+                                                backgroundPosition: 'right',width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
+                                                marginTop: '0%',
+                                              }}
+                                            ></div>
+
+                                    </div>
+
                   <div style={{marginTop:"5%",
                               
                               backgroundPosition: '50% 50%',
@@ -617,7 +648,10 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                               borderRadius:'50%',
                               backgroundSize: '75% 75%'}} 
                      className={`${currentClass}`}></div> 
+
+                     
             </div>
+            
             <div style={{backgroundColor:'whitesmoke'}} >
             <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
                  <p className=" text-align-center " style={{minHeight:'10px'}}><strong >Loading...</strong></p>

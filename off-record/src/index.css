@@ -69,6 +69,7 @@ code {
   background-repeat: no-repeat;
   background-size: 100% 110%;
   padding-top: 0%;
+  padding-bottom: 0%;
   /* z-index: 1; */
 
 }
@@ -113,6 +114,7 @@ code {
   /* border-radius:5%; */
   font-weight: 800;
   width: 40%;
+  min-width: fit-content;
 
 
 }
@@ -1906,9 +1908,10 @@ input[type='checkbox'] {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: left;
-  min-width: 50%;
-  min-height:1000px;
+  /* min-width: 50%; */
+  min-height:600px;
   overflow: hidden;
+  padding-bottom: 3%;
 }
 .homebullet{
   font-size: 20px;

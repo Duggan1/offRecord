@@ -476,18 +476,18 @@ useEffect(() => {
         fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-07/VOLKANOVSKI_ALEXANDER_L_BELT_07-08.png?itok=rrdc9sM9', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-07/67667%252Fprofile-galery%252Ffullbodyright-picture%252FMCGREGOR_CONOR_R_07-10.png?itok=gL8I_tyo',],
       },
       {
-        fighters: ["Khabib Nurmagomedov", "BJ Penn"],
+        fighters: ["Khabib Nurmagomedov", "Islam"],
         match: "Lightweight Championship Bout",
         records: ["29-0-0", "16-14-2"],
         flags: ["Russia", "United States"],
-        fighterPics: ['https://pngimg.com/d/khabib_PNG16.png', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-03/PENN_BJ_R.png?VersionId=eV2cIM3YqUYM26MitpCFKJsidC_ZRUmJ&itok=RboQJFln',],
+        fighterPics: ['https://pngimg.com/d/khabib_PNG16.png', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2024-01/MAKHACHEV_ISLAM_BELT_R_10-21.png?itok=kS_KXIU2',],
       },
       {
-        fighters: ["Kamaru Usman", "Georges St-Pierre"],
+        fighters: ["Belal Muhammad", "Georges St-Pierre"],
         match: "Welterweight Championship Bout",
         records: ["19-1-0", "26-2-0"],
-        flags: ["Nigeria", "Canada"],
-        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/USMAN_KAMARU_L_03-18.png?itok=Zgf5AByJ', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/ufc-fighter-container/68009/profile-galery/fullbodyleft-picture/Georges-St-Pierre_318_LeftFullBodyImage.png?itok=Hi9sDs23',],
+        flags: ["Palestine", "Canada"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/MUHAMMAD_BELAL_L_05-06.png?itok=i3X9IYq7', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/ufc-fighter-container/68009/profile-galery/fullbodyleft-picture/Georges-St-Pierre_318_LeftFullBodyImage.png?itok=Hi9sDs23',],
       },
       {
         fighters: ["Yoel Romero", "Anderson Silva"],
@@ -495,14 +495,15 @@ useEffect(() => {
         records: ["13-5-0","34-11-0" ],
         flags: ["Cuba","Brazil" ],
         fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2019-08/ROMERO_YOEL_L.png?VersionId=wTpI3pU1qOO6j9MpcQ0gLSbeOTXWtrrY&itok=m3oyIJCE', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-10/67302%252Fprofile-galery%252Ffullbodyright-picture%252FSILVA_ANDERSON_R_10-31.png?itok=TlJEp4ti',],
-      },
-      {
-        fighters: ["Daniel Cormier", "Chuck Liddell"],
-        match: "Light Heavyweight Championship Bout",
-        records: ["22-3-0", "21-9-0"],
-        flags: ["United States", "United States"],
-        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-08/CORMIER_DANIEL_L_08-15.png?VersionId=X4Gimp.0zYGxx4haM_ASnymi8cEe4qNr&itok=EWrGvjtb', 'https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png',],
       }
+      // ,
+      // {
+      //   fighters: ["Daniel Cormier", "Chuck Liddell"],
+      //   match: "Light Heavyweight Championship Bout",
+      //   records: ["22-3-0", "21-9-0"],
+      //   flags: ["United States", "United States"],
+      //   fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-08/CORMIER_DANIEL_L_08-15.png?VersionId=X4Gimp.0zYGxx4haM_ASnymi8cEe4qNr&itok=EWrGvjtb', 'https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png',],
+      // }
     ]; ///move out of App
     
   

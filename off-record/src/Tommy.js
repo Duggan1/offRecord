@@ -755,7 +755,9 @@ if (isLoading) {
     </button>
     
     </div>
-      </div><div className='fc3' style={{backgroundImage:`url(${BGpic})`}}> </div>
+      </div>
+      
+      <div className='fc3' style={{backgroundImage:`url(${BGpic})`}}> </div>
       <div
         className={`fighter-info ${
           predictions[index]?.winner === 0 ? 'selected' : ''
@@ -1051,9 +1053,22 @@ if (isLoading) {
         {/* Add other fighter information here */}
       </div>
     {/* </div> */}
+    
    
      
     </div>
+    {/* <span style={{
+                                      borderTop: '15px solid red',
+                                      borderRight: '15px solid blue',
+                                      borderLeft: '15px solid red',
+                                      borderBottom: '15px solid blue',
+                                      minHeight:'100px',
+                                      width:'200px',
+                                      color: 'white',
+                                      backgroundColor: 'black',
+                                      // padding:'12% 15%',
+                                      borderRadius:'50%',marginTop:'-500px'
+                          }} className='p4pplus'> </span> */}
     
 
 
