@@ -301,7 +301,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
     
         // Clear the interval when the component is unmounted
         return () => clearInterval(intervalId);
-      }, [currentClass, fightingMan]);
+      }, [currentClass]);
 
       console.log(currentfighter)
       console.log(weRlive.some(item => item.timeDetails1 !== ''))
