@@ -289,19 +289,25 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       useEffect(() => {
         const intervalId = setInterval(() => {
           // Rotate through the classes
-          const currentIndex = fightingMan.indexOf(currentClass);
-          const nextIndex = (currentIndex + 1) % fightingMan.length;
-
-          const currentFightIndex = stallUfcCard.indexOf(currentfighter);
-          const nextFightIndex = (currentFightIndex + 1) % stallUfcCard.length;
-
-          setCurrentfighter(stallUfcCard[nextFightIndex])
-          setCurrentClass(fightingMan[nextIndex]);
-        }, 500);
-    
+          setCurrentClass(prevClass => {
+            const currentIndex = fightingMan.indexOf(prevClass);
+            const nextIndex = (currentIndex + 1) % fightingMan.length;
+            return fightingMan[nextIndex];
+          });
+      
+          // Rotate through the fighters
+          setCurrentfighter(prevFighter => {
+            const currentFightIndex = stallUfcCard.indexOf(prevFighter);
+            const nextFightIndex = (currentFightIndex + 1) % stallUfcCard.length;
+            return stallUfcCard[nextFightIndex];
+          });
+      
+        }, 800);
+      
         // Clear the interval when the component is unmounted
         return () => clearInterval(intervalId);
-      }, [currentClass]);
+      }, []); // Empty dependency array to ensure the effect runs only once during component mount
+      
 
       console.log(currentfighter)
       console.log(weRlive.some(item => item.timeDetails1 !== ''))

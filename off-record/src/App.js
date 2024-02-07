@@ -452,21 +452,12 @@ useEffect(() => {
         fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-03/JONES_JON_L_BELT_03_04.png?itok=Y8Eh_69p',
          'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-03/67964%252Fprofile-galery%252Ffullbodyright-picture%252FNGANNOU_FRANCIS_R_03-27.png?itok=E8A9RaUa',],
       }
-      ,
-      {
-        fighters: ["Demetrius Johnson", "Brandon Moreno"],
-        match: "Flyweight Championship Bout",
-        records: ["30-3-1", "19-5-2"],
-        flags: ["United States", "Mexico"],
-        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2018-10/JOHNSON_DEMETRIOUS_L.png?VersionId=G0_mNHlnlWHbCJpUDDHsX1poESQCIfI2&itok=r_oiMkoC',
-         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-03/9c4e751d-a7bb-45bf-81bb-5c57b661b325%252FMORENO_BRANDON_R_06-12.png?itok=-XuWENTW',],
-      },
-      {
-        fighters: ["Dominick Cruz","Sean O'Malley"  ],
-        match: "Bantamweight Championship Bout",
-        records: ["23-3-0","15-1-0" ],
-        flags: ["United States", "United States"],
-        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-03/7a064993-dfca-4c8e-aca4-8268fc6e711b%252FCRUZ_DOMINICK_L_12-11.png?itok=hInQ4zAq','https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/OMALLEY_SEAN_R_08-19.png?itok=eZovmDJG', ],
+      ,{
+        fighters: ["Belal Muhammad", "Georges St-Pierre"],
+        match: "Welterweight Championship Bout",
+        records: ["19-1-0", "26-2-0"],
+        flags: ["Palestine", "Canada"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/MUHAMMAD_BELAL_L_05-06.png?itok=i3X9IYq7', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/ufc-fighter-container/68009/profile-galery/fullbodyleft-picture/Georges-St-Pierre_318_LeftFullBodyImage.png?itok=Hi9sDs23',],
       },
       {
         fighters: ["Alexander Volkanovski", "Conor McGregor"],
@@ -483,12 +474,14 @@ useEffect(() => {
         fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/image/fighter_images/Khabib_Nurmagomedov/1NURMAGOMEDOV_KHABIB_L.png?itok=czY7iR8-', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/athlete_matchup_stats_full_body/s3/2024-01/MAKHACHEV_ISLAM_BELT_R_10-21.png?itok=kS_KXIU2',],
       },
       {
-        fighters: ["Belal Muhammad", "Georges St-Pierre"],
-        match: "Welterweight Championship Bout",
-        records: ["19-1-0", "26-2-0"],
-        flags: ["Palestine", "Canada"],
-        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-05/MUHAMMAD_BELAL_L_05-06.png?itok=i3X9IYq7', 'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/ufc-fighter-container/68009/profile-galery/fullbodyleft-picture/Georges-St-Pierre_318_LeftFullBodyImage.png?itok=Hi9sDs23',],
-      },
+        fighters: ["NATE", "NICK Diaz"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-02/DIAZ_NATE_L_09-10.png?itok=1GsE4yRS',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-11/DIAZ_NICK_R_09-25.png?itok=aoe74wGt',],
+      } ,
+      
       {
         fighters: ["Yoel Romero", "Anderson Silva"],
         match: "Middleweight Championship Bout",
@@ -503,16 +496,9 @@ useEffect(() => {
         records: ["22-3-0", "21-9-0"],
         flags: ["United States", "United States"],
         fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-03/d44b164d-b5ae-4594-959e-12a7d6343803%252FALDO_JOSE_L_12-04.png?itok=J0vKBt4n',
-                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2019-02/MAGOMEDSHARIPOV_ZABIT_R.png?VersionId=02bDgVdXFuELslgoOLV.Eu9K95Qumr99&itok=Yokvv_Az',],
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/GUIDA_CLAY_R_04-15.png?itok=6cgjVsTN',],
       } ,
-      {
-        fighters: ["Max Holloway", "Nate Diaz"],
-        match: "Light Heavyweight Championship Bout",
-        records: ["22-3-0", "21-9-0"],
-        flags: ["United States", "United States"],
-        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/HOLLOWAY_MAX_L_04-15.png?itok=Ig7AtZcm',
-                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/DIAZ_NATE_R_09-10.png?itok=ck6SsbnH',],
-      } ,
+      
       {
         fighters: ["Brock Lesner", "Stipe "],
         match: "Light Heavyweight Championship Bout",
@@ -530,7 +516,7 @@ useEffect(() => {
                          'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-04/MASVIDAL_JORGE_R_04-08.png?itok=wVAws_LB',],
       }   ,
       {
-        fighters: ["Artem", "Poatan"],
+        fighters: ["izzy", "Poatan"],
         match: "Light Heavyweight Championship Bout",
         records: ["22-3-0", "21-9-0"],
         flags: ["United States", "United States"],
@@ -547,9 +533,106 @@ useEffect(() => {
         fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/OLIVEIRA_CHARLES_L_06-10.png?itok=VPfDbyu9',
                          'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-10/71660%252Fprofile-galery%252Ffullbodyright-picture%252FCHIMAEV_KHAMZAT_R_10-30.png?itok=vBiGaKoz',],
       }
-    ]; ///move out of App
-    
-  
+      ,
+      
+      {
+      
+        fighters: ["Derrick Lewis ", "Cowboy"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2024-01/LEWIS_DERRICK_L_11-04.png?itok=V8IV5cq2',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2021-05/67844%252Fprofile-galery%252Ffullbodyright-picture%252FCERRONE_DONALD_R_05-08.png?itok=v_85X6do',],
+      },
+      
+      {
+      
+        fighters: ["Anthony Pettis", "Frankie Edgar"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2019-08/PETTIS_ANTHONY_L_0.png?VersionId=5.cy9oUi2OZvVHaXPccGKKv2xD3huZm8&itok=bsXSeAnf',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-03/44bed95d-2b1b-4bde-9686-3cebfe75a4fa%252FEDGAR_FRANKIE_R_11-06.png?itok=8JXAMuWN',],
+      },
+      
+      {
+        fighters: ["Mauricio Shogun Rua", "Gegard Mousasi"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2018-10/RUA_SHOGUN_L_0.png?itok=IQIPtISx',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-03/99ea9934-5ea2-4532-89b4-865243dc5ede%252FGegard-Mousasi_241929_RightFullBodyImage.png?itok=JN-iTDHv',],
+      },
+      {
+        fighters: ["Dominick Cruz","Sean O'Malley"  ],
+        match: "Bantamweight Championship Bout",
+        records: ["23-3-0","15-1-0" ],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-03/7a064993-dfca-4c8e-aca4-8268fc6e711b%252FCRUZ_DOMINICK_L_12-11.png?itok=hInQ4zAq','https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-08/OMALLEY_SEAN_R_08-19.png?itok=eZovmDJG', ],
+      },
+      
+      {
+      
+        fighters: ["Cain", "DC"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/ufc-fighter-container/67538/profile-galery/fullbodyleft-picture/Cain-Velasquez_899_LeftFullBodyImage.png?VersionId=RHMJaNxVQgvxL2xWew0TJDxqGdrh3npm&itok=-6Mp1zxm',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2020-08/CORMIER_DANIEL_R_08-15.png?VersionId=sEce7RCW7EdH_c8o_PQKIkhR5yb1D5YX&itok=xVtBANWq',],
+      },
+      
+      {
+      
+        fighters: ["CODY", "MAX"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-12/GARBRANDT_CODY_L_12-16.png?itok=-lRLd7_3',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/HOLLOWAY_MAX_R_04-15.png?itok=KaRXBZAd',],
+      }
+      , {
+      
+        fighters: ["TONY", "ROB"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-12/FERGUSON_TONY_L_12-16.png?itok=sETe3UzJ',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-09/WHITTAKER_ROBERT_R_09-03.png?itok=N6p8U8R5',],
+      },{
+        fighters: ["Demetrius Johnson", "Brandon Moreno"],
+        match: "Flyweight Championship Bout",
+        records: ["30-3-1", "19-5-2"],
+        flags: ["United States", "Mexico"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2018-10/JOHNSON_DEMETRIOUS_L.png?VersionId=G0_mNHlnlWHbCJpUDDHsX1poESQCIfI2&itok=r_oiMkoC',
+         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2022-03/9c4e751d-a7bb-45bf-81bb-5c57b661b325%252FMORENO_BRANDON_R_06-12.png?itok=-XuWENTW',],
+      },
+      
+      {
+      
+        fighters: ["FABER", "ANDRE"],
+        match: "Light Heavyweight Championship Bout",
+        records: ["22-3-0", "21-9-0"],
+        flags: ["United States", "United States"],
+        fighterPics: ['https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2019-07/FABER_URIJAH_L.png?VersionId=t70Jgq2xFpluEYBCt0bqsLtsOP3e.0Go&itok=N8JBx6qT',
+                         'https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2023-06/ARLOVSKI_ANDREI_R_06-03.png?itok=qcdNwYum',],
+      }
+      
+      
+     
+    ]; ///FOR ADDING MORE BELOW LOADING LANDING PAGE
+    // {
+      
+    //   fighters: ["", ""],
+    //   match: "Light Heavyweight Championship Bout",
+    //   records: ["22-3-0", "21-9-0"],
+    //   flags: ["United States", "United States"],
+    //   fighterPics: ['',
+    //                    '',],
+    // }
+    // ,
+    // ZABIT-RIGHT--https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/2019-02/MAGOMEDSHARIPOV_ZABIT_R.png?VersionId=02bDgVdXFuELslgoOLV.Eu9K95Qumr99&itok=Yokvv_Az
+    // 
+
 console.log(ufcCard)
 console.log(ufcCard2)
 
