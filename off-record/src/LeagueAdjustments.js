@@ -8,11 +8,12 @@ function LeagueAdjustments({ user, leagueName, appLeagues, onLogout }) {
     name: '',
     message: '',
     image: '',
+    members: '',
     // Add other fields as needed
   });
 
   const navigate = useNavigate();
-  console.log(leagueName)
+  console.log(leagueName.members)
 
   useEffect(() => {
     if (leagueName) {
@@ -21,6 +22,7 @@ function LeagueAdjustments({ user, leagueName, appLeagues, onLogout }) {
         name: leagueName.name || '',
         message: leagueName.message || '',
         image: leagueName.image || '',
+        members: leagueName.members || '',
         // Add other fields as needed
       });
     }
@@ -37,24 +39,45 @@ function LeagueAdjustments({ user, leagueName, appLeagues, onLogout }) {
   const [GTC , setGTC ] = useState(false)
   const [response , setResponse ] = useState('')
 
+  const handleRemoveMember = (memberId) => {
+    const updatedMembers = formData.members.filter((member) => member.id !== memberId);
+    setFormData((prevData) => ({
+      ...prevData,
+      members: updatedMembers,
+    }));
+  };
+
+
+
   const handleUpdateLeague = async (e) => {
-    e.preventDefault(); // Prevents the default form submission behavior
-  
+    e.preventDefault();
+
     try {
-      setGTC(true)   
-      console.log(formData)
       const response = await axios.patch(`https://off-therecordpicks.onrender.com/leagues/${formData.league_id}`, formData);
-  
-      console.log(response.data.message); 
+
+      console.log(response.data.message);
       setResponse(response.data.message);
-      leagueName.image = formData.image
-      setGTC(false)   
-       // Log the server response
+
+      // Update leagueName in your appLeagues array with the new data
+    //   const updatedLeagues = appLeagues.map((league) => {
+    //     return league.id === formData.league_id ? { ...league, ...formData } : league;
+    //   });
+
+      // Update the state with the updated leagues
+      // Assuming appLeagues and onLogout are props received from a parent component
+    //   onLogout(updatedLeagues);
+
+      seteditMembers(false);
     } catch (error) {
-      console.error('Error updating profile:', error);
+      console.error('Error updating league:', error);
     }
   };
-  
+
+  const [editMembers , seteditMembers] = useState(false)
+  const toggleEditMembers = () => {
+    seteditMembers((prevEditMembers) => !prevEditMembers);
+  };
+
 
   return (
     <>
@@ -114,9 +137,59 @@ function LeagueAdjustments({ user, leagueName, appLeagues, onLogout }) {
               backgroundImage: `url("${formData.image}")`,
             }}
           >Preview</h2>
+<center>
+          <p onClick={toggleEditMembers} style={{ display:'flex',backgroundColor:'white',border:'black 2px solid ', marginTop:'20px',padding:'1%', borderRadius:'8px', width:'145px'}}>Edit Members 
+          <div
+            style={{
+              width: '20px',
+              height: '20px',
+              borderRadius: '50%',
+              backgroundColor: 
+              !editMembers ? 'red' : 
+              'green',
+              cursor: 'pointer',
+            //   marginLeft: 'auto', marginRight:'1%'
+            }}
+            // onClick={() => handleCircleClick(member.id)}
+          ></div></p></center>
+          <br></br>
+
+{ editMembers ? 
+                 <div className='text-align-center' style={{backgroundColor:'whitesmoke', margin: '10%', paddingBottom:'10%'}}>
+          <h3 className='landunder fs20 Twoigs'>{leagueName.name} Members</h3>
+      {formData.members.map((member) => (
+        <div key={member.id} style={{ backgroundColor:'white',display: 'flex', alignItems: 'center', marginBottom: '10px',borderRadius:'8px', marginRight: '15px', marginLeft: '15px' }}>
+          
+          <img
+            src={member.image || leagueName.image} // Use a default image URL if member.image is null
+            alt={member.username}
+            style={{ width: '50px', height: '50px', borderRadius: '50%' }}
+          />
+          <p style={{ marginLeft: '10px' }}>{member.username}</p>
+          <div
+            style={{
+            //   width: '20px',
+              color: 'white',
+              borderRadius: '9px',
+              backgroundColor: 
+            //   clickedMembers.includes(member.id) ? 'red' : 
+              'darkred',
+              cursor: 'pointer',
+              marginLeft: 'auto', marginRight:'1%',padding:'5px'
+
+            }}
+            onClick={() => handleRemoveMember(member.id)}
+          >Remove Member</div>
+        </div>
+      ))}
+                 </div>
+        : null}
+
+
             <button className='submitb' type="submit p4pborder ">Update League Info</button>
           </form>
-        
+
+
       </div>
     </>
   );
