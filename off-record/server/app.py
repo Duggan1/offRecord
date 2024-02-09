@@ -247,10 +247,12 @@ class LeaguesAdjustment(Resource):
         league.passcode = data.get("passcode", league.passcode)
 
          # Update league members if provided in the request
-        if 'members' in data:
-            new_members_ids = data['members']
-            new_members = User.query.filter(User.id.in_(new_members_ids)).all()
-            league.members = new_members
+        members_data = data.get('members', [])
+        new_members_ids = [member['id'] for member in members_data]
+
+        # Get the User objects corresponding to the extracted IDs
+        new_members = User.query.filter(User.id.in_(new_members_ids)).all()
+        league.members = new_members
 
         # Commit changes to the database
         db.session.commit()
