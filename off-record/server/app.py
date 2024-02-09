@@ -246,6 +246,12 @@ class LeaguesAdjustment(Resource):
         league.image = data.get("image", league.image)
         league.passcode = data.get("passcode", league.passcode)
 
+         # Update league members if provided in the request
+        if 'members' in data:
+            new_members_ids = data['members']
+            new_members = User.query.filter(User.id.in_(new_members_ids)).all()
+            league.members = new_members
+
         # Commit changes to the database
         db.session.commit()
 
@@ -277,15 +283,28 @@ class LeagueMembers(Resource):
         return {'message': 'User joined the league successfully'}, 200
 
     def delete(self, league_id):
-        # Delete a league
+        # Remove a user from the league
+        data = request.get_json()
+        user_id = data.get('user_id')
+
+        if not user_id:
+            return {'message': 'Missing user_id'}, 400
+
+        # Check if the league exists
         league = League.query.get(league_id)
         if not league:
             return {'message': 'League not found'}, 404
 
-        db.session.delete(league)
+        # Check if the user exists in the league
+        user = User.query.get(user_id)
+        if user not in league.members:
+            return {'message': 'User not found in the league'}, 404
+
+        # Remove the user from the league
+        league.members.remove(user)
         db.session.commit()
 
-        return {'message': 'League deleted successfully'}, 200
+        return {'message': 'User removed from the league successfully'}, 200
 
 api.add_resource(Leagues, '/leagues')
 api.add_resource(LeagueMembers, '/leagues/<int:league_id>/members')
