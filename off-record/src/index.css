@@ -2169,10 +2169,14 @@ a {
   background: linear-gradient(to right, darkred 50%, navy 50%);
 
 }
+.bold
 .leagueUcontainer{
   margin: 1% 2%;
   background-color: whitesmoke;
 
+}
+.fs35{
+  font-size: 35px;
 }
 .leag {
   background-image: url('https://www.tilingtextures.com/wp-content/uploads/2017/04/0054-2.png');

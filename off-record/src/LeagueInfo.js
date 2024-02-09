@@ -1,11 +1,16 @@
 // import { useParams } from 'react-router-dom';
 import P4pHeader from "./P4pHeader";
-import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom';
+import Modal from 'react-modal';
+import React, { useState , useEffect } from 'react';
 
 function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,menow, tapImage, onLogout }) {
 //   const {  } = useParams();
 
-  // Now, you can use the leagueName in your component logic
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const openModal = () => setModalIsOpen(true);
+  const closeModal = () => setModalIsOpen(false);
+// Now, you can use the leagueName in your component logic
   console.log(appLeagues)
   
   const selectedLeague = appLeagues.find((league) => league.name === leagueName.name);
@@ -192,40 +197,31 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
         <h2 className="leagueDImg LeftOne" style={{
             backgroundImage: `url("${leagueName.image}")`,
         }} ></h2>
-        <h2 className="leagueDImg RightOne" style={{
-            backgroundImage: `url("${tapImage}")`,
+        <h2 className="leagueDImg RightOne" onClick={() => {
+      openModal();
+      // setPredictions([]);
+      // navigate('/results');
+    }} style={{
+            backgroundImage: `url("${tapImage}")`,height:'200px',cursor:'pointer'
         }} ></h2>
         </div>
         <div className="flex" style={{}}>
-          <div className="LeftOne">
-        <h1 ><span className="p4pborder fs45" style={{backgroundColor:'white',margin:'0px 0px',padding:'0px 5px'}}>{leagueName? leagueName.name : null} </span></h1>
-        <p><span style={{backgroundColor:'white',border:'2px solid black',margin:'0px 0px',padding:'0px 5%'}}>{leagueName? leagueName.message : null}</span></p>
+          <div className="LeftOne p4pborder bg-white">
+        <h1 ><span className=" fs35" style={{textDecoration:'underline', backgroundColor:'white',margin:'0px 0px',padding:'0px 5px'}}>{leagueName? leagueName.name : null} </span></h1>
+        <p><span style={{backgroundColor:'white',margin:'0px 0px',padding:'0px 5%'}}>{leagueName? leagueName.message : null}</span></p>
           </div>
 
           <div className="RightOne">
+            <p style={{marginRight:'10%',marginLeft:'10%',marginTop:'50px'}}><span className="" style={{cursor:'pointer',backgroundColor:'white', padding:'0px 10%',border:'black solid 2px', borderRadius:'10px',paddingBottom:'3px'}}
+            onClick={() => {
+              openModal();
+              // setPredictions([]);
+              // navigate('/results');
+            }}>View Card</span></p>
 
         
 
-        {liveNready ? (
-  liveNready.map((fight, index) => (
-    <div key={index} className="flex" style={{
-      backgroundColor: 'whitesmoke',
-      padding: '1%',
-      margin: '2px',
-      borderRadius: '18px',
-      color: 'black',
-      border: 'black 1px solid',
-    }}>
-      <div className="flex WholeOne element-with-border3 snowwhite">
-      <p style={{
-        backgroundColor: fight.winner == 0 ? "darkgreen": 'darkred'
-      }} className="LeftOne">{fight.fighters[0]} </p><p className="RightOne" style={{
-        backgroundColor: fight.winner == 1 ? "darkgreen": 'navy'
-      }}> {fight.fighters[1]}</p>
-      </div>
-    </div>
-  ))
-) : null}
+  
 
 
 
@@ -236,8 +232,8 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
       <h4 className="MainEventContainer"><span style={{backgroundColor:'black',margin:'0px 0px',padding:'0px 5px',color:'white'}}>{menow} </span></h4>
       {/* Other components or logic */}
       <div className="background-dash">
-        <p style={{backgroundColor:'black', color:'white',textDecoration:'underline'}}>Results</p>
-      <div className="flex " style={{backgroundColor:'black',padding:'2% 0%',flexWrap: 'wrap' }}> 
+        <p className="fs35" style={{backgroundImage:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqRuIYdVnjICsgB0quMOkLy6ezG4gwBRNFmw&usqp=CAU)',backgroundColor:'black', color:'white',textDecoration:'underline'}}>Results</p>
+      <div className="flex " style={{backgroundImage:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqRuIYdVnjICsgB0quMOkLy6ezG4gwBRNFmw&usqp=CAU)',backgroundColor:'black',padding:'2% 0%',flexWrap: 'wrap' }}> 
 
 
       
@@ -259,7 +255,7 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
           margin: '2px',
           borderRadius: '18px',
           color: fight.winner ? 'white' : 'white',
-          border: 'black 1px solid',
+          border: 'black 1px solid', width:'50px'
         }}
       >
         {fight.method && fight.method[0] !== null ? fight.method[0] : ' ?'}
@@ -449,6 +445,50 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
 
       </div>
     </div>
+
+    <Modal
+  isOpen={modalIsOpen}
+  onRequestClose={closeModal}
+  contentLabel=""
+>
+  <div className='text-align-center bg-black 'style={{MaxHeight:'fit-content'}}>
+  <center> <div className='p4pplusBlack ggg'></div></center>
+    <h2 className='snowwhite fs20'
+    style={{ margin:'10px' }}
+    >Picks4Points.com</h2>
+          {liveNready ? (
+  liveNready.map((fight, index) => (
+    <div key={index} className="flex" style={{
+      backgroundColor: 'grey',
+      padding: '1%',
+      margin: '2px',
+      borderRadius: '18px',
+      color: 'black',
+      border: 'black 1px solid',
+    }}>
+      <div className="flex WholeOne element-with-border3 snowwhite">
+        <span style={{marginLeft:'auto',backgroundColor:'whitesmoke',color:'black', borderRadius:'50%',border:'1px solid black',padding:'2px 5px',fontSize:'100%', maxHeight:'35px'}} >{liveNready.length - index}.</span>
+      <p style={{
+        backgroundColor: fight.winner == 0 ? "darkgreen": 'darkred'
+      }} className="LeftOne">{fight.fighters[0]} </p><p className="RightOne" style={{
+        backgroundColor: fight.winner == 1 ? "darkgreen": 'navy'
+      }}>{fight.fighters[1]} </p>
+      </div>
+    </div>
+  ))
+) : null}
+
+
+
+    <button className="p4pborder"
+    style={{backgroundColor:'whitesmoke', color:'black',padding :"3%",  borderRadius:'10%', margin:'2%'}}
+    onClick={() => {
+      closeModal();
+      // setPredictions([]);
+      // navigate('/results');
+    }}>Close</button>
+  </div>
+</Modal>
     </>
   );
 }
