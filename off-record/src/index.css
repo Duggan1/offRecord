@@ -2162,7 +2162,7 @@ a {
 }
 
 .MainEventContainer{
-  margin-bottom: 2%;
+  /* margin-top: 2%; */
   background: linear-gradient(to right, darkred 50%, navy 50%);
 }
 .p4pbg {
@@ -2180,7 +2180,7 @@ a {
   background-size: 100% 100%;
   border: black 2px solid;
   border-right: navy 5px solid;
-  border-left: red 5px solid;
+  border-left: darkred 5px solid;
 
 }
 .leagueDImg {

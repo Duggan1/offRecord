@@ -157,6 +157,7 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
     })
   : [];
   console.log(sortedMembers)
+  // console.log(findPredictionByMainEventAndOwner(results2, menow, user.username).predictions.length / 2)
 
 
 
@@ -187,10 +188,6 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
               </div>
               
       <div className="leag">
-        <h1 ><span className="p4pborder fs45" style={{backgroundColor:'white',margin:'0px 0px',padding:'0px 5px'}}>{leagueName? leagueName.name : null} </span></h1>
-        <p><span style={{backgroundColor:'white',border:'2px solid black',margin:'0px 0px',padding:'0px 5%'}}>{leagueName? leagueName.message : null}</span></p>
-        
-        
         <div className="flex Twoigs " style={{height:'150px'}}>
         <h2 className="leagueDImg LeftOne" style={{
             backgroundImage: `url("${leagueName.image}")`,
@@ -199,11 +196,95 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
             backgroundImage: `url("${tapImage}")`,
         }} ></h2>
         </div>
+        <div className="flex" style={{}}>
+          <div className="LeftOne">
+        <h1 ><span className="p4pborder fs45" style={{backgroundColor:'white',margin:'0px 0px',padding:'0px 5px'}}>{leagueName? leagueName.name : null} </span></h1>
+        <p><span style={{backgroundColor:'white',border:'2px solid black',margin:'0px 0px',padding:'0px 5%'}}>{leagueName? leagueName.message : null}</span></p>
+          </div>
+
+          <div className="RightOne">
+
+        
+
+        {liveNready ? (
+  liveNready.map((fight, index) => (
+    <div key={index} className="flex" style={{
+      backgroundColor: 'whitesmoke',
+      padding: '1%',
+      margin: '2px',
+      borderRadius: '18px',
+      color: 'black',
+      border: 'black 1px solid',
+    }}>
+      <div className="flex WholeOne element-with-border3 snowwhite">
+      <p style={{
+        backgroundColor: fight.winner == 0 ? "darkgreen": 'darkred'
+      }} className="LeftOne">{fight.fighters[0]} </p><p className="RightOne" style={{
+        backgroundColor: fight.winner == 1 ? "darkgreen": 'navy'
+      }}> {fight.fighters[1]}</p>
       </div>
-      <h4 className="MainEventContainer"><span style={{backgroundColor:'black',textDecoration:'underline',margin:'0px 0px',padding:'0px 5px',color:'white'}}>{menow}</span></h4>
+    </div>
+  ))
+) : null}
+
+
+
+          </div>
+        </div>
+
+      </div>
+      <h4 className="MainEventContainer"><span style={{backgroundColor:'black',margin:'0px 0px',padding:'0px 5px',color:'white'}}>{menow} </span></h4>
       {/* Other components or logic */}
       <div className="background-dash">
-      <div className="flex "> 
+        <p style={{backgroundColor:'black', color:'white',textDecoration:'underline'}}>Results</p>
+      <div className="flex " style={{backgroundColor:'black',padding:'2% 0%',flexWrap: 'wrap' }}> 
+
+
+      
+      {liveNready ? (
+  liveNready.map((fight, index) => (
+    <div key={index} className="flex" style={{
+      backgroundColor: 'whitesmoke',
+      padding: '1%',
+      margin: '2px',
+      borderRadius: '18px',
+      color: 'black',
+      border: 'black 1px solid',
+    }}>
+      <p>{index + 1}.</p>
+      <p
+        style={{
+          backgroundColor: fight.winner ? fight.winner === 1 ? "navy" : 'darkred' : "grey",
+          padding: '0px 3%',
+          margin: '2px',
+          borderRadius: '18px',
+          color: fight.winner ? 'white' : 'white',
+          border: 'black 1px solid',
+        }}
+      >
+        {fight.method && fight.method[0] !== null ? fight.method[0] : ' ?'}
+
+        {fight.method && fight.method[0] === 'T'
+  ? (fight.round ? `KO R${fight.round}` : 'KO')
+  : (fight && fight.method
+      ? (fight.method[0] === 'D' ? 'Dec' : `${fight.method[0]}${fight.round ? ` R${fight.round}` : ''}`)
+         : (fight && fight.method
+           ? (fight.method[0] === 'S'  ? `S R${fight.round}` : 'Sub') : null))}
+
+
+
+      </p>
+    </div>
+  ))
+) : null}
+
+
+
+
+
+
+</div>
+<div className="flex "> 
       <div className="LeftOne">
         <h3 >League Members</h3></div><div className="RightOne"><h3 >Points</h3></div>
      </div>
@@ -211,8 +292,10 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
 
 <div className='text-align-center' style={{backgroundColor:'whitesmoke', margin: '0px 0%', padding:'5%'}}>
      {sortedMembers ? (
-        sortedMembers.map((member) => (
-          <div key={member.id} style={{border:'black 1px solid', backgroundColor:'white',display: 'flex', alignItems: 'center', marginBottom: '10px',borderRadius:'8px', marginRight: '15px', marginLeft: '15px' }}>
+        sortedMembers.map((member) =>
+         (
+          <div style={{border:'black 1px solid', backgroundColor:'white', marginBottom: '10px',borderRadius:'8px', marginRight: '15px', marginLeft: '15px' }}>
+          <div key={member.id} style={{display: 'flex', alignItems: 'center' }}>
             
             <img
               src={member.image || leagueName.image} // Use a default image URL if member.image is null
@@ -276,9 +359,88 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
 
 
           </div>
+
+          <div className="flex" style={{ flexWrap: 'wrap' }}>
+  {findPredictionByMainEventAndOwner(results2, menow, member.username)?.predictions?.map((fight, index) => {
+    // Check if liveNready[index] and fight are defined
+    if (liveNready[index] && fight) {
+      return (
+        <div key={index} className="flex" style={{
+          backgroundColor: 'whitesmoke',
+          padding: '1%',
+          margin: '2px',
+          borderRadius: '18px',
+          color: 'black',
+          border:
+            liveNready[index].winner && fight.winner
+              ? liveNready[index].winner === fight.winner
+                ? 'green 3px solid'
+                : 'red 3px solid'
+              : 'black 3px solid',
+        }}>
+
+{liveNready[index].winner && fight.winner ? 
+    liveNready[index].winner === fight.winner ? <p className='color-green bold'>+1</p> :
+        (liveNready[index].method && fight.method ?
+            liveNready[index].method === fight.method ? <p className='color-green bold'>+2</p> :
+                (liveNready[index].round && fight.round ?
+                    liveNready[index].round === fight.round ? <p className='color-green bold'>+3</p> : <p className='color-green bold'>+2</p> :
+                <p className='color-green bold'> +2</p>) :
+            <p className='color-green bold'>+2</p>) :
+    <p className=''>{index + 1}.</p>
+}
+
+
+                    
+
+          
+          
+          
+          
+          
+          <p
+            style={{
+              backgroundColor: fight.winner ? 'darkred' : 'navy',
+              padding: '1%',
+              margin: '2px',
+              borderRadius: '18px',
+              color: 'white',
+              border: 'black 1px solid', width:'50px'
+            }}
+          >
+           {fight.method && fight.method[0] === 'T'
+  ? (fight.round ? `KO R${fight.round}` : 'KO')
+  : (fight && fight.method
+      ? (fight.method[0] === 'D' ? 'Dec' : `${fight.method[0]}${fight.round ? ` R${fight.round}` : ''}`)
+      : `S R${fight.round || ''}`)}
+
+
+
+
+
+
+
+          </p>
+        </div>
+      );
+    }
+    // Return null if liveNready[index] or fight is undefined
+    return null;
+  })}
+</div>
+
+
+
+
+          </div>
         ))
+
+
+        
        
-      ) : (
+      
+      
+        ) : (
         <p>No members found</p>
       )}
 
