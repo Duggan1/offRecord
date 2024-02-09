@@ -1752,7 +1752,9 @@ input[type='checkbox'] {
 }
 
 
-
+.justify-center{
+  justify-content: center;
+}
 
 
 
@@ -2208,6 +2210,7 @@ a {
 
 .width10 {
   width: 10%;
+  
 }
 .width40{
   width:40%;
@@ -2367,6 +2370,9 @@ a {
 }
 .fs452{
   font-size: 20px;
+}
+.fs35{
+  font-size: 25px;
 }
 }
 

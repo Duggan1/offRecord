@@ -646,7 +646,7 @@ if (isLoading) {
         ? 'fighterACTready' : 'fighterready'}`}>
       
   <p key={index} className="mobile-fight-info">
-  <p className='snowwhite'>{fight.match.slice(0, fight.match.length / 2)}</p>
+    <p className='snowwhite'>{fight.match.slice(0, fight.match.length / 2)}</p>
     <div  className=" mobile-fighter-name">
       <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%'}} className={` redName white-border mobile-fighter-name
       

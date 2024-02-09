@@ -164,6 +164,10 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
   console.log(sortedMembers)
   // console.log(findPredictionByMainEventAndOwner(results2, menow, user.username).predictions.length / 2)
 
+const [showResults, setshowResults] =  useState(true);
+const toggleResults = () => {
+  setshowResults(!showResults);
+};
 
 
   
@@ -192,7 +196,7 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
 
               </div>
               
-      <div className="leag">
+      <div className="leag bg-black">
         <div className="flex Twoigs " style={{height:'150px'}}>
         <h2 className="leagueDImg LeftOne" style={{
             backgroundImage: `url("${leagueName.image}")`,
@@ -206,7 +210,7 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
         }} ></h2>
         </div>
         <div className="flex" style={{}}>
-          <div className="LeftOne p4pborder bg-white">
+          <div className="LeftOne  bg-white" style={{borderRadius:'8px', border:'black 2px solid '}}>
         <h1 ><span className=" fs35" style={{textDecoration:'underline', backgroundColor:'white',margin:'0px 0px',padding:'0px 5px'}}>{leagueName? leagueName.name : null} </span></h1>
         <p><span style={{backgroundColor:'white',margin:'0px 0px',padding:'0px 5%'}}>{leagueName? leagueName.message : null}</span></p>
           </div>
@@ -232,7 +236,24 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
       <h4 className="MainEventContainer"><span style={{backgroundColor:'black',margin:'0px 0px',padding:'0px 5px',color:'white'}}>{menow} </span></h4>
       {/* Other components or logic */}
       <div className="background-dash">
-        <p className="fs35" style={{backgroundImage:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqRuIYdVnjICsgB0quMOkLy6ezG4gwBRNFmw&usqp=CAU)',backgroundColor:'black', color:'white',textDecoration:'underline'}}>Results</p>
+      <div className="" style={{  backgroundImage: 'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqRuIYdVnjICsgB0quMOkLy6ezG4gwBRNFmw&usqp=CAU)', backgroundColor: 'black' }}>
+  <div className="flex" style={{ justifyContent:'left',marginLeft:'1%', textAlign: 'left',minWidth:'fit-content'  }}>
+    <p
+      onClick={toggleResults}
+      className=""
+      style={{ backgroundColor: 'white', borderRadius: '8px', padding: '0.5%', border: 'grey 2px solid'}}
+    >
+      Display 
+      <span style={{ minHeight: '15px', minWidth: '15px', backgroundColor: showResults ? "darkgreen" : "darkred", borderRadius: '50%',marginLeft:'1.5px',color: showResults ? "darkgreen" : "darkred" }}>__</span>
+    </p></div>
+    <center>
+      <p className="fs35" style={{ color: 'white', textDecoration: 'underline', textAlign: 'center', marginTop: "-30px",paddingBottom:'25px' }}>Results</p>
+    </center>
+  
+</div>
+
+
+{ showResults ?
       <div className="flex " style={{backgroundImage:'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqRuIYdVnjICsgB0quMOkLy6ezG4gwBRNFmw&usqp=CAU)',backgroundColor:'black',padding:'2% 0%',flexWrap: 'wrap' }}> 
 
 
@@ -279,7 +300,8 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
 
 
 
-</div>
+</div> : null }
+<div style={{borderBottom:'solid white 0px',borderTop:'solid white 3px'}} class="element-with-border2"></div>
 <div className="flex "> 
       <div className="LeftOne">
         <h3 >League Members</h3></div><div className="RightOne"><h3 >Points</h3></div>
