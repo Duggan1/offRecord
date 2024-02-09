@@ -2256,7 +2256,9 @@ a {
   .homebullet{
     font-size: 12px;
   }
-
+  .moblie-small{
+    font-size: 10px;
+  }
   .fs452{
     font-size: 30px;
   }

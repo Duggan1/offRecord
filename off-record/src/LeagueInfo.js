@@ -205,51 +205,86 @@ function LeagueInfo({ user,leagueName, appLeagues,ufcResults ,weRlive,results2 ,
       <div className="background-dash">
       <div className="flex "> 
       <div className="LeftOne">
-        <h3 >Users</h3></div><div className="RightOne"><h3 >Points</h3></div>
+        <h3 >League Members</h3></div><div className="RightOne"><h3 >Points</h3></div>
      </div>
      <div style={{borderBottom:'solid white 0px',borderTop:'solid white 3px'}} class="element-with-border2"></div>
 
-
+<div className='text-align-center' style={{backgroundColor:'whitesmoke', margin: '0px 0%', padding:'5%'}}>
      {sortedMembers ? (
         sortedMembers.map((member) => (
-          <div key={member.id} className="flex leagueUcontainer">
+          <div key={member.id} style={{border:'black 1px solid', backgroundColor:'white',display: 'flex', alignItems: 'center', marginBottom: '10px',borderRadius:'8px', marginRight: '15px', marginLeft: '15px' }}>
             
-            <div className="width10 " ><div className="p4pbg Limgsetup "
-              
-              style={member.image ? { backgroundImage: `url("${member.image}")` } : null}
-            ></div>
-            </div>
-            <div style={{borderRight:'1px solid grey',paddingRight:'1%'}} className={`width40 ${findPredictionByMainEventAndOwner(results2, menow, member.username) ? 'color-black' : 'color-black'}`}>{member.username}
-            </div>
-     
-            {/* <div className="width25">
-                {findPredictionByMainEventAndOwner(results2, menow, member.username) ? <p>True</p> : <p>False</p> }
-            
-            
-            </div> */}
-            <div className="RightOne" style={{borderLeft:'1px solid black'}}>
-            {/* {calculateLiveTotalPoints} */} 
-            {findPredictionByMainEventAndOwner(results2, menow, member.username) ? <div className="color-green">
+            <img
+              src={member.image || leagueName.image} // Use a default image URL if member.image is null
+              alt={member.username}
+              style={{ width: '50px', height: '50px', borderRadius: '50%' }}
+            />
+            <p
+              style={{
+                marginLeft: '10px',
+                // fontSize: member.username.length > 10 ? '50%' : 'inherit',
+                 maxWidth:'40%'
+              }}
 
-            {calculateLiveTotalPoints(findPredictionByMainEventAndOwner(results2, menow, member.username))}</div>
-            : <div
-              
+              className={member.username.length > 10 ? `moblie-small `: ""}
+            >
+              {member.username}
+            </p>
+
             
-          ><span style={{
-              backgroundSize: '100% 100%',
-              backgroundColor:'darkred',
-              color:'white',
-              padding: '1%',
-              borderRadius: '50%'
-              
-              
-            }}>X</span>Picks Missing</div> }
-            </div>
+            {findPredictionByMainEventAndOwner(results2, menow, member.username) ? 
+            <div
+              style={{
+              //   width: '20px',
+                color: 'white',
+                borderRadius: '9px',
+                backgroundColor: 
+              //   clickedMembers.includes(member.id) ? 'red' : 
+                'darkgreen', fontWeight:'900',fontSize:'20px',
+                cursor: 'pointer',
+                marginLeft: 'auto', marginRight:'5%',padding:'5px 20px'
+  
+              }}
+              // onClick={() => handleRemoveMember(member.id)}
+            >{calculateLiveTotalPoints(findPredictionByMainEventAndOwner(results2, menow, member.username))}</div>
+            
+            : 
+            
+            <div  style={{
+              //   width: '20px',
+                color: 'black',
+                borderRadius: '9px',border: '2px solid darkred',
+                backgroundColor: 
+              //   clickedMembers.includes(member.id) ? 'red' : 
+                'whitesmoke',
+                cursor: 'pointer',
+                marginLeft: 'auto', marginRight:'0%',padding:'5px',minWidth:'40%'
+  
+              }}><div
+            
+          
+                ><span style={{
+                    backgroundSize: '100% 100%',
+                    backgroundColor:'darkred',
+                    color:'white',
+                    padding: '1%',
+                    borderRadius: '50%'
+                    
+                    
+                  }}>X</span>Picks Missing</div>
+              </div>}
+
+
           </div>
         ))
+       
       ) : (
         <p>No members found</p>
       )}
+
+</div>
+
+
       </div>
     </div>
     </>
