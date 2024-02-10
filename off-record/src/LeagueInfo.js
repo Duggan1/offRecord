@@ -271,7 +271,12 @@ const toggleResults = () => {
       <p>{index + 1}.</p>
       <p
         style={{
-          backgroundColor: fight.winner ? fight.winner === 1 ? "navy" : 'darkred' : "grey",
+          backgroundColor: fight.winner !== null
+          ? fight.winner === 1 ? "navy"
+          : fight.winner == 0 ? 'darkred'
+          : "black"
+          : "gray",
+
           padding: '0px 3%',
           margin: '2px',
           borderRadius: '18px',
@@ -389,24 +394,34 @@ const toggleResults = () => {
           margin: '2px',
           borderRadius: '18px',
           color: 'black',
-          border:
-            liveNready[index].winner && fight.winner
-              ? liveNready[index].winner === fight.winner
-                ? 'green 3px solid'
-                : 'red 3px solid'
-              : 'black 3px solid',
+          border: liveNready[index].winner !== null && fight.winner !== null
+    ? liveNready[index].winner === fight.winner
+      ? 'green 3px solid'
+      : 'red 3px solid'
+    : 'black 1px solid',
         }}>
 
-{liveNready[index].winner && fight.winner ? 
-    liveNready[index].winner === fight.winner ? <p className='color-green bold'>+1</p> :
-        (liveNready[index].method && fight.method ?
-            liveNready[index].method === fight.method ? <p className='color-green bold'>+2</p> :
-                (liveNready[index].round && fight.round ?
-                    liveNready[index].round === fight.round ? <p className='color-green bold'>+3</p> : <p className='color-green bold'>+2</p> :
-                <p className='color-green bold'> +2</p>) :
-            <p className='color-green bold'>+2</p>) :
-    <p className=''>{index + 1}.</p>
+{
+  liveNready[index].winner && fight.winner
+    ? liveNready[index].winner === fight.winner
+      ? (
+        liveNready[index].method && fight.method
+          ? liveNready[index].method === fight.method
+            ? (
+              liveNready[index].round && fight.round
+                ? liveNready[index].round === fight.round
+                  ? <p className='color-green bold'>+3</p>
+                  : <p className='color-green bold'>+2</p>
+                : <p className='color-green bold'>+2</p>
+            )
+            : <p className='color-green bold'>+1</p>
+          : <p className='color-green bold'>+1</p>
+      )
+      : <p className=''>{index + 1}.</p>
+    : <p className=''>{index + 1}.</p>
 }
+
+
 
 
                     
@@ -418,7 +433,12 @@ const toggleResults = () => {
           
           <p
             style={{
-              backgroundColor: fight.winner ? 'darkred' : 'navy',
+              backgroundColor: fight.winner !== null
+                  ? fight.winner === 1 ? "navy"
+                  : fight.winner == 0 ? 'darkred'
+                  : "grey"
+                  : "gray",
+
               padding: '1%',
               margin: '2px',
               borderRadius: '18px',
