@@ -266,7 +266,7 @@ const toggleResults = () => {
       margin: '2px',
       borderRadius: '18px',
       color: 'black',
-      border: 'black 1px solid',
+      border: 'black 1px solid'
     }}>
       <p>{index + 1}.</p>
       <p
@@ -281,10 +281,13 @@ const toggleResults = () => {
           margin: '2px',
           borderRadius: '18px',
           color: fight.winner ? 'white' : 'white',
-          border: 'black 1px solid', width:'50px'
+          border: 'black 1px solid', width:'60px'
         }}
       >
-        {fight.method && fight.method[0] !== null ? fight.method[0] : ' ?'}
+        {fight.method && fight.method[0] !== null ?
+        //  fight.method[0]
+        ''
+          : ' ?'}
 
         {fight.method && fight.method[0] === 'T'
   ? (fight.round ? `KO R${fight.round}` : 'KO')
@@ -292,9 +295,6 @@ const toggleResults = () => {
       ? (fight.method[0] === 'D' ? 'Dec' : `${fight.method[0]}${fight.round ? ` R${fight.round}` : ''}`)
          : (fight && fight.method
            ? (fight.method[0] === 'S'  ? `S R${fight.round}` : 'Sub') : null))}
-
-
-
       </p>
     </div>
   ))
@@ -509,11 +509,15 @@ const toggleResults = () => {
       border: 'black 1px solid',
     }}>
       <div className="flex WholeOne element-with-border3 snowwhite">
-        <span style={{marginLeft:'auto',backgroundColor:'whitesmoke',color:'black', borderRadius:'50%',border:'1px solid black',padding:'2px 5px',fontSize:'100%', maxHeight:'35px'}} >{liveNready.length - index}.</span>
+        <span style={{marginLeft:'auto',
+        backgroundColor: fight.winner !== null ? 'white': 'white',
+        borderRadius: fight.winner !== null ? '0px': '50%',
+        color:'black' ,border:'1px solid black',padding:'2px 5px',fontSize:'100%', maxHeight:'35px'}} >{1 + index}.</span>
       <p style={{
-        backgroundColor: fight.winner == 0 ? "darkgreen": 'darkred'
+       backgroundColor: fight.winner === 1 ? "black" : (fight.winner === 0 ? "darkgreen" : (fight.winner === null ? "darkred" : ""))
       }} className="LeftOne">{fight.fighters[0]} </p><p className="RightOne" style={{
-        backgroundColor: fight.winner == 1 ? "darkgreen": 'navy'
+        backgroundColor: fight.winner === 1 ? "darkgreen" : (fight.winner === 0 ? "black" : (fight.winner === null ? "navy" : ""))
+
       }}>{fight.fighters[1]} </p>
       </div>
     </div>
