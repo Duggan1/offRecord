@@ -351,6 +351,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       console.log(currentfighter)
       console.log(weRlive.some(item => item.timeDetails1 !== ''))
       const countNonEmptyTimeDetails = weRlive.filter(item => item.timeDetails1 !== '').length;
+      console.log(countNonEmptyTimeDetails)
+      console.log(liveNready)
 
 
 
@@ -466,9 +468,43 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
 
 
         <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
-        { isOwnerAndEventMatch ? 
-        <div className="bg-black" style={{padding:'2% 0% 0% 0%' }}> 
-      <p className="snowwhite text-align-center font-bold">Results</p>
+        { isOwnerAndEventMatch ? <>
+          <div style={{ position: 'relative' }}>
+  {weRlive.some(item => item.timeDetails1 !== '') ? (
+    <p style={{
+      position: 'absolute',
+      top: '0',
+      right: '1',
+      color: 'green',
+      fontWeight: 'bold'
+    }}>
+      Live <span style={{
+        minHeight: '10px',
+        border: 'white solid 1px',
+        borderRadius: '50%',
+        minWidth: '15px',
+        backgroundColor: 'darkgreen'
+      }}>_</span>
+    </p>
+  ) : null}
+
+  {/* Other content of the div */}
+</div>
+
+
+        <div className="bg-black" style={{padding:'0% 0% 0% 0%' }}> 
+        
+                <p className=" text-align-center" style={{maxWidth:'100%',padding:'0% 0% 2% 0%' }}>
+    <span style={{ backgroundColor: 'darkred', padding: '2px',maxWidth:'40%', fontSize: firstName.length > 7 ? '100%' : '100%',color: 'white', border:'2px white solid' }}>{firstName}</span>
+    <span style={{ backgroundColor: 'white', padding: '2px',color:'black',maxWidth:'10%', border:'2px white solid' }}>vs</span>
+    <span style={{ backgroundColor: 'navy', padding: '2px',maxWidth:'40%',color: 'white', border:'2px white solid' }}>{secondName}</span>
+    
+
+    
+</p>
+{/* {weRlive.some(item => item.timeDetails1 === '')? <><span className="color-green font-bold"> Live <span style={{minHeight:'10px',border:'white solid 1px ', borderRadius:'50%',minWidth:'15px',backgroundColor:'darkgreen'}}>_</span> </span>
+                         </> : null } */}
+
  <div className="flex " style={{flexWrap: 'wrap'}}>
 
       
@@ -520,7 +556,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
 
 </div>
 <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px',marginTop:'2%'}} class="element-with-border"></div>
-        </div> : null}
+        </div> </> : null}
       < div className="home" >
         
 
@@ -528,8 +564,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 <div  className='crdiv2 box-content'> 
 
                {mainBlueC ?<>
-                        {weRlive.some(item => item.timeDetails1 !== '')? <><p className="snowwhite">We Are <span className="color-green">Live</span></p>
-                         <p className="snowwhite">Fight  {countNonEmptyTimeDetails}/{ufcCard.length} </p> </> : null }
+                        
                         <center><div  style={{marginBottom:'-5px'}} className="p4pplusBlack2"></div></center>
                  <div className=""
                   style={{zIndex:'1',display:'',justifyContent:'center',maxWidth:'100%'}}
