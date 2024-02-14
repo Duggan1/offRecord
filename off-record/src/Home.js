@@ -465,8 +465,9 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
 
 
 
-        <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px',position:"sticky"}} class="element-with-border"></div>
-        { isOwnerAndEventMatch ? <div className="bg-darknavy" style={{padding:'2% 0%' }}> 
+        <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
+        { isOwnerAndEventMatch ? 
+        <div className="bg-black" style={{padding:'2% 0% 0% 0%' }}> 
       <p className="snowwhite text-align-center font-bold">Results</p>
  <div className="flex " style={{flexWrap: 'wrap'}}>
 
@@ -518,6 +519,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
 
 
 </div>
+<div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px',marginTop:'2%'}} class="element-with-border"></div>
         </div> : null}
       < div className="home" >
         
@@ -582,7 +584,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 backgroundRepeat:'no-repeat',
                 paddingTop:'15%',
                 paddingBottom:'15%',marginBottom:'0%',marginTop:'0%', cursor:'pointer',
-               height:'200px',
+               height:'300px',
                 }} ></h5> }
                  </div>
                   
@@ -625,7 +627,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
         
 
                                    
-                                    <span style={{
+                                    {/* <span style={{
                                       borderTop: '15px solid red',
                                       borderRight: '15px solid blue',
                                       borderLeft: '15px solid red',
@@ -636,7 +638,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                                       backgroundColor: 'black',
                                       // padding:'12% 15%',
                                       borderRadius:'50%'
-                          }} className='p4pplus'> </span>
+                          }} className='p4pplus'> </span> */}
 
 
 

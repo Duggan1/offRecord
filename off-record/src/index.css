@@ -65,9 +65,10 @@ code {
   font-size: calc(10px + 2vmin);
   color: white;
   /* background-image: url('https://t3.ftcdn.net/jpg/00/92/80/64/360_F_92806458_cuy3wFTL9h8FqisKPbd9yGoihsNjy8xQ.jpg'); */
-   background-image: url('https://image.shutterstock.com/image-vector/empty-cage-martial-arts-fighting-260nw-1136825033.jpg');
-  background-repeat: no-repeat;
-  background-size: 100% 110%;
+   /* background-image: url('https://image.shutterstock.com/image-vector/empty-cage-martial-arts-fighting-260nw-1136825033.jpg'); */
+   background-image: url('./cardbgrb.jpeg');
+   background-repeat: no-repeat;
+  background-size: 100% 100%;
   padding-top: 0%;
   padding-bottom: 0%;
   /* z-index: 1; */
