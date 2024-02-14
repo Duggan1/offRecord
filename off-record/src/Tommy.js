@@ -1126,14 +1126,8 @@ if (isLoading) {
     {selectedUfcCard.map((fight, index) => (
       <div style={{maxWidth:'100%' }}  key={index}>
 
-        {/* <div className='text-align-center snowwhite' style={{ display:'flex', justifyContent: 'center' ,margin:'0px',marginTop:'-25px'  }}>
-          <p style={{ color: predictions[index]?.winner === 0 ? 'white' : 'white',backgroundColor: predictions[index]?.winner === 0 ? 'green' : '' }}>{fight.fighters[0]} </p>
-          <p style={{padding:'0px 5px', backgroundColor:'whitesmoke', border:'black 1px solid', borderRadius:'40%',color:'black'}}> VS </p>
-          <p style={{ color: predictions[index]?.winner === 1 ? 'white' : 'white',backgroundColor: predictions[index]?.winner === 1 ? 'green' : '' }}>
-                    {fight.fighters[1]}</p>
-        </div> */}
 
-        <div className='text-align-center snowwhite pt5' style={{ display:'flex', justifyContent: 'center',margin:'0px',marginTop:'-25px'   }}>
+        <div className='text-align-center snowwhite ' style={{ display:'flex', justifyContent: 'center',margin:'0px',marginTop:'0px',paddingTop:'4px'   }}>
           
         {predictions[index]?.winner === 0 ? <>
         <p style={{backgroundColor:'darkgreen',paddingLeft:'5px',paddingRight:'5px'}}>{fight.fighters[0].split(' ').pop()} </p>

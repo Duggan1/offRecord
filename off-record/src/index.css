@@ -687,6 +687,9 @@ code {
   
 
 }
+.bg-darknavy{
+  background-color: rgba(1, 1, 83, 0.454);
+}
 .p4pplusWhite {
   max-width: 50px;
   min-width: 50px;

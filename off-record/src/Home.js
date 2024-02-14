@@ -12,6 +12,45 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       };
 
       
+  function transformData(initialData) {
+    const predictions = initialData.map((fight, index) => {
+      const winner =
+    (fight.fighter1 && fight.fighter1.hasRedArrow) ? 0 :
+      (fight.fighter2 && fight.fighter2.hasBlueArrow) ? 1 :
+        fight.timeDetails1 ? 3 : null;
+  
+                              
+                              ; // Assuming red arrow signifies winner
+      const methodMapping = {
+        'Dec': 'Decision',
+        'Sub': 'Submission',
+        'KO/TKO': 'TKO/KO',
+      };
+  
+      const methodMatch = fight.timeDetails1 ? fight.timeDetails1.match(/(Dec|Sub|KO\/TKO)/) : null;
+      console.log(isOwnerAndEventMatch)
+  
+      const method = methodMatch ? methodMapping[methodMatch[0]] : null;
+      const roundMatch = fight.timeDetails1 ? fight.timeDetails1.match(/R(\d+)/): null;
+      const round = roundMatch ? roundMatch[1] : null;
+  
+      const fighter1Name = fight.fighter1 ? fight.fighter1.name : 'Unknown Fighter 1';
+      const fighter2Name = fight.fighter2 ? fight.fighter2.name : 'Unknown Fighter 2';
+      
+      const fighters = [fighter1Name, fighter2Name];
+      
+  
+      return {
+        fighters: fighters,
+        method: method,
+        round: round,
+        winner: winner,
+      };
+    });
+  
+    return  predictions ;
+  }
+
       console.log(ufcCard)
       const selectedUfcCard = ufcCard.length > 1 ? ufcCard : stallUfcCard;
       console.log(selectedUfcCard)
@@ -308,7 +347,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
         return () => clearInterval(intervalId);
       }, []); // Empty dependency array to ensure the effect runs only once during component mount
       
-
+      const liveNready = weRlive ? transformData(weRlive) : [];
       console.log(currentfighter)
       console.log(weRlive.some(item => item.timeDetails1 !== ''))
       const countNonEmptyTimeDetails = weRlive.filter(item => item.timeDetails1 !== '').length;
@@ -322,21 +361,167 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       {isUfcCardLoaded ?  <>
       <div className="homeSpace text-align-center">
 
-      {!user ? <> <p onClick={() => { handleOptionClick('/section1') }} className=" color-red landunder cursor-pointer">Please Sign In or Sign Up </p> <h1 onClick={() => { handleOptionClick('/section1') }} className="fs65 color-red cursor-pointer">&#8599;</h1> </> : <h1 className="fs452 color-blue">Welcome Back, {user?.username} {user?.userName}</h1>}
+        {!user ? <> <p onClick={() => { handleOptionClick('/section1') }} className=" color-red landunder cursor-pointer">Please Sign In or Sign Up </p> <h1 onClick={() => { handleOptionClick('/section1') }} className="fs65 color-red cursor-pointer">&#8599;</h1> </> : <h1 className="fs452 color-black">Welcome Back, {user?.username} {user?.userName}</h1>}
         
-        {user ?  isOwnerAndEventMatch ? <p className="color-green text-alight-right">Picks submitted </p> :  <p className="color-red text-alight-right">Picks missing </p>  : null }
-        
+        {user ?  isOwnerAndEventMatch ?
+
+          <>
+         {/* <p className="color-green text-alight-right">Picks submitted </p> */}
+         <div className="flex " style={{flexWrap: 'wrap'}}>
+         {isOwnerAndEventMatch?.predictions?.map((fight, index) => {
+    // Check if liveNready[index] and fight are defined
+    if (liveNready[index] && fight) {
+      return (
+        <div key={index} className="flex" style={{
+          backgroundColor: 'white',
+          padding: '1%',
+          margin: '2px',
+          borderRadius: '18px',
+          color: 'black',
+          border: liveNready[index].winner !== null && fight.winner !== null
+    ? liveNready[index].winner === fight.winner
+      ? 'green 3px solid'
+      : 'red 3px solid'
+    : 'black 1px solid',
+        }}>
+
+{
+  liveNready[index].winner && fight.winner
+    ? liveNready[index].winner === fight.winner
+      ? (
+        liveNready[index].method && fight.method
+          ? liveNready[index].method === fight.method
+            ? (
+              liveNready[index].round && fight.round
+                ? liveNready[index].round === fight.round
+                  ? <p className='color-green bold'>+3</p>
+                  : <p className='color-green bold'>+2</p>
+                : <p className='color-green bold'>+2</p>
+            )
+            : <p className='color-green bold'>+1</p>
+          : <p className='color-green bold'>+1</p>
+      )
+      : <p className=''>{index + 1}.</p>
+    : <p className=''>{index + 1}.</p>
+}
+
+
+
+
+                    
+
+          
+          
+          
+          
+          
+          <p
+            style={{
+              backgroundColor: fight.winner !== null
+                  ? fight.winner === 1 ? "navy"
+                  : fight.winner == 0 ? 'darkred'
+                  : "grey"
+                  : "gray",
+
+              padding: '1%',
+              margin: '2px',
+              borderRadius: '18px',
+              color: 'white',
+              border: 'black 1px solid', width:'60px'
+            }}
+          >
+           {fight.method && fight.method[0] === 'T'
+  ? (fight.round ? `KO R${fight.round}` : 'KO')
+  : (fight && fight.method
+      ? (fight.method[0] === 'D' ? 'Dec' : `${fight.method[0]}${fight.round ? ` R${fight.round}` : ''}`)
+      : `S R${fight.round || ''}`)}
+
+
+
+
+
+
+
+          </p>
         </div>
-        <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
+      );
+    }
+    // Return null if liveNready[index] or fight is undefined
+    return null;
+  })}
+         
+          </div>
+          </>       
+         
+         
+         :  <p className="color-red text-alight-right">Picks missing </p>  : null }
+
+     
+
+
+      </div>
+
+
+
+
+
+        <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px',position:"sticky"}} class="element-with-border"></div>
+        { isOwnerAndEventMatch ? <div className="bg-darknavy" style={{padding:'2% 0%' }}> 
+      <p className="snowwhite text-align-center font-bold">Results</p>
+ <div className="flex " style={{flexWrap: 'wrap'}}>
+
+      
+      {liveNready ? (
+  liveNready.map((fight, index) => (
+    <div key={index} className="flex" style={{
+      backgroundColor: 'whitesmoke',
+      padding: '1%',
+      margin: '2px',
+      borderRadius: '18px',
+      color: 'black',
+      border: 'black 1px solid'
+    }}>
+      <p>{index + 1}.</p>
+      <p
+        style={{
+          backgroundColor: fight.winner !== null
+          ? fight.winner === 1 ? "navy"
+          : fight.winner == 0 ? 'darkred'
+          : "black"
+          : "gray",
+
+          padding: '0px 3%',
+          margin: '2px',
+          borderRadius: '18px',
+          color: fight.winner ? 'white' : 'white',
+          border: 'black 1px solid', width:'60px',textAlign:'center'
+        }}
+      >
+        {fight.method && fight.method[0] !== null ?
+        //  fight.method[0]
+        ''
+          : ' ?'}
+
+        {fight.method && fight.method[0] === 'T'
+  ? (fight.round ? `KO R${fight.round}` : 'KO')
+  : (fight && fight.method
+      ? (fight.method[0] === 'D' ? 'Dec' : `${fight.method[0]}${fight.round ? ` R${fight.round}` : ''}`)
+         : (fight && fight.method
+           ? (fight.method[0] === 'S'  ? `S R${fight.round}` : 'Sub') : null))}
+      </p>
+    </div>
+  ))
+) : null}
+
+
+
+
+
+</div>
+        </div> : null}
       < div className="home" >
-            {/* <p style={{ color: 'yellow' }}>Welcome to</p> */}
-            {/* <h1 className="homeheaders"style={{}}
-                // Adjust this value as needed
-                > */}
-                 
-                {/* </h1> */}
-                
-                {/* <h1>{weRlive.some(item => item.fighter1 !== '') ? 'True' : 'False' }</h1> */}
+        
+
       
                 <div  className='crdiv2 box-content'> 
 
@@ -347,11 +532,9 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                  <div className=""
                   style={{zIndex:'1',display:'',justifyContent:'center',maxWidth:'100%'}}
                   ><div style={{backgroundColor:'black',color:'white',zIndex:'1',display:'flx',justifyContent:'center',minWidth:'45%'}}>
-                  {/* <h6 className='homebullet snow 'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',color:'white'}}>{mainRedC}</h6>
-                </div><div style={{minWidth:'10%'}}>
-                 <h6 className='color-white snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white',color:'black'}}>  vs  </h6>
-                 </div><div style={{backgroundColor:'blue',minWidth:'45%'}}>
-                 <h6 className='homebullet snow'style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',color:'white'}}>{mainBlueC}</h6> */}
+       
+
+
                  <p style={{maxWidth:'100%' }}>
     <span style={{ backgroundColor: 'red', padding: '2px',maxWidth:'40%', fontSize: firstName.length > 7 ? '100%' : '100%'  }}>{firstName}</span>
     <span style={{ backgroundColor: 'white', padding: '2px',color:'black',maxWidth:'10%' }}>vs</span>
@@ -401,54 +584,11 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 paddingBottom:'15%',marginBottom:'0%',marginTop:'0%', cursor:'pointer',
                height:'200px',
                 }} ></h5> }
-
-
+                 </div>
                   
-
-               
-               
-                
-                  </div>
-
-
-                {/* ////////////////////// */}
                  <div className="" style={{textAlign:'center',height:'400px'}}>
 </div>
-
-
-                 {/* { !user ? 
-                <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',}}> Login/Signup to make Off the Record Picks </h6>:
-                <h6 className='snow'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',}}> Welcome Back <span className="color-white">{user.username}</span></h6>
-
-                              } */}
-
-
-                  {/* //////////////////////////// */}
-                
-                
-                
-                {/* { isUfcCardLoaded ? <div className='crdiv' style={{  height: '120px', backgroundImage: `url(${BGpic})`, backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center',  position: 'relative' }} onClick={() => handleOptionClick('/section3')}>
-                    <NavLink className='color-gold hgysnow' exact to="/section3"></NavLink>
-                    <h5 className=' snow' style={{ color:'black',textAlign: 'center',  marginTop: '-6%',textShadow: '0 0 15px white' }}>PICK'EM</h5>
-                </div>
-                : 
-
-
-                <div style={{ display: 'flex' }}><div className="loading" style={{ height: '100px', width: '100px' }}></div>
-                <h5 style={{ display: 'flex', whiteSpace: 'nowrap' }}>
-                  Loading Card Details
-                </h5>
-              </div>
-               }
-               
-                
-                <div className='crdiv ' onClick={() => handleOptionClick('/results')}><NavLink className=' color-black snow' exact to="/results">Check Results</NavLink></div>
-                <div className='crdiv ' onClick={() => handleOptionClick('/results/compare')}><NavLink className=' color-black snow' exact to="/results/compare">Compare Picks</NavLink></div>
-                <div className='crdiv '   onClick={() => handleOptionClick('/about')}><NavLink className='color-black snow' exact to="/about">About P4P</NavLink></div>
-                
-                 */}
-                
-        <div style={{display:'flex', justifyContent:'center',paddingTop:'0%'}}>
+    <div style={{display:'flex', justifyContent:'center',paddingTop:'0%'}}>
         {/* <div style={{borderRight:'solid black 2px',borderLeft:'solid black 2px',borderTop:'solid black 2px',zIndex: '2'}} className="p4pplus"></div> */}
                 </div>
                 { isUfcCardLoaded ? <div className="home-fighter">

@@ -491,7 +491,7 @@ useEffect(() => {
       }
       ,
       {
-        fighters: ["Jose Aldo", "Zabit"],
+        fighters: ["Jose Aldo", "Clay Guida "],
         match: "Light Heavyweight Championship Bout",
         records: ["22-3-0", "21-9-0"],
         flags: ["United States", "United States"],
@@ -1003,12 +1003,15 @@ const checkConditions = () => {
   const eventToCheck = ufcCard3.length > 2 ?  ufcCard3[0].fighters.join(' vs ') : 'LOADING';
 
   if (user) {
-  const isMatch = results2.some(
-    (result) => result.owner === user.username && result.main_event === eventToCheck
-  );
-  setIsOwnerAndEventMatch(isMatch);
+    const matchingResult = results2.find(
+      (result) => result.owner === user.username && result.main_event === eventToCheck
+    );
+
+    setIsOwnerAndEventMatch(matchingResult || false); // Set to false if no match found
   }
 };
+
+
 useEffect(() => {
   checkConditions()
 
