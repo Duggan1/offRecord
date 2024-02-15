@@ -79,6 +79,11 @@ code {
   background-color: rgba(245, 245, 245, 0.26);
   color:black
 }
+.rentingSpace{
+  padding-top: 10%;
+  background-color: whitesmoke;
+  color:black
+}
 .bg-black-trans{
   background-color: rgba(0, 0, 0, 0.452);
 }

@@ -360,12 +360,13 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
     <P4pHeader user={user} onLogout={onLogout} />
     
     
-      {isUfcCardLoaded ?  <>
+      {isUfcCardLoaded ? 
+       <>
       <div style={{
       backgroundImage:`url(${BGpic})`,
       backgroundSize:'100% 100%'
       }}>
-      <div className="homeSpace text-align-center" >
+      <div className={` homeSpace  text-align-center`} >
 
         {!user ? <> <p onClick={() => { handleOptionClick('/section1') }} className=" color-red landunder cursor-pointer">Please Sign In or Sign Up </p> <h1 onClick={() => { handleOptionClick('/section1') }} className="fs65 color-red cursor-pointer">&#8599;</h1> </> : <h1 className="fs452 color-black">Welcome Back, {user?.username} {user?.userName}</h1>}
         
@@ -797,7 +798,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
         
         <>
         
-                  <div className="homeSpace text-align-center">
+                  <div className="rentingSpace text-align-center">
 
           {!user ? <> <p onClick={() => { handleOptionClick('/section1') }} className=" color-red landunder cursor-pointer">Please Sign In or Sign Up </p> <h1 onClick={() => { handleOptionClick('/section1') }} className="fs65 color-red cursor-pointer">&#8599;</h1> </> : <h1 className="fs452 color-blue">Welcome Back, {user?.username} {user?.userName}</h1>}
             

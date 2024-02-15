@@ -188,10 +188,20 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
       username,
       totalPoints: totalPoints,
       totalPicksCount: totalPicksCount || 0,
-      totalWinnerPointsOnly: totalWinnerPointsOnly
+      totalWinnerPointsOnly: totalWinnerPointsOnly,
+      wins: countWinsForUsername(leaderboardwinners, username)
     }));
-    // Sort the leaderboard by totalPoints in descending order
-    leaderboardArray.sort((a, b) => b.totalPoints - a.totalPoints);
+    
+    // Sort the leaderboardArray first by wins (descending) and then by totalPoints (descending)
+    leaderboardArray.sort((a, b) => {
+      // Compare wins first
+      if (b.wins !== a.wins) {
+        return b.wins - a.wins;
+      }
+    
+      // If wins are equal, compare totalPoints
+      return b.totalPoints - a.totalPoints;
+    });
   
     // Sort eventWinners, putting "Pending" winners first
     const sortedEventWinners = {};
