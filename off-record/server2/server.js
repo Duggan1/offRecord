@@ -21,13 +21,13 @@ app.use(cors());
 // const Recurl = 'https://www.tapology.com/fightcenter/events/105194-ufc-fight-night';
 // const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039634/league/ufc'
 
-const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-february-10-2024'
-const Recurl = 'https://www.tapology.com/fightcenter/events/107367-ufc-fight-night'
-const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600040033/league/ufc'
+// const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-february-10-2024'
+// const Recurl = 'https://www.tapology.com/fightcenter/events/107367-ufc-fight-night'
+// const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600040033/league/ufc'
 
-// const deatilsUrl = 'https://www.ufc.com/event/ufc-298'
-// const Recurl = 'https://www.tapology.com/fightcenter/events/107060-ufc-298'
-// const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039753/league/ufc'
+const deatilsUrl = 'https://www.ufc.com/event/ufc-298'
+const Recurl = 'https://www.tapology.com/fightcenter/events/107060-ufc-298'
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039753/league/ufc'
 
 
 

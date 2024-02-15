@@ -686,10 +686,10 @@ function checkWinner4drawNocontest(method, winner) {
       return 3;
     }
     else {
-      if (winner === '1'){
+      if (winner == '1'){
         return 1
       }
-      if (winner === '2'){
+      if (winner == '2'){
         return 2
       }
     }
@@ -898,13 +898,37 @@ function transformData(initialData) {
 }
 const liveNready = weRlive ? transformData(weRlive) : [];
 
+const areArraysEqual = (array1, array2) => {
+  // Use the nullish coalescing operator to provide an empty array as the default value
+  const arr1 = array1 ?? [];
+  const arr2 = array2 ?? [];
+
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+
+  for (let i = 0; i < arr1.length; i++) {
+    const obj1 = arr1[i];
+    const obj2 = arr2[i];
+    console.log(obj1.winner, obj2.winner)
+    console.log(obj1.method, obj2.method)
+
+
+    if (obj1.winner !== obj2.winner || obj1.method !== obj2.method) {
+      return false;
+    }
+    // You can add more conditions for other properties if needed
+  }
+
+  return true;
+};
 
 useEffect(() => {
 
   // if (akp, modifiedUfcResults){
 
 
-  if (isEqual(akp.predictions, liveNready)) {
+  if (areArraysEqual(akp.predictions, liveNready))  {
     console.log('matching');
 
     console.log(modifiedUfcResults)

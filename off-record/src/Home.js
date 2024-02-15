@@ -368,7 +368,9 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       }}>
       <div className={` homeSpace  text-align-center`} >
 
-        {!user ? <> <p onClick={() => { handleOptionClick('/section1') }} className=" color-red landunder cursor-pointer">Please Sign In or Sign Up </p> <h1 onClick={() => { handleOptionClick('/section1') }} className="fs65 color-red cursor-pointer">&#8599;</h1> </> : <h1 className="fs452 color-black">Welcome Back, {user?.username} {user?.userName}</h1>}
+        
+
+        {!user ? <> <p onClick={() => { handleOptionClick('/section1') }} className=" color-red landunder cursor-pointer"><span style={{backgroundColor:'white'}}>Please Sign In or Sign Up</span></p> <h1 onClick={() => { handleOptionClick('/section1') }} className="fs65 color-red cursor-pointer">&#8599;</h1> </> : <h1 className="fs452 color-black">Welcome Back, {user?.username} {user?.userName}</h1>}
         
         {user ?  isOwnerAndEventMatch ?
 
@@ -474,27 +476,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
 
         <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
         { isOwnerAndEventMatch ? <>
-          <div style={{ position: 'relative' }}>
-  {weRlive.some(item => item.timeDetails1 !== '') ? (
-    <p style={{
-      position: 'absolute',
-      top: '0',
-      right: '1',
-      color: 'green',
-      fontWeight: 'bold'
-    }}>
-      Live <span style={{
-        minHeight: '10px',
-        border: 'white solid 1px',
-        borderRadius: '50%',
-        minWidth: '15px',
-        backgroundColor: 'darkgreen'
-      }}>_</span>
-    </p>
-  ) : null}
-
-  {/* Other content of the div */}
-</div>
+       
 
 
         <div className="bg-black-trans" style={{padding:'0% 0% 0% 0%' }}> 
@@ -503,10 +485,20 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
     <span style={{ backgroundColor: 'darkred', padding: '2px',maxWidth:'40%', fontSize: firstName.length > 7 ? '100%' : '100%',color: 'white', border:'2px white solid' }}>{firstName}</span>
     <span style={{ backgroundColor: 'white', padding: '2px',color:'black',maxWidth:'10%', border:'2px white solid' }}>vs</span>
     <span style={{ backgroundColor: 'navy', padding: '2px',maxWidth:'40%',color: 'white', border:'2px white solid' }}>{secondName}</span>
-    
-
-    
-</p>
+      </p>
+      {weRlive.some(item => item.timeDetails1 !== '') ? (
+    <p style={{
+      color: 'green',
+      fontWeight: 'bold',textAlign:'right',marginRight:'1%',marginTop:'-25px',paddingBottom:'15px'
+    }}>      Live <span style={{
+        minHeight: '10px',
+        border: 'white solid 1px',
+        borderRadius: '50%',
+        minWidth: '15px',
+        backgroundColor: 'darkgreen',
+      }}>_</span>
+    </p>
+  ) : null}
 {/* {weRlive.some(item => item.timeDetails1 === '')? <><span className="color-green font-bold"> Live <span style={{minHeight:'10px',border:'white solid 1px ', borderRadius:'50%',minWidth:'15px',backgroundColor:'darkgreen'}}>_</span> </span>
                          </> : null } */}
 
@@ -521,7 +513,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       margin: '2px',
       borderRadius: '18px',
       color: 'black',
-      border: 'black 1px solid'
+      border: fight.winner !== null ? 'black 3px solid' : 'black 1px dotted',
     }}>
       <p>{index + 1}.</p>
       <p
@@ -536,7 +528,9 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
           margin: '2px',
           borderRadius: '18px',
           color: fight.winner ? 'white' : 'white',
-          border: 'black 1px solid', width:'60px',textAlign:'center'
+          border: 'black 1px solid',
+          width:'60px',
+          textAlign:'center',
         }}
       >
         {fight.method && fight.method[0] !== null ?
@@ -566,6 +560,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
         </div>
       < div className="home" >
         
+        
 
       
                 <div  className='crdiv2 box-content'> 
@@ -584,6 +579,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
     <span style={{ backgroundColor: 'white', padding: '2px',color:'black',maxWidth:'10%' }}>vs</span>
     <span style={{ backgroundColor: 'blue', padding: '2px',maxWidth:'40%', }}>{secondName}</span>
 </p>
+
                  </div>
                  {/* //////////////////////// */}</div>
                 
