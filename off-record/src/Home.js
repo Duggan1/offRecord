@@ -361,7 +361,11 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
     
     
       {isUfcCardLoaded ?  <>
-      <div className="homeSpace text-align-center">
+      <div style={{
+      backgroundImage:`url(${BGpic})`,
+      backgroundSize:'100% 100%'
+      }}>
+      <div className="homeSpace text-align-center" >
 
         {!user ? <> <p onClick={() => { handleOptionClick('/section1') }} className=" color-red landunder cursor-pointer">Please Sign In or Sign Up </p> <h1 onClick={() => { handleOptionClick('/section1') }} className="fs65 color-red cursor-pointer">&#8599;</h1> </> : <h1 className="fs452 color-black">Welcome Back, {user?.username} {user?.userName}</h1>}
         
@@ -492,7 +496,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
 </div>
 
 
-        <div className="bg-black" style={{padding:'0% 0% 0% 0%' }}> 
+        <div className="bg-black-trans" style={{padding:'0% 0% 0% 0%' }}> 
         
                 <p className=" text-align-center" style={{maxWidth:'100%',padding:'0% 0% 2% 0%' }}>
     <span style={{ backgroundColor: 'darkred', padding: '2px',maxWidth:'40%', fontSize: firstName.length > 7 ? '100%' : '100%',color: 'white', border:'2px white solid' }}>{firstName}</span>
@@ -557,6 +561,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
 </div>
 <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px',marginTop:'2%'}} class="element-with-border"></div>
         </div> </> : null}
+
+        </div>
       < div className="home" >
         
 
