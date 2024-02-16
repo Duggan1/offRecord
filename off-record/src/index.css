@@ -1176,7 +1176,9 @@ font-weight: bold;
 .Header{
   background-color:black ;
 }
-
+.padding1{
+  padding: 1%;
+}
 .filterbutton {
   border : 3px solid darkred;
   font-weight: bold;

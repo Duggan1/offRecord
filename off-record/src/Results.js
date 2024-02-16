@@ -1104,11 +1104,11 @@ function calculateLiveTotalPoints(result) {
         <table style={{minWidth:'100%'}}><thead>
           <tr>
           
-            <th style={{maxWidth:'50%',minWidth:'50%'}} className="">Username</th>
+            <th style={{maxWidth:'50%',minWidth:'50%',width:'50%'}} className="">Username</th>
             
-            <th style={{maxWidth:'10%',minWidth:'10%'}} className="">Points</th>
-            <th style={{maxWidth:'10%',minWidth:'10%'}}className=" " >%</th>
-            <th style={{borderBottom:'2px solid black',maxWidth:'30%',minWidth:'30%'}} className=" bg-white text-black">Belts</th>
+            <th style={{maxWidth:'10%',minWidth:'10%',width:'10%'}} className="">Points</th>
+            <th style={{maxWidth:'10%',minWidth:'10%',width:'10%'}}className=" " >%</th>
+            <th style={{borderBottom:'2px solid black',maxWidth:'30%',minWidth:'30%',width:'30%'}} className=" bg-white text-black"> Belts </th>
             {/* <th className="downUnder Left5">Belts</th> */}
             </tr>
             </thead>
@@ -1129,8 +1129,13 @@ function calculateLiveTotalPoints(result) {
 
               <td className="tac" style={{maxWidth:'10%',minWidth:'10%',borderRight:'1px solid white'}} >{user.totalPoints}</td>
               <td className="tac " style={{maxWidth:'10%',minWidth:'10%'}}>{((user.totalWinnerPointsOnly / (user.totalPicksCount )) * 100).toFixed(0)}% </td>
-               <td className=" p4pBelt2" style={{backgroundColor:'white',maxWidth:'30%',minWidth:'30%',height:'100%'}}  >
-              <span className=" text-black font-bold bg-white" style={{textAlign:'left'}}>x {user.wins}</span> </td>
+             
+              {user.wins > 0 ?
+               <td className={` p4pBelt2 text-black font-bold`} style={{textAlign:'left',maxWidth:'30%',minWidth:'30%',height:'100%',borderBottom:'3px solid black',borderRight:'2px solid black'}}  ><span className="bg-white text-black padding1">x {user.wins} </span>
+               </td>
+                :   <td className={` text-black font-bold`} style={{textAlign:'center',maxWidth:'30%',minWidth:'30%',height:'100%'}}  ><span className="snowwhite padding1"> {user.wins} </span>
+                </td>}
+
               
               
               
