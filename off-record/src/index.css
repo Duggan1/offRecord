@@ -938,6 +938,13 @@ code {
     /* padding-left: -1%; */
 
   }
+  .p4pBelt2 {
+    background-image: url('./p4pBelt.jpeg');
+    background-repeat: no-repeat;
+   
+    background-size: 100% 100%;
+   
+  }
   .cursor-pointer{
     cursor: pointer;
   }
@@ -948,6 +955,7 @@ code {
   border-radius: 15%;
 
 } 
+.width
 .p2{
   padding: 2%;
 }
@@ -1154,12 +1162,13 @@ font-weight: bold;
 
 .lboard {
   text-align: center;
-  background-color: rgba(0, 5, 59, 0.439);
+  background: linear-gradient(to right, darkred 50%, navy 50%);
   color:white;
-  border: 5px black solid;
+  border: 5px white solid;
   margin-bottom: 5%;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-bottom: 2%;
 }
 .downUnder {
   text-decoration: underline;
@@ -1190,7 +1199,7 @@ font-weight: bold;
 
 }
 .LeftOne2 {
-  background-color: black;
+  background-color: whitesmoke;
   width: 24%;
 }
 
@@ -1202,6 +1211,7 @@ font-weight: bold;
   /* background-color: pink; */
   width: 50%;
 }
+
 
 .RightOne {
   /* background-color: navy; */
@@ -1236,15 +1246,36 @@ font-weight: bold;
 
 .chosenL{
   margin: 15%;
-  border-right: blue 5px solid;
-  border-left: red 5px solid;
-  border-top: red 5px solid;
-  border-bottom: blue 5px solid;
-  background-color: whitesmoke;
+  border: 3px solid black;
+  border-radius: 15%;
+  background-color: white;
   color: black;
   cursor: pointer;
   
 
+}
+.leaguebutton:hover {
+  color: white;
+  background-color: black; /* Change this to charcoal or any color you prefer */
+}
+.margin-5{
+  margin: 5% ;
+}
+.border-radius-20per{
+  border-radius :20%;
+}
+
+.padding-5-0{
+  padding: 5% 0px;
+}
+.width-31{
+  width: 31%;
+}
+.padding-10-0{
+  padding: 1% 0%;
+}
+.margin1{
+  margin: 1%;
 }
 .joinL{
   background-color: black;

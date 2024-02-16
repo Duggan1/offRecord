@@ -124,7 +124,39 @@ const [leaderboard, setLeaderboard] = useState([]);
 const [leaderboardwinners, setLeaderboardwinners] = useState([]);
 
 
+const [userData, setUserData] = useState(null);
 
+  useEffect(() => {
+    // Fetch data from the API
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://off-therecordpicks.onrender.com/users');
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch user data');
+        }
+
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error('Error fetching user data:', error.message);
+      }
+    };
+
+    // Call the fetchData function once when the component mounts
+    fetchData();
+  }, []); // The empty dependency array ensures this effect runs once after the component mounts
+
+  // Function to get user image based on the username
+  const getUserImage = (username) => {
+    const user = userData?.find((user) => user.username.toLowerCase() === username.toLowerCase());
+    return user ? user.image : null;
+  };
+
+  // Example usage:
+  // const usernameToSearch = 'example'; // Replace with the actual username
+  // const userImage = getUserImage(usernameToSearch);
+  // console.log(getUserImage('thugginduggan'))
 
   useEffect(() => {
     // Fetch and set results data as you are currently doing...
@@ -142,6 +174,7 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
     results.filter(result => result.main_event !== 'Jon Jones vs Fedor Emelianenko').forEach((result) => {
       // Standardize the username by converting it to lowercase
       const standardizedUsername = result.owner.toLowerCase();
+      console.log(getUserImage(standardizedUsername))
   
       // Calculate total points for each result
       const totalPoints = calculateTotalPoints(result, result.main_event, ufcResults);
@@ -189,7 +222,9 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
       totalPoints: totalPoints,
       totalPicksCount: totalPicksCount || 0,
       totalWinnerPointsOnly: totalWinnerPointsOnly,
-      wins: countWinsForUsername(leaderboardwinners, username)
+      wins: countWinsForUsername(leaderboardwinners, username),
+      image: getUserImage(username)
+      // username: username.image
     }));
     
     // Sort the leaderboardArray first by wins (descending) and then by totalPoints (descending)
@@ -1017,6 +1052,9 @@ function calculateLiveTotalPoints(result) {
 
 
 
+
+
+
   return (<>
   <P4pHeader onLogout={onLogout} user={user} />
 <div>
@@ -1060,20 +1098,43 @@ function calculateLiveTotalPoints(result) {
 </div> 
 {showLeaderBoard ? <div className="lboard">
             
-            <h2 className="tac" style={{letterSpacing: '2xcpx',}}>Leaderboard</h2>
-      <center><table ><thead><tr>
-            <th className="downUnder">Username</th><th  className="downUnder">Total Points</th><th className="downUnder ">Wins</th><th className="downUnder Left5" >%</th></tr></thead>
+            {/* <h2 className="text-black fs35" style={{letterSpacing: '2xcpx',border:'3px black solid',paddingBottom:'15%'}}><span style={{backgroundColor:'white',padding:'1%',margin:'1%'}}>Leaderboard</span></h2> */}
+            <center ><p style={{margin:'10% 10%',padding:'10% 30%'}}className="p4pHI p4pborder border-radius-20per "></p></center>
+      
+        <table style={{minWidth:'100%'}}><thead>
+          <tr>
+          
+            <th style={{maxWidth:'50%',minWidth:'50%'}} className="">Username</th>
+            
+            <th style={{maxWidth:'10%',minWidth:'10%'}} className="">Points</th>
+            <th style={{maxWidth:'10%',minWidth:'10%'}}className=" " >%</th>
+            <th style={{borderBottom:'2px solid black',maxWidth:'30%',minWidth:'30%'}} className=" bg-white text-black">Belts</th>
+            {/* <th className="downUnder Left5">Belts</th> */}
+            </tr>
+            </thead>
         <tbody>{leaderboard.map((user, index) => (
-            <tr key={index}>
+            <tr key={index} style={{minWidth:'100%',backgroundColor:'rgba(0, 5, 59, 0.439)',border:'2px solid white',height:'fit-content'}}>
               
-              <td style={{backgroundColor:'rgba(0, 5, 59, 0.439)'}}>{user.username}</td>
-              <td className="tac" style={{backgroundColor:'rgba(0, 5, 59, 0.439)'}} >{user.totalPoints}</td>
+              <td style={{maxWidth:'50%',minWidth:'50%',display:'flex',textAlign:'center'}}><img
+              src={user?.image || 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png?fit=500%2C500&ssl=1'} // Use a default image URL if member.image is null
+              alt={user?.username}
+              style={{ width: '50px', height: '50px', borderRadius: '50%' ,marginLeft:'1%',marginRight:'5%'}}/>
               
-              <td className="tac " style={{backgroundColor:'rgba(0, 5, 59, 0.650)'}}  >{countWinsForUsername(leaderboardwinners, user.username)}</td>
-              <td className="tac Left6" style={{backgroundColor:'rgba(0, 5, 59, 0.439)'}}>{((user.totalWinnerPointsOnly / (user.totalPicksCount )) * 100).toFixed(0)}% </td>
               
               
-              </tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button></center>
+              
+              <p style={{textAlign:'center',lineHeight:'3'}}>{user.username}</p>
+              </td>
+             
+
+              <td className="tac" style={{maxWidth:'10%',minWidth:'10%',borderRight:'1px solid white'}} >{user.totalPoints}</td>
+              <td className="tac " style={{maxWidth:'10%',minWidth:'10%'}}>{((user.totalWinnerPointsOnly / (user.totalPicksCount )) * 100).toFixed(0)}% </td>
+               <td className=" p4pBelt2" style={{backgroundColor:'white',maxWidth:'30%',minWidth:'30%',height:'100%'}}  >
+              <span className=" text-black font-bold bg-white" style={{textAlign:'left'}}>x {user.wins}</span> </td>
+              
+              
+              
+              </tr>))}</tbody></table><button className="b2fight"style={{marginBottom:'0%', marginTop:'5%',backgroundColor:'whitesmoke'}} onClick={() => setshowLeaderBoard(!showLeaderBoard)} >Hide Leaderboard</button>
               </div>
                : null }
 {showCardWins ?   <div className="pointEXCard" >
