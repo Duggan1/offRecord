@@ -1115,10 +1115,12 @@ function calculateLiveTotalPoints(result) {
         <tbody>{leaderboard.map((user, index) => (
             <tr key={index} style={{minWidth:'100%',backgroundColor:'rgba(0, 5, 59, 0.439)',border:'2px solid white',height:'fit-content'}}>
               
-              <td style={{maxWidth:'50%',minWidth:'50%',display:'flex',textAlign:'center'}}><img
+              <td style={{width:'100%',display:'flex',textAlign:'center',overflow:'hidden'}}><img
               src={user?.image || 'https://i0.wp.com/digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png?fit=500%2C500&ssl=1'} // Use a default image URL if member.image is null
               alt={user?.username}
-              style={{ width: '50px', height: '50px', borderRadius: '50%' ,marginLeft:'1%',marginRight:'5%'}}/>
+              style={{ width: '50px', height: '50px', borderRadius: '50%'
+               ,marginLeft:'1%',marginRight:'5%'
+               }}/>
               
               
               
