@@ -335,6 +335,7 @@ const countryData = {
   "France": "FR",
   "Gabon": "GA",
   "United Kingdom": "GB",
+  "Wales":"GB",
   "Grenada": "GD",
   "Georgia": "GE",
   "French Guiana": "GF",

@@ -126,8 +126,7 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
 
 const [userData, setUserData] = useState(null);
 
-  useEffect(() => {
-    // Fetch data from the API
+
     const fetchData = async () => {
       try {
         const response = await fetch('https://off-therecordpicks.onrender.com/users');
@@ -143,9 +142,8 @@ const [userData, setUserData] = useState(null);
       }
     };
 
-    // Call the fetchData function once when the component mounts
-    fetchData();
-  }, []); // The empty dependency array ensures this effect runs once after the component mounts
+  fetchData();
+
 
   // Function to get user image based on the username
   const getUserImage = (username) => {

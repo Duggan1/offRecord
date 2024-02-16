@@ -806,7 +806,7 @@ code {
 	background-size: 100% 100%;
   margin-left: 33%;
   text-align: center;
-  /* animation: App-logo-spin infinite 2s linear; */
+  animation: App-logo-spin infinite 2s linear;
 }
 .f-Man3 {
   max-width: 33%;
@@ -820,7 +820,7 @@ code {
 	background-size: 75% 75%;
   margin-left: 33%;
   text-align: center;
-  /* animation: App-logo-spin infinite 2s linear; */
+  animation: App-logo-spin infinite 2s linear;
 }
 .f-Man4 {
   max-width: 33%;
@@ -850,7 +850,7 @@ code {
   background-size: 100% 100%;
   margin-left: 33%;
   text-align: center;
-  animation: App-logo-spin-inverse infinite 2s linear; /* Changed animation name */
+  animation: App-logo-spin infinite 2s linear;
   transform: scaleX(-1); /* Invert horizontally */
 }
 .f-Man5 {
