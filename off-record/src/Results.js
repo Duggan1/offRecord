@@ -126,7 +126,7 @@ const [leaderboardwinners, setLeaderboardwinners] = useState([]);
 
 const [userData, setUserData] = useState(null);
 
-
+useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('https://off-therecordpicks.onrender.com/users');
@@ -142,7 +142,8 @@ const [userData, setUserData] = useState(null);
       }
     };
 
-  fetchData();
+    fetchData();
+  }, []);
 
 
   // Function to get user image based on the username
