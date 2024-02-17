@@ -500,7 +500,7 @@ const toggleDetails =()=>{
                 Select Red Corner
             </label>
             <br />
-            <select
+            <select style={{width:'75%',maxWidth:'95%'}}
                 className="select"
                 value={selectedUser}
                 onChange={(e) => setSelectedUser(e.target.value)}
@@ -525,7 +525,7 @@ const toggleDetails =()=>{
                 Select Blue Corner
             </label>
             <br />
-            <select
+            <select style={{width:'75%',maxWidth:'95%'}}
                 className="select"
                 value={selectedUser2}
                 onChange={(e) => setSelectedUser2(e.target.value)}

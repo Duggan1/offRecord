@@ -26,6 +26,12 @@ export default function P4pHeader({user, onLogout}) {
     };
 
 
+    const location = useLocation();
+  const currentPath = location.pathname;
+
+  console.log('Current route:', currentPath);
+
+
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -59,34 +65,34 @@ export default function P4pHeader({user, onLogout}) {
                   <a
                     href="#"
                     onClick={() => { handleOptionClick('/') }}
-                    className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                    className={`${currentPath === "/" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
                   >
                     Home
                   </a>
                   <a
                     href="#"
                     onClick={() => { handleOptionClick('/about') }}
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className={`${currentPath === "/about" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
                   >
                     About
                   </a>
                   <a
                     href="#"
                     onClick={() => { handleOptionClick('/section3') }}
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className={`${currentPath === "/section3" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
                   >
                     Pick
                   </a>
                   <a
                     href="#"
                     onClick={() => { handleOptionClick('/results') }}
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className={`${currentPath === "/results" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
                   >
                     Results
                   </a>
                   <a
                     href="#"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className={`${currentPath === "/results/compare" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
                     onClick={() => { handleOptionClick('/results/compare') }}
                   >
                     Compare
@@ -94,7 +100,7 @@ export default function P4pHeader({user, onLogout}) {
                  
                   <a
                     href="#"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    className={`${currentPath === "/leagues" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
                     onClick={() => { handleOptionClick('/leagues') }}
                   >
                     Leagues
@@ -203,7 +209,7 @@ export default function P4pHeader({user, onLogout}) {
                 as="a"
                 href="#"
                 onClick={() => { handleOptionClick('/') }}
-                className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
+                className={`${currentPath === "/" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
               >
                 Home
               </Disclosure.Button>
@@ -212,7 +218,7 @@ export default function P4pHeader({user, onLogout}) {
                 as="a"
                 href="#"
                 onClick={() => { handleOptionClick('/section3') }}
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                className={`${currentPath === "/section3" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
               >
                 Pick
               </Disclosure.Button>
@@ -220,7 +226,7 @@ export default function P4pHeader({user, onLogout}) {
                 as="a"
                 href="#"
                 onClick={() => { handleOptionClick('/results') }}
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                className={`${currentPath === "/results" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
               >
                 Results
               </Disclosure.Button>
@@ -228,7 +234,7 @@ export default function P4pHeader({user, onLogout}) {
                 as="a"
                 href="#"
                 onClick={() => { handleOptionClick('/results/compare') }}
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                className={`${currentPath === "/results/compare" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
               >
                 Compare
               </Disclosure.Button>
@@ -236,7 +242,7 @@ export default function P4pHeader({user, onLogout}) {
                 as="a"
                 href="#"
                 onClick={() => { handleOptionClick('/leagues') }}
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                className={`${currentPath === "/leagues" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
               >
                 Leagues
               </Disclosure.Button>
@@ -244,7 +250,7 @@ export default function P4pHeader({user, onLogout}) {
                 as="a"
                 href="#"
                 onClick={() => { handleOptionClick('/about') }}
-                className="block  border-l-4 border-transparent p4pBorder py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                className={`${currentPath === "/about" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
               >
                 About P4P
               </Disclosure.Button>
