@@ -490,13 +490,13 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
     <p style={{
       color: 'green',
       fontWeight: 'bold',textAlign:'right',marginRight:'1%',marginTop:'-25px',paddingBottom:'15px'
-    }}>      Live <span style={{
+    }}>     <span style={{backgroundColor:'black',padding:'1%'}}> Live <span style={{
         minHeight: '10px',
         border: 'white solid 1px',
         borderRadius: '50%',
         minWidth: '15px',
         backgroundColor: 'darkgreen',
-      }}>_</span>
+      }}>_</span></span>
     </p>
   ) : null}
 {/* {weRlive.some(item => item.timeDetails1 === '')? <><span className="color-green font-bold"> Live <span style={{minHeight:'10px',border:'white solid 1px ', borderRadius:'50%',minWidth:'15px',backgroundColor:'darkgreen'}}>_</span> </span>
