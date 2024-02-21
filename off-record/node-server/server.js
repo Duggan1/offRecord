@@ -27,7 +27,7 @@ app.use(cors());
 
 const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-february-24-2024'
 const Recurl = 'https://www.tapology.com/fightcenter/events/107471-ufc-fight-night'
-const espnurl = 'https://www.ufc.com/event/ufc-fight-night-february-24-2024'
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600041054/league/ufc'
 
 
 
