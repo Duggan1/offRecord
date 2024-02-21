@@ -307,6 +307,12 @@ if (isLoading) {
     {/* {user ?
               <Header handleLogout={handleLogout} user={user} ufcCard={ufcCard} />
           : <Johnny onLogin={onLogin} onLogout={handleLogout} ufcCard={ufcCard} />} */}
+          <img
+  src='data:image/png;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+  alt='not working buddy'
+  style={{ height: '200px', width: '200px', backgroundColor: 'white' }}
+/>
+
           <P4pHeader onLogout={onLogout} user={user} />
 
 
@@ -365,7 +371,8 @@ if (isLoading) {
         {/* <h1> Fight Predictions</h1> */}
         
         
-        </div>: 
+        </div>
+        : 
           
           <div className="bayLoc">
             {/* <button className='dreamcardbutton' onClick={toggleCard}>
@@ -504,6 +511,7 @@ if (isLoading) {
       className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 0)}
       style={{
+        backgroundImage:'url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)',
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
       }}
@@ -553,7 +561,7 @@ if (isLoading) {
       className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 1)}
       style={{
-       
+        backgroundImage:'url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)',
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
       }}
