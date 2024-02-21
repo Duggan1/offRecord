@@ -39,9 +39,10 @@ function updatePreviousFights(property, value, currentIndex) {
 
 async function scrapeESPNPFL() {
   const browser = await puppeteer.launch({
-    headless: true, // Run Chrome in headless mode (without GUI)
-    args: ['--no-sandbox', '--disable-setuid-sandbox'], // Avoid issues in certain environments
-    // Add more options as needed
+    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    // ... other options
   });
   
   
