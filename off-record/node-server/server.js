@@ -248,7 +248,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
          
 
 
-          const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
+          // const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
       
           // Check for RedArrow
           const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
@@ -261,8 +261,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
               record,
               hasRedArrow,
               hasBlueArrow,
-              playerImageSrc,
-              headshotImageSrc,countryFlagImageSrc
+              countryFlagImageSrc,
+              headshotImageSrc
           };
           // if (!fighters.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(fighter))) {
           //   fighters.push(fighter);
