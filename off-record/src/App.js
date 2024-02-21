@@ -87,14 +87,14 @@ useEffect(() => {
       }
     });
     setLiveFinishes(uniqueFinishes)
-    console.log(uniqueFinishes)
-    console.log(liveR[0][0].timeDetails)
-    console.log(updatedFighters)
+    // console.log(uniqueFinishes)
+    // console.log(liveR[0][0].timeDetails)
+    // console.log(updatedFighters)
     const associatedData = [];
-if (liveR) {
+if (liveR && liveR[0]) {
     for (let i = 0; i < fights.length ; i++) {
-        const timeDetails1 = liveR[0][i].timeDetails;
-        const oddsDetails = liveR[0][i].odds;
+      const timeDetails1 = liveR[0][i]?.timeDetails; 
+      const oddsDetails = liveR[0][i]?.odds;
 
         const fighter1Index = i * 2;
         const fighter2Index = fighter1Index + 1;
@@ -110,7 +110,7 @@ if (liveR) {
 
         associatedData.push(dataPair);
     }
-    console.log()
+    
     const sortedAssociatedData = associatedData.sort((a, b) => {
       // Assuming that pending results have an empty string for 'timeDetails1'
       const aIsPending = a.timeDetails1 === '';
@@ -155,15 +155,15 @@ console.log(associatedData);
         return {
             fighters: [fight.redCornerName, fight.blueCornerName],
             match: fight.weightClass,
-            records: [updatedRecords[index]?.redCornerRecord, updatedRecords[index]?.blueCornerRecord],
+            records: [records[index]?.redCornerRecord, records[index]?.blueCornerRecord],
             flags: [fight.redCornerCountry, fight.blueCornerCountry],
             flags2: [records[index]?.redCornerFlag ,  records[index]?.blueCornerFlag],
             fighterPics: [fight.redCornerImage, fight.blueCornerImage],
             winner: fight.winner,
             method: fight.method,
             round: fight.round,
-            odds: liveR[0][index].odds,
-            liveResults: liveR[0][index].timeDetails,
+            odds: liveR && liveR[0] && liveR[0][index] && liveR[0][index].odds, // Perform null and undefined checks
+            liveResults: liveR && liveR[0] && liveR[0][index] && liveR[0][index].timeDetails, 
 
         };
     });
