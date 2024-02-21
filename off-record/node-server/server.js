@@ -2,7 +2,8 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const cors = require('cors'); 
-const puppeteer = require('puppeteer'); // Import Puppeteer
+const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core'); // Import Puppeteer
 // const { DOMParser } = require('dom-parser'); // Import DOMParser from dom-parser
 
 
@@ -37,39 +38,6 @@ function updatePreviousFights(property, value, currentIndex) {
 }
 
 
-async function scrapeESPNPFL() {
-  const browser = await puppeteer.launch({
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    // ... other options
-  });
-  
-  
-  const page = await browser.newPage();
-  await page.goto(espnPFL, { waitUntil: 'domcontentloaded' });
-
-  const espnPFLData = await page.evaluate(() => {
-    const fighters = [];
-    // Extract data from ESPN PFL page
-    // Modify this part based on the structure of the ESPN PFL page
-    // Example:
-    document.querySelectorAll('.fighter').forEach((fighterElement) => {
-      const name = fighterElement.querySelector('.fighter-name').textContent.trim();
-      const record = fighterElement.querySelector('.fighter-record').textContent.trim();
-      const headshotImageSrc = fighterElement.querySelector('.fighter-headshot img').src;
-      const countryFlagImageSrc = fighterElement.querySelector('.fighter-flag img').src;
-
-      fighters.push({ name, record, headshotImageSrc, countryFlagImageSrc });
-    });
-
-    return fighters;
-  });
-
-  await browser.close();
-  return espnPFLData;
-}
-
 
 
 
@@ -79,7 +47,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
     const url = deatilsUrl;
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
-    const espnPFLData = await scrapeESPNPFL();
+    
 
 
     // Scrape the event name and date
