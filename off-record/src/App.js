@@ -9,6 +9,7 @@ import Johnny from './Johnny';
 import Header from './Header';
 import Results from './Results';
 import Tommy from './Tommy';
+import TommyPFL from './TommyPFL';
 import About from './About';
 import axios from 'axios';
 import * as yup from 'yup';
@@ -1092,6 +1093,11 @@ const [leagues, setLeagues] = useState([])
       
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
                                               stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlive} onLogout={handleLogout} BGpic={ufcI} tapImage={tapI} mewtwo={mewtwo} />}/>
+
+      <Route path="/pfl" element={<TommyPFL user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
+                                              stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlive} onLogout={handleLogout} BGpic={ufcI} tapImage={tapI} mewtwo={mewtwo} />}/>
+
+
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} 
                                                 weRlive={weRlive} justSubmitted={justSubmitted} onLogout={handleLogout} />}/>
       <Route path="/results/Compare" element={<Compare ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} liveFinishes={liveFinishes} onLogout={handleLogout} />}/>
