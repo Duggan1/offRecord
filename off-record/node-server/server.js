@@ -38,7 +38,13 @@ function updatePreviousFights(property, value, currentIndex) {
 
 
 async function scrapeESPNPFL() {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    headless: true, // Run Chrome in headless mode (without GUI)
+    args: ['--no-sandbox', '--disable-setuid-sandbox'], // Avoid issues in certain environments
+    // Add more options as needed
+  });
+  
+  
   const page = await browser.newPage();
   await page.goto(espnPFL, { waitUntil: 'domcontentloaded' });
 
