@@ -292,6 +292,7 @@ function transformData(initialData) {
   return  predictions ;
 }
 const liveNready = weRlive ? transformData(weRlive) : [];
+const imageData = 'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 
 
 
@@ -308,7 +309,8 @@ if (isLoading) {
               <Header handleLogout={handleLogout} user={user} ufcCard={ufcCard} />
           : <Johnny onLogin={onLogin} onLogout={handleLogout} ufcCard={ufcCard} />} */}
           <img
-  src='data:image/png;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+  src={`data:image/gif;base64,${imageData}`}
+
   alt='not working buddy'
   style={{ height: '200px', width: '200px', backgroundColor: 'white' }}
 />
