@@ -27,7 +27,7 @@ app.use(cors());
 
 const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-february-24-2024'
 const Recurl = 'https://www.tapology.com/fightcenter/events/107471-ufc-fight-night'
-const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600041054/league/ufc'
+const espnurl = 'https://www.ufc.com/event/ufc-fight-night-february-24-2024'
 
 
 
@@ -240,17 +240,15 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const nameElement = $(element).find('.truncate');
           const name = nameElement.text().trim();
 
-          const headshotImageSrc = $(element).find('.Image .headshot').attr('src');
-          const countryFlagImageSrc = $(element).find('.Logo.MMACompetitor__flag.Logo__md img').attr('src');
-
-
+          const headshotImageSrc = $(element).find('.MMACompetitor__flag[data-mptype="image"]').attr('data-src');
+          const countryFlagImageSrc = $(element).find('.MMACompetitor__flag[data-mptype="image"]').attr('src');
 
 
           
          
 
 
-          // const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
+          const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
       
           // Check for RedArrow
           const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
@@ -263,8 +261,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
               record,
               hasRedArrow,
               hasBlueArrow,
-              countryFlagImageSrc,
-              headshotImageSrc
+              playerImageSrc,
+              headshotImageSrc,countryFlagImageSrc
           };
           // if (!fighters.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(fighter))) {
           //   fighters.push(fighter);
