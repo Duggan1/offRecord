@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const cors = require('cors'); 
+const puppeteer = require('puppeteer'); // Import Puppeteer
 // const { DOMParser } = require('dom-parser'); // Import DOMParser from dom-parser
 
 
