@@ -11,31 +11,11 @@ const port = 3001; // Choose an available port
 // Enable CORS for all routes
 app.use(cors());
 
-// const fs = require('fs'); // You might use a library to fetch the HTML content instead
-
-
-
-
-
-// const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-december-09-2023';
-// const Recurl = 'https://www.tapology.com/fightcenter/events/105194-ufc-fight-night';
-// const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039634/league/ufc'
-
-// const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-february-10-2024'
-// const Recurl = 'https://www.tapology.com/fightcenter/events/107367-ufc-fight-night'
-// const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600040033/league/ufc'
 
 const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-february-24-2024'
 const Recurl = 'https://www.tapology.com/fightcenter/events/107471-ufc-fight-night'
 const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600041054/league/ufc'
-
-
-
-// wait for JalenTurner>BobbyGreen to Update to auto-patch
-// const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-december-02-2023';
-// const Recurl = 'https://www.tapology.com/fightcenter/events/104486-ufc-fight-night';
-// const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600039593/league/ufc'
-// wait for JalenTurner>BobbyGreen to Update to auto-patch
+const espnPFL = 'https://www.espn.com/mma/fightcenter/_/league/pfl'
 
 const fightRecords = [];
 const addedFighters = [];
@@ -55,11 +35,43 @@ function updatePreviousFights(property, value, currentIndex) {
   }
 }
 
+
+async function scrapeESPNPFL() {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(espnPFL, { waitUntil: 'domcontentloaded' });
+
+  const espnPFLData = await page.evaluate(() => {
+    const fighters = [];
+    // Extract data from ESPN PFL page
+    // Modify this part based on the structure of the ESPN PFL page
+    // Example:
+    document.querySelectorAll('.fighter').forEach((fighterElement) => {
+      const name = fighterElement.querySelector('.fighter-name').textContent.trim();
+      const record = fighterElement.querySelector('.fighter-record').textContent.trim();
+      const headshotImageSrc = fighterElement.querySelector('.fighter-headshot img').src;
+      const countryFlagImageSrc = fighterElement.querySelector('.fighter-flag img').src;
+
+      fighters.push({ name, record, headshotImageSrc, countryFlagImageSrc });
+    });
+
+    return fighters;
+  });
+
+  await browser.close();
+  return espnPFLData;
+}
+
+
+
+
+
 app.get('/scrape-ufc-website', async (req, res) => {
   try {
     const url = deatilsUrl;
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
+    const espnPFLData = await scrapeESPNPFL();
 
 
     // Scrape the event name and date
@@ -305,7 +317,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
       fights: fightData,
       records: fightRecords,
       backgroundImageSrc,
-      arena, city, country, locationCC, tapImage, fighters, oddResults,liveR
+      arena, city, country, locationCC, tapImage, fighters, oddResults,liveR, espnPFLData,
     });
   } catch (error) {
     console.error('Error:', error);
