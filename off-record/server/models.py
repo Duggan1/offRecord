@@ -6,16 +6,11 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
 from datetime import datetime
+from flask import json
+
+
 
 from config import db, bcrypt
-# metadata = MetaData(naming_convention={
-#     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-#     "uq": "uq_%(table_name)s_%(column_0_name)s",
-#     "ck": "ck_%(table_name)s_%(constraint_name)s",
-#     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-# })
-
-# db = SQLAlchemy(metadata=metadata)
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
@@ -126,7 +121,7 @@ class Pick(db.Model):
     owner = db.Column(db.String(120), nullable=False)
     location = db.Column(db.String(120), nullable=False)
     main_event = db.Column(db.String(120), nullable=False)
-    # pools = db.Column(db.String(120), nullable=True)
+    event_league = db.Column(db.String(120), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     
@@ -170,7 +165,7 @@ class UFCEvent(db.Model):
     locationCC = db.Column(db.String(255), nullable=False)
     backgroundImageSrc = db.Column(db.String(255), nullable=False)
     tapImage = db.Column(db.String(255), nullable=False)
-
+    # event_league = db.Column(db.String(120), nullable=True)
     fights = db.relationship('UFCFight', backref='ufc_event', lazy='dynamic')
 
 class UFCFight(db.Model):

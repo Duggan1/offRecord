@@ -372,6 +372,7 @@ class PicksResource(Resource):
 
         owner = data['owner']
         location = data['location']
+        event_league = data['event_league']
         main_event = data['mainEvent']
         predictions = data['predictions']
         user_id = data['user_id']
@@ -382,7 +383,7 @@ class PicksResource(Resource):
             return {'error': 'You have already submitted a pick for this main event'}, 400
 
         # Create a new Picks object
-        new_picks = Pick(user_id=user_id, owner=owner, location=location, main_event=main_event)
+        new_picks = Pick(user_id=user_id, owner=owner, location=location, event_league=event_league, main_event=main_event)
 
         # Create Prediction objects and associate them with the Picks
         for pred in predictions:

@@ -48,6 +48,7 @@ function App() {
 
 const [ufcCard2, setUfcCard2] = useState([]);
 const [ufcCard3, setUfcCard3] = useState([]);
+const [PFLCard, setPFLCard] = useState([]);
 const [weRlive , setweRlive] = useState([]);
 const [eventInfo, setEventInfo] = useState({});
 const [tapI, setTapI] = useState('')
@@ -67,6 +68,50 @@ useEffect(() => {
     try {
       const response = await axios.get(apiUrlPFL)
       console.log(response.data);
+      const { pflData, fighters, liveR
+       } = response.data;
+
+      const uniqueFighters = [...new Set(fighters.map(JSON.stringify))].map(JSON.parse);
+      const updatedFighters = uniqueFighters.map((fighter, index) => {
+        
+        const corner = index % 2 === 0 ? 'Red Corner' : 'Blue Corner';
+
+         return {
+             ...fighter,
+             corner,
+         };
+     });
+
+     const updatedRecords = [];
+ 
+     for (let i = 0; i < updatedFighters.length; i += 2) {
+      const redFighter = updatedFighters[i];
+      const blueFighter = updatedFighters[i + 1];
+  
+      const record = {
+        fighterPics: [pflData[i / 2]?.leftImgSrc || '',pflData[i / 2 ]?.rightImgSrc || ''],
+        fighters: [redFighter.name, blueFighter.name],
+        flags:[pflData[i / 2]?.leftBackgroundImg || '',pflData[i / 2]?.rightBackgroundImg || ''],
+        match:'',
+        odds:'',
+        records:[redFighter.record, blueFighter.record]
+
+      };
+  
+      updatedRecords.push(record);
+  }
+  
+
+      console.log(updatedRecords)
+      setPFLCard(updatedRecords)
+      console.log(pflData)
+      console.log(liveR)
+
+
+
+
+
+
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -1116,7 +1161,7 @@ const [leagues, setLeagues] = useState([])
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
                                               stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlive} onLogout={handleLogout} BGpic={ufcI} tapImage={tapI} mewtwo={mewtwo} />}/>
 
-      <Route path="/pfl" element={<TommyPFL user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
+      <Route path="/pfl" element={<TommyPFL user={user} ufcCard={PFLCard} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
                                               stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlive} onLogout={handleLogout} BGpic={ufcI} tapImage={tapI} mewtwo={mewtwo} />}/>
 
 

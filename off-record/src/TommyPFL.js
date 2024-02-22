@@ -37,7 +37,7 @@ function TommyPFL({BGpic,tapImage, state, user,mewtwo, ufcCard, stallUfcCard,loc
   }, []); 
 
 
-
+console.log(ufcCard)
 
 
 
@@ -198,9 +198,10 @@ const handleSubmit = async (e) => {
 
         const dataToSend = {
           owner: user.username !== undefined ? user.username : user.userName,
-          location: location,
+          location: 'Saudi Arabia',
           mainEvent: mainEvent,
           predictions: predictionData,
+          event_league:'PFL',
           user_id: user.id !== undefined ? user.id : backupID,
       };
       
@@ -308,12 +309,6 @@ if (isLoading) {
     {/* {user ?
               <Header handleLogout={handleLogout} user={user} ufcCard={ufcCard} />
           : <Johnny onLogin={onLogin} onLogout={handleLogout} ufcCard={ufcCard} />} */}
-          <img
-  src={`data:image/gif;base64,${imageData}`}
-
-  alt='not working buddy'
-  style={{ height: '200px', width: '200px', backgroundColor: 'white' }}
-/>
 
           <P4pHeader onLogout={onLogout} user={user} />
 
@@ -330,18 +325,30 @@ if (isLoading) {
 
 
       {showUfcCard?
-      <div className="bayLoc" > 
-          <h1 className='fs45 fs-mono'>{mewtwo}</h1>
+      <div className="bayLoc"  > 
+          {/* <h1 className='fs45 fs-mono'>PFL</h1> */}
+          <h1 style={{
+                              height: '50px',
+                              backgroundColor: 'whitesmoke',
+                              padding: '0px 2px',
+                              backgroundSize: '100% 100%',
+                              width:'100%',
+                              // paddingBottom:'20px',
+                              // margin:'0% 20%',
+                              backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`
+                            }} alt={`Flag `}> </h1>
       <div
-                  style={{zIndex:'1',display:'flex',justifyContent:'center'}}>
-                 <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</p>
+                  style={{zIndex:'1',display:'flex',justifyContent:'center',backgroundColor:'whitesmoke'}}>
+                 <p className='text-black homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'whitesmoke',color:'black'}}>Kingdom Arena, Riyadh, Saudi Arabia. </p>
                  <h6 className=' snow color-transp' 
                  style={{ 
+
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
-                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black'
+                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',
+                  backgroundImage: `url(https://cdn.britannica.com/79/5779-050-46C999AF/Flag-Saudi-Arabia.jpg)`
                   
-                  }} >___</h6></div><div class="element-with-border2"></div>
+                  }} >_____</h6></div><div class="element-with-border2"></div>
                 <div className='flex'>
                   <h1 style={{
                               height: '200px',
@@ -349,17 +356,9 @@ if (isLoading) {
                               padding: '0px 2px',
                               backgroundSize: '100% 100%',
                               width:'50%',
-                              backgroundImage: `url(${BGpic})`
+                              backgroundImage: `url(https://pflmma-prod.s3.us-east-1.amazonaws.com/assets/img/base/superfights-logo.png)`
                             }} alt={`Flag of ${location}`}> </h1>
-                            <h1 style={{
-                              height: '200px',
-                              backgroundColor: 'black',
-                              padding: '0px 2px',
-                              backgroundSize: '100% 100%',
-                              width:'50%',
-                              // margin:'0% 20%',
-                              backgroundImage: `url(${tapImage})`
-                            }} alt={`Flag of ${location}`}> </h1></div>
+                            </div>
 
                            
                             
@@ -513,9 +512,9 @@ if (isLoading) {
       className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 0)}
       style={{
-        backgroundImage:'url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)',
+        backgroundImage:`url(${ufcCard[index].flags[0]})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',
+        backgroundPosition: 'center center',color:'white'
       }}
       
       
@@ -543,12 +542,7 @@ if (isLoading) {
         style={{
           width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
           backgroundImage: `url('${
-            ufcCard[index].fighterPics[1].startsWith("/s3/files/")
-              ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
-                ufcCard[index].fighterPics[1].substring("/s3/files/".length)
-                : ufcCard[index].fighterPics[1].startsWith("/themes/custom/") 
-                ? "https://www.ufc.com/" + ufcCard[index].fighterPics[1]
-                  : ufcCard[index].fighterPics[1] 
+             ufcCard[index].fighterPics[1] 
           }')`,
           
           marginBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
@@ -563,9 +557,9 @@ if (isLoading) {
       className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 1)}
       style={{
-        backgroundImage:'url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)',
+        backgroundImage:`url(${ufcCard[index].flags[1]})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',
+        backgroundPosition: 'center center',color:'white'
       }}
     >
       
