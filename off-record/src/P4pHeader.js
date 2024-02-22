@@ -69,19 +69,20 @@ export default function P4pHeader({user, onLogout}) {
                   >
                     Home
                   </a>
-                  <a
-                    href="#"
-                    onClick={() => { handleOptionClick('/about') }}
-                    className={`${currentPath === "/about" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
-                  >
-                    About
-                  </a>
+                  
                   <a
                     href="#"
                     onClick={() => { handleOptionClick('/section3') }}
                     className={`${currentPath === "/section3" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
                   >
-                    Pick
+                    Pick 4 UFC
+                  </a>
+                  <a
+                    href="#"
+                    onClick={() => { handleOptionClick('/pfl') }}
+                    className={`${currentPath === "/pfl" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
+                  >
+                    Pick 4 PFL 
                   </a>
                   <a
                     href="#"
@@ -220,7 +221,7 @@ export default function P4pHeader({user, onLogout}) {
                 onClick={() => { handleOptionClick('/section3') }}
                 className={`${currentPath === "/section3" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
               >
-                Pick UFC 
+                Pick 4 UFC 
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
@@ -228,7 +229,7 @@ export default function P4pHeader({user, onLogout}) {
                 onClick={() => { handleOptionClick('/pfl') }}
                 className={`${currentPath === "/pfl" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
               >
-                Pick PFL
+                Pick 4 PFL
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"

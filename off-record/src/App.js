@@ -58,7 +58,7 @@ const [lo2, setLo2] = useState('')
 const [lo3, setLo3] = useState('')
 const apiUrl = 'https://offtherecordcards.onrender.com/scrape-ufc-website';
 const [liveFinishes, setLiveFinishes] = useState([]);
-
+const [PFLEvents, setPFLEvents] = useState([]);
 
 const apiUrlPFL = 'https://pfl-p4p.onrender.com/scrape-mma-websites';
 
@@ -93,7 +93,7 @@ useEffect(() => {
         fighters: [redFighter.name, blueFighter.name],
         flags:[pflData[i / 2]?.leftBackgroundImg || '',pflData[i / 2]?.rightBackgroundImg || ''],
         match:'',
-        odds:'',
+        odds:liveR[0][i / 2]?.odds,
         records:[redFighter.record, blueFighter.record]
 
       };
@@ -132,16 +132,16 @@ useEffect(() => {
           redCornerName: fight.fighters[0],
           blueCornerName: fight.fighters[1],
           redCornerCountry: fight.flags[0].length > 1 ? fight.flags[0] : fight.flags2[0] ,
-          blue_corner_country: fight.flags[1].length > 1 ? fight.flags[1] : fight.flags2[1] ,
+          blueCornerCountry: fight.flags[1].length > 1 ? fight.flags[1] : fight.flags2[1] ,
           redCornerRecord: fight.records[0] || ' ',
           blueCornerRecord: fight.records[1] || ' ',
           redCornerImage: fight.fighterPics[0],
           blueCornerImage: fight.fighterPics[1],
           // Add more properties as needed
-          method: fight.method, // Example placeholder
-          round: fight.round, // Example placeholder
-          winner: fight.winner,
-          odds: fight.odds,
+          method: fight.method || ' ',  // Example placeholder
+          round: fight.round || ' ', // Example placeholder
+          winner: fight.winner || ' ',
+          odds: fight.odds || ' ',
           // Example placeholder
         };
       });
@@ -180,7 +180,52 @@ useEffect(() => {
 
   // Call the submitUfcEvent function separately, not dependent on the fetchData useEffect
   submitPFLEvent();
-}, [PFLCard !== []]);
+}, [PFLCard ]);
+
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://off-therecordpicks.onrender.com/pfl-fights');
+      const data = await response.json();
+      console.log(data)
+      const EventNum = data.pfl_events.length - 1
+      console.log(data.pfl_events)
+      setPFLEvents(data.pfl_events[EventNum] || []);
+      console.log(EventNum)
+      console.log(PFLEvents)
+      const newUfcCard = PFLEvents.fights.map((fight, index) => {
+        return {
+            fighters: [fight.redCornerName, fight.blueCornerName],
+            match: fight.weightClass,
+            records: [fight.redCornerRecord, fight.blueCornerRecord],
+            flags: [fight.redCornerCountry, fight.blueCornerCountry],
+            fighterPics: [fight.redCornerImage, fight.blueCornerImage],
+            odds: fight.odds
+
+        };
+    });
+
+    // Faster!!!! need to Do!!!
+    
+    setPFLCard(newUfcCard);
+    // setTapI(ufcEvents.tapImage)
+    // setUfcI(ufcEvents.backgroundImageSrc.startsWith("/s3/files/")
+    // ? "https://dmxg5wxfqgb4u.cloudfront.net/" + ufcEvents.backgroundImageSrc : ufcEvents.backgroundImageSrc )
+    // let locationInfo = [];
+    // locationInfo = ufcEvents.locationCC ? ufcEvents.locationCC.split(', ').map(part => part.trim()) : [];
+    // setLo(locationInfo[0])
+    // setLo2(locationInfo[1])
+    // setLo3(locationInfo[locationInfo.length - 1])
+    // setLNmenow(ufcEvents.event_name)
+
+  } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  fetchData();
+}, []);
 
 
 

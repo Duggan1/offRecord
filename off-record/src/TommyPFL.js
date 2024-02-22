@@ -433,8 +433,8 @@ if (isLoading) {
   </p>
 
 
-
-<div className="nice" style={{zIndex:'0'}}>
+        {user ? <>
+        <div className="nice" style={{zIndex:'0'}}>
               {/* <label 
               
               className={`method ${predictions[index]?.method === 'TKO/KO' ||predictions[index]?.method === 'Decision' ||predictions[index]?.method === 'Draw/No-Contest' || predictions[index]?.method === 'Submission' ? 'selected' : ''}`}
@@ -473,7 +473,7 @@ if (isLoading) {
             )}
                       
             
-            
+            </>: null}
             
             
             </div>
@@ -508,20 +508,25 @@ if (isLoading) {
        
         // https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc
 
-      ><div className="sireal" ><div className="recordwcir redcorner">{fight.records[0]}</div>  <button
+      ><div className="sirealpfl" ><div className="recordwcir redcorner">{fight.records[0]}</div>  
+      
+      
+     {user ? <button
       className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 0)}
       style={{
         backgroundImage:`url(${ufcCard[index].flags[0]})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center center',color:'white'
-      }}
-      
-      
-    >
-      
-      {fight.fighters[0]}
-    </button>
+      }}>{fight.fighters[0]}
+    </button> :  <div
+      className={`pfl-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
+      style={{
+        backgroundImage:`url(${ufcCard[index].flags[0]})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',color:'white'
+      }}>{fight.fighters[0]}
+    </div>  }
     
     </div>
       </div>
@@ -553,7 +558,8 @@ if (isLoading) {
           
         }}
         
-      ><div className="sireal" ><div className="recordwcir bluecorner">{fight.records[1]}</div>  <button
+      ><div className="sirealpfl" ><div className="recordwcir bluecorner">{fight.records[1]}</div> 
+      {user?  <button
       className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 1)}
       style={{
@@ -564,7 +570,14 @@ if (isLoading) {
     >
       
       {fight.fighters[1]} 
-    </button>
+    </button>:  <div
+      className={`pfl-button `}
+      style={{
+        backgroundImage:`url(${ufcCard[index].flags[1]})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',color:'white'
+      }}>{fight.fighters[1]}
+    </div>  }
     
     </div>
         

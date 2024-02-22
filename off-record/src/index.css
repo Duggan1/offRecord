@@ -647,7 +647,9 @@ code {
 }
 .color-transp {
   color: #ffffff00;
+  color: rgb(61, 61, 61);
 }
+
 .select{
   border: #2f2f2f 3px solid;
   border-radius: 5%;
@@ -821,6 +823,11 @@ code {
   margin-left: 33%;
   text-align: center;
   animation: App-logo-spin infinite 2s linear;
+}
+.sirealpfl{
+    margin-top: 300px;
+    min-width: 100%;
+
 }
 .f-Man4 {
   max-width: 33%;
@@ -1016,6 +1023,21 @@ code {
   font-weight: 700;
   cursor: pointer;
   min-width: 80%;
+  background-size: 100% 100%;
+  
+}
+.pfl-button {
+  background-color: black;
+  color: black;
+  border-top: 5px  solid black;
+  border-bottom: 5px  solid black;
+  height: 100px;
+  margin-right: 10px;
+  border-radius: 10%;
+  font-weight: 700;
+  cursor: pointer;
+  width: 60%;
+  margin: 0 20%;
   background-size: 100% 100%;
   
 }
