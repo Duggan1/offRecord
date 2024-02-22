@@ -2,88 +2,80 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const cors = require('cors'); 
-// const puppeteer = require('puppeteer');
-// const puppeteer = require('puppeteer-core'); // Import Puppeteer
-// const { DOMParser } = require('dom-parser'); // Import DOMParser from dom-parser
-
 
 const app = express();
-const port = 3001; // Choose an available port
+const port = 3001;
 
-// Enable CORS for all routes
 app.use(cors());
 
+const PFLurl = 'https://pflmma.com/event/2024-superfights-1';
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600042093/league/pfl';
 
-
-const espnurl = 'https://pflmma.com/event/2024-superfights-1'
-
-const fightRecords = [];
-const addedFighters = [];
-const fighters = []
-const pflData = []
-const liveR = []
-
-
-function updatePreviousFights(property, value, currentIndex) {
-  for (let i = currentIndex - 1; i >= 0; i--) {
-      if (fightData[i][property] === 'N/A') {
-          fightData[i][property] = value;
-      } else {
-          // If the value is already updated, break the loop
-          break;
-      }
-  }
-}
-
-
-
-
-
-
-app.get('/scrape-ufc-website', async (req, res) => {
+const scrapePFL = async () => {
   try {
+    const response = await axios.get(PFLurl);
+    if (response.status === 200) {
+      const html = response.data;
+      const $ = cheerio.load(html);
+      const pflData = [];
 
-      const response = await axios.get(espnurl);
+      $('.matchupRow').each((index, element) => {
+        // Extract left and right section details
+        const leftSection = $(element).find('.fightcard-left');
+        const rightSection = $(element).find('.fightcard-right');
+        const leftBackgroundImg = leftSection.css('background-image').replace(/url\(['"](.+)['"]\)/, '$1');
+        const leftImgSrc = leftSection.find('.fighterLeftImg').attr('src');
+        const rightBackgroundImg = rightSection.css('background-image').replace(/url\(['"](.+)['"]\)/, '$1');
+        const rightImgSrc = rightSection.find('.fighterRightImg').attr('src');
 
-      if (response.status === 200) {
-        const html = response.data;
-        const $ = cheerio.load(html);
-    
-        $('.matchupRow').each((index, element) => {
-          const leftSection = $(element).find('.fightcard-left');
-          const rightSection = $(element).find('.fightcard-right');
+        const matchupData = {
+          leftBackgroundImg,
+          leftImgSrc,
+          rightBackgroundImg,
+          rightImgSrc,
+        };
 
-          const leftBackgroundImg = leftSection.css('background-image').replace(/url\(['"](.+)['"]\)/, '$1');
-          const leftImgSrc = leftSection.find('.fighterLeftImg').attr('src');
+        pflData.push(matchupData);
+      });
 
-          const rightBackgroundImg = rightSection.css('background-image').replace(/url\(['"](.+)['"]\)/, '$1');
-          const rightImgSrc = rightSection.find('.fighterRightImg').attr('src');
+      return pflData;
+    }
+  } catch (error) {
+    console.error('Error scraping PFL:', error);
+    throw error;
+  }
+};
 
-          const matchupData = {
-            leftBackgroundImg,
-            leftImgSrc,
-            rightBackgroundImg,
-            rightImgSrc,
-          };
+const scrapeESPN = async () => {
+  try {
+    const response = await axios.get(espnurl);
+    if (response.status === 200) {
+      const html = response.data;
+      const $ = cheerio.load(html);
+      const fighters = [];
+      const liveR = [];
 
+      // Your ESPN scraping logic here
 
+      return { fighters, liveR };
+    }
+  } catch (error) {
+    console.error('Error scraping ESPN:', error);
+    throw error;
+  }
+};
 
-            pflData.push(matchupData);
-          
-          
-          });
+app.get('/scrape-mma-websites', async (req, res) => {
+  try {
+    const pflData = await scrapePFL();
+    const { fighters, liveR } = await scrapeESPN();
 
-
-      }
-    
-    console.log(fighters)
-   
     res.json({
-      //  fighters, liveR, 
-       pflData
+      pflData,
+      fighters,
+      liveR,
     });
   } catch (error) {
-    console.error('Error:', error);
     res.status(500).json({ error: 'An error occurred while scraping data.' });
   }
 });
