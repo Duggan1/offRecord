@@ -3,7 +3,7 @@ from config import app, api,db, bcrypt
 from flask import make_response, redirect, request, session, jsonify
 from flask_restful import Resource, Api
 
-from models import User, Pick, Prediction, UFCEvent, UFCFight, League
+from models import User, Pick, Prediction, UFCEvent, UFCFight, League, PFLEvent, PFLFight
 # app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'  # Your database URI
 # db = SQLAlchemy(app)
