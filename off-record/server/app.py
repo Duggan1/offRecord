@@ -634,6 +634,11 @@ class PFLEventResource(Resource):
         tapImage = data['tapImage']
         fights = data['fights']
 
+        existing_event = PFLEvent.query.filter_by(event_name=event_name, locationCC=locationCC).first()
+        if existing_event:
+            return {'error': 'You have already submitted for this main event'}, 400
+
+
         # Create a new PFLEvent object
         new_event = PFLEvent(event_name=event_name, locationCC=locationCC,
                              backgroundImageSrc=backgroundImageSrc, tapImage=tapImage)
@@ -643,13 +648,26 @@ class PFLEventResource(Resource):
             # Extract data from the fight
             weight_class = fight['weightClass']
             red_corner_name = fight['redCornerName']
-            # ... (extract other fight data)
+            blue_corner_name = fight['blueCornerName']
+            red_corner_country = fight['redCornerCountry']
+            blue_corner_country = fight['blueCornerCountry']
+            red_corner_image = fight['redCornerImage']
+            blue_corner_image = fight['blueCornerImage']
+
+            # Access records directly using the loop variable
+            red_corner_record = fight['redCornerRecord']
+            blue_corner_record = fight['blueCornerRecord']
+
+            method = fight['method']
+            round = fight['round']
+            winner = fight['winner']
+            odds = fight['odds']
 
             # Create a new PFLFight instance
             new_fight = PFLFight(weight_class=weight_class, red_corner_name=red_corner_name,
-                                 event=new_event,  # Associate with the event
-                                 # ... (other fight attributes)
-                                )
+                                blue_corner_name=blue_corner_name, red_corner_country=red_corner_country,
+                                blue_corner_country=blue_corner_country, blue_corner_image=blue_corner_image, red_corner_image=red_corner_image, red_corner_record=red_corner_record,
+                                blue_corner_record=blue_corner_record, method=method, round=round, winner=winner, odds=odds)
 
             # Append the new fight to the event's fights relationship
             new_event.fights.append(new_fight)

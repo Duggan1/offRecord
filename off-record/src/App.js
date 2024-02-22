@@ -122,6 +122,76 @@ useEffect(() => {
 
 
 
+useEffect(() => {
+  async function submitPFLEvent() {
+    try {
+      // Example data to send in the POST request
+      const recreatedFights = PFLCard.map((fight, index) => {
+        return {
+          weightClass: fight.match,
+          redCornerName: fight.fighters[0],
+          blueCornerName: fight.fighters[1],
+          redCornerCountry: fight.flags[0].length > 1 ? fight.flags[0] : fight.flags2[0] ,
+          blue_corner_country: fight.flags[1].length > 1 ? fight.flags[1] : fight.flags2[1] ,
+          redCornerRecord: fight.records[0] || ' ',
+          blueCornerRecord: fight.records[1] || ' ',
+          redCornerImage: fight.fighterPics[0],
+          blueCornerImage: fight.fighterPics[1],
+          // Add more properties as needed
+          method: fight.method, // Example placeholder
+          round: fight.round, // Example placeholder
+          winner: fight.winner,
+          odds: fight.odds,
+          // Example placeholder
+        };
+      });
+
+
+      const dataToSend = {
+        event_name: `${PFLCard[0].redCornerName} vs ${PFLCard[0].blueCornerName}`,
+        locationCC: 'Saudi Arabia',
+        backgroundImageSrc: 'https://pflmma-prod.s3.us-east-1.amazonaws.com/assets/img/base/superfights-logo.png',
+        tapImage: 'https://images.tapology.com/poster_images/109606/profile/Screenshot.png?1707678498',
+        // fights: eventInfo.fights,
+        // records: eventInfo.records,
+        fights: recreatedFights,
+      };
+
+      // Make a POST request to submit UFC event
+      const postResponse = await axios.post('/submit-pfl-event', dataToSend, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (postResponse.status === 201) {
+        // Handle success
+        console.log('PFL event submitted successfully:', postResponse.data);
+        // Perform any further actions here
+      } else {
+        // Handle errors
+        console.error('Network response was not ok');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle errors and validation errors as needed
+    }
+  }
+
+  // Call the submitUfcEvent function separately, not dependent on the fetchData useEffect
+  submitPFLEvent();
+}, [PFLCard !== []]);
+
+
+
+
+
+
+
+
+
+
+
 
 
 useEffect(() => { 
