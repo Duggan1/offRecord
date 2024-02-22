@@ -77,10 +77,9 @@ const scrapeESPN = async () => {
            
   
           }
-          if (!oddResults.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(oddDetails))) {
-            // fightRecords.push(oddDetails);
+          
             liveOne.push(oddDetails);
-          }
+          
           // oddResults.push(oddDetails)
       });
       
