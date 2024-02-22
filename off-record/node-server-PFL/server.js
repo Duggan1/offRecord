@@ -43,7 +43,6 @@ function updatePreviousFights(property, value, currentIndex) {
 app.get('/scrape-ufc-website', async (req, res) => {
   try {
 
-    try {
       const response = await axios.get(espnurl);
 
       if (response.status === 200) {
@@ -130,11 +129,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
 
 
       }
-    } catch (error) {
-      console.error('Error:', error);
-      res.status(500).json({ error: 'An error occurred while scraping data.' });
-      return;
-    }
+    
     console.log(fighters)
    
     res.json({
