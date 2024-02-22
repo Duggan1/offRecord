@@ -3,7 +3,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const cors = require('cors'); 
 // const puppeteer = require('puppeteer');
-const puppeteer = require('puppeteer-core'); // Import Puppeteer
+// const puppeteer = require('puppeteer-core'); // Import Puppeteer
 // const { DOMParser } = require('dom-parser'); // Import DOMParser from dom-parser
 
 
