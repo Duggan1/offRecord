@@ -15,7 +15,7 @@ app.use(cors());
 
 
 
-const espnurl = 'https://www.espn.com/mma/fightcenter/_/league/pfl'
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600042093/league/pfl'
 
 const fightRecords = [];
 const addedFighters = [];

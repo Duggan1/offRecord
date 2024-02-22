@@ -57,6 +57,28 @@ const [lo2, setLo2] = useState('')
 const [lo3, setLo3] = useState('')
 const apiUrl = 'https://offtherecordcards.onrender.com/scrape-ufc-website';
 const [liveFinishes, setLiveFinishes] = useState([]);
+
+
+const apiUrlPFL = 'https://pfl-p4p.onrender.com/scrape-ufc-website';
+
+
+useEffect(() => { 
+  async function fetchData() {
+    try {
+      const response = await axios.get(apiUrlPFL)
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
+  fetchData();
+}, []); 
+
+
+
+
+
 useEffect(() => { 
   async function fetchData() {
     try {
