@@ -189,6 +189,37 @@ class UFCFight(db.Model):
     event_id = db.Column(db.Integer, db.ForeignKey('ufc_events.id'), nullable=False)
 
 
+class PFLEvent(db.Model):
+    __tablename__ = 'pfl_events'
+
+    id = db.Column(db.Integer, primary_key=True)
+    event_name = db.Column(db.String(255), nullable=False)
+    locationCC = db.Column(db.String(255), nullable=True)
+    backgroundImageSrc = db.Column(db.String(255), nullable=True)
+    tapImage = db.Column(db.String(255), nullable=True)
+    # event_league = db.Column(db.String(120), nullable=True)
+    fights = db.relationship('PFLFight', backref='pfl_event', lazy='dynamic')
+
+class PFLFight(db.Model):
+    __tablename__ = 'pfl_fights'
+
+    id = db.Column(db.Integer, primary_key=True)
+    weight_class = db.Column(db.String(255), nullable=True)
+    red_corner_name = db.Column(db.String(255), nullable=False)
+    blue_corner_name = db.Column(db.String(255), nullable=False)
+    red_corner_country = db.Column(db.String(255), nullable=False)
+    blue_corner_country = db.Column(db.String(255), nullable=False)
+    red_corner_record = db.Column(db.String(255), nullable=False)
+    blue_corner_record = db.Column(db.String(255), nullable=False)
+    red_corner_image = db.Column(db.String(255), nullable=False)
+    blue_corner_image = db.Column(db.String(255), nullable=False)
+    method = db.Column(db.String(50), nullable=True)
+    round = db.Column(db.String(50), nullable=True)
+    winner = db.Column(db.String(50), nullable=True)
+    odds = db.Column(db.String(50), nullable=True)
+
+    event_id = db.Column(db.Integer, db.ForeignKey('pfl_events.id'), nullable=False)
+
 
 
 

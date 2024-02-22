@@ -536,76 +536,6 @@ class UFCEventsResource(Resource):
 
 api.add_resource(UFCEventsResource, '/events')
 
-
-
-
-
-
-
-class PickByID(Resource):
-    def get(self, pick_id):
-        pick = Pick.query.filter_by(id=pick_id).first()
-        if pick is None:
-            return make_response({"error": "Pick not found"}, 404)
-
-        # Define a dictionary representation of the pick object
-        pick_dict = {
-            "id": pick.id,
-            "owner": pick.owner,
-            "location": pick.location,
-            "main_event": pick.main_event,
-            "predictions": [prediction.as_dict() for prediction in pick.predictions]
-        }
-
-        return make_response(pick_dict, 200)
-
-
-    
-    def patch(self, pick_id):
-        data = request.get_json()
-
-        pick = Pick.query.filter_by(id=pick_id).first()
-        if pick is None:
-            return make_response({"error": "Pick not found"}, 404)
-
-        # Handle the predictions data from the request
-        predictions_data = data.get("predictions")
-
-        # Update or create predictions based on the data
-        if predictions_data:
-            # Handle the relationship based on your data structure
-            pick.predictions.delete()
-            # For example, if predictions is a list of dictionaries:
-            for prediction_data in predictions_data:
-                prediction = Prediction(**prediction_data)
-                pick.predictions.append(prediction)
-
-        # Commit the changes to the database
-        db.session.commit()
-
-        return make_response({"message": "Pick updated successfully"}, 200)
-    
-
-    def delete(self, pick_id):  # Change 'id' to 'pick_id'
-        print(f"DELETE request received for pick_id {pick_id}")
-
-        pick = Pick.query.filter_by(id=pick_id).first()
-        if pick is None:
-            return make_response({"error": "pick not found"}, 404)
-        
-        pick.predictions.delete()
-
-        for prediction in pick.predictions:
-            db.session.delete(prediction)
-
-        
-        db.session.delete(pick)
-        db.session.commit()
-        
-        return make_response({"deleted": "she gone"}, 204)
-
-api.add_resource(PickByID, '/picks/<int:pick_id>')
-
 class UFCEventByID(Resource):
     def get(self, event_id):
         # Retrieve the UFC event from the database by ID
@@ -692,6 +622,238 @@ class UFCEventByID(Resource):
 
 # Add the resource to the API
 api.add_resource(UFCEventByID, '/events/<int:event_id>')
+
+class PFLEventResource(Resource):
+    def post(self):
+        data = request.json
+
+        # Extract data from the request
+        event_name = data['event_name']
+        locationCC = data['locationCC']
+        backgroundImageSrc = data['backgroundImageSrc']
+        tapImage = data['tapImage']
+        fights = data['fights']
+
+        # Create a new PFLEvent object
+        new_event = PFLEvent(event_name=event_name, locationCC=locationCC,
+                             backgroundImageSrc=backgroundImageSrc, tapImage=tapImage)
+
+        # Create PFLFight objects and associate them with the PFLEvent
+        for fight in fights:
+            # Extract data from the fight
+            weight_class = fight['weightClass']
+            red_corner_name = fight['redCornerName']
+            # ... (extract other fight data)
+
+            # Create a new PFLFight instance
+            new_fight = PFLFight(weight_class=weight_class, red_corner_name=red_corner_name,
+                                 event=new_event,  # Associate with the event
+                                 # ... (other fight attributes)
+                                )
+
+            # Append the new fight to the event's fights relationship
+            new_event.fights.append(new_fight)
+
+        # Add and commit the new PFLEvent and associated PFLFights to the database
+        db.session.add(new_event)
+        db.session.commit()
+
+        return {'message': 'PFL event submitted successfully'}, 201
+
+
+class PFLFightsResource(Resource):
+    def get(self):
+        # Retrieve all PFL events from the database
+        pfl_events = PFLEvent.query.all()
+
+        # Serialize the PFL events to JSON
+        pfl_events_data = []
+        for event in pfl_events:
+            event_data = {
+                'id': event.id,
+                'event_name': event.event_name,
+                'locationCC': event.locationCC,
+                'backgroundImageSrc': event.backgroundImageSrc,
+                'tapImage': event.tapImage,
+                'fights': [],
+            }
+
+            for fight in event.fights:
+                fight_data = {
+                    'weightClass': fight.weight_class,
+                    'redCornerName': fight.red_corner_name,
+                    'blueCornerName': fight.blue_corner_name,
+                    'redCornerCountry': fight.red_corner_country,
+                    'blueCornerCountry': fight.blue_corner_country,
+                    'redCornerImage': fight.red_corner_image,
+                    'blueCornerImage': fight.blue_corner_image,
+                    'redCornerRecord': fight.red_corner_record,
+                    'blueCornerRecord': fight.blue_corner_record,
+                    'method': fight.method,
+                    'round': fight.round,
+                    'winner': fight.winner,
+                    'odds': fight.odds,
+                }
+                event_data['fights'].append(fight_data)
+
+            pfl_events_data.append(event_data)
+
+        return {'pfl_events': pfl_events_data}
+
+class PFLEventByID(Resource):
+    def get(self, event_id):
+        # Retrieve the PFL event from the database by ID
+        pfl_event = PFLEvent.query.get(event_id)
+
+        if pfl_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Serialize the PFL event to JSON
+        event_data = {
+            'event_name': pfl_event.event_name,
+            'locationCC': pfl_event.locationCC,
+            'backgroundImageSrc': pfl_event.backgroundImageSrc,
+            'tapImage': pfl_event.tapImage,
+            'fights': [],
+        }
+
+        for fight in pfl_event.fights:
+            fight_data = {
+                'weightClass': fight.weight_class,
+                'redCornerName': fight.red_corner_name,
+                'blueCornerName': fight.blue_corner_name,
+                'redCornerCountry': fight.red_corner_country,
+                'blueCornerCountry': fight.blue_corner_country,
+                'redCornerImage': fight.red_corner_image,
+                'blueCornerImage': fight.blue_corner_image,
+                'redCornerRecord': fight.red_corner_record,
+                'blueCornerRecord': fight.blue_corner_record,
+                'method': fight.method,
+                'round': fight.round,
+                'winner': fight.winner,
+                'odds': fight.odds,
+            }
+            event_data['fights'].append(fight_data)
+
+        return {'pfl_event': event_data}
+
+    def patch(self, event_id):
+        # Retrieve the PFL event from the database by ID
+        pfl_event = PFLEvent.query.get(event_id)
+
+        if pfl_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Get the JSON data from the request
+        data = request.get_json()
+
+        # Update fields
+        pfl_event.backgroundImageSrc = data.get("backgroundImageSrc", pfl_event.backgroundImageSrc)
+        pfl_event.tapImage = data.get("tapImage", pfl_event.tapImage)
+        pfl_event.locationCC = data.get("locationCC", pfl_event.locationCC)
+        pfl_event.event_name = data.get("event_name", pfl_event.event_name)
+
+        # Handle the fights data from the request
+        fights_data = data.get("fights")
+
+        # Update or create fights based on the data
+        if fights_data:
+            # Handle the relationship based on your data structure
+            pfl_event.fights.delete()
+            # For example, if fights is a list of dictionaries:
+            for fight_data in fights_data:
+                fight = PFLFight(**fight_data)
+                pfl_event.fights.append(fight)
+
+        # Commit changes to the database
+        db.session.commit()
+
+        return {'message': 'PFL event updated successfully'}
+
+    def delete(self, event_id):
+        # Retrieve the PFL event from the database by ID
+        pfl_event = PFLEvent.query.get(event_id)
+
+        if pfl_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Delete the PFL event
+        db.session.delete(pfl_event)
+        db.session.commit()
+
+        return {'message': 'PFL event deleted successfully'}
+
+api.add_resource(PFLEventResource, '/submit-pfl-event')
+api.add_resource(PFLFightsResource, '/pfl-fights')
+api.add_resource(PFLEventByID, '/events/<int:event_id>')
+
+
+
+class PickByID(Resource):
+    def get(self, pick_id):
+        pick = Pick.query.filter_by(id=pick_id).first()
+        if pick is None:
+            return make_response({"error": "Pick not found"}, 404)
+
+        # Define a dictionary representation of the pick object
+        pick_dict = {
+            "id": pick.id,
+            "owner": pick.owner,
+            "location": pick.location,
+            "main_event": pick.main_event,
+            "predictions": [prediction.as_dict() for prediction in pick.predictions]
+        }
+
+        return make_response(pick_dict, 200)
+
+
+    
+    def patch(self, pick_id):
+        data = request.get_json()
+
+        pick = Pick.query.filter_by(id=pick_id).first()
+        if pick is None:
+            return make_response({"error": "Pick not found"}, 404)
+
+        # Handle the predictions data from the request
+        predictions_data = data.get("predictions")
+
+        # Update or create predictions based on the data
+        if predictions_data:
+            # Handle the relationship based on your data structure
+            pick.predictions.delete()
+            # For example, if predictions is a list of dictionaries:
+            for prediction_data in predictions_data:
+                prediction = Prediction(**prediction_data)
+                pick.predictions.append(prediction)
+
+        # Commit the changes to the database
+        db.session.commit()
+
+        return make_response({"message": "Pick updated successfully"}, 200)
+    
+
+    def delete(self, pick_id):  # Change 'id' to 'pick_id'
+        print(f"DELETE request received for pick_id {pick_id}")
+
+        pick = Pick.query.filter_by(id=pick_id).first()
+        if pick is None:
+            return make_response({"error": "pick not found"}, 404)
+        
+        pick.predictions.delete()
+
+        for prediction in pick.predictions:
+            db.session.delete(prediction)
+
+        
+        db.session.delete(pick)
+        db.session.commit()
+        
+        return make_response({"deleted": "she gone"}, 204)
+
+api.add_resource(PickByID, '/picks/<int:pick_id>')
+
+
 
 
 if __name__ == '__main__':
