@@ -59,7 +59,7 @@ const apiUrl = 'https://offtherecordcards.onrender.com/scrape-ufc-website';
 const [liveFinishes, setLiveFinishes] = useState([]);
 
 
-const apiUrlPFL = 'https://pfl-p4p.onrender.com/scrape-ufc-website';
+const apiUrlPFL = 'https://pfl-p4p.onrender.com/scrape-mma-websites';
 
 
 useEffect(() => { 

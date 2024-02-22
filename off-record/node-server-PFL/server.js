@@ -55,7 +55,66 @@ const scrapeESPN = async () => {
       const fighters = [];
       const liveR = [];
 
-      // Your ESPN scraping logic here
+      $('.mb4').each((index, element) => {
+        // .Gamestrip__Overview
+  
+        const liveOne = []
+        
+        $('.Gamestrip__Overview').each((index, element) => {
+          // Extract network and odds information
+          const network = $(element).find('.ScoreCell__Network').text();
+          const odds = $(element).find('.ScoreCell__Odds').text();
+      
+          // Extract time, method, and other details
+          const timeDetailsElement = $(element).find('.ScoreCell__Time .tc');
+          const timeDetails = timeDetailsElement.length > 0 ? timeDetailsElement.text() : '';
+        
+          const oddDetails = {
+      
+            network,
+            odds,
+            timeDetails,
+           
+  
+          }
+          if (!oddResults.some(existingDetails => JSON.stringify(existingDetails) === JSON.stringify(oddDetails))) {
+            // fightRecords.push(oddDetails);
+            liveOne.push(oddDetails);
+          }
+          // oddResults.push(oddDetails)
+      });
+      
+        $('.MMACompetitor').each((index, element) => {
+          const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
+          const record = recordElement.text().trim();
+      
+        
+          const nameElement = $(element).find('.truncate');
+          const name = nameElement.text().trim();
+      
+  
+          // Check for RedArrow
+          const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
+  
+          // Check for BlueArrow
+          const hasBlueArrow = $(element).find('.MMACompetitor__arrow:not(.MMACompetitor__arrow--reverse)').length > 0;
+  
+          const fighter = {
+              name,
+              record,
+              hasRedArrow,
+              hasBlueArrow,
+          };
+         
+          fighters.push(fighter);
+          liveOne.push(fighter);
+            });
+      
+  
+            liveR.push(liveOne);
+          
+          
+          });
 
       return { fighters, liveR };
     }
