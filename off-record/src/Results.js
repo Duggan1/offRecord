@@ -43,7 +43,7 @@ function Results({ user, ufcCard, ufcResults, results2, adminKevPicks2, weRlive 
   
   const [selectedUser, setSelectedUser] = useState(""); // Add this line to define the state
 
-  
+  console.log(results)
   const filteredByMainEvent = results.filter((result) => {
     return (
       (!selectedEvent || result.main_event === selectedEvent) &&

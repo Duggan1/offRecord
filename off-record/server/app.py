@@ -417,6 +417,7 @@ class PickResource(Resource):
             "owner": pick.owner,
             "location": pick.location,
             "main_event": pick.main_event,
+            "event_league": pick.event_league,
             "predictions": [prediction.as_dict() for prediction in pick.predictions]
         } for pick in picks]
         return make_response(
