@@ -212,6 +212,7 @@ const handleSubmit = async (e) => {
           location: location,
           mainEvent: mainEvent,
           predictions: predictionData,
+          event_league: 'UFC',
           user_id: user.id !== undefined ? user.id : backupID,
       };
       
