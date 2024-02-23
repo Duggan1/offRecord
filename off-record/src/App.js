@@ -85,7 +85,7 @@ useEffect(() => {
 
      const associatedData = [];
      if (liveR && liveR[0]) {
-         for (let i = 0; i < pflData.length ; i++) {
+         for (let i = 0; i < pflData.length - 1 ; i++) {
            const timeDetails1 = liveR[0][i]?.timeDetails; 
            const oddsDetails = liveR[0][i]?.odds;
      
@@ -1060,6 +1060,7 @@ const [akp , setAKP] = useState('')
 const [ countPick ,setPickCount] = useState(null)
 const [results2, setResults2] = useState([]);
 const [adminKevPicks, setAdminKevPicks] = useState({});
+const [adminKevPickswID, setAdminKevPickswID] = useState({});
 
 
 useEffect(() => {
@@ -1079,6 +1080,8 @@ fetch('https://off-therecordpicks.onrender.com/picks')
        setResults2(data.picks);
         const filteredResults = data.picks.filter(result => result.owner !== 'AdminKev');
           setResults2(filteredResults);
+          const filteredAKPwID = data.picks.filter(result => result.owner === 'AdminKev');
+          setAdminKevPickswID(filteredAKPwID)
           console.log(filteredResults)
           data.picks.forEach(result => {
             if (result.owner === 'AdminKev' && result.predictions.length > 0) {
@@ -1359,8 +1362,8 @@ const [leagues, setLeagues] = useState([])
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
                                               stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlive} onLogout={handleLogout} BGpic={ufcI} tapImage={tapI} mewtwo={mewtwo} />}/>
 
-      <Route path="/pfl" element={<TommyPFL user={user} ufcCard={PFLCard} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
-                                              stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlivePFL} adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} tapImage={tapI} mewtwo={mewtwo} />}/>
+      <Route path="/pfl" element={<TommyPFL user={user} ufcCard={PFLCard} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted} PFLEvents={PFLEvents}
+                                              stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlivePFL} adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} adminKevPickswID={adminKevPickswID}  tapImage={tapI} mewtwo={mewtwo} />}/>
 
 
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} 

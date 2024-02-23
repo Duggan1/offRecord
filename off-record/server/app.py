@@ -803,7 +803,7 @@ class PFLEventByID(Resource):
 
 api.add_resource(PFLEventResource, '/submit-pfl-event')
 api.add_resource(PFLFightsResource, '/pfl-fights')
-api.add_resource(PFLEventByID, '/events/<int:event_id>')
+api.add_resource(PFLEventByID, '/pfl-events/<int:event_id>')
 
 
 

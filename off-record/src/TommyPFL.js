@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import Modal from 'react-modal';
 import P4pHeader from './P4pHeader';
+import isEqual from 'lodash/isEqual';
 
 
 
@@ -12,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import Dnd from './Dnd';
 import Dnd2 from './Dnd2';
 
-function TommyPFL({BGpic,tapImage, state, user,mewtwo,adminKevPicks2, ufcCard, stallUfcCard,locationCity,location, isOwnerAndEventMatch, setjustSubmitted, onLogout, weRlive}) {
+function TommyPFL({BGpic,tapImage,PFLEvents, adminKevPickswID, state, user,mewtwo,adminKevPicks2, ufcCard, stallUfcCard,locationCity,location, isOwnerAndEventMatch, setjustSubmitted, onLogout, weRlive}) {
 
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -40,6 +41,7 @@ function TommyPFL({BGpic,tapImage, state, user,mewtwo,adminKevPicks2, ufcCard, s
 
 console.log(ufcCard)
 console.log(adminKevPicks2)
+console.log(adminKevPickswID)
 
 
 
@@ -311,34 +313,190 @@ console.log(liveNready)
 
 
 
-const mainEventToFind = ufcCard[0]?.fighters.join(' vs ');
+const mainEventToFind = ufcCard[0]?.fighters.join(' vs ') === null ? ' ': ufcCard[0]?.fighters.join(' vs ') ;
 console.log()
 console.log(adminKevPicks2)
 console.log(mainEventToFind)
 console.log(adminKevPicks2[mainEventToFind])
 
-if (adminKevPicks2.hasOwnProperty(mainEventToFind)) {
-  console.log(mainEventToFind);
+useEffect(() => {
+  // Check if adminKevPickswID is an array and not empty
+  if (Array.isArray(adminKevPickswID) && adminKevPickswID.length > 0) {
+    console.log(mainEventToFind);
 
-  const adminKevPick = adminKevPicks2[mainEventToFind]
+    // Find the object in the array based on mainEventToFind
+    const adminKevPick = adminKevPickswID.find(pick => pick.main_event === mainEventToFind);
 
-  if (adminKevPick) {
-    console.log('AdminKev Pick ID:', adminKevPick.id);
-    setAKP(adminKevPick);
-    // Do something with the pick ID
-  } else {
-    console.log('AdminKev pick not found.');
-    // Handle the case where the pick is not found
+    if (adminKevPick) {
+      console.log('AdminKev Pick ID:', adminKevPick.id);
+      setAKP(adminKevPick); // Assuming you want to set the ID in the state
+      // Do something with the pick ID
+    } else {
+      console.log('AdminKev pick not found.');
+      // Handle the case where the pick is not found
+    }
   }
-}
-
-console.log(adminKevPicks2);
-console.log(AKP);
+}, [mainEventToFind, adminKevPickswID]);
 
 
 
+console.log(AKP)
 
 
+
+const areArraysEqual = (array1, array2) => {
+  // Use the nullish coalescing operator to provide an empty array as the default value
+  const arr1 = array1 ?? [];
+  const arr2 = array2 ?? [];
+
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+
+  for (let i = 0; i < arr1.length; i++) {
+    const obj1 = arr1[i];
+    const obj2 = arr2[i];
+    console.log(obj1.winner, obj2.winner)
+    console.log(obj1.method, obj2.method)
+
+
+    if (obj1.winner !== obj2.winner || obj1.method !== obj2.method) {
+      return false;
+    }
+    // You can add more conditions for other properties if needed
+  }
+
+  return true;
+};
+console.log(liveNready)
+useEffect(() => {
+
+  // if (akp, modifiedUfcResults){
+
+
+  if (areArraysEqual(AKP.predictions, liveNready))  {
+    console.log('matching');
+
+    
+    console.log(AKP)
+    console.log(weRlive)
+    console.log(liveNready)
+  }
+  if (!AKP){
+    console.log('loading yo yo')
+
+  } 
+  if (AKP && !isEqual(AKP.predictions, liveNready)){
+    console.log('ready for patch')
+    //////////////////////////////////
+    const dataToSend = {
+      id: AKP.id,
+      owner: AKP.owner ,
+      location: AKP.location,
+      mainEvent: AKP.main_event,
+      predictions: liveNready,
+      user_id: AKP.id || 4,
+  };
+  ////////////////////////////////////
+    fetch(`https://off-therecordpicks.onrender.com/picks/${AKP.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to update pick");
+        }
+        // Refresh the list of picks after a successful update
+        // return fetchPicks();
+      })
+      .catch((error) => {
+        console.error("Error updating pick:", error);
+        // Handle error as needed
+      })
+
+
+  }
+  // else {
+  //   console.log('not a match');
+  //   console.log(akp.predictions);
+  //   console.log(modifiedUfcResults);
+  // }
+}, [AKP, liveNready]);
+
+
+
+
+
+
+const patchEvent = () => {
+
+  const recreatedFights = ufcCard.map((fight, index) => {
+
+
+
+    return {
+      weight_class: fight.match,
+      red_corner_name: fight.fighters[0],
+      blue_corner_name: fight.fighters[1],
+      red_corner_country: fight.flags[0].length > 1 ? fight.flags[0] : fight.flags2[0] ,
+      blue_corner_country: fight.flags[1].length > 1 ? fight.flags[1] : fight.flags2[1] ,
+      red_corner_record: fight.records[0] || ' ',
+      blue_corner_record: fight.records[1] || ' ',
+      red_corner_image: fight.fighterPics[0],
+      blue_corner_image: fight.fighterPics[1],
+      // Add more properties as needed
+      method: fight.method, // Example placeholder
+      round: fight.round, // Example placeholder
+      winner: fight.winner,
+      odds: fight.odds // Example placeholder
+    };
+  });
+  
+  console.log(recreatedFights);
+
+  const dataToSend = {
+    event_name: AKP.main_event,
+    locationCC: PFLEvents.locationCC,
+    backgroundImageSrc: PFLEvents.backgroundImageSrc,
+    tapImage: PFLEvents.tapImage,
+    fights: recreatedFights,
+  };
+  console.log(dataToSend)
+
+  fetch(`https://off-therecordpicks.onrender.com/pfl-events/${PFLEvents.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dataToSend),
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        throw new Error("Failed to update pick");
+      }
+      if (response.ok) {
+        // Handle success
+        console.log(response)
+        const responseData = await response.json();
+        console.log('Predictions patched successfully:', responseData);
+        // Perform any further actions here
+      }
+      // Refresh the list of picks after a successful update
+      // return fetchPicks();
+    })
+    .catch((error) => {
+      console.error("Error updating pick:", error);
+      // Handle error as needed
+    });
+};
+
+useEffect(() => {
+  patchEvent()
+
+}, [PFLEvents.length > 0]);
 
 
 
@@ -356,7 +514,7 @@ useEffect(() => {
       // Check if every method in modifiedUfcResults is not null
       if (liveNready) {
         // All methods are not null, proceed to submit as "AdminKev"
-        const mainEvent = `${ufcCard[0].fighters[0]}} vs ${ufcCard[0].fighters[1]}`;
+        const mainEvent = `${ufcCard[0].fighters[0]} vs ${ufcCard[0].fighters[1]}`;
         const dataToSend = {
           owner: "AdminKev", // Set the owner to "AdminKev"
           location: 'AUTO-Server',
