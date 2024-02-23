@@ -54,12 +54,31 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       console.log(ufcCard)
       const selectedUfcCard = ufcCard.length > 1 ? ufcCard : stallUfcCard;
       console.log(selectedUfcCard)
+      let isUfcCardLoaded = ufcCard.length > 1;
+      
+      // Define variables based on ufcCard
+      let mainEvent = isUfcCardLoaded ? ufcCard[0].fighters.join(' vs ') : '';
+      let mainRedC = isUfcCardLoaded ? ufcCard[0].fighters[0] : '';
+      let mainBlueC = isUfcCardLoaded ? ufcCard[0].fighters[1] : '';
 
-      const isUfcCardLoaded = ufcCard.length > 1;
-
-      const mainEvent = isUfcCardLoaded ? ufcCard[0].fighters.join(' vs ') : '';
-      const mainRedC = isUfcCardLoaded ? ufcCard[0].fighters[0] : '';
-      const mainBlueC = isUfcCardLoaded ? ufcCard[0].fighters[1]  : '';
+      useEffect(() => {
+        // Check if ufcCard is loaded and has more than one element
+        isUfcCardLoaded = ufcCard.length > 1;
+      
+        // Define variables based on ufcCard
+        mainEvent = isUfcCardLoaded ? ufcCard[0].fighters.join(' vs ') : '';
+        mainRedC = isUfcCardLoaded ? ufcCard[0].fighters[0] : '';
+        mainBlueC = isUfcCardLoaded ? ufcCard[0].fighters[1] : '';
+      
+        // Do something with the variables if needed
+        console.log('Main Event:', mainEvent);
+        console.log('Main Red Corner Fighter:', mainRedC);
+        console.log('Main Blue Corner Fighter:', mainBlueC);
+      
+        // You can put additional logic or state updates here based on ufcCard changes
+      
+      }, [ufcCard]); // Add ufcCard to the dependency array
+      
       
       const [firstName, secondName] = LNmenow ? LNmenow.split(" vs ") : ['', ''] ;
       

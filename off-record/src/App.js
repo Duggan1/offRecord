@@ -64,6 +64,53 @@ const [PFLEvents, setPFLEvents] = useState([]);
 const apiUrlPFL = 'https://pfl-p4p.onrender.com/scrape-mma-websites';
 
 
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://off-therecordpicks.onrender.com/events');
+      const data = await response.json();
+      
+      const EventNum = data.ufc_events.length - 1;
+      const latestUfcEvent = data.ufc_events[EventNum] || [];
+      
+      const newUfcCard = latestUfcEvent.fights.map((fight, index) => {
+        return {
+          fighters: [fight.redCornerName, fight.blueCornerName],
+          match: fight.weightClass,
+          records: [fight.redCornerRecord, fight.blueCornerRecord],
+          flags: [fight.redCornerCountry, fight.blueCornerCountry],
+          fighterPics: [fight.redCornerImage, fight.blueCornerImage],
+          odds: fight.odds
+        };
+      });
+
+      setUfcEvents(latestUfcEvent);
+      setUfcCard3(newUfcCard);
+      setTapI(latestUfcEvent.tapImage);
+      setUfcI(
+        latestUfcEvent.backgroundImageSrc.startsWith("/s3/files/")
+          ? "https://dmxg5wxfqgb4u.cloudfront.net/" + latestUfcEvent.backgroundImageSrc
+          : latestUfcEvent.backgroundImageSrc
+      );
+
+      let locationInfo = [];
+      locationInfo = latestUfcEvent.locationCC ? latestUfcEvent.locationCC.split(', ').map(part => part.trim()) : [];
+      setLo(locationInfo[0]);
+      setLo2(locationInfo[1]);
+      setLo3(locationInfo[locationInfo.length - 1]);
+      setLNmenow(latestUfcEvent.event_name);
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  fetchData();
+}, []); // Empty dependency array, so it runs only once
+
+
+
+
 useEffect(() => { 
   async function fetchData() {
     try {
@@ -434,49 +481,7 @@ const [ufcEvents, setUfcEvents] = useState([]);
 const [LNmenow, setLNmenow] = useState('Loading');
 // const LNmenow = eventInfo ? eventInfo.event_name : 'Loading'
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await fetch('https://off-therecordpicks.onrender.com/events');
-      const data = await response.json();
-      console.log(data)
-      const EventNum = data.ufc_events.length - 1
-      console.log(data.ufc_events)
-      setUfcEvents(data.ufc_events[EventNum] || []);
-      console.log(EventNum)
-      console.log(ufcEvents)
-      const newUfcCard = ufcEvents.fights.map((fight, index) => {
-        return {
-            fighters: [fight.redCornerName, fight.blueCornerName],
-            match: fight.weightClass,
-            records: [fight.redCornerRecord, fight.blueCornerRecord],
-            flags: [fight.redCornerCountry, fight.blueCornerCountry],
-            fighterPics: [fight.redCornerImage, fight.blueCornerImage],
-            odds: fight.odds
 
-        };
-    });
-
-    // Faster!!!! need to Do!!!
-    
-    setUfcCard3(newUfcCard);
-    setTapI(ufcEvents.tapImage)
-    setUfcI(ufcEvents.backgroundImageSrc.startsWith("/s3/files/")
-    ? "https://dmxg5wxfqgb4u.cloudfront.net/" + ufcEvents.backgroundImageSrc : ufcEvents.backgroundImageSrc )
-    let locationInfo = [];
-    locationInfo = ufcEvents.locationCC ? ufcEvents.locationCC.split(', ').map(part => part.trim()) : [];
-    setLo(locationInfo[0])
-    setLo2(locationInfo[1])
-    setLo3(locationInfo[locationInfo.length - 1])
-    setLNmenow(ufcEvents.event_name)
-
-  } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  fetchData();
-}, [ufcEvents.length]);
 
 console.log(ufcEvents !== null)
 console.log(eventInfo)

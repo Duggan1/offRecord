@@ -1376,18 +1376,22 @@ function calculateLiveTotalPoints(result) {
               <td  className="RightOne">  
                 <div  className="pickresultsdiv">
                   {result.main_event !== 'Jon Jones vs Fedor Emelianenko' ?<>
-                  <center >
+                  <div style={{
+                    
+                              backgroundSize: '100% 100%',
+                              backgroundImage:result.event_league === null || result.event_league === 'UFC' ?  `url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/UFC_logo.svg/2560px-UFC_logo.svg.png)` :  `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`
+                            }} >
                   
                   <strong >
-                    {result.location}
+                    
                   </strong><br></br>
-                  <strong>{result.main_event}</strong>
+                  <strong>{result.event_league === null || result.event_league === 'UFC' ? '' :''}</strong>
                   <br />
-                  <strong className="landunder">
-                    Results
+                  <strong className="landunder"><span className="bg-white padding1">
+                    Results</span>
                     </strong>
                   
-                </center>
+                </div>
                 <h2 style={{
                     backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(result.location)}/flat/64.png")`,
                     backgroundSize: '50% 150%',
