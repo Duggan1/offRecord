@@ -1304,6 +1304,19 @@ const checkConditions = () => {
     setIsOwnerAndEventMatch(matchingResult || false); // Set to false if no match found
   }
 };
+const [isOwnerAndEventMatchPFL, setIsOwnerAndEventMatchPFL] = useState(false);
+const checkConditionsPFL = () => {
+  const eventToCheck = PFLCard.length > 2 ?  PFLCard[0].fighters.join(' vs ') : 'LOADING';
+
+  if (user) {
+    const matchingResult = results2.find(
+      (result) => result.owner === user.username && result.main_event === eventToCheck
+    );
+
+    setIsOwnerAndEventMatchPFL(matchingResult || false); // Set to false if no match found
+  }
+};
+
 
 
 useEffect(() => {
@@ -1367,7 +1380,7 @@ const [leagues, setLeagues] = useState([])
       <Route path="/section3" element={<Tommy user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
                                               stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlive} onLogout={handleLogout} BGpic={ufcI} tapImage={tapI} mewtwo={mewtwo} />}/>
 
-      <Route path="/pfl" element={<TommyPFL user={user} ufcCard={PFLCard} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted} PFLEvents={PFLEvents}
+      <Route path="/pfl" element={<TommyPFL user={user} ufcCard={PFLCard} isOwnerAndEventMatch={isOwnerAndEventMatchPFL} setjustSubmitted={setjustSubmitted} PFLEvents={PFLEvents}
                                               stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlivePFL} adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} adminKevPickswID={adminKevPickswID}  tapImage={tapI} mewtwo={mewtwo} />}/>
 
 
