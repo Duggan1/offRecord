@@ -49,6 +49,7 @@ function App() {
 const [ufcCard2, setUfcCard2] = useState([]);
 const [ufcCard3, setUfcCard3] = useState([]);
 const [PFLCard, setPFLCard] = useState([]);
+const [weRlivePFL , setweRlivePFL] = useState([]);
 const [weRlive , setweRlive] = useState([]);
 const [eventInfo, setEventInfo] = useState({});
 const [tapI, setTapI] = useState('')
@@ -81,6 +82,43 @@ useEffect(() => {
              corner,
          };
      });
+
+     const associatedData = [];
+     if (liveR && liveR[0]) {
+         for (let i = 0; i < pflData.length ; i++) {
+           const timeDetails1 = liveR[0][i]?.timeDetails; 
+           const oddsDetails = liveR[0][i]?.odds;
+     
+             const fighter1Index = i * 2;
+             const fighter2Index = fighter1Index + 1;
+     
+             const fighter1 = updatedFighters[fighter1Index];
+             const fighter2 = updatedFighters[fighter2Index];
+     
+             const dataPair = {
+                 timeDetails1,
+                 fighter1,
+                 fighter2,
+             };
+     
+             associatedData.push(dataPair);
+         }
+         
+         const sortedAssociatedData = associatedData.sort((a, b) => {
+           // Assuming that pending results have an empty string for 'timeDetails1'
+           const aIsPending = a.timeDetails1 === '';
+           const bIsPending = b.timeDetails1 === '';
+         
+           if (aIsPending && !bIsPending) {
+             return -1; // a comes before b
+           } else if (!aIsPending && bIsPending) {
+             return 1; // b comes before a
+           } else {
+             return 0; // leave them in the same order
+           }
+         });
+         setweRlivePFL(sortedAssociatedData)}
+
 
      const updatedRecords = [];
  
@@ -119,6 +157,7 @@ useEffect(() => {
 
   fetchData();
 }, []); 
+console.log(weRlivePFL)
 
 
 
@@ -197,11 +236,11 @@ useEffect(() => {
       const newUfcCard = PFLEvents.fights.map((fight, index) => {
         return {
             fighters: [fight.redCornerName, fight.blueCornerName],
-            match: fight.weightClass,
+            match: fight.weightClass || '',
             records: [fight.redCornerRecord, fight.blueCornerRecord],
             flags: [fight.redCornerCountry, fight.blueCornerCountry],
             fighterPics: [fight.redCornerImage, fight.blueCornerImage],
-            odds: fight.odds
+            odds: fight.odds  || ''
 
         };
     });
@@ -836,28 +875,28 @@ console.log(ufcCard2)
 
   }));
 
-  const pflResults = PFLCard.map((match, index) => {
-    if (PFLEvents && PFLEvents.fights) {
-        return {
-            fighters: match.fighters,
-            winner: PFLEvents.fights[0]?.winner === " " || PFLEvents.fights[index]?.winner === "N/A" || PFLEvents.fights[index]?.winner === null ? null : PFLEvents.fights[index].winner,
-            method: PFLEvents.fights[0]?.method === " " || PFLEvents.fights[index]?.method === "N/A" || PFLEvents.fights[index]?.method === null ? null : PFLEvents.fights[index].method,
-            round: PFLEvents.fights[0]?.round === " " || PFLEvents.fights[index]?.round === "N/A" || PFLEvents.fights[index]?.round === null ? null : PFLEvents.fights[index].round[0],
-        };
-    } else {
-        // Handle the case when PFLEvents or PFLEvents.fights is undefined
-        return {
-            fighters: match.fighters,
-            winner: null,
-            method: null,
-            round: null,
-        };
-    }
-});
+//   const pflResults = PFLCard.map((match, index) => {
+//     if (PFLEvents && PFLEvents.fights) {
+//         return {
+//             fighters: match.fighters,
+//             winner: PFLEvents.fights[0]?.winner === " " || PFLEvents.fights[index]?.winner === "N/A" || PFLEvents.fights[index]?.winner === null ? null : PFLEvents.fights[index].winner,
+//             method: PFLEvents.fights[0]?.method === " " || PFLEvents.fights[index]?.method === "N/A" || PFLEvents.fights[index]?.method === null ? null : PFLEvents.fights[index].method,
+//             round: PFLEvents.fights[0]?.round === " " || PFLEvents.fights[index]?.round === "N/A" || PFLEvents.fights[index]?.round === null ? null : PFLEvents.fights[index].round[0],
+//         };
+//     } else {
+//         // Handle the case when PFLEvents or PFLEvents.fights is undefined
+//         return {
+//             fighters: match.fighters,
+//             winner: null,
+//             method: null,
+//             round: null,
+//         };
+//     }
+// });
 
   
-  console.log(ufcResults) 
-  console.log(pflResults)
+//   console.log(ufcResults) 
+//   console.log(pflResults)
   // Define a function to normalize the method values
 // Define a function to normalize the method values
 function normalizeMethod(method, winner) {
@@ -918,12 +957,12 @@ const modifiedUfcResults = ufcResults.map((result) => ({
   
 }));
 
-const modifiedPFLResults = pflResults.map((result) => ({
-  ...result,
-  method: normalizeMethod(result.method, result.winner),
-  winner: checkWinner4drawNocontest(result.method, result.winner)
+// const modifiedPFLResults = Results.map((result) => ({
+//   ...result,
+//   method: normalizeMethod(result.method, result.winner),
+//   winner: checkWinner4drawNocontest(result.method, result.winner)
   
-}));
+// }));
 console.log(ufcResults)
 console.log(modifiedUfcResults)
 
@@ -1287,58 +1326,7 @@ const [leagues, setLeagues] = useState([])
 
       console.log(tapI)
 ////////////////////////////////////////////////////////////
-useEffect(() => {
-  // Define the async function for form submission
-  async function submitPFLForm() {
-    try {
-      
-      // Validate the form data using Yup
-      
 
-      // Check if every method in modifiedUfcResults is not null
-      if (modifiedPFLResults) {
-        // All methods are not null, proceed to submit as "AdminKev"
-        const mainEvent = `${PFLEvents.fights[0].redCornerName} vs ${PFLEvents.fights[0].blueCornerName}`;
-        const dataToSend = {
-          owner: "AdminKev", // Set the owner to "AdminKev"
-          location: 'AUTO-Server',
-          mainEvent: mainEvent,
-          predictions: modifiedPFLResults, // Use modifiedUfcResults here
-          user_id: 4,
-        };
-        // await validationSchema.validate({ dataToSend });
-
-        const response = await fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(dataToSend),
-        });
-
-        if (response.ok) {
-          // Handle success
-          const responseData = await response.json();
-          console.log('Predictions submitted successfully:', responseData);
-          // Perform any further actions here
-        } else {
-          // Handle errors
-          throw new Error('Network response was not ok');
-        }
-      } else {
-        // If any method in modifiedUfcResults is null, show an error message
-        // Handle the error as needed
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      // Handle errors and validation errors as needed
-    }
-
-  }
-
-  // Call the submitForm function to submit the form data automatically
-  submitPFLForm();
-}, [modifiedPFLResults.length > 0]);
 
 
 
@@ -1372,7 +1360,7 @@ useEffect(() => {
                                               stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlive} onLogout={handleLogout} BGpic={ufcI} tapImage={tapI} mewtwo={mewtwo} />}/>
 
       <Route path="/pfl" element={<TommyPFL user={user} ufcCard={PFLCard} isOwnerAndEventMatch={isOwnerAndEventMatch} setjustSubmitted={setjustSubmitted}
-                                              stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlive} onLogout={handleLogout} BGpic={ufcI} tapImage={tapI} mewtwo={mewtwo} />}/>
+                                              stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlivePFL} adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} tapImage={tapI} mewtwo={mewtwo} />}/>
 
 
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} 

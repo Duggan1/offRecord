@@ -12,10 +12,11 @@ import { useNavigate } from 'react-router-dom';
 import Dnd from './Dnd';
 import Dnd2 from './Dnd2';
 
-function TommyPFL({BGpic,tapImage, state, user,mewtwo, ufcCard, stallUfcCard,locationCity,location, isOwnerAndEventMatch, setjustSubmitted, onLogout, weRlive}) {
+function TommyPFL({BGpic,tapImage, state, user,mewtwo,adminKevPicks2, ufcCard, stallUfcCard,locationCity,location, isOwnerAndEventMatch, setjustSubmitted, onLogout, weRlive}) {
 
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [AKP, setAKP] = useState([])
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
@@ -38,6 +39,7 @@ function TommyPFL({BGpic,tapImage, state, user,mewtwo, ufcCard, stallUfcCard,loc
 
 
 console.log(ufcCard)
+console.log(adminKevPicks2)
 
 
 
@@ -122,7 +124,7 @@ console.log(ufcCard)
   
   
   const mainEvent = selectedUfcCard.length > 2 ? selectedUfcCard[0].fighters.join(' vs ') : 'Loading'
-  // console.log(mainEvent)
+  console.log(mainEvent)
  
   const [predictions, setPredictions] = useState([]);
 
@@ -199,7 +201,7 @@ const handleSubmit = async (e) => {
         const dataToSend = {
           owner: user.username !== undefined ? user.username : user.userName,
           location: 'Saudi Arabia',
-          mainEvent: mainEvent,
+          mainEvent: ufcCard[0]?.fighters.join(' vs '),
           predictions: predictionData,
           event_league:'PFL',
           user_id: user.id !== undefined ? user.id : backupID,
@@ -293,7 +295,113 @@ function transformData(initialData) {
   return  predictions ;
 }
 const liveNready = weRlive ? transformData(weRlive) : [];
-const imageData = 'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+
+console.log(weRlive);
+console.log(liveNready)
+
+
+
+
+///////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+const mainEventToFind = ufcCard[0]?.fighters.join(' vs ');
+console.log()
+console.log(adminKevPicks2)
+console.log(mainEventToFind)
+console.log(adminKevPicks2[mainEventToFind])
+
+if (adminKevPicks2.hasOwnProperty(mainEventToFind)) {
+  console.log(mainEventToFind);
+
+  const adminKevPick = adminKevPicks2[mainEventToFind]
+
+  if (adminKevPick) {
+    console.log('AdminKev Pick ID:', adminKevPick.id);
+    setAKP(adminKevPick);
+    // Do something with the pick ID
+  } else {
+    console.log('AdminKev pick not found.');
+    // Handle the case where the pick is not found
+  }
+}
+
+console.log(adminKevPicks2);
+console.log(AKP);
+
+
+
+
+
+
+
+
+
+
+
+useEffect(() => {
+  // Define the async function for form submission
+  async function submitPFLForm() {
+    try {
+      
+      // Validate the form data using Yup
+      
+
+      // Check if every method in modifiedUfcResults is not null
+      if (liveNready) {
+        // All methods are not null, proceed to submit as "AdminKev"
+        const mainEvent = `${ufcCard[0].fighters[0]}} vs ${ufcCard[0].fighters[1]}`;
+        const dataToSend = {
+          owner: "AdminKev", // Set the owner to "AdminKev"
+          location: 'AUTO-Server',
+          mainEvent: mainEvent,
+          predictions: liveNready, // Use modifiedUfcResults here
+          event_league: 'PFL',
+          user_id: 4,
+        };
+        // await validationSchema.validate({ dataToSend });
+
+        const response = await fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSend),
+        });
+
+        if (response.ok) {
+          // Handle success
+          const responseData = await response.json();
+          console.log('Predictions submitted successfully:', responseData);
+          // Perform any further actions here
+        } else {
+          // Handle errors
+          throw new Error('Network response was not ok');
+        }
+      } else {
+        // If any method in modifiedUfcResults is null, show an error message
+        // Handle the error as needed
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle errors and validation errors as needed
+    }
+
+  }
+
+  // Call the submitForm function to submit the form data automatically
+  submitPFLForm();
+}, [liveNready.length > 0]);
+
+
+
+
 
 
 
@@ -336,7 +444,7 @@ if (isLoading) {
                               // paddingBottom:'20px',
                               // margin:'0% 20%',
                               backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`
-                            }} alt={`Flag `}> </h1>
+                            }} alt={`PFL `}> </h1>
       <div
                   style={{zIndex:'1',display:'flex',justifyContent:'center',backgroundColor:'whitesmoke'}}>
                  <p className='text-black homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'whitesmoke',color:'black'}}>Kingdom Arena, Riyadh, Saudi Arabia. </p>
