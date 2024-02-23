@@ -355,7 +355,9 @@ if (isLoading) {
                               backgroundColor: 'black',
                               padding: '0px 2px',
                               backgroundSize: '100% 100%',
-                              width:'50%',
+                              width:'400px',
+                              minWidth:'70%',
+                              maxWidth:'100%',
                               backgroundImage: `url(https://pflmma-prod.s3.us-east-1.amazonaws.com/assets/img/base/superfights-logo.png)`
                             }} alt={`Flag of ${location}`}> </h1>
                             </div>

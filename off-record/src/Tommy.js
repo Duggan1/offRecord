@@ -675,15 +675,26 @@ if (isLoading) {
 
 
       {showUfcCard?
-      <div className="bayLoc" > 
-          <h1 className='fs45 fs-mono'>{mewtwo}</h1>
+      <div className="bayLoc" style={{backgroundColor:'whitesmoke'}} > 
+          <center><h1 style={{
+                              height: '50px',
+                              backgroundColor: 'whitesmoke',
+                              padding: '0px 2px',
+                              backgroundSize: '100% 100%',
+                              width:'300px',minWidth:'70%',
+                               maxWidth:'90%',
+                               textAlign:'center',
+                              // paddingBottom:'20px',
+                              // margin:'0% 20%',
+                              backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/UFC_logo.svg/2560px-UFC_logo.svg.png)`
+                            }} alt={`UFC `}> </h1></center>
       <div
                   style={{zIndex:'1',display:'flex',justifyContent:'center'}}>
-                 <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</p>
+                 <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'whitesmoke',color:'black'}}> {locationCity}, {state}</p>
                  <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
-                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black'
+                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'whitesmoke'
                   
                   }} >___</h6></div><div class="element-with-border2"></div>
                 <div className='flex'>
@@ -972,17 +983,28 @@ if (isLoading) {
         <div className="tommy">
 
       {showUfcCard?
-      <div className="bayLoc" >   {signIn ? <p className='snowwhite'>Please Login or SignUp! &#8599;</p>: <p className='color-yellow'>Please Login or SignUp!    &#8599;</p>}
+      <div className="bayLoc" style={{backgroundColor:'whitesmoke'}} >   {signIn ? <p className='text-black'>Please Login or SignUp! &#8599;</p>: <p className='color-red'>Please Login or SignUp!    &#8599;</p>}
        
 
-       <h1 className='fs45 fs-mono'>{mewtwo}</h1>
+       <center><h1 style={{
+                              height: '50px',
+                              backgroundColor: 'whitesmoke',
+                              padding: '0px 2px',
+                              backgroundSize: '100% 100%',
+                              width:'300px',minWidth:'70%',
+                               maxWidth:'90%',
+                              
+                              // paddingBottom:'20px',
+                              // margin:'0% 20%',
+                              backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/UFC_logo.svg/2560px-UFC_logo.svg.png)`
+                            }} alt={`UFC `}> </h1></center>
       <div
                   style={{zIndex:'1',display:'flex',justifyContent:'center'}}>
-                 <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</p>
+                 <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'whitesmoke',color:'black'}}> {locationCity}, {state}</p>
                  <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
-                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black'
+                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'whitesmoke'
                   
                   }} >___</h6></div><div class="element-with-border2"></div>
                 <div className='flex'>
