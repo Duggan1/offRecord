@@ -586,6 +586,16 @@ if (isLoading) {
     <h2 className='snowwhite fs20'
     style={{ margin:'10px' }}
     >Picks4Points.com</h2>
+    <h1 style={{
+                              height: '100px',
+                              backgroundColor: 'black',
+                              padding: '0px 2px',
+                              backgroundSize: '100% 100%',
+                              width:'400px',
+                              minWidth:'70%',
+                              maxWidth:'100%',
+                              backgroundImage: `url(https://pflmma-prod.s3.us-east-1.amazonaws.com/assets/img/base/superfights-logo.png)`
+                            }} alt={`Flag of ${location}`}> </h1>
     <p className='color-red'>Sorry, You cannot Pick after the Event Starts</p>
     
           {liveNready ? (
