@@ -57,7 +57,7 @@ code {
 
 
 .home{
-  background-color: black;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,7 +66,7 @@ code {
   color: white;
   /* background-image: url('https://t3.ftcdn.net/jpg/00/92/80/64/360_F_92806458_cuy3wFTL9h8FqisKPbd9yGoihsNjy8xQ.jpg'); */
    /* background-image: url('https://image.shutterstock.com/image-vector/empty-cage-martial-arts-fighting-260nw-1136825033.jpg'); */
-   background-image: url('./cardbgrb.jpeg');
+   background-image: url('./GREENP4P.webp');
    background-repeat: no-repeat;
   background-size: 100% 100%;
   padding-top: 0%;
@@ -1722,6 +1722,17 @@ input[type='checkbox'] {
   margin-bottom: 0px;
   border-top: 6px darkgreen solid;
 }
+.pfl-container {
+  display: flex; /* Display children in a row (horizontal) */
+  align-items: center; /* Vertically align children */
+  margin-bottom: 20px; /* Add margin between fighter containers */
+  min-width: 50%;
+  /* min-height: 100%; */
+  background-image: url('./GREENP4P.webp');
+  background-repeat: no-repeat;
+  background-position-y: 100%;
+  background-size: 100% 100%;
+}
 
 .fighter-container {
   display: flex; /* Display children in a row (horizontal) */
@@ -1729,7 +1740,7 @@ input[type='checkbox'] {
   margin-bottom: 20px; /* Add margin between fighter containers */
   min-width: 50%;
   /* min-height: 100%; */
-  background-image: url('./cardbgrb.jpeg');
+  background-image: url('./GREENP4P.webp');
   background-repeat: no-repeat;
   background-position-y: 100%;
   background-size: 100% 100%;

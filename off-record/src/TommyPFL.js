@@ -578,7 +578,75 @@ if (isLoading) {
 
           <P4pHeader onLogout={onLogout} user={user} />
 
+          {weRlive.some(item => item.timeDetails1 !== '') ?  
+ 
+ <div className='text-align-center bg-black 'style={{MaxHeight:'fit-content'}}>
+  
+  <center> <div className='p4pplusBlack ggg'></div></center>
+    <h2 className='snowwhite fs20'
+    style={{ margin:'10px' }}
+    >Picks4Points.com</h2>
+    <p className='color-red'>Sorry, You cannot Pick after the Event Starts</p>
+    
+          {liveNready ? (
+  liveNready.map((fight, index) => (<>
+    <div key={index} className="flex" style={{
+      backgroundColor: fight.winner !== null ? 'rgb(61, 61, 61)': index == '0' ?  'white' : 'rgb(153, 153, 153)',
+      padding: '1%',
+      margin: '2px',
+      borderRadius: '18px',
+      color: 'black',
+      border: 'black 1px solid',
+    }}>
+      <div className="flex WholeOne element-with-border3 snowwhite">
 
+        {index == '0' ? 
+        <span style={{marginLeft:'auto',
+        backgroundColor: 'darkgreen',
+        borderRadius: '0%',
+        color:'white' ,border:'1px solid black',padding:'2px 5px',fontSize:'100%', maxHeight:'35px'}} >Live</span>
+        
+        : 
+        <span style={{marginLeft:'auto',
+        backgroundColor: fight.winner !== null ? 'white': 'white',
+        borderRadius: '0%',
+        color:'black' ,border:'1px solid black',padding:'2px 5px',fontSize:'100%', maxHeight:'35px'}} >{1 + index}.</span>}
+      
+      
+      
+      
+      
+      <p style={{
+       backgroundColor: fight.winner === 1 ? "black" : (fight.winner === 0 ? "darkgreen" : (fight.winner === null ? "darkred" : ""))
+      }} className="LeftOne">{fight.fighters[0]} </p><p className="RightOne" style={{
+        backgroundColor: fight.winner === 1 ? "darkgreen" : (fight.winner === 0 ? "black" : (fight.winner === null ? "navy" : ""))
+
+      }}>{fight.fighters[1]} </p>
+      </div>
+
+    
+
+
+    </div>
+    
+    {fight.winner !== null && (
+        <div className="snowwhite flex">
+
+          
+          {fight.method.toLowerCase() !== 'decision' ? <p>{fight.fighters[fight.winner]} {fight.method}   R:{fight.round}</p> : <p>{fight.fighters[fight.winner]} {fight.method} </p>}
+          
+        </div>
+      )}
+    
+    </>
+  ))
+) : null}
+
+
+
+    
+  </div>
+ :
  
 
     <div className="tommy">
@@ -750,7 +818,7 @@ if (isLoading) {
              <div className={`${(predictions[index]?.winner === 0 || predictions[index]?.winner === 1) && 
       (predictions[index]?.method === 'TKO/KO' || predictions[index]?.method === 'Decision' || predictions[index]?.method === 'Draw/No-Contest/DQ' || predictions[index]?.method === 'Submission') &&
       (predictions[index]?.round === '1' || predictions[index]?.round === '2' || predictions[index]?.round === '3' || predictions[index]?.round === '4'|| predictions[index]?.round === '5' || predictions[index]?.method === 'Decision' || predictions[index]?.method === 'Draw/No-Contest/DQ')
-     ? 'fighter-container2' : 'fighter-container'}`}>
+     ? 'fighter-container2' : 'pfl-container'}`}>
       
 
       <div
@@ -892,7 +960,7 @@ if (isLoading) {
         
       </form>
       
-    </div> 
+    </div> }
     
 
     {/* Modal */}

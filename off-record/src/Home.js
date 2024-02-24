@@ -698,10 +698,9 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                           }} className='p4pplus'> </span> */}
 
 
-
-                                    <div style={{display:'flex', justifyContent:'center',marginTop:'80px'}}>
+<div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px',marginTop:'80px'}} class="element-with-border"></div>
+            <div style={{width:'100%',backgroundColor:'white',display:'flex', justifyContent:'center'}}>
             <h1 
-            
             style={{
                 textAlign: 'center',
                 color: 'red',
@@ -804,7 +803,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 // Adjust this value as needed
                 }}>
                 .com
-                </h1></div>
+                </h1>
+                </div>
 
 
         </div> </>
