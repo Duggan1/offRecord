@@ -19,6 +19,7 @@ const Recurl = 'https://www.tapology.com/fightcenter/events/106064-ufc-fight-nig
 const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600042433/league/ufc'
 // const espnPFL = 'https://www.espn.com/mma/fightcenter/_/league/pfl'
 
+
 const fightRecords = [];
 const addedFighters = [];
 const fighters = []
