@@ -8,7 +8,9 @@ const port = 3001;
 
 app.use(cors());
 
-const PFLurl = 'https://pflmma.com/event/2024-superfights-1';
+// const PFLurl = 'https://pflmma.com/event/2024-superfights-1';
+const BELLATORurl = 'https://www.bellator.com/event/320';
+
 const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600042093/league/pfl';
 
 const scrapePFL = async () => {
@@ -45,6 +47,47 @@ const scrapePFL = async () => {
     throw error;
   }
 };
+
+
+const scrapeBELLATOR = async () => {
+  try {
+    const response = await axios.get(BELLATORurl);
+    if (response.status === 200) {
+      const html = response.data;
+      const $ = cheerio.load(html);
+      const BellatorData = [];
+
+      $('.FightCardstyles__FightCardContainer-sc-1ipy6mb-0').each((index, element) => {
+        // Assuming that the class names are correct and the country information is stored in the same element as the fighter's name
+        const leftFighterCountry = $(element).find('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ').first().text().trim();
+        const rightFighterCountry = $(element).find('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ').last().text().trim();
+
+        const leftImgSrc = $(element).find('.img-1 img').attr('src');
+        const rightImgSrc = $(element).find('.img-2 img').attr('src');
+
+        const matchupData = {
+          leftFighterCountry,
+          rightFighterCountry,
+          leftImgSrc,
+          rightImgSrc,
+          // Add other data extraction logic here
+        };
+
+        BellatorData.push(matchupData);
+      });
+
+      return BellatorData;
+    }
+  } catch (error) {
+    console.error('Error scraping Bellator:', error);
+    throw error;
+  }
+};
+
+
+
+
+
 
 const scrapeESPN = async () => {
   try {
@@ -125,7 +168,8 @@ const scrapeESPN = async () => {
 
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
-    const pflData = await scrapePFL();
+    // const pflData = await scrapePFL();
+    const BellatorData = await scrapeBELLATOR();
     const { fighters, liveR } = await scrapeESPN();
 
     res.json({

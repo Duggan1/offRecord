@@ -3,7 +3,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const cors = require('cors'); 
 // const puppeteer = require('puppeteer');
-// const puppeteer = require('puppeteer-core'); // Import Puppeteer
+const puppeteer = require('puppeteer-core'); // Import Puppeteer
 // const { DOMParser } = require('dom-parser'); // Import DOMParser from dom-parser
 
 
@@ -14,10 +14,10 @@ const port = 3001; // Choose an available port
 app.use(cors());
 
 
-const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-february-24-2024'
-const Recurl = 'https://www.tapology.com/fightcenter/events/107471-ufc-fight-night'
-const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600041054/league/ufc'
-const espnPFL = 'https://www.espn.com/mma/fightcenter/_/league/pfl'
+const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-march-02-2024'
+const Recurl = 'https://www.tapology.com/fightcenter/events/106064-ufc-fight-night'
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600042433/league/ufc'
+// const espnPFL = 'https://www.espn.com/mma/fightcenter/_/league/pfl'
 
 const fightRecords = [];
 const addedFighters = [];
@@ -231,13 +231,14 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const headshotImageSrc = $('.MMACompetitor .headshot img[data-mptype="image"]').attr('src');
           const countryFlagImageSrc = $('.MMACompetitor .MMACompetitor__flag[data-mptype="image"]').attr('src');
 
-
-          
-         
-
-
           const playerImageSrc = $(element).find('img[data-mptype="image"]').attr('src');
       
+
+
+
+
+
+
           // Check for RedArrow
           const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
 
