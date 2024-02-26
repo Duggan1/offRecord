@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const cors = require('cors'); 
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
 const app = express();
 const port = 3001;
 
@@ -87,55 +87,44 @@ const scrapeBELLATOR = async () => {
 
 
 async function scrapeAllFights(BELLATORurl) {
-  const browser = await puppeteer.launch({
-    executablePath: 'google-chrome-stable',
-  });
-  
-    const page = await browser.newPage();
-    await page.goto(BELLATORurl);
+  const fights = [];
 
-    const fights = [];
+  let hasNext = true; // Assuming there's at least one page
+  let currentPageUrl = BELLATORurl; // Starting URL
 
-    // Assume there's a "Next" button to navigate the carousel
-    let hasNext = await page.$('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL') !== null;
+  while (hasNext) {
+      const response = await axios.get(currentPageUrl);
+      const $ = cheerio.load(response.data);
 
-    while (hasNext) {
-        // Scrape data from the current carousel item
-        const fightsData = await page.evaluate(() => {
-            const fights = [];
-            document.querySelectorAll('.FightCardstyles__FightCardContainer-sc-1ipy6mb-0').forEach(element => {
-                // Adapt this part to match how data is structured in the HTML
-                const leftFighter = element.querySelector('.img-1 img').alt;
-                const rightFighter = element.querySelector('.img-2 img').alt;
-                // Add other details you need
-                fights.push({ leftFighter, rightFighter });
-            });
-            return fights;
-        });
+      $('.FightCardstyles__FightCardContainer-sc-1ipy6mb-0').each((index, element) => {
+          const leftFighter = $(element).find('.img-1 img').attr('alt');
+          const rightFighter = $(element).find('.img-2 img').attr('alt');
+          // Adapt this part to match how data is structured in the HTML
+          // Add other details you need
+          fights.push({ leftFighter, rightFighter });
+      });
 
-        fights.push(...fightsData);
+      // Determine if there's a "Next" button and update hasNext accordingly
+      // This part needs to be adapted based on how pagination is implemented on the website
+      const nextButton = $('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL');
+      hasNext = nextButton.length > 0;
 
-        // Click the "Next" button to load the next set of fights
-        const nextButton = await page.$('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL');
-        if (nextButton) {
-            await nextButton.click();
-            // Wait for the next set of data to load if necessary
-            await page.waitForTimeout(1000); // Adjust timing as necessary
-        }
+      // If hasNext is true, update currentPageUrl to the URL of the next page
+      // This typically involves finding the href attribute of the next button or calculating the next URL based on the current URL
+      if (hasNext) {
+          // Example: currentPageUrl = nextButton.attr('href');
+          // Or update the currentPageUrl based on certain logic to get the next page's URL
+      }
+  }
 
-        hasNext = await page.$('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL') !== null;
-    }
-
-    await browser.close();
-
-    return fights;
+  return fights;
 }
 
 // Example usage
-scrapeAllFights(BELLATORurl).then(fights => {
-    console.log(fights);
+scrapeAllFights('https://example.com/fights').then(fights => {
+  console.log(fights);
 }).catch(err => {
-    console.error('Scraping failed:', err);
+  console.error('Scraping failed:', err);
 });
 
 
