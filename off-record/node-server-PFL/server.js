@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const cors = require('cors'); 
-
+const puppeteer = require('puppeteer');
 const app = express();
 const port = 3001;
 
@@ -83,6 +83,57 @@ const scrapeBELLATOR = async () => {
     throw error;
   }
 };
+
+
+
+async function scrapeAllFights(BELLATORurl) {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(BELLATORurl);
+
+    const fights = [];
+
+    // Assume there's a "Next" button to navigate the carousel
+    let hasNext = await page.$('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL') !== null;
+
+    while (hasNext) {
+        // Scrape data from the current carousel item
+        const fightsData = await page.evaluate(() => {
+            const fights = [];
+            document.querySelectorAll('.FightCardstyles__FightCardContainer-sc-1ipy6mb-0').forEach(element => {
+                // Adapt this part to match how data is structured in the HTML
+                const leftFighter = element.querySelector('.img-1 img').alt;
+                const rightFighter = element.querySelector('.img-2 img').alt;
+                // Add other details you need
+                fights.push({ leftFighter, rightFighter });
+            });
+            return fights;
+        });
+
+        fights.push(...fightsData);
+
+        // Click the "Next" button to load the next set of fights
+        const nextButton = await page.$('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL');
+        if (nextButton) {
+            await nextButton.click();
+            // Wait for the next set of data to load if necessary
+            await page.waitForTimeout(1000); // Adjust timing as necessary
+        }
+
+        hasNext = await page.$('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL') !== null;
+    }
+
+    await browser.close();
+
+    return fights;
+}
+
+// Example usage
+scrapeAllFights(BELLATORurl).then(fights => {
+    console.log(fights);
+}).catch(err => {
+    console.error('Scraping failed:', err);
+});
 
 
 
@@ -169,11 +220,12 @@ const scrapeESPN = async () => {
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
     // const pflData = await scrapePFL();
-    const BellatorData = await scrapeBELLATOR();
+    // const BellatorData = await scrapeBELLATOR();
+    const fights = await scrapeAllFights();
     const { fighters, liveR } = await scrapeESPN();
 
     res.json({
-      BellatorData,
+      fights,
       fighters,
       liveR,
     });
