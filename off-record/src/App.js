@@ -69,7 +69,7 @@ useEffect(() => {
     try {
       const response = await fetch('https://off-therecordpicks.onrender.com/events');
       const data = await response.json();
-      
+      console.log(response.data);
       const EventNum = data.ufc_events.length - 1;
       const latestUfcEvent = data.ufc_events[EventNum] || [];
       

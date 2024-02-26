@@ -173,7 +173,7 @@ app.get('/scrape-mma-websites', async (req, res) => {
     const { fighters, liveR } = await scrapeESPN();
 
     res.json({
-      pflData,
+      BellatorData,
       fighters,
       liveR,
     });
