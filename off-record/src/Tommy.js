@@ -572,8 +572,24 @@ function transformData(initialData) {
 }
 const liveNready = weRlive ? transformData(weRlive) : [];
 console.log(liveNready)
+console.log(weRlive)
+console.log(BGpic)
 
+      
+      const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
 
+      useEffect(() => {
+        const baseURLForS3Files = "https://dmxg5wxfqgb4u.cloudfront.net";
+        const baseURLForThemes = "https://www.ufc.com";
+    
+        const newBackgroundImageUrl = BGpic.startsWith("/s3/files/")
+          ? `${baseURLForS3Files}/${BGpic.substring("/s3/files/".length)}`
+          : BGpic.startsWith("/themes/custom/")
+            ? `${baseURLForThemes}/${BGpic}`
+            : BGpic;
+    
+        setBackgroundImageUrl(newBackgroundImageUrl);
+      }, [BGpic]);
 
 if (isLoading) {
   return <> <P4pHeader onLogout={onLogout} user={user} /> <Dnd /></>; // Render loading indicator
@@ -589,7 +605,7 @@ if (isLoading) {
           <P4pHeader onLogout={onLogout} user={user} />
 
 
- {weRlive.some(item => item.timeDetails1 !== '') ?  
+ {weRlive.some(item => item.timeDetails1 === 'not' ) ?  
  
  <div className='text-align-center bg-black 'style={{MaxHeight:'fit-content'}}>
   
@@ -715,7 +731,7 @@ if (isLoading) {
                               padding: '0px 2px',
                               backgroundSize: '100% 100%',
                               width:'50%',
-                              backgroundImage: `url(${BGpic})`
+                              backgroundImage:`url(${backgroundImageUrl})`,
                             }} alt={`Flag of ${location}`}> </h1>
                             <h1 style={{
                               height: '200px',
@@ -1025,7 +1041,7 @@ if (isLoading) {
                               padding: '0px 2px',
                               backgroundSize: '100% 100%',
                               width:'50%',
-                              backgroundImage: `url(${BGpic})`
+                              backgroundImage:`url(${backgroundImageUrl})`,
                             }} alt={`Flag of ${location}`}> </h1>
                             <h1 style={{
                               height: '200px',

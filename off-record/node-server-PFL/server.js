@@ -11,7 +11,7 @@ app.use(cors());
 // const PFLurl = 'https://pflmma.com/event/2024-superfights-1';
 const BELLATORurl = 'https://www.bellator.com/event/320';
 
-const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600042093/league/pfl';
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/league/bellator/year/2024';
 
 const scrapePFL = async () => {
   try {
@@ -57,7 +57,7 @@ const scrapeBELLATOR = async () => {
       const $ = cheerio.load(html);
       const BellatorData = [];
 
-      $('.FightCardstyles__FightCardContainer-sc-1ipy6mb-0').each((index, element) => {
+      $('.Carouselstyles__CarouselItem-sc-7lb5l5-1').each((index, element) => {
         // Assuming that the class names are correct and the country information is stored in the same element as the fighter's name
         const leftFighterCountry = $(element).find('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ').first().text().trim();
         const rightFighterCountry = $(element).find('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ').last().text().trim();

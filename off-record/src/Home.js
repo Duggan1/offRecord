@@ -373,7 +373,23 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       console.log(countNonEmptyTimeDetails)
       console.log(liveNready)
 
+      const baseURLForS3Files = "https://dmxg5wxfqgb4u.cloudfront.net";
+      const baseURLForThemes = "https://www.ufc.com";
+      
+      const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
 
+  useEffect(() => {
+    const baseURLForS3Files = "https://dmxg5wxfqgb4u.cloudfront.net";
+    const baseURLForThemes = "https://www.ufc.com";
+
+    const newBackgroundImageUrl = BGpic.startsWith("/s3/files/")
+      ? `${baseURLForS3Files}/${BGpic.substring("/s3/files/".length)}`
+      : BGpic.startsWith("/themes/custom/")
+        ? `${baseURLForThemes}/${BGpic}`
+        : BGpic;
+
+    setBackgroundImageUrl(newBackgroundImageUrl);
+  }, [BGpic]);
 
     return ( <>
     <P4pHeader user={user} onLogout={onLogout} />
@@ -382,7 +398,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       {isUfcCardLoaded ? 
        <>
       <div style={{
-      backgroundImage:`url(${BGpic})`,
+      backgroundImage:`url(${backgroundImageUrl})`,
       backgroundSize:'100% 100%'
       }}>
       <div className={` homeSpace  text-align-center`} >
