@@ -87,7 +87,10 @@ const scrapeBELLATOR = async () => {
 
 
 async function scrapeAllFights(BELLATORurl) {
-    const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    executablePath: 'google-chrome-stable',
+  });
+  
     const page = await browser.newPage();
     await page.goto(BELLATORurl);
 
