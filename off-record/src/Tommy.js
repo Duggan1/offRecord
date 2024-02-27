@@ -950,7 +950,10 @@ if (isLoading) {
       className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 1)}
       style={{
-        backgroundImage: getFighterCountryAbbreviation(index, 1) !== "Not Found"
+        backgroundImage: 
+        fight.fighters[1] == 'Javid Basharat' ? `url("https://flagsapi.com/AF/shiny/64.png")` :
+        
+        getFighterCountryAbbreviation(index, 1) !== "Not Found"
         ? `url("https://flagsapi.com/${getFighterCountryAbbreviation(index, 1)}/shiny/64.png")`
         : `url('https://www.tapology.com/${fight.flags[1]}')`,
         backgroundSize: 'cover',
