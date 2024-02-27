@@ -142,7 +142,7 @@ const scrapeBELLATOR = async (BELLATORurl) => {
           const leftImgSrc = leftImgElement ? leftImgElement.src : '';
           const rightImgSrc = rightImgElement ? rightImgElement.src : '';
           
-          BellatorData.push({
+          data.push({
             leftFighterCountry,
             rightFighterCountry,
             leftImgSrc,
@@ -151,9 +151,8 @@ const scrapeBELLATOR = async (BELLATORurl) => {
         });
         return data;
       });
-      
-      currentData()
-      // BellatorData.push(currentData)
+
+      BellatorData = BellatorData.concat(currentData);
     } else {
       console.error("Next button not found.");
       break;
@@ -251,7 +250,7 @@ const scrapeESPN = async () => {
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
     // const pflData = await scrapePFL();
-    const BellatorData = await scrapeBELLATOR();
+    const BellatorData = await scrapeBELLATOR(BELLATORurl);
     // const fights = await scrapeAllFights();
     const { fighters, liveR } = await scrapeESPN();
 
