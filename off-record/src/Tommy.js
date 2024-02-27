@@ -1213,7 +1213,7 @@ if (isLoading) {
       }}
     >
       
-      {fight.fighters[1]}
+      {fight.fighters[1]} lol
     </button>
     
     </div>

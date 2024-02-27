@@ -1560,8 +1560,8 @@ function calculateLiveTotalPoints(result) {
                         
                       ) : null}
           )
-          <img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} className='resultsimg' style={{cursor:'pointer'}}/> 
-          
+          <center><img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} className='p4pplusWhite' style={{cursor:'pointer',borderRadius:'30%',marginTop:'3%'}}/> 
+          </center>
           <p style={{color:'white',fontWeight:'Bold',textAlign:'center'}}>Click Logo to go to Home Page</p>
           <div className="element-with-border2"></div>     
       </>       

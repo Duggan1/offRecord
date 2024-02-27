@@ -54,10 +54,17 @@ code {
   text-decoration: wavy;
 }
 
-
+.disabledHeader {
+  color: #999; /* Dim text color */
+  border-color: #999; /* Dim border color */
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMDMwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xNSAwTDMwIDE1TDE1IDMwTDAgMTVMMTUgMFoiIGZpbGw9InJlZCIvPjxwYXRoIGQ9Ik0xNSAzMEwzMCAxNUwxNSAwTDAgMTVMMTUgMzBaIiBmaWxsPSJyZWQiLz48L3N2Zz4=');
+  background-repeat: no-repeat;
+  background-position: center; /* Center the background image */
+  background-size: 50%; /* Adjust size as needed */
+}
 
 .home{
-  background-color: white;
+  background-color: black;
   display: flex;
   flex-direction: column;
   align-items: center;

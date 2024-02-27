@@ -56,25 +56,57 @@ const scrapeBELLATOR = async () => {
       const html = response.data;
       const $ = cheerio.load(html);
       const BellatorData = [];
+      // Function to simulate clicking the 'Next' button for each carousel item
+function clickThroughCarousel() {
+  // Select the 'Next' button using its class
+  const nextButton = document.querySelector('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL');
 
-      $('.Carouselstyles__CarouselItem-sc-7lb5l5-1').each((index, element) => {
-        // Assuming that the class names are correct and the country information is stored in the same element as the fighter's name
-        const leftFighterCountry = $(element).find('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ').first().text().trim();
-        const rightFighterCountry = $(element).find('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ').last().text().trim();
+  // Select the list of carousel navigation items
+  const carouselNavItems = document.querySelectorAll('.Carouselstyles__CarouselNavContainer-sc-7lb5l5-3.jBcbRQ li');
 
-        const leftImgSrc = $(element).find('.img-1 img').attr('src');
-        const rightImgSrc = $(element).find('.img-2 img').attr('src');
+  // Calculate the number of items - assuming each 'li' represents a carousel item
+  const itemCount = carouselNavItems.length;
 
-        const matchupData = {
-          leftFighterCountry,
-          rightFighterCountry,
-          leftImgSrc,
-          rightImgSrc,
-          // Add other data extraction logic here
-        };
+  // Click the 'Next' button itemCount - 1 times
+  for (let i = 0; i < itemCount - 1; i++) {
+    // Check if nextButton exists to avoid errors
+    $('.Carouselstyles__CarouselItem-sc-7lb5l5-1').each((index, element) => {
+      // Assuming that the class names are correct and the country information is stored in the same element as the fighter's name
+      const leftFighterCountry = $(element).find('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ').first().text().trim();
+      const rightFighterCountry = $(element).find('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ').last().text().trim();
 
-        BellatorData.push(matchupData);
-      });
+      const leftImgSrc = $(element).find('.img-1 img').attr('src');
+      const rightImgSrc = $(element).find('.img-2 img').attr('src');
+
+      const matchupData = {
+        leftFighterCountry,
+        rightFighterCountry,
+        leftImgSrc,
+        rightImgSrc,
+        // Add other data extraction logic here
+      };
+
+      BellatorData.push(matchupData);
+    });
+    if (nextButton) {
+      // Simulate a click
+      nextButton.click();
+      
+      // Optional: delay between clicks if necessary
+      // Note: This simple for loop doesn't handle asynchronous behavior, 
+      // so if you need a delay between clicks, consider using setTimeout or a similar approach
+    } else {
+      console.error("Next button not found.");
+      break;
+    }
+  }
+}
+
+// Run the function to simulate the clicks
+clickThroughCarousel();
+
+
+      
 
       return BellatorData;
     }
@@ -86,46 +118,7 @@ const scrapeBELLATOR = async () => {
 
 
 
-async function scrapeAllFights(BELLATORurl) {
-  const fights = [];
 
-  let hasNext = true; // Assuming there's at least one page
-  let currentPageUrl = BELLATORurl; // Starting URL
-
-  while (hasNext) {
-      const response = await axios.get(currentPageUrl);
-      const $ = cheerio.load(response.data);
-
-      $('.FightCardstyles__FightCardContainer-sc-1ipy6mb-0').each((index, element) => {
-          const leftFighter = $(element).find('.img-1 img').attr('alt');
-          const rightFighter = $(element).find('.img-2 img').attr('alt');
-          // Adapt this part to match how data is structured in the HTML
-          // Add other details you need
-          fights.push({ leftFighter, rightFighter });
-      });
-
-      // Determine if there's a "Next" button and update hasNext accordingly
-      // This part needs to be adapted based on how pagination is implemented on the website
-      const nextButton = $('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL');
-      hasNext = nextButton.length > 0;
-
-      // If hasNext is true, update currentPageUrl to the URL of the next page
-      // This typically involves finding the href attribute of the next button or calculating the next URL based on the current URL
-      if (hasNext) {
-          // Example: currentPageUrl = nextButton.attr('href');
-          // Or update the currentPageUrl based on certain logic to get the next page's URL
-      }
-  }
-
-  return fights;
-}
-
-// Example usage
-scrapeAllFights('https://example.com/fights').then(fights => {
-  console.log(fights);
-}).catch(err => {
-  console.error('Scraping failed:', err);
-});
 
 
 
@@ -212,8 +205,8 @@ const scrapeESPN = async () => {
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
     // const pflData = await scrapePFL();
-    // const BellatorData = await scrapeBELLATOR();
-    const fights = await scrapeAllFights();
+    const BellatorData = await scrapeBELLATOR();
+    // const fights = await scrapeAllFights();
     const { fighters, liveR } = await scrapeESPN();
 
     res.json({

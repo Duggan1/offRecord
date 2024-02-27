@@ -383,9 +383,9 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
     const baseURLForThemes = "https://www.ufc.com";
 
     const newBackgroundImageUrl = BGpic.startsWith("/s3/files/")
-      ? `${baseURLForS3Files}/${BGpic.substring("/s3/files/".length)}`
+      ? `https://dmxg5wxfqgb4u.cloudfront.net/${BGpic.substring("/s3/files/".length)}`
       : BGpic.startsWith("/themes/custom/")
-        ? `${baseURLForThemes}/${BGpic}`
+        ? `https://www.ufc.com/${BGpic}`
         : BGpic;
 
     setBackgroundImageUrl(newBackgroundImageUrl);
@@ -398,7 +398,11 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       {isUfcCardLoaded ? 
        <>
       <div style={{
-      backgroundImage:`url(${backgroundImageUrl})`,
+      backgroundImage:`url(${BGpic.startsWith("/s3/files/")
+      ? `https://dmxg5wxfqgb4u.cloudfront.net/${BGpic.substring("/s3/files/".length)}`
+      : BGpic.startsWith("/themes/custom/")
+        ? `https://www.ufc.com/${BGpic}`
+        : BGpic})`,
       backgroundSize:'100% 100%'
       }}>
       <div className={` homeSpace  text-align-center`} >
