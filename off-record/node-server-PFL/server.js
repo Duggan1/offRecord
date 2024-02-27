@@ -2,13 +2,13 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const cors = require('cors'); 
-// const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer');
 const app = express();
 const port = 3001;
 
 app.use(cors());
 
-// const PFLurl = 'https://pflmma.com/event/2024-superfights-1';
+const PFLurl = 'https://pflmma.com/event/2024-superfights-1';
 const BELLATORurl = 'https://www.bellator.com/event/320';
 
 const espnurl = 'https://www.espn.com/mma/fightcenter/_/league/bellator/year/2024';
@@ -49,74 +49,131 @@ const scrapePFL = async () => {
 };
 
 
-const scrapeBELLATOR = async () => {
-  try {
-    const response = await axios.get(BELLATORurl);
-    if (response.status === 200) {
-      const html = response.data;
-      const $ = cheerio.load(html);
-      const BellatorData = [];
-      // Function to simulate clicking the 'Next' button for each carousel item
-function clickThroughCarousel() {
-  // Select the 'Next' button using its class
-  const nextButton = document.querySelector('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL');
+// const scrapeBELLATOR = async (BELLATORurl) => {
+//   const browser = await puppeteer.launch();
+//   const page = await browser.newPage();
+//   await page.goto(BELLATORurl, { waitUntil: 'networkidle2' });
 
-  // Select the list of carousel navigation items
-  const carouselNavItems = document.querySelectorAll('.Carouselstyles__CarouselNavContainer-sc-7lb5l5-3.jBcbRQ li');
+//   const BellatorData = await page.evaluate(() => {
+//     const data = [];
+//       // Function to simulate clicking the 'Next' button for each carousel item
+// function clickThroughCarousel() {
+//   // Select the 'Next' button using its class
+//   const nextButton = document.querySelector('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL');
 
-  // Calculate the number of items - assuming each 'li' represents a carousel item
-  const itemCount = carouselNavItems.length;
+//   // Select the list of carousel navigation items
+//   const carouselNavItems = document.querySelectorAll('.Carouselstyles__CarouselNavContainer-sc-7lb5l5-3.jBcbRQ li');
 
-  // Click the 'Next' button itemCount - 1 times
-  for (let i = 0; i < itemCount - 1; i++) {
-    // Check if nextButton exists to avoid errors
-    $('.Carouselstyles__CarouselItem-sc-7lb5l5-1').each((index, element) => {
-      // Assuming that the class names are correct and the country information is stored in the same element as the fighter's name
-      const leftFighterCountry = $(element).find('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ').first().text().trim();
-      const rightFighterCountry = $(element).find('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ').last().text().trim();
+//   // Calculate the number of items - assuming each 'li' represents a carousel item
+//   const itemCount = carouselNavItems.length;
 
-      const leftImgSrc = $(element).find('.img-1 img').attr('src');
-      const rightImgSrc = $(element).find('.img-2 img').attr('src');
+//   // Click the 'Next' button itemCount - 1 times
+//   for (let i = 0; i < itemCount - 1; i++) {
+//     // Check if nextButton exists to avoid errors
+//     $('.Carouselstyles__CarouselItem-sc-7lb5l5-1').each((index, element) => {
+//       // Assuming that the class names are correct and the country information is stored in the same element as the fighter's name
+//       const leftFighterCountry = $(element).find('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ').first().text().trim();
+//       const rightFighterCountry = $(element).find('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ').last().text().trim();
 
-      const matchupData = {
-        leftFighterCountry,
-        rightFighterCountry,
-        leftImgSrc,
-        rightImgSrc,
-        // Add other data extraction logic here
-      };
+//       const leftImgSrc = $(element).find('.img-1 img').attr('src');
+//       const rightImgSrc = $(element).find('.img-2 img').attr('src');
 
-      BellatorData.push(matchupData);
-    });
-    if (nextButton) {
-      // Simulate a click
-      nextButton.click();
+//       const matchupData = {
+//         leftFighterCountry,
+//         rightFighterCountry,
+//         leftImgSrc,
+//         rightImgSrc,
+//         // Add other data extraction logic here
+//       };
+
+//       BellatorData.push(matchupData);
+//     });
+//     if (nextButton) {
+//       // Simulate a click
+//       nextButton.click();
       
-      // Optional: delay between clicks if necessary
-      // Note: This simple for loop doesn't handle asynchronous behavior, 
-      // so if you need a delay between clicks, consider using setTimeout or a similar approach
+      
+//     } else {
+//       console.error("Next button not found.");
+//       break;
+//     }
+//   }
+// }
+
+// // Run the function to simulate the clicks
+// clickThroughCarousel();
+
+
+    
+// return data;
+//   });
+
+//   await browser.close();
+//   return BellatorData;
+// };
+
+const scrapeBELLATOR = async (BELLATORurl) => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(BELLATORurl, { waitUntil: 'networkidle2' });
+
+  // Placeholder for the accumulated data
+  let BellatorData = [];
+
+  // Assume you know how many times you need to click the 'Next' button
+  // or find a way to determine it dynamically
+  const numberOfClicks = 5; // Example number, adjust based on actual need
+
+  for (let i = 0; i < numberOfClicks; i++) {
+    // Click the 'Next' button
+    const nextButtonSelector = '.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL';
+    if (await page.$(nextButtonSelector) !== null) {
+      await page.click(nextButtonSelector);
+      // Wait for the carousel to update (e.g., wait for a network response or a specific element to load)
+      await page.waitForTimeout(1000); // Example: wait for 1 second, adjust based on actual need
+
+      // Scrape the current view of the carousel
+      const currentData = await page.evaluate(() => {
+        const data = [];
+        document.querySelectorAll('.Carouselstyles__CarouselItem-sc-7lb5l5-1').forEach((element) => {
+          // Note: Adjust the selector to match the actual classes/ids in the webpage.
+          const leftFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:first-child');
+          const rightFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:last-child');
+          
+          const leftImgElement = element.querySelector('.img-1 img');
+          const rightImgElement = element.querySelector('.img-2 img');
+          
+          const leftFighterCountry = leftFighterNameElement ? leftFighterNameElement.innerText.trim() : '';
+          const rightFighterCountry = rightFighterNameElement ? rightFighterNameElement.innerText.trim() : '';
+          
+          const leftImgSrc = leftImgElement ? leftImgElement.src : '';
+          const rightImgSrc = rightImgElement ? rightImgElement.src : '';
+          
+          const matchupData = {
+            leftFighterCountry,
+            rightFighterCountry,
+            leftImgSrc,
+            rightImgSrc,
+            // Add other data extraction logic here
+          };
+          
+          data.push(matchupData);
+        });
+        return data;
+      });
+      
+
+      // Accumulate data
+      BellatorData = BellatorData.concat(currentData);
     } else {
       console.error("Next button not found.");
       break;
     }
   }
-}
 
-// Run the function to simulate the clicks
-clickThroughCarousel();
-
-
-      
-
-      return BellatorData;
-    }
-  } catch (error) {
-    console.error('Error scraping Bellator:', error);
-    throw error;
-  }
+  await browser.close();
+  return BellatorData;
 };
-
-
 
 
 
@@ -210,7 +267,7 @@ app.get('/scrape-mma-websites', async (req, res) => {
     const { fighters, liveR } = await scrapeESPN();
 
     res.json({
-      fights,
+      BellatorData,
       fighters,
       liveR,
     });
