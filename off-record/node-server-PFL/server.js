@@ -142,7 +142,7 @@ const scrapeBELLATOR = async (BELLATORurl) => {
           const leftImgSrc = leftImgElement ? leftImgElement.src : '';
           const rightImgSrc = rightImgElement ? rightImgElement.src : '';
           
-          data.push({
+          BellatorData.push({
             leftFighterCountry,
             rightFighterCountry,
             leftImgSrc,
@@ -151,8 +151,9 @@ const scrapeBELLATOR = async (BELLATORurl) => {
         });
         return data;
       });
-
-      BellatorData.push(currentData)
+      
+      currentData()
+      // BellatorData.push(currentData)
     } else {
       console.error("Next button not found.");
       break;
