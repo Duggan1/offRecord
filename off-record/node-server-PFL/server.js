@@ -112,8 +112,8 @@ const scrapePFL = async () => {
 //   return BellatorData;
 // };
 
-const scrapeBELLATOR = async () => {
-  const browser = await puppeteer.launch({headless:false});
+const scrapeBELLATOR = async (BELLATORurl) => {
+  const browser = await puppeteer.launch({ headless: false }); // Consider setting headless to true for production
   const page = await browser.newPage();
   await page.goto(BELLATORurl);
 
@@ -142,7 +142,7 @@ const scrapeBELLATOR = async () => {
           const leftImgSrc = leftImgElement ? leftImgElement.src : '';
           const rightImgSrc = rightImgElement ? rightImgElement.src : '';
           
-          BellatorData.push({
+          data.push({
             leftFighterCountry,
             rightFighterCountry,
             leftImgSrc,
@@ -151,8 +151,8 @@ const scrapeBELLATOR = async () => {
         });
         return data;
       });
-      currentData()
-      // BellatorData = BellatorData.concat(currentData);
+
+      BellatorData = BellatorData.concat(currentData); // Correctly concatenating data
     } else {
       console.error("Next button not found.");
       break;
@@ -162,6 +162,7 @@ const scrapeBELLATOR = async () => {
   await browser.close();
   return BellatorData;
 };
+
 
 
 
@@ -250,7 +251,7 @@ const scrapeESPN = async () => {
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
     // const pflData = await scrapePFL();
-    const BellatorData = await scrapeBELLATOR();
+    const BellatorData = await scrapeBELLATOR(BELLATORurl);
     // const fights = await scrapeAllFights();
     const { fighters, liveR } = await scrapeESPN();
 
