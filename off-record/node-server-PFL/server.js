@@ -112,10 +112,10 @@ const scrapePFL = async () => {
 //   return BellatorData;
 // };
 
-const scrapeBELLATOR = async (BELLATORurl) => {
-  const browser = await puppeteer.launch();
+const scrapeBELLATOR = async () => {
+  const browser = await puppeteer.launch({headless:false});
   const page = await browser.newPage();
-  await page.goto(BELLATORurl, { waitUntil: 'networkidle2' });
+  await page.goto(BELLATORurl);
 
   let BellatorData = [];
 
@@ -250,7 +250,7 @@ const scrapeESPN = async () => {
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
     // const pflData = await scrapePFL();
-    const BellatorData = await scrapeBELLATOR(BELLATORurl);
+    const BellatorData = await scrapeBELLATOR();
     // const fights = await scrapeAllFights();
     const { fighters, liveR } = await scrapeESPN();
 
