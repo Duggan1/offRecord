@@ -117,26 +117,19 @@ const scrapeBELLATOR = async (BELLATORurl) => {
   const page = await browser.newPage();
   await page.goto(BELLATORurl, { waitUntil: 'networkidle2' });
 
-  // Placeholder for the accumulated data
   let BellatorData = [];
 
-  // Assume you know how many times you need to click the 'Next' button
-  // or find a way to determine it dynamically
-  const numberOfClicks = 5; // Example number, adjust based on actual need
+  const numberOfClicks = 5; // Adjust as needed
 
   for (let i = 0; i < numberOfClicks; i++) {
-    // Click the 'Next' button
     const nextButtonSelector = '.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL';
     if (await page.$(nextButtonSelector) !== null) {
       await page.click(nextButtonSelector);
-      // Wait for the carousel to update (e.g., wait for a network response or a specific element to load)
-      await page.waitForTimeout(1000); // Example: wait for 1 second, adjust based on actual need
+      await page.waitForTimeout(1000); // Adjust timing as needed
 
-      // Scrape the current view of the carousel
       const currentData = await page.evaluate(() => {
         const data = [];
         document.querySelectorAll('.Carouselstyles__CarouselItem-sc-7lb5l5-1').forEach((element) => {
-          // Note: Adjust the selector to match the actual classes/ids in the webpage.
           const leftFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:first-child');
           const rightFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:last-child');
           
@@ -149,22 +142,17 @@ const scrapeBELLATOR = async (BELLATORurl) => {
           const leftImgSrc = leftImgElement ? leftImgElement.src : '';
           const rightImgSrc = rightImgElement ? rightImgElement.src : '';
           
-          const matchupData = {
+          data.push({
             leftFighterCountry,
             rightFighterCountry,
             leftImgSrc,
             rightImgSrc,
-            // Add other data extraction logic here
-          };
-          
-          data.push(matchupData);
+          });
         });
         return data;
       });
-      
 
-      // Accumulate data
-      BellatorData = BellatorData.concat(currentData);
+      BellatorData.push(currentData)
     } else {
       console.error("Next button not found.");
       break;
