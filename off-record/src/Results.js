@@ -1059,7 +1059,7 @@ function calculateLiveTotalPoints(result) {
 <div>
   (
     {/* <div className=""> */}
-    <div style={{paddingBottom:'200px'}} className="results snowwhite">
+    <div style={{paddingBottom:'200px',backgroundImage: 'url(https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_sm/s3/2020-04/Crowd-Fan-Generic-198.jpg?itok=VMsavZNn)'}} className="results snowwhite">
 
     <h1 style={{
                   textAlign: 'center',

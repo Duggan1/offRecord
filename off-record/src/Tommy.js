@@ -844,9 +844,13 @@ if (isLoading) {
                   onChange={(e) => handleRoundChange(index, e.target.value)}
                 >
                   <option value="">Select Round</option>
-                      {[1, 2, 3, 4, 5].map((round) => (
+                      {[
+                        1, 2, 3,
+                        // Conditionally add 4 and 5 based on the fight type and index
+                        ...(index === 0 || fight.match.toLowerCase().includes('championship') ? [4, 5] : []),
+                      ].map((round) => (
                         <option key={round} value={round}>
-                          {round === 4 || round === 5 ? `${round} (Championship Rounds)` : round}
+                          {round >= 4 ? `${round} (Championship Rounds)` : round}
                         </option>
                       ))}
 
@@ -1213,7 +1217,7 @@ if (isLoading) {
       }}
     >
       
-      {fight.fighters[1]} lol
+      {fight.fighters[1]}
     </button>
     
     </div>
