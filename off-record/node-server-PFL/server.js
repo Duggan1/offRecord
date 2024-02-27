@@ -152,7 +152,7 @@ const scrapeBELLATOR = async (BELLATORurl) => {
         return data;
       });
 
-      BellatorData = BellatorData.concat(currentData); // Correctly concatenating data
+      BellatorData.push(currentData); // Correctly concatenating data
     } else {
       console.error("Next button not found.");
       break;
