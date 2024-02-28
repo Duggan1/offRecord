@@ -115,7 +115,7 @@ const BELLATORurl = 'https://www.bellator.com/event/320';
 
 const scrapeBELLATOR = async () => {
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'] // These arguments are often needed in server environments
+    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   });
   const page = await browser.newPage();
   await page.goto(BELLATORurl);
