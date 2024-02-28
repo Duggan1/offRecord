@@ -1024,6 +1024,7 @@ code {
   color:black;
   margin-bottom: 0%;
   padding-bottom: 15%;
+  max-width: 100%;
   /* background-image: url('https://t3.ftcdn.net/jpg/00/92/80/64/360_F_92806458_cuy3wFTL9h8FqisKPbd9yGoihsNjy8xQ.jpg');
   /* background-repeat: no-repeat; */
   /* background-size: cover; */
@@ -1143,6 +1144,7 @@ font-weight: bold;
   padding: 0%;
   
 }
+
 .flex {
   display: flex;
   flex-direction: row;

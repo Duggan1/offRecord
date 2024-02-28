@@ -1387,7 +1387,7 @@ function calculateLiveTotalPoints(result) {
                   </strong><br></br>
                   <strong>{result.event_league === null || result.event_league === 'UFC' ? '' :''}</strong>
                   <br />
-                  <strong className="landunder"><span className="bg-white padding1">
+                  <strong className="landunder"><span className={`${result.event_league === null || result.event_league === 'UFC' ? 'bg-white' : 'text-bold' }  padding1`} >
                     Results</span>
                     </strong>
                   

@@ -1113,7 +1113,7 @@ if (isLoading) {
       <div key={index} className="fighterready">
   <p key={index} className="mobile-fight-info">
   <p className='snowwhite'>{fight.match.slice(0, fight.match.length / 2)}</p>
-    <div className="mobile-fighter-name">
+    <div className="mobile-fighter-name" style={{maxWidth:'100%'}}>
       <span style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white'}} className={` white-border mobile-fighter-name ${predictions[index]?.winner === 0 ? 'selected' : ''}`}>
         {fight.fighters[0]}
       </span>
