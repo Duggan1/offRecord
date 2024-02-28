@@ -9,7 +9,7 @@ const port = 3001;
 app.use(cors());
 
 const PFLurl = 'https://pflmma.com/event/2024-superfights-1';
-const BELLATORurl = 'https://www.bellator.com/event/320';
+
 
 const espnurl = 'https://www.espn.com/mma/fightcenter/_/league/bellator/year/2024';
 
@@ -111,25 +111,26 @@ const scrapePFL = async () => {
 //   await browser.close();
 //   return BellatorData;
 // };
+const BELLATORurl = 'https://www.bellator.com/event/320';
 
 const scrapeBELLATOR = async () => {
-  const browser = await puppeteer.launch({ headless: false }); // Consider setting headless to true for production
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.goto(BELLATORurl);
 
   let BellatorData = [];
 
-  const numberOfClicks = 5; // Adjust as needed
+  const numberOfClicks = 5;
 
   for (let i = 0; i < numberOfClicks; i++) {
     const nextButtonSelector = '.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL';
     if (await page.$(nextButtonSelector) !== null) {
       await page.click(nextButtonSelector);
-      // await page.waitForTimeout(1000); // Adjust timing as needed
+      await page.waitForTimeout(1000); // Or use a more precise wait condition
 
       const currentData = await page.evaluate(() => {
         const data = [];
-        document.querySelectorAll('.Carouselstyles__CarouselItem-sc-7lb5l5-1').forEach((element) => {
+        document.querySelectorAll('.Carouselstyles__CarouselItem-sc-7lb5l5-1').forEach(element => {
           const leftFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:first-child');
           const rightFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:last-child');
           
@@ -141,25 +142,18 @@ const scrapeBELLATOR = async () => {
           
           const leftImgSrc = leftImgElement ? leftImgElement.src : '';
           const rightImgSrc = rightImgElement ? rightImgElement.src : '';
-          console.log({
-            leftFighterCountry,
-            rightFighterCountry,
-            leftImgSrc,
-            rightImgSrc,
-          })
-
+          
           data.push({
             leftFighterCountry,
             rightFighterCountry,
             leftImgSrc,
             rightImgSrc,
           });
-          BellatorData.push(data); 
         });
         return data;
       });
-      currentData()
-      // BellatorData.push(currentData); // Correctly concatenating data
+
+      BellatorData = BellatorData.concat(currentData);
     } else {
       console.error("Next button not found.");
       break;
@@ -169,6 +163,7 @@ const scrapeBELLATOR = async () => {
   await browser.close();
   return BellatorData;
 };
+
 
 
 
