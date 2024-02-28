@@ -124,7 +124,7 @@ const scrapeBELLATOR = async () => {
 
   try {
     for (let i = 0; i < numberOfClicks; i++) {
-      if (await page.$(nextButtonSelector) !== null) {
+      // if (await page.$(nextButtonSelector) !== null) {
         await page.click(nextButtonSelector);
         // Wait for selector that indicates new content has loaded, or network is idle
         await page.waitForSelector('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL', { timeout: 5000 }); // Modify selector accordingly
@@ -155,10 +155,10 @@ const scrapeBELLATOR = async () => {
         });
 
         BellatorData = BellatorData.concat(currentData);
-      } else {
-        console.error("Next button not found.");
-        break;
-      }
+      // } else {
+      //   console.error("Next button not found.");
+      //   break;
+      // }
     }
   } catch (error) {
     console.error('An error occurred:', error);
