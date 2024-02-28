@@ -126,7 +126,7 @@ const scrapeBELLATOR = async () => {
     const nextButtonSelector = '.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL';
     if (await page.$(nextButtonSelector) !== null) {
       await page.click(nextButtonSelector);
-      await page.waitForTimeout(1000); // Or use a more precise wait condition
+      
 
       const currentData = await page.evaluate(() => {
         const data = [];
