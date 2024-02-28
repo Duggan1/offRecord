@@ -124,41 +124,25 @@ const scrapeBELLATOR = async () => {
 
   try {
     for (let i = 0; i < numberOfClicks; i++) {
-      // if (await page.$(nextButtonSelector) !== null) {
+      if (await page.$(nextButtonSelector) !== null) {
         await page.click(nextButtonSelector);
-        // Wait for selector that indicates new content has loaded, or network is idle
-        await page.waitForSelector('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL', { timeout: 5000 }); // Modify selector accordingly
+        // Wait for some time or for a specific selector that indicates new content has loaded
+        await page.waitForTimeout(2000); // Replace with waitForSelector if there is a specific item to wait for
 
         const currentData = await page.evaluate(() => {
           const data = [];
-        document.querySelectorAll('.Carouselstyles__CarouselItem-sc-7lb5l5-1').forEach(element => {
-          const leftFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:first-child');
-          const rightFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:last-child');
-          
-          const leftImgElement = element.querySelector('.img-1 img');
-          const rightImgElement = element.querySelector('.img-2 img');
-          
-          const leftFighterCountry = leftFighterNameElement ? leftFighterNameElement.innerText.trim() : '';
-          const rightFighterCountry = rightFighterNameElement ? rightFighterNameElement.innerText.trim() : '';
-          
-          const leftImgSrc = leftImgElement ? leftImgElement.src : '';
-          const rightImgSrc = rightImgElement ? rightImgElement.src : '';
-          
-          data.push({
-            leftFighterCountry,
-            rightFighterCountry,
-            leftImgSrc,
-            rightImgSrc,
+          // Ensure these selectors match the site's current structure
+          document.querySelectorAll('.Carouselstyles__CarouselItem-sc-7lb5l5-1').forEach(element => {
+            // Add the correct selectors based on the website's structure
           });
-        });
-        return data;
+          return data;
         });
 
         BellatorData = BellatorData.concat(currentData);
-      // } else {
-      //   console.error("Next button not found.");
-      //   break;
-      // }
+      } else {
+        console.error("Next button not found.");
+        break;
+      }
     }
   } catch (error) {
     console.error('An error occurred:', error);
@@ -166,9 +150,10 @@ const scrapeBELLATOR = async () => {
     await browser.close();
   }
 
-  console.log(BellatorData);
   return BellatorData;
 };
+
+scrapeBELLATOR().then(data => console.log(data));
 
 
 
