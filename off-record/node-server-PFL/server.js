@@ -114,7 +114,9 @@ const scrapePFL = async () => {
 const BELLATORurl = 'https://www.bellator.com/event/320';
 
 const scrapeBELLATOR = async () => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'] // These arguments are often needed in server environments
+  });
   const page = await browser.newPage();
   await page.goto(BELLATORurl);
 

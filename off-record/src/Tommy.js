@@ -1015,7 +1015,12 @@ if (isLoading) {
     ) : (
       <div>
         {/* //////////// tAKE 2 NO SIGNIN////// */}
-        <div className="tommy">
+        <div className="tommy" style={{
+    maxWidth: '100%', // Set maximum width
+    overflow: 'hidden', // Hide overflow
+    textOverflow: 'ellipsis', // Add ellipsis if text overflows
+    whiteSpace: 'nowrap', // Keep text on a single line
+  }}>
 
       {showUfcCard?
       <div className="bayLoc" style={{backgroundColor:'whitesmoke'}} >   {signIn ? <p className='text-black'>Please Login or SignUp! &#8599;</p>: <p className='color-red'>Please Login or SignUp!    &#8599;</p>}
@@ -1114,7 +1119,9 @@ if (isLoading) {
   <p key={index} className="mobile-fight-info">
   <p className='snowwhite'>{fight.match.slice(0, fight.match.length / 2)}</p>
     <div className="mobile-fighter-name" style={{maxWidth:'100%'}}>
-      <span style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white'}} className={` white-border mobile-fighter-name ${predictions[index]?.winner === 0 ? 'selected' : ''}`}>
+      <span style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white',overflow: 'hidden', // Hide overflow
+    textOverflow: 'ellipsis', // Add ellipsis if text overflows
+    whiteSpace: 'nowrap', width:'40%' }} className={` white-border mobile-fighter-name ${predictions[index]?.winner === 0 ? 'selected' : ''}`}>
         {fight.fighters[0]}
       </span>
       <span style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'white'}} className={` white-border mobile-fighter-name  color-black`}> vs </span>
