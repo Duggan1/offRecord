@@ -119,18 +119,18 @@ const scrapeBELLATOR = async () => {
   await page.goto(BELLATORurl);
 
   let BellatorData = [];
-
   const numberOfClicks = 5;
+  const nextButtonSelector = '.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL';
 
-  for (let i = 0; i < numberOfClicks; i++) {
-    const nextButtonSelector = '.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL';
-    if (await page.$(nextButtonSelector) !== null) {
-      await page.click(nextButtonSelector);
-      // Add a wait for network idle or for a specific element to ensure the page has loaded the new content
-      await page.waitForTimeout(1000); // This is a simple timeout, consider using waitForSelector for more reliability
-      
-      const currentData = await page.evaluate(() => {
-        const data = [];
+  try {
+    for (let i = 0; i < numberOfClicks; i++) {
+      if (await page.$(nextButtonSelector) !== null) {
+        await page.click(nextButtonSelector);
+        // Wait for selector that indicates new content has loaded, or network is idle
+        await page.waitForSelector('.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL', { timeout: 5000 }); // Modify selector accordingly
+
+        const currentData = await page.evaluate(() => {
+          const data = [];
         document.querySelectorAll('.Carouselstyles__CarouselItem-sc-7lb5l5-1').forEach(element => {
           const leftFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:first-child');
           const rightFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:last-child');
@@ -152,18 +152,21 @@ const scrapeBELLATOR = async () => {
           });
         });
         return data;
-      });
+        });
 
-      // Accumulate data from each iteration
-      console.log(BellatorData.concat(currentData))
-      BellatorData = BellatorData.concat(currentData);
-    } else {
-      console.error("Next button not found.");
-      break;
+        BellatorData = BellatorData.concat(currentData);
+      } else {
+        console.error("Next button not found.");
+        break;
+      }
     }
+  } catch (error) {
+    console.error('An error occurred:', error);
+  } finally {
+    await browser.close();
   }
 
-  await browser.close();
+  console.log(BellatorData);
   return BellatorData;
 };
 

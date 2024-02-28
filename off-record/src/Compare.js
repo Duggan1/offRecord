@@ -383,10 +383,72 @@ const toggleDetails =()=>{
                   Compare 
                   </h1>
     </div>
-                 
-    {selectedUser && selectedUser2 && ( <>
 
-{showDetails ? 
+
+
+
+    <div className="element-with-border3" style={{backgroundColor:'', padding:'0%'}}>
+        
+        {/* { selectedEvent.length > 2 ?  */}
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '100%',paddingTop:'20px',paddingBottom:'20px' }}>
+                
+                <div style={{ flex: 1 }}>
+                    <center>
+                    <label style={{ color: 'white', backgroundColor: 'darkred', fontWeight: 'bold' }}>
+                        Select Red Corner
+                    </label>
+                    <br />
+                    <select style={{width:'75%',maxWidth:'95%'}}
+                        className="select"
+                        value={selectedUser}
+                        onChange={(e) => setSelectedUser(e.target.value)}
+                    >
+                        <option value="">All </option>
+                        {uniqueUsernames.map((username, index) => (
+                        <option key={index} value={username}>
+                            {username}
+                        </option>
+                        ))}
+                    </select></center>
+                    </div>
+        
+                
+        
+        
+                
+                    
+                    <div style={{ flex: 1 }}>
+                    <center>
+                    <label style={{ color: 'white', backgroundColor: 'navy', fontWeight: 'bold' }}>
+                        Select Blue Corner
+                    </label>
+                    <br />
+                    <select style={{width:'75%',maxWidth:'95%'}}
+                        className="select"
+                        value={selectedUser2}
+                        onChange={(e) => setSelectedUser2(e.target.value)}
+                    >
+                        <option value="">All </option>
+                        {uniqueUsernames.map((username, index) => (
+                        <option key={index} value={username}>
+                            {username}
+                        </option>
+                        ))}
+                    </select></center>
+                    </div>
+                </div>
+        
+                
+                {/* // : null  }// */}
+            
+        </div>
+
+
+                 
+    {selectedUser && selectedUser2 && (
+       <>
+
+{/* {showDetails ?  */}
                 <div onClick={toggleDetails}  className="snowwhite text-align-center">
                     {/* <h3 className="h2header"> <span className="redName">{Head2Head.user1.username}</span> VS <span className="blueName">{Head2Head.user2.username}</span></h3> */}
                     {/* <center><div className=" flex ">
@@ -440,27 +502,30 @@ const toggleDetails =()=>{
                     {/* Add more details as needed */}
                     
                 </div>
-: <div onClick={toggleDetails} className=" text-align-center whiteBG"> 
-                <center className='whiteBG'> <h3 className="p4pplusWhite"></h3></center>
+{/* :  */}
+<div onClick={toggleDetails} className=" text-align-center "> 
+                {/* <center className='whiteBG'> <h3 className="p4pplusWhite"></h3></center> */}
                    
-                   <div className="flex whiteBG wid100">
+                   <div className="flex bg-greey  wid100">
                     <div class="team-container bg-darkred">
-                    <h2 class="pred  ">{selectedUser}</h2>
+                    {/* <h2 class="pred  ">{selectedUser}</h2> */}
                     
                     {Head2Head.user1.cards.map((card, index) => (
-            <p key={index} className="width-90 snowwhite" id={``}>
-              <span className="greencircle"> {index + 1}.</span> {card}
+            <p key={index} className="width-90 " id={``} style={{marginTop:'1.5%'}}>
+              <span className="color-red" style={{backgroundColor:'black',padding :'5px',minWidth:'40px',marginRight:'20px',fontWeight:'600'}}>{index + 1}</span>
+                  {card}
             </p>
         ))}
                                 
                             </div>
                         <div class="team-container bg-navy">              
-                    <h2 class="  pblue">{selectedUser2}</h2>
+                    {/* <h2 class="  pblue">{selectedUser2}</h2> */}
                     
                     {Head2Head.user2.cards.map((card, index) => (
-                            <p key={index} className="width-90 snowwhite" id={``}>
-                            <span className="greencircle">{index + 1}.</span>    {card}
-                            </p>
+                            <p key={index} className="width-90 " id={``} style={{marginTop:'1.5%'}}>
+                            <span className="color-blue-light" style={{backgroundColor:'black',padding :'5px',minWidth:'40px',marginRight:'20px',fontWeight:'600'}}>{index + 1}</span>
+                                {card}
+                          </p>
                         ))}
                             
                         
@@ -468,14 +533,15 @@ const toggleDetails =()=>{
                         
                         </div>
 
-                        <div className="flex blackBG snowwhite white-border2">
+                        <div className="flex bg-greey">
                         
                         <div class="">
-                <h2 style={{padding:'5%'}}class="pdraw ">Draws </h2>
+                <h2 style={{}}class="landunder ">Draws </h2>
                         {Head2Head.draws.cards.map((card, index) => (
-                            <p key={index} className="width-90" id={``}>
-                            {index + 1}.    {card}
-                            </p>
+                            <p key={index} className=" " id={``} style={{marginTop:'15px',textAlign:'left'}}>
+                            <span className="color-yellow" style={{backgroundColor:'black',color:'yellow',padding :'5px',minWidth:'40px',marginRight:'20px',fontWeight:'600'}}>{index + 1}</span>
+                                {card}
+                          </p>
                         ))}
                             {/* <p class="pts-shadow">000</p> */}
                         </div>
@@ -483,100 +549,52 @@ const toggleDetails =()=>{
             
 
 
-                </div>}
+                </div>
+                {/* } */}
 
 
 
        </> )}
+
+
+
+
+       <div style={{ flex: 1,backgroundColor:'black' }}>
+                    <center>
+                                        <label style={{ color: 'white', backgroundColor: 'black', fontWeight: 'bold' }}>
+                                            Select Fight Card
+                                        </label>
+                                        <br />
+                                        <select className="select" value={selectedEvent} onChange={(e) => {
+                                            const selectedEventValue = e.target.value;
+        
+                                            // Check if selectedEventValue is in any of the cards in headToHead
+                                            const isEventInHeadToHead = Object.values(Head2Head).some((userStats) =>
+                                                userStats.cards.includes(selectedEventValue)
+                                            );
+        
+                                            setSelectedEvent(selectedEventValue);
+                                            console.log(selectedEventValue)
+        
+                                            if (!isEventInHeadToHead && selectedEventValue !== "") {
+                                                // Reset selectedUser and selectedUser2 only if selectedEvent is not in headToHead
+                                                setSelectedUser("");
+                                                setSelectedUser2("");
+                                            }
+                                        }}>
+                                            <option value="">All</option>
+                                            {uniqueMainEvents
+                                            .slice()
+                                            .reverse()
+                                            .map((mainEvent, index) => (
+                                                <option key={index} value={mainEvent}>
+                                                {mainEvent}
+                                                </option>
+                                            ))}
+                                        </select></center>
+                    </div>
                    
-<div className="element-with-border3" style={{backgroundColor:'', padding:'0%'}}>
-        
-{/* { selectedEvent.length > 2 ?  */}
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '100%',paddingTop:'20px',paddingBottom:'20px' }}>
-        
-        <div style={{ flex: 1 }}>
-            <center>
-            <label style={{ color: 'white', backgroundColor: 'darkred', fontWeight: 'bold' }}>
-                Select Red Corner
-            </label>
-            <br />
-            <select style={{width:'75%',maxWidth:'95%'}}
-                className="select"
-                value={selectedUser}
-                onChange={(e) => setSelectedUser(e.target.value)}
-            >
-                <option value="">All </option>
-                {uniqueUsernames.map((username, index) => (
-                <option key={index} value={username}>
-                    {username}
-                </option>
-                ))}
-            </select></center>
-            </div>
 
-        
-
-
-        
-            
-            <div style={{ flex: 1 }}>
-            <center>
-            <label style={{ color: 'white', backgroundColor: 'navy', fontWeight: 'bold' }}>
-                Select Blue Corner
-            </label>
-            <br />
-            <select style={{width:'75%',maxWidth:'95%'}}
-                className="select"
-                value={selectedUser2}
-                onChange={(e) => setSelectedUser2(e.target.value)}
-            >
-                <option value="">All </option>
-                {uniqueUsernames.map((username, index) => (
-                <option key={index} value={username}>
-                    {username}
-                </option>
-                ))}
-            </select></center>
-            </div>
-        </div>
-
-        <div style={{ flex: 1,backgroundColor:'black' }}>
-            <center>
-                                <label style={{ color: 'white', backgroundColor: 'black', fontWeight: 'bold' }}>
-                                    Select Fight Card
-                                </label>
-                                <br />
-                                <select className="select" value={selectedEvent} onChange={(e) => {
-                                    const selectedEventValue = e.target.value;
-
-                                    // Check if selectedEventValue is in any of the cards in headToHead
-                                    const isEventInHeadToHead = Object.values(Head2Head).some((userStats) =>
-                                        userStats.cards.includes(selectedEventValue)
-                                    );
-
-                                    setSelectedEvent(selectedEventValue);
-                                    console.log(selectedEventValue)
-
-                                    if (!isEventInHeadToHead && selectedEventValue !== "") {
-                                        // Reset selectedUser and selectedUser2 only if selectedEvent is not in headToHead
-                                        setSelectedUser("");
-                                        setSelectedUser2("");
-                                    }
-                                }}>
-                                    <option value="">All</option>
-                                    {uniqueMainEvents
-                                    .slice()
-                                    .reverse()
-                                    .map((mainEvent, index) => (
-                                        <option key={index} value={mainEvent}>
-                                        {mainEvent}
-                                        </option>
-                                    ))}
-                                </select></center>
-            </div>
-        {/* // : null  }// */}
-    
-</div>
   {/* //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -591,11 +609,13 @@ const toggleDetails =()=>{
 /////////////////////////////////////////////////// */}
 { selectedEvent.length > 2 && selectedUser2.length > 2 && selectedUser.length ? 
   <div className="wholeOne">
-      <div style={{padding:'5%',backgroundColor:'black',backgroundImage:"url(https://www.shutterstock.com/image-illustration/red-blue-boxing-glove-against-260nw-1225142947.jpg)",backgroundSize:'100% 140%', paddingTop:'-5%'}} className="flex text-align-center snowwhite">
+      <div style={{padding:'5%'}}
+       className="flex-start text-align-center snowwhite compareheader">
                 {filteredByMainEvent.map((result, rowIndex) => (
                                 <div  style={{color: 'white',
                                 backgroundColor: calculateTotalPoints(result, result.main_event, adminKevPicks) > calculateTotalPoints(filteredByMainEvent2[rowIndex], filteredByMainEvent2[rowIndex].main_event, adminKevPicks) ? 'green' : 'red',
-                                  border: 'solid white 2px', minWidth: '30%', maxWidth: '30%',padding:'5% 0px', borderRadius:'50%',margin:'0px 0px 0px 10%' }}key={rowIndex}>
+                                  border: 'solid white 2px', minWidth: '30%', maxWidth: '30%',padding:'5% 0px', borderRadius:'50%',
+                                  }}key={rowIndex}>
                                    <h2>+{calculateTotalPoints(result, result.main_event, adminKevPicks)}</h2>
                                     
                                 </div>
@@ -603,7 +623,8 @@ const toggleDetails =()=>{
                 {filteredByMainEvent2.map((result, rowIndex) => (
                 <div style={{color: 'white',
                 backgroundColor: calculateTotalPoints(result, result.main_event, adminKevPicks) > calculateTotalPoints(filteredByMainEvent[rowIndex], filteredByMainEvent[rowIndex].main_event, adminKevPicks) ? 'green' : 'blue',
-                  border: 'solid white 2px', minWidth: '30%', maxWidth: '30%' ,padding:'5% 0px', borderRadius:'50%',fontWeight:'bold',margin:'0px 10% 0px 0px'}} key={rowIndex}>
+                  border: 'solid white 2px', minWidth: '30%', maxWidth: '30%' ,padding:'5% 0px', borderRadius:'50%',fontWeight:'bold', marginLeft:'auto'
+                  }} key={rowIndex}>
                     <h2>+{calculateTotalPoints(result, result.main_event, adminKevPicks)}</h2>
                     
                 </div>

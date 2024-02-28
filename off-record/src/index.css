@@ -429,14 +429,21 @@ code {
   min-width: 100%;
 }
 .bg-navy{
-  background-color: navy; 
-  border-right: 6px white solid;
+  /* background-color: navy;  */
+  /* border-right: 6px white solid; */
   width: 100%;
-}
+
+  }
+.bg-greey{
+  background-color: rgb(211, 211, 211);
+  border-right: 5px solid blue;
+  border-left: 5px solid red;
+  padding-bottom: 3%;
+  }
 .bg-darkred{
-  background-color: darkred;
+  /* background-color: darkred; */
   width: 100%;
-  border-left: 6px white solid;
+  /* border-left: 6px white solid; */
 
 }
 .white-border2 {
@@ -445,10 +452,10 @@ code {
 
 }
 .pred {
-  color:darkred;
-  background-color: snow;
+  color: red;
+  background-color: black;
   padding: 1%;
-  border: black 1px solid;
+  border: darkred 1px solid;
 }
 .pdraw {
   color:black;
@@ -547,6 +554,9 @@ code {
   width: 100%;
   height: 10px;
   border-top: 3px solid;
+}
+.color-blue-light{
+  color: #4877db;
 }
 .element-with-border22 {
   background: linear-gradient(to right, darkred 50%, navy 50%);
@@ -1729,6 +1739,13 @@ input[type='checkbox'] {
   margin-bottom: 0px;
   border-top: 6px darkgreen solid;
 }
+.compareheader{
+  background-image: url('./compareheader2.png');
+  background-repeat: no-repeat;
+  background-position-y: 100%;
+  background-size: 100% 100%;
+
+}
 .pfl-container {
   display: flex; /* Display children in a row (horizontal) */
   align-items: center; /* Vertically align children */
@@ -2121,9 +2138,9 @@ input[type='checkbox'] {
 }
 .scoreboard2 {
  
-  border-radius: 8px;
+  /* border-radius: 8px; */
   background-color: rgb(211, 211, 211); 
-  border: 5px solid black;
+  border-top: 5px solid black;
   border-right: 5px solid blue;
   border-left: 5px solid red;
   /* border-bottom: 5px solid blue; */
