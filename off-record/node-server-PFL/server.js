@@ -112,7 +112,7 @@ const scrapePFL = async () => {
 //   return BellatorData;
 // };
 
-const scrapeBELLATOR = async (BELLATORurl) => {
+const scrapeBELLATOR = async () => {
   const browser = await puppeteer.launch({ headless: false }); // Consider setting headless to true for production
   const page = await browser.newPage();
   await page.goto(BELLATORurl);
@@ -125,7 +125,7 @@ const scrapeBELLATOR = async (BELLATORurl) => {
     const nextButtonSelector = '.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL';
     if (await page.$(nextButtonSelector) !== null) {
       await page.click(nextButtonSelector);
-      await page.waitForTimeout(1000); // Adjust timing as needed
+      // await page.waitForTimeout(1000); // Adjust timing as needed
 
       const currentData = await page.evaluate(() => {
         const data = [];
@@ -141,18 +141,25 @@ const scrapeBELLATOR = async (BELLATORurl) => {
           
           const leftImgSrc = leftImgElement ? leftImgElement.src : '';
           const rightImgSrc = rightImgElement ? rightImgElement.src : '';
-          
+          console.log({
+            leftFighterCountry,
+            rightFighterCountry,
+            leftImgSrc,
+            rightImgSrc,
+          })
+
           data.push({
             leftFighterCountry,
             rightFighterCountry,
             leftImgSrc,
             rightImgSrc,
           });
+          BellatorData.push(data); 
         });
         return data;
       });
-
-      BellatorData.push(currentData); // Correctly concatenating data
+      currentData()
+      // BellatorData.push(currentData); // Correctly concatenating data
     } else {
       console.error("Next button not found.");
       break;
@@ -251,7 +258,7 @@ const scrapeESPN = async () => {
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
     // const pflData = await scrapePFL();
-    const BellatorData = await scrapeBELLATOR(BELLATORurl);
+    const BellatorData = await scrapeBELLATOR();
     // const fights = await scrapeAllFights();
     const { fighters, liveR } = await scrapeESPN();
 
