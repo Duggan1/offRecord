@@ -127,8 +127,6 @@ const scrapeBELLATOR = async () => {
     if (await page.$(nextButtonSelector) !== null) {
       await page.click(nextButtonSelector);
       
-
-      const currentData = await page.evaluate(() => {
         const data = [];
         document.querySelectorAll('.Carouselstyles__CarouselItem-sc-7lb5l5-1').forEach(element => {
           const leftFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:first-child');
@@ -149,11 +147,11 @@ const scrapeBELLATOR = async () => {
             leftImgSrc,
             rightImgSrc,
           });
+          
+          BellatorData.push(data);
         });
         return data;
-      });
-
-      BellatorData = BellatorData.concat(currentData);
+      
     } else {
       console.error("Next button not found.");
       break;
