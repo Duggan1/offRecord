@@ -1,55 +1,74 @@
-const express = require('express');
-const axios = require('axios');
-const cheerio = require('cheerio');
-const cors = require('cors'); 
-const puppeteer = require('puppeteer');
+const express = require("express");
+const { scrapeLogic } = require("./scrapeLogic");
 const app = express();
-// const fs = require('fs');
-// const path = require('path');
-require("dotenv").config();
-const port = 3001;
 
-app.use(cors());
+const PORT = process.env.PORT || 4000;
 
-const PFLurl = 'https://pflmma.com/event/2024-superfights-1';
+app.get("/scrape", (req, res) => {
+  scrapeLogic(res);
+});
+
+app.get("/", (req, res) => {
+  res.send("Render Puppeteer server is up and running!");
+});
+
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
 
 
-const espnurl = 'https://www.espn.com/mma/fightcenter/_/league/bellator/year/2024';
+// const express = require('express');
+// const axios = require('axios');
+// const cheerio = require('cheerio');
+// const cors = require('cors'); 
+// const puppeteer = require('puppeteer');
+// const app = express();
+// // const fs = require('fs');
+// // const path = require('path');
+// require("dotenv").config();
+// const port = 3001;
 
-const scrapePFL = async () => {
-  try {
-    const response = await axios.get(PFLurl);
-    if (response.status === 200) {
-      const html = response.data;
-      const $ = cheerio.load(html);
-      const pflData = [];
+// app.use(cors());
 
-      $('.matchupRow').each((index, element) => {
-        // Extract left and right section details
-        const leftSection = $(element).find('.fightcard-left');
-        const rightSection = $(element).find('.fightcard-right');
-        const leftBackgroundImg = leftSection.css('background-image').replace(/url\(['"](.+)['"]\)/, '$1');
-        const leftImgSrc = leftSection.find('.fighterLeftImg').attr('src');
-        const rightBackgroundImg = rightSection.css('background-image').replace(/url\(['"](.+)['"]\)/, '$1');
-        const rightImgSrc = rightSection.find('.fighterRightImg').attr('src');
+// const PFLurl = 'https://pflmma.com/event/2024-superfights-1';
 
-        const matchupData = {
-          leftBackgroundImg,
-          leftImgSrc,
-          rightBackgroundImg,
-          rightImgSrc,
-        };
 
-        pflData.push(matchupData);
-      });
+// const espnurl = 'https://www.espn.com/mma/fightcenter/_/league/bellator/year/2024';
 
-      return pflData;
-    }
-  } catch (error) {
-    console.error('Error scraping PFL:', error);
-    throw error;
-  }
-};
+// const scrapePFL = async () => {
+//   try {
+//     const response = await axios.get(PFLurl);
+//     if (response.status === 200) {
+//       const html = response.data;
+//       const $ = cheerio.load(html);
+//       const pflData = [];
+
+//       $('.matchupRow').each((index, element) => {
+//         // Extract left and right section details
+//         const leftSection = $(element).find('.fightcard-left');
+//         const rightSection = $(element).find('.fightcard-right');
+//         const leftBackgroundImg = leftSection.css('background-image').replace(/url\(['"](.+)['"]\)/, '$1');
+//         const leftImgSrc = leftSection.find('.fighterLeftImg').attr('src');
+//         const rightBackgroundImg = rightSection.css('background-image').replace(/url\(['"](.+)['"]\)/, '$1');
+//         const rightImgSrc = rightSection.find('.fighterRightImg').attr('src');
+
+//         const matchupData = {
+//           leftBackgroundImg,
+//           leftImgSrc,
+//           rightBackgroundImg,
+//           rightImgSrc,
+//         };
+
+//         pflData.push(matchupData);
+//       });
+
+//       return pflData;
+//     }
+//   } catch (error) {
+//     console.error('Error scraping PFL:', error);
+//     throw error;
+//   }
+// };
 
 
 // const scrapeBELLATOR = async (BELLATORurl) => {
@@ -114,174 +133,174 @@ const scrapePFL = async () => {
 //   await browser.close();
 //   return BellatorData;
 // };
-const BELLATORurl = 'https://www.bellator.com/event/320';
+// const BELLATORurl = 'https://www.bellator.com/event/320';
 
-const scrapeBELLATOR = async () => {
-  const browser = await puppeteer.launch({
-    args: [
-      "--disable-setuid-sandbox",
-      "--no-sandbox",
-      "--single-process",
-      "--no-zygote",
-    ],
-    executablePath: './Chromium/chrome',
-  });
-  const page = await browser.newPage();
-  await page.goto(BELLATORurl);
+// const scrapeBELLATOR = async () => {
+//   const browser = await puppeteer.launch({
+//     args: [
+//       "--disable-setuid-sandbox",
+//       "--no-sandbox",
+//       "--single-process",
+//       "--no-zygote",
+//     ],
+//     executablePath: './Chromium/chrome',
+//   });
+//   const page = await browser.newPage();
+//   await page.goto(BELLATORurl);
 
   
 
-  let BellatorData = [];
-  const numberOfClicks = 5;
-  const nextButtonSelector = '.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL';
+//   let BellatorData = [];
+//   const numberOfClicks = 5;
+//   const nextButtonSelector = '.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL';
 
-  try {
-    for (let i = 0; i < numberOfClicks; i++) {
-      if (await page.$(nextButtonSelector) !== null) {
-        await page.click(nextButtonSelector);
-        // Wait for some time or for a specific selector that indicates new content has loaded
-        await page.waitForTimeout(2000); // Replace with waitForSelector if there is a specific item to wait for
+//   try {
+//     for (let i = 0; i < numberOfClicks; i++) {
+//       if (await page.$(nextButtonSelector) !== null) {
+//         await page.click(nextButtonSelector);
+//         // Wait for some time or for a specific selector that indicates new content has loaded
+//         await page.waitForTimeout(2000); // Replace with waitForSelector if there is a specific item to wait for
 
-        const currentData = await page.evaluate(() => {
-          const data = [];
-          // Ensure these selectors match the site's current structure
-          document.querySelectorAll('.Carouselstyles__CarouselItem-sc-7lb5l5-1').forEach(element => {
-            const leftFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:first-child');
-          const rightFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:last-child');
+//         const currentData = await page.evaluate(() => {
+//           const data = [];
+//           // Ensure these selectors match the site's current structure
+//           document.querySelectorAll('.Carouselstyles__CarouselItem-sc-7lb5l5-1').forEach(element => {
+//             const leftFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:first-child');
+//           const rightFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:last-child');
           
-          const leftImgElement = element.querySelector('.img-1 img');
-          const rightImgElement = element.querySelector('.img-2 img');
+//           const leftImgElement = element.querySelector('.img-1 img');
+//           const rightImgElement = element.querySelector('.img-2 img');
           
-          const leftFighterCountry = leftFighterNameElement ? leftFighterNameElement.innerText.trim() : '';
-          const rightFighterCountry = rightFighterNameElement ? rightFighterNameElement.innerText.trim() : '';
+//           const leftFighterCountry = leftFighterNameElement ? leftFighterNameElement.innerText.trim() : '';
+//           const rightFighterCountry = rightFighterNameElement ? rightFighterNameElement.innerText.trim() : '';
           
-          const leftImgSrc = leftImgElement ? leftImgElement.src : '';
-          const rightImgSrc = rightImgElement ? rightImgElement.src : '';
+//           const leftImgSrc = leftImgElement ? leftImgElement.src : '';
+//           const rightImgSrc = rightImgElement ? rightImgElement.src : '';
           
-          data.push({
-            leftFighterCountry,
-            rightFighterCountry,
-            leftImgSrc,
-            rightImgSrc,
-          });
-        });
-        return data;
-        });
+//           data.push({
+//             leftFighterCountry,
+//             rightFighterCountry,
+//             leftImgSrc,
+//             rightImgSrc,
+//           });
+//         });
+//         return data;
+//         });
 
-        BellatorData = BellatorData.concat(currentData);
-      } else {
-        console.error("Next button not found.");
-        break;
-      }
-    }
-  } catch (error) {
-    console.error('An error occurred:', error);
-  } finally {
-    await browser.close();
-  }
+//         BellatorData = BellatorData.concat(currentData);
+//       } else {
+//         console.error("Next button not found.");
+//         break;
+//       }
+//     }
+//   } catch (error) {
+//     console.error('An error occurred:', error);
+//   } finally {
+//     await browser.close();
+//   }
 
-  return BellatorData;
-};
+//   return BellatorData;
+// };
 
-// scrapeBELLATOR().then(data => console.log(data));
-
-
+// // scrapeBELLATOR().then(data => console.log(data));
 
 
-const scrapeESPN = async () => {
-  try {
-    const response = await axios.get(espnurl);
-    if (response.status === 200) {
-      const html = response.data;
-      const $ = cheerio.load(html);
-      const fighters = [];
-      const liveR = [];
 
-      $('.mb4').each((index, element) => {
-        // .Gamestrip__Overview
+
+// const scrapeESPN = async () => {
+//   try {
+//     const response = await axios.get(espnurl);
+//     if (response.status === 200) {
+//       const html = response.data;
+//       const $ = cheerio.load(html);
+//       const fighters = [];
+//       const liveR = [];
+
+//       $('.mb4').each((index, element) => {
+//         // .Gamestrip__Overview
   
-        const liveOne = []
+//         const liveOne = []
         
-        $('.Gamestrip__Overview').each((index, element) => {
-          // Extract network and odds information
-          const network = $(element).find('.ScoreCell__Network').text();
-          const odds = $(element).find('.ScoreCell__Odds').text();
+//         $('.Gamestrip__Overview').each((index, element) => {
+//           // Extract network and odds information
+//           const network = $(element).find('.ScoreCell__Network').text();
+//           const odds = $(element).find('.ScoreCell__Odds').text();
       
-          // Extract time, method, and other details
-          const timeDetailsElement = $(element).find('.ScoreCell__Time .tc');
-          const timeDetails = timeDetailsElement.length > 0 ? timeDetailsElement.text() : '';
+//           // Extract time, method, and other details
+//           const timeDetailsElement = $(element).find('.ScoreCell__Time .tc');
+//           const timeDetails = timeDetailsElement.length > 0 ? timeDetailsElement.text() : '';
         
-          const oddDetails = {
+//           const oddDetails = {
       
-            network,
-            odds,
-            timeDetails,
+//             network,
+//             odds,
+//             timeDetails,
            
   
-          }
+//           }
           
-            liveOne.push(oddDetails);
+//             liveOne.push(oddDetails);
           
-          // oddResults.push(oddDetails)
-      });
+//           // oddResults.push(oddDetails)
+//       });
       
-        $('.MMACompetitor').each((index, element) => {
-          const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
-          const record = recordElement.text().trim();
+//         $('.MMACompetitor').each((index, element) => {
+//           const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
+//           const record = recordElement.text().trim();
       
         
-          const nameElement = $(element).find('.truncate');
-          const name = nameElement.text().trim();
+//           const nameElement = $(element).find('.truncate');
+//           const name = nameElement.text().trim();
       
   
-          // Check for RedArrow
-          const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
+//           // Check for RedArrow
+//           const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
   
-          // Check for BlueArrow
-          const hasBlueArrow = $(element).find('.MMACompetitor__arrow:not(.MMACompetitor__arrow--reverse)').length > 0;
+//           // Check for BlueArrow
+//           const hasBlueArrow = $(element).find('.MMACompetitor__arrow:not(.MMACompetitor__arrow--reverse)').length > 0;
   
-          const fighter = {
-              name,
-              record,
-              hasRedArrow,
-              hasBlueArrow,
-          };
+//           const fighter = {
+//               name,
+//               record,
+//               hasRedArrow,
+//               hasBlueArrow,
+//           };
          
-          fighters.push(fighter);
-          liveOne.push(fighter);
-            });
+//           fighters.push(fighter);
+//           liveOne.push(fighter);
+//             });
       
   
-            liveR.push(liveOne);
+//             liveR.push(liveOne);
           
           
-          });
+//           });
 
-      return { fighters, liveR };
-    }
-  } catch (error) {
-    console.error('Error scraping ESPN:', error);
-    throw error;
-  }
-};
+//       return { fighters, liveR };
+//     }
+//   } catch (error) {
+//     console.error('Error scraping ESPN:', error);
+//     throw error;
+//   }
+// };
 
-app.get('/scrape-mma-websites', async (req, res) => {
-  try {
-    // const pflData = await scrapePFL();
-    const BellatorData = await scrapeBELLATOR();
-    // const fights = await scrapeAllFights();
-    const { fighters, liveR } = await scrapeESPN();
+// app.get('/scrape-mma-websites', async (req, res) => {
+//   try {
+//     // const pflData = await scrapePFL();
+//     const BellatorData = await scrapeBELLATOR();
+//     // const fights = await scrapeAllFights();
+//     const { fighters, liveR } = await scrapeESPN();
 
-    res.json({
-      BellatorData,
-      fighters,
-      liveR,
-    });
-  } catch (error) {
-    res.status(500).json({ error: 'An error occurred while scraping data.' });
-  }
-});
+//     res.json({
+//       BellatorData,
+//       fighters,
+//       liveR,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ error: 'An error occurred while scraping data.' });
+//   }
+// });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
+// });
