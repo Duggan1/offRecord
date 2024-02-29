@@ -114,9 +114,7 @@ const scrapePFL = async () => {
 const BELLATORurl = 'https://www.bellator.com/event/320';
 
 const scrapeBELLATOR = async () => {
-  const browser = await puppeteer.launch({
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-  });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(BELLATORurl);
 
@@ -135,9 +133,26 @@ const scrapeBELLATOR = async () => {
           const data = [];
           // Ensure these selectors match the site's current structure
           document.querySelectorAll('.Carouselstyles__CarouselItem-sc-7lb5l5-1').forEach(element => {
-            // Add the correct selectors based on the website's structure
+            const leftFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:first-child');
+          const rightFighterNameElement = element.querySelector('.FightCardstyles__FighterName-sc-1ipy6mb-4.iYMveZ:last-child');
+          
+          const leftImgElement = element.querySelector('.img-1 img');
+          const rightImgElement = element.querySelector('.img-2 img');
+          
+          const leftFighterCountry = leftFighterNameElement ? leftFighterNameElement.innerText.trim() : '';
+          const rightFighterCountry = rightFighterNameElement ? rightFighterNameElement.innerText.trim() : '';
+          
+          const leftImgSrc = leftImgElement ? leftImgElement.src : '';
+          const rightImgSrc = rightImgElement ? rightImgElement.src : '';
+          
+          data.push({
+            leftFighterCountry,
+            rightFighterCountry,
+            leftImgSrc,
+            rightImgSrc,
           });
-          return data;
+        });
+        return data;
         });
 
         BellatorData = BellatorData.concat(currentData);
