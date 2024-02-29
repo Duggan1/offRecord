@@ -3,7 +3,7 @@
 FROM node:14-slim
 
 # Set the working directory inside your Docker container to /app.
-WORKDIR /app
+WORKDIR node-server-pfl/app
 
 # Copy only package.json and package-lock.json initially.
 # This is for caching purposes, so you don't need to run npm install
