@@ -4,6 +4,7 @@ const cheerio = require('cheerio');
 const cors = require('cors'); 
 const puppeteer = require('puppeteer');
 const app = express();
+const fs = require('fs');
 const port = 3001;
 
 app.use(cors());
@@ -121,6 +122,8 @@ const scrapeBELLATOR = async () => {
   const page = await browser.newPage();
   await page.goto(BELLATORurl);
 
+  
+
   let BellatorData = [];
   const numberOfClicks = 5;
   const nextButtonSelector = '.CarouselArrowstyles__Arrow-sc-1lfbt80-0.eMpqfL';
@@ -176,6 +179,20 @@ const scrapeBELLATOR = async () => {
 scrapeBELLATOR().then(data => console.log(data));
 
 
+try {
+  if (fs.existsSync(path)) {
+    console.log(`Chrome found at ${path}`);
+    // Optionally, check if the Chrome binary is executable
+    fs.access(path, fs.constants.X_OK, (err) => {
+      if (err) console.error('Chrome is not executable');
+      else console.log('Chrome is executable');
+    });
+  } else {
+    console.error('Chrome binary not found at the specified path');
+  }
+} catch (err) {
+  console.error('Error checking Chrome path:', err);
+}
 
 
 
