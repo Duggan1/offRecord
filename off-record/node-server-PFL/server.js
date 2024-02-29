@@ -4,9 +4,9 @@ const cheerio = require('cheerio');
 const cors = require('cors'); 
 const puppeteer = require('puppeteer');
 const app = express();
-const fs = require('fs');
-const path = require('path');
-
+// const fs = require('fs');
+// const path = require('path');
+require("dotenv").config();
 const port = 3001;
 
 app.use(cors());
@@ -118,8 +118,16 @@ const BELLATORurl = 'https://www.bellator.com/event/320';
 
 const scrapeBELLATOR = async () => {
   const browser = await puppeteer.launch({
-    // executablePath: '/opt/render/.cache/puppeteer/chrome/linux-122.0.6261.69/chrome-linux64/chrome',
-    headless: true // assuming you want to run in headless mode
+    args: [
+      "--disable-setuid-sandbox",
+      "--no-sandbox",
+      "--single-process",
+      "--no-zygote",
+    ],
+    executablePath:
+      process.env.NODE_ENV === "production"
+        ? process.env.PUPPETEER_EXECUTABLE_PATH
+        : puppeteer.executablePath(),
   });
   const page = await browser.newPage();
   await page.goto(BELLATORurl);
