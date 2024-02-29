@@ -116,7 +116,7 @@ const BELLATORurl = 'https://www.bellator.com/event/320';
 const scrapeBELLATOR = async () => {
   const browser = await puppeteer.launch({
     executablePath: '/opt/render/.cache/puppeteer/chrome/linux-122.0.6261.69/chrome-linux64/chrome',
-    headless: true // Assuming you want to run in headless mode
+    headless: true // assuming you want to run in headless mode
   });
   const page = await browser.newPage();
   await page.goto(BELLATORurl);
