@@ -124,10 +124,7 @@ const scrapeBELLATOR = async () => {
       "--single-process",
       "--no-zygote",
     ],
-    executablePath:
-      process.env.NODE_ENV === "production"
-        ? process.env.PUPPETEER_EXECUTABLE_PATH
-        : puppeteer.executablePath(),
+    executablePath: './Chromium/chrome',
   });
   const page = await browser.newPage();
   await page.goto(BELLATORurl);
