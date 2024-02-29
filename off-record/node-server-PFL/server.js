@@ -178,27 +178,7 @@ const scrapeBELLATOR = async () => {
   return BellatorData;
 };
 
-scrapeBELLATOR().then(data => console.log(data));
-
-
-try {
-  if (fs.existsSync(path)) {
-    console.log(`Chrome found at ${path}`);
-    // Optionally, check if the Chrome binary is executable
-    fs.access(path, fs.constants.X_OK, (err) => {
-      if (err) console.error('Chrome is not executable');
-      else console.log('Chrome is executable');
-    });
-  } else {
-    console.error('Chrome binary not found at the specified path');
-  }
-} catch (err) {
-  console.error('Error checking Chrome path:', err);
-}
-
-
-
-
+// scrapeBELLATOR().then(data => console.log(data));
 
 
 
