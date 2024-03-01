@@ -162,7 +162,7 @@ const scrapeESPN = async () => {
 
 const scrapeTap = async () => {
   try {
-    const response = await axios.get('https://www.tapology.com/fightcenter/events/108903-one-166-malykhin-vs-de-ridder');
+    const response = await axios.get('https://www.tapology.com/fightcenter/events/110094-bellator-mma-anderson-vs-moore');
     if (response.status === 200) {
       const html = response.data;
       const $ = cheerio.load(html);

@@ -10,6 +10,7 @@ import Header from './Header';
 import Results from './Results';
 import Tommy from './Tommy';
 import TommyPFL from './TommyPFL';
+import TommyBELL from './TommyBELL';
 import About from './About';
 import axios from 'axios';
 import * as yup from 'yup';
@@ -50,6 +51,8 @@ const [ufcCard2, setUfcCard2] = useState([]);
 const [ufcCard3, setUfcCard3] = useState([]);
 const [PFLCard, setPFLCard] = useState([]);
 const [weRlivePFL , setweRlivePFL] = useState([]);
+const [BellatorCard, setBellatorCard] = useState([]);
+const [BellatorInfo, setBellatorInfo] = useState({});
 const [weRlive , setweRlive] = useState([]);
 const [eventInfo, setEventInfo] = useState({});
 const [tapI, setTapI] = useState('')
@@ -116,7 +119,7 @@ useEffect(() => {
     try {
       const response = await axios.get(apiUrlPFL)
       console.log(response.data);
-      const { pflData, fighters, liveR
+      const { pflData, fighters, liveR, Data,eventTime,locationCC,promotion,tapImage
        } = response.data;
 
       const uniqueFighters = [...new Set(fighters.map(JSON.stringify))].map(JSON.parse);
@@ -185,9 +188,24 @@ useEffect(() => {
   
       updatedRecords.push(record);
   }
+     const newestCard = [];
+     for (let i = 0; i < Data.length; i += 1) {
+     const record = {
+      fighterPics: [Data[i]?.redCornerImage || '',Data[i]?.blueCornerImage || ''],
+      fighters: [Data[i]?.redCornerName, Data[i]?.blueCornerName],
+      flags:[Data[i]?.redCornerFlag || '',pflData[i / 2]?.rightBackgroundImg || ''],
+      match:'',
+      odds:'',
+      records:[Data[i]?.redCornerRecord ? Data[i]?.redCornerRecord: Data[i]?.redCornerRecordAfterReuslt , Data[i]?.blueCornerRecord ? Data[i]?.blueCornerRecord: Data[i]?.blueCornerRecordAfterReuslt ]
+
+    };
+    newestCard.push(record);
+  }
   
 
       console.log(updatedRecords)
+      setBellatorInfo([eventTime,locationCC,promotion,tapImage])
+      setBellatorCard(newestCard)
       setPFLCard(updatedRecords)
       console.log(pflData)
       console.log(liveR)
@@ -1417,6 +1435,13 @@ const [leagues, setLeagues] = useState([])
 
       <Route path="/pfl" element={<TommyPFL user={user} ufcCard={PFLCard} isOwnerAndEventMatch={isOwnerAndEventMatchPFL} setjustSubmitted={setjustSubmitted} PFLEvents={PFLEvents}
                                               stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlivePFL} adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} adminKevPickswID={adminKevPickswID}  tapImage={tapI} mewtwo={mewtwo} />}/>
+ 
+      <Route path="/bellator" element={<TommyBELL user={user} ufcCard={BellatorCard} isOwnerAndEventMatch={isOwnerAndEventMatchPFL} setjustSubmitted={setjustSubmitted}
+                                         PFLEvents={PFLEvents}
+                                              stallUfcCard={ufcCard} BellatorInfo={BellatorInfo} 
+                                              // weRlive={weRlivePFL}
+                                               adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} adminKevPickswID={adminKevPickswID} mewtwo={mewtwo} />}/>
+                                          
 
 
       <Route path="/results" element={<Results ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} 
