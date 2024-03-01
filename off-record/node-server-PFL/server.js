@@ -132,9 +132,9 @@ const scrapeTap = async () => {
             redCornerImage, 
             blueCornerImage
           };
-          if (!Data.some(existingFighter => JSON.stringify(existingFighter) === JSON.stringify(fighter))) {
+          
             Data.push(fighter);
-          }
+          
           
         }
     });
