@@ -786,7 +786,7 @@ if (isLoading) {
         ? 'fighterACTready' : 'fighterready'}`}>
       
   <p key={index} className="mobile-fight-info">
-    <p className='snowwhite'>{fight.match.slice(0, fight.match.length / 2)}</p>
+    <p className='snowwhite'>{fight.match}lb Bout</p>
     <div  className=" mobile-fighter-name">
       <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%'}} className={` redName white-border mobile-fighter-name
       
@@ -856,19 +856,16 @@ if (isLoading) {
       
 
       <div
-        className={`fighter-image ${
+        className={`fighter-image-tapout ${
           predictions[index]?.winner === 0 ? 'selected' : ''
         }`}
         style={{
           width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
-          backgroundImage: `url('${
-            ufcCard[index].fighterPics[0].startsWith("/s3/files/")
-              ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
-                ufcCard[index].fighterPics[0].substring("/s3/files/".length)
-                : ufcCard[index].fighterPics[0].startsWith("/themes/custom/") 
-                ? "https://www.ufc.com/" + ufcCard[index].fighterPics[0]
-                  : ufcCard[index].fighterPics[0]
-          }')`,
+          backgroundImage: `url(${
+            ufcCard[index].flags[0].startsWith("/assets/flags") 
+              ? `https://tapology.com${ufcCard[index].flags[0]}` 
+              : ufcCard[index].flags[0]
+          })`,
           
           
 
@@ -878,30 +875,47 @@ if (isLoading) {
        
         // https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc
 
-      ><div className="sirealpfl" ><div className="recordwcir redcorner">{fight.records[0]}</div>  
+      ><div style={{textAlign:'left'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'red',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[0]}</span></div> 
+      <div className="" >
+         
       
       
      {user ? <button
       className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 0)}
       style={{
-        backgroundImage:`url(${ufcCard[index].flags[0]})`,
+        backgroundImage: `url('${
+            ufcCard[index].fighterPics[0].startsWith("/s3/files/")
+              ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
+                ufcCard[index].fighterPics[0].substring("/s3/files/".length)
+                : ufcCard[index].fighterPics[0].startsWith("/themes/custom/") 
+                ? "https://www.ufc.com/" + ufcCard[index].fighterPics[0]
+                  : ufcCard[index].fighterPics[0]
+          }')`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',color:'white'
+        backgroundPosition: 'center center',color:'white',height:'200px',
       }}>{fight.fighters[0]}
     </button> :  <div
       className={`pfl-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
       style={{
-        backgroundImage:`url(${ufcCard[index].flags[0]})`,
+        backgroundImage: `url('${
+            ufcCard[index].fighterPics[0].startsWith("/s3/files/")
+              ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
+                ufcCard[index].fighterPics[0].substring("/s3/files/".length)
+                : ufcCard[index].fighterPics[0].startsWith("/themes/custom/") 
+                ? "https://www.ufc.com/" + ufcCard[index].fighterPics[0]
+                  : ufcCard[index].fighterPics[0]
+          }')`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',color:'white'
+        backgroundPosition: 'center center',color:'white',
+        height:'200px'
       }}>{fight.fighters[0]}
     </div>  }
     
     </div>
       </div>
       
-      <div className='fc3' style={{backgroundImage:`url(${BGpic})`}}> </div>
+      
       <div
         className={`fighter-info ${
           predictions[index]?.winner === 0 ? 'selected' : ''
@@ -911,14 +925,16 @@ if (isLoading) {
           textAlign: 'center',
         }}
       ><div
-        className={`fighter-image ${
+        className={`fighter-image-tapout ${
           predictions[index]?.winner === 1 ? 'selected' : ''
         }`}
         style={{
           width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
-          backgroundImage: `url('${
-             ufcCard[index].fighterPics[1] 
-          }')`,
+          backgroundImage: `url(${
+            ufcCard[index].flags[0].startsWith("/assets/flags") 
+              ? `https://tapology.com${ufcCard[index].flags[1]}` 
+              : ufcCard[index].flags[1]
+          })`,
           
           marginBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
           paddingBottom: fight.fighterPics[1] === "https://eadn-wc03-11125112.nxedge.io/wp-content/uploads/2022/04/chuckL-1-585x1024.png" ? '20%' : '',
@@ -928,14 +944,17 @@ if (isLoading) {
           
         }}
         
-      ><div className="sirealpfl" ><div className="recordwcir bluecorner">{fight.records[1]}</div> 
+      ><div style={{textAlign:'right'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'blue',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[1]}</span></div> 
+      <div className="" >
       {user?  <button
       className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 1)}
       style={{
-        backgroundImage:`url(${ufcCard[index].flags[1]})`,
+        backgroundImage: `url('${
+            ufcCard[index].fighterPics[1] 
+         }')`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',color:'white'
+        backgroundPosition: 'center center',color:'white',height:'200px'
       }}
     >
       
@@ -943,9 +962,11 @@ if (isLoading) {
     </button>:  <div
       className={`pfl-button `}
       style={{
-        backgroundImage:`url(${ufcCard[index].flags[1]})`,
+        backgroundImage: `url('${
+            ufcCard[index].fighterPics[1] 
+         }')`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',color:'white'
+        backgroundPosition: 'center center',color:'white',height:'200px'
       }}>{fight.fighters[1]}
     </div>  }
     

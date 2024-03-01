@@ -159,7 +159,7 @@ const scrapeESPN = async () => {
     throw error;
   }
 };
-
+//BELLATOR
 const scrapeTap = async () => {
   try {
     const response = await axios.get('https://www.tapology.com/fightcenter/events/110094-bellator-mma-anderson-vs-moore');
@@ -251,21 +251,206 @@ const scrapeTap = async () => {
   }
 };
 
+const scrapeTapACA = async () => {
+  try {
+    const response = await axios.get('https://www.tapology.com/fightcenter/events/109939-aca-172-ismailov-vs-tokov');
+    if (response.status === 200) {
+      const html = response.data;
+      const $ = cheerio.load(html);
+      const ACAData = [];
 
+
+      const detailsElement = $('.details.details_with_poster.clearfix');
+      const ACAlocationCC = detailsElement.find('li:contains("Location:") a').text();
+      const ACApromotion = detailsElement.find('li:contains("Promotion:") a').text();
+      const ACAtapImage = detailsElement.find('.left img').attr('src');
+      const ACAeventTime = detailsElement.find('.header').text();
+
+      $('.fightCardBout').each((index, element) => {
+        const redCornerName = $(element).find('.fightCardFighterName.left').text().trim();
+        const blueCornerName = $(element).find('.fightCardFighterName.right').text().trim();
+
+        const redCornerFlag = $(element).find('.fightCardFlag').eq(0).attr('src');
+        const blueCornerFlag = $(element).find('.fightCardFlag').eq(1).attr('src');
+
+        const redCornerImage = $(element).find('.fightCardFighterImage img').eq(0).attr('src');
+        const blueCornerImage = $(element).find('.fightCardFighterImage img').eq(1).attr('src');
+
+        const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
+        const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
+        const redCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(0).text().trim();
+        const blueCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(1).text().trim();
+        
+        const match = $(element).find('.weight').text().trim();
+        const method = $(element).find('.fightCardResult .result').text().trim();
+        const round = $(element).find('.fightCardResult .time').text().trim();
+        // Determine the winner based on class presence
+        let winner = null; // Default to null if neither class is found
+        if ($(element).find('.fightCardFighterBout.left').hasClass('win')) {
+            winner = 0; // Red corner wins
+        } else if ($(element).find('.fightCardFighterBout.right').hasClass('win')) {
+            winner = 1; // Blue corner wins
+        }
+    
+        console.log(redCornerName);
+        console.log(blueCornerName);
+        console.log(redCornerRecord);
+        console.log(blueCornerRecord);
+    
+        if (redCornerName && blueCornerName && redCornerRecord && blueCornerRecord) {
+          const fighter = {
+              redCornerName,
+              redCornerRecord,
+              blueCornerName,
+              blueCornerRecord, 
+              blueCornerFlag, 
+              redCornerFlag,
+              method,
+              round, 
+              winner, // Updated to use the winner variable
+              redCornerImage, 
+              blueCornerImage,
+              match
+          };
+          ACAData.push(fighter);
+      } else if (redCornerName && blueCornerName) {
+          const fighter = {
+              redCornerName,
+              redCornerRecordAfterReuslt, // Note: Ensure this is intentional vs redCornerRecord
+              blueCornerName,
+              blueCornerRecordAfterReuslt, // Likewise, ensure this is the desired field vs blueCornerRecord
+              blueCornerFlag, 
+              redCornerFlag,
+              method,
+              round, 
+              winner, // Updated to use the winner variable
+              redCornerImage, 
+              blueCornerImage,
+              match
+          };
+          ACAData.push(fighter);
+      }
+      
+    });
+    
+
+      return {ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime};
+    }
+  } catch (error) {
+    console.error('Error scraping PFL:', error);
+    throw error;
+  }
+};
+
+const scrapeTapPFL = async () => {
+  try {
+    const response = await axios.get('https://www.tapology.com/fightcenter/events/109693-pfl-europe-1-2024-regular-season');
+    if (response.status === 200) {
+      const html = response.data;
+      const $ = cheerio.load(html);
+      const PFLData = [];
+
+
+      const detailsElement = $('.details.details_with_poster.clearfix');
+      const PFLlocationCC = detailsElement.find('li:contains("Location:") a').text();
+      const PFLpromotion = detailsElement.find('li:contains("Promotion:") a').text();
+      const PFLtapImage = detailsElement.find('.left img').attr('src');
+      const PFLeventTime = detailsElement.find('.header').text();
+
+      $('.fightCardBout').each((index, element) => {
+        const redCornerName = $(element).find('.fightCardFighterName.left').text().trim();
+        const blueCornerName = $(element).find('.fightCardFighterName.right').text().trim();
+
+        const redCornerFlag = $(element).find('.fightCardFlag').eq(0).attr('src');
+        const blueCornerFlag = $(element).find('.fightCardFlag').eq(1).attr('src');
+
+        const redCornerImage = $(element).find('.fightCardFighterImage img').eq(0).attr('src');
+        const blueCornerImage = $(element).find('.fightCardFighterImage img').eq(1).attr('src');
+
+        const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
+        const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
+        const redCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(0).text().trim();
+        const blueCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(1).text().trim();
+        
+        const match = $(element).find('.weight').text().trim();
+        const method = $(element).find('.fightCardResult .result').text().trim();
+        const round = $(element).find('.fightCardResult .time').text().trim();
+        // Determine the winner based on class presence
+        let winner = null; // Default to null if neither class is found
+        if ($(element).find('.fightCardFighterBout.left').hasClass('win')) {
+            winner = 0; // Red corner wins
+        } else if ($(element).find('.fightCardFighterBout.right').hasClass('win')) {
+            winner = 1; // Blue corner wins
+        }
+    
+        console.log(redCornerName);
+        console.log(blueCornerName);
+        console.log(redCornerRecord);
+        console.log(blueCornerRecord);
+    
+        if (redCornerName && blueCornerName && redCornerRecord && blueCornerRecord) {
+          const fighter = {
+              redCornerName,
+              redCornerRecord,
+              blueCornerName,
+              blueCornerRecord, 
+              blueCornerFlag, 
+              redCornerFlag,
+              method,
+              round, 
+              winner, // Updated to use the winner variable
+              redCornerImage, 
+              blueCornerImage,
+              match
+          };
+          PFLData.push(fighter);
+      } else if (redCornerName && blueCornerName) {
+          const fighter = {
+              redCornerName,
+              redCornerRecordAfterReuslt, // Note: Ensure this is intentional vs redCornerRecord
+              blueCornerName,
+              blueCornerRecordAfterReuslt, // Likewise, ensure this is the desired field vs blueCornerRecord
+              blueCornerFlag, 
+              redCornerFlag,
+              method,
+              round, 
+              winner, // Updated to use the winner variable
+              redCornerImage, 
+              blueCornerImage,
+              match
+          };
+          PFLData.push(fighter);
+      }
+      
+    });
+    
+
+      return {PFLData,PFLlocationCC,PFLpromotion,PFLtapImage,PFLeventTime};
+    }
+  } catch (error) {
+    console.error('Error scraping PFL:', error);
+    throw error;
+  }
+};
 
 
 
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
-    const pflData = await scrapePFL();
+    // const pflData = await scrapePFL();
     const {Data,locationCC,promotion,tapImage,eventTime} = await scrapeTap();
-    const { fighters, liveR } = await scrapeESPN();
+    const {ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime} = await scrapeTapACA();
+    const {PFLData,PFLlocationCC,PFLpromotion,PFLtapImage,PFLeventTime} = await scrapeTapPFL();
+    // const { fighters, liveR } = await scrapeESPN();
 
     res.json({
-      pflData,
-      fighters,
-      liveR,
-      Data, locationCC,promotion,tapImage,eventTime
+      // pflData,
+      // fighters,
+      // liveR,
+      Data, locationCC,promotion,tapImage,eventTime,
+      ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,
+      PFLData,PFLlocationCC,PFLpromotion,PFLtapImage,PFLeventTime
+
     });
   } catch (error) {
     res.status(500).json({ error: 'An error occurred while scraping data.' });

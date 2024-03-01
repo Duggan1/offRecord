@@ -193,8 +193,8 @@ useEffect(() => {
      const record = {
       fighterPics: [Data[i]?.redCornerImage || '',Data[i]?.blueCornerImage || ''],
       fighters: [Data[i]?.redCornerName, Data[i]?.blueCornerName],
-      flags:[Data[i]?.redCornerFlag || '',pflData[i / 2]?.rightBackgroundImg || ''],
-      match:'',
+      flags:[Data[i]?.redCornerFlag || '',Data[i]?.blueCornerFlag || ''],
+      match:Data[i]?.match || '',
       odds:'',
       records:[Data[i]?.redCornerRecord ? Data[i]?.redCornerRecord: Data[i]?.redCornerRecordAfterReuslt , Data[i]?.blueCornerRecord ? Data[i]?.blueCornerRecord: Data[i]?.blueCornerRecordAfterReuslt ]
 
