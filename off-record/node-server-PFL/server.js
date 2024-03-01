@@ -92,7 +92,14 @@ const scrapeTap = async () => {
       const $ = cheerio.load(html);
       const Data = [];
 
-      $('.fightCard').each((index, element) => {
+
+      const detailsElement = $('.details.details_with_poster.clearfix');
+      const locationCC = detailsElement.find('li:contains("Location:") a').text();
+      const promotion = detailsElement.find('li:contains("Promotion:") a').text();
+      const tapImage = detailsElement.find('.left img').attr('src');
+      const eventTime = detailsElement.find('.header').text();
+
+      $('.fightCardBout').each((index, element) => {
         const redCornerName = $(element).find('.fightCardFighterName.left').text().trim();
         const blueCornerName = $(element).find('.fightCardFighterName.right').text().trim();
 
@@ -107,7 +114,7 @@ const scrapeTap = async () => {
         const redCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(0).text().trim();
         const blueCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(1).text().trim();
         
-        
+        const match = $(element).find('.fightCardWeight.weight').text().trim();
         const method = $(element).find('.fightCardResult .result').text().trim();
         const round = $(element).find('.fightCardResult .time').text().trim();
         // Determine the winner based on class presence
@@ -135,7 +142,7 @@ const scrapeTap = async () => {
             round , 
             winner, // Updated to use the winner variable
             redCornerImage, 
-            blueCornerImage
+            blueCornerImage,match
           };
             Data.push(fighter);
         }
@@ -151,14 +158,14 @@ const scrapeTap = async () => {
             round , 
             winner, // Updated to use the winner variable
             redCornerImage, 
-            blueCornerImage
+            blueCornerImage,match
           };
             Data.push(fighter);
         }
     });
     
 
-      return Data;
+      return {Data,locationCC,promotion,tapImage,eventTime};
     }
   } catch (error) {
     console.error('Error scraping PFL:', error);
@@ -249,7 +256,7 @@ const scrapeESPN = async () => {
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
     const pflData = await scrapePFL();
-    const Data = await scrapeTap();
+    const {Data,locationCC,promotion,tapImage,eventTime} = await scrapeTap();
     const { fighters, liveR } = await scrapeESPN();
 
     res.json({
