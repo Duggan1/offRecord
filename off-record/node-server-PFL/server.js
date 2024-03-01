@@ -139,7 +139,7 @@ const scrapeTap = async () => {
           };
             Data.push(fighter);
         }
-        if (redCornerName && blueCornerName && redCornerRecordAfterReuslt && blueCornerRecordAfterReuslt) {
+        if (redCornerName && blueCornerName ) {
           const fighter = {
             redCornerName,
             redCornerRecordAfterReuslt,
