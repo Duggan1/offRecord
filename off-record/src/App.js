@@ -22,6 +22,8 @@ import P4pHeader from './P4pHeader';
 import Profile from './Profile';
 import ProfileSettings from './ProfileSettings';
 import LeagueAdjustments from './LeagueAdjustments';
+import TommyPFLTAP from './TommyPFLTAP';
+import TommyACA from './TommyACA';
 // import CommentSection from './CommentSection';
 
 
@@ -53,6 +55,10 @@ const [PFLCard, setPFLCard] = useState([]);
 const [weRlivePFL , setweRlivePFL] = useState([]);
 const [BellatorCard, setBellatorCard] = useState([]);
 const [BellatorInfo, setBellatorInfo] = useState({});
+const [ACACard, setACACard] = useState([]);
+const [ACAInfo, setACAInfo] = useState({});
+const [PFLTAPCard, setPFLTAPCard] = useState([]);
+const [PFLTAPInfo, setPFLTAPInfo] = useState({});
 const [weRlive , setweRlive] = useState([]);
 const [eventInfo, setEventInfo] = useState({});
 const [tapI, setTapI] = useState('')
@@ -119,75 +125,77 @@ useEffect(() => {
     try {
       const response = await axios.get(apiUrlPFL)
       console.log(response.data);
-      const { pflData, fighters, liveR, Data,eventTime,locationCC,promotion,tapImage
+      const {  Data, locationCC,promotion,tapImage,eventTime,
+        ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,
+        PFLData,PFLlocationCC,PFLpromotion,PFLtapImage,PFLeventTime
        } = response.data;
 
-      const uniqueFighters = [...new Set(fighters.map(JSON.stringify))].map(JSON.parse);
-      const updatedFighters = uniqueFighters.map((fighter, index) => {
+    //   const uniqueFighters = [...new Set(fighters.map(JSON.stringify))].map(JSON.parse);
+    //   const updatedFighters = uniqueFighters.map((fighter, index) => {
         
-        const corner = index % 2 === 0 ? 'Red Corner' : 'Blue Corner';
+    //     const corner = index % 2 === 0 ? 'Red Corner' : 'Blue Corner';
 
-         return {
-             ...fighter,
-             corner,
-         };
-     });
+    //      return {
+    //          ...fighter,
+    //          corner,
+    //      };
+    //  });
 
-     const associatedData = [];
-     if (liveR && liveR[0]) {
-         for (let i = 0; i < pflData.length - 1 ; i++) {
-           const timeDetails1 = liveR[0][i]?.timeDetails; 
-           const oddsDetails = liveR[0][i]?.odds;
+    //  const associatedData = [];
+    //  if (liveR && liveR[0]) {
+    //      for (let i = 0; i < pflData.length - 1 ; i++) {
+    //        const timeDetails1 = liveR[0][i]?.timeDetails; 
+    //        const oddsDetails = liveR[0][i]?.odds;
      
-             const fighter1Index = i * 2;
-             const fighter2Index = fighter1Index + 1;
+    //          const fighter1Index = i * 2;
+    //          const fighter2Index = fighter1Index + 1;
      
-             const fighter1 = updatedFighters[fighter1Index];
-             const fighter2 = updatedFighters[fighter2Index];
+    //          const fighter1 = updatedFighters[fighter1Index];
+    //          const fighter2 = updatedFighters[fighter2Index];
      
-             const dataPair = {
-                 timeDetails1,
-                 fighter1,
-                 fighter2,
-             };
+    //          const dataPair = {
+    //              timeDetails1,
+    //              fighter1,
+    //              fighter2,
+    //          };
      
-             associatedData.push(dataPair);
-         }
+    //          associatedData.push(dataPair);
+    //      }
          
-         const sortedAssociatedData = associatedData.sort((a, b) => {
-           // Assuming that pending results have an empty string for 'timeDetails1'
-           const aIsPending = a.timeDetails1 === '';
-           const bIsPending = b.timeDetails1 === '';
+    //      const sortedAssociatedData = associatedData.sort((a, b) => {
+    //        // Assuming that pending results have an empty string for 'timeDetails1'
+    //        const aIsPending = a.timeDetails1 === '';
+    //        const bIsPending = b.timeDetails1 === '';
          
-           if (aIsPending && !bIsPending) {
-             return -1; // a comes before b
-           } else if (!aIsPending && bIsPending) {
-             return 1; // b comes before a
-           } else {
-             return 0; // leave them in the same order
-           }
-         });
-         setweRlivePFL(sortedAssociatedData)}
+    //        if (aIsPending && !bIsPending) {
+    //          return -1; // a comes before b
+    //        } else if (!aIsPending && bIsPending) {
+    //          return 1; // b comes before a
+    //        } else {
+    //          return 0; // leave them in the same order
+    //        }
+    //      });
+    //      setweRlivePFL(sortedAssociatedData)}
 
 
-     const updatedRecords = [];
+  //    const updatedRecords = [];
  
-     for (let i = 0; i < updatedFighters.length; i += 2) {
-      const redFighter = updatedFighters[i];
-      const blueFighter = updatedFighters[i + 1];
+  //    for (let i = 0; i < updatedFighters.length; i += 2) {
+  //     const redFighter = updatedFighters[i];
+  //     const blueFighter = updatedFighters[i + 1];
   
-      const record = {
-        fighterPics: [pflData[i / 2]?.leftImgSrc || '',pflData[i / 2 ]?.rightImgSrc || ''],
-        fighters: [redFighter.name, blueFighter.name],
-        flags:[pflData[i / 2]?.leftBackgroundImg || '',pflData[i / 2]?.rightBackgroundImg || ''],
-        match:'',
-        odds:liveR[0][i / 2]?.odds,
-        records:[redFighter.record, blueFighter.record]
+  //     const record = {
+  //       fighterPics: [pflData[i / 2]?.leftImgSrc || '',pflData[i / 2 ]?.rightImgSrc || ''],
+  //       fighters: [redFighter.name, blueFighter.name],
+  //       flags:[pflData[i / 2]?.leftBackgroundImg || '',pflData[i / 2]?.rightBackgroundImg || ''],
+  //       match:'',
+  //       odds:liveR[0][i / 2]?.odds,
+  //       records:[redFighter.record, blueFighter.record]
 
-      };
+  //     };
   
-      updatedRecords.push(record);
-  }
+  //     updatedRecords.push(record);
+  // }
      const newestCard = [];
      for (let i = 0; i < Data.length; i += 1) {
      const record = {
@@ -201,14 +209,43 @@ useEffect(() => {
     };
     newestCard.push(record);
   }
-  
+  const ACACard = [];
+     for (let i = 0; i < ACAData.length; i += 1) {
+     const record = {
+      fighterPics: [ACAData[i]?.redCornerImage || '',ACAData[i]?.blueCornerImage || ''],
+      fighters: [ACAData[i]?.redCornerName, ACAData[i]?.blueCornerName],
+      flags:[ACAData[i]?.redCornerFlag || '',ACAData[i]?.blueCornerFlag || ''],
+      match:ACAData[i]?.match || '',
+      odds:'',
+      records:[ACAData[i]?.redCornerRecord ? ACAData[i]?.redCornerRecord: ACAData[i]?.redCornerRecordAfterReuslt , ACAData[i]?.blueCornerRecord ? ACAData[i]?.blueCornerRecord: ACAData[i]?.blueCornerRecordAfterReuslt ]
 
-      console.log(updatedRecords)
+    };
+    ACACard.push(record);
+  }
+  const PFLTAPCard = [];
+     for (let i = 0; i < PFLData.length; i += 1) {
+     const record = {
+      fighterPics: [PFLData[i]?.redCornerImage || '',PFLData[i]?.blueCornerImage || ''],
+      fighters: [PFLData[i]?.redCornerName, PFLData[i]?.blueCornerName],
+      flags:[PFLData[i]?.redCornerFlag || '',PFLData[i]?.blueCornerFlag || ''],
+      match:PFLData[i]?.match || '',
+      odds:'',
+      records:[PFLData[i]?.redCornerRecord ? PFLData[i]?.redCornerRecord: PFLData[i]?.redCornerRecordAfterReuslt , PFLData[i]?.blueCornerRecord ? PFLData[i]?.blueCornerRecord: PFLData[i]?.blueCornerRecordAfterReuslt ]
+
+    };
+    PFLTAPCard.push(record);
+  }
+
+      // console.log(updatedRecords)
       setBellatorInfo([eventTime,locationCC,promotion,tapImage])
       setBellatorCard(newestCard)
-      setPFLCard(updatedRecords)
-      console.log(pflData)
-      console.log(liveR)
+      setPFLTAPInfo([PFLeventTime,PFLlocationCC,PFLpromotion,PFLtapImage])
+      setPFLTAPCard(PFLTAPCard)
+      setACAInfo([ ACAeventTime,ACAlocationCC,ACApromotion,ACAtapImage,])
+      setACACard(ACACard)
+      // setPFLCard(updatedRecords)
+      // console.log(pflData)
+      // console.log(liveR)
 
 
 
@@ -1436,11 +1473,7 @@ const [leagues, setLeagues] = useState([])
       <Route path="/pfl" element={<TommyPFL user={user} ufcCard={PFLCard} isOwnerAndEventMatch={isOwnerAndEventMatchPFL} setjustSubmitted={setjustSubmitted} PFLEvents={PFLEvents}
                                               stallUfcCard={ufcCard} locationCity={lo1} location={lo3} state={lo2} weRlive={weRlivePFL} adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} adminKevPickswID={adminKevPickswID}  tapImage={tapI} mewtwo={mewtwo} />}/>
  
-      <Route path="/bellator" element={<TommyBELL user={user} ufcCard={BellatorCard} isOwnerAndEventMatch={isOwnerAndEventMatchPFL} setjustSubmitted={setjustSubmitted}
-                                         PFLEvents={PFLEvents}
-                                              stallUfcCard={ufcCard} BellatorInfo={BellatorInfo} 
-                                              // weRlive={weRlivePFL}
-                                               adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} adminKevPickswID={adminKevPickswID} mewtwo={mewtwo} />}/>
+      
                                           
 
 
@@ -1454,7 +1487,21 @@ const [leagues, setLeagues] = useState([])
       <Route path="/profile" element={<Profile user={user} onLogout={handleLogout} ufcResults={modifiedUfcResults}  results2={results2} adminKevPicks2={adminKevPicks} />}/>
       <Route path="/profile/settings" element={<ProfileSettings user={user} onLogout={handleLogout} />}/>
       {/* <Route path="/comments" element={<CommentSection />}/> */}
-
+      <Route path="/bellator" element={<TommyBELL user={user} ufcCard={BellatorCard} isOwnerAndEventMatch={isOwnerAndEventMatchPFL} setjustSubmitted={setjustSubmitted}
+                                         PFLEvents={PFLEvents}
+                                              stallUfcCard={ufcCard} BellatorInfo={BellatorInfo} 
+                                              // weRlive={weRlivePFL}
+                                                adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} adminKevPickswID={adminKevPickswID} mewtwo={mewtwo} />}/>
+      <Route path="/pfl-europe" element={<TommyPFLTAP user={user} ufcCard={PFLTAPCard} isOwnerAndEventMatch={isOwnerAndEventMatchPFL} setjustSubmitted={setjustSubmitted}
+                                         PFLEvents={PFLEvents}
+                                              stallUfcCard={ufcCard} BellatorInfo={PFLTAPInfo} 
+                                              // weRlive={weRlivePFL}
+                                                adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} adminKevPickswID={adminKevPickswID} mewtwo={mewtwo} />}/>
+       <Route path="/aca" element={<TommyACA user={user} ufcCard={ACACard} isOwnerAndEventMatch={isOwnerAndEventMatchPFL} setjustSubmitted={setjustSubmitted}
+                                         PFLEvents={PFLEvents}
+                                              stallUfcCard={ufcCard} BellatorInfo={ACAInfo} 
+                                              // weRlive={weRlivePFL}
+                                                adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} adminKevPickswID={adminKevPickswID} mewtwo={mewtwo} />}/>
 
       {/* <Route path="/pools" element={<Pools />}/> */}
        

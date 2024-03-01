@@ -669,19 +669,19 @@ if (isLoading) {
 
 
       {showUfcCard?
-      <div className="bayLoc"  > 
+      <div className="bayLoc"  style={{backgroundColor:'whitesmoke'}}> 
           {/* <h1 className='fs45 fs-mono'>PFL</h1> */}
-          <h1 style={{
+          <center><h1 style={{
                               height: '50px',
                               backgroundColor: 'whitesmoke',
                               padding: '0px 2px',
                               backgroundSize: '100% 100%',
-                              width:'100%',
+                              width:'80%',
                               // paddingBottom:'20px',
                               // margin:'0% 20%',
                               //   backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`
                               backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Bellator_MMA_Logo.svg/2560px-Bellator_MMA_Logo.svg.png)`
-                            }} alt={`PFL `}> </h1>
+                            }} alt={`PFL `}> </h1></center>
     {BellatorInfo  ? (
   <div
     style={{ zIndex: '1', display: 'flex', justifyContent: 'center', backgroundColor: 'whitesmoke' }}
@@ -701,9 +701,9 @@ if (isLoading) {
         paddingBottom: '0%',
         marginTop: '0%',
         paddingTop: '0%',
-        color:'whitesmoke',
+        color:'transparent',
         // backgroundColor: 'black',
-        backgroundImage: `url(${BellatorInfo[1]})`,
+        backgroundImage: `url(https://tapology.com/assets/flags/IE-3f973d9478a2318f1513cf34f7f6d0087cccdc961e1981231c6997a29dddf083.gif)`,
       }}
     >
       _____

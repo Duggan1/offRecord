@@ -721,9 +721,9 @@ if (isLoading) {
                  <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
-                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'whitesmoke'
+                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'whitesmoke',color:'transparent'
                   
-                  }} >___</h6></div><div class="element-with-border2"></div>
+                  }} >_____</h6></div><div class="element-with-border2"></div>
                 <div className='flex'>
                   <h1 style={{
                               height: '200px',
@@ -1044,9 +1044,9 @@ if (isLoading) {
                  <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
-                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'whitesmoke'
+                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'whitesmoke',color:'transparent'
                   
-                  }} >___</h6></div><div class="element-with-border2"></div>
+                  }} >_____</h6></div><div class="element-with-border2"></div>
                 <div className='flex'>
                   <h1 style={{
                               height: '200px',
@@ -1118,6 +1118,7 @@ if (isLoading) {
       <div key={index} className="fighterready">
   <p key={index} className="mobile-fight-info">
   <p className='snowwhite'>{fight.match.slice(0, fight.match.length / 2)}</p>
+
     <div className="mobile-fighter-name" style={{maxWidth:'100%'}}>
       <span style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%',backgroundColor:'red',color:'white',overflow: 'hidden', // Hide overflow
     textOverflow: 'ellipsis', // Add ellipsis if text overflows
@@ -1129,7 +1130,10 @@ if (isLoading) {
          {fight.fighters[1]}
       </span>
       
-    </div><span className='bg-white color-black'>{fight.odds}</span>
+    </div>
+    
+    
+    <span className='bg-white color-black'>{fight.odds}</span>
   </p>
 
 

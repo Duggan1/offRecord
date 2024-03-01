@@ -83,6 +83,22 @@ export default function P4pHeader({user, onLogout}) {
                     onClick={() => { handleOptionClick('/bellator') }}
                     className={`${currentPath === "/bellator" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
                   >
+                    Pick 4 Bellator 
+                  </a>
+                  <a
+                    href="#"
+                    
+                    onClick={() => { handleOptionClick('/aca') }}
+                    className={`${currentPath === "/aca" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
+                  >
+                    Pick 4 ACA 
+                  </a>
+                  <a
+                    href="#"
+                    
+                    onClick={() => { handleOptionClick('/pfl-europe') }}
+                    className={`${currentPath === "/pfl-europe" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
+                  >
                     Pick 4 PFL 
                   </a>
                   <a
@@ -224,14 +240,30 @@ export default function P4pHeader({user, onLogout}) {
               >
                 Pick 4 UFC 
               </Disclosure.Button>
-              {/* <Disclosure.Button
+              <Disclosure.Button
                 as="a"
                 href="#"
-                onClick={() => { handleOptionClick('/pfl') }}
-                className={`${currentPath === "/pfl" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
+                onClick={() => { handleOptionClick('/pfl-europe') }}
+                className={`${currentPath === "/pfl-europe" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
               >
                 Pick 4 PFL
-              </Disclosure.Button> */}
+              </Disclosure.Button>
+              <Disclosure.Button
+                as="a"
+                href="#"
+                onClick={() => { handleOptionClick('/aca') }}
+                className={`${currentPath === "/aca" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
+              >
+                Pick 4 ACA
+              </Disclosure.Button>
+              <Disclosure.Button
+                as="a"
+                href="#"
+                onClick={() => { handleOptionClick('/bellator') }}
+                className={`${currentPath === "/bellator" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
+              >
+                Pick 4 Bellator
+              </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="#"
