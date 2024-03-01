@@ -83,6 +83,82 @@ const scrapeBELLATOR = async () => {
     throw error;
   }
 };
+const scrapeESPN = async () => {
+  try {
+    const response = await axios.get(espnurl);
+    if (response.status === 200) {
+      const html = response.data;
+      const $ = cheerio.load(html);
+      const fighters = [];
+      const liveR = [];
+
+      $('.mb4').each((index, element) => {
+        // .Gamestrip__Overview
+  
+        const liveOne = []
+        
+        $('.Gamestrip__Overview').each((index, element) => {
+          // Extract network and odds information
+          const network = $(element).find('.ScoreCell__Network').text();
+          const odds = $(element).find('.ScoreCell__Odds').text();
+      
+          // Extract time, method, and other details
+          const timeDetailsElement = $(element).find('.ScoreCell__Time .tc');
+          const timeDetails = timeDetailsElement.length > 0 ? timeDetailsElement.text() : '';
+        
+          const oddDetails = {
+      
+            network,
+            odds,
+            timeDetails,
+           
+  
+          }
+          
+            liveOne.push(oddDetails);
+          
+          // oddResults.push(oddDetails)
+      });
+      
+        $('.MMACompetitor').each((index, element) => {
+          const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
+          const record = recordElement.text().trim();
+      
+        
+          const nameElement = $(element).find('.truncate');
+          const name = nameElement.text().trim();
+      
+  
+          // Check for RedArrow
+          const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
+  
+          // Check for BlueArrow
+          const hasBlueArrow = $(element).find('.MMACompetitor__arrow:not(.MMACompetitor__arrow--reverse)').length > 0;
+  
+          const fighter = {
+              name,
+              record,
+              hasRedArrow,
+              hasBlueArrow,
+          };
+         
+          fighters.push(fighter);
+          liveOne.push(fighter);
+            });
+      
+  
+            liveR.push(liveOne);
+          
+          
+          });
+
+      return { fighters, liveR };
+    }
+  } catch (error) {
+    console.error('Error scraping ESPN:', error);
+    throw error;
+  }
+};
 
 const scrapeTap = async () => {
   try {
@@ -176,82 +252,6 @@ const scrapeTap = async () => {
 
 
 
-const scrapeESPN = async () => {
-  try {
-    const response = await axios.get(espnurl);
-    if (response.status === 200) {
-      const html = response.data;
-      const $ = cheerio.load(html);
-      const fighters = [];
-      const liveR = [];
-
-      $('.mb4').each((index, element) => {
-        // .Gamestrip__Overview
-  
-        const liveOne = []
-        
-        $('.Gamestrip__Overview').each((index, element) => {
-          // Extract network and odds information
-          const network = $(element).find('.ScoreCell__Network').text();
-          const odds = $(element).find('.ScoreCell__Odds').text();
-      
-          // Extract time, method, and other details
-          const timeDetailsElement = $(element).find('.ScoreCell__Time .tc');
-          const timeDetails = timeDetailsElement.length > 0 ? timeDetailsElement.text() : '';
-        
-          const oddDetails = {
-      
-            network,
-            odds,
-            timeDetails,
-           
-  
-          }
-          
-            liveOne.push(oddDetails);
-          
-          // oddResults.push(oddDetails)
-      });
-      
-        $('.MMACompetitor').each((index, element) => {
-          const recordElement = $(element).find('.flex.items-center.n9.nowrap.clr-gray-04');
-          const record = recordElement.text().trim();
-      
-        
-          const nameElement = $(element).find('.truncate');
-          const name = nameElement.text().trim();
-      
-  
-          // Check for RedArrow
-          const hasRedArrow = $(element).find('.MMACompetitor__arrow--reverse').length > 0;
-  
-          // Check for BlueArrow
-          const hasBlueArrow = $(element).find('.MMACompetitor__arrow:not(.MMACompetitor__arrow--reverse)').length > 0;
-  
-          const fighter = {
-              name,
-              record,
-              hasRedArrow,
-              hasBlueArrow,
-          };
-         
-          fighters.push(fighter);
-          liveOne.push(fighter);
-            });
-      
-  
-            liveR.push(liveOne);
-          
-          
-          });
-
-      return { fighters, liveR };
-    }
-  } catch (error) {
-    console.error('Error scraping ESPN:', error);
-    throw error;
-  }
-};
 
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
@@ -263,7 +263,7 @@ app.get('/scrape-mma-websites', async (req, res) => {
       pflData,
       fighters,
       liveR,
-      Data
+      Data, locationCC,promotion,tapImage,eventTime
     });
   } catch (error) {
     res.status(500).json({ error: 'An error occurred while scraping data.' });
