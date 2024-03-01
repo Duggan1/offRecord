@@ -84,7 +84,69 @@ const scrapeBELLATOR = async () => {
   }
 };
 
+const scrapeTap = async () => {
+  try {
+    const response = await axios.get('https://www.tapology.com/fightcenter/events/108903-one-166-malykhin-vs-de-ridder');
+    if (response.status === 200) {
+      const html = response.data;
+      const $ = cheerio.load(html);
+      const Data = [];
 
+      $('.fightCard').each((index, element) => {
+        const redCornerName = $(element).find('.fightCardFighterName.left').text().trim();
+        const blueCornerName = $(element).find('.fightCardFighterName.right').text().trim();
+        const redCornerFlag = $(element).find('.fightCardFlag').eq(0).attr('src');
+        
+        const redCornerImage = $(element).find('.fightCardFighterImage img').eq(0).attr('src');
+        const blueCornerImage = $(element).find('.fightCardFighterImage img').eq(1).attr('src');
+        const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
+        const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
+        const blueCornerFlag = $(element).find('.fightCardRecord').eq(1).find('.fighterFlag img').attr('src');
+        const method = $(element).find('.fightCardResult .result').text().trim();
+        const round = $(element).find('.fightCardResult .time').text().trim();
+        
+        // Determine the winner based on class presence
+        let winner = null; // Default to null if neither class is found
+        if ($(element).find('.fightCardFighterBout.left').hasClass('win')) {
+            winner = 0; // Red corner wins
+        } else if ($(element).find('.fightCardFighterBout.right').hasClass('win')) {
+            winner = 1; // Blue corner wins
+        }
+    
+        console.log(redCornerName);
+        console.log(blueCornerName);
+        console.log(blueCornerFlag);
+        console.log(redCornerFlag);
+    
+        if (redCornerName && blueCornerName && redCornerRecord && blueCornerRecord) {
+          const fighter = {
+            redCornerName,
+            redCornerRecord,
+            blueCornerName,
+            blueCornerRecord, 
+            blueCornerFlag, 
+            redCornerFlag,
+            method,
+            round , 
+            winner, // Updated to use the winner variable
+            redCornerImage, 
+            blueCornerImage
+          };
+          if (!Data.some(existingFighter => JSON.stringify(existingFighter) === JSON.stringify(fighter))) {
+            Data.push(fighter);
+          }
+          
+        }
+    });
+    
+
+      return Data;
+    }
+  } catch (error) {
+    console.error('Error scraping PFL:', error);
+    throw error;
+  }
+};
 
 
 
@@ -169,13 +231,14 @@ const scrapeESPN = async () => {
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
     const pflData = await scrapePFL();
-    // const BellatorData = await scrapeBELLATOR();
+    const Data = await scrapeTap();
     const { fighters, liveR } = await scrapeESPN();
 
     res.json({
       pflData,
       fighters,
       liveR,
+      Data
     });
   } catch (error) {
     res.status(500).json({ error: 'An error occurred while scraping data.' });
