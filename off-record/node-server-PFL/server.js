@@ -95,16 +95,21 @@ const scrapeTap = async () => {
       $('.fightCard').each((index, element) => {
         const redCornerName = $(element).find('.fightCardFighterName.left').text().trim();
         const blueCornerName = $(element).find('.fightCardFighterName.right').text().trim();
+
         const redCornerFlag = $(element).find('.fightCardFlag').eq(0).attr('src');
-        
+        const blueCornerFlag = $(element).find('.fightCardFlag').eq(1).attr('src');
+
         const redCornerImage = $(element).find('.fightCardFighterImage img').eq(0).attr('src');
         const blueCornerImage = $(element).find('.fightCardFighterImage img').eq(1).attr('src');
+
         const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
         const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
-        const blueCornerFlag = $(element).find('.fightCardRecord').eq(1).find('.fighterFlag img').attr('src');
+        const redCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(0).text().trim();
+        const blueCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(1).text().trim();
+        
+        
         const method = $(element).find('.fightCardResult .result').text().trim();
         const round = $(element).find('.fightCardResult .time').text().trim();
-        
         // Determine the winner based on class presence
         let winner = null; // Default to null if neither class is found
         if ($(element).find('.fightCardFighterBout.left').hasClass('win')) {
@@ -115,8 +120,8 @@ const scrapeTap = async () => {
     
         console.log(redCornerName);
         console.log(blueCornerName);
-        console.log(blueCornerFlag);
-        console.log(redCornerFlag);
+        console.log(redCornerRecord);
+        console.log(blueCornerRecord);
     
         if (redCornerName && blueCornerName && redCornerRecord && blueCornerRecord) {
           const fighter = {
@@ -132,10 +137,23 @@ const scrapeTap = async () => {
             redCornerImage, 
             blueCornerImage
           };
-          
             Data.push(fighter);
-          
-          
+        }
+        if (redCornerName && blueCornerName && redCornerRecordAfterReuslt && blueCornerRecordAfterReuslt) {
+          const fighter = {
+            redCornerName,
+            redCornerRecordAfterReuslt,
+            blueCornerName,
+            blueCornerRecordAfterReuslt, 
+            blueCornerFlag, 
+            redCornerFlag,
+            method,
+            round , 
+            winner, // Updated to use the winner variable
+            redCornerImage, 
+            blueCornerImage
+          };
+            Data.push(fighter);
         }
     });
     
