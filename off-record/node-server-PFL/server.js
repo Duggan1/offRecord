@@ -190,7 +190,7 @@ const scrapeTap = async () => {
         const redCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(0).text().trim();
         const blueCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(1).text().trim();
         
-        const match = $(element).find('.fightCardWeight.weight').text().trim();
+        const match = $(element).find('.weight').text().trim();
         const method = $(element).find('.fightCardResult .result').text().trim();
         const round = $(element).find('.fightCardResult .time').text().trim();
         // Determine the winner based on class presence
