@@ -208,36 +208,38 @@ const scrapeTap = async () => {
     
         if (redCornerName && blueCornerName && redCornerRecord && blueCornerRecord) {
           const fighter = {
-            redCornerName,
-            redCornerRecord,
-            blueCornerName,
-            blueCornerRecord, 
-            blueCornerFlag, 
-            redCornerFlag,
-            method,
-            round , 
-            winner, // Updated to use the winner variable
-            redCornerImage, 
-            blueCornerImage,match
+              redCornerName,
+              redCornerRecord,
+              blueCornerName,
+              blueCornerRecord, 
+              blueCornerFlag, 
+              redCornerFlag,
+              method,
+              round, 
+              winner, // Updated to use the winner variable
+              redCornerImage, 
+              blueCornerImage,
+              match
           };
-            Data.push(fighter);
-        }
-        if (redCornerName && blueCornerName ) {
+          Data.push(fighter);
+      } else if (redCornerName && blueCornerName) {
           const fighter = {
-            redCornerName,
-            redCornerRecordAfterReuslt,
-            blueCornerName,
-            blueCornerRecordAfterReuslt, 
-            blueCornerFlag, 
-            redCornerFlag,
-            method,
-            round , 
-            winner, // Updated to use the winner variable
-            redCornerImage, 
-            blueCornerImage,match
+              redCornerName,
+              redCornerRecordAfterReuslt, // Note: Ensure this is intentional vs redCornerRecord
+              blueCornerName,
+              blueCornerRecordAfterReuslt, // Likewise, ensure this is the desired field vs blueCornerRecord
+              blueCornerFlag, 
+              redCornerFlag,
+              method,
+              round, 
+              winner, // Updated to use the winner variable
+              redCornerImage, 
+              blueCornerImage,
+              match
           };
-            Data.push(fighter);
-        }
+          Data.push(fighter);
+      }
+      
     });
     
 

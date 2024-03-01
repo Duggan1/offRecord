@@ -77,14 +77,14 @@ export default function P4pHeader({user, onLogout}) {
                   >
                     Pick 4 UFC
                   </a>
-                  {/* <a
+                  <a
                     href="#"
                     
-                    onClick={() => { handleOptionClick('/pfl') }}
-                    className={`${currentPath === "/pfl" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
+                    onClick={() => { handleOptionClick('/bellator') }}
+                    className={`${currentPath === "/bellator" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
                   >
                     Pick 4 PFL 
-                  </a> */}
+                  </a>
                   <a
                     href="#"
                     onClick={() => { handleOptionClick('/results') }}
