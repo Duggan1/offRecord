@@ -3,7 +3,7 @@ from config import app, api,db, bcrypt
 from flask import make_response, redirect, request, session, jsonify
 from flask_restful import Resource, Api
 
-from models import User, Pick, Prediction, UFCEvent, UFCFight, League, PFLEvent, PFLFight
+from models import User, Pick, Prediction, UFCEvent, UFCFight, League, PFLEvent, PFLFight,ACAEvent,ACAFight,ONEEvent,ONEFight,BellatorEvent,BellatorFight
 # app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'  # Your database URI
 # db = SQLAlchemy(app)
@@ -679,7 +679,6 @@ class PFLEventResource(Resource):
 
         return {'message': 'PFL event submitted successfully'}, 201
 
-
 class PFLFightsResource(Resource):
     def get(self):
         # Retrieve all PFL events from the database
@@ -872,6 +871,555 @@ class PickByID(Resource):
 
 api.add_resource(PickByID, '/picks/<int:pick_id>')
 
+
+
+
+class ACAEventResource(Resource):
+    def post(self):
+        data = request.json
+
+        # Extract data from the request
+        event_name = data['event_name']
+        locationCC = data['locationCC']
+        backgroundImageSrc = data['backgroundImageSrc']
+        tapImage = data['tapImage']
+        fights = data['fights']
+
+        existing_event = ACAEvent.query.filter_by(event_name=event_name, locationCC=locationCC).first()
+        if existing_event:
+            return {'error': 'You have already submitted for this main event'}, 400
+
+
+        # Create a new PFLEvent object
+        new_event = ACAEvent(event_name=event_name, locationCC=locationCC,
+                             backgroundImageSrc=backgroundImageSrc, tapImage=tapImage)
+
+        # Create PFLFight objects and associate them with the PFLEvent
+        for fight in fights:
+            # Extract data from the fight
+            weight_class = fight['weightClass']
+            red_corner_name = fight['redCornerName']
+            blue_corner_name = fight['blueCornerName']
+            red_corner_country = fight['redCornerCountry']
+            blue_corner_country = fight['blueCornerCountry']
+            red_corner_image = fight['redCornerImage']
+            blue_corner_image = fight['blueCornerImage']
+
+            # Access records directly using the loop variable
+            red_corner_record = fight['redCornerRecord']
+            blue_corner_record = fight['blueCornerRecord']
+
+            method = fight['method']
+            round = fight['round']
+            winner = fight['winner']
+            odds = fight['odds']
+
+            # Create a new PFLFight instance
+            new_fight = ACAFight(weight_class=weight_class, red_corner_name=red_corner_name,
+                                blue_corner_name=blue_corner_name, red_corner_country=red_corner_country,
+                                blue_corner_country=blue_corner_country, blue_corner_image=blue_corner_image, red_corner_image=red_corner_image, red_corner_record=red_corner_record,
+                                blue_corner_record=blue_corner_record, method=method, round=round, winner=winner, odds=odds)
+
+            # Append the new fight to the event's fights relationship
+            new_event.fights.append(new_fight)
+
+        # Add and commit the new PFLEvent and associated PFLFights to the database
+        db.session.add(new_event)
+        db.session.commit()
+
+        return {'message': 'ACA event submitted successfully'}, 201
+
+class ONEEventResource(Resource):
+    def post(self):
+        data = request.json
+
+        # Extract data from the request
+        event_name = data['event_name']
+        locationCC = data['locationCC']
+        backgroundImageSrc = data['backgroundImageSrc']
+        tapImage = data['tapImage']
+        fights = data['fights']
+
+        existing_event = ONEEvent.query.filter_by(event_name=event_name, locationCC=locationCC).first()
+        if existing_event:
+            return {'error': 'You have already submitted for this main event'}, 400
+
+
+        # Create a new PFLEvent object
+        new_event = ONEEvent(event_name=event_name, locationCC=locationCC,
+                             backgroundImageSrc=backgroundImageSrc, tapImage=tapImage)
+
+        # Create PFLFight objects and associate them with the PFLEvent
+        for fight in fights:
+            # Extract data from the fight
+            weight_class = fight['weightClass']
+            red_corner_name = fight['redCornerName']
+            blue_corner_name = fight['blueCornerName']
+            red_corner_country = fight['redCornerCountry']
+            blue_corner_country = fight['blueCornerCountry']
+            red_corner_image = fight['redCornerImage']
+            blue_corner_image = fight['blueCornerImage']
+
+            # Access records directly using the loop variable
+            red_corner_record = fight['redCornerRecord']
+            blue_corner_record = fight['blueCornerRecord']
+
+            method = fight['method']
+            round = fight['round']
+            winner = fight['winner']
+            odds = fight['odds']
+
+            # Create a new PFLFight instance
+            new_fight = ONEFight(weight_class=weight_class, red_corner_name=red_corner_name,
+                                blue_corner_name=blue_corner_name, red_corner_country=red_corner_country,
+                                blue_corner_country=blue_corner_country, blue_corner_image=blue_corner_image, red_corner_image=red_corner_image, red_corner_record=red_corner_record,
+                                blue_corner_record=blue_corner_record, method=method, round=round, winner=winner, odds=odds)
+
+            # Append the new fight to the event's fights relationship
+            new_event.fights.append(new_fight)
+
+        # Add and commit the new PFLEvent and associated PFLFights to the database
+        db.session.add(new_event)
+        db.session.commit()
+
+        return {'message': 'ONE Championship event submitted successfully'}, 201
+
+class BellatorEventResource(Resource):
+    def post(self):
+        data = request.json
+
+        # Extract data from the request
+        event_name = data['event_name']
+        locationCC = data['locationCC']
+        backgroundImageSrc = data['backgroundImageSrc']
+        tapImage = data['tapImage']
+        fights = data['fights']
+
+        existing_event = BellatorEvent.query.filter_by(event_name=event_name, locationCC=locationCC).first()
+        if existing_event:
+            return {'error': 'You have already submitted for this main event'}, 400
+
+
+        # Create a new PFLEvent object
+        new_event = BellatorEvent(event_name=event_name, locationCC=locationCC,
+                             backgroundImageSrc=backgroundImageSrc, tapImage=tapImage)
+
+        # Create PFLFight objects and associate them with the PFLEvent
+        for fight in fights:
+            # Extract data from the fight
+            weight_class = fight['weightClass']
+            red_corner_name = fight['redCornerName']
+            blue_corner_name = fight['blueCornerName']
+            red_corner_country = fight['redCornerCountry']
+            blue_corner_country = fight['blueCornerCountry']
+            red_corner_image = fight['redCornerImage']
+            blue_corner_image = fight['blueCornerImage']
+
+            # Access records directly using the loop variable
+            red_corner_record = fight['redCornerRecord']
+            blue_corner_record = fight['blueCornerRecord']
+
+            method = fight['method']
+            round = fight['round']
+            winner = fight['winner']
+            odds = fight['odds']
+
+            # Create a new PFLFight instance
+            new_fight = BellatorFight(weight_class=weight_class, red_corner_name=red_corner_name,
+                                blue_corner_name=blue_corner_name, red_corner_country=red_corner_country,
+                                blue_corner_country=blue_corner_country, blue_corner_image=blue_corner_image, red_corner_image=red_corner_image, red_corner_record=red_corner_record,
+                                blue_corner_record=blue_corner_record, method=method, round=round, winner=winner, odds=odds)
+
+            # Append the new fight to the event's fights relationship
+            new_event.fights.append(new_fight)
+
+        # Add and commit the new PFLEvent and associated PFLFights to the database
+        db.session.add(new_event)
+        db.session.commit()
+
+        return {'message': 'Bellator event submitted successfully'}, 201
+
+
+
+
+class ACAFightsResource(Resource):
+    def get(self):
+        # Retrieve all PFL events from the database
+        aca_events = ACAEvent.query.all()
+
+        # Serialize the PFL events to JSON
+        aca_events_data = []
+        for event in aca_events:
+            event_data = {
+                'id': event.id,
+                'event_name': event.event_name,
+                'locationCC': event.locationCC,
+                'backgroundImageSrc': event.backgroundImageSrc,
+                'tapImage': event.tapImage,
+                'fights': [],
+            }
+
+            for fight in event.fights:
+                fight_data = {
+                    'weightClass': fight.weight_class,
+                    'redCornerName': fight.red_corner_name,
+                    'blueCornerName': fight.blue_corner_name,
+                    'redCornerCountry': fight.red_corner_country,
+                    'blueCornerCountry': fight.blue_corner_country,
+                    'redCornerImage': fight.red_corner_image,
+                    'blueCornerImage': fight.blue_corner_image,
+                    'redCornerRecord': fight.red_corner_record,
+                    'blueCornerRecord': fight.blue_corner_record,
+                    'method': fight.method,
+                    'round': fight.round,
+                    'winner': fight.winner,
+                    'odds': fight.odds,
+                }
+                event_data['fights'].append(fight_data)
+
+            aca_events_data.append(event_data)
+
+        return {'aca_events': aca_events_data}
+
+class ONEFightsResource(Resource):
+    def get(self):
+        # Retrieve all PFL events from the database
+        one_events = ONEEvent.query.all()
+
+        # Serialize the PFL events to JSON
+        one_events_data = []
+        for event in one_events:
+            event_data = {
+                'id': event.id,
+                'event_name': event.event_name,
+                'locationCC': event.locationCC,
+                'backgroundImageSrc': event.backgroundImageSrc,
+                'tapImage': event.tapImage,
+                'fights': [],
+            }
+
+            for fight in event.fights:
+                fight_data = {
+                    'weightClass': fight.weight_class,
+                    'redCornerName': fight.red_corner_name,
+                    'blueCornerName': fight.blue_corner_name,
+                    'redCornerCountry': fight.red_corner_country,
+                    'blueCornerCountry': fight.blue_corner_country,
+                    'redCornerImage': fight.red_corner_image,
+                    'blueCornerImage': fight.blue_corner_image,
+                    'redCornerRecord': fight.red_corner_record,
+                    'blueCornerRecord': fight.blue_corner_record,
+                    'method': fight.method,
+                    'round': fight.round,
+                    'winner': fight.winner,
+                    'odds': fight.odds,
+                }
+                event_data['fights'].append(fight_data)
+
+            one_events_data.append(event_data)
+
+        return {'one_events': one_events_data}
+
+class BellatorFightsResource(Resource):
+    def get(self):
+        # Retrieve all PFL events from the database
+        bellator_events = BellatorEvent.query.all()
+
+        # Serialize the PFL events to JSON
+        bellator_events_data = []
+        for event in bellator_events:
+            event_data = {
+                'id': event.id,
+                'event_name': event.event_name,
+                'locationCC': event.locationCC,
+                'backgroundImageSrc': event.backgroundImageSrc,
+                'tapImage': event.tapImage,
+                'fights': [],
+            }
+
+            for fight in event.fights:
+                fight_data = {
+                    'weightClass': fight.weight_class,
+                    'redCornerName': fight.red_corner_name,
+                    'blueCornerName': fight.blue_corner_name,
+                    'redCornerCountry': fight.red_corner_country,
+                    'blueCornerCountry': fight.blue_corner_country,
+                    'redCornerImage': fight.red_corner_image,
+                    'blueCornerImage': fight.blue_corner_image,
+                    'redCornerRecord': fight.red_corner_record,
+                    'blueCornerRecord': fight.blue_corner_record,
+                    'method': fight.method,
+                    'round': fight.round,
+                    'winner': fight.winner,
+                    'odds': fight.odds,
+                }
+                event_data['fights'].append(fight_data)
+
+            bellator_events_data.append(event_data)
+
+        return {'bellator_events': bellator_events_data}
+
+
+class ACAEventByID(Resource):
+    def get(self, event_id):
+        # Retrieve the PFL event from the database by ID
+        aca_event = ACAEvent.query.get(event_id)
+
+        if aca_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Serialize the PFL event to JSON
+        event_data = {
+            'event_name': aca_event.event_name,
+            'locationCC': aca_event.locationCC,
+            'backgroundImageSrc': aca_event.backgroundImageSrc,
+            'tapImage': aca_event.tapImage,
+            'fights': [],
+        }
+
+        for fight in aca_event.fights:
+            fight_data = {
+                'weightClass': fight.weight_class,
+                'redCornerName': fight.red_corner_name,
+                'blueCornerName': fight.blue_corner_name,
+                'redCornerCountry': fight.red_corner_country,
+                'blueCornerCountry': fight.blue_corner_country,
+                'redCornerImage': fight.red_corner_image,
+                'blueCornerImage': fight.blue_corner_image,
+                'redCornerRecord': fight.red_corner_record,
+                'blueCornerRecord': fight.blue_corner_record,
+                'method': fight.method,
+                'round': fight.round,
+                'winner': fight.winner,
+                'odds': fight.odds,
+            }
+            event_data['fights'].append(fight_data)
+
+        return {'aca_event': event_data}
+
+    def patch(self, event_id):
+        # Retrieve the PFL event from the database by ID
+        aca_event = ACAEvent.query.get(event_id)
+
+        if aca_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Get the JSON data from the request
+        data = request.get_json()
+
+        # Update fields
+        aca_event.backgroundImageSrc = data.get("backgroundImageSrc", aca_event.backgroundImageSrc)
+        aca_event.tapImage = data.get("tapImage", aca_event.tapImage)
+        aca_event.locationCC = data.get("locationCC", aca_event.locationCC)
+        aca_event.event_name = data.get("event_name", aca_event.event_name)
+
+        # Handle the fights data from the request
+        fights_data = data.get("fights")
+
+        # Update or create fights based on the data
+        if fights_data:
+            # Handle the relationship based on your data structure
+            aca_event.fights.delete()
+            # For example, if fights is a list of dictionaries:
+            for fight_data in fights_data:
+                fight = ACAFight(**fight_data)
+                aca_event.fights.append(fight)
+
+        # Commit changes to the database
+        db.session.commit()
+
+        return {'message': 'ACA event updated successfully'}
+
+    def delete(self, event_id):
+        # Retrieve the PFL event from the database by ID
+        aca_event = ACAEvent.query.get(event_id)
+
+        if aca_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Delete the PFL event
+        db.session.delete(aca_event)
+        db.session.commit()
+
+        return {'message': 'ACA event deleted successfully'}
+
+class ONEEventByID(Resource):
+    def get(self, event_id):
+        # Retrieve the PFL event from the database by ID
+        one_event = ONEEvent.query.get(event_id)
+
+        if one_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Serialize the PFL event to JSON
+        event_data = {
+            'event_name': one_event.event_name,
+            'locationCC': one_event.locationCC,
+            'backgroundImageSrc': one_event.backgroundImageSrc,
+            'tapImage': one_event.tapImage,
+            'fights': [],
+        }
+
+        for fight in one_event.fights:
+            fight_data = {
+                'weightClass': fight.weight_class,
+                'redCornerName': fight.red_corner_name,
+                'blueCornerName': fight.blue_corner_name,
+                'redCornerCountry': fight.red_corner_country,
+                'blueCornerCountry': fight.blue_corner_country,
+                'redCornerImage': fight.red_corner_image,
+                'blueCornerImage': fight.blue_corner_image,
+                'redCornerRecord': fight.red_corner_record,
+                'blueCornerRecord': fight.blue_corner_record,
+                'method': fight.method,
+                'round': fight.round,
+                'winner': fight.winner,
+                'odds': fight.odds,
+            }
+            event_data['fights'].append(fight_data)
+
+        return {'one_event': event_data}
+
+    def patch(self, event_id):
+        # Retrieve the PFL event from the database by ID
+        one_event = ONEEvent.query.get(event_id)
+
+        if one_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Get the JSON data from the request
+        data = request.get_json()
+
+        # Update fields
+        one_event.backgroundImageSrc = data.get("backgroundImageSrc", one_event.backgroundImageSrc)
+        one_event.tapImage = data.get("tapImage", one_event.tapImage)
+        one_event.locationCC = data.get("locationCC", one_event.locationCC)
+        one_event.event_name = data.get("event_name", one_event.event_name)
+
+        # Handle the fights data from the request
+        fights_data = data.get("fights")
+
+        # Update or create fights based on the data
+        if fights_data:
+            # Handle the relationship based on your data structure
+            one_event.fights.delete()
+            # For example, if fights is a list of dictionaries:
+            for fight_data in fights_data:
+                fight = ONEFight(**fight_data)
+                one_event.fights.append(fight)
+
+        # Commit changes to the database
+        db.session.commit()
+
+        return {'message': 'ONE Championship event updated successfully'}
+
+    def delete(self, event_id):
+        # Retrieve the PFL event from the database by ID
+        one_event = ONEEvent.query.get(event_id)
+
+        if one_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Delete the PFL event
+        db.session.delete(one_event)
+        db.session.commit()
+
+        return {'message': 'ONE Championship event deleted successfully'}
+
+class BellatorEventByID(Resource):
+    def get(self, event_id):
+        # Retrieve the PFL event from the database by ID
+        bellator_event = BellatorEvent.query.get(event_id)
+
+        if bellator_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Serialize the PFL event to JSON
+        event_data = {
+            'event_name': bellator_event.event_name,
+            'locationCC': bellator_event.locationCC,
+            'backgroundImageSrc': bellator_event.backgroundImageSrc,
+            'tapImage': bellator_event.tapImage,
+            'fights': [],
+        }
+
+        for fight in bellator_event.fights:
+            fight_data = {
+                'weightClass': fight.weight_class,
+                'redCornerName': fight.red_corner_name,
+                'blueCornerName': fight.blue_corner_name,
+                'redCornerCountry': fight.red_corner_country,
+                'blueCornerCountry': fight.blue_corner_country,
+                'redCornerImage': fight.red_corner_image,
+                'blueCornerImage': fight.blue_corner_image,
+                'redCornerRecord': fight.red_corner_record,
+                'blueCornerRecord': fight.blue_corner_record,
+                'method': fight.method,
+                'round': fight.round,
+                'winner': fight.winner,
+                'odds': fight.odds,
+            }
+            event_data['fights'].append(fight_data)
+
+        return {'bellator_event': event_data}
+
+    def patch(self, event_id):
+        # Retrieve the PFL event from the database by ID
+        bellator_event = BellatorEvent.query.get(event_id)
+
+        if bellator_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Get the JSON data from the request
+        data = request.get_json()
+
+        # Update fields
+        bellator_event.backgroundImageSrc = data.get("backgroundImageSrc", bellator_event.backgroundImageSrc)
+        bellator_event.tapImage = data.get("tapImage", bellator_event.tapImage)
+        bellator_event.locationCC = data.get("locationCC", bellator_event.locationCC)
+        bellator_event.event_name = data.get("event_name", bellator_event.event_name)
+
+        # Handle the fights data from the request
+        fights_data = data.get("fights")
+
+        # Update or create fights based on the data
+        if fights_data:
+            # Handle the relationship based on your data structure
+            bellator_event.fights.delete()
+            # For example, if fights is a list of dictionaries:
+            for fight_data in fights_data:
+                fight = BellatorFight(**fight_data)
+                bellator_event.fights.append(fight)
+
+        # Commit changes to the database
+        db.session.commit()
+
+        return {'message': 'Bellator event updated successfully'}
+
+    def delete(self, event_id):
+        # Retrieve the PFL event from the database by ID
+        bellator_event = BellatorEvent.query.get(event_id)
+
+        if bellator_event is None:
+            return make_response({"error": "Event not found"}, 404)
+
+        # Delete the PFL event
+        db.session.delete(bellator_event)
+        db.session.commit()
+
+        return {'message': 'Bellator event deleted successfully'}
+
+api.add_resource(ACAEventResource, '/submit-aca-event')
+api.add_resource(ACAFightsResource, '/aca-fights')
+api.add_resource(ACAEventByID, '/aca-events/<int:event_id>')
+
+api.add_resource(ONEEventResource, '/submit-one-event')
+api.add_resource(ONEFightsResource, '/one-fights')
+api.add_resource(ONEEventByID, '/one-events/<int:event_id>')
+
+api.add_resource(BellatorEventResource, '/submit-bellator-event')
+api.add_resource(BellatorFightsResource, '/bellator-fights')
+api.add_resource(BellatorEventByID, '/bellator-events/<int:event_id>')
 
 
 
