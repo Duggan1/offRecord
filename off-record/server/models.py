@@ -7,6 +7,7 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
 from datetime import datetime
 from flask import json
+from sqlalchemy import UniqueConstraint
 
 
 
@@ -223,6 +224,7 @@ class PFLFight(db.Model):
 
 class ACAEvent(db.Model):
     __tablename__ = 'aca_events'
+    __table_args__ = (UniqueConstraint('event_name', 'locationCC', name='unique_event_location'),)
 
     id = db.Column(db.Integer, primary_key=True)
     event_name = db.Column(db.String(255), nullable=False)

@@ -303,20 +303,20 @@ console.log(adminKevPickswID)
   };
 
   // Determine which card to display
-  const selectedUfcCard = showUfcCard ? oldCard : stallUfcCard;
+  
 
   
   const [isLoading, setIsLoading] = useState(true);
 
-      
-  
-// console.log(eventInfo)        
   useEffect(() => {
-    if (oldCard.length > 3)
-      setIsLoading(false); // Data has loaded
-      
-    
-  }, [oldCard]);
+    if (oldCard.length > 3 || ufcCard.length > 3) {
+      setIsLoading(false); // Data is considered loaded
+    }
+    // Dependency array includes oldCard to re-evaluate when oldCard changes
+  }, [oldCard || ufcCard]);
+  
+  // Determining which card to show based on the conditions
+  const selectedUfcCard = !isLoading ? ufcCard : (oldCard.length > 3 ? oldCard : stallUfcCard);
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);

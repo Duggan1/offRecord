@@ -32,8 +32,9 @@ function TommyACA({BGpic,tapImage,PFLEvents, adminKevPickswID, BellatorInfo, sta
         console.log(data)
         const EventNum = data.aca_events.length - 1
         console.log(data.aca_events)
-        setOldEvent(data.aca_events[EventNum] || []);
+        setOldEvent(data.aca_events[EventNum] ? data.aca_events[EventNum] : []);
         console.log(EventNum)
+        console.log(oldEvent)
        
         const newUfcCard = oldEvent.fights.map((fight, index) => {
           return {
@@ -71,7 +72,7 @@ function TommyACA({BGpic,tapImage,PFLEvents, adminKevPickswID, BellatorInfo, sta
 
 
 
-console.log( BellatorInfo[3])
+console.log( ufcCard)
 
 
   useEffect(() => {
@@ -100,7 +101,7 @@ console.log( BellatorInfo[3])
 
 
         const dataToSend = {
-          event_name: `${recreatedFights[0].red_corner_name} vs ${recreatedFights[0].blue_corner_name}`,
+          event_name: `${recreatedFights[0].redCornerName} vs ${recreatedFights[0].blueCornerName}`,
           locationCC: BellatorInfo[1],
           backgroundImageSrc: BellatorInfo[0],
           tapImage: BellatorInfo[3],
@@ -295,20 +296,22 @@ console.log(adminKevPickswID)
   };
 
   // Determine which card to display
-  const selectedUfcCard = showUfcCard ? oldCard : stallUfcCard;
+ 
 
   
   const [isLoading, setIsLoading] = useState(true);
 
-      
-  
-// console.log(eventInfo)        
   useEffect(() => {
-    if (oldCard.length > 3)
-      setIsLoading(false); // Data has loaded
-      
-    
-  }, [oldCard]);
+    if (oldCard.length > 3 || ufcCard.length > 3) {
+      setIsLoading(false); // Data is considered loaded
+    }
+    // Dependency array includes oldCard to re-evaluate when oldCard changes
+  }, [oldCard || ufcCard]);
+  
+  // Determining which card to show based on the conditions
+  const selectedUfcCard = !isLoading ? ufcCard : (oldCard.length > 3 ? oldCard : stallUfcCard);
+
+
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
