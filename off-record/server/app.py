@@ -1040,8 +1040,6 @@ class BellatorEventResource(Resource):
         return {'message': 'Bellator event submitted successfully'}, 201
 
 
-
-
 class ACAFightsResource(Resource):
     def get(self):
         # Retrieve all PFL events from the database
