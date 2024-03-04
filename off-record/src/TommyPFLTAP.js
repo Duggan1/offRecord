@@ -427,10 +427,14 @@ const handleSubmit = async (e) => {
             method: predictions[index]?.method ,
             round: predictions[index]?.round, 
         }));
+        const parts = oldEvent.locationCC.split(',').map(part => part.trim());
+
+        // Get the last element from the array, which should be the country
+        const country = parts[parts.length - 1];
 
         const dataToSend = {
           owner: user.username !== undefined ? user.username : user.userName,
-          location: 'Saudi Arabia',
+          location: country,
           mainEvent: ufcCard[0]?.fighters.join(' vs '),
           predictions: predictionData,
           event_league:'PFL',
@@ -910,7 +914,7 @@ if (isLoading) {
                                 backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`
                             //   backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Bellator_MMA_Logo.svg/2560px-Bellator_MMA_Logo.svg.png)`
                             }} alt={`PFL `}> </h1>
-    {oldEvent  ? (
+    {oldEvent || BellatorInfo   ? (
   <div
     style={{ zIndex: '1', display: 'flex', justifyContent: 'center', backgroundColor: 'whitesmoke',paddingTop:'5px' }}
   >
@@ -918,7 +922,7 @@ if (isLoading) {
       className="text-black homebullet"
       style={{ marginBottom: '0%', paddingBottom: '0%', marginTop: '0%', paddingTop: '0%', backgroundColor: 'whitesmoke', color: 'black' }}
     >
-      {oldEvent.locationCC}
+     {oldEvent.locationCC ? oldEvent.locationCC : BellatorInfo[1]}
     </p>
     <h6
       className="snow color-transp"
@@ -942,7 +946,7 @@ if (isLoading) {
 
 <p style={{color:'black',
         backgroundColor: 'whitesmoke'}}>
-      {oldEvent.backgroundImageSrc}
+      {oldEvent.backgroundImageSrc ? oldEvent.backgroundImageSrc : BellatorInfo[0]}
     </p>
                   <div class="element-with-border2"></div>
                 <div className='flex'>
@@ -954,7 +958,7 @@ if (isLoading) {
                               width:'400px',
                               minWidth:'70%',
                               maxWidth:'100%',
-                              backgroundImage: `url(${oldEvent.tapImage})`
+                              backgroundImage: `url(${oldEvent.tapImage ? oldEvent.tapImage : BellatorInfo[3] })`
                             }} alt={`Flag of ${location}`}> </h1>
                             </div>
 

@@ -350,7 +350,7 @@ console.log(adminKevPickswID)
   
   const mainEvent = selectedUfcCard.length > 2 ? selectedUfcCard[0].fighters.join(' vs ') : 'Loading'
   console.log(mainEvent)
- 
+console.log(oldCard.locationCC)
   const [predictions, setPredictions] = useState([]);
 
 
@@ -423,9 +423,16 @@ const handleSubmit = async (e) => {
             round: predictions[index]?.round, 
         }));
 
+        
+        const parts = oldEvent.locationCC.split(',').map(part => part.trim());
+
+        // Get the last element from the array, which should be the country
+        const country = parts[parts.length - 1];
+        
+
         const dataToSend = {
           owner: user.username !== undefined ? user.username : user.userName,
-          location: oldEvent.locationCC,
+          location: country,
           mainEvent: ufcCard[0]?.fighters.join(' vs '),
           predictions: predictionData,
           event_league:'ACA',
@@ -905,7 +912,7 @@ if (isLoading) {
                               //   backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`
                               backgroundImage: `url(https://www.aca-mma.com/img/logo/aca-logo-black.png?v=28.11.17)`
                             }} alt={`PFL `}> </h1></center>
-    {oldEvent  ? (
+    {oldEvent || BellatorInfo  ? (
   <div
     style={{ zIndex: '1', display: 'flex', justifyContent: 'center', backgroundColor: 'whitesmoke' }}
   >
@@ -913,7 +920,7 @@ if (isLoading) {
       className="text-black homebullet"
       style={{ marginBottom: '0%', paddingBottom: '0%', marginTop: '0%', paddingTop: '0%', backgroundColor: 'whitesmoke', color: 'black' }}
     >
-      {oldEvent.locationCC}
+      {oldEvent.locationCC ? oldEvent.locationCC : BellatorInfo[1]}
     </p>
     <h6
       className="snow color-transp"
@@ -939,7 +946,7 @@ if (isLoading) {
 
 <p style={{color:'black',
         backgroundColor: 'whitesmoke'}}>
-      {oldEvent.backgroundImageSrc}
+      {oldEvent.backgroundImageSrc ? oldEvent.backgroundImageSrc : BellatorInfo[0]}
     </p>
                   <div class="element-with-border2"></div>
                 <div className='flex ' style={{color:'black',
@@ -952,7 +959,7 @@ if (isLoading) {
                               width:'400px',
                               minWidth:'70%',
                               maxWidth:'100%',
-                              backgroundImage: `url(${oldEvent.tapImage})`
+                              backgroundImage: `url(${oldEvent.tapImage ? oldEvent.tapImage : BellatorInfo[3] })`
                             }} alt={`Flag of ${location}`}> </h1>
                             </div>
 

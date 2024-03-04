@@ -1379,7 +1379,8 @@ function calculateLiveTotalPoints(result) {
                   <div style={{
                     
                               backgroundSize: '100% 100%',
-                              backgroundImage:result.event_league === null || result.event_league === 'UFC' ?  `url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/UFC_logo.svg/2560px-UFC_logo.svg.png)` :  `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`
+                              backgroundImage:result.event_league === null || result.event_league === 'UFC' ?  `url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/UFC_logo.svg/2560px-UFC_logo.svg.png)`
+                               : result.event_league === 'ACA' ? `url(https://www.aca-mma.com/img/logo/aca-logo-black.png?v=28.11.17)`  : `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)` 
                             }} >
                   
                   <strong >
