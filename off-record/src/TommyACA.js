@@ -21,7 +21,227 @@ function TommyACA({BGpic,tapImage,PFLEvents, adminKevPickswID, BellatorInfo, sta
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
+  const [oldCard , setOldCard] = useState([])
+  const [oldEvent , setOldEvent] = useState([])
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://off-therecordpicks.onrender.com/aca-fights');
+        const data = await response.json();
+        console.log(data)
+        const EventNum = data.aca_events.length - 1
+        console.log(data.aca_events)
+        setOldEvent(data.aca_events[EventNum] || []);
+        console.log(EventNum)
+       
+        const newUfcCard = oldEvent.fights.map((fight, index) => {
+          return {
+              fighters: [fight.redCornerName, fight.blueCornerName],
+              match: fight.weightClass || '',
+              records: [fight.redCornerRecord, fight.blueCornerRecord],
+              flags: [fight.redCornerCountry, fight.blueCornerCountry],
+              fighterPics: [fight.redCornerImage, fight.blueCornerImage],
+              odds: fight.odds  || ''
+
+          };
+      });
+
+      // Faster!!!! need to Do!!!
+
+      setOldCard(newUfcCard);
+      // setTapI(ufcEvents.tapImage)
+      // setUfcI(ufcEvents.backgroundImageSrc.startsWith("/s3/files/")
+      // ? "https://dmxg5wxfqgb4u.cloudfront.net/" + ufcEvents.backgroundImageSrc : ufcEvents.backgroundImageSrc )
+      // let locationInfo = [];
+      // locationInfo = ufcEvents.locationCC ? ufcEvents.locationCC.split(', ').map(part => part.trim()) : [];
+      // setLo(locationInfo[0])
+      // setLo2(locationInfo[1])
+      // setLo3(locationInfo[locationInfo.length - 1])
+      // setLNmenow(ufcEvents.event_name)
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+
+
+console.log( BellatorInfo[3])
+
+
+  useEffect(() => {
+    async function submitPFLEvent() {
+      try {
+        // Example data to send in the POST request
+        const recreatedFights = ufcCard.map((fight, index) => {
+          return {
+            weightClass: fight.match,
+            redCornerName: fight.fighters[0],
+            blueCornerName: fight.fighters[1],
+            redCornerCountry: fight.flags[0].length > 1 ? fight.flags[0] : fight.flags2[0] ,
+            blueCornerCountry: fight.flags[1].length > 1 ? fight.flags[1] : fight.flags2[1] ,
+            redCornerRecord: fight.records[0] || ' ',
+            blueCornerRecord: fight.records[1] || ' ',
+            redCornerImage: fight.fighterPics[0],
+            blueCornerImage: fight.fighterPics[1],
+            // Add more properties as needed
+            method: fight.method || ' ',  // Example placeholder
+            round: fight.round || ' ', // Example placeholder
+            winner: fight.winner || ' ',
+            odds: fight.odds || ' ',
+            // Example placeholder
+          };
+        });
+
+
+        const dataToSend = {
+          event_name: `${recreatedFights[0].red_corner_name} vs ${recreatedFights[0].blue_corner_name}`,
+          locationCC: BellatorInfo[1],
+          backgroundImageSrc: BellatorInfo[0],
+          tapImage: BellatorInfo[3],
+          // fights: eventInfo.fights,
+          // records: eventInfo.records,
+          fights: recreatedFights,
+        };
+
+        // Make a POST request to submit UFC event
+        const postResponse = await axios.post('https://off-therecordpicks.onrender.com/submit-aca-event', dataToSend, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (postResponse.status === 201) {
+          // Handle success
+          console.log('ACA event submitted successfully:', postResponse.data);
+          // Perform any further actions here
+        } else {
+          // Handle errors
+          console.error('Network response was not ok');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        // Handle errors and validation errors as needed
+      }
+    }
+
+    // Call the submitUfcEvent function separately, not dependent on the fetchData useEffect
+    submitPFLEvent();
+  }, [ufcCard.length > 3 ]);
+
+  const patchEvent = () => {
+
+    const recreatedFights = ufcCard.map((fight, index) => {
+
+
+
+      return {
+        weight_class: fight.match,
+        red_corner_name: fight.fighters[0],
+        blue_corner_name: fight.fighters[1],
+        red_corner_country: fight.flags[0] && fight.flags[0].length > 1 ? fight.flags[0] : (fight.flags2[0] && fight.flags2[0].length > 1 ? fight.flags2[0] : ' '),
+        blue_corner_country: fight.flags[1] && fight.flags[1].length > 1 ? fight.flags[1] : (fight.flags2[1] && fight.flags2[1].length > 1 ? fight.flags2[1] : ' '),      
+        red_corner_record: fight.records[0] || ' ',
+        blue_corner_record: fight.records[1] || ' ',
+        red_corner_image: fight.fighterPics[0],
+        blue_corner_image: fight.fighterPics[1],
+        // Add more properties as needed
+        method: fight.method, // Example placeholder
+        round: fight.round, // Example placeholder
+        winner: fight.winner,
+        odds: fight.odds // Example placeholder
+      };
+    });
+
+    console.log(recreatedFights);
+
+    const dataToSend = {
+        event_name: `${recreatedFights[0].red_corner_name} vs ${recreatedFights[0].blue_corner_name}`,
+        locationCC: BellatorInfo[1],
+        backgroundImageSrc: BellatorInfo[0],
+        tapImage: BellatorInfo[3],
+        fights: recreatedFights,
+    };
+    console.log(dataToSend)
+
+    fetch(`https://off-therecordpicks.onrender.com/aca-events/${oldEvent.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error("Failed to update pick");
+        }
+        if (response.ok) {
+          // Handle success
+          console.log(response)
+          const responseData = await response.json();
+          console.log('ACA Card patched successfully:', responseData);
+          // Perform any further actions here
+        }
+        // Refresh the list of picks after a successful update
+        // return fetchPicks();
+      })
+      .catch((error) => {
+        console.error("Error updating pick:", error);
+        // Handle error as needed
+      });
+  };
+
+
+  useEffect(() => {
+    // Check if ufcCard2 and ufcCard3 are both loaded
+    if (ufcCard && oldCard) {
+      // Check if the details do not match for any fight
+      const detailsDoNotMatch = ufcCard.some((fight, index) => {
+        const ufcCard3Fight = oldCard[index];
+
+        if (!ufcCard3Fight) {
+          console.log(`ufcCard3Fight is undefined for index: ${index}`);
+          return true; // or handle the case where ufcCard3Fight is undefined
+        }
+
+        // Compare relevant properties within each fight for ufcCard2 and ufcCard3
+
+        const backgroundImageSrcComparison =  BellatorInfo[0] === oldEvent.backgroundImageSrc;
+        const tapImageComparison = BellatorInfo[3] === oldEvent.tapImage;
+        const locationCCComparison = BellatorInfo[1] === oldEvent.locationCC;
+        const event_nameComparison = `${ufcCard[0].redCornerName} vs ${ufcCard[0].blueCornerName}` === oldEvent.event_name;
+
+        const matchComparison = fight.match === ufcCard3Fight.match;
+
+        // const oddsComparison = fight.odds === ufcCard3Fight.odds;
+
+        const recordsComparison = fight.records[0] === ufcCard3Fight.records[0] && fight.records[1] === ufcCard3Fight.records[1];
+
+        const flagComparison = fight.flags[0].length > 1 && fight.flags[1].length > 1
+
+        console.log(`Fight ${index + 1} - Match Comparison: ${matchComparison}`);
+        console.log(`Fight ${index + 1} - Records Comparison: ${recordsComparison}`);
+
+        return !(matchComparison && recordsComparison  && flagComparison && backgroundImageSrcComparison && tapImageComparison && locationCCComparison && event_nameComparison );
+      });
+
+      if (detailsDoNotMatch) {
+        // Details do not match, ready to patch ufcEvent
+        console.log('Details do not match! Ready to patch ufcEvent');
+        //////////////////////////////////
+        patchEvent();
+      } else {
+        // The details, including fights, match
+        console.log('Details match!');
+        // console.log(ufcCard2)
+      }
+    }
+  }, [oldCard.length > 3 && ufcCard.length > 3 ]);
 
   const [backupID, setBackupID] = useState(0)
   useEffect(() => {
@@ -75,7 +295,7 @@ console.log(adminKevPickswID)
   };
 
   // Determine which card to display
-  const selectedUfcCard = showUfcCard ? ufcCard : stallUfcCard;
+  const selectedUfcCard = showUfcCard ? oldCard : stallUfcCard;
 
   
   const [isLoading, setIsLoading] = useState(true);
@@ -84,11 +304,11 @@ console.log(adminKevPickswID)
   
 // console.log(eventInfo)        
   useEffect(() => {
-    if (ufcCard.length > 3)
+    if (oldCard.length > 3)
       setIsLoading(false); // Data has loaded
       
     
-  }, [ufcCard]);
+  }, [oldCard]);
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
@@ -202,10 +422,10 @@ const handleSubmit = async (e) => {
 
         const dataToSend = {
           owner: user.username !== undefined ? user.username : user.userName,
-          location: 'Saudi Arabia',
+          location: oldEvent.locationCC,
           mainEvent: ufcCard[0]?.fighters.join(' vs '),
           predictions: predictionData,
-          event_league:'PFL',
+          event_league:'ACA',
           user_id: user.id !== undefined ? user.id : backupID,
       };
       
@@ -682,7 +902,7 @@ if (isLoading) {
                               //   backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`
                               backgroundImage: `url(https://www.aca-mma.com/img/logo/aca-logo-black.png?v=28.11.17)`
                             }} alt={`PFL `}> </h1></center>
-    {BellatorInfo  ? (
+    {oldEvent  ? (
   <div
     style={{ zIndex: '1', display: 'flex', justifyContent: 'center', backgroundColor: 'whitesmoke' }}
   >
@@ -690,7 +910,7 @@ if (isLoading) {
       className="text-black homebullet"
       style={{ marginBottom: '0%', paddingBottom: '0%', marginTop: '0%', paddingTop: '0%', backgroundColor: 'whitesmoke', color: 'black' }}
     >
-      {BellatorInfo[1]}
+      {oldEvent.locationCC}
     </p>
     <h6
       className="snow color-transp"
@@ -716,7 +936,7 @@ if (isLoading) {
 
 <p style={{color:'black',
         backgroundColor: 'whitesmoke'}}>
-      {BellatorInfo[0]}
+      {oldEvent.backgroundImageSrc}
     </p>
                   <div class="element-with-border2"></div>
                 <div className='flex ' style={{color:'black',
@@ -729,7 +949,7 @@ if (isLoading) {
                               width:'400px',
                               minWidth:'70%',
                               maxWidth:'100%',
-                              backgroundImage: `url(${BellatorInfo[3]})`
+                              backgroundImage: `url(${oldEvent.tapImage})`
                             }} alt={`Flag of ${location}`}> </h1>
                             </div>
 

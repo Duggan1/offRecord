@@ -136,6 +136,7 @@ function TommyPFLTAP({BGpic,tapImage,PFLEvents, adminKevPickswID, BellatorInfo, 
     submitPFLEvent();
   }, [ufcCard.length > 3 ]);
 
+
   const patchEvent = () => {
 
     const recreatedFights = ufcCard.map((fight, index) => {
@@ -163,7 +164,7 @@ function TommyPFLTAP({BGpic,tapImage,PFLEvents, adminKevPickswID, BellatorInfo, 
     console.log(recreatedFights);
   
     const dataToSend = {
-        event_name: `${ufcCard[0].red_corner_name} vs ${ufcCard[0].blue_corner_name}`,
+        event_name: mainEvent,
         locationCC: BellatorInfo[1],
         backgroundImageSrc: BellatorInfo[0],
         tapImage: BellatorInfo[3],
