@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 // import './tailwind.css'
-import { ChevronUpIcon } from '@heroicons/react/24/solid';
+import { ChevronUpIcon, PlusIcon } from '@heroicons/react/24/solid';
 
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -121,13 +121,16 @@ export default function P4pHeader({user, onLogout}) {
     background: 'linear-gradient(to right, darkred 50%, navy 50%)',
   }}
  className="flex justify-between w-full px-4 py-2 text-white text-sm font-medium text-left bg-darkred-navy  rounded-lg hover:bg-purple-300 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
-              <span className='bg-white text-black' style={{}}>Pick <span className='color-green'>4</span> Points!</span>
-              <ChevronUpIcon
+              <span className='bg-white text-black' style={{}}>Pick <span className='color-green'>4</span> Points !</span>
+              {/* <ChevronUpIcon
                 className={`${open ? 'transform rotate-180' : ''
                   } w-5 h-5 text-white-500`}
-              />
+              /> */}
+              <PlusIcon
+  className={`${open ? 'transform rotate-45' : ''} w-5 h-5 bg-black text-green-500`}
+/>
             </Disclosure.Button>
-            <Disclosure.Panel className="px-4 bg-white pt-4 pb-2 text-sm text-gray-500" style={{borderRight:'navy 4px solid',borderLeft:'darkred 4px solid',marginTop:'-5px'}}>
+            <Disclosure.Panel className="px-4 bg-white pt-4  text-sm text-gray-500" style={{borderRight:'navy 4px solid',borderLeft:'darkred 4px solid',marginTop:'-5px'}}>
               <div className="space-y-1">
                 {['UFC', 'PFL', 'ACA', 'Bellator'].map((organization) => (
                   <a
@@ -298,10 +301,9 @@ export default function P4pHeader({user, onLogout}) {
   }}
  className="flex justify-between w-full px-4 py-2 text-white text-sm font-medium text-left bg-darkred-navy  rounded-lg hover:bg-purple-300 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
               <span className='text-bold'>Pick 4 Points!</span>
-              <ChevronUpIcon
-                className={`${open ? 'transform rotate-180' : ''
-                  } w-5 h-5 text-white-500`}
-              />
+              <PlusIcon
+  className={`${open ? 'transform rotate-45' : ''} w-5 h-5 bg-black text-green-500`}
+/>
             </Disclosure.Button>
             <Disclosure.Panel className="px-4 pt-4 text-sm text-gray-500" style={{borderRight:'navy 4px solid',borderLeft:'darkred 4px solid',marginTop:'-6px'}}>
               <div className="space-y-1">
