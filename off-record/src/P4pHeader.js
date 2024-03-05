@@ -39,7 +39,12 @@ export default function P4pHeader({user, onLogout}) {
 
 
   return (
-    <Disclosure as="nav" className="bg-white shadow">
+    <Disclosure as="nav" className="bg-white shadow" style={{
+      maxWidth: '100%', // Set maximum width
+      // Hide overflow
+      textOverflow: 'ellipsis', // Add ellipsis if text overflows
+      whiteSpace: 'nowrap', // Keep text on a single line
+    }}>
       {({ open }) => (
         <>
         {/* <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div> */}
@@ -122,7 +127,7 @@ export default function P4pHeader({user, onLogout}) {
                   } w-5 h-5 text-white-500`}
               />
             </Disclosure.Button>
-            <Disclosure.Panel className="px-4 bg-white pt-4 pb-2 text-sm text-gray-500">
+            <Disclosure.Panel className="px-4 bg-white pt-4 pb-2 text-sm text-gray-500" style={{borderRight:'navy 4px solid',borderLeft:'darkred 4px solid',marginTop:'-5px'}}>
               <div className="space-y-1">
                 {['UFC', 'PFL', 'ACA', 'Bellator'].map((organization) => (
                   <a
@@ -140,6 +145,8 @@ export default function P4pHeader({user, onLogout}) {
                   </a>
                 ))}
               </div>
+              <div style={{borderBottom:'solid white 0px',width:'140%',marginLeft:'-20%'}} class="element-with-border2"></div>
+              
             </Disclosure.Panel>
           </>
         )}
@@ -296,7 +303,7 @@ export default function P4pHeader({user, onLogout}) {
                   } w-5 h-5 text-white-500`}
               />
             </Disclosure.Button>
-            <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+            <Disclosure.Panel className="px-4 pt-4 text-sm text-gray-500" style={{borderRight:'navy 4px solid',borderLeft:'darkred 4px solid',marginTop:'-6px'}}>
               <div className="space-y-1">
                 {['UFC', 'PFL', 'ACA', 'Bellator'].map((organization) => (
                   <a
@@ -314,6 +321,7 @@ export default function P4pHeader({user, onLogout}) {
                   </a>
                 ))}
               </div>
+              <div style={{borderBottom:'solid white 3px',width:'130%',marginLeft:'-15%'}} class="element-with-border2"></div>
             </Disclosure.Panel>
           </>
         )}

@@ -889,7 +889,12 @@ if (isLoading) {
  : */}
  
 
-    <div className="tommy">
+    <div className="tommy" style={{
+    maxWidth: '100%', // Set maximum width
+    overflow: 'hidden', // Hide overflow
+    textOverflow: 'ellipsis', // Add ellipsis if text overflows
+    whiteSpace: 'nowrap', // Keep text on a single line
+  }}>
 
 
           {/* <button className='dreamcardbutton' onClick={toggleCard}>
