@@ -358,16 +358,15 @@ const toggleDetails =()=>{
 }
 
   return (<>
-  <P4pHeader onLogout={onLogout} user={user} />
-<div>
+  <P4pHeader  onLogout={onLogout} user={user} />
+<div style={{
+    maxWidth: '100%', // Set maximum width
+    overflow: 'hidden', // Hide overflow
+    textOverflow: 'ellipsis', // Add ellipsis if text overflows
+    whiteSpace: 'nowrap', // Keep text on a single line
+  }}>
 
-
-
-
-
-
-  
-    <div style={{backgroundImage:'url(https://pokerstarslearn.com/wp-content/uploads/2019/04/GettyImages-648062892-scaled.jpg)',transform: 'scaleX(-1)', backgroundSize:'100% 100%', minHeight:'200px'}}>
+<div className="background-div" style={{backgroundImage: 'url(https://www.mlive.com/resizer/jkI5VX3E2PGcCDXLJv0Wcnf5O30=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/CNOEFDKGXJDQFCCITKGY76PD3E.jpg)',  backgroundSize:'100% 100%', minHeight:'200px'}}>
             <h1 style={{
                   textAlign: 'center',
                   marginTop: '0%',
@@ -377,8 +376,8 @@ const toggleDetails =()=>{
                   fontSize:'65px',
                   maxWidth: '100%',
                   letterSpacing: '4px',
-                  transform: 'scaleX(-1)',
-                  
+                paddingTop:'150px',
+                  zIndex:'10'
                   }}>
                   Compare 
                   </h1>

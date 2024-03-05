@@ -114,7 +114,7 @@ export default function P4pHeader({user, onLogout}) {
             <Disclosure.Button style={{
     background: 'linear-gradient(to right, darkred 50%, navy 50%)',
   }}
- className="flex justify-between w-full px-4 py-2 text-white text-sm font-medium text-left bg-darkred-navy  rounded-lg hover:bg-purple-300 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+ className={` ${open || currentPath == "/section3" || currentPath === "/aca" || currentPath === "/one-championship" || currentPath === "/pfl-europe" || currentPath === "/bellator" ? '': 'shake'} flex justify-between w-full px-4 py-2 text-white text-sm font-medium text-left bg-darkred-navy  rounded-lg hover:bg-purple-300 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75`}>
               <span className='bg-white text-black' style={{}}>Pick <span className='color-green'>4</span> Points !</span>
               {/* <ChevronUpIcon
                 className={`${open ? 'transform rotate-180' : ''

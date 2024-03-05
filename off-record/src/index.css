@@ -541,6 +541,24 @@ code {
   background: linear-gradient(to right, red 50%, blue 50%);
   
 }
+
+
+.sum41header {
+  position: relative; /* Needed for z-index to work */
+  z-index: 10; /* Higher than the background div */
+}
+
+.background-div {
+
+}
+
+
+
+
+
+
+
+
 @keyframes shake {
   0% { transform: translateX(0); }
   1% { transform: translateY(0); }
