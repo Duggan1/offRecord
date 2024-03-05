@@ -121,7 +121,7 @@ export default function P4pHeader({user, onLogout}) {
                   } w-5 h-5 text-white-500`}
               /> */}
               <PlusIcon
-  className={`${open ? 'transform rotate-45' : ''} w-5 h-5 bg-black text-green-500`}
+  className={`${open ? 'transform rotate-45 text-red-700 bg-white br-50  '  : 'text-green-500 bg-black '} w-5 h-5 `}
 />
             </Disclosure.Button>
             <Disclosure.Panel className="px-4 bg-white pt-4  text-sm text-gray-500" style={{borderRight:'navy 4px solid',borderLeft:'darkred 4px solid',marginTop:'-5px'}}>
@@ -303,7 +303,7 @@ export default function P4pHeader({user, onLogout}) {
  className={` ${!open ? 'shake': ''} flex  justify-between w-full px-4 py-2 text-white text-sm font-medium text-left bg-darkred-navy  rounded-lg hover:bg-purple-300 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75`}>
               <span className='text-bold'>Pick 4 Points!</span>
               <PlusIcon
-  className={`${open ? 'transform rotate-45' : ''} w-5 h-5 bg-black text-green-500`}
+  className={`${open ? 'transform rotate-45 text-red-700 bg-white br-50  '  : 'text-green-500 bg-black '} w-5 h-5 `}
 />
             </Disclosure.Button>
             <Disclosure.Panel className="px-4 pt-4 text-sm text-gray-500" style={{borderRight:'navy 4px solid',borderLeft:'darkred 4px solid',marginTop:'-6px',marginBottom:'-6px'}}>

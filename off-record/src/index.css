@@ -541,7 +541,9 @@ code {
   background: linear-gradient(to right, red 50%, blue 50%);
   
 }
-
+.br-50{
+  border-radius: 50%;
+}
 
 .sum41header {
   position: relative; /* Needed for z-index to work */
