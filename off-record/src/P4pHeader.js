@@ -108,7 +108,7 @@ export default function P4pHeader({user, onLogout}) {
                     Pick 4 PFL 
                   </a> */}
                   
-                    <a className={`${currentPath === "/" ? " i items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}>
+                    <a className={`${currentPath === "/" ? " i items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":' items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}>
         <Disclosure>
         {({ open }) => (
           <>
