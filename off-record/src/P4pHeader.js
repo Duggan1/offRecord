@@ -305,7 +305,7 @@ export default function P4pHeader({user, onLogout}) {
   className={`${open ? 'transform rotate-45' : ''} w-5 h-5 bg-black text-green-500`}
 />
             </Disclosure.Button>
-            <Disclosure.Panel className="px-4 pt-4 text-sm text-gray-500" style={{borderRight:'navy 4px solid',borderLeft:'darkred 4px solid',marginTop:'-6px'}}>
+            <Disclosure.Panel className="px-4 pt-4 text-sm text-gray-500" style={{borderRight:'navy 4px solid',borderLeft:'darkred 4px solid',marginTop:'-6px',marginBottom:'-6px'}}>
               <div className="space-y-1">
                 {['UFC', 'PFL', 'ACA', 'Bellator'].map((organization) => (
                   <a
@@ -323,9 +323,16 @@ export default function P4pHeader({user, onLogout}) {
                   </a>
                 ))}
               </div>
-              <div style={{borderBottom:'solid white 3px',width:'130%',marginLeft:'-15%'}} class="element-with-border2"></div>
+              
             </Disclosure.Panel>
-          </>
+            
+            { open ?   <div style={{borderBottom:'solid white 3px',width:'100%',
+      // maxWidth: '100%', // Set maximum width
+      // Hide overflow
+      textOverflow: 'ellipsis', // Add ellipsis if text overflows
+      whiteSpace: 'nowrap', // Keep text on a single line
+    }} class="element-with-border2"></div>: null}
+          </> 
         )}
       </Disclosure>
 
