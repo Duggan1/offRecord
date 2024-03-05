@@ -108,7 +108,7 @@ export default function P4pHeader({user, onLogout}) {
                     Pick 4 PFL 
                   </a> */}
                   
-                    <a className={`${currentPath === "/" ? " i items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":' items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}>
+                    <a className={`${currentPath === "/section3" || currentPath === "/aca" || currentPath === "/one-championship" || currentPath === "/pfl-europe" || currentPath === "/bellator" ? " mt-3 items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":' mt-3 items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}>
         <Disclosure>
         {({ open }) => (
           <>
@@ -136,7 +136,7 @@ export default function P4pHeader({user, onLogout}) {
                       console.log(`${paths[organization]} clicked`);
                     }}
                   >
-                    {organization}
+                    {organization} 
                   </a>
                 ))}
               </div>
@@ -302,7 +302,7 @@ export default function P4pHeader({user, onLogout}) {
                   <a
                     key={organization}
                     href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className={`block px-4 py-2 text-sm text-gray-700 hover ${currentPath === paths[organization] ? 'bg-gray-100 block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700' : ''} `}
                     onClick={(e) => {
                       e.preventDefault();
                       handleOptionClick(paths[organization]);
