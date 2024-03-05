@@ -281,7 +281,14 @@ export default function P4pHeader({user, onLogout}) {
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 pb-4 ">
               {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
-             
+              <Disclosure.Button
+                as="a"
+                href="#"
+                onClick={() => { handleOptionClick('/') }}
+                className={`${currentPath === "/" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
+              >
+                Home
+              </Disclosure.Button>
 
 
 
@@ -289,6 +296,7 @@ export default function P4pHeader({user, onLogout}) {
               <Disclosure>
         {({ open }) => (
           <>
+          
             <Disclosure.Button style={{
     background: 'linear-gradient(to right, darkred 50%, navy 50%)',
   }}
@@ -312,7 +320,7 @@ export default function P4pHeader({user, onLogout}) {
                       console.log(`${paths[organization]} clicked`);
                     }}
                   >
-                    {organization}
+                    {organization} 
                   </a>
                 ))}
               </div>
@@ -364,14 +372,7 @@ export default function P4pHeader({user, onLogout}) {
                 Pick 4 Bellator
               </Disclosure.Button>
               /////////////////////////////// */}
-               <Disclosure.Button
-                as="a"
-                href="#"
-                onClick={() => { handleOptionClick('/') }}
-                className={`${currentPath === "/" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
-              >
-                Home
-              </Disclosure.Button>
+              
               <Disclosure.Button
                 as="a"
                 href="#"
