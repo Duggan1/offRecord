@@ -73,13 +73,7 @@ export default function P4pHeader({user, onLogout}) {
                 </div>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  <a
-                    href="#"
-                    onClick={() => { handleOptionClick('/') }}
-                    className={`${currentPath === "/" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
-                  >
-                    Home
-                  </a>
+                  
                   
                   {/* <a
                     href="#"
@@ -156,7 +150,13 @@ export default function P4pHeader({user, onLogout}) {
          </Disclosure>
       </a>
      
-
+      <a
+                    href="#"
+                    onClick={() => { handleOptionClick('/') }}
+                    className={`${currentPath === "/" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
+                  >
+                    Home
+                  </a>
 
 
                   <a
@@ -279,16 +279,9 @@ export default function P4pHeader({user, onLogout}) {
           <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
 
           <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 pb-4 pt-2">
+            <div className="space-y-1 pb-4 ">
               {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
-              <Disclosure.Button
-                as="a"
-                href="#"
-                onClick={() => { handleOptionClick('/') }}
-                className={`${currentPath === "/" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
-              >
-                Home
-              </Disclosure.Button>
+             
 
 
 
@@ -299,7 +292,7 @@ export default function P4pHeader({user, onLogout}) {
             <Disclosure.Button style={{
     background: 'linear-gradient(to right, darkred 50%, navy 50%)',
   }}
- className="flex justify-between w-full px-4 py-2 text-white text-sm font-medium text-left bg-darkred-navy  rounded-lg hover:bg-purple-300 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+ className={` ${!open ? 'shake': ''} flex  justify-between w-full px-4 py-2 text-white text-sm font-medium text-left bg-darkred-navy  rounded-lg hover:bg-purple-300 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75`}>
               <span className='text-bold'>Pick 4 Points!</span>
               <PlusIcon
   className={`${open ? 'transform rotate-45' : ''} w-5 h-5 bg-black text-green-500`}
@@ -371,6 +364,14 @@ export default function P4pHeader({user, onLogout}) {
                 Pick 4 Bellator
               </Disclosure.Button>
               /////////////////////////////// */}
+               <Disclosure.Button
+                as="a"
+                href="#"
+                onClick={() => { handleOptionClick('/') }}
+                className={`${currentPath === "/" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
+              >
+                Home
+              </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="#"
