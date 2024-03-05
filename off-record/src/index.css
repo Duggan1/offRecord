@@ -537,6 +537,10 @@ code {
   border-right: blue solid 5px;
   border-left: red solid 5px;
 }
+.bg-darkred-navy{
+  background: linear-gradient(to right, red 50%, blue 50%);
+  
+}
 .element-with-border {
   width: 100%;
   height: 10px;

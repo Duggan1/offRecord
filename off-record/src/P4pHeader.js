@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 // import './tailwind.css'
+import { ChevronUpIcon } from '@heroicons/react/24/solid';
 
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -10,7 +11,12 @@ import {useNavigate} from 'react-router-dom'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-
+const paths = {
+  'UFC': '/section3',
+  'Bellator': '/bellator',
+  'ACA': '/aca',
+  'PFL': '/pfl-europe',
+};
 
 
 export default function P4pHeader({user, onLogout}) {
@@ -70,7 +76,7 @@ export default function P4pHeader({user, onLogout}) {
                     Home
                   </a>
                   
-                  <a
+                  {/* <a
                     href="#"
                     onClick={() => { handleOptionClick('/section3') }}
                     className={`${currentPath === "/section3" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
@@ -100,7 +106,49 @@ export default function P4pHeader({user, onLogout}) {
                     className={`${currentPath === "/pfl-europe" ? " inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}
                   >
                     Pick 4 PFL 
+                  </a> */}
+                  
+                    <a className={`${currentPath === "/" ? " i items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900":'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'} `}>
+        <Disclosure>
+        {({ open }) => (
+          <>
+            <Disclosure.Button style={{
+    background: 'linear-gradient(to right, darkred 50%, navy 50%)',
+  }}
+ className="flex justify-between w-full px-4 py-2 text-white text-sm font-medium text-left bg-darkred-navy  rounded-lg hover:bg-purple-300 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+              <span className='bg-white text-black' style={{}}>Pick <span className='color-green'>4</span> Points!</span>
+              <ChevronUpIcon
+                className={`${open ? 'transform rotate-180' : ''
+                  } w-5 h-5 text-white-500`}
+              />
+            </Disclosure.Button>
+            <Disclosure.Panel className="px-4 bg-white pt-4 pb-2 text-sm text-gray-500">
+              <div className="space-y-1">
+                {['UFC', 'PFL', 'ACA', 'Bellator'].map((organization) => (
+                  <a
+                    key={organization}
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleOptionClick(paths[organization]);
+                      // Your navigation logic here
+                      console.log(`${paths[organization]} clicked`);
+                    }}
+                  >
+                    {organization}
                   </a>
+                ))}
+              </div>
+            </Disclosure.Panel>
+          </>
+        )}
+         </Disclosure>
+      </a>
+     
+
+
+
                   <a
                     href="#"
                     onClick={() => { handleOptionClick('/results') }}
@@ -231,7 +279,48 @@ export default function P4pHeader({user, onLogout}) {
               >
                 Home
               </Disclosure.Button>
-             
+
+
+
+
+              <Disclosure>
+        {({ open }) => (
+          <>
+            <Disclosure.Button style={{
+    background: 'linear-gradient(to right, darkred 50%, navy 50%)',
+  }}
+ className="flex justify-between w-full px-4 py-2 text-white text-sm font-medium text-left bg-darkred-navy  rounded-lg hover:bg-purple-300 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+              <span className='text-bold'>Pick 4 Points!</span>
+              <ChevronUpIcon
+                className={`${open ? 'transform rotate-180' : ''
+                  } w-5 h-5 text-white-500`}
+              />
+            </Disclosure.Button>
+            <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+              <div className="space-y-1">
+                {['UFC', 'PFL', 'ACA', 'Bellator'].map((organization) => (
+                  <a
+                    key={organization}
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleOptionClick(paths[organization]);
+                      // Your navigation logic here
+                      console.log(`${paths[organization]} clicked`);
+                    }}
+                  >
+                    {organization}
+                  </a>
+                ))}
+              </div>
+            </Disclosure.Panel>
+          </>
+        )}
+      </Disclosure>
+
+
+             {/* ////////////////////////
               <Disclosure.Button
                 as="a"
                 href="#"
@@ -246,7 +335,7 @@ export default function P4pHeader({user, onLogout}) {
                 onClick={() => { handleOptionClick('/pfl-europe') }}
                 className={`${currentPath === "/pfl-europe" ? "block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700": "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"}`}
               >
-                Pick 4 PFL
+                Pick 4 PFL maria J
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
@@ -264,6 +353,7 @@ export default function P4pHeader({user, onLogout}) {
               >
                 Pick 4 Bellator
               </Disclosure.Button>
+              /////////////////////////////// */}
               <Disclosure.Button
                 as="a"
                 href="#"
