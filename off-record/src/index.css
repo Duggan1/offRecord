@@ -1796,7 +1796,7 @@ input[type='checkbox'] {
   margin-bottom: 20px; /* Add margin between fighter containers */
   min-width: 50%;
   /* min-height: 100%; */
-  background-image: url('./GREENP4P.webp');
+  background-image: url('./redvblue.jpeg');
   background-repeat: no-repeat;
   background-position-y: 100%;
   background-size: 100% 100%;
@@ -1869,6 +1869,8 @@ input[type='checkbox'] {
   background-repeat: no-repeat;
   /* height: 60vh; */
   height:250px;
+  border-radius: 25% ;
+  
   /* overflow: hidden; */
 }
 .fighter-image {
