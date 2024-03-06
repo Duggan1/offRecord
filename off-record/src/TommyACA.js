@@ -1092,13 +1092,21 @@ if (isLoading) {
       (predictions[index]?.round === '1' || predictions[index]?.round === '2' || predictions[index]?.round === '3' || predictions[index]?.round === '4'|| predictions[index]?.round === '5' || predictions[index]?.method === 'Decision' || predictions[index]?.method === 'Draw/No-Contest/DQ')
      ? 'fighter-container2' : 'pfl-container'}`}>
       
-
+      <div
+        className={`fighter-info ${
+          predictions[index]?.winner === 0 ? 'selected' : ''
+        }`}
+        style={{
+          width: '50%',
+          textAlign: 'left',
+        }}
+      >
       <div
         className={`fighter-image-tapout ${
           predictions[index]?.winner === 0 ? 'selected' : ''
         }`}
         style={{
-          width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
+            width: '80%',maxWidth: '300px',backgroundSize:'100% 100%', height:'200px',
           backgroundImage: `url(${
             ufcCard[index].flags[0].startsWith("/assets/flags") 
               ? `https://tapology.com${ufcCard[index].flags[0]}` 
@@ -1113,8 +1121,8 @@ if (isLoading) {
        
         // https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc
 
-      ><div style={{textAlign:'left'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'red',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[0]}</span></div> 
-      <div className="" >
+      >
+      <div className="" ><p style={{color:'transparent'}}>p4p</p>
          
       
       
@@ -1131,8 +1139,8 @@ if (isLoading) {
                   : ufcCard[index].fighterPics[0]
           }')`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',color:'white',height:'200px',
-      }}>{fight.fighters[0]}
+        backgroundPosition: 'center center',color:'white',height:'140px',
+      }}>
     </button> :  <div
       className={`pfl-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
       style={{
@@ -1146,13 +1154,13 @@ if (isLoading) {
           }')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center center',color:'white',
-        height:'200px'
-      }}>{fight.fighters[0]}
+        height:'140px'
+      }}>
     </div>  }
     
-    </div>
+    </div><div style={{textAlign:'center'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'red',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[0]}</span></div> 
       </div>
-      
+      </div>
       
       <div
         className={`fighter-info ${
@@ -1162,12 +1170,13 @@ if (isLoading) {
           width: '50%',
           textAlign: 'center',
         }}
-      ><div
+      >
+        <div
         className={`fighter-image-tapout ${
           predictions[index]?.winner === 1 ? 'selected' : ''
         }`}
         style={{
-          width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
+          width: '80%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',height:'200px',
           backgroundImage: `url(${
             ufcCard[index].flags[0].startsWith("/assets/flags") 
               ? `https://tapology.com${ufcCard[index].flags[1]}` 
@@ -1182,8 +1191,8 @@ if (isLoading) {
           
         }}
         
-      ><div style={{textAlign:'right'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'blue',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[1]}</span></div> 
-      <div className="" >
+      >
+      <div className="" ><p style={{color:'transparent'}}>p4p</p>
       {user?  <button
       className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 1)}
@@ -1192,11 +1201,11 @@ if (isLoading) {
             ufcCard[index].fighterPics[1] 
          }')`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',color:'white',height:'200px'
+        backgroundPosition: 'center center',color:'white',height:'140px'
       }}
     >
       
-      {fight.fighters[1]} 
+      
     </button>:  <div
       className={`pfl-button `}
       style={{
@@ -1204,11 +1213,12 @@ if (isLoading) {
             ufcCard[index].fighterPics[1] 
          }')`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',color:'white',height:'200px'
-      }}>{fight.fighters[1]}
+        backgroundPosition: 'center center',color:'white',height:'140px'
+      }}>
     </div>  }
     
     </div>
+    <div style={{textAlign:'center'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'blue',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[1]}</span></div> 
         
         {/* Add other fighter information here */}
       </div>
