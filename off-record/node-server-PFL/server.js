@@ -253,7 +253,7 @@ const scrapeTap = async () => {
 
 const scrapeTapACA = async () => {
   try {
-    const response = await axios.get('https://www.tapology.com/fightcenter/events/109939-aca-172-ismailov-vs-tokov');
+    const response = await axios.get('https://www.tapology.com/fightcenter/events/111101-aca-173-johnson-vs-felipe');
     if (response.status === 200) {
       const html = response.data;
       const $ = cheerio.load(html);
@@ -344,7 +344,7 @@ const scrapeTapACA = async () => {
 
 const scrapeTapPFL = async () => {
   try {
-    const response = await axios.get('https://www.tapology.com/fightcenter/events/109693-pfl-europe-1-2024-regular-season');
+    const response = await axios.get('https://www.tapology.com/fightcenter/events/110613-pfl-1-2024-regular-season');
     if (response.status === 200) {
       const html = response.data;
       const $ = cheerio.load(html);
