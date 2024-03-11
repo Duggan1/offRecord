@@ -520,9 +520,10 @@ console.log(associatedData);
         return {
             fighters: [fight.redCornerName, fight.blueCornerName],
             match: fight.weightClass,
-            records: [records[index]?.redCornerName == fight.redCornerName ? records[index]?.redCornerRecord : records[index]?.blueCornerName == fight.redCornerName ? records[index]?.blueCornerRecord : 'undefinded'  ,
+            records: [records[index]?.redCornerName == fight.redCornerName ? records[index]?.redCornerRecord :
+             records[index]?.blueCornerName == fight.redCornerName ? records[index]?.blueCornerRecord : records[index]?.redCornerRecord ,
             records[index]?.redCornerName == fight.blueCornerName ? records[index]?.redCornerRecord :
-            records[index]?.blueCornerName == fight.blueCornerName ? records[index]?.blueCornerRecord : 'undefined'
+             records[index]?.blueCornerRecord 
               ],
             flags: [fight.redCornerCountry, fight.blueCornerCountry],
             flags2: [
@@ -696,7 +697,7 @@ const patchEvent = () => {
         // Handle success
         console.log(response)
         const responseData = await response.json();
-        console.log('Predictions patched successfully:', responseData);
+        console.log('Event patched successfully:', responseData);
         // Perform any further actions here
       }
       // Refresh the list of picks after a successful update
