@@ -244,7 +244,7 @@ function TommyPFLTAP({BGpic,tapImage,PFLEvents, adminKevPickswID, BellatorInfo, 
         // console.log(ufcCard2)
       }
     }
-  }, [oldCard.length > 3 && ufcCard.length > 3 ]);
+  }, [oldCard.length > 3 && ufcCard.length > 1 ]);
 
 
 

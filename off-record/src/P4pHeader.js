@@ -126,7 +126,10 @@ export default function P4pHeader({user, onLogout}) {
             </Disclosure.Button>
             <Disclosure.Panel className="px-4 bg-white pt-4  text-sm text-gray-500" style={{borderRight:'navy 4px solid',borderLeft:'darkred 4px solid',marginTop:'-5px'}}>
               <div className="space-y-1">
-                {['UFC', 'PFL', 'ACA', 'Bellator'].map((organization) => (
+                {['UFC',
+                //  'PFL',
+                  'ACA',
+                   'Bellator'].map((organization) => (
                   <a
                     key={organization}
                     href="#"
@@ -308,7 +311,10 @@ export default function P4pHeader({user, onLogout}) {
             </Disclosure.Button>
             <Disclosure.Panel className="px-4 pt-4 text-sm text-gray-500" style={{borderRight:'navy 4px solid',borderLeft:'darkred 4px solid',marginTop:'-6px',marginBottom:'-6px'}}>
               <div className="space-y-1">
-                {['UFC', 'PFL', 'ACA', 'Bellator'].map((organization) => (
+                {['UFC',
+                //  'PFL',
+                  'ACA',
+                   'Bellator'].map((organization) => (
                   <a
                     key={organization}
                     href="#"

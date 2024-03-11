@@ -50,7 +50,7 @@ console.log(events)
         const EventNum = data.aca_events.length - 1
         setEvents(data.aca_events)
         console.log(data.aca_events)
-        setOldEvent(data.aca_events[EventNum] ? data.aca_events[EventNum] : []);
+        setOldEvent(data.aca_events[-1] ? data.aca_events[-1] : []);
         console.log(EventNum)
         console.log(oldEvent)
        
@@ -90,7 +90,7 @@ console.log(events)
 
 
 
-console.log( ufcCard)
+console.log(oldEvent.id)
 
 
   useEffect(() => {
@@ -151,7 +151,7 @@ console.log( ufcCard)
 
     // Call the submitUfcEvent function separately, not dependent on the fetchData useEffect
     submitPFLEvent();
-  }, [ufcCard.length > 3 || BellatorInfo ]);
+  }, [ufcCard.length > 3 ]);
 
   const patchEvent = () => {
 
@@ -260,7 +260,7 @@ console.log( ufcCard)
         // console.log(ufcCard2)
       }
     }
-  }, [oldCard.length > 3 && ufcCard.length > 3 ]);
+  }, [oldCard || ufcCard]);
 
   const [backupID, setBackupID] = useState(0)
   useEffect(() => {
@@ -958,7 +958,7 @@ if (isLoading) {
         paddingTop: '0%',
         color:'transparent',
         backgroundColor: 'white',
-        backgroundImage: `url(https://tapology.com/assets/flags/BU-3ce9ca248b0d428f663c68cea5b91068d901c71d77fcb4be147e8d0e7500d724.gif)`,
+        backgroundImage: `url(https://tapology.com/assets/flags/BY-6e0bf3f0feb82ca2432d000d59c65a26806ab413905f56182180e73ad9c2de49.gif)`,
       }}
     >
       _____
@@ -996,7 +996,7 @@ if (isLoading) {
 
           
         {/* <h1> Fight Predictions</h1> */}
-        <div>
+        {/* <div>
             <h2>ACA Events</h2>
             <ul>
                 {events.map(event => (
@@ -1006,7 +1006,7 @@ if (isLoading) {
                     </li>
                 ))}
             </ul>
-        </div>
+        </div> */}
         
         
         </div>
