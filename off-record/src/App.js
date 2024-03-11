@@ -513,24 +513,21 @@ console.log(associatedData);
  
 
 
-      console.log(updatedRecords.length)
+      console.log(updatedRecords)
       console.log(fights)
       console.log(records)
       const newUfcCard = fights.map((fight, index) => {
         return {
             fighters: [fight.redCornerName, fight.blueCornerName],
             match: fight.weightClass,
-            records: [records[index]?.redCornerName == fight.redCornerName ? records[index]?.redCornerRecord :
-             records[index]?.blueCornerName == fight.redCornerName ? records[index]?.blueCornerRecord : records[index]?.redCornerRecord ,
-            records[index]?.redCornerName == fight.blueCornerName ? records[index]?.redCornerRecord :
-             records[index]?.blueCornerRecord 
+            records: [ updatedRecords[index]?.redCornerRecord,updatedRecords[index]?.blueCornerRecord
               ],
             flags: [fight.redCornerCountry, fight.blueCornerCountry],
             flags2: [
               records[index]?.redCornerName == fight.redCornerName ? records[index]?.redCornerFlag :
-              records[index]?.blueCornerName == fight.redCornerName ? records[index]?.blueCornerFlag : undefined,
+              records[index]?.blueCornerName == fight.redCornerName ? records[index]?.blueCornerFlag : records[index]?.redCornerFlag ,
               records[index]?.redCornerName == fight.blueCornerName ? records[index]?.redCornerFlag :
-              records[index]?.blueCornerName == fight.blueCornerName ? records[index]?.blueCornerFlag : undefined
+              records[index]?.blueCornerName == fight.blueCornerName ? records[index]?.blueCornerFlag : records[index]?.blueCornerFlag 
             ],
             fighterPics: [fight.redCornerImage, fight.blueCornerImage],
             winner: fight.winner,
