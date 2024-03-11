@@ -197,7 +197,7 @@ class PFLEvent(db.Model):
     event_name = db.Column(db.String(255), nullable=False)
     locationCC = db.Column(db.String(255), nullable=True)
     backgroundImageSrc = db.Column(db.String(255), nullable=True)
-    tapImage = db.Column(db.String(500), nullable=True)
+    tapImage = db.Column(db.String(2000), nullable=True)
     # event_league = db.Column(db.String(120), nullable=True)
     fights = db.relationship('PFLFight', backref='pfl_event', lazy='dynamic')
 
@@ -230,7 +230,7 @@ class ACAEvent(db.Model):
     event_name = db.Column(db.String(255), nullable=False)
     locationCC = db.Column(db.String(255), nullable=True)
     backgroundImageSrc = db.Column(db.String(255), nullable=True)
-    tapImage = db.Column(db.String(1000), nullable=True)
+    tapImage = db.Column(db.String(2000), nullable=True)
     # event_league = db.Column(db.String(120), nullable=True)
     fights = db.relationship('ACAFight', backref='aca_event', lazy='dynamic')
 
@@ -262,7 +262,7 @@ class ONEEvent(db.Model):
     event_name = db.Column(db.String(255), nullable=False)
     locationCC = db.Column(db.String(255), nullable=True)
     backgroundImageSrc = db.Column(db.String(255), nullable=True)
-    tapImage = db.Column(db.String(1000), nullable=True)
+    tapImage = db.Column(db.String(2000), nullable=True)
     # event_league = db.Column(db.String(120), nullable=True)
     fights = db.relationship('ONEFight', backref='one_event', lazy='dynamic')
 
@@ -294,7 +294,7 @@ class BellatorEvent(db.Model):
     event_name = db.Column(db.String(255), nullable=False)
     locationCC = db.Column(db.String(255), nullable=True)
     backgroundImageSrc = db.Column(db.String(255), nullable=True)
-    tapImage = db.Column(db.String(1000), nullable=True)
+    tapImage = db.Column(db.String(2000), nullable=True)
     # event_league = db.Column(db.String(120), nullable=True)
     fights = db.relationship('BellatorFight', backref='bellator_event', lazy='dynamic')
 

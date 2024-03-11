@@ -24,6 +24,23 @@ function TommyACA({BGpic,tapImage,PFLEvents, adminKevPickswID, BellatorInfo, sta
   const [oldCard , setOldCard] = useState([])
   const [oldEvent , setOldEvent] = useState([])
 
+
+  const [events, setEvents] = useState([]);
+  const deleteEvent = (eventId) => {
+    fetch(`https://off-therecordpicks.onrender.com/aca-events/${eventId}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to delete the event');
+        }
+        // Remove the event from the local state to update UI
+        setEvents(events.filter(event => event.id !== eventId));
+    })
+    .catch(error => console.error('Error:', error));
+};
+
+console.log(events)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,6 +48,7 @@ function TommyACA({BGpic,tapImage,PFLEvents, adminKevPickswID, BellatorInfo, sta
         const data = await response.json();
         console.log(data)
         const EventNum = data.aca_events.length - 1
+        setEvents(data.aca_events)
         console.log(data.aca_events)
         setOldEvent(data.aca_events[EventNum] ? data.aca_events[EventNum] : []);
         console.log(EventNum)
@@ -133,7 +151,7 @@ console.log( ufcCard)
 
     // Call the submitUfcEvent function separately, not dependent on the fetchData useEffect
     submitPFLEvent();
-  }, [ufcCard.length > 3 ]);
+  }, [ufcCard.length > 3 || BellatorInfo ]);
 
   const patchEvent = () => {
 
@@ -940,7 +958,7 @@ if (isLoading) {
         paddingTop: '0%',
         color:'transparent',
         backgroundColor: 'white',
-        backgroundImage: `url(https://tapology.com/assets/flags/RU-3ce9ca248b0d428f663c68cea5b91068d901c71d77fcb4be147e8d0e7500d724.gif)`,
+        backgroundImage: `url(https://tapology.com/assets/flags/BU-3ce9ca248b0d428f663c68cea5b91068d901c71d77fcb4be147e8d0e7500d724.gif)`,
       }}
     >
       _____
@@ -978,6 +996,17 @@ if (isLoading) {
 
           
         {/* <h1> Fight Predictions</h1> */}
+        <div>
+            <h2>ACA Events</h2>
+            <ul>
+                {events.map(event => (
+                    <li key={event.id} style={{border:'5px pink solid',color:'whitesmoke'}}>
+                        {event.id} {event.name} - {event.location}
+                        <button onClick={() => deleteEvent(event.id)}>Delete</button>
+                    </li>
+                ))}
+            </ul>
+        </div>
         
         
         </div>
