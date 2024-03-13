@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function Aboutp4p({ user, onLogout }) {
     const navigate = useNavigate();
   // Example content, adjust as needed
-  return (<div style={{backgroundImage:'url(https://files.oaiusercontent.com/file-ijeDlTOEoLgRBVP7NFUVDgCx?se=2024-03-12T16%3A13%3A49Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D982a76ce-ba8c-4770-8826-5c22f123b455.webp&sig=J5pvnn1wwAfJsEgSqtGGzJc8w39eFxzjtirV80XhoFE%3D)',backgroundSize:'100% 100%'}}>
+  return (<div className='rvb22'>
   <P4pHeader onLogout={onLogout} user={user} />
     <div >
     <h1 style={{padding : '20% 0',textAlign:'center',color:'white'}}>
@@ -29,13 +29,14 @@ function Aboutp4p({ user, onLogout }) {
 
       </div>
       <div className='flex'>
-        <div style={{width:'50%',padding:'0 5%'}}> <p className='text-black white75'style={{padding:'0 5%'}}>Our platform is a App for Fight fans, offering a unique opportunity to showcase their fight prediction skills. The goal is simple: win the event by making accurate predictions for each fight on the card. But we don't just focus on event champions. We also reward consistency through our total points system. Even if you don't win an event, every correct prediction boosts your total points, highlighting your expertise and dedication. What sets us apart is that we operate entirely without monetary transactions. Instead, we rely on the support of our community through donations to secure our domain name and maintain the site's functionality.</p>
+        <div style={{width:'50%',padding:'0 5%'}}> <p className='text-black white75 border-1px-black'style={{padding:'0 5%',borderRadius:'15px'}}>Our platform is a App for Fight fans, offering a unique opportunity to showcase their fight prediction skills. The goal is simple: win the event by making accurate predictions for each fight on the card. But we don't just focus on event champions. We also reward consistency through our total points system. Even if you don't win an event, every correct prediction boosts your total points, highlighting your expertise and dedication. What sets us apart is that we operate entirely without monetary transactions. Instead, we rely on the support of our community through donations to secure our domain name and maintain the site's functionality.</p>
         </div>
         <div style={{width:'50%',marginLeft:'auto',marginRight:'2%'}}>
             
-            <center style={{ maxWidth:'800px'}}>
+            <center className='side-borders-p4p bg-white' style={{ maxWidth:'800px',borderRadius:'10px'}}>
+            <div className='element-with-borderTB'></div>
                 <iframe
-                    class="igh"
+                    class=""
                     src="https://www.instagram.com/picks4points/embed"
                     width="90%"
                     height="300px"
@@ -45,6 +46,7 @@ function Aboutp4p({ user, onLogout }) {
                     
 
                 ></iframe>
+                <div className='element-with-borderBB'></div>
                 </center>
             <div style={{marginTop:'100px'}} className='element-with-borderTB'></div>
                 <About/>

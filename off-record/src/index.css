@@ -172,8 +172,13 @@ code {
 }
 .section{
   height: 225px;
- 
 }
+
+.side-borders-p4p{
+  border-right: blue 5px solid;
+  border-left: red 5px solid;
+}
+
 .about {
   color:rgb(255, 255, 255);
   text-align: center;
@@ -1056,6 +1061,16 @@ code {
     background-size: 100% 100%;
    
   }
+  .rvb22 {
+    background-image: url('./rvb22.webp');
+    background-repeat: no-repeat;
+    background-size: cover; /* Or 100% auto; depending on the desired effect */
+    background-position-x: 30%; /* Shifts the image down to hide the top 30% */
+}
+
+  
+
+
   .cursor-pointer{
     cursor: pointer;
   }
@@ -2160,6 +2175,7 @@ input[type='checkbox'] {
 .padding-bottom-5per{
   padding-bottom: 5%
 }
+
 .top-border-1px-black{
  border-top: black 1px solid;
 }
