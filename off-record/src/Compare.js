@@ -798,7 +798,7 @@ const toggleDetails =()=>{
       
    
   
-<center><img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} className='p4pBelt2' style={{cursor:'pointer',borderRadius:'30%',marginTop:'3%'}}/> 
+<center><img src={logo} alt='fighting logo' onClick={() => handleOptionClick('/')} className='p4pplusWhite' style={{cursor:'pointer',borderRadius:'30%',marginTop:'3%'}}/> 
           </center>
   
   <p style={{color:'white',fontWeight:'Bold',textAlign:'center'}}>Click Logo to go to Home Page</p>

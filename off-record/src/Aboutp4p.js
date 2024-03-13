@@ -38,8 +38,8 @@ function Aboutp4p({ user, onLogout }) {
                 <iframe
                     class=""
                     src="https://www.instagram.com/picks4points/embed"
-                    width="90%"
-                    height="300px"
+                    width="100%"
+                    height="290px"
                     frameborder="0"
                     scrolling="no"
                     allowtransparency="true"
@@ -58,7 +58,7 @@ function Aboutp4p({ user, onLogout }) {
         </div>
       </div>
       <div className='white75 border-1px-black' style={{marginTop:'100px',marginRight:'10%',marginLeft:'10%',borderRadius:'15px',}}>
-                <h2 className='text-align-center text-black fs20 formL text-bold' >Frequently Asked Questions!</h2>
+                <h2 className='text-align-center text-black fs20 formL text-bold' >Frequently Asked Questions?</h2>
                 <div className='flex'>
                         <div style={{marginLeft:'1%'}}><iframe
                 src="https://www.loom.com/embed/b73e3fe0d562448abba20f7f717b239e?sid=03688900-a533-45f9-a798-1884bd4e9183"
