@@ -62,7 +62,11 @@ code {
   background-position: center; /* Center the background image */
   background-size: 50%; /* Adjust size as needed */
 }
-
+.aci{
+  background-image: url('./GREENP4P.webp');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
 .home{
   background-color: black;
   display: flex;
@@ -166,6 +170,10 @@ code {
 .purple2 {
   color: rgb(32, 3, 86);
 }
+.section{
+  height: 225px;
+ 
+}
 .about {
   color:rgb(255, 255, 255);
   text-align: center;
@@ -174,15 +182,15 @@ code {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   margin-top: 0%;
-  min-height: fit-content;
-  border: black 5px solid;
+  height: 280px;
+  /* border: black 5px solid; */
   border-right: blue 5px solid;
   border-left: red 5px solid;
 
 }
-.about p{
-  margin-right: 20%;
-  margin-left: 20%;
+.aboutPetr{
+  margin-right: 10%;
+  margin-left: 10%;
 }
 .about h1{
   color:gold;
@@ -258,7 +266,8 @@ code {
   border-radius: 30%;
   font-size: x-large;
   font-weight: bolder;
-  margin-bottom: 15%;
+  margin-bottom: 2%;
+  margin-top: 5%;
   cursor: pointer;
 }
 .redbutton {
@@ -578,7 +587,37 @@ code {
   animation: shake 0.7s; /* Run the shake animation */
   animation-iteration-count: infinite; /* Loop the animation forever */
 }
+.bg-aboutbb{
+  background-image: url('./bg-baby.webp');
+  background-repeat: no-repeat;
+  /* background-position-x: center; */
+	background-size: 100% 150%;
+}
+.bg-cat{
+  background-image: url('./tqtcat.jpeg');
+  background-repeat: no-repeat;
+  /* background-position-x: center; */
+	background-size: 100% 100%;
+}
 
+.rvb {
+  width: 100%;
+  /* height: 10px; */
+  background: linear-gradient(to right, red 50%, blue 50%);
+}
+.rvb2 {
+  width: 100%;
+  /* height: 10px; */
+  background: linear-gradient(to right, darkred 50%, navy 50%);
+}
+.aboutTony{
+  margin-right: 20%;
+  margin-left: 20%;
+
+}
+.white75{
+  background-color: rgba(245, 245, 245, 0.724);
+}
 .element-with-border {
   width: 100%;
   height: 10px;
@@ -588,7 +627,13 @@ code {
 .element-with-borderBB {
   width: 100%;
   height: 10px;
-  border-bottom: 3px solid;
+  /* border-bottom: 3px solid; */
+  background: linear-gradient(to right, red 50%, blue 50%);
+}
+.element-with-borderTB {
+  width: 100%;
+  height: 10px;
+  /* border-top: 3px solid; */
   background: linear-gradient(to right, red 50%, blue 50%);
 }
 .element-with-border2 {
@@ -2046,7 +2091,11 @@ input[type='checkbox'] {
 
 
 
-
+.border-buttop{
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
 
 .formL{
   padding-bottom: 3%;
@@ -2424,6 +2473,9 @@ a {
   }
   .fs452{
     font-size: 30px;
+  }
+  .aboutsmaller{
+    font-size: 10px;
   }
 
   .chosenL{

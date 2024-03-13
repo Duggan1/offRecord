@@ -19,9 +19,69 @@ function About({user, onLogout}) {
       className: 'section section1',
       content: (
         < >
-          <h1 onClick={() => setIsPaused(!isPaused)} style={{ marginTop: '0px',backgroundColor:'black', color:'white' }}> Story</h1>
-          <p onClick={() => setIsPaused(!isPaused)} style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3%',border:'2px black solid'}}>
-            Our platform is a App for Fight fans, offering a unique opportunity to showcase their fight prediction skills. The goal is simple: win the event by making accurate predictions for each fight on the card. But we don't just focus on event champions. We also reward consistency through our total points system. Even if you don't win an event, every correct prediction boosts your total points, highlighting your expertise and dedication. What sets us apart is that we operate entirely without monetary transactions. Instead, we rely on the support of our community through donations to secure our domain name and maintain the site's functionality.
+          <h1 onClick={() => setIsPaused(!isPaused)} style={{ marginTop: '0px', color:'white' }} className='rvb'><span className='bg-black text-white padding1 text-bold'>MMA Organizations</span></h1>
+          <p onClick={() => setIsPaused(!isPaused)}  style={{ color:'black', padding:'3%'}} className='aboutPetr'>
+          
+          <center><h1 style={{
+                              height: '50px',
+                              backgroundColor: 'whitesmoke',
+                              // padding: '9%',
+                              backgroundSize: '100% 100%',
+                              minWidth:'60%',
+                               maxWidth:'50%',
+                               textAlign:'center',marginTop:'4px',
+                              // paddingBottom:'20px',
+                              // margin:'0% 20%',
+                              backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/UFC_logo.svg/2560px-UFC_logo.svg.png)`
+                            }} alt={`UFC `}> </h1></center>
+         <div className='flex'> <h1 style={{
+                              height: '50px',
+                              backgroundColor: 'whitesmoke',
+                              // padding: '7%',
+                              backgroundSize: '100% 100%',
+                              width:'100%',marginTop:'8px',marginRight:'8px',
+                              // paddingBottom:'20px',
+                              // margin:'0% 20%',
+                                backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`
+                            //   backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Bellator_MMA_Logo.svg/2560px-Bellator_MMA_Logo.svg.png)`
+                            }} alt={`PFL `}> </h1>
+                            
+                            <h1 style={{
+                              height: '50px',
+                              backgroundColor: 'whitesmoke',
+                              // padding: '7%',
+                              backgroundSize: '100% 100%',marginTop:'8px',
+                              width:'100%',
+                              // paddingBottom:'20px',
+                              // margin:'0% 20%',
+                              //   backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`
+                              backgroundImage: `url(https://www.aca-mma.com/img/logo/aca-logo-black.png?v=28.11.17)`
+                            }} alt={`PFL `}> </h1>
+          </div><div className='flex'>
+
+          <h1 style={{
+                              height: '50px',
+                              backgroundColor: 'whitesmoke',
+                              // padding: '7%',
+                              backgroundSize: '100% 100%',marginTop:'8px',marginRight:'8px',
+                              width:'100%',
+                              // paddingBottom:'20px',
+                              // margin:'0% 20%',
+                              //   backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`
+                              backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Bellator_MMA_Logo.svg/2560px-Bellator_MMA_Logo.svg.png)`
+                            }} alt={`PFL `}> </h1>
+                            <h1 style={{
+                              height: '50px',
+                              backgroundColor: 'whitesmoke',
+                              // padding: '7%',
+                              backgroundSize: '100% 100%',marginBottom:'4px',marginTop:'8px',
+                              width:'100%',
+                              // paddingBottom:'20px',
+                              // margin:'0% 20%',
+                              //   backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`
+                              backgroundImage: `url(https://seeklogo.com/images/O/one-championship-logo-7DB699A00B-seeklogo.com.png)`
+                            }} alt={`PFL `}> </h1></div>
+
           </p>
         </>
       ),
@@ -30,10 +90,10 @@ function About({user, onLogout}) {
       className: 'section section2',
       content: (
         <>
-          <h1 onClick={() => setIsPaused(!isPaused)} style={{ marginTop: '0px',backgroundColor:'black', color:'white' }}> Point System</h1>
+          <h1 onClick={() => setIsPaused(!isPaused)} style={{ marginTop: '0px', color:'white' }} className='rvb'><span className='bg-black text-white padding1 text-bold'> Point System</span></h1>
           <div className="">
-            <div onClick={() => setIsPaused(!isPaused)}  style={{textAlign:'start'}}>
-              <p style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3% 1% 0%',border:'2px black solid', fontWeight: 'Bold' }}>
+            <div onClick={() => setIsPaused(!isPaused)} className='aboutPetr aboutsmaller' style={{textAlign:'start',marginBottom:'0px'}}>
+              <p style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3% 1% 0%',border:'2px black solid', fontWeight: 'Bold', }}>
                 <span style={{ color: 'gold',backgroundColor:'black'  }}> + 1 point</span> for picking the correct Winner
               </p>
               <p style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3% 1% 0%',border:'2px black solid', fontWeight: 'Bold' }}>
@@ -47,7 +107,7 @@ function About({user, onLogout}) {
               
             </div>
           </div>
-          <br />
+          
         </>
       ),
     },
@@ -56,11 +116,14 @@ function About({user, onLogout}) {
       content: (
         <>
           <div onClick={() => setIsPaused(!isPaused)} className="section3 ">
-            <h1 style={{ marginTop: '0px',backgroundColor:"black",color:'white', }}> Donate Below</h1>
-            <p style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3%',border:'2px black solid'}}>Since the website does not take part in gambling or money exchanges, we rely on the kindness of our users</p>
-            <button className="donateB" onClick={() => window.open('https://donate.stripe.com/4gw8xEdNP0ypfqo6ot')}>$5</button>
-            <button className="donateB" onClick={() => window.open('https://donate.stripe.com/6oE4ho113ch73HGfZ4')}>$10</button>
-            <br></br>
+            <h1 style={{ marginTop: '0px',marginBottom: '0px', color:'white' }} className='rvb'><span className='bg-black text-white padding1 text-bold'> Donate Below</span></h1>
+            <div className='flex'>
+            <button className="donateB shake" onClick={() => window.open('https://donate.stripe.com/4gw8xEdNP0ypfqo6ot')}>$5</button>
+            <button className="donateB shake" onClick={() => window.open('https://donate.stripe.com/6oE4ho113ch73HGfZ4')}>$10</button>
+            </div>
+            <p  className='aboutPetr aboutsmaller'style={{ backgroundColor:'whitesmoke',color:'black', padding:'0% 3%',border:'2px black solid'}}>Since the website does not take part in gambling or money exchanges, we rely on the kindness of our users</p>
+            
+           
           </div>
         </>
       ),
@@ -85,12 +148,14 @@ function About({user, onLogout}) {
 
   return (
     <>
-    <P4pHeader onLogout={onLogout} user={user} />
-    <div  style={{backgroundImage:`url(${tqtcat})`,backgroundSize:'cover' ,marginBottom: '0px',marginTop:'0%',textAlign:'center',paddingTop:'5%' }}>
+    {/* // <P4pHeader onLogout={onLogout} user={user} /> */}
+    <div  className='bg-aboutbb' style={{
+        // backgroundImage:`url(${tqtcat})`,backgroundSize:'cover' ,
+    marginBottom: '0px',marginTop:'0%',textAlign:'center'}}>
       
-      
-      <h1 style={{padding :'20% 0',textAlign:'center',color:'white'}}>
       {/* <span style={{color:'white',backgroundColor:'black'}} >About </span><br></br> */}
+     
+       {/* <h1 style={{padding : '20% 0',textAlign:'center',color:'white'}}>
       <span style={{
             borderTop: '15px solid red',
             borderRight: '15px solid blue',
@@ -104,14 +169,14 @@ function About({user, onLogout}) {
 }}
  className='p4pplus'
  onClick={() => setIsPaused(!isPaused)}
- ></span>
+ ></span></h1> */}
       {/* <span style={{color:'red',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black'}}>P</span>
       <span style={{color:'black',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black'}}>4</span>
       <span style={{color:'blue',backgroundColor:'white',borderTop:'3px solid black',borderBottom:'3px solid black',borderRight:'3px solid black'}} >P</span>  */}
-      </h1>
-      <div className="about"style={{maxWidth:'80%', margin:'0 10%'}}>
+      
+      <div className="about"style={{maxWidth:'100%', margin: '0 0%'}}>
           <div className={sections[currentSection].className}>{sections[currentSection].content}</div>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div className='rvb2' style={{ display: 'flex', justifyContent: 'center',marginTop:'auto' }}>
             <button className='redbutton' onClick={() => setCurrentSection((prevSection) => (prevSection - 1 + sections.length) % sections.length)}>{'<'}</button>
             <button style={{
               // background:`url(${logo})`,
@@ -136,11 +201,11 @@ function About({user, onLogout}) {
           ></span>
         ))}
       </div> */}
-      <h1 style={{padding :'10% 0',textAlign:'center',color:'red'}}>
+      {/* <h1 style={{padding :'10% 0',textAlign:'center',color:'red'}}>
       <span style={{color:'red',backgroundColor:'white'}}>P</span>
       <span style={{color:'black',backgroundColor:'white'}}>4</span>
       <span style={{color:'blue',backgroundColor:'white'}} >P</span> 
-      </h1>
+      </h1> */}
     </div>
     </>
   );

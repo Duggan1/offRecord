@@ -940,7 +940,7 @@ if (isLoading) {
         paddingTop: '0%',
         color:'transparent',
         // backgroundColor: 'black',
-        backgroundImage: `url(https://tapology.com/assets/flags/FR-248b89ba2ff4082e66fda00d7c9f83f14758c838c0abd9fd0e4943ee402be29b.gif)`,
+        backgroundImage: `url(https://tapology.com/assets/flags/US-a475dadb4ff06978c183ce83b21741c1785beee26da55853490373f5eb2ca9b0.gif)`,
       }}
     >
       _____

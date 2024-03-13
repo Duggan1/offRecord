@@ -11,7 +11,7 @@ import Results from './Results';
 import Tommy from './Tommy';
 import TommyPFL from './TommyPFL';
 import TommyBELL from './TommyBELL';
-import About from './About';
+import Aboutp4p from './Aboutp4p';
 import axios from 'axios';
 import * as yup from 'yup';
 import isEqual from 'lodash/isEqual';
@@ -1489,7 +1489,7 @@ const [leagues, setLeagues] = useState([])
       <Route path="/results/Compare" element={<Compare ufcResults={modifiedUfcResults} ufcCard={ufcCard3} user={user} adminKevPicks2={adminKevPicks} results2={results2} liveFinishes={liveFinishes} onLogout={handleLogout} />}/>
       
       
-      <Route path="/about" element={<About user={user} onLogout={handleLogout} />}/>
+      <Route path="/about" element={<Aboutp4p user={user} onLogout={handleLogout} />}/>
 
       <Route path="/profile" element={<Profile user={user} onLogout={handleLogout} ufcResults={modifiedUfcResults}  results2={results2} adminKevPicks2={adminKevPicks} />}/>
       <Route path="/profile/settings" element={<ProfileSettings user={user} onLogout={handleLogout} />}/>
