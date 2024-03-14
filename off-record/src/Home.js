@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import P4pHeader from './P4pHeader'
 
 
-function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive, BGpic, tapImage, countPick, isOwnerAndEventMatch, onLogout, LNmenow}) {
+function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive, BGpic, tapImage, countPick, isOwnerAndEventMatch, onLogout, LNmenow,bellatorInfo,acaInfo,pflInfo}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
@@ -370,7 +370,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       console.log(currentfighter)
       console.log(weRlive.some(item => item.timeDetails1 !== ''))
       const countNonEmptyTimeDetails = weRlive.filter(item => item.timeDetails1 !== '').length;
-      console.log(countNonEmptyTimeDetails)
+      console.log(bellatorInfo,acaInfo,pflInfo)
       console.log(liveNready)
 
       const baseURLForS3Files = "https://dmxg5wxfqgb4u.cloudfront.net";
@@ -597,10 +597,12 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
         </div> </> : null}
 
         </div>
-      < div className="home" >
+      < div 
+      className="homep4p" 
+      >
         
         
-
+<div className="home" >
       
                 <div  className='crdiv2 box-content'> 
 
@@ -654,8 +656,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                  height:'200px',
                   }} ></h5> 
                 : <h5 
-                onClick={() => { handleOptionClick('/section3') }}
-                className=' snow '  style={{
+                onClick={() => navigate('/section3')}
+                className=' snow fake'  style={{
                   backgroundImage: `url(${tapImage})`,
                 backgroundSize: '100% 100%',
                 backgroundRepeat:'no-repeat',
@@ -665,13 +667,12 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 }} ></h5> }
                  </div>
                   
-                 <div className="" style={{textAlign:'center',height:'400px'}}>
-</div>
+                 
     <div style={{display:'flex', justifyContent:'center',paddingTop:'0%'}}>
         {/* <div style={{borderRight:'solid black 2px',borderLeft:'solid black 2px',borderTop:'solid black 2px',zIndex: '2'}} className="p4pplus"></div> */}
                 </div>
-                { isUfcCardLoaded ? <div className="home-fighter">
-                                    <div className="fi"
+                { isUfcCardLoaded ? <div className="home-fighter"  style={{alignItems:'start'}}>
+                                    <div className="fi2"
                                               style={{
                                                 backgroundImage: `url('${
                                                   ufcCard[0].fighterPics[0].startsWith("/s3/files/")
@@ -679,11 +680,11 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                                                       ufcCard[0].fighterPics[0].substring("/s3/files/".length)
                                                     : ufcCard[0].fighterPics[0]
                                                 }')`,
-                                                backgroundPosition: 'right',
-                                                marginTop: '50%',width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',
+                                                
+                                                marginTop: '180px',width: '100%',maxWidth: '300px',backgroundSize:'75% 100%'
                                               }} ></div>
                                     <div
-                                              className="fi"
+                                              className="fi2"
                                               style={{
                                                 backgroundImage: `url('${
                                                   ufcCard[0].fighterPics[1].startsWith("/s3/files/")
@@ -691,8 +692,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                                                       ufcCard[0].fighterPics[1].substring("/s3/files/".length)
                                                     : ufcCard[0].fighterPics[1]
                                                 }')`,
-                                                backgroundPosition: 'right',width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
-                                                marginTop: '50%',
+                                                backgroundPosition: 'right',width: '100%',maxWidth:'300px',backgroundSize:'75% 100%',marginLeft: 'auto',
+                                                marginTop: '180px'
                                               }}
                                             ></div>
 
@@ -702,7 +703,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                                     
                                     <div className="loading" style={{ height: '100px', width: '100px' ,justifyContent:'center'}}></div> }
         
-
+</div>
                                    
                                     {/* <span style={{
                                       borderTop: '15px solid red',
@@ -715,7 +716,106 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                                       backgroundColor: 'black',
                                       // padding:'12% 15%',
                                       borderRadius:'50%'
+
+                                
                           }} className='p4pplus'> </span> */}
+
+                          <center className="snowwhite ">
+                          <div className="white75 skinnyBoy  mmaOW" style={{width:'80%'}}>
+                          <div className="white75  flex MainEventContainer pt2 white-border2" style={{flexWrap: 'wrap',width:'102%',marginLeft:'-1%'}}> <img src={'logo'} alt='fighting logo' className='p4pplusWhite' style={{borderRadius:'0%',}}/> </div>
+                            <div className="white75  flex bg-white " style={{flexWrap: 'wrap',width:'102%',marginLeft:'-1%',marginTop:'-10px'}}><span className="bg-white text-black padding1 ">Upcoming Events</span></div>
+                            <span className=" skinnyBoy flex " style={{flexWrap: 'wrap',width:'100%',maxWidth:''}}>
+                              {/* //////////////////////// */}
+                               <div className="bg-white mmaO text-align-center text-black fake" style={{height:'fit-content',width:'50%',maxWidth:'300px',margin:'1%',minWidth:'150px',marginTop:'5%'}}>
+                        <div style={{ backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/UFC_logo.svg/2560px-UFC_logo.svg.png)`, backgroundSize: '50% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
+                                <h3>{pflInfo[2]}</h3>
+                              </div>
+                              <div
+                                  style={{zIndex:'1',display:'flex',justifyContent:'center',marginLeft:'1%'}}>
+                                <p className='snow homebullet12 'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {locationCity}, {state}</p>
+                                <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
+                                  backgroundSize: '100% 100%',
+                                  backgroundRepeat:'no-repeat',
+                                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',color:'transparent'
+                                  
+                                  }} >___</h6>
+                              </div>
+
+                  
+                              {/* <h6>{bellatorInfo[1]}</h6> */}
+                              <center><p  onClick={() => navigate('/section3')} style={{height:'210px',width:'95%',backgroundImage: `url(${tapImage})`,backgroundSize:'100% 100%',borderRadius:'10%'}}></p></center>
+                              {/* <p className="homebullet margin-0-5">{pflInfo[0]}</p> */}
+                              </div>
+                              {/* //////////////////////// */}
+                              <div className="bg-white mmaO text-align-center text-black fake" style={{height:'fit-content',width:'50%',maxWidth:'300px',margin:'1%',minWidth:'150px',marginTop:'5%'}}>
+                        <div style={{ backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`, backgroundSize: '50% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
+                                <h3>{pflInfo[2]}</h3>
+                              </div>
+                              <div
+                                  style={{zIndex:'1',display:'flex',justifyContent:'center',marginLeft:'1%'}}>
+                                <p className='snow homebullet12 'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {pflInfo[1]}</p>
+                                <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation('United States')}/flat/64.png")`,
+                                  backgroundSize: '100% 100%',
+                                  backgroundRepeat:'no-repeat',
+                                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',color:'transparent'
+                                  
+                                  }} >___</h6>
+                              </div>
+
+                  
+                              {/* <h6>{bellatorInfo[1]}</h6> */}
+                              <center>
+                                <p onClick={() => navigate('/pfl-europe')} style={{height:'200px',width:'95%',backgroundImage: pflInfo[3] ? `url(${pflInfo[3]})` : ``,backgroundSize:'100% 100%',borderRadius:'10%',backgroundColor:''}} className='loading3'></p></center>
+                              <p className="homebullet12 margin-0-5">{pflInfo[0]}</p>
+                              </div>
+                              {/* //////////////////////// */}
+                              <div className="  bg-white mmaO text-align-center text-black fake" style={{height:'fit-content',width:'50%',maxWidth:'300px',margin:'1%',minWidth:'150px',marginTop:'5%',marginBottom:'5%'}}>
+                        <div style={{backgroundImage: `url(https://www.aca-mma.com/img/logo/aca-logo-black.png?v=28.11.17)`, backgroundSize: '50% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
+                                <h3>{acaInfo[2]}</h3>
+                              </div>
+                              <div
+                                  style={{zIndex:'1',display:'flex',justifyContent:'center',marginLeft:'1%'}}>
+                                <p className='snow homebullet12 'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {acaInfo[1]}</p>
+                                <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation('Belarus')}/flat/64.png")`,
+                                  backgroundSize: '100% 100%',
+                                  backgroundRepeat:'no-repeat',
+                                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',color:'transparent'
+                                  
+                                  }} >___</h6>
+                              </div>
+
+                  
+                              {/* <h6>{bellatorInfo[1]}</h6> */}
+                              <center>
+                                <p onClick={() => navigate('/aca')} style={{height:'200px',width:'95%',backgroundImage: acaInfo[3] ? `url(${acaInfo[3]})` : ``,backgroundSize:'100% 100%',borderRadius:'10%'}}></p></center>
+                              <p className="homebullet12 margin-0-5">{acaInfo[0]}</p>
+                              </div>
+                              <div className="bg-white mmaO text-align-center text-black fake" style={{height:'fit-content',width:'50%',maxWidth:'300px',margin:'1%',minWidth:'150px',marginTop:'5%',marginBottom:'5%'}}>
+                        <div style={{ backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Bellator_MMA_Logo.svg/2560px-Bellator_MMA_Logo.svg.png)`, backgroundSize: '50% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
+                                <h3>{bellatorInfo[2]}</h3>
+                              </div>
+                              <div
+                                  style={{zIndex:'1',display:'flex',justifyContent:'center',marginLeft:'1%'}}>
+                                <p className='snow homebullet12 'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {bellatorInfo[1]}</p>
+                                <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation('Ireland')}/flat/64.png")`,
+                                  backgroundSize: '100% 100%',
+                                  backgroundRepeat:'no-repeat',
+                                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',color:'transparent'
+                                  
+                                  }} >___</h6>
+                              </div>
+
+                  
+                              {/* <h6>{bellatorInfo[1]}</h6> */}
+                              <center>
+                                <p className="shake:hover" onClick={() => navigate('/bellator')} style={{height:'200px',width:'95%',backgroundImage: bellatorInfo[3] ? `url(${bellatorInfo[3]})` : ``,backgroundSize:'100% 100%',borderRadius:'10%'}}></p></center>
+                              <p className="homebullet12 margin-0-5">{bellatorInfo[0]}</p>
+                              </div>
+                              
+                              
+                               
+                            </span>
+                            </div> </center>
 
 
 <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px',marginTop:'80px'}} class="element-with-border"></div>
@@ -827,7 +927,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 </div>
 
 
-        </div> </>
+        </div> 
+        </>
         :
         
         

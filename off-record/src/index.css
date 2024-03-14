@@ -68,7 +68,7 @@ code {
   background-size: 100% 100%;
 }
 .home{
-  background-color: black;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,12 +77,19 @@ code {
   color: white;
   /* background-image: url('https://t3.ftcdn.net/jpg/00/92/80/64/360_F_92806458_cuy3wFTL9h8FqisKPbd9yGoihsNjy8xQ.jpg'); */
    /* background-image: url('https://image.shutterstock.com/image-vector/empty-cage-martial-arts-fighting-260nw-1136825033.jpg'); */
-   background-image: url('./GREENP4P.webp');
+   /* background-image: url('./GREENP4P.webp');
    background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 100%; */
   padding-top: 0%;
   padding-bottom: 0%;
   /* z-index: 1; */
+
+}
+.homep4p{
+   background-image: url('./GREENP4P.webp');
+   background-repeat: no-repeat;
+  background-size: 100% 100%;
+ 
 
 }
 .homeSpace{
@@ -605,6 +612,19 @@ code {
 .shake {
   animation: shake 0.7s; /* Run the shake animation */
   animation-iteration-count: infinite; /* Loop the animation forever */
+}
+@keyframes fake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.fake:hover {
+  animation: shake 0.7s ease-in-out;
+  animation-iteration-count: infinite;
+  color: white;
+  background: linear-gradient(to right, darkred 50%, navy 50%);
+  cursor: pointer;
 }
 .bg-aboutbb{
   background-image: url('./bg-baby.webp');
@@ -1402,6 +1422,16 @@ font-weight: bold;
   justify-content: flex-start; /* align items along the start of the flex container */
   align-items: flex-start; /* align items along the start of the cross axis */
 }
+.mmaO{
+  border-radius: 25%;
+}
+.mmaOW{
+  border-radius: 5%;
+  border-right: white 5px solid;
+  border-left: white 5px solid;
+  border-bottom: white 5px solid;
+
+}
 
 .chosenL{
   margin: 15%;
@@ -1417,8 +1447,14 @@ font-weight: bold;
   color: white;
   background-color: black; /* Change this to charcoal or any color you prefer */
 }
+.skinnyBoy{
+  max-width: fit-content;
+}
 .margin-5{
   margin: 5% ;
+}
+.margin-0-5{
+  margin: 0 5% ;
 }
 .border-radius-20per{
   border-radius :20%;
@@ -2149,14 +2185,29 @@ input[type='checkbox'] {
   overflow: hidden;
   padding-bottom: 3%;
 }
+.fi2 {
+  
+  flex: 1; 
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: left;
+  /* min-width: 50%; */
+  min-height:400px;
+  overflow: hidden;
+  padding-bottom: 3%;
+}
 .homebullet{
   font-size: 20px;
+}
+.homebullet12{
+  font-size: 12px;
 }
 .formProfilePatch{
   margin: 0% 5%;
   background-color: whitesmoke;
   padding: 5%;
 }
+
 .ProfilePicPreview{
   border-right: blue 5px solid;
   border-left: red 5px solid;

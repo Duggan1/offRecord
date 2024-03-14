@@ -1462,7 +1462,7 @@ const [leagues, setLeagues] = useState([])
 
 
       <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch}
-                                      stallUfcCard={ufcCard} locationCity={lo1} state={lo2} weRlive={weRlive} LNmenow={LNmenow}
+                                      stallUfcCard={ufcCard} locationCity={lo1} state={lo2} weRlive={weRlive} LNmenow={LNmenow} pflInfo={PFLTAPInfo} acaInfo={ACAInfo} bellatorInfo={BellatorInfo}
                                       location={lo3} BGpic={ufcI} tapImage={tapI} countPick={countPick} onLogout={handleLogout}  />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
