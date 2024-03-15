@@ -1020,7 +1020,7 @@ if (isLoading) {
         ? 'fighterACTready' : 'fighterready'}`}>
       
   <p key={index} className="mobile-fight-info">
-    <p className='snowwhite'>{fight.match}lb Bout</p>
+  { user ? <p className='snowwhite'>{fight.match}lb Bout</p> : <p className='color-yellow'>Please Login or SignUp!    &#8599;</p>}
     <div  className=" mobile-fighter-name">
       <span  style={{marginTop:'0%',paddingTop:'0%',marginBottom:'0%',paddingBottom:'0%'}} className={` redName white-border mobile-fighter-name
       
@@ -1098,7 +1098,7 @@ if (isLoading) {
         }}
       >
       <div
-        className={`fighter-image-tapout ${
+        className={`fighter-image-tapout ${user ? "bake":''} ${
           predictions[index]?.winner === 0 ? 'selected' : ''
         }`}
         style={{
@@ -1122,8 +1122,8 @@ if (isLoading) {
          
       
       
-     {user ? <button
-      className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
+     {user ? <center><button
+      className={`fighter-button ${user ? "bake":''} ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 0)}
       style={{
         backgroundImage: `url('${
@@ -1137,7 +1137,7 @@ if (isLoading) {
         backgroundSize: 'cover',
         backgroundPosition: 'center center',color:'white',height:'140px',
       }}>
-    </button> :  <div
+    </button></center> :  <div
       className={`pfl-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
       style={{
         backgroundImage: `url('${
@@ -1168,7 +1168,7 @@ if (isLoading) {
           textAlign: 'center',
         }}
       ><div
-        className={`fighter-image-tapout ${
+        className={`fighter-image-tapout  ${user ? "bake":''} ${
           predictions[index]?.winner === 1 ? 'selected' : ''
         }`}
         style={{
@@ -1190,7 +1190,7 @@ if (isLoading) {
       >
       <div className="" ><p style={{color:'transparent'}}>p4p</p>
       {user?  <button
-      className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
+      className={`fighter-button ${user ? "bake":''} ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 1)}
       style={{
         backgroundImage: `url('${

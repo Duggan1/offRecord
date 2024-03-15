@@ -33,9 +33,14 @@ function Aboutp4p({ user, onLogout }) {
         </div>
         <div style={{width:'50%',marginLeft:'auto',marginRight:'2%'}}>
             
-            <center className='side-borders-p4p bg-white' style={{ maxWidth:'800px',borderRadius:'10px'}}>
+            
+            <div style={{}} className='element-with-borderTB'></div>
+                <About/>
+            <div className='element-with-borderBB'></div>
+
+       <center className='side-borders-p4p bg-white' style={{ maxWidth:'800px',borderRadius:'10px',marginTop:'100px'}}>
             <div className='element-with-borderTB'></div>
-                <iframe
+                <iframe 
                     class=""
                     src="https://www.instagram.com/picks4points/embed"
                     width="100%"
@@ -48,11 +53,6 @@ function Aboutp4p({ user, onLogout }) {
                 ></iframe>
                 <div className='element-with-borderBB'></div>
                 </center>
-            <div style={{marginTop:'100px'}} className='element-with-borderTB'></div>
-                <About/>
-            <div className='element-with-borderBB'></div>
-
-       
         
 
         </div>
@@ -84,23 +84,113 @@ function Aboutp4p({ user, onLogout }) {
 
     {/* <div style={{marginTop:'200px',marginRight:'20%',marginLeft:'20%',backgroundColor:'rgba(128, 128, 128, 0.634)',borderRadius:'75px'}}>
       <h2 className='text-align-center snowwhite' >Video Tutorials coming soon....</h2> */}
-      <h1 style={{padding : '20% 0',textAlign:'center',color:'white',marginTop:'100px'}}>
-      <span  onClick={() => navigate('/section3')}
-      style={{
-            borderTop: '15px solid red',
-            borderRight: '15px solid blue',
-            borderLeft: '15px solid red',
-            borderBottom: '15px solid blue',
-            borderRadius: '10%',
-            color: 'white',
-            backgroundColor: 'black',
-            padding:'12% 15%',
-            borderRadius:'50%',cursor:'pointer'
-}}
- className='aci'
- 
- ></span></h1>
- <p className='color-red text-align-center' onClick={() => navigate('/section3')} style={{cursor:'pointer'}}>Click to Pick!</p>
+      <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px',marginTop:'50px'}} class="element-with-border"></div>
+            <div style={{width:'100%',backgroundColor:'white',display:'flex', justifyContent:'center',marginTop:'0px'}}>
+            <h1 
+            style={{
+                textAlign: 'center',
+                color: 'red',
+                margin: "0",
+                fontSize:'35px',
+                maxWidth: '100%',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                P
+                </h1><h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'red',
+                margin: "0",
+                fontSize:'15px',
+                maxWidth: '100%',
+                marginTop: '10px',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                icks
+                </h1>
+                
+                <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'black',
+                margin: "0",
+                fontSize:'35px',
+                marginTop: '0%',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                4
+                </h1>
+                <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'blue',
+                margin: "0",
+                fontSize:'35px',
+                marginTop: '0%',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                P
+                </h1>
+                <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'blue',
+                margin: "0",
+                fontSize:'15px',
+                maxWidth: '100%',
+                marginTop: '10px',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                oints
+                </h1>
+                <h1 
+            
+            style={{
+                textAlign: 'center',
+                color: 'blue',
+                margin: "0",
+                fontSize:'15px',
+                maxWidth: '100%',
+                marginTop: '10px',
+                // cursor:'pointer',
+                fontFamily:"Copperplate,monospace",
+                
+
+
+                // Adjust this value as needed
+                }}>
+                .com
+                </h1>
+                </div>
     {/* </div> */}
       </div>
   );

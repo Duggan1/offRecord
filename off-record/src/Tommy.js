@@ -298,6 +298,7 @@ const countryData = {
   "Canada": "CA",
   "Cocos (Keeling) Islands": "CC",
   "Congo, The Democratic Republic Of The": "CD",
+  "Congo - Kinshasa":"CD",
   "Central African Republic": "CF",
   "Congo": "CG",
   "Switzerland": "CH",
@@ -877,9 +878,9 @@ if (isLoading) {
       
 
       <div
-        className={`fighter-image ${
-          predictions[index]?.winner === 0 ? 'selected' : ''
-        }`}
+        className={`fighter-image bake ${
+          predictions[index]?.winner === 0 ? 'selected  ' : ''
+        }`} onClick={() => handlePredictionChange(index, 0)}
         style={{
           width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
           backgroundImage: `url('${
@@ -899,7 +900,7 @@ if (isLoading) {
        
         // https://dmxg5wxfqgb4u.cloudfront.net/styles/event_fight_card_upper_body_of_standing_athlete/s3/image/fighter_images/SHADOW_Fighter_fullLength_BLUE.png?VersionId=1Jeml9w1QwZqmMUJDg8qTrTk7fFhqUra&itok=fiyOmUkc
 
-      ><div className="sireal" ><div className="recordwcir redcorner">{fight.records[0]}</div>  <button
+      ><div className="sireal bake" ><div className="recordwcir redcorner">{fight.records[0]}</div>  <button
       className={`fighter-button ${predictions[index]?.winner === 0 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 0)}
       style={{
@@ -930,9 +931,9 @@ if (isLoading) {
           textAlign: 'center',
         }}
       ><div
-        className={`fighter-image ${
+        className={`fighter-image bake ${
           predictions[index]?.winner === 1 ? 'selected' : ''
-        }`}
+        }`} onClick={() => handlePredictionChange(index, 1)}
         style={{
           width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
           backgroundImage: `url('${
@@ -953,7 +954,7 @@ if (isLoading) {
         }}
         
       ><div className="sireal" ><div className="recordwcir bluecorner">{fight.records[1]}</div>  <button
-      className={`fighter-button ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
+      className={`fighter-button bake ${predictions[index]?.winner === 1 ? 'selected' : ''}`}
       onClick={() => handlePredictionChange(index, 1)}
       style={{
         backgroundImage: 

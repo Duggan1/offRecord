@@ -142,6 +142,7 @@ code {
   font-weight: 800;
   width: 40%;
   min-width: fit-content;
+  /* position: relative; */
 
 
 }
@@ -626,6 +627,18 @@ code {
   background: linear-gradient(to right, darkred 50%, navy 50%);
   cursor: pointer;
 }
+@keyframes bake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.bake:hover {
+  animation: shake 0.6s ease-in-out;
+  animation-iteration-count: infinite;
+  
+  cursor: pointer;
+}
 .bg-aboutbb{
   background-image: url('./bg-baby.webp');
   background-repeat: no-repeat;
@@ -826,6 +839,21 @@ code {
 	background-size: 100% 100%;
   /* border: red solid 2px; */
   padding: 5% 15%;
+
+}
+.p4pplusBlack23 {
+  max-width: 70px;
+  min-width: 70px;
+  max-height: 70px;
+  min-height: 70px;
+  height:auto;
+  background-image: url('./p4p+black.png');
+  background-repeat: no-repeat;
+  /* background-position-x: center; */
+	background-size: 100% 100%;
+  /* border: red solid 2px; */
+  padding: 5% 15%;
+  margin-top: -5%;
 
 }
 .p4pHI {
@@ -1189,7 +1217,7 @@ code {
   margin-right: 10px;
   border-radius: 10%;
   font-weight: 700;
-  cursor: pointer;
+  /* cursor: pointer; */
   width: 60%;
   margin: 0 20%;
   background-size: 100% 100%;
@@ -1965,14 +1993,30 @@ input[type='checkbox'] {
 .home-fighter {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
+  
   min-width: 100%;
-  position: absolute;
+  margin-top: -390px;
+  /* position: absolute;
   
   
-  z-index: 0; /* Set a negative z-index to position it behind other elements */
+   Set a negative z-index to position it behind other elements */
 }
-
+.home-fighter2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  
+  min-width: 100%;
+  margin-top: 0px;
+  /* position: absolute;
+  
+  
+   Set a negative z-index to position it behind other elements */
+}
+.z2{
+  position: relative;
+}
 .fighter-image-tapout {
   flex: 1; /* Grow to fill available space */
   background-size: cover;
@@ -2192,7 +2236,7 @@ input[type='checkbox'] {
   background-repeat: no-repeat;
   background-position: left;
   /* min-width: 50%; */
-  min-height:400px;
+  min-height:300px;
   overflow: hidden;
   padding-bottom: 3%;
 }

@@ -54,21 +54,21 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       console.log(ufcCard)
       const selectedUfcCard = ufcCard.length > 1 ? ufcCard : stallUfcCard;
       console.log(selectedUfcCard)
-      let isUfcCardLoaded = ufcCard.length > 1;
+      let isUfcCardLoaded = ufcCard.length > 1 || bellatorInfo[0];
       
       // Define variables based on ufcCard
-      let mainEvent = isUfcCardLoaded ? ufcCard[0].fighters.join(' vs ') : '';
-      let mainRedC = isUfcCardLoaded ? ufcCard[0].fighters[0] : '';
-      let mainBlueC = isUfcCardLoaded ? ufcCard[0].fighters[1] : '';
+      let mainEvent = ufcCard.length > 1 ? ufcCard[0].fighters.join(' vs ') : '';
+      let mainRedC = ufcCard.length > 1 ? ufcCard[0].fighters[0] : '';
+      let mainBlueC = ufcCard.length > 1 ? ufcCard[0].fighters[1] : '';
 
       useEffect(() => {
         // Check if ufcCard is loaded and has more than one element
-        isUfcCardLoaded = ufcCard.length > 1;
+        isUfcCardLoaded = ufcCard.length > 1 || bellatorInfo;
       
         // Define variables based on ufcCard
-        mainEvent = isUfcCardLoaded ? ufcCard[0].fighters.join(' vs ') : '';
-        mainRedC = isUfcCardLoaded ? ufcCard[0].fighters[0] : '';
-        mainBlueC = isUfcCardLoaded ? ufcCard[0].fighters[1] : '';
+        mainEvent = ufcCard.length > 1 ? ufcCard[0].fighters.join(' vs ') : '';
+        mainRedC = ufcCard.length > 1 ? ufcCard[0].fighters[0] : '';
+        mainBlueC = ufcCard.length > 1 ? ufcCard[0].fighters[1] : '';
       
         // Do something with the variables if needed
         console.log('Main Event:', mainEvent);
@@ -343,7 +343,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       const fightingMan = ['p4p8','apple', 'f-Man5', 'f-Man6', 'f-Man7', 'f-Man', 'f-Man2', 'f-Man3',  'f-Man4R','f-Man4','apple'];
       const [currentClass, setCurrentClass] = useState(fightingMan[0]);
       const [currentfighter, setCurrentfighter] = useState(stallUfcCard[0]);
-    
+    console.log(bellatorInfo[0] )
+    console.log(ufcCard.length > 1 || bellatorInfo)
       useEffect(() => {
         const intervalId = setInterval(() => {
           // Rotate through the classes
@@ -604,18 +605,18 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
         
 <div className="home" >
       
-                <div  className='crdiv2 box-content'> 
+                <div  className='crdiv2 box-content '> 
 
                {mainBlueC ?<>
                         
-                        <center><div  style={{marginBottom:'-5px'}} className="p4pplusBlack2"></div></center>
+                        <center><div  style={{marginBottom:'-5px'}} className="p4pplusBlack23"></div></center>
                  <div className=""
                   style={{zIndex:'1',display:'',justifyContent:'center',maxWidth:'100%'}}
                   ><div style={{backgroundColor:'black',color:'white',zIndex:'1',display:'flx',justifyContent:'center',minWidth:'45%'}}>
        
 
 
-                 <p style={{maxWidth:'100%' }}>
+                 <p style={{maxWidth:'100%',position: 'relative' }}>
     <span style={{ backgroundColor: 'red', padding: '2px',maxWidth:'40%', fontSize: firstName.length > 7 ? '100%' : '100%'  }}>{firstName}</span>
     <span style={{ backgroundColor: 'white', padding: '2px',color:'black',maxWidth:'10%' }}>vs</span>
     <span style={{ backgroundColor: 'blue', padding: '2px',maxWidth:'40%', }}>{secondName}</span>
@@ -625,19 +626,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                  {/* //////////////////////// */}</div>
                 
                  {location ? 
-                 <div
-                  style={{zIndex:'1',display:'flex',justifyContent:'center'}}>
-                 <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px',backgroundColor:'black',color:'white'}}> {locationCity}, {state}</p>
-                 <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
-                  backgroundSize: '100% 100%',
-                  backgroundRepeat:'no-repeat',
-                  marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black'
-                  // paddingTop:'15%',
-                  // paddingBottom:'45%',
-                  // marginBottom:'0%',marginTop:'0%',
-                  // width:'100%',
-                  //  justifyContent:'center',textAlign:'center'
-                  }} >___</h6></div>
+                <></>
                   :
                   
                   <p className='snow homebullet'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',color:'white'}}> Loading Event Details ...</p>}
@@ -657,14 +646,17 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                   }} ></h5> 
                 : <h5 
                 onClick={() => navigate('/section3')}
-                className=' snow fake'  style={{
-                  backgroundImage: `url(${tapImage})`,
+                className=' snow fake z2'  style={{
+                  backgroundImage: `url(${tapImage})`
+                  ,
                 backgroundSize: '100% 100%',
                 backgroundRepeat:'no-repeat',
                 paddingTop:'15%',
                 paddingBottom:'15%',marginBottom:'0%',marginTop:'0%', cursor:'pointer',
-               height:'300px',
+               height:'200px'
                 }} ></h5> }
+
+                
                  </div>
                   
                  
@@ -674,26 +666,26 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                 { isUfcCardLoaded ? <div className="home-fighter"  style={{alignItems:'start'}}>
                                     <div className="fi2"
                                               style={{
-                                                backgroundImage: `url('${
+                                                backgroundImage: ufcCard.length > 2 ? `url('${
                                                   ufcCard[0].fighterPics[0].startsWith("/s3/files/")
                                                     ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
                                                       ufcCard[0].fighterPics[0].substring("/s3/files/".length)
-                                                    : ufcCard[0].fighterPics[0]
-                                                }')`,
+                                                    : ufcCard[0].fighterPics[0] 
+                                                }')`: '',
                                                 
-                                                marginTop: '180px',width: '100%',maxWidth: '300px',backgroundSize:'75% 100%'
+                                                marginTop: '100px',width: '100%',maxWidth: '300px',backgroundSize:'75% 100%'
                                               }} ></div>
                                     <div
                                               className="fi2"
                                               style={{
-                                                backgroundImage: `url('${
+                                                backgroundImage: ufcCard.length > 2 ?  `url('${
                                                   ufcCard[0].fighterPics[1].startsWith("/s3/files/")
                                                     ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
                                                       ufcCard[0].fighterPics[1].substring("/s3/files/".length)
                                                     : ufcCard[0].fighterPics[1]
-                                                }')`,
+                                                  }')`: '',
                                                 backgroundPosition: 'right',width: '100%',maxWidth:'300px',backgroundSize:'75% 100%',marginLeft: 'auto',
-                                                marginTop: '180px'
+                                                marginTop: '100px'
                                               }}
                                             ></div>
 
@@ -732,7 +724,10 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                               </div>
                               <div
                                   style={{zIndex:'1',display:'flex',justifyContent:'center',marginLeft:'1%'}}>
-                                <p className='snow homebullet12 'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {locationCity}, {state}</p>
+                                <p className='snow homebullet12 'style={{maxWidth: '100%', // Set maximum width
+    overflow: 'hidden', // Hide overflow
+    textOverflow: 'ellipsis', // Add ellipsis if text overflows
+    whiteSpace: 'nowrap',marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {locationCity}, {state}</p>
                                 <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation(location)}/flat/64.png")`,
                                   backgroundSize: '100% 100%',
                                   backgroundRepeat:'no-repeat',
@@ -743,17 +738,20 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
 
                   
                               {/* <h6>{bellatorInfo[1]}</h6> */}
-                              <center><p  onClick={() => navigate('/section3')} style={{height:'210px',width:'95%',backgroundImage: `url(${tapImage})`,backgroundSize:'100% 100%',borderRadius:'20%'}}></p></center>
+                              <center><p  onClick={() => navigate('/section3')} style={{height:'210px',width:'95%',backgroundImage: tapImage ? `url(${tapImage})` : '',backgroundSize:'100% 100%',borderRadius:'20%'}} className='loading3'></p></center>
                               {/* <p className="homebullet margin-0-5">{pflInfo[0]}</p> */}
                               </div>
                               {/* //////////////////////// */}
                               <div className="bg-white  text-align-center text-black fake" style={{height:'fit-content',width:'45%',maxWidth:'250px',margin:'1%',minWidth:'120px',marginTop:'5%',borderRadius:'10%'}}>
                         <div style={{ backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`, backgroundSize: '50% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
-                                <h3>{pflInfo[2]}</h3>
+                                <h3  >{pflInfo[2]}</h3>
                               </div>
                               <div
                                   style={{zIndex:'1',display:'flex',justifyContent:'center',marginLeft:'1%'}}>
-                                <p className='snow homebullet12 'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {pflInfo[1]}</p>
+                                <p className='snow homebullet12 'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px',maxWidth: '100%', // Set maximum width
+    overflow: 'hidden', // Hide overflow
+    textOverflow: 'ellipsis', // Add ellipsis if text overflows
+    whiteSpace: 'nowrap',}}> {pflInfo[1]}</p>
                                 <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation('United States')}/flat/64.png")`,
                                   backgroundSize: '100% 100%',
                                   backgroundRepeat:'no-repeat',
@@ -775,7 +773,10 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                               </div>
                               <div
                                   style={{zIndex:'1',display:'flex',justifyContent:'center',marginLeft:'1%'}}>
-                                <p className='snow homebullet12 'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {acaInfo[1]}</p>
+                                <p className='snow homebullet12 'style={{maxWidth: '100%', // Set maximum width
+    overflow: 'hidden', // Hide overflow
+    textOverflow: 'ellipsis', // Add ellipsis if text overflows
+    whiteSpace: 'nowrap',marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {acaInfo[1]}</p>
                                 <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation('Belarus')}/flat/64.png")`,
                                   backgroundSize: '100% 100%',
                                   backgroundRepeat:'no-repeat',
@@ -791,12 +792,15 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                               {/* <p className="homebullet12 margin-0-5">{acaInfo[0]}</p> */}
                               </div>
                               <div className="bg-white  text-align-center text-black fake" style={{height:'fit-content',width:'45%',maxWidth:'250px',margin:'1%',minWidth:'120px',marginTop:'5%',marginBottom:'5%',borderRadius:'10%'}}>
-                        <div style={{ backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Bellator_MMA_Logo.svg/2560px-Bellator_MMA_Logo.svg.png)`, backgroundSize: '50% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
+                        <div style={{ backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Bellator_MMA_Logo.svg/2560px-Bellator_MMA_Logo.svg.png)`, backgroundSize: '80% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
                                 <h3>{bellatorInfo[2]}</h3>
                               </div>
                               <div
                                   style={{zIndex:'1',display:'flex',justifyContent:'center',marginLeft:'1%'}}>
-                                <p className='snow homebullet12 'style={{marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {bellatorInfo[1]}</p>
+                                <p className='snow homebullet12 'style={{maxWidth: '100%', // Set maximum width
+    overflow: 'hidden', // Hide overflow
+    textOverflow: 'ellipsis', // Add ellipsis if text overflows
+    whiteSpace: 'nowrap',marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {bellatorInfo[1]}</p>
                                 <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation('Ireland')}/flat/64.png")`,
                                   backgroundSize: '100% 100%',
                                   backgroundRepeat:'no-repeat',
@@ -944,7 +948,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                  <div style={{borderBottom:'solid white 3px',borderTop:'solid white 3px'}} class="element-with-border"></div>
             <div style={{paddingTop:'15%',paddingBottom:'500px'}}className="element-with-border3">
 
-            <div className="home-fighter">
+            <div className="home-fighter2">
                                     <div className="fi"
                                               style={{
                                                 backgroundImage: `url('${
@@ -966,7 +970,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
 
                                     </div>
 
-                  <div style={{marginTop:"5%",
+                  <div style={{marginTop:"-450px",
                               
                               backgroundPosition: '50% 50%',
                               backgroundColor: currentClass === 'p4p8' ? 'black':'whitesmoke',
