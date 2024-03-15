@@ -726,7 +726,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                             <div className="white75  flex bg-white " style={{flexWrap: 'wrap',width:'102%',marginLeft:'-1%',marginTop:'-10px'}}><span className="bg-white text-black padding1 ">Upcoming Events</span></div>
                             <span className=" skinnyBoy flex " style={{flexWrap: 'wrap',width:'100%',maxWidth:''}}>
                               {/* //////////////////////// */}
-                               <div className="bg-white mmaO text-align-center text-black fake" style={{height:'fit-content',width:'45%',maxWidth:'250px',margin:'1%',minWidth:'120px',marginTop:'5%'}}>
+                               <div className="bg-white  text-align-center text-black fake" style={{height:'fit-content',width:'45%',maxWidth:'250px',margin:'1%',minWidth:'120px',marginTop:'5%',borderRadius:'10%'}}>
                         <div style={{ backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/UFC_logo.svg/2560px-UFC_logo.svg.png)`, backgroundSize: '50% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
                                 <h3>{pflInfo[2]}</h3>
                               </div>
@@ -743,11 +743,11 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
 
                   
                               {/* <h6>{bellatorInfo[1]}</h6> */}
-                              <center><p  onClick={() => navigate('/section3')} style={{height:'210px',width:'95%',backgroundImage: `url(${tapImage})`,backgroundSize:'100% 100%',borderRadius:'10%'}}></p></center>
+                              <center><p  onClick={() => navigate('/section3')} style={{height:'210px',width:'95%',backgroundImage: `url(${tapImage})`,backgroundSize:'100% 100%',borderRadius:'20%'}}></p></center>
                               {/* <p className="homebullet margin-0-5">{pflInfo[0]}</p> */}
                               </div>
                               {/* //////////////////////// */}
-                              <div className="bg-white mmaO text-align-center text-black fake" style={{height:'fit-content',width:'45%',maxWidth:'250px',margin:'1%',minWidth:'120px',marginTop:'5%'}}>
+                              <div className="bg-white  text-align-center text-black fake" style={{height:'fit-content',width:'45%',maxWidth:'250px',margin:'1%',minWidth:'120px',marginTop:'5%',borderRadius:'10%'}}>
                         <div style={{ backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`, backgroundSize: '50% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
                                 <h3>{pflInfo[2]}</h3>
                               </div>
@@ -765,11 +765,11 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                   
                               {/* <h6>{bellatorInfo[1]}</h6> */}
                               <center>
-                                <p onClick={() => navigate('/pfl-europe')} style={{height:'200px',width:'95%',backgroundImage: pflInfo[3] ? `url(${pflInfo[3]})` : ``,backgroundSize:'100% 100%',borderRadius:'10%',backgroundColor:''}} className='loading3'></p></center>
-                              <p className="homebullet12 margin-0-5">{pflInfo[0]}</p>
+                                <p onClick={() => navigate('/pfl-europe')} style={{height:'200px',width:'95%',backgroundImage: pflInfo[3] ? `url(${pflInfo[3]})` : ``,backgroundSize:'100% 100%',borderRadius:'20%',backgroundColor:''}} className='loading3'></p></center>
+                              {/* <p className="homebullet12 margin-0-5">{pflInfo[0]}</p> */}
                               </div>
                               {/* //////////////////////// */}
-                              <div className="  bg-white mmaO text-align-center text-black fake" style={{height:'fit-content',width:'45%',maxWidth:'250px',margin:'1%',minWidth:'120px',marginTop:'5%',marginBottom:'5%'}}>
+                              <div className="  bg-white  text-align-center text-black fake" style={{height:'fit-content',width:'45%',maxWidth:'250px',margin:'1%',minWidth:'120px',marginTop:'5%',marginBottom:'5%',borderRadius:'10%'}}>
                         <div style={{backgroundImage: `url(https://www.aca-mma.com/img/logo/aca-logo-black.png?v=28.11.17)`, backgroundSize: '50% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
                                 <h3>{acaInfo[2]}</h3>
                               </div>
@@ -787,10 +787,10 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                   
                               {/* <h6>{bellatorInfo[1]}</h6> */}
                               <center>
-                                <p onClick={() => navigate('/aca')} style={{height:'200px',width:'95%',backgroundImage: acaInfo[3] ? `url(${acaInfo[3]})` : ``,backgroundSize:'100% 100%',borderRadius:'10%'}}></p></center>
-                              <p className="homebullet12 margin-0-5">{acaInfo[0]}</p>
+                                <p onClick={() => navigate('/aca')} style={{height:'200px',width:'95%',backgroundImage: acaInfo[3] ? `url(${acaInfo[3]})` : ``,backgroundSize:'100% 100%',borderRadius:'20%'}}className='loading3'></p></center>
+                              {/* <p className="homebullet12 margin-0-5">{acaInfo[0]}</p> */}
                               </div>
-                              <div className="bg-white mmaO text-align-center text-black fake" style={{height:'fit-content',width:'45%',maxWidth:'250px',margin:'1%',minWidth:'120px',marginTop:'5%',marginBottom:'5%'}}>
+                              <div className="bg-white  text-align-center text-black fake" style={{height:'fit-content',width:'45%',maxWidth:'250px',margin:'1%',minWidth:'120px',marginTop:'5%',marginBottom:'5%',borderRadius:'10%'}}>
                         <div style={{ backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Bellator_MMA_Logo.svg/2560px-Bellator_MMA_Logo.svg.png)`, backgroundSize: '50% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
                                 <h3>{bellatorInfo[2]}</h3>
                               </div>
@@ -808,8 +808,8 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                   
                               {/* <h6>{bellatorInfo[1]}</h6> */}
                               <center>
-                                <p className="shake:hover" onClick={() => navigate('/bellator')} style={{height:'200px',width:'95%',backgroundImage: bellatorInfo[3] ? `url(${bellatorInfo[3]})` : ``,backgroundSize:'100% 100%',borderRadius:'10%'}}></p></center>
-                              <p className="homebullet12 margin-0-5">{bellatorInfo[0]}</p>
+                                <p className="shake:hover loading3" onClick={() => navigate('/bellator')} style={{height:'200px',width:'95%',backgroundImage: bellatorInfo[3] ? `url(${bellatorInfo[3]})` : ``,backgroundSize:'100% 100%',borderRadius:'20%'}}></p></center>
+                              {/* <p className="homebullet12 margin-0-5">{bellatorInfo[0]}</p> */}
                               </div>
                               
                               
