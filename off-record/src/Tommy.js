@@ -606,7 +606,7 @@ if (isLoading) {
           <P4pHeader onLogout={onLogout} user={user} />
 
 
- {weRlive.some(item => item.timeDetails1 === 'not' ) ?  
+ {weRlive.some(item => item.timeDetails1 !== '' ) ?  
  
  <div className='text-align-center bg-black 'style={{MaxHeight:'fit-content'}}>
   
