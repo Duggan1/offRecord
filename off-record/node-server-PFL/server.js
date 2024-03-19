@@ -268,7 +268,12 @@ const scrapeTapACA = async () => {
 
       $('.border-b.border-dotted.border-tap_6').each(function(index, element) {
         const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
-        const blueCornerName = $(element).find('link-primary-red').eq(2).text().trim();
+
+        // Adjusted approach for blue corner, assuming it's consistently positioned in the markup
+        const blueCornerName = $(element).find('.link-primary-red').eq(1).text().trim();
+        ///////////////////ERROR//////////////////////////ERROR///////////////////////////
+        ///////////////////ERROR//////////////////////////ERROR///////////////////////////
+        ///////////////////ERROR//////////////////////////ERROR///////////////////////////
         const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
         const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
 
