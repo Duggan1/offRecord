@@ -263,17 +263,17 @@ const scrapeTapACA = async () => {
       const detailsElement = $('#primaryDetailsContainer');
       const ACAlocationCC = detailsElement.find('li:contains("Location:") a').text();
       const ACApromotion = detailsElement.find('li:contains("Promotion:") a').text();
-      const ACAtapImage = detailsElement.find('.img').attr('src');
+      const ACAtapImage = detailsElement.find("img").attr('src').trim();
       const ACAeventTime = detailsElement.find('.header').text();
 
       $('.border-b.border-dotted.border-tap_6').each(function(index, element) {
         const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
-        const blueCornerName = $(element).find('.link-primary-red').eq(1).text().trim();
+        const blueCornerName = $(element).find('.link-primary-red.order-2').text().trim();
         const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
         const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
 
-        const redCornerRecord = $(element).find('.order-2').eq(0).text().trim();
-        const blueCornerRecord = $(element).find('.order-2').eq(1).text().trim();
+        const redCornerRecord = $(element).find('.order-2.text-\[15px\]').eq(0).text().trim();
+        const blueCornerRecord = $(element).find('.order-2.text-\[15px\]').eq(1).text().trim();
 
         const redCornerImage = $(element).find('img.rounded').eq(0).attr('src');
         const blueCornerImage = $(element).find('img.rounded').eq(1).attr('src');
@@ -283,7 +283,7 @@ const scrapeTapACA = async () => {
         const redCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(0).text().trim();
         const blueCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(1).text().trim();
         
-        const match = $(element).find('.weight').text().trim();
+        const match = $(element).find('.text-neutral-50').text().trim();
         const method = $(element).find('.fightCardResult .result').text().trim();
         const round = $(element).find('.fightCardResult .time').text().trim();
         // Determine the winner based on class presence
