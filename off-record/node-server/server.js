@@ -141,22 +141,19 @@ app.get('/scrape-ufc-website', async (req, res) => {
         const html = response.data;
         const $ = cheerio.load(html);
 
-        const detailsElement = $('.details.details_with_poster.clearfix');
-        locationCC = detailsElement.find('li:contains("Location:") a').text();
-        tapImage = detailsElement.find('.left img').attr('src');
-        // eventTime = detailsElement.find('.header').text();
+        const detailsElement = $('#primaryDetailsContainer');
+const locationCC = detailsElement.find('li:contains("Location:") a').text().trim();
+const tapImage = detailsElement.find("img").attr('src').trim();
 
+$('.gap-0\\.5 .justify-center .flex').each((index, element) => {
+    const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
+    const blueCornerName = $(element).find('.link-primary-red').eq(1).text().trim();
+    const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
+    const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
 
-        
+    const redCornerRecord = $(element).find('.order-2').eq(0).text().trim();
+    const blueCornerRecord = $(element).find('.order-2').eq(1).text().trim();
 
-        $('.fightCard').each((index, element) => {
-          const redCornerName = $(element).find('.fightCardFighterName').eq(0).text().trim();
-          const blueCornerName = $(element).find('.fightCardFighterName').eq(1).text().trim();
-          const redCornerFlag = $(element).find('.fightCardFlag').attr('src');
-          
-          const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
-          const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
-          const blueCornerFlag = $(element).find('.fightCardRecord').eq(1).find('.fighterFlag img').attr('src');
 
           console.log(redCornerName);
           console.log(blueCornerName);
