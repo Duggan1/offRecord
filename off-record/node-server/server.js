@@ -142,8 +142,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
         const $ = cheerio.load(html);
 
         const detailsElement = $('#primaryDetailsContainer');
-const locationCC = detailsElement.find('li:contains("Location:") a').text().trim();
-const tapImage = detailsElement.find("img").attr('src').trim();
+        locationCC = detailsElement.find('li:contains("Location:") a').text().trim();
+        tapImage = detailsElement.find("img").attr('src').trim();
 
 $('.gap-0\\.5 .justify-center .flex').each((index, element) => {
     const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
