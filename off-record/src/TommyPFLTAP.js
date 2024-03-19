@@ -13,18 +13,19 @@ import { useNavigate } from 'react-router-dom';
 import Dnd from './Dnd';
 import Dnd2 from './Dnd2';
 
-function TommyPFLTAP({BGpic,tapImage,PFLEvents, adminKevPickswID, BellatorInfo, state, user,mewtwo,adminKevPicks2, ufcCard, stallUfcCard,locationCity,location, isOwnerAndEventMatch, setjustSubmitted, onLogout, weRlive}) {
+function TommyPFLTAP({oldPFLEvent,oldPFLCard,BGpic,tapImage,PFLEvents, adminKevPickswID, BellatorInfo, state, user,mewtwo,adminKevPicks2, ufcCard, stallUfcCard,locationCity,location, isOwnerAndEventMatch, setjustSubmitted, onLogout, weRlive}) {
 
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [AKP, setAKP] = useState([])
 
-  const [oldCard , setOldCard] = useState([])
-  const [oldEvent , setOldEvent] = useState([])
+ 
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
 
+  const [oldCard , setOldCard] = useState(oldPFLCard)
+  const [oldEvent , setOldEvent] = useState(oldPFLEvent)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,16 +53,7 @@ function TommyPFLTAP({BGpic,tapImage,PFLEvents, adminKevPickswID, BellatorInfo, 
       // Faster!!!! need to Do!!!
       
       setOldCard(newUfcCard);
-      // setTapI(ufcEvents.tapImage)
-      // setUfcI(ufcEvents.backgroundImageSrc.startsWith("/s3/files/")
-      // ? "https://dmxg5wxfqgb4u.cloudfront.net/" + ufcEvents.backgroundImageSrc : ufcEvents.backgroundImageSrc )
-      // let locationInfo = [];
-      // locationInfo = ufcEvents.locationCC ? ufcEvents.locationCC.split(', ').map(part => part.trim()) : [];
-      // setLo(locationInfo[0])
-      // setLo2(locationInfo[1])
-      // setLo3(locationInfo[locationInfo.length - 1])
-      // setLNmenow(ufcEvents.event_name)
-  
+   
     } catch (error) {
         console.error('Error fetching data:', error);
       }

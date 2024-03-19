@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import P4pHeader from './P4pHeader'
 
 
-function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive, BGpic, tapImage, countPick, isOwnerAndEventMatch, onLogout, LNmenow,bellatorInfo,acaInfo,pflInfo}) {
+function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive, BGpic, tapImage, countPick, isOwnerAndEventMatch, onLogout, LNmenow,bellatorInfo,acaInfo,pflInfo,oldPFLEvent}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
@@ -371,7 +371,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       console.log(currentfighter)
       console.log(weRlive.some(item => item.timeDetails1 !== ''))
       const countNonEmptyTimeDetails = weRlive.filter(item => item.timeDetails1 !== '').length;
-      console.log(bellatorInfo,acaInfo,pflInfo)
+      console.log(bellatorInfo,acaInfo,pflInfo, oldPFLEvent)
       console.log(liveNready)
 
       const baseURLForS3Files = "https://dmxg5wxfqgb4u.cloudfront.net";

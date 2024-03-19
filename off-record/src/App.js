@@ -1444,6 +1444,44 @@ const [leagues, setLeagues] = useState([])
 
       console.log(tapI)
 ////////////////////////////////////////////////////////////
+const [oldPFLCard , setoldPFLCard] = useState([])
+const [oldPFLEvent , setoldPFLEvent] = useState([])
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://off-therecordpicks.onrender.com/pfl-fights');
+      const data = await response.json();
+      console.log(data)
+      const EventNum = data.pfl_events.length - 1
+      console.log(data.pfl_events)
+      setoldPFLEvent(data.pfl_events[EventNum] || []);
+      console.log(EventNum)
+      console.log(PFLEvents)
+      const newUfcCard = PFLEvents.fights.map((fight, index) => {
+        return {
+            fighters: [fight.redCornerName, fight.blueCornerName],
+            match: fight.weightClass || '',
+            records: [fight.redCornerRecord, fight.blueCornerRecord],
+            flags: [fight.redCornerCountry, fight.blueCornerCountry],
+            fighterPics: [fight.redCornerImage, fight.blueCornerImage],
+            odds: fight.odds  || ''
+
+        };
+    });
+
+    // Faster!!!! need to Do!!!
+    
+    setoldPFLCard(newUfcCard);
+ 
+  } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  fetchData();
+}, []);
+/////////////////////////////////////////////////////////////
 
 
 
@@ -1462,7 +1500,7 @@ const [leagues, setLeagues] = useState([])
 
 
       <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch}
-                                      stallUfcCard={ufcCard} locationCity={lo1} state={lo2} weRlive={weRlive} LNmenow={LNmenow} pflInfo={PFLTAPInfo} acaInfo={ACAInfo} bellatorInfo={BellatorInfo}
+                                      stallUfcCard={ufcCard} locationCity={lo1} state={lo2} weRlive={weRlive} LNmenow={LNmenow} oldPFLEvent={oldPFLEvent} pflInfo={PFLTAPInfo} acaInfo={ACAInfo} bellatorInfo={BellatorInfo}
                                       location={lo3} BGpic={ufcI} tapImage={tapI} countPick={countPick} onLogout={handleLogout}  />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
@@ -1500,7 +1538,7 @@ const [leagues, setLeagues] = useState([])
                                               // weRlive={weRlivePFL}
                                                 adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} adminKevPickswID={adminKevPickswID} mewtwo={mewtwo} />}/>
       <Route path="/pfl-europe" element={<TommyPFLTAP user={user} ufcCard={PFLTAPCard} isOwnerAndEventMatch={isOwnerAndEventMatchPFL} setjustSubmitted={setjustSubmitted}
-                                         PFLEvents={PFLEvents}
+                                              oldPFLEvent={oldPFLEvent} oldPFLCard={oldPFLCard}  PFLEvents={PFLEvents}
                                               stallUfcCard={ufcCard} BellatorInfo={PFLTAPInfo} 
                                               // weRlive={weRlivePFL}
                                                 adminKevPicks2={adminKevPicks}  onLogout={handleLogout} BGpic={ufcI} adminKevPickswID={adminKevPickswID} mewtwo={mewtwo} />}/>

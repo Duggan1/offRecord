@@ -68,7 +68,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
     const country = locationParts[2];
     let locationCC 
     let tapImage 
-    let eventTime
+    // let eventTime
     event_name = event_name.replace(/\s+/g, ' ').trim();
     event_date = event_date.replace(/\s+/g, ' ').trim();
 
@@ -144,7 +144,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
         const detailsElement = $('.details.details_with_poster.clearfix');
         locationCC = detailsElement.find('li:contains("Location:") a').text();
         tapImage = detailsElement.find('.left img').attr('src');
-        eventTime = detailsElement.find('.header').text();
+        // eventTime = detailsElement.find('.header').text();
 
 
         
@@ -293,7 +293,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
    
     res.json({
       event_name,
-      eventTime,
+      // eventTime,
 
       fights: fightData,
       records: fightRecords,
