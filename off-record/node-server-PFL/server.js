@@ -268,12 +268,12 @@ const scrapeTapACA = async () => {
 
       $('.border-b.border-dotted.border-tap_6').each(function(index, element) {
         const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
-        const blueCornerName = $(element).find('.link-primary-red.order-2').text().trim();
+        const blueCornerName = $(element).find('.link-primary-red').eq(1).text().trim();
         const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
         const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
 
-        const redCornerRecord = $(element).find('.order-2.text-\[15px\]').text().trim();
-        const blueCornerRecord = $(element).find('.order-1.text-\[15px\]').text().trim();
+        const redCornerRecord = $(element).find('.order-2.text-\\[15px\\]').text().trim();
+        const blueCornerRecord = $(element).find('.order-1.text-\\[15px\\]').text().trim();
 
         const redCornerImage = $(element).find('img.rounded').eq(0).attr('src');
         const blueCornerImage = $(element).find('img.rounded').eq(1).attr('src');
