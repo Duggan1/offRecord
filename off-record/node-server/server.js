@@ -151,8 +151,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
           const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
           const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
   
-          const redCornerRecord = $(element).find('.order-2.text-\[15px\]').eq(0).text().trim();
-          const blueCornerRecord = $(element).find('.order-2.text-\[15px\]').eq(1).text().trim();
+          const redCornerRecord = $(element).find('.order-2.text-\\[15px\\]').text().trim();
+          const blueCornerRecord = $(element).find('.order-1.text-\\[15px\\]').text().trim();
 
 
           console.log(redCornerName);
