@@ -145,34 +145,34 @@ app.get('/scrape-ufc-website', async (req, res) => {
         locationCC = detailsElement.find('li:contains("Location:") a').text().trim();
         tapImage = detailsElement.find("img").attr('src').trim();
 
-$('.gap-0\\.5 .justify-center .flex').each((index, element) => {
-    const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
-    const blueCornerName = $(element).find('.link-primary-red').eq(1).text().trim();
-    const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
-    const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
+// $('.gap-0\\.5 .justify-center .flex').each((index, element) => {
+//     const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
+//     const blueCornerName = $(element).find('.link-primary-red').eq(1).text().trim();
+//     const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
+//     const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
 
-    const redCornerRecord = $(element).find('.order-2').eq(0).text().trim();
-    const blueCornerRecord = $(element).find('.order-2').eq(1).text().trim();
+//     const redCornerRecord = $(element).find('.order-2').eq(0).text().trim();
+//     const blueCornerRecord = $(element).find('.order-2').eq(1).text().trim();
 
 
-          console.log(redCornerName);
-          console.log(blueCornerName);
-          console.log(blueCornerFlag);
-          console.log(redCornerFlag);
+//           console.log(redCornerName);
+//           console.log(blueCornerName);
+//           console.log(blueCornerFlag);
+//           console.log(redCornerFlag);
 
-          if (redCornerName && blueCornerName && redCornerRecord && blueCornerRecord) {
-            const fighter = {
-              redCornerName,
-              redCornerRecord,
-              blueCornerName,
-              blueCornerRecord, blueCornerFlag, redCornerFlag
-            };
-            if (!fightRecords.some(existingFighter => JSON.stringify(existingFighter) === JSON.stringify(fighter))) {
-              fightRecords.push(fighter);
-            }
+//           if (redCornerName && blueCornerName && redCornerRecord && blueCornerRecord) {
+//             const fighter = {
+//               redCornerName,
+//               redCornerRecord,
+//               blueCornerName,
+//               blueCornerRecord, blueCornerFlag, redCornerFlag
+//             };
+//             if (!fightRecords.some(existingFighter => JSON.stringify(existingFighter) === JSON.stringify(fighter))) {
+//               fightRecords.push(fighter);
+//             }
             
-          }
-        });
+//           }
+//         });
       }
     } catch (error) {
       console.error('Error:', error);
