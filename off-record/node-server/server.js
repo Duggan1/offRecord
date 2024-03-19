@@ -66,8 +66,8 @@ app.get('/scrape-ufc-website', async (req, res) => {
     const arena = locationParts[0]; // The first part should be the arena
     const city = locationParts[1];  // The second part should be the city
     const country = locationParts[2];
-    let locationCC 
-    let tapImage 
+    let locationCC ;
+    let tapImage ;
     // let eventTime
     event_name = event_name.replace(/\s+/g, ' ').trim();
     event_date = event_date.replace(/\s+/g, ' ').trim();

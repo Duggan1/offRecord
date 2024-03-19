@@ -720,7 +720,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                               {/* //////////////////////// */}
                                <div className="bg-white  text-align-center text-black fake" style={{height:'fit-content',width:'45%',maxWidth:'250px',margin:'1%',minWidth:'120px',marginTop:'5%',borderRadius:'10%'}}>
                         <div style={{ backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/UFC_logo.svg/2560px-UFC_logo.svg.png)`, backgroundSize: '50% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
-                                <h3>{pflInfo[2]}</h3>
+                                <h3> {pflInfo[2]}</h3>
                               </div>
                               <div
                                   style={{zIndex:'1',display:'flex',justifyContent:'center',marginLeft:'1%'}}>
@@ -744,7 +744,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                               {/* //////////////////////// */}
                               <div className="bg-white  text-align-center text-black fake" style={{height:'fit-content',width:'45%',maxWidth:'250px',margin:'1%',minWidth:'120px',marginTop:'5%',borderRadius:'10%'}}>
                         <div style={{ backgroundImage: `url(https://pflmma.com/assets/img/logos/pfl-logo-color.svg)`, backgroundSize: '50% 100%',backgroundRepeat:'no-repeat',backgroundPosition: '50% center',color:'transparent',height:'40px'}}>
-                                <h3  >{pflInfo[2]}</h3>
+                        <h3> {pflInfo[2] ? pflInfo[2] : oldPFLEvent.locationCC}</h3>
                               </div>
                               <div
                                   style={{zIndex:'1',display:'flex',justifyContent:'center',marginLeft:'1%'}}>

@@ -707,6 +707,8 @@ const patchEvent = () => {
 };
 //////////////////////////////
 
+console.log(eventInfo)
+console.log(ufcEvents)
 console.log(ufcCard2)
 console.log(ufcCard3)
 
