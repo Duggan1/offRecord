@@ -260,24 +260,26 @@ const scrapeTapACA = async () => {
       const ACAData = [];
 
 
-      const detailsElement = $('.details.details_with_poster.clearfix');
+      const detailsElement = $('#primaryDetailsContainer');
       const ACAlocationCC = detailsElement.find('li:contains("Location:") a').text();
       const ACApromotion = detailsElement.find('li:contains("Promotion:") a').text();
-      const ACAtapImage = detailsElement.find('.left img').attr('src');
+      const ACAtapImage = detailsElement.find('.img').attr('src');
       const ACAeventTime = detailsElement.find('.header').text();
 
-      $('.fightCardBout').each((index, element) => {
-        const redCornerName = $(element).find('.fightCardFighterName.left').text().trim();
-        const blueCornerName = $(element).find('.fightCardFighterName.right').text().trim();
+      $('.border-b.border-dotted.border-tap_6').each(function(index, element) {
+        const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
+        const blueCornerName = $(element).find('.link-primary-red').eq(1).text().trim();
+        const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
+        const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
 
-        const redCornerFlag = $(element).find('.fightCardFlag').eq(0).attr('src');
-        const blueCornerFlag = $(element).find('.fightCardFlag').eq(1).attr('src');
+        const redCornerRecord = $(element).find('.order-2').eq(0).text().trim();
+        const blueCornerRecord = $(element).find('.order-2').eq(1).text().trim();
 
-        const redCornerImage = $(element).find('.fightCardFighterImage img').eq(0).attr('src');
-        const blueCornerImage = $(element).find('.fightCardFighterImage img').eq(1).attr('src');
+        const redCornerImage = $(element).find('img.rounded').eq(0).attr('src');
+        const blueCornerImage = $(element).find('img.rounded').eq(1).attr('src');
 
-        const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
-        const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
+        // const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
+        // const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
         const redCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(0).text().trim();
         const blueCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(1).text().trim();
         
