@@ -276,6 +276,11 @@ const scrapeTapACA = async () => {
         
         // Splitting the fighters' names based on " vs. "
         let fightersSplit = fightersText.split(' vs. ');
+
+        console.log(fightersText);
+        console.log(weightClass);
+        console.log(fightersSplit);
+        // console.log(blueCornerRecord);
         
         // Assuming the structure always has two fighters listed
         if(fightersSplit.length === 2) {
