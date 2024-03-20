@@ -270,7 +270,7 @@ const scrapeTapACA = async () => {
         const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
 
         // Adjusted approach for blue corner, assuming it's consistently positioned in the markup
-        const blueCornerName = $(element).find('.link-primary-red.order-2').text().trim();
+        const blueCornerName = $(element).find('.link-primary-red.hidden.order-2').text().trim();
         ///////////////////ERROR//////////////////////////ERROR///////////////////////////
         ///////////////////ERROR//////////////////////////ERROR///////////////////////////
         ///////////////////ERROR//////////////////////////ERROR///////////////////////////
