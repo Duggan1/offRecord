@@ -269,10 +269,10 @@ const scrapeTapACA = async () => {
 
       let fightCardDetails = [];
 
-      $('.eventQuickCardSidebar .text-xs').each(function() {
+      $('.eventQuickCardSidebar .text-xs').each(function(index, element) {
         // Using `$(this)` to refer to the current '.text-xs' div
-        let fightersText = $(this).find('.left').text().trim();
-        let weightClass = $(this).find('.right').text().trim();
+        let fightersText = $(element).find('.left').text().trim();
+        let weightClass = $(element).find('.right').text().trim();
         
         // Splitting the fighters' names based on " vs. "
         let fightersSplit = fightersText.split(' vs. ');
