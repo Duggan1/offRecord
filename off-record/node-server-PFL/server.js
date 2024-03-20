@@ -266,6 +266,34 @@ const scrapeTapACA = async () => {
       const ACAtapImage = detailsElement.find("img").attr('src').trim();
       const ACAeventTime = detailsElement.find('.header').text();
 
+
+      let fightCardDetails = [];
+
+      $('.eventQuickCardSidebar .text-xs').each(function() {
+        // Using `$(this)` to refer to the current '.text-xs' div
+        let fightersText = $(this).find('.left').text().trim();
+        let weightClass = $(this).find('.right').text().trim();
+        
+        // Splitting the fighters' names based on " vs. "
+        let fightersSplit = fightersText.split(' vs. ');
+        
+        // Assuming the structure always has two fighters listed
+        if(fightersSplit.length === 2) {
+            let fighterOneName = fightersSplit[0];
+            let fighterTwoName = fightersSplit[1];
+    
+            fightCardDetails.push({
+                fighterOneName: fighterOneName,
+                fighterTwoName: fighterTwoName,
+                weightClass: weightClass
+            });
+        }
+    });
+
+
+
+
+
       $('.border-b.border-dotted.border-tap_6').each(function(index, element) {
         const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
 
@@ -304,7 +332,9 @@ const scrapeTapACA = async () => {
         console.log(redCornerRecord);
         console.log(blueCornerRecord);
     
-        if (redCornerName && blueCornerName && redCornerRecord && blueCornerRecord) {
+        if (
+          // redCornerName && blueCornerName &&
+           redCornerRecord && blueCornerRecord) {
           const fighter = {
               redCornerName,
               redCornerRecord,
@@ -320,28 +350,29 @@ const scrapeTapACA = async () => {
               match
           };
           ACAData.push(fighter);
-      } else if (redCornerName && blueCornerName) {
-          const fighter = {
-              redCornerName,
-              redCornerRecordAfterReuslt, // Note: Ensure this is intentional vs redCornerRecord
-              blueCornerName,
-              blueCornerRecordAfterReuslt, // Likewise, ensure this is the desired field vs blueCornerRecord
-              blueCornerFlag, 
-              redCornerFlag,
-              method,
-              round, 
-              winner, // Updated to use the winner variable
-              redCornerImage, 
-              blueCornerImage,
-              match
-          };
-          ACAData.push(fighter);
-      }
+      } 
+      // else if (redCornerName && blueCornerName) {
+      //     const fighter = {
+      //         redCornerName,
+      //         redCornerRecordAfterReuslt, // Note: Ensure this is intentional vs redCornerRecord
+      //         blueCornerName,
+      //         blueCornerRecordAfterReuslt, // Likewise, ensure this is the desired field vs blueCornerRecord
+      //         blueCornerFlag, 
+      //         redCornerFlag,
+      //         method,
+      //         round, 
+      //         winner, // Updated to use the winner variable
+      //         redCornerImage, 
+      //         blueCornerImage,
+      //         match
+      //     };
+      //     ACAData.push(fighter);
+      // }
       
     });
     
 
-      return {ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime};
+      return {ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,fightCardDetails};
     }
   } catch (error) {
     console.error('Error scraping PFL:', error);
@@ -446,7 +477,7 @@ app.get('/scrape-mma-websites', async (req, res) => {
   try {
     // const pflData = await scrapePFL();
     const {Data,locationCC,promotion,tapImage,eventTime} = await scrapeTap();
-    const {ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime} = await scrapeTapACA();
+    const {ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,fightCardDetails} = await scrapeTapACA();
     const {PFLData,PFLlocationCC,PFLpromotion,PFLtapImage,PFLeventTime} = await scrapeTapPFL();
     // const { fighters, liveR } = await scrapeESPN();
 
@@ -455,7 +486,7 @@ app.get('/scrape-mma-websites', async (req, res) => {
       // fighters,
       // liveR,
       Data, locationCC,promotion,tapImage,eventTime,
-      ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,
+      ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,fightCardDetails,
       PFLData,PFLlocationCC,PFLpromotion,PFLtapImage,PFLeventTime
 
     });
