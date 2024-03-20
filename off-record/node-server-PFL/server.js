@@ -269,7 +269,7 @@ const scrapeTapACA = async () => {
 
       let fightCardDetails = [];
 
-      $('.eventQuickCardSidebar .text-xs').each(function(index, element) {
+      $('.div.px-2.py-2.5.text-xs.leading-none.flex.justify-between.odd\\:bg-neutral-200.text-tap_3').each(function(index, element) {
         // Using `$(this)` to refer to the current '.text-xs' div
         let fightersText = $(element).find('.left').text().trim();
         let weightClass = $(element).find('.right').text().trim();
