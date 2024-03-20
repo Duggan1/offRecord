@@ -269,15 +269,19 @@ const scrapeTapACA = async () => {
 
       let fightCardDetails = [];
 
-      $('.px-2.py-2.5.text-xs.leading-none.flex.justify-between.odd\\:bg-neutral-200.text-tap_3').each(function(index, element) {
+      $('.px-2.py-2.5.text-xs.leading-none.flex.justify-between').each(function(index, element) {
         // Using `$(this)` to refer to the current '.text-xs' div
         let fightersText = $(element).find('.left').text().trim();
+        let fightersText1 = $(element).find('a .left').text().trim();
+        let fightersText2 = $(element).find('.left a').text().trim();
         let weightClass = $(element).find('.right').text().trim();
         
         // Splitting the fighters' names based on " vs. "
         let fightersSplit = fightersText.split(' vs. ');
 
         console.log(fightersText);
+        console.log(fightersText1);
+        console.log(fightersText2);
         console.log(weightClass);
         console.log(fightersSplit);
         // console.log(blueCornerRecord);
