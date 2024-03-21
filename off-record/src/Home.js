@@ -378,7 +378,38 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
       const baseURLForThemes = "https://www.ufc.com";
       
       const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
+//////////////////////////////////
+const [BGindex, setBGindex] = useState(0);
 
+  useEffect(() => {
+    // Initial 5-second timeout to change BGindex from 0 to 1
+    const initialTimeoutId = setTimeout(() => {
+      setBGindex(1);
+    }, 3000); // 5 seconds
+
+    // Cleanup function to clear the timeout if the component unmounts
+    return () => clearTimeout(initialTimeoutId);
+  }, []); // Empty dependency array to run only once on mount
+
+  useEffect(() => {
+    // Function to handle the index update and scheduling the next update
+    const updateIndex = () => {
+      setBGindex((currentBGindex) => {
+        const nextIndex = currentBGindex < ufcCard.length - 1 ? currentBGindex + 1 : 0;
+        return nextIndex;
+      });
+    };
+  
+    // Scheduling the first update after 3 seconds if starting at index 0, otherwise 500ms
+    const initialDelay = BGindex === 0 ? 3000 : 300;
+    const timeoutId = setTimeout(updateIndex, initialDelay);
+  
+    // Cleanup function to clear the scheduled update if the component unmounts
+    return () => clearTimeout(timeoutId);
+  }, [BGindex, ufcCard.length]); // Dependencies on BGindex and ufcCard.length
+  // Dependencies on BGindex and ufcCard.length
+  
+//////////////////////////////////
   useEffect(() => {
     const baseURLForS3Files = "https://dmxg5wxfqgb4u.cloudfront.net";
     const baseURLForThemes = "https://www.ufc.com";
@@ -646,7 +677,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                   }} ></h5> 
                 : <h5 
                 onClick={() => navigate('/section3')}
-                className=' snow fake z2'  style={{
+                className={`snow fake ${BGindex == 0 ? 'shake': ''} z2`} style={{
                   backgroundImage: `url(${tapImage})`
                   ,
                 backgroundSize: '100% 100%',
@@ -667,10 +698,10 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                                     <div className="fi2"
                                               style={{
                                                 backgroundImage: ufcCard.length > 2 ? `url('${
-                                                  ufcCard[0].fighterPics[0].startsWith("/s3/files/")
+                                                  ufcCard[BGindex].fighterPics[0].startsWith("/s3/files/")
                                                     ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
-                                                      ufcCard[0].fighterPics[0].substring("/s3/files/".length)
-                                                    : ufcCard[0].fighterPics[0] 
+                                                      ufcCard[BGindex].fighterPics[0].substring("/s3/files/".length)
+                                                    : ufcCard[BGindex].fighterPics[0] 
                                                 }')`: '',
                                                 
                                                 marginTop: '100px',width: '100%',maxWidth: '300px',backgroundSize:'75% 100%'
@@ -679,10 +710,10 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
                                               className="fi2"
                                               style={{
                                                 backgroundImage: ufcCard.length > 2 ?  `url('${
-                                                  ufcCard[0].fighterPics[1].startsWith("/s3/files/")
+                                                  ufcCard[BGindex].fighterPics[1].startsWith("/s3/files/")
                                                     ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
-                                                      ufcCard[0].fighterPics[1].substring("/s3/files/".length)
-                                                    : ufcCard[0].fighterPics[1]
+                                                      ufcCard[BGindex].fighterPics[1].substring("/s3/files/".length)
+                                                    : ufcCard[BGindex].fighterPics[1]
                                                   }')`: '',
                                                 backgroundPosition: 'right',width: '100%',maxWidth:'300px',backgroundSize:'75% 100%',marginLeft: 'auto',
                                                 marginTop: '100px'
