@@ -256,7 +256,7 @@ const scrapeTap = async () => {
       return {Data,locationCC,promotion,tapImage,eventTime};
     }
   } catch (error) {
-    console.error('Error scraping PFL:', error);
+    console.error('Error scraping Bellator:', error);
     throw error;
   }
 };
@@ -360,7 +360,7 @@ const scrapeTapACA = async () => {
       return {ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,fightCardDetails};
     }
   } catch (error) {
-    console.error('Error scraping PFL:', error);
+    console.error('Error scraping ACA:', error);
     throw error;
   }
 };
@@ -472,7 +472,7 @@ app.get('/scrape-mma-websites', async (req, res) => {
   try {
     // const pflData = await scrapePFL();
     const {Data,locationCC,promotion,tapImage,eventTime} = await scrapeTap();
-    const {ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,fightCardDetails} = await scrapeTapACA();
+    const {ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime} = await scrapeTapACA();
     const {PFLData,PFLlocationCC,PFLpromotion,PFLtapImage,PFLeventTime} = await scrapeTapPFL();
     // const { fighters, liveR } = await scrapeESPN();
 
@@ -481,7 +481,7 @@ app.get('/scrape-mma-websites', async (req, res) => {
       // fighters,
       // liveR,
       Data, locationCC,promotion,tapImage,eventTime,
-      ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,fightCardDetails,
+      ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,
       PFLData,PFLlocationCC,PFLpromotion,PFLtapImage,PFLeventTime
 
     });
