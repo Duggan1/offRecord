@@ -172,25 +172,32 @@ const scrapeTap = async () => {
       const detailsElement = $('.details.details_with_poster.clearfix');
       const locationCC = detailsElement.find('li:contains("Location:") a').text();
       const promotion = detailsElement.find('li:contains("Promotion:") a').text();
-      const tapImage = detailsElement.find('.left img').attr('src');
+      const tapImage = detailsElement.find("img").attr('src').trim();
       const eventTime = detailsElement.find('.header').text();
 
-      $('.fightCardBout').each((index, element) => {
-        const redCornerName = $(element).find('.fightCardFighterName.left').text().trim();
-        const blueCornerName = $(element).find('.fightCardFighterName.right').text().trim();
+      $('#sectionFightCard .border-b.border-dotted.border-tap_6').each(function(index, element) {
+        const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
+        const dull = $(element).find('.link-primary-red').eq(1).text().trim();
+        // Adjusted approach for blue corner, assuming it's consistently positioned in the markup
+        const blueCornerName = $(element).find('.link-primary-red').eq(2).text().trim();
+        ///////////////////ERROR//////////////////////////ERROR///////////////////////////
+        ///////////////////ERROR//////////////////////////ERROR///////////////////////////
+        ///////////////////ERROR//////////////////////////ERROR///////////////////////////
+        const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
+        const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
 
-        const redCornerFlag = $(element).find('.fightCardFlag').eq(0).attr('src');
-        const blueCornerFlag = $(element).find('.fightCardFlag').eq(1).attr('src');
+        const redCornerRecord = $(element).find('.order-2.text-\\[15px\\]').text().trim();
+        const blueCornerRecord = $(element).find('.order-1.text-\\[15px\\]').text().trim();
 
-        const redCornerImage = $(element).find('.fightCardFighterImage img').eq(0).attr('src');
-        const blueCornerImage = $(element).find('.fightCardFighterImage img').eq(1).attr('src');
+        const redCornerImage = $(element).find('img.rounded').eq(0).attr('src');
+        const blueCornerImage = $(element).find('img.rounded').eq(1).attr('src');
 
-        const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
-        const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
+        // const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
+        // const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
         const redCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(0).text().trim();
         const blueCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(1).text().trim();
         
-        const match = $(element).find('.weight').text().trim();
+        const match = $(element).find('.text-neutral-50').text().trim();
         const method = $(element).find('.fightCardResult .result').text().trim();
         const round = $(element).find('.fightCardResult .time').text().trim();
         // Determine the winner based on class presence
@@ -206,7 +213,9 @@ const scrapeTap = async () => {
         console.log(redCornerRecord);
         console.log(blueCornerRecord);
     
-        if (redCornerName && blueCornerName && redCornerRecord && blueCornerRecord) {
+        if (
+          // redCornerName && blueCornerName &&
+           redCornerRecord && blueCornerRecord) {
           const fighter = {
               redCornerName,
               redCornerRecord,
@@ -222,23 +231,24 @@ const scrapeTap = async () => {
               match
           };
           Data.push(fighter);
-      } else if (redCornerName && blueCornerName) {
-          const fighter = {
-              redCornerName,
-              redCornerRecordAfterReuslt, // Note: Ensure this is intentional vs redCornerRecord
-              blueCornerName,
-              blueCornerRecordAfterReuslt, // Likewise, ensure this is the desired field vs blueCornerRecord
-              blueCornerFlag, 
-              redCornerFlag,
-              method,
-              round, 
-              winner, // Updated to use the winner variable
-              redCornerImage, 
-              blueCornerImage,
-              match
-          };
-          Data.push(fighter);
-      }
+      } 
+      // else if (redCornerName && blueCornerName) {
+      //     const fighter = {
+      //         redCornerName,
+      //         redCornerRecordAfterReuslt, // Note: Ensure this is intentional vs redCornerRecord
+      //         blueCornerName,
+      //         blueCornerRecordAfterReuslt, // Likewise, ensure this is the desired field vs blueCornerRecord
+      //         blueCornerFlag, 
+      //         redCornerFlag,
+      //         method,
+      //         round, 
+      //         winner, // Updated to use the winner variable
+      //         redCornerImage, 
+      //         blueCornerImage,
+      //         match
+      //     };
+      //     ACAData.push(fighter);
+      // }
       
     });
     
@@ -265,41 +275,6 @@ const scrapeTapACA = async () => {
       const ACApromotion = detailsElement.find('li:contains("Promotion:") a').text();
       const ACAtapImage = detailsElement.find("img").attr('src').trim();
       const ACAeventTime = detailsElement.find('.header').text();
-
-
-      
-
-      $('.eventQuickCardSidebar.px-2.text-xs.leading-none.flex.justify-between').each(function(index, element) {
-        // Using `$(this)` to refer to the current '.text-xs' div
-        const fightersText = $(element).find('.left').text().trim();
-        const fightersText1 = $(element).find('a .left').text().trim();
-        const fightersText2 = $(element).find('.left a').text().trim();
-        const weightClass = $(element).find('.right').text().trim();
-        
-        // Splitting the fighters' names based on " vs. "
-        const fightersSplit = fightersText.split(' vs. ');
-
-        console.log(fightersText);
-        console.log(fightersText1);
-        console.log(fightersText2);
-        console.log(weightClass);
-        console.log(fightersSplit);
-        // console.log(blueCornerRecord);
-        
-        // Assuming the structure always has two fighters listed
-        if(fightersSplit.length === 2) {
-            let fighterOneName = fightersSplit[0];
-            let fighterTwoName = fightersSplit[1];
-    
-            fightCardDetails.push({
-                fighterOneName: fighterOneName,
-                fighterTwoName: fighterTwoName,
-                weightClass: weightClass
-            });
-        }
-    });
-
-
 
 
     // $('#sectionFightCard').each(function(index, element) {
@@ -402,25 +377,32 @@ const scrapeTapPFL = async () => {
       const detailsElement = $('.details.details_with_poster.clearfix');
       const PFLlocationCC = detailsElement.find('li:contains("Location:") a').text();
       const PFLpromotion = detailsElement.find('li:contains("Promotion:") a').text();
-      const PFLtapImage = detailsElement.find('.left img').attr('src');
+      const PFLtapImage = detailsElement.find("img").attr('src').trim();
       const PFLeventTime = detailsElement.find('.header').text();
 
-      $('.fightCardBout').each((index, element) => {
-        const redCornerName = $(element).find('.fightCardFighterName.left').text().trim();
-        const blueCornerName = $(element).find('.fightCardFighterName.right').text().trim();
+        $('#sectionFightCard .border-b.border-dotted.border-tap_6').each(function(index, element) {
+        const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
+        const dull = $(element).find('.link-primary-red').eq(1).text().trim();
+        // Adjusted approach for blue corner, assuming it's consistently positioned in the markup
+        const blueCornerName = $(element).find('.link-primary-red').eq(2).text().trim();
+        ///////////////////ERROR//////////////////////////ERROR///////////////////////////
+        ///////////////////ERROR//////////////////////////ERROR///////////////////////////
+        ///////////////////ERROR//////////////////////////ERROR///////////////////////////
+        const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
+        const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
 
-        const redCornerFlag = $(element).find('.fightCardFlag').eq(0).attr('src');
-        const blueCornerFlag = $(element).find('.fightCardFlag').eq(1).attr('src');
+        const redCornerRecord = $(element).find('.order-2.text-\\[15px\\]').text().trim();
+        const blueCornerRecord = $(element).find('.order-1.text-\\[15px\\]').text().trim();
 
-        const redCornerImage = $(element).find('.fightCardFighterImage img').eq(0).attr('src');
-        const blueCornerImage = $(element).find('.fightCardFighterImage img').eq(1).attr('src');
+        const redCornerImage = $(element).find('img.rounded').eq(0).attr('src');
+        const blueCornerImage = $(element).find('img.rounded').eq(1).attr('src');
 
-        const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
-        const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
+        // const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
+        // const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
         const redCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(0).text().trim();
         const blueCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(1).text().trim();
         
-        const match = $(element).find('.weight').text().trim();
+        const match = $(element).find('.text-neutral-50').text().trim();
         const method = $(element).find('.fightCardResult .result').text().trim();
         const round = $(element).find('.fightCardResult .time').text().trim();
         // Determine the winner based on class presence
@@ -436,7 +418,9 @@ const scrapeTapPFL = async () => {
         console.log(redCornerRecord);
         console.log(blueCornerRecord);
     
-        if (redCornerName && blueCornerName && redCornerRecord && blueCornerRecord) {
+        if (
+          // redCornerName && blueCornerName &&
+           redCornerRecord && blueCornerRecord) {
           const fighter = {
               redCornerName,
               redCornerRecord,
@@ -452,23 +436,24 @@ const scrapeTapPFL = async () => {
               match
           };
           PFLData.push(fighter);
-      } else if (redCornerName && blueCornerName) {
-          const fighter = {
-              redCornerName,
-              redCornerRecordAfterReuslt, // Note: Ensure this is intentional vs redCornerRecord
-              blueCornerName,
-              blueCornerRecordAfterReuslt, // Likewise, ensure this is the desired field vs blueCornerRecord
-              blueCornerFlag, 
-              redCornerFlag,
-              method,
-              round, 
-              winner, // Updated to use the winner variable
-              redCornerImage, 
-              blueCornerImage,
-              match
-          };
-          PFLData.push(fighter);
-      }
+      } 
+      // else if (redCornerName && blueCornerName) {
+      //     const fighter = {
+      //         redCornerName,
+      //         redCornerRecordAfterReuslt, // Note: Ensure this is intentional vs redCornerRecord
+      //         blueCornerName,
+      //         blueCornerRecordAfterReuslt, // Likewise, ensure this is the desired field vs blueCornerRecord
+      //         blueCornerFlag, 
+      //         redCornerFlag,
+      //         method,
+      //         round, 
+      //         winner, // Updated to use the winner variable
+      //         redCornerImage, 
+      //         blueCornerImage,
+      //         match
+      //     };
+      //     ACAData.push(fighter);
+      // }
       
     });
     
