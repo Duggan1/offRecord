@@ -258,7 +258,7 @@ const scrapeTapACA = async () => {
       const html = response.data;
       const $ = cheerio.load(html);
       const ACAData = [];
-
+      const fightCardDetails = [];
 
       const detailsElement = $('#primaryDetailsContainer');
       const ACAlocationCC = detailsElement.find('li:contains("Location:") a').text();
@@ -267,17 +267,17 @@ const scrapeTapACA = async () => {
       const ACAeventTime = detailsElement.find('.header').text();
 
 
-      let fightCardDetails = [];
+      
 
-      $('.px-2.py-2.5.text-xs.leading-none.flex.justify-between').each(function(index, element) {
+      $('.eventQuickCardSidebar.px-2.text-xs.leading-none.flex.justify-between').each(function(index, element) {
         // Using `$(this)` to refer to the current '.text-xs' div
-        let fightersText = $(element).find('.left').text().trim();
-        let fightersText1 = $(element).find('a .left').text().trim();
-        let fightersText2 = $(element).find('.left a').text().trim();
-        let weightClass = $(element).find('.right').text().trim();
+        const fightersText = $(element).find('.left').text().trim();
+        const fightersText1 = $(element).find('a .left').text().trim();
+        const fightersText2 = $(element).find('.left a').text().trim();
+        const weightClass = $(element).find('.right').text().trim();
         
         // Splitting the fighters' names based on " vs. "
-        let fightersSplit = fightersText.split(' vs. ');
+        const fightersSplit = fightersText.split(' vs. ');
 
         console.log(fightersText);
         console.log(fightersText1);
@@ -302,12 +302,12 @@ const scrapeTapACA = async () => {
 
 
 
-
-      $('.border-b.border-dotted.border-tap_6').each(function(index, element) {
+    // $('#sectionFightCard').each(function(index, element) {
+      $('#sectionFightCard .border-b.border-dotted.border-tap_6').each(function(index, element) {
         const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
 
         // Adjusted approach for blue corner, assuming it's consistently positioned in the markup
-        const blueCornerName = $(element).find('a.link-primary-red').eq(1).text().trim();
+        const blueCornerName = $(element).find('.link-primary-red').eq(1).text().trim();
         ///////////////////ERROR//////////////////////////ERROR///////////////////////////
         ///////////////////ERROR//////////////////////////ERROR///////////////////////////
         ///////////////////ERROR//////////////////////////ERROR///////////////////////////
@@ -379,6 +379,7 @@ const scrapeTapACA = async () => {
       // }
       
     });
+    
     
 
       return {ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,fightCardDetails};
