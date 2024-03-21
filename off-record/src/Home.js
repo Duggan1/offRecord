@@ -385,7 +385,7 @@ const [BGindex, setBGindex] = useState(0);
     // Initial 5-second timeout to change BGindex from 0 to 1
     const initialTimeoutId = setTimeout(() => {
       setBGindex(1);
-    }, 3000); // 5 seconds
+    }, 5000); // 5 seconds
 
     // Cleanup function to clear the timeout if the component unmounts
     return () => clearTimeout(initialTimeoutId);
@@ -401,7 +401,7 @@ const [BGindex, setBGindex] = useState(0);
     };
   
     // Scheduling the first update after 3 seconds if starting at index 0, otherwise 500ms
-    const initialDelay = BGindex === 0 ? 3000 : 300;
+    const initialDelay = BGindex === 0 ? 5000 : 500;
     const timeoutId = setTimeout(updateIndex, initialDelay);
   
     // Cleanup function to clear the scheduled update if the component unmounts
@@ -677,7 +677,7 @@ const [BGindex, setBGindex] = useState(0);
                   }} ></h5> 
                 : <h5 
                 onClick={() => navigate('/section3')}
-                className={`snow fake ${BGindex == 0 ? 'shake': ''} z2`} style={{
+                className={`snow fake shake z2`} style={{
                   backgroundImage: `url(${tapImage})`
                   ,
                 backgroundSize: '100% 100%',
