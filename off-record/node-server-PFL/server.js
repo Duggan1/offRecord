@@ -173,7 +173,7 @@ const scrapeTap = async () => {
       const locationCC = detailsElement.find('li:contains("Location:") a').text();
       const promotion = detailsElement.find('li:contains("Promotion:") a').text();
       const tapImage = detailsElement.find("img").attr('src').trim();
-      const eventTime = detailsElement.find('.header').text();
+      const eventTime = detailsElement.find('li:contains("Date:") .text-neutral-700').text();
 
       $('#sectionFightCard .border-b.border-dotted.border-tap_6').each(function(index, element) {
         const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
@@ -274,7 +274,7 @@ const scrapeTapACA = async () => {
       const ACAlocationCC = detailsElement.find('li:contains("Location:") a').text();
       const ACApromotion = detailsElement.find('li:contains("Promotion:") a').text();
       const ACAtapImage = detailsElement.find("img").attr('src').trim();
-      const ACAeventTime = detailsElement.find('.header').text();
+      const ACAeventTime = detailsElement.find('li:contains("Date:") .text-neutral-700').text();
 
 
     // $('#sectionFightCard').each(function(index, element) {
@@ -378,7 +378,7 @@ const scrapeTapPFL = async () => {
       const PFLlocationCC = detailsElement.find('li:contains("Location:") a').text();
       const PFLpromotion = detailsElement.find('li:contains("Promotion:") a').text();
       const PFLtapImage = detailsElement.find("img").attr('src').trim();
-      const PFLeventTime = detailsElement.find('.header').text();
+      const PFLeventTime = detailsElement.find('li:contains("Date:") .text-neutral-700').text();
 
         $('#sectionFightCard .border-b.border-dotted.border-tap_6').each(function(index, element) {
         const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
