@@ -169,7 +169,7 @@ const scrapeTap = async () => {
       const Data = [];
 
 
-      const detailsElement = $('.details.details_with_poster.clearfix');
+      const detailsElement = $('#primaryDetailsContainer');
       const locationCC = detailsElement.find('li:contains("Location:") a').text();
       const promotion = detailsElement.find('li:contains("Promotion:") a').text();
       const tapImage = detailsElement.find("img").attr('src').trim();
@@ -374,7 +374,7 @@ const scrapeTapPFL = async () => {
       const PFLData = [];
 
 
-      const detailsElement = $('.details.details_with_poster.clearfix');
+      const detailsElement = $('#primaryDetailsContainer');
       const PFLlocationCC = detailsElement.find('li:contains("Location:") a').text();
       const PFLpromotion = detailsElement.find('li:contains("Promotion:") a').text();
       const PFLtapImage = detailsElement.find("img").attr('src').trim();
