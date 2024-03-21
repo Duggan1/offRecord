@@ -878,8 +878,10 @@ if (isLoading) {
       
 
       <div
-        className={`fighter-image bake ${
-          predictions[index]?.winner === 0 ? 'selected  ' : ''
+        className={`fighter-image  ${
+          predictions[index]?.winner === 0 ? 'selected  shake' : ''
+        }${
+          predictions[index]?.winner === 1 ? '' :  predictions[index]?.winner === 0 ? '': 'bake'
         }`} onClick={() => handlePredictionChange(index, 0)}
         style={{
           width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
@@ -931,9 +933,13 @@ if (isLoading) {
           textAlign: 'center',
         }}
       ><div
-        className={`fighter-image bake ${
-          predictions[index]?.winner === 1 ? 'selected' : ''
-        }`} onClick={() => handlePredictionChange(index, 1)}
+        className={`fighter-image  ${
+          predictions[index]?.winner === 1 ? 'selected shake' : ''
+        }${
+          predictions[index]?.winner === 0 ? '' :  predictions[index]?.winner === 1 ? '': 'bake'
+        }
+        
+        `} onClick={() => handlePredictionChange(index, 1)}
         style={{
           width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',marginLeft: 'auto',
           backgroundImage: `url('${
@@ -1156,6 +1162,8 @@ if (isLoading) {
       <div
         className={`fighter-image ${
           predictions[index]?.winner === 0 ? 'selected' : ''
+        }${
+          predictions[index]?.winner === 0 ? '' :  predictions[index]?.winner === 1 ? '': 'bake'
         }`}
         style={{
           width: '100%',maxWidth: '300px',backgroundSize:'100% 100%',
