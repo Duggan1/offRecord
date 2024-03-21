@@ -305,9 +305,9 @@ const scrapeTapACA = async () => {
     // $('#sectionFightCard').each(function(index, element) {
       $('#sectionFightCard .border-b.border-dotted.border-tap_6').each(function(index, element) {
         const redCornerName = $(element).find('.link-primary-red').eq(0).text().trim();
-
+        const dull = $(element).find('.link-primary-red').eq(1).text().trim();
         // Adjusted approach for blue corner, assuming it's consistently positioned in the markup
-        const blueCornerName = $(element).find('.link-primary-red').eq(1).text().trim();
+        const blueCornerName = $(element).find('.link-primary-red').eq(2).text().trim();
         ///////////////////ERROR//////////////////////////ERROR///////////////////////////
         ///////////////////ERROR//////////////////////////ERROR///////////////////////////
         ///////////////////ERROR//////////////////////////ERROR///////////////////////////
