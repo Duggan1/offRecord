@@ -8,10 +8,10 @@ const port = 3001;
 
 app.use(cors());
 
-const PFLurl = 'https://pflmma.com/event/2024-superfights-1';
+const PFLurl = 'https://pflmma.com/event/2024-bcs-1';
 const BELLATORurl = 'https://www.bellator.com/event/320';
 
-const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600042093/league/pfl';
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/league/bellator';
 
 const scrapePFL = async () => {
   try {
@@ -470,16 +470,17 @@ const scrapeTapPFL = async () => {
 
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
-    // const pflData = await scrapePFL();
+    const pflData = await scrapePFL();
+    const { fighters, liveR } = await scrapeESPN();
     const {Data,locationCC,promotion,tapImage,eventTime} = await scrapeTap();
     const {ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime} = await scrapeTapACA();
     const {PFLData,PFLlocationCC,PFLpromotion,PFLtapImage,PFLeventTime} = await scrapeTapPFL();
-    // const { fighters, liveR } = await scrapeESPN();
+    
 
     res.json({
-      // pflData,
-      // fighters,
-      // liveR,
+      pflData,
+      fighters,
+      liveR,
       Data, locationCC,promotion,tapImage,eventTime,
       ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,
       PFLData,PFLlocationCC,PFLpromotion,PFLtapImage,PFLeventTime
