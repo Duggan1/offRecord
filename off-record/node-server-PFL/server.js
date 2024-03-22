@@ -202,16 +202,16 @@ const scrapeTap = async () => {
         const round = $(element).find('.text-tap_darkgold').eq(1).text().trim();
         // Determine the winner based on class presence
         let winner = null; // Default to null if neither class is found
-        if ($(element).find('.div.flex.flex-col.w-[37%].md\\:w-auto').eq(0).hasClass('text-green-900')) {
+        if ($(element).find('.w-\\[37\\%\\]').eq(0).hasClass('text-green-900')) {
             winner = 0; // Red corner wins
-        } else if ($(element).find('.div.flex.flex-col.w-[37%].md\\:w-auto').eq(1).hasClass('text-green-900')) {
+        } else if ($(element).find('.w-\\[37\\%\\]').eq(1).hasClass('text-green-900')) {
             winner = 1; // Blue corner wins
         }
     
-        console.log(redCornerName);
-        console.log(blueCornerName);
-        console.log(redCornerRecord);
-        console.log(blueCornerRecord);
+        console.log(redCornerRecordAfterReuslt);
+        console.log(blueCornerRecordAfterReuslt);
+        console.log(method);
+        console.log(round);
     
         if (
           // redCornerName && blueCornerName &&
