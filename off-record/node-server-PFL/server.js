@@ -194,17 +194,17 @@ const scrapeTap = async () => {
 
         // const redCornerRecord = $(element).find('.fightCardRecord').eq(0).text().trim();
         // const blueCornerRecord = $(element).find('.fightCardRecord').eq(1).text().trim();
-        const redCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(0).text().trim();
-        const blueCornerRecordAfterReuslt = $(element).find('.fightCardFighterRank').eq(1).text().trim();
+        const redCornerRecordAfterReuslt = $(element).find('.leading-tight.lowercase').eq(0).text().trim();
+        const blueCornerRecordAfterReuslt = $(element).find('.leading-tight.lowercase').eq(1).text().trim();
         
         const match = $(element).find('.text-neutral-50').text().trim();
-        const method = $(element).find('.fightCardResult .result').text().trim();
-        const round = $(element).find('.fightCardResult .time').text().trim();
+        const method = $(element).find('.text-tap_darkgold').eq(0).text().trim();
+        const round = $(element).find('.text-tap_darkgold').eq(1).text().trim();
         // Determine the winner based on class presence
         let winner = null; // Default to null if neither class is found
-        if ($(element).find('.fightCardFighterBout.left').hasClass('win')) {
+        if ($(element).find('.div.flex.flex-col.w-[37%].md\\:w-auto').eq(0).hasClass('text-green-900')) {
             winner = 0; // Red corner wins
-        } else if ($(element).find('.fightCardFighterBout.right').hasClass('win')) {
+        } else if ($(element).find('.div.flex.flex-col.w-[37%].md\\:w-auto').eq(1).hasClass('text-green-900')) {
             winner = 1; // Blue corner wins
         }
     
@@ -232,23 +232,23 @@ const scrapeTap = async () => {
           };
           Data.push(fighter);
       } 
-      // else if (redCornerName && blueCornerName) {
-      //     const fighter = {
-      //         redCornerName,
-      //         redCornerRecordAfterReuslt, // Note: Ensure this is intentional vs redCornerRecord
-      //         blueCornerName,
-      //         blueCornerRecordAfterReuslt, // Likewise, ensure this is the desired field vs blueCornerRecord
-      //         blueCornerFlag, 
-      //         redCornerFlag,
-      //         method,
-      //         round, 
-      //         winner, // Updated to use the winner variable
-      //         redCornerImage, 
-      //         blueCornerImage,
-      //         match
-      //     };
-      //     ACAData.push(fighter);
-      // }
+      else if (redCornerName && blueCornerName) {
+          const fighter = {
+              redCornerName,
+              redCornerRecordAfterReuslt, // Note: Ensure this is intentional vs redCornerRecord
+              blueCornerName,
+              blueCornerRecordAfterReuslt, // Likewise, ensure this is the desired field vs blueCornerRecord
+              blueCornerFlag, 
+              redCornerFlag,
+              method,
+              round, 
+              winner, // Updated to use the winner variable
+              redCornerImage, 
+              blueCornerImage,
+              match
+          };
+          ACAData.push(fighter);
+      }
       
     });
     
