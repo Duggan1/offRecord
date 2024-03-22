@@ -247,7 +247,7 @@ const scrapeTap = async () => {
               blueCornerImage,
               match
           };
-          ACAData.push(fighter);
+          Data.push(fighter);
       }
       
     });
@@ -470,17 +470,17 @@ const scrapeTapPFL = async () => {
 
 app.get('/scrape-mma-websites', async (req, res) => {
   try {
-    const pflData = await scrapePFL();
-    const { fighters, liveR } = await scrapeESPN();
+    // const pflData = await scrapePFL();
+    // const { fighters, liveR } = await scrapeESPN();
     const {Data,locationCC,promotion,tapImage,eventTime} = await scrapeTap();
     const {ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime} = await scrapeTapACA();
     const {PFLData,PFLlocationCC,PFLpromotion,PFLtapImage,PFLeventTime} = await scrapeTapPFL();
     
 
     res.json({
-      pflData,
-      fighters,
-      liveR,
+      // pflData,
+      // fighters,
+      // liveR,
       Data, locationCC,promotion,tapImage,eventTime,
       ACAData,ACAlocationCC,ACApromotion,ACAtapImage,ACAeventTime,
       PFLData,PFLlocationCC,PFLpromotion,PFLtapImage,PFLeventTime
