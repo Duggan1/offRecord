@@ -598,6 +598,8 @@ const areArraysEqual = (array1, array2) => {
   return true;
 };
 console.log(liveNready)
+
+
 // useEffect(() => {
 
 //   // if (akp, modifiedUfcResults){
@@ -730,64 +732,153 @@ console.log(liveNready)
 
 
 
+function transformFightDetails(fight) {
+  const methodMapping = {
+    'Dec': 'Decision',
+    'Sub': 'Submission',
+    'KO/TKO': 'TKO/KO',
+  };
+
+  // Extract the necessary details from the fight object
+  const { fighters, method, round, winner } = fight;
+
+  // Transform the method using the methodMapping, defaulting to the original method if not found in mapping
+  const transformedMethod = methodMapping[method] || method;
+
+  // Return the transformed object
+  return {
+    fighters,
+    method: transformedMethod,
+    round,
+    winner,
+  };
+}
+
+const transformedFights = ufcCard.map(transformFightDetails);
+console.log(transformedFights)
 
 
-// useEffect(() => {
-//   // Define the async function for form submission
-//   async function submitPFLForm() {
-//     try {
+
+useEffect(() => {
+  // Define the async function for form submission
+  async function submitPFLForm() {
+    try {
       
-//       // Validate the form data using Yup
+      // Validate the form data using Yup
       
 
-//       // Check if every method in modifiedUfcResults is not null
-//       if (liveNready) {
-//         // All methods are not null, proceed to submit as "AdminKev"
-//         const mainEvent = `${ufcCard[0].fighters[0]} vs ${ufcCard[0].fighters[1]}`;
-//         const dataToSend = {
-//           owner: "AdminKev", // Set the owner to "AdminKev"
-//           location: 'AUTO-Server',
-//           mainEvent: mainEvent,
-//           predictions: liveNready, // Use modifiedUfcResults here
-//           event_league: 'PFL',
-//           user_id: 4,
-//         };
-//         // await validationSchema.validate({ dataToSend });
+      // Check if every method in modifiedUfcResults is not null
+      if (ufcCard[0].winner !==  null ) {
+        // All methods are not null, proceed to submit as "AdminKev"
+        const mainEvent = `${ufcCard[0].fighters[0]} vs ${ufcCard[0].fighters[1]}`;
+        
+        const dataToSend = {
+          owner: "AdminKev", // Set the owner to "AdminKev"
+          location: 'AUTO-Server',
+          mainEvent: mainEvent,
+          predictions: transformedFights, // Use modifiedUfcResults here
+          event_league: 'Bellator',
+          user_id: 4,
+        };
+        // await validationSchema.validate({ dataToSend });
 
-//         const response = await fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
-//           method: 'POST',
-//           headers: {
-//             'Content-Type': 'application/json',
-//           },
-//           body: JSON.stringify(dataToSend),
-//         });
+        const response = await fetch('https://off-therecordpicks.onrender.com/submit-predictions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToSend),
+        });
 
-//         if (response.ok) {
-//           // Handle success
-//           const responseData = await response.json();
-//           console.log('Predictions submitted successfully:', responseData);
-//           // Perform any further actions here
-//         } else {
-//           // Handle errors
-//           throw new Error('Network response was not ok');
-//         }
-//       } else {
-//         // If any method in modifiedUfcResults is null, show an error message
-//         // Handle the error as needed
-//       }
-//     } catch (error) {
-//       console.error('Error:', error);
-//       // Handle errors and validation errors as needed
-//     }
+        if (response.ok) {
+          // Handle success
+          const responseData = await response.json();
+          console.log('Predictions submitted successfully:', responseData);
+          // Perform any further actions here
+        } else {
+          // Handle errors
+          throw new Error('Network response was not ok');
+        }
+      } else {
+        // If any method in modifiedUfcResults is null, show an error message
+        // Handle the error as needed
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle errors and validation errors as needed
+    }
 
-//   }
+  }
 
-//   // Call the submitForm function to submit the form data automatically
-//   submitPFLForm();
-// }, [liveNready.length > 0]);
+  // Call the submitForm function to submit the form data automatically
+  submitPFLForm();
+}, [transformedFights.length > 0]);
 
 
+///////////////////////////////////////////////////////////////////////////////
+const adminKevPick = adminKevPickswID.find(
+  pick =>
+    pick.owner === 'AdminKev' &&
+    pick.location === 'AUTO-Server' &&
+    pick.main_event === mainEventToFind
+);
+console.log(adminKevPick)
+////////////////////////////////////////////////////////////////////////////////
+useEffect(() => {
 
+  // if (akp, modifiedUfcResults){
+
+
+  if (areArraysEqual(adminKevPick.predictions, transformedFights))  {
+    console.log('matching');
+
+    
+    console.log(weRlive)
+    console.log(transformedFights)
+  }
+  if (!adminKevPick){
+    console.log('loading yo yo')
+
+  } 
+  if (adminKevPick && !isEqual(adminKevPick.predictions, transformedFights)){
+    console.log('ready for patch')
+    //////////////////////////////////
+    const dataToSend = {
+      id: adminKevPick.id,
+      owner: adminKevPick.owner ,
+      location: adminKevPick.location,
+      mainEvent: adminKevPick.main_event,
+      predictions: transformedFights,
+      user_id: adminKevPick.id || 4,
+  };
+  ////////////////////////////////////
+    fetch(`https://off-therecordpicks.onrender.com/picks/${adminKevPick.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataToSend),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to update pick");
+        }
+        // Refresh the list of picks after a successful update
+        // return fetchPicks();
+      })
+      .catch((error) => {
+        console.error("Error updating pick:", error);
+        // Handle error as needed
+      })
+
+
+  }
+  // else {
+  //   console.log('not a match');
+  //   console.log(akp.predictions);
+  //   console.log(modifiedUfcResults);
+  // }
+}, [ transformedFights]);
 
 
 

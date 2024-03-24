@@ -118,7 +118,35 @@ useEffect(() => {
 }, []); // Empty dependency array, so it runs only once
 
 
+function getFightMethod(methodString) {
+  // Check if the methodString contains specific keywords and return the outcome
+  if (/KO\/TKO/i.test(methodString)) {
+      return 'KO/TKO';
+  } else if (/Decision/i.test(methodString)) {
+      return 'Decision';
+  } else if (/Draw/i.test(methodString)) {
+      // Assuming you might have a string indicating a draw, not provided in examples
+      return 'Draw';
+  } else if (/Submission/i.test(methodString)) {
+      return 'Submission';
+  } else {
+      // If none of the above, return an indication that the method is unknown
+      return 'Unknown';
+  }
+}
 
+function getFightRound(fightDescription) {
+  const roundRegex = /Round (\d+) of (\d+)/;
+  const match = fightDescription.match(roundRegex);
+
+  if (match) {
+    // If a match is found, parse and return the round number directly
+    return parseInt(match[1], 10);
+  } else {
+    // If no round information is found, return null
+    return null;
+  }
+}
 
 useEffect(() => { 
   async function fetchData() {
@@ -204,7 +232,11 @@ useEffect(() => {
       flags:[Data[i]?.redCornerFlag || '',Data[i]?.blueCornerFlag || ''],
       match:Data[i]?.match || '',
       odds:'',
-      records:[Data[i]?.redCornerRecord ? Data[i]?.redCornerRecord: Data[i]?.redCornerRecordAfterReuslt , Data[i]?.blueCornerRecord ? Data[i]?.blueCornerRecord: Data[i]?.blueCornerRecordAfterReuslt ]
+      records:[Data[i]?.redCornerRecord ? Data[i]?.redCornerRecord: Data[i]?.redCornerRecordAfterReuslt == 'Up to' ? 'W':'L'
+       , Data[i]?.blueCornerRecord ? Data[i]?.blueCornerRecord: Data[i]?.blueCornerRecordAfterReuslt == 'Up to' ? 'W':'L' ],
+      method: getFightMethod(Data[i]?.method),
+      round:getFightRound(Data[i]?.method),
+      winner: Data[i]?.redCornerRecordAfterReuslt == 'Up to' ? 0 : Data[i]?.blueCornerRecordAfterReuslt == 'Up to' ? 1 : null,
 
     };
     newestCard.push(record);
