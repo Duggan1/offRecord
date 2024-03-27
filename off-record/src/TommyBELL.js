@@ -431,7 +431,7 @@ const handleSubmit = async (e) => {
 
         const dataToSend = {
           owner: user.username !== undefined ? user.username : user.userName,
-          location: 'Ireland',
+          location: 'France',
           mainEvent: ufcCard[0]?.fighters.join(' vs '),
           predictions: predictionData,
           event_league:'Bellator',
@@ -1028,7 +1028,7 @@ if (isLoading) {
         paddingTop: '0%',
         color:'transparent',
         // backgroundColor: 'black',
-        backgroundImage: `url(https://tapology.com/assets/flags/IE-3f973d9478a2318f1513cf34f7f6d0087cccdc961e1981231c6997a29dddf083.gif)`,
+        backgroundImage: `url(https://www.tapology.com/assets/flags/FR-248b89ba2ff4082e66fda00d7c9f83f14758c838c0abd9fd0e4943ee402be29b.gif)`,
       }}
     >
       _____
