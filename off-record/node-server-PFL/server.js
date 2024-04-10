@@ -367,7 +367,7 @@ const scrapeTapACA = async () => {
 
 const scrapeTapPFL = async () => {
   try {
-    const response = await axios.get('https://www.tapology.com/fightcenter/events/110613-pfl-1-2024-regular-season');
+    const response = await axios.get('https://www.tapology.com/fightcenter/events/110615-pfl-3-2024-regular-season');
     if (response.status === 200) {
       const html = response.data;
       const $ = cheerio.load(html);
