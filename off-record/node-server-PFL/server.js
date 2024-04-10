@@ -208,10 +208,7 @@ const scrapeTap = async () => {
             winner = 1; // Blue corner wins
         }
     
-        console.log(redCornerRecordAfterReuslt);
-        console.log(blueCornerRecordAfterReuslt);
-        console.log(method);
-        console.log(round);
+        
     
         if (
           // redCornerName && blueCornerName &&
