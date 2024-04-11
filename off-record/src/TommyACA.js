@@ -958,7 +958,7 @@ if (isLoading) {
         paddingTop: '0%',
         color:'transparent',
         backgroundColor: 'white',
-        backgroundImage: `url(https://tapology.com/assets/flags/BY-6e0bf3f0feb82ca2432d000d59c65a26806ab413905f56182180e73ad9c2de49.gif)`,
+        backgroundImage: `url("https://www.tapology.com/assets/flags/RU-3ce9ca248b0d428f663c68cea5b91068d901c71d77fcb4be147e8d0e7500d724.gif")`,
       }}
     >
       _____

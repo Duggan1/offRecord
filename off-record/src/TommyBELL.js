@@ -829,7 +829,7 @@ useEffect(() => {
   // if (akp, modifiedUfcResults){
 
 
-  if (areArraysEqual(adminKevPick.predictions, transformedFights))  {
+  if (areArraysEqual(adminKevPick?.predictions, transformedFights))  {
     console.log('matching');
 
     
@@ -868,7 +868,7 @@ useEffect(() => {
       })
       .catch((error) => {
         console.error("Error updating pick:", error);
-        // Handle error as needed
+        // Handl.pre error as needed
       })
 
 
@@ -878,7 +878,7 @@ useEffect(() => {
   //   console.log(akp.predictions);
   //   console.log(modifiedUfcResults);
   // }
-}, [ transformedFights]);
+}, [ transformedFights && adminKevPick?.predictions ]);
 
 
 

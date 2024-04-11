@@ -260,7 +260,7 @@ const scrapeTap = async () => {
 
 const scrapeTapACA = async () => {
   try {
-    const response = await axios.get('https://www.tapology.com/fightcenter/events/111101-aca-173-johnson-vs-felipe');
+    const response = await axios.get('https://www.tapology.com/fightcenter/events/111103-aca-174-borisov-vs-vitruk');
     if (response.status === 200) {
       const html = response.data;
       const $ = cheerio.load(html);

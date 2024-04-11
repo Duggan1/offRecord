@@ -769,7 +769,7 @@ const [BGindex, setBGindex] = useState(0);
 
                   
                               {/* <h6>{bellatorInfo[1]}</h6> */}
-                              <center><p  onClick={() => navigate('/section3')} style={{height:'210px',width:'95%',backgroundImage: tapImage ? `url(${tapImage})` : '',backgroundSize:'100% 100%',borderRadius:'20%'}} className='loading3'></p></center>
+                              <center><p  onClick={() => navigate('/section3')} style={{height:'200px',width:'95%',backgroundImage: tapImage ? `url(${tapImage})` : '',backgroundSize:'100% 100%',borderRadius:'20%'}} className='loading3'></p></center>
                               {/* <p className="homebullet margin-0-5">{pflInfo[0]}</p> */}
                               </div>
                               {/* //////////////////////// */}
@@ -808,7 +808,7 @@ const [BGindex, setBGindex] = useState(0);
     overflow: 'hidden', // Hide overflow
     textOverflow: 'ellipsis', // Add ellipsis if text overflows
     whiteSpace: 'nowrap',marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {acaInfo[1]}</p>
-                                <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation('Belarus')}/flat/64.png")`,
+                                <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation('Russia')}/flat/64.png")`,
                                   backgroundSize: '100% 100%',
                                   backgroundRepeat:'no-repeat',
                                   marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',color:'transparent'

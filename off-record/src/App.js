@@ -1234,7 +1234,7 @@ const [akp , setAKP] = useState('')
 const [ countPick ,setPickCount] = useState(null)
 const [results2, setResults2] = useState([]);
 const [adminKevPicks, setAdminKevPicks] = useState({});
-const [adminKevPickswID, setAdminKevPickswID] = useState({});
+const [adminKevPickswID, setAdminKevPickswID] = useState([]);
 
 
 useEffect(() => {
