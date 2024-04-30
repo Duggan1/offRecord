@@ -186,11 +186,8 @@ const scrapeTap = async () => {
         const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
         const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
 
-        const redCornerRecordRaw = $(element).find('.order-2.text-\\[15px\\]').text().trim();
-        const redCornerRecord = redCornerRecordRaw ? redCornerRecordRaw.split(' ')[0] : 'Unknown';
-
-        const blueCornerRecordRaw = $(element).find('.order-1.text-\\[15px\\]').text().trim();
-        const blueCornerRecord = blueCornerRecordRaw ? blueCornerRecordRaw.split(' ')[0] : 'Unknown';
+        const redCornerRecord = $(element).find('.order-2.text-\\[15px\\]').text().trim();
+        const blueCornerRecord = $(element).find('.order-1.text-\\[15px\\]').text().trim();
 
         const redCornerImage = $(element).find('img.rounded').eq(0).attr('src');
         const blueCornerImage = $(element).find('img.rounded').eq(1).attr('src');
@@ -289,11 +286,8 @@ const scrapeTapACA = async () => {
         const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
         const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
 
-        const redCornerRecordRaw = $(element).find('.order-2.text-\\[15px\\]').text().trim();
-        const redCornerRecord = redCornerRecordRaw ? redCornerRecordRaw.split(' ')[0] : 'Unknown';
-
-        const blueCornerRecordRaw = $(element).find('.order-1.text-\\[15px\\]').text().trim();
-        const blueCornerRecord = blueCornerRecordRaw ? blueCornerRecordRaw.split(' ')[0] : 'Unknown';
+        const redCornerRecord = $(element).find('.order-2.text-\\[15px\\]').text().trim();
+        const blueCornerRecord = $(element).find('.order-1.text-\\[15px\\]').text().trim();
 
         const redCornerImage = $(element).find('img.rounded').eq(0).attr('src');
         const blueCornerImage = $(element).find('img.rounded').eq(1).attr('src');
@@ -394,14 +388,8 @@ const scrapeTapPFL = async () => {
         const redCornerFlag = $(element).find('img.opacity-70').eq(0).attr('src'); // Corrected selector for img with class
         const blueCornerFlag = $(element).find('img.opacity-70').eq(1).attr('src'); // Corrected selector for img with class
 
-        // const redCornerRecord = $(element).find('.order-2.text-\\[15px\\]').text().trim();
-        // const blueCornerRecord = $(element).find('.order-1.text-\\[15px\\]').text().trim();
-        const redCornerRecordRaw = $(element).find('.order-2.text-\\[15px\\]').text().trim();
-        const redCornerRecord = redCornerRecordRaw ? redCornerRecordRaw.split(' ')[0] : 'Unknown';
-
-        const blueCornerRecordRaw = $(element).find('.order-1.text-\\[15px\\]').text().trim();
-        const blueCornerRecord = blueCornerRecordRaw ? blueCornerRecordRaw.split(' ')[0] : 'Unknown';
-
+        const redCornerRecord = $(element).find('.order-2.text-\\[15px\\]').text().trim();
+        const blueCornerRecord = $(element).find('.order-1.text-\\[15px\\]').text().trim();
 
         const redCornerImage = $(element).find('img.rounded').eq(0).attr('src');
         const blueCornerImage = $(element).find('img.rounded').eq(1).attr('src');
