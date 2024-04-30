@@ -1080,7 +1080,8 @@ if (isLoading) {
         paddingTop: '0%',
         color:'transparent',
         // backgroundColor: 'black',
-        backgroundImage: `url(https://tapology.com/assets/flags/US-a475dadb4ff06978c183ce83b21741c1785beee26da55853490373f5eb2ca9b0.gif)`,
+        // backgroundImage: `url(https://tapology.com/assets/flags/US-a475dadb4ff06978c183ce83b21741c1785beee26da55853490373f5eb2ca9b0.gif)`,
+        backgroundImage: `url(https://www.tapology.com/assets/flags/SA-30bb18a357d6419c3c5ba5de7dc185aa9d1e4165c00b661855c7eb4d7b9d33fa.gif)`,
       }}
     >
       _____
@@ -1303,7 +1304,8 @@ if (isLoading) {
         height:'140px',textAlign:'left',
       }}>
     </div>  }
-    <div style={{textAlign:'center'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'red',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[0]}</span></div> 
+    <div style={{textAlign:'center'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'red',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[0] ? fight.records[0].slice(Math.floor(fight.records[0].length / 2)) : ''}
+</span></div> 
     </div>
       </div>
       </div>
@@ -1363,7 +1365,8 @@ if (isLoading) {
       }}>
     </div>  }
     
-    </div><div style={{textAlign:'center'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'blue',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[1]}</span></div> 
+    </div><div style={{textAlign:'center'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'blue',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[1] ? fight.records[1].slice(Math.floor(fight.records[1].length / 2)) : ''}
+</span></div> 
         
         {/* Add other fighter information here */}
       </div>

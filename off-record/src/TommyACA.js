@@ -1336,7 +1336,8 @@ if (isLoading) {
       }}>
     </div>  }
     
-    </div><div style={{textAlign:'center'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'red',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[0]}</span></div> 
+    </div><div style={{textAlign:'center'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'red',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[0] ? fight.records[0].slice(Math.floor(fight.records[0].length / 2)) : ''}
+</span></div> 
       </div>
       </div>
       
@@ -1396,7 +1397,8 @@ if (isLoading) {
     </div>  }
     
     </div>
-    <div style={{textAlign:'center'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'blue',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[1]}</span></div> 
+    <div style={{textAlign:'center'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'blue',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[1] ? fight.records[1].slice(Math.floor(fight.records[1].length / 2)) : ''}
+</span></div> 
         
         {/* Add other fighter information here */}
       </div>
