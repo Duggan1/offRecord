@@ -1396,7 +1396,7 @@ if (isLoading) {
     </div>  }
     
     </div>
-    <div style={{textAlign:'center'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'blue',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records.split(' ')[1]}</span></div> 
+    <div style={{textAlign:'center'}}><span className="snowwhite " style={{border: '2px solid white',backgroundColor:'blue',color:'white',padding:'1%',borderRadius:'20%'}} >{fight.records[1]}</span></div> 
         
         {/* Add other fighter information here */}
       </div>
