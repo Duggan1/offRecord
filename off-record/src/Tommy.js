@@ -849,16 +849,16 @@ if (isLoading) {
                   className={`methodbar2 ${predictions[index]?.round === '1' ||predictions[index]?.round === '2' ||predictions[index]?.round === '3' || predictions[index]?.round === '4'|| predictions[index]?.round === '5' ? 'selected' : ''}`}
                   onChange={(e) => handleRoundChange(index, e.target.value)}
                 >
-                  <option value="">Select Round</option>
-                      {[
-                        1, 2, 3,
-                        // Conditionally add 4 and 5 based on the fight type and index
-                        ...(index === 0 || fight.match.toLowerCase().includes('championship') ? [4, 5] : []),
-                      ].map((round) => (
-                        <option key={round} value={round}>
-                          {round >= 4 ? `${round} (Championship Rounds)` : round}
-                        </option>
-                      ))}
+                <option value="">Select Round</option>
+{[
+  1, 2, 3,
+  // Conditionally add 4 and 5 based on the fight type and index
+  ...(index === 0 || (fight.match && fight.match.toLowerCase().includes('championship')) ? [4, 5] : []),
+].map((round) => (
+  <option key={round} value={round}>
+    {round >= 4 ? `${round} (Championship Rounds)` : round}
+  </option>
+))}
 
                 </select>
               </div>
