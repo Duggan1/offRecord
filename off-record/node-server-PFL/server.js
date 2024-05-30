@@ -162,7 +162,7 @@ const scrapeESPN = async () => {
 //BELLATOR
 const scrapeTap = async () => {
   try {
-    const response = await axios.get('https://www.tapology.com/fightcenter/events/111171-bellator-champions-series-paris');
+    const response = await axios.get('https://www.tapology.com/fightcenter/events/111172-bellator-champions-series-dublin');
     if (response.status === 200) {
       const html = response.data;
       const $ = cheerio.load(html);
@@ -260,7 +260,7 @@ const scrapeTap = async () => {
 
 const scrapeTapACA = async () => {
   try {
-    const response = await axios.get('https://www.tapology.com/fightcenter/events/112596-aca-175-gordeev-vs-damkovskiy');
+    const response = await axios.get('https://www.tapology.com/fightcenter/events/113639-aca-177-bagov-vs-batista');
     if (response.status === 200) {
       const html = response.data;
       const $ = cheerio.load(html);
@@ -364,7 +364,7 @@ const scrapeTapACA = async () => {
 
 const scrapeTapPFL = async () => {
   try {
-    const response = await axios.get('https://www.tapology.com/fightcenter/events/112976-pfl-mena-1');
+    const response = await axios.get('https://www.tapology.com/fightcenter/events/112253-pfl-4-2024-regular-season');
     if (response.status === 200) {
       const html = response.data;
       const $ = cheerio.load(html);

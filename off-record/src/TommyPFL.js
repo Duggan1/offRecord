@@ -695,8 +695,8 @@ if (isLoading) {
                   backgroundSize: '100% 100%',
                   backgroundRepeat:'no-repeat',
                   marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',backgroundColor:'black',
-                  backgroundImage: `url(https://cdn.britannica.com/79/5779-050-46C999AF/Flag-Saudi-Arabia.jpg)`
-                  
+                  // backgroundImage: `url(https://cdn.britannica.com/79/5779-050-46C999AF/Flag-Saudi-Arabia.jpg)`
+                  backgroundImage: `url(https://www.tapology.com/assets/flags/US-a475dadb4ff06978c183ce83b21741c1785beee26da55853490373f5eb2ca9b0.gif)`,
                   }} >_____</h6></div><div class="element-with-border2"></div>
                 <div className='flex'>
                   <h1 style={{

@@ -24,6 +24,7 @@ import ProfileSettings from './ProfileSettings';
 import LeagueAdjustments from './LeagueAdjustments';
 import TommyPFLTAP from './TommyPFLTAP';
 import TommyACA from './TommyACA';
+import Store from './Store';
 // import CommentSection from './CommentSection';
 
 
@@ -1386,13 +1387,13 @@ console.log(ufcCard3)
 
 
 console.log(eventInfo) 
-const PreLeonColby =  ('' + ufcEvents.backgroundImageSrc)
+// const PreLeonColby =  ('' + ufcEvents.backgroundImageSrc)
 const backgroundImageSrc = eventInfo.backgroundImageSrc
 const mewtwo = eventInfo.event_name
 const tapImageSrc = eventInfo.tapImage
 // console.log()
-console.log(backgroundImageSrc) 
-console.log(tapImageSrc) 
+// console.log(backgroundImageSrc) 
+// console.log(tapImageSrc) 
   
 
 // Check if eventInfo.locationCC is defined before splitting it
@@ -1538,6 +1539,7 @@ useEffect(() => {
                                       location={lo3} BGpic={ufcI} tapImage={tapI} countPick={countPick} onLogout={handleLogout}  />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
+      <Route path="/store" element={<Store onLogin={handleLogin} onLogout={handleLogout} />} />
 
       <Route path="/leagues"  element={<Leagues setLN={setLN} appLeagues={leagues} user={user} onLogout={handleLogout} />} />
       

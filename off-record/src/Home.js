@@ -783,7 +783,7 @@ const [BGindex, setBGindex] = useState(0);
     overflow: 'hidden', // Hide overflow
     textOverflow: 'ellipsis', // Add ellipsis if text overflows
     whiteSpace: 'nowrap',}}> {pflInfo[1]}</p>
-                                <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation('Saudi Arabia')}/flat/64.png")`,
+                                <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation('United States')}/flat/64.png")`,
                                   backgroundSize: '100% 100%',
                                   backgroundRepeat:'no-repeat',
                                   marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',color:'transparent'
@@ -832,7 +832,7 @@ const [BGindex, setBGindex] = useState(0);
     overflow: 'hidden', // Hide overflow
     textOverflow: 'ellipsis', // Add ellipsis if text overflows
     whiteSpace: 'nowrap',marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'5px',paddingRight:'5px'}}> {bellatorInfo[1]}</p>
-                                <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation('France')}/flat/64.png")`,
+                                <h6 className=' snow color-transp' style={{ backgroundImage: `url("https://flagsapi.com/${getCountryAbbreviation('Ireland')}/flat/64.png")`,
                                   backgroundSize: '100% 100%',
                                   backgroundRepeat:'no-repeat',
                                   marginBottom:'0%',paddingBottom:'0%',marginTop:'0%',paddingTop:'0%',color:'transparent'
