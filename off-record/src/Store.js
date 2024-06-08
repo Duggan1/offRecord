@@ -8,7 +8,52 @@ function Store({ user, onLogout }) {
   const products = [
     {
       id: 1,
-      name: 'Zip Tote Basket',
+      name: 'Zip Tote Bag',
+      color: 'White and black',
+      href: '#',
+      imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg',
+      imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
+      price: '$140',
+    },
+    {
+      id: 2,
+      name: 'Classic T-Shirt',
+      color: 'Blue',
+      href: '#',
+      imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
+      imageAlt: 'Classic blue t-shirt with a round neckline.',
+      price: '$25',
+    },
+    {
+      id: 3,
+      name: 'Stylish Hat',
+      color: 'Black',
+      href: '#',
+      imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-02.jpg',
+      imageAlt: 'Black stylish hat with a simple design.',
+      price: '$30',
+    },
+    {
+      id: 4,
+      name: 'Rolling Tray',
+      color: 'Green',
+      href: '#',
+      imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-02-related-product-01.jpg',
+      imageAlt: 'Green rolling tray with a smooth surface.',
+      price: '$20',
+    },
+    {
+      id: 5,
+      name: 'Beer Coozie',
+      color: 'Red',
+      href: '#',
+      imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-04.jpg',
+      imageAlt: 'Red beer coozie with a soft texture.',
+      price: '$10',
+    },
+    {
+      id: 6,
+      name: 'Zip Tote Bag',
       color: 'White and black',
       href: '#',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-03-related-product-01.jpg',
@@ -16,7 +61,8 @@ function Store({ user, onLogout }) {
       price: '$140',
     },
     // More products...
-  ]
+  ];
+  
 
   return (
     <>
