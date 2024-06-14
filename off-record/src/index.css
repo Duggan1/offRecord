@@ -1258,8 +1258,23 @@ font-weight: bold;
   font-weight: 700;
   cursor: pointer;
   min-width: 45%;
-  
+}
 
+.submitb2{
+  background-color:white ;
+  color: black ;
+  /* border: black 5px solid; */
+  border-right: blue 5px solid;
+  border-left: red 5px solid;
+  border-top: red 5px solid;
+  border-bottom: blue 5px solid;
+  /* padding: 2% 3% ; */
+  margin-top: 5%;
+  border-radius: 10%;
+  /* font-size: larger; */
+  /* font-weight: 700; */
+  cursor: pointer;
+  min-width: fit-content;
 }
 .bold {
   font-weight: bold;
