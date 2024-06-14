@@ -18,7 +18,7 @@ function HeaderLogin({ onLogin, ufcCard,onLogout  }) {
     
    
     const [errors, setErrors] = useState([]);
-
+    console.log(typeof onLogin);
     // Yup validation schema
     const validationSchema = yup.object().shape({
         userName: yup.string().required('Username is required'),

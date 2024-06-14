@@ -6,7 +6,7 @@ import P4pHeader from './P4pHeader'
 import HeaderLogin from "./HeaderLogin";
 
 
-function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive, BGpic, tapImage, countPick, isOwnerAndEventMatch, onLogout, LNmenow,bellatorInfo,acaInfo,pflInfo,oldPFLEvent}) {
+function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive, BGpic, tapImage, countPick, isOwnerAndEventMatch, onLogout, onLogin, LNmenow,bellatorInfo,acaInfo,pflInfo,oldPFLEvent}) {
     const navigate = useNavigate()
     const handleOptionClick = (option) => {
         navigate(`${option}`);
@@ -423,13 +423,14 @@ const [BGindex, setBGindex] = useState(0);
 
     setBackgroundImageUrl(newBackgroundImageUrl);
   }, [BGpic]);
+  console.log(typeof onLogin);
 
     return ( <>
     <P4pHeader user={user} onLogout={onLogout} />
    
     
     
-      {!isUfcCardLoaded ? 
+      {isUfcCardLoaded ? 
        <>
       <div style={{
       backgroundImage:`url(${BGpic.startsWith("/s3/files/")
@@ -441,7 +442,7 @@ const [BGindex, setBGindex] = useState(0);
       }}>
         
       <div className={` homeSpace  text-align-center`} >
-      {!user ? <> <HeaderLogin/> </> : <></>}
+      {!user ?  <HeaderLogin  onLogin={onLogin} onLogout={onLogout} />  : <></>}
 
         
  
@@ -981,7 +982,7 @@ const [BGindex, setBGindex] = useState(0);
         <>
         
                   <div className="rentingSpace text-align-center">
-                  {!user ? <> <HeaderLogin/> </> : <></>}
+                  {!user ? <HeaderLogin  onLogin={onLogin} onLogout={onLogout} />  : <></>}
 
           {!user ? <> <p onClick={() => { handleOptionClick('/section1') }} className=" color-red landunder cursor-pointer">Please Sign In or Sign Up </p> <h1 onClick={() => { handleOptionClick('/section1') }} className="fs65 color-red cursor-pointer">&#8599;</h1> </> : <h1 className="fs452 color-blue">Welcome Back, {user?.username} {user?.userName}</h1>}
             

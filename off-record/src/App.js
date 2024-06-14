@@ -1536,7 +1536,7 @@ useEffect(() => {
 
       <Route path="/"  element={<Home user={user} ufcCard={ufcCard3} isOwnerAndEventMatch={isOwnerAndEventMatch}
                                       stallUfcCard={ufcCard} locationCity={lo1} state={lo2} weRlive={weRlive} LNmenow={LNmenow} oldPFLEvent={oldPFLEvent} pflInfo={PFLTAPInfo} acaInfo={ACAInfo} bellatorInfo={BellatorInfo}
-                                      location={lo3} BGpic={ufcI} tapImage={tapI} countPick={countPick} onLogout={handleLogout}  />} />
+                                      location={lo3} BGpic={ufcI} tapImage={tapI} countPick={countPick} onLogin={handleLogin} onLogout={handleLogout}  />} />
        
       <Route path="/section1" element={<Johnny onLogin={handleLogin} onLogout={handleLogout} />} />
       <Route path="/store" element={<Store onLogin={handleLogin} onLogout={handleLogout} />} />
