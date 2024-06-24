@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 // import './tailwind.css'
 import { ChevronUpIcon, PlusIcon } from '@heroicons/react/24/solid';
+import HeaderLogin from "./HeaderLogin";
 
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -19,7 +20,7 @@ const paths = {
 };
 
 
-export default function P4pHeader({user, onLogout}) {
+export default function P4pHeader({user, onLogout,onLogin}) {
 
     console.log(user)
     const navigate = useNavigate();
@@ -39,6 +40,7 @@ export default function P4pHeader({user, onLogout}) {
 
 
   return (
+  <>
     <Disclosure as="nav" className="bg-white shadow" style={{
       maxWidth: '100%', // Set maximum width
       // Hide overflow
@@ -422,5 +424,10 @@ export default function P4pHeader({user, onLogout}) {
         </>
       )}
     </Disclosure>
+     {!user ?  <HeaderLogin  onLogin={onLogin} onLogout={onLogout} />  : <></>}
+
+
+</>
+
   )
 }
