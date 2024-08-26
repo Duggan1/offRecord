@@ -126,9 +126,21 @@ app.get('/scrape-ufc-website', async (req, res) => {
    
 
     
-      const roundElement = $(element).find('.c-listing-fight__result-text.round').first();
-      const round = roundElement.length ? roundElement.text().trim().match(/\d+/)[0] : 'N/A';
-    
+   const roundElement = $(element).find('.c-listing-fight__result-text.round').first();
+   let round = 'N/A'; // Default value
+   
+   if (roundElement && roundElement.length > 0) {
+       const roundText = roundElement.text().trim();
+       const match = roundText.match(/\d+/); // Extract the first sequence of digits
+       if (match) {
+           round = match[0]; // If a match is found, use it
+       } else {
+           console.log('No round number found in text:', roundText);
+       }
+   } else {
+       console.log('Round element not found.');
+   }
+   
       const fightInfo = {
         weightClass,
         redCornerName,
