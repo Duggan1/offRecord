@@ -15,8 +15,8 @@ app.use(cors());
 
 
 const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-august-24-2024'
-const Recurl = 'https://www.tapology.com/fightcenter/events/114902-ufc-fight-night'
-const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600048324/league/ufc'
+const Recurl = 'https://www.tapology.com/fightcenter/events/111885-ufc-305'
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600044293/league/ufc'
 // const espnPFL = 'https://www.espn.com/mma/fightcenter/_/league/pfl'
 
 
@@ -84,17 +84,22 @@ app.get('/scrape-ufc-website', async (req, res) => {
       const redCornerImage = $(element).find('.c-listing-fight__corner-image--red img').attr('src');
       const blueCornerImage = $(element).find('.c-listing-fight__corner-image--blue img').attr('src');
     
-      // Check for winner
+      // Reset the winner to 'N/A'
       let winner = 'N/A'; 
+    
+      // Check for winner
       if ($(element).find('.c-listing-fight__corner-body--red .c-listing-fight__outcome--win').length > 0) {
         winner = '0'; // Red corner is the winner
       } else if ($(element).find('.c-listing-fight__corner-body--blue .c-listing-fight__outcome--win').length > 0) {
         winner = '1'; // Blue corner is the winner
       }
     
-      const method = $(element).find('.c-listing-fight__result-text.method').first().text().trim() || 'N/A';
-      const roundMatch = $(element).find('.c-listing-fight__result-text.round').first().text().trim().match(/\d+/);
-      const round = roundMatch ? roundMatch[0] : 'N/A';
+      // Extract method and round, ensuring they're only grabbed once
+      const methodElement = $(element).find('.c-listing-fight__result-text.method').first();
+      const method = methodElement.length ? methodElement.text().trim() : 'N/A';
+    
+      const roundElement = $(element).find('.c-listing-fight__result-text.round').first();
+      const round = roundElement.length ? roundElement.text().trim().match(/\d+/)[0] : 'N/A';
     
       const fightInfo = {
         weightClass,
