@@ -292,7 +292,7 @@ useEffect(() => {
 
   fetchData();
 }, []); 
-console.log(weRlivePFL)
+console.log(weRlive)
 
 
 
@@ -523,6 +523,7 @@ if (liveR && liveR[0]) {
       }
     });
     setweRlive(sortedAssociatedData)
+    console.log(weRlive)
 
 
 }

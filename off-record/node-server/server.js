@@ -189,7 +189,7 @@ app.get('/scrape-ufc-website', async (req, res) => {
         const html = response.data;
         const $ = cheerio.load(html);
     
-        $('.AccordionPanel.mb4').each((index, element) => {
+        $('.mb6').each((index, element) => {
         // .Gamestrip__Overview
 
         const liveOne = []

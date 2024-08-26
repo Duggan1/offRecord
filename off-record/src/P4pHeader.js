@@ -424,7 +424,7 @@ export default function P4pHeader({user, onLogout,onLogin}) {
         </>
       )}
     </Disclosure>
-     {!user ?  <HeaderLogin  onLogin={onLogin} onLogout={onLogout} />  : <></>}
+     {/* {!user ?  <HeaderLogin  onLogin={onLogin} onLogout={onLogout} />  : <></>} */}
 
 
 </>
