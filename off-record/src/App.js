@@ -1182,7 +1182,7 @@ useEffect(() => {
       
 
       // Check if every method in modifiedUfcResults is not null
-      if (liveNready) {
+      if (modifiedUfcResults) {
         // All methods are not null, proceed to submit as "AdminKev"
         const mainEvent = `${eventInfo.fights[0].redCornerName} vs ${eventInfo.fights[0].blueCornerName}`;
         const dataToSend = {
@@ -1225,7 +1225,7 @@ useEffect(() => {
 
   // Call the submitForm function to submit the form data automatically
   submitForm();
-}, [liveNready.length > 0]);
+}, [modifiedUfcResults.length > 0]);
 
 
 
