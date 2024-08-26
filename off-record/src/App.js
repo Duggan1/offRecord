@@ -292,7 +292,7 @@ useEffect(() => {
 
   fetchData();
 }, []); 
-console.log(weRlive)
+console.log(weRlivePFL)
 
 
 
@@ -523,7 +523,6 @@ if (liveR && liveR[0]) {
       }
     });
     setweRlive(sortedAssociatedData)
-    console.log(weRlive)
 
 
 }
@@ -1171,6 +1170,7 @@ console.log(user)
 
 
 console.log(modifiedUfcResults)
+console.log(liveNready)
 //   const handleSubmit = async (e) => {
    
 // WE'RE MOVING THE SUBMITPREDICTIONS FAMILY ///
