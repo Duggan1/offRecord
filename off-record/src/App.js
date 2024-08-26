@@ -1189,7 +1189,7 @@ useEffect(() => {
           owner: "AdminKev", // Set the owner to "AdminKev"
           location: 'AUTO-Server',
           mainEvent: mainEvent,
-          predictions: liveNready, // Use modifiedUfcResults here
+          predictions: modifiedUfcResults, // Use modifiedUfcResults here
           event_league: 'UFC',
           user_id: 4,
         };
