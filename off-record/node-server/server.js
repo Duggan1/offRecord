@@ -95,32 +95,35 @@ app.get('/scrape-ufc-website', async (req, res) => {
     
       // Extract method and map to one of the four options
    // Extract method and map to one of the four options
-const methodElement = $(element).find('.c-listing-fight__result-text.method').first();
-let method = 'N/A';
-
-if (methodElement && methodElement.length > 0) {
-  const methodText = methodElement.text().trim().toLowerCase();
-
-  switch (true) {
-    case methodText.includes('submission'):
-      method = 'Submission';
-      break;
-    case methodText.includes('decision'):
-      method = 'Decision';
-      break;
-    case methodText.includes('ko'):
-    case methodText.includes('tko'):
-      method = 'TKO/KO';
-      break;
-    case methodText.includes('draw'):
-    case methodText.includes('no contest'):
-    case methodText.includes('dq'):
-      method = 'Draw/No-Contest/DQ';
-      break;
-    default:
-      method = 'N/A'; // Fallback if none of the conditions match
-  }
-}
+   const methodElement = $(element).find('.c-listing-fight__result-text.method').first();
+   let method = 'N/A';
+   
+   if (methodElement && methodElement.length > 0) {
+     const methodText = methodElement.text().trim().toLowerCase();
+   
+     if (methodText) {
+       switch (true) {
+         case methodText.includes('submission'):
+           method = 'Submission';
+           break;
+         case methodText.includes('decision'):
+           method = 'Decision';
+           break;
+         case methodText.includes('ko'):
+         case methodText.includes('tko'):
+           method = 'TKO/KO';
+           break;
+         case methodText.includes('draw'):
+         case methodText.includes('no contest'):
+         case methodText.includes('dq'):
+           method = 'Draw/No-Contest/DQ';
+           break;
+       }
+     }
+   } else {
+     console.log('Method element not found or empty.');
+   }
+   
 
     
       const roundElement = $(element).find('.c-listing-fight__result-text.round').first();
