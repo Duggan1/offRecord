@@ -80,27 +80,41 @@ app.get('/scrape-ufc-website', async (req, res) => {
       const blueCornerName = $(element).find('.c-listing-fight__corner-name--blue a').text().trim().replace(/\s+/g, ' ');
       const redCornerCountry = $(element).find('.c-listing-fight__country--red .c-listing-fight__country-text').text().trim().replace(/\s+/g, ' ');
       const blueCornerCountry = $(element).find('.c-listing-fight__country--blue .c-listing-fight__country-text').text().trim().replace(/\s+/g, ' ');
-    
+
       const redCornerImage = $(element).find('.c-listing-fight__corner-image--red img').attr('src');
       const blueCornerImage = $(element).find('.c-listing-fight__corner-image--blue img').attr('src');
+
+      const winnerElement = $(element).find('.c-listing-fight__corner-body--red .c-listing-fight__outcome--Win');
+      const methodElement = $(element).find('.c-listing-fight__result-text.method');
+      const roundElement = $(element).find('.c-listing-fight__result-text.round');
+      
+
+     // Reset the winner to 'N/A'
+     let winner = 'N/A'; 
     
-      // Reset the winner to 'N/A'
-      let winner = 'N/A'; 
-    
-      // Check for winner
-      if ($(element).find('.c-listing-fight__corner-body--red .c-listing-fight__outcome--win').length > 0) {
-        winner = '0'; // Red corner is the winner
-      } else if ($(element).find('.c-listing-fight__corner-body--blue .c-listing-fight__outcome--win').length > 0) {
-        winner = '1'; // Blue corner is the winner
+     // Check for winner
+     if ($(element).find('.c-listing-fight__corner-body--red .c-listing-fight__outcome--win').length > 0) {
+       winner = '0'; // Red corner is the winner
+     } else if ($(element).find('.c-listing-fight__corner-body--blue .c-listing-fight__outcome--win').length > 0) {
+       winner = '1'; // Blue corner is the winner
+     }
+
+      let method = 'N/A'; 
+      if (methodElement.length > 0) {
+          method = methodElement.text().trim();
       }
-    
-      // Extract method and round, ensuring they're only grabbed once
-      const methodElement = $(element).find('.c-listing-fight__result-text.method').first();
-      const method = methodElement.length ? methodElement.text().trim() : 'N/A';
-    
-      const roundElement = $(element).find('.c-listing-fight__result-text.round').first();
-      const round = roundElement.length ? roundElement.text().trim().match(/\d+/)[0] : 'N/A';
-    
+
+      let round = 'N/A'; 
+      if (roundElement.length > 0) {
+        const roundText = roundElement.text().trim();
+        const match = roundText.match(/\d+/);
+        round = match ? match[0] : 'N/A';
+      }
+
+
+
+
+
       const fightInfo = {
         weightClass,
         redCornerName,
@@ -112,11 +126,11 @@ app.get('/scrape-ufc-website', async (req, res) => {
         winner,
         method,
         round,
+
       };
-    
+
       fightData.push(fightInfo);
     });
-    
 
    
     // Use async/await to wait for the Tapology request to complete
