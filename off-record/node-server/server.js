@@ -92,8 +92,9 @@ app.get('/scrape-ufc-website', async (req, res) => {
         winner = '1'; // Blue corner is the winner
       }
     
-      const method = $(element).find('.c-listing-fight__result-text.method').text().trim() || 'N/A';
-      const round = $(element).find('.c-listing-fight__result-text.round').text().trim().match(/\d+/) || 'N/A';
+      const method = $(element).find('.c-listing-fight__result-text.method').first().text().trim() || 'N/A';
+      const roundMatch = $(element).find('.c-listing-fight__result-text.round').first().text().trim().match(/\d+/);
+      const round = roundMatch ? roundMatch[0] : 'N/A';
     
       const fightInfo = {
         weightClass,
