@@ -53,12 +53,15 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
   }
 
       console.log(ufcCard)
-      const selectedUfcCard = ufcCard.length > 1 ? ufcCard : stallUfcCard;
+      const selectedUfcCard = ufcCard && ufcCard.length > 1 ? ufcCard : stallUfcCard;
       console.log(selectedUfcCard)
       let isUfcCardLoaded = ufcCard.length > 1 || bellatorInfo[0];
       
       // Define variables based on ufcCard
-      let mainEvent = ufcCard.length > 1 ? ufcCard[0].fighters.join(' vs ') : '';
+      let mainEvent = ufcCard && ufcCard.length > 1 && ufcCard[0].fighters
+  ? ufcCard[0].fighters.join(' vs ')
+  : '';
+
       let mainRedC = ufcCard.length > 1 ? ufcCard[0].fighters[0] : '';
       let mainBlueC = ufcCard.length > 1 ? ufcCard[0].fighters[1] : '';
 
@@ -368,7 +371,7 @@ function Home({user, ufcCard, stallUfcCard, state, locationCity,location,weRlive
         return () => clearInterval(intervalId);
       }, []); // Empty dependency array to ensure the effect runs only once during component mount
       
-      const liveNready = weRlive ? transformData(weRlive) : [];
+      const liveNready = weRlive ? transformData(weRlive.filter(item => item)) : [];
       console.log(currentfighter)
       console.log(weRlive.some(item => item.timeDetails1 !== ''))
       const countNonEmptyTimeDetails = weRlive.filter(item => item.timeDetails1 !== '').length;
@@ -415,11 +418,13 @@ const [BGindex, setBGindex] = useState(0);
     const baseURLForS3Files = "https://dmxg5wxfqgb4u.cloudfront.net";
     const baseURLForThemes = "https://www.ufc.com";
 
-    const newBackgroundImageUrl = BGpic.startsWith("/s3/files/")
-      ? `https://dmxg5wxfqgb4u.cloudfront.net/${BGpic.substring("/s3/files/".length)}`
-      : BGpic.startsWith("/themes/custom/")
-        ? `https://www.ufc.com/${BGpic}`
-        : BGpic;
+    const newBackgroundImageUrl = BGpic && BGpic.startsWith("/s3/files/")
+    ? `https://dmxg5wxfqgb4u.cloudfront.net/${BGpic.substring("/s3/files/".length)}`
+    : BGpic && BGpic.startsWith("/themes/custom/")
+      ? `https://www.ufc.com/${BGpic}`
+      : '';
+  
+
 
     setBackgroundImageUrl(newBackgroundImageUrl);
   }, [BGpic]);
@@ -433,13 +438,16 @@ const [BGindex, setBGindex] = useState(0);
       {isUfcCardLoaded ? 
        <>
       <div style={{
-      backgroundImage:`url(${BGpic.startsWith("/s3/files/")
+  backgroundImage: `url(${
+    BGpic && BGpic.startsWith("/s3/files/")
       ? `https://dmxg5wxfqgb4u.cloudfront.net/${BGpic.substring("/s3/files/".length)}`
-      : BGpic.startsWith("/themes/custom/")
+      : BGpic && BGpic.startsWith("/themes/custom/")
         ? `https://www.ufc.com/${BGpic}`
-        : BGpic})`,
-      backgroundSize:'100% 100%'
-      }}>
+        : BGpic || ''
+  })`,
+  backgroundSize: '100% 100%'
+}}
+>
         
       <div className={` homeSpace  text-align-center`} >
       {!user ?  <HeaderLogin  onLogin={onLogin} onLogout={onLogout} />  : <></>}
@@ -709,15 +717,20 @@ const [BGindex, setBGindex] = useState(0);
                 { isUfcCardLoaded ? <div className="home-fighter"  style={{alignItems:'start'}}>
                                     <div className="fi2"
                                               style={{
-                                                backgroundImage: ufcCard.length > 2 ? `url('${
-                                                  ufcCard[BGindex].fighterPics[0].startsWith("/s3/files/")
-                                                    ? "https://dmxg5wxfqgb4u.cloudfront.net/" +
-                                                      ufcCard[BGindex].fighterPics[0].substring("/s3/files/".length)
-                                                    : ufcCard[BGindex].fighterPics[0] 
-                                                }')`: '',
-                                                
-                                                marginTop: '100px',width: '100%',maxWidth: '300px',backgroundSize:'75% 100%'
-                                              }} ></div>
+                                                backgroundImage: ufcCard.length > 2 && ufcCard[BGindex]?.fighterPics?.[0]
+                                                  ? `url('${
+                                                      ufcCard[BGindex].fighterPics[0].startsWith("/s3/files/")
+                                                        ? "https://dmxg5wxfqgb4u.cloudfront.net/" + 
+                                                          ufcCard[BGindex].fighterPics[0].substring("/s3/files/".length)
+                                                        : ufcCard[BGindex].fighterPics[0]
+                                                    }')`
+                                                  : '',
+                                                marginTop: '100px',
+                                                width: '100%',
+                                                maxWidth: '300px',
+                                                backgroundSize: '75% 100%',
+                                              }}
+                                              ></div>
                                     <div
                                               className="fi2"
                                               style={{
