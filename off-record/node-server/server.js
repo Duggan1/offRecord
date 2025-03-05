@@ -13,9 +13,9 @@ const port = 3001; // Choose an available port
 // Enable CORS for all routes
 app.use(cors());
 
-const deatilsUrl = 'https://www.ufc.com/event/ufc-fight-night-march-01-2025'
-const Recurl = 'https://www.tapology.com/fightcenter/events/120055-ufc-fight-night'
-const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600051446/league/ufc'
+const deatilsUrl = 'https://www.ufc.com/event/ufc-313'
+const Recurl = 'https://www.tapology.com/fightcenter/events/120488-ufc-313'
+const espnurl = 'https://www.espn.com/mma/fightcenter/_/id/600051447/league/ufc'
 // const espnPFL = 'https://www.espn.com/mma/fightcenter/_/league/pfl'
 
 
