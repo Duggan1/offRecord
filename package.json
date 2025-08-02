@@ -1,1 +1,22 @@
-{}
+{
+  "name": "offrecord",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Duggan1/offRecord.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Duggan1/offRecord/issues"
+  },
+  "homepage": "https://github.com/Duggan1/offRecord#readme",
+  "description": ""
+}
